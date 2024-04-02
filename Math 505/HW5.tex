@@ -1,0 +1,298 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 505 HW5}
+\date{\today}
+\author{Anonymous}
+
+\begin{document}
+	\maketitle
+	\subsection*{Lemma 3.}
+	By definition the Galois group is the group of automorphisms of $K$ that fix $k$, so $\Gal(K/k) = \Sigma$ which shows the two above equalities.
+	
+	\subsection*{Proposition 4.}
+	\begin{enumerate}[label=(\arabic*)]
+		\item We need only show that $N_{K/k}(\alpha)$ is fixed by every element of the Galois group. Let $\tau \in \Gal(K/k)$, and notice that
+		\begin{align*}
+			\tau\qty(\prod_{\sigma \in \Gal(K/k)} \sigma(\alpha)) = \prod_{\sigma \in \Gal(K/k)} (\tau \circ \sigma)(\alpha)
+		\end{align*}
+		Since left multiplication by an element of a group is a permutation, it follows immediately that 
+		\begin{align*}
+			\Set{\tau \circ \sigma \mid \sigma \in \Gal(K/k)} = \tau\Gal(K/k) = \Gal(K/k)
+		\end{align*}
+		Which shows that $\tau$ fixes $N_{k/k}(\alpha)$ for every $\tau \in \Gal(K/k)$, completing the proof.
+		
+		\item Notice that
+		\begin{align*}
+			\tau\qty(\sum_{\sigma \in \Gal(K/k)} \sigma(\alpha)) = \sum_{\sigma \in \Gal(K/k)} (\tau \circ \sigma)(\alpha)
+		\end{align*}
+		So for the same reasons as before $\Tr_{K/k}(\alpha) \in k$.
+	\end{enumerate}
+
+	\subsection*{Proposition 5.}
+	Notice that
+	\begin{align*}
+		N_{K/k}(\alpha\beta) = \prod_{\sigma \in \Gal(K/k)} \sigma(\alpha\beta) = \prod_{\sigma \in \Gal(K/k)} \sigma(\alpha)\sigma(\beta) &= \prod_{\sigma \in \Gal(K/k)} \sigma(\alpha) \cdot \prod_{\sigma \in \Gal(K/k)} \sigma(\beta)
+		\\&=N_{K/k}(\alpha) \cdot N_{K/k}(\beta)
+	\end{align*}
+
+	\subsection*{Proposition 5.}
+	Once again,
+	\begin{align*}
+		\Tr_{K/k}(\alpha+\beta) = \sum_{\sigma \in \Gal(K/k)} \sigma(\alpha+\beta) = \sum_{\sigma \in \Gal(K/k)} \sigma(\alpha) + \sigma(\beta) &= \sum_{\sigma \in \Gal(K/k)} \sigma(\alpha) + \sum_{\sigma \in \Gal(K/k)} \sigma(\beta) 
+		\\&= \Tr_{K/k}(\alpha) + \Tr_{K/k}(\beta)
+	\end{align*}
+	
+	\subsection*{Example 7.}
+	\begin{enumerate}[label=(\arabic*)]
+		\item Since the minimal polynomial of $D$ is $x^2-D$ which has degree 2, the Galois group has order 2. We claim that it is generated by the automorphism
+		\begin{align*}
+			\cph: \sqrt{D} \mapsto -\sqrt{D}
+		\end{align*}
+		Since $\sqrt{D} \not \in k$, this map fixes $k$, and hence is an automorphism of $k$ sending $\sqrt{D}$ to another root of $x^2-D$. Clearly it has order 2, which shows that the Galois group is just $\gen{\cph}$. Then 
+		\begin{align*}
+			N_{k(\sqrt{D})/k} = (a+b\sqrt{D})\cph\qty(a+b\sqrt{D}) = (a+b\sqrt{D})(a-b\sqrt{D}) = a^2-Db^2
+		\end{align*}
+		\item Similarly,
+		\begin{align*}
+			\Tr_{k(\sqrt{D})/k} = a+b\sqrt{D} + \cph\qty(a+b\sqrt{D}) = a + b\sqrt{D} + a - b\sqrt{D} = 2a
+		\end{align*}
+	\end{enumerate}
+	
+	\subsection*{Proposition 8.}
+	\begin{enumerate}[label=(\arabic*)]
+		\item Let $\alpha_2, \ldots, \alpha_d$ be the other $d-1$ roots of $f$. We claim that for any $\alpha_i$, there are precisely $n/d$ $\sigma \in \Gal(K/k)$ such that $\sigma(\alpha) = \alpha_i$. This was actually shown on homework 2, because each $\sigma \in \Gal(K/k)$ sending $\alpha$ to $\alpha_i$ is just an extension of $\tau: k(\alpha) \to \overline k$ with $\tau(\alpha) = \alpha_i$, and I showed on HW2 that
+		\begin{align*}
+			\qty|\Set{
+				\begin{array}{l}
+					\text{extensions of $\tau$ to} \\
+					\text{embeddings $E \hookrightarrow L'$}
+			\end{array}}| = 
+			\qty|\Set{
+				\begin{array}{l}
+					\text{extensions of $\sigma$ to} \\
+					\text{embeddings $E \hookrightarrow L$}
+			\end{array}}|
+		\end{align*}
+		Where $E/F$ is an extension and $\tau: F \to L'$ and also $\sigma: F \to L$ with $L,L'$ (possibly distinct) algebraic closures of $F$. Taking $L=L'=\overline k$, $F = k(\alpha)$, $E = K$, $\sigma = \mathrm{id}_F$, and $\tau$ as above will show that the number of $\sigma \in \Gal(K/k)$ sending $\alpha$ to $\alpha_i$ are in bijection with the number of $\sigma \in \Gal(K/k)$ that send $\alpha$ to $\alpha$, which is precisely the (separable) degree of $K/k(\alpha)$, which, by the following diagram,
+		 \[\begin{tikzcd}
+		 	K \\
+		 	{k(\alpha)} \\
+		 	k
+		 	\arrow["{n/d}", no head, from=1-1, to=2-1]
+		 	\arrow["d", no head, from=2-1, to=3-1]
+		 	\arrow["n"', curve={height=18pt}, no head, from=1-1, to=3-1]
+		 \end{tikzcd}\]
+	 	Is just $n/d$. Thus, in the product
+	 	\begin{align*}
+	 		N_{K/k}(\alpha) = \prod_{\sigma \in \Gal(K/k)} \sigma(\alpha)
+	 	\end{align*}
+ 		precisely $n/d$ of the terms are $\alpha_i$ for each $i$. So, let $\beta = \prod_{i=1}^d \alpha_i$ (taking $\alpha_1 = \alpha$) and we get that
+ 		\begin{align*}
+ 			N_{K/k}(\alpha) = \beta^{n/d}
+ 		\end{align*}
+ 		By the formulas for symmetric polynomials, the product of the roots $\beta$ is precisely $(-1)^na_0$. If $n$ is odd, then $n^2/d$ is odd, so $(-1)^n = (-1)^{n^2/d}$. Similarly, if $n$ is even then $(-1)^{n} = (-1)^{n^2/d}$. We have concluded that
+ 		\begin{align*}
+ 			N_{K/k}(\alpha) = \beta^{n/d} = (-1)^{n \cdot n/d} a_0^{n/d} = (-1)^n a_0^{n/d}
+ 		\end{align*}
+ 	
+ 		\item Once again, precisely $n/d$ of the terms of
+ 		\begin{align*}
+ 			\Tr_{K/k}(\alpha) = \sum_{\sigma \in \Gal(K/k)} \sigma(\alpha)
+ 		\end{align*}
+ 		are $\alpha_i$ for each $i$. Thus,
+ 		\begin{align*}
+ 			\Tr_{K/k}(\alpha) = \frac nd \sum_{i=1}^d \alpha_i
+ 		\end{align*}
+ 		Once again by the explicit formulas for symmetric polynomials, the sum of the roots is just $-a_{d-1}$, whence,
+ 		\begin{align*}
+ 			\Tr_{K/k}(\alpha) = -\frac nd a_{d-1}
+ 		\end{align*}
+	\end{enumerate}
+
+	\subsection*{Proposition 9}
+	\begin{enumerate}[label=(\arabic*)]
+		\item Since $a \in k$, for any $\sigma \in \Gal(K/k)$ $\sigma(a) = a$. Thus,
+		\begin{align*}
+			N(a\alpha) = \prod_{\sigma \in \Gal(K/k)} \sigma(a\alpha) = \prod_{\sigma \in \Gal(K/k)} a\sigma(\alpha) = a^n\prod_{\sigma \in \Gal(K/k)} \sigma(\alpha) = a^nN_{K/k}(\alpha)
+		\end{align*}
+	
+		\item Similarly,
+		\begin{align*}
+			\Tr_{K/k}(a\alpha) = \sum_{\sigma \in \Gal(K/k)} \sigma(a\alpha) = \sum_{\sigma \in \Gal(K/k)} a\sigma(\alpha) = a\sum_{\sigma \in \Gal(K/k)} \sigma(\alpha) = a\Tr_{K/k}(\alpha)
+		\end{align*}
+	\end{enumerate}
+	
+	\subsection*{Theorem 10.}
+	Let $0 \neq \beta \in K$, and write $\alpha = \frac{\beta}{\sigma(\beta)}$. Note that $N_{K/k}(1) = \prod_{\sigma \in \Gal(K/k)} \sigma(1) = 1^n = 1$. This shows that $N_{K/k}(a/b) = N_{K/k}(a)/N_{K/k}(b)$. We showed in Proposition 4 that $\sigma(N_{K/k}(\alpha)) = N_{K/k}(\alpha)$ for each $\sigma$. Similarly, since $\Gal(K/k)\tau = \Gal(K/k)$, we also have that $N_{K/k}(\tau(\alpha)) = N_{K/k}(\alpha)$ for each $\tau \in \Gal(K/k)$. Equivalently, since right multiplication by an element of a group is a permutation of that group, 
+	$\Set{\sigma \circ \tau \mid \sigma \in \Gal(K/k)} = \Gal(K/k)$. Thus immediately from the definition,
+	\begin{align*}
+		N_{K/k}(\tau(\alpha)) = \prod_{\sigma \in \Gal(K/k)} \sigma \circ \tau(\alpha) = N_{K/k}(\tau)
+	\end{align*}
+	Thus,
+	\begin{align*}
+		N_{K/k}\qty(\frac{\beta}{\sigma(\beta)}) = \frac{N_{K/k}(\beta)}{N_{K/k}(\beta)} = 1
+	\end{align*}
+	
+	We provide a different proof of the case $n=2$. Let $K = k(\sqrt{D})$ with $\sqrt{D}$ a solution to (by hypothesis, the irreducible) $X^2 - D = 0$. The only nontrivial automorphism in the Galois group is $\sigma: x + y\sqrt{D} \mapsto x - y\sqrt{D}$. Thus, for $\alpha$ of norm 1, we want to find a solution to
+	\begin{align*}
+		\alpha(x-y\sqrt{D}) &= x+y\sqrt{D} \\
+		(\alpha-1)x &= y\sqrt{D}(\alpha+1)
+	\end{align*}
+	Notice that
+	\begin{align*}
+		\sigma\qty(\frac{\sqrt{D}(\alpha+1)}{\alpha-1}) = \frac{-\sqrt{D}(\alpha^{-1} + 1)}{\alpha^{-1} - 1} = \frac{-\sqrt{D}(1+\alpha)}{1-\alpha}
+	\end{align*}
+	Since $\alpha$ has norm 1 we have that $\alpha \sigma(\alpha) = 1$, thus $\sigma(\alpha) = \alpha^{-1}$ (I am a little confused by your question... $\alpha$ is an element of a field so it has an inverse). Thus the coefficient of $y$ is fixed by every element of the Galois group and hence this is an equation in two variables in $k$, thus the kernel of its corresponding linear transformation has dimension at least 1, so there is a (necessarily nonzero) solution.
+	
+	In the general case we use linear independence of characters. Recall that $\sigma^{(i)}(x) = (\underbrace{\sigma \circ \cdots \circ \sigma}_{\text{$i$ times}})(x)$. Notice that $\sigma \eval_{K^\times}: K^\times \to K^\times$ is a homomorphism of groups, and hence a character of $K^\times$. Notice also that 
+	\begin{align*}
+		\mathcal{S} = \Set{\sigma^{(0)} = \mathrm{id}, \sigma, \sigma^{(2)}, \ldots, \sigma^{(n-1)}}
+	\end{align*}
+	is a set of distinct characters since $\sigma$ has order $n$. Thus there is a $\gamma \in K$ so that
+	\begin{align*}
+		\beta = \alpha \sigma^{(0)}(\gamma) + \alpha \sigma(\alpha) \sigma^{(1)}(\gamma) + \cdots + \underbrace{\qty(\prod_{i=0}^{n-1} \sigma^{(i)}(\alpha))}_{1} \sigma^{(n-1)}(\gamma) \neq 0
+	\end{align*}
+	since $\mathcal{S}$ is linearly independent by linear independence of characters. We see that,
+	\begin{align*}
+		\frac{\beta}{\sigma(\beta)} = \frac{\alpha \sigma^{(0)}(\gamma) + \alpha \sigma(\alpha) \sigma^{(1)}(\gamma) + \cdots + \sigma^{(n-1)}(\gamma)}{\sigma(\alpha) \sigma^{(1)}(\gamma) + \sigma(\alpha)\sigma^{(2)}(\alpha) \sigma^{(2)}(\gamma) + \cdots + \prod_{i=1}^{n-1} \sigma^{(i)}(\alpha) \sigma^{(n-1)}(\gamma) + \sigma^{(0)}(\gamma)}
+	\end{align*}
+	Where the coefficient of the last term is 1 precisely because $N(\alpha) = 1$. After moving the last term on the bottom to the beginning, and multiplying by $\alpha/\alpha$, we can see that this quantity is going to equal $\alpha$, which completes the proof.
+\end{document}

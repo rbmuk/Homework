@@ -1,0 +1,374 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{|#1|_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 505 HW6}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We first show that $f(x) = x^4 - 4x^2 - 1$ is irreducible. Clearly, the rational root theorem shows that this has no roots over $\Q$. Notice that by just explicitly checking, the only irreducible polynomials of degree 2 in $\F_3$ are
+		\begin{align*}
+			&x^2+1 \\
+			&x^2+x+2 \\
+			&x^2+2x+2
+		\end{align*}
+		Clearly $\overline f(x) = x^4 + 2x^2 - 1$ has no roots in $\F_3$ (checked by plugging in all possibilities). Next, dividing $\overline f \in \F_3[x]$ by each polynomial results in a remainder of 1, $x$, and 1 respectively, so $f$ is irreducible in $\F_3$ thus also in $\Q$.
+		
+		Now we explicitly find the roots. Let $y = x^2$. Then our polynomial becomes 
+		\begin{align*}
+			y^2 - 4y^2 - 1
+		\end{align*}
+		Which has solutions $y = \frac{4 \pm \sqrt{16+4}}{2} = 2 \pm \sqrt{5}$. Thus our original polynomial has solutions $x = \pm \sqrt{2 \pm \sqrt{5}}$ (4 distinct solutions). Notice that
+		\begin{align*}
+			\sqrt{2+\sqrt{5}} \cdot \sqrt{2-\sqrt{5}} = \sqrt{4-5} = i
+		\end{align*}
+		We abstract away the specific value of the root by letting $\alpha = \sqrt{2+\sqrt{5}}$. Then the other roots are $-\alpha, i\alpha^{-1}$ and $-i\alpha^{-1}$ by our above calculation. Thus the splitting field is just $\Q(\alpha, i)$. Clearly $|\Q(i)/\Q|=2$, and since we showed irreducibility, we also have $|\Q(\alpha)/\Q| = 4$. Since $i \not \in \Q(\alpha)$, and $x^2+1=0$ is a polynomial of degree 2 that has $i$ as a root over $\Q(\alpha)$, it must be that $|\Q(i, \alpha) : \Q(\alpha)| = 2$. We have the following diagram:
+		
+		\[\begin{tikzcd}
+			& {\Q(\alpha, i)} \\
+			{\Q(i)} && {\Q(\alpha)} \\
+			& \Q
+			\arrow["4"', no head, from=3-2, to=2-3]
+			\arrow["2"', no head, from=2-1, to=3-2]
+			\arrow["4"', no head, from=1-2, to=2-1]
+			\arrow["2", no head, from=1-2, to=2-3]
+		\end{tikzcd}\]
+		In particular, letting $G = \Gal(\Q(\alpha, i)/\Q)$, $|G| = 8$. Define the following maps:
+		\begin{align*}
+			\gamma&: i \mapsto -i \\
+			\sigma&: \alpha \to -\alpha \\
+			\cph&: \alpha \mapsto i\alpha^{-1} \\
+			\tau&: \alpha \mapsto -i\alpha^{-1}
+		\end{align*}
+		Clearly $\gamma, \sigma$ have order 2, and $\cph^{(2)}(\alpha) = \cph(i\alpha^{-1}) = i\cph(\alpha)^{-1} = i i^{-1}\alpha = \alpha$, so $\cph$ has order 2 and similarly $\tau$ has order 2. Notice that $\gamma \cph \gamma^{-1}(\alpha) = \gamma(i\alpha^{-1}) = -i\alpha^{-1}$. Thus, $G$ is nonabelian. Hence $G$ is either $Q_8$ or $D_4$. We see that $(\cph \gamma)^{(2)}(\alpha) = (\cph \gamma)(i\alpha^{-1}) = -i\cph(\alpha)^{-1} = -\alpha$, so in particular $\cph \gamma$ has order 4. Similarly, $\tau \gamma$ has order 4. Thus our group has precisely 2 elements of order 4: $\cph \gamma$ and $\tau \gamma$, 5 elements of order 2: $\gamma, \sigma, \cph, \tau, \sigma \gamma$, and one element of order 1: $e$. $Q_8$ has 6 elements of order 4, thus we have determined that $G = D_4$. Identifying $\cph \gamma$ with $r$, and $\gamma$ with $s$, we have the following lattice:
+		\[\begin{tikzcd}
+			&& {D_4} \\
+			& {\langle r^2,s\rangle} & {\langle r \rangle} & {\langle r^2, rs\rangle} \\
+			{\langle s \rangle} & {\langle r^2s \rangle} & {\langle r^2 \rangle} & {\langle rs \rangle} & {\langle r^3s \rangle} \\
+			&& {\langle e \rangle}
+			\arrow[no head, from=2-2, to=3-1]
+			\arrow[no head, from=2-2, to=3-2]
+			\arrow[no head, from=2-2, to=3-3]
+			\arrow[no head, from=3-3, to=2-3]
+			\arrow[no head, from=2-2, to=1-3]
+			\arrow[no head, from=2-3, to=1-3]
+			\arrow[no head, from=2-4, to=1-3]
+			\arrow[no head, from=2-4, to=3-3]
+			\arrow[no head, from=2-4, to=3-5]
+			\arrow[no head, from=3-4, to=2-4]
+			\arrow[no head, from=3-1, to=4-3]
+			\arrow[no head, from=3-2, to=4-3]
+			\arrow[no head, from=3-3, to=4-3]
+			\arrow[no head, from=3-4, to=4-3]
+			\arrow[no head, from=3-5, to=4-3]
+		\end{tikzcd}\]
+		The reader can clearly see that under the identification above, $\sigma = r^2$, $\cph = rs$, $\tau = sr = r^3s$, and thus $\sigma \gamma = r^2s$, and finally $\tau \gamma = r^3$. This identification and some (omitted) calculations yields the following lattice:
+		\[\begin{tikzcd}
+			&& {\mathbb Q} \\
+			& {\mathbb Q(\alpha^2)} & {\mathbb Q(i\alpha^{2})} & {\mathbb Q(i)} \\
+			{\mathbb Q(\alpha)} & {\mathbb Q(i\alpha)} & {\mathbb Q(i, \alpha^2)} & {\mathbb Q(\alpha + i\alpha^{-1})} & {\mathbb Q(\alpha-i\alpha^{-1})} \\
+			&& {\mathbb Q(i, \alpha)}
+			\arrow[no head, from=3-3, to=4-3]
+			\arrow[no head, from=3-1, to=4-3]
+			\arrow[no head, from=2-2, to=1-3]
+			\arrow[no head, from=1-3, to=2-4]
+			\arrow[no head, from=2-3, to=3-3]
+			\arrow[no head, from=2-4, to=3-3]
+			\arrow[no head, from=2-2, to=3-3]
+			\arrow[no head, from=1-3, to=2-3]
+			\arrow[no head, from=3-1, to=2-2]
+			\arrow[no head, from=4-3, to=3-5]
+			\arrow[no head, from=3-2, to=4-3]
+			\arrow[no head, from=2-2, to=3-2]
+			\arrow[no head, from=4-3, to=3-4]
+			\arrow[no head, from=2-4, to=3-4]
+			\arrow[no head, from=2-4, to=3-5]
+		\end{tikzcd}\]
+		We shall go over only the nontrivial ones for completness. The ones I found difficult were finding the fixed field of $\gen{rs}$, $\gen{r^2s}$ and $\gen{r^3s}$. Recall that $\cph = rs$. The technique I had in mind is to build the middle field from the two side fields--importantly, noticing that $\cph(i\alpha^{-1}) = \alpha$, and since $\cph$ has order 2, we have that $\cph(\alpha + i\alpha^{-1}) = i\alpha^{-1}+\alpha$. Now we need to argue this extension has degree 4 over $\Q$. Since it is fixed by $\cph$, it must either contain or be contained in $\Q(i)$ by Galois correspondence. Since it is clearly not contained in $\Q(i)$ (by matching real and imaginary parts), it must be that it contains it (strictly), which shows it has dimension 4. The same argument applies for $\gen{r^3s}$. The intuition about the fixed field of $\gen{rs}$ is noticing that a field that contains $\alpha$ would be a square root of $\alpha$--but we already used one so let's use the other. 
+		
+		To go one step further, the author conjectures that replacing the $-4$ in our polynomial with any other number congruent to 2 mod $3$ would yield the same Galois group via the same arguments (in particular, the irreducibility argument would still work). In particular, given any $a \equiv 2$ mod 3, $g_a(x) = x^4 + ax^2 - 1$ would yield the same Galois group with a similar picture once the correct $\alpha$ has been picked (namely, the positive real one). Perhaps $g_a(x)$ being irreducible is even sufficient for $a \equiv 2$ mod 3, which would give quite the incredible divisibility rule.
+		
+		\item We first prove extension of scalars. Let $E, L$ sit inside some algebraic closure of $k$ and denote the normal closure of $E$ as $N(E)$ (the intersection of all normal extensions of $E$). We then have the following diagram:
+		\[\begin{tikzcd}
+			&& {N(E)N(L)} \\
+			{N(E)} && EL && {N(L)} \\
+			& E && L \\
+			&& {E \cap L} \\
+			&& k
+			\arrow[no head, from=4-3, to=5-3]
+			\arrow[no head, from=4-3, to=3-2]
+			\arrow[no head, from=4-3, to=3-4]
+			\arrow[no head, from=3-2, to=2-3]
+			\arrow[no head, from=2-3, to=3-4]
+			\arrow[no head, from=3-2, to=2-1]
+			\arrow[no head, from=3-4, to=2-5]
+			\arrow[no head, from=2-1, to=1-3]
+			\arrow[no head, from=1-3, to=2-5]
+			\arrow[no head, from=2-3, to=1-3]
+		\end{tikzcd}\]
+		Since $N(E)$ is the splitting field of some polynomial $f$, and $N(L)$ is the splitting field of some polynomial $g$, we see clearly that $N(E)N(L)$ is the splitting field of $fg$, thus $N(E)N(L)$ is Galois over $EL$. But why does a field extension of $L$ that is normal over $k$ exist? Since $L$ is finite, we can take elements $\alpha_1, \ldots, \alpha_n$ that generate it, then just take the splitting field over the product of the minimal polynomials of each $\alpha_i$. Notice finally that $N(E)N(L) / N(L)$ is separable since separable extensions form a distinguished class. Thus $N(E)N(L)/N(L)$ is Galois, so we may reduce to the case where $E, L$ are normal over $k$. In that case,
+		\begin{align*}
+			\Gal(EL/L) \cong \Gal(E/E \cap L) \nsg \Gal(E/k)
+		\end{align*}
+		Where the last inclusion is by Galois correspondence (notably it is a normal subgroup since the intersection of two normal extensions is also normal). Since $\Gal(E/k)$ is solvable, and since normal subgroups of solvable groups are solvable, $\Gal(E/E \cap L)$ is solvable, and thus so is $\Gal(EL/L)$.
+		
+		We prove the more general result that any subgroup of a solvable group is solvable. Let $G$ be a solvable group and $H \leq G$. By solvability, the derived series terminates at $\gen{e}$, i.e.
+		\begin{align*}
+			G \trianglerighteq [G,G] = G^{(1)} \trianglerighteq [G^{(1)}, G^{(1)}] = G^{(2)}\trianglerighteq \cdots \trianglerighteq \gen{e}
+		\end{align*}
+		Clearly, $[H,H] \leq [G,G]$ since $H \leq G$. By applying this fact inductively, we can see that $H^{(i)} \leq G^{(i)}$. Thus, since $G$'s derived series terminates, we have that $H$'s does too. Let $L/E/k$ be a tower of extensions, and assume that $L$ is solvable. Then there exists an extension $L'$ of $L$ such that $L'/k$ is solvable. Pictorially,
+		\[\begin{tikzcd}
+			{L'} \\
+			L \\
+			E \\
+			k
+			\arrow[no head, from=4-1, to=3-1]
+			\arrow[no head, from=3-1, to=2-1]
+			\arrow[no head, from=2-1, to=1-1]
+			\arrow["{G=\Gal(L'/k)}"', curve={height=24pt}, no head, from=1-1, to=4-1]
+			\arrow["{H=\Gal(L'/E)}", curve={height=-24pt}, no head, from=1-1, to=3-1]
+		\end{tikzcd}\]
+		Since $H \leq G$, by the previous lemma $H$ is solvable. Since $E \subset L'$ and $\Gal(L'/k)$ is solvable, taking $E = L'$ in our definition of a solvable field extension shows that $E/k$ is solvable.
+		
+		The converse is, morally speaking, citing the forward direction twice and a picture. Let $L/E/k$ be a tower of extensions such that $L/E$ is solvable and $E/k$ is solvable. Let $L'$ be the field extension of $L$ such that $\Gal(L'/E)$ is solvable and $E'$ defined similarly. We then have the following diagram:
+		
+		\[\begin{tikzcd}
+			L & {L'} & {L'E'} \\
+			E & {E'} \\
+			k
+			\arrow[no head, from=2-1, to=3-1]
+			\arrow[no head, from=1-1, to=2-1]
+			\arrow[no head, from=2-1, to=2-2]
+			\arrow[no head, from=1-1, to=1-2]
+			\arrow[color={rgb,255:red,214;green,92;blue,92}, no head, from=2-2, to=1-3]
+			\arrow[no head, from=1-2, to=1-3]
+			\arrow[color={rgb,255:red,153;green,92;blue,214}, curve={height=-24pt}, no head, from=1-3, to=3-1]
+			\arrow[no head, from=1-2, to=2-1]
+			\arrow[color={rgb,255:red,214;green,92;blue,92}, no head, from=2-2, to=3-1]
+		\end{tikzcd}\]
+		We claim that $L'E'$ is Galois over $k$. Since $E'/k$ is separable, $E/k$ is separable. Since separable extensions form a distinguished class, and since $L'/E$ is separable (since $L/E$ and $E/k$ are separable), $L'E'/E'$ is separable. This tells us that $L'E'/k$ is separable. Let $\sigma: L'E' \to \overline k = \overline E$ be an embedding into the algebraic closure of $k$. Clearly,
+		\begin{align*}
+			\sigma(l'e') = \sigma(l')\sigma(e')
+		\end{align*}
+		Since $L'/E$ is normal, $L'$ will get mapped to itself under any embedding of $L'$ into $\overline E = \overline k$, thus $\sigma(l') \in L'$. Similarly, $\sigma(e') \in E'$, Thus $\sigma(L'E') = L'E'$, which shows normality. Since $L'/E$ is solvable, by extension of scalars $L'E'/E'$ is solvable too. Clearly $L'E'/E'$ is Galois, so by the forward direction, $L'E'/E'$ is solvable. 
+		
+		We have shown the red path in the above diagram is a tower of solvable Galois extensions, thus we can reduce to the case where $L$ and $E$ are Galois. We draw the final diagram:
+		\[\begin{tikzcd}
+			L \\
+			E \\
+			k
+			\arrow[no head, from=1-1, to=2-1]
+			\arrow[no head, from=2-1, to=3-1]
+			\arrow["{H=\Gal(L/E)}", curve={height=-18pt}, no head, from=1-1, to=2-1]
+			\arrow["{G/H \cong \Gal(E/k)}", curve={height=-18pt}, no head, from=2-1, to=3-1]
+			\arrow["{G=\Gal(L/k)}"', curve={height=24pt}, no head, from=1-1, to=3-1]
+		\end{tikzcd}\]
+		Our hypothesis is that $H$ and $G/H$ are solvable, which shows that $G$ is solvable.
+		
+		\item \begin{enumerate}[label=(\arabic*)]
+			\item 
+			\begin{lemma}
+				Let $f(x) \in k[x]$ be inseparable and irreducible. Then there exists an irreducible separable polynomial $g(x) \in k[x]$ and $k > 0$ so that $f(x) = g(x^{p^k})$.
+			\end{lemma}
+			
+			\begin{proof}
+				By induction. Clearly the theorem is true for monic polynomials. Let $f(x) = a_0 + a_1x + \cdots + a_nx^n$ be as above. Let $d(x) = \gcd(f(x), f'(x))$ (where $d$ is monic). If $f'(x) \not \equiv 0$, $d(x) \equiv 1$, otherwise $d(x) \mid f(x)$ but $f(x)$ is irreducible. Then by Bezout, there are $a(x), b(x)$ such that 
+				\begin{align*}
+					a(x)f(x) + b(x)f'(x) = 1
+				\end{align*}
+				Since $f(x)$ has a repeat root $\alpha$, we could plug $\alpha$ into the above equation to get that $0 = 1$, a contradiction. Thus $f' \equiv 0$. Now let $1 \leq i \leq n$. It follows that $ia_i = 0$ in $k$. If $a_i \neq 0$, we have that $i \cdot 1 = 0$ so $p \mid i$. Thus $p$ divides the power of term in $f(x)$, so we can write 
+				\begin{align*}
+					f(x) = \sum_{i=0}^{n/p} a_ix^{pi}
+				\end{align*}
+				Taking $g(x) = \sum_{i=0}^{n/p} a_ix^i$ yields $f(x) = g(x^p)$. If $g$ is separable we are done, otherwise we must show that $g$ is irreducible to complete the inductive step. If $g$ had a reduction $g(x) = h(x)k(x)$, then $f(x) = h(x^p)k(x^p)$ would be a reduction of $f$, which cannot be. 
+			\end{proof}
+			
+			
+			Now let $\alpha \in K \setminus k$ and $f(x) = \mathrm{Irr}_k(\alpha)$. Find $g(x) \in k[x], k > 0$ as per the previous lemma. We claim, of course, that $\alpha^{p^k} \in k$. By construction $g(\alpha^{p^k}) = f(\alpha) = 0$. Thus $\alpha^{p^k}$ is the root of an irreducible separable polynomial, and since $K$ is purely inseparable, this forces $\alpha^{p^k} \in k$.
+			
+			\item Let $k(\alpha)/k$ be a simple purely inseparable extension with $\alpha \not \in k$. Via part (1), there exists $n > 0$ so that $\alpha^{p^n} \in k$ and $f(x)$ so that $\mathrm{Irr}_k(\alpha) = f(x^{p^n})$. We claim that $f$ is linear. Indeed, if $f(x) = g(x)h(x)$ was a reduction of $g$, then $f(x^{p^{n}}) = g(x^{p^n})h(x^{p^n})$ would be a reduction of $\mathrm{Irr}_k(\alpha)$, so $f$ is irreducible. It follows then that $(x-\alpha^{p^n}) \mid f$. The only way that $f$ could be irreducible then is if $f(x) = x-\alpha^{p^n}$ (note that $f$ is monic). From here we see that $\mathrm{Irr}_\alpha(k) = x^{p^n}-\alpha^{p^n}$, thus $|k(\alpha) : k| = p^n$.
+			
+			We now claim the following.
+			\[\begin{tikzcd}
+				& EL \\
+				E & \implies & L \\
+				& k
+				\arrow[no head, from=3-2, to=2-3]
+				\arrow["{\text{purely inseparable}}", no head, from=1-2, to=2-3]
+				\arrow["{\text{purely inseparable}}"', no head, from=2-1, to=3-2]
+				\arrow[no head, from=2-1, to=1-2]
+			\end{tikzcd}\]
+			Let $\alpha \in EL \setminus L$, let $q(x) = \mathrm{Irr}_L(\alpha)$, and finally $p(x) = \mathrm{Irr}_k(\alpha)$. First we claim that $q(x) \mid p(x)$ in $L[x]$. Let $d(x) = \gcd(p(x), q(x))$. Clearly $d(x) \neq 1$, otherwise we could find $a(x), b(x)$ so that $a(x)p(x) + b(x)q(x) = 1$ but plugging $\alpha$ in shows that $0 = 1$, a contradiction. Thus, $d(x) = q(x)$ as the only divisors of $q(x)$ are 1 and associates of $q(x)$. Since $\alpha \not \in k$, the previous paragraph shows that $p(x) = x^{p^n} - \alpha^{p^n} = (x-\alpha)^{p^n}$ for some $n \geq 1$. Thus $q(x)$ is of the form $ (x-\alpha)^{p^m}$ for some $m \leq n$. $m$ cannot be 0, as this would say that $\alpha \in L$. Hence $q(x)$ is inseparable, which completes the proof of the claim. We now complete the proof by induction. Let $K = k(\alpha_1, \ldots, \alpha_n)$. Then $|K:k| = |k(\alpha_1, \ldots, \alpha_{n-1})(\alpha_n) : k(\alpha_1, \ldots, \alpha_{n-1})| \cdot |k(\alpha_1, \ldots, \alpha_{n-1}) : k|$. By the previous paragraph $K/k(\alpha_1, \ldots, \alpha_{n-1})$ is a simple inseparable extension, thus has order $p^m$ for some $m$. By induction the right hand side does too, thus $|K:k|$ is a power of $p$, completing the proof.
+			
+			\item Let
+			\begin{align*}
+				E = \Set{x \in k \mid x \text{ separable over $k$}}
+			\end{align*}
+			We need to show that $E$ is indeed a field. Let $\alpha, \beta \in E$. 
+		\end{enumerate}
+		Since separable extensions form a distinguished class,
+		\[\begin{tikzcd}
+			& {k(\alpha,\beta)} \\
+			{k(\alpha)} & \implies & {k(\beta)} \\
+			& k
+			\arrow[no head, from=2-1, to=1-2]
+			\arrow["{\text{separable}}", no head, from=1-2, to=2-3]
+			\arrow[no head, from=2-3, to=3-2]
+			\arrow["{\text{separable}}"', no head, from=2-1, to=3-2]
+		\end{tikzcd}\]
+		Which tells us that,
+		\[\begin{tikzcd}
+			{k(\alpha,\beta)} \\
+			{k(\beta)} \\
+			k
+			\arrow["{\text{separable}}"', no head, from=3-1, to=2-1]
+			\arrow["{\text{separable}}"', no head, from=2-1, to=1-1]
+			\arrow["{\text{separable}}"', curve={height=24pt}, no head, from=1-1, to=3-1]
+		\end{tikzcd}\]
+		So $k(\alpha, \beta)/k$ is a separable extension. Thus $\alpha+\beta, \alpha-\beta, \alpha \cdot \beta$, and $\alpha/\beta$ are separable over $k$, so $E$ is indeed a field (note that $E$ is nonempty since $0 \in E$). By construction every element of $E$ is separable thus $E/k$ is a separable extension. Now let $\alpha \in E$. Carefully considering the claims proven in part (2), all we need to conclude that $\alpha$ is inseparable over $E$ is that $\alpha$ is inseparable over $k$, thus $K/E$ is purely inseparable.
+		
+		Now we prove that $|K : E| = \sepdeg{K : k}$. Recall that
+		\begin{align*}
+			\sepdeg{K : k} = \qty|\Sigma_{\mathrm{id}}(K/k)| = \qty|\Set{\sigma: K \to \overline k \; \big\vert \; \sigma \vert_k = \mathrm{id}_k}|
+		\end{align*}
+		We can obviously define a surjection from $\Sigma_{\mathrm{id}}(K/k)$ to $\Sigma_{\mathrm{id}}(E/k)$ by $\sigma \mapsto \sigma\vert_E$. We claim that we can extend a $\sigma \in \Sigma_{\mathrm{id}}(E/k)$ uniquely to a $\tilde \sigma \in \Sigma_{\mathrm{id}}(K/k)$. Let $\alpha \in K \setminus E$. Once again the minimal polynomial of $\alpha$ over $k$ is of the form $x^{p^n} - \alpha^{p^n} = (x-\alpha)^{p^n}$. Since $\tilde \sigma$ (any extension of $\sigma$) must send $\alpha$ to another root of its minimal polynomial over $k$, we can see clearly that $\alpha$ must be sent to $\alpha$, as it's minimal polynomial has no other roots. Thus $\sepdeg{K : k} = \sepdeg{E : k} = |E : k|$, completing this step. For the sake of completness the author notes that this argument is more general as it also yields an equality for extensions of infinite degree.
+		
+		Finally, we have the equality $|K : k| = |K : E| \cdot |E : k| = |K : E| \cdot \sepdeg{K : k}$ by the previous paragraph. Since $K/E$ is a purely inseparable finite extension, $|K : E| = p^n$ for some $n$. Thus $|K : k| = p^n \sepdeg{K : k}$ as required.
+	\end{enumerate}
+\end{document}

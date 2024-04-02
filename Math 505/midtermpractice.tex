@@ -1,0 +1,211 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{|#1|_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{On the Primitive Element Theorem}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{abstract}
+		In this short excerpt we prove the primitive element theorem and discuss an important counterexample.
+	\end{abstract}
+
+	It is a central fact of Galois theory that inseparable extensions only exist in characteristic $p$. Indeed, let $k$ be a field of characteristic 0, and $f(x) \in k[x]$ be an irreducible polynomial. Suppose that $f$ were inseparable--i.e. that there exists $\alpha$  a root of $f$ with multiplicity $m \geq 2$ in an algebraic closure $\overline k$, and write $f(x) = (x-\alpha)^mg(x)$. Then we can take the formal derivative, 
+	\begin{align*}
+		\dv{x}: \sum_{i=0}^n a_nx^n \mapsto \sum_{i=1}^{n} na_nx^{n-1}.
+	\end{align*}
+	It is clear that this map is linear and that the product and chain rules hold. Then,
+	\begin{align*}
+		f'(x) = (x-a)^ng'(x) + n(x-a)^{n-1}g(x) = (x-a)^{n-1} q(x)
+	\end{align*}
+	For some polynomial $q$. In particular, $\alpha$ is also a root of $f'$. Letting $d(x) = \gcd(f(x), f'(x))$, by Bezout's lemma we can find $r(x), s(x)$ so that,
+	\begin{align*}
+		r(x)f'(x) + s(x)f(x) = d(x)
+	\end{align*}
+	$f$ is irreducible, so its only (monic) divisors are 1 and itself. Since $\deg f' = \deg f - 1$, $d(x) \neq f(x)$, which shows that $d(x) = 1$. Plugging in $\alpha$ to the above equation shows that $0 = 1$, a contradiction. But how does this argument fail outside of characteristic 0? It turns out that the derivative could be equivalently 0, in which case $d(x) = f(x)$. As an example, consider the polynomial
+	\begin{align*}
+		f(x) = x^p - a^p \in \F_p[x]
+	\end{align*}
+	A simple exercise shows that $f(x) = x^p - a^p = (x-a)^p$. In particular, this shows that $f: k \to k$ defined by $f(x) = x^p$ is a field homomorphism of $k$ if $k$ has characteristic $p$. As $k$ is an integral domain, taking $0 \neq y \in k$ shows that $f(y) = y^p \neq 0$, so $\ker f \neq k$ implying that $f$ is actually injective. Injective maps from a vector space to another vector space of the same dimension are surjective, thus $f$ is an automorphism. $f$ is called the \textit{Frobenius automorphism}, and is extremely helpful in describing the Galois group of $\F_{p^n} / \F_p$. An important consequence of this observation is that $p$th roots always exist in $\F_{p^n}$. 
+	
+	We now describe an irreducible, inseparable polynomial in a field (necessarily) of characteristic $p$. Consider $K = \F_p(t) = \mathrm{Frac}(\F_p[t])$. We claim the polynomial $f(x) = x^p - t$ is irreducible over $K$. Indeed, since,
+	\begin{align*}
+		\frac{\F_p[t]}{(t)} \cong \F_p
+	\end{align*}
+	$(t)$ is prime ideal of $\F_p[t]$, so we can apply Eisenstein's criterion to see that $f(x)$ is irreducible over $\F_p[t]$, and, by Gauss's lemma, over $\F_p(t)$. Let $\sqrt[p]{t}$ be a root of $f$ in some algebraic closure. Then $f(x) = (x-\sqrt[p]{t})^p$ is a factorization in the algebraic closure by our discussion above, so $f$ is not separable. Notice indeed that $f'(x) = px^{p-1} \equiv 0$. 
+	
+	We now provide a proof of the primitive element theorem, and discuss a counterexample of a similar flavor as above.
+	
+	\begin{theorem}
+		Let $K/k$ be a finite field extension. Then there exists $\alpha \in K$ so that $K = k(\alpha)$ iff there are only finitely many distinct subextensions $k \subset E \subset K$. In particular, if $K$ is separable then $K = k(\alpha)$.
+	\end{theorem}
+	\begin{proof}
+		Let $K = k(\alpha)$ and let $k \subset E \subset K$ be a subextension. Define 
+		\begin{align*}
+			\psi: E \mapsto \mathrm{Irr}_E(\alpha)
+		\end{align*}
+		We shall show that $\psi$ is injective. First, let $p(x) = \mathrm{Irr}_k(\alpha)$ and fix $q(x) = \mathrm{Irr}_E(\alpha)$. Let $d(x) = \gcd(p(x), q(x)) \in E[x]$. Since $q(x)$ is irreducible, if $d(x) \neq q(x)$, $d(x) = 1$. Once again by Bezout, there is some $r,s$ so that $rp + qs = 1$. Plugging in $\alpha$ shows $0 = 1$ a contradiction, so $q(x) \mid p(x)$. Let $q(x) = \sum_{k=0}^n a_nx^n$, and consider $F = k(a_1, \cdots, a_n)$. Clearly, $F \subset E$, $q(x) \in F[x]$, and combined with the fact that $\mathrm{Irr}_E(\alpha) \mid \mathrm{Irr}_F(\alpha)$, shows that $F = E$ by comparing degrees. Thus, if $E'/k$ is another subextension with $\mathrm{Irr}_{E'}(\alpha) = q(x)$, $F \subset E'$ as well and by the same argument $F = E' = E$, so $\psi$ is injective. Now, let,
+		\begin{align*}
+			p(x) = \prod_i (x-\alpha_i)
+		\end{align*}
+		Be a factorization of $p(x)$ in an algebraic closure of $k$ containing $K$. Since there are only finitely many monic divisors of $p(x)$ (every divisor would have only a subset of the above product terms), and since $q(x) \mid p(x)$, the number of distinct subextensions of $K$ is finite.
+		
+		Now let $K/k$ be a finite extension of $k$ with only finitely many subextensions. If $k$ is finite, then $k = \F_{p^n}$ and $K = \F_{p^m}$ for $n \mid m$. We first prove the following lemma.
+		\begin{lemma}
+			Let $F$ be a field and $G \subset F$ be a finite multiplicative subgroup. Then $G$ is cyclic.
+		\end{lemma}
+		\begin{proof}
+			Let $n = |G|$, and let $y \in G$ be an element of maximal order $|y| = m$. Then for any $x \in G$, it follows (nontrivially!) that $|x| \mid m$. Thus every $x \in G$ is a solution to the equation $x^m - 1 = 0$. Since $|G| = n$, this equation has $\geq n$ solutions, and since $F$ is a field, this equation has $\leq m$ solutions, which shows that $m = n$. Thus $G = \gen{y}$ is cyclic.
+		\end{proof}
+		Applying this lemma to $\F_{p^m}^\times$ yields an element $a \in \F_{p^m}$ such that $\F_{p^m}^\times = \gen{a}$. From here we see that $\F_{p^m} = \F_{p^n}(a)$, completing the proof for the case where $k$ is finite. Now we shall prove that $k(\alpha, \beta) = k(\gamma)$ which will complete the proof by induction. Consider $k(\alpha + c \beta)$ for $\lambda \in k$. Since $k$ is infinite, and the number of distinct subextensions is finite, there exists $d \neq c$ so that $k(\alpha + c\beta) = k(\alpha + d\beta)$. Immediately, $\alpha + c\beta - (\alpha + d\beta) = (c-d)\beta \in k(\alpha + c\beta)$, and since $c \neq d$, $c-d$ is invertible which shows that $\beta \in k(\alpha + c\beta)$. This shows that $\alpha \in k(\alpha + c\beta)$, completing the proof in the infinite case.
+		
+		Let $K/k$ be a finite separable extension, and let $K/E/k$ be a subextension. Consider
+		\begin{align*}
+			\cph: E \mapsto \Sigma_{\text{id}}(E/k)
+		\end{align*}
+		We show that $\cph$ is injective. Suppose that $\Sigma_{\text{id}}(E'/k) = \Sigma_{\text{id}}(E/k)$, but $E \neq E'$. Suppose that $E \neq E'$, and take (WLOG) $\alpha \in E \setminus E'$. Producing a $\sigma \in \Sigma_{\text{id}}(E'/k) \setminus \Sigma_{\text{id}}(E/k)$ will complete the proof. Let $p(x) = \mathrm{Irr}_{E'}(\alpha)$, and we have that $\deg p \geq 2$. The key use of separability is the following: since $E'$ is a separable extension, and since $\deg p \geq 2$, $p(x)$ has at least 1 other root $\beta \neq \alpha$. Now define
+		\begin{align*}
+			\sigma: E(\alpha) \to \overline k \\
+			E = E \\
+			\alpha \mapsto \beta
+		\end{align*}
+		Extending this to a homomorphism $K \to \overline k$ yields a contradiction, since every $\sigma \in \Sigma_{\text{id}}(E/k)$ fixes $\alpha$. Since every $\cph(E) \subset \Sigma_{\text{id}}(K/k)$, and since there are only finitely many subsets of $\sigma_{id}(K/k)$, this shows that separable extensions have only finitely many subextensions, completing the proof.
+	\end{proof}
+
+	We now discuss a counterexample to the primitive element theorem for inseparable extensions. let $k$ be a field of characteristic $p$ (by necessity) and let $\alpha, \beta$ be two algebraically independent elements over $k$ (i.e., if $p(x,y) \in k[x,y]$) is nonzero then $p(\alpha, \beta) \neq 0$). We first show that $|k(\alpha,\beta) : k(\alpha^p, \beta^p)| = p^2$. We start by showing that $x^p - \alpha^p$ is irreducible over $k(\alpha^p, \beta^p)$. We recall that the minimal polynomial of $\alpha$ over $k(\alpha^p, \beta^p)$ must now divide this polynomial, so suppose it was $(x-\alpha)^i$ for some $1 \leq i < p$. Then the coefficient of $x^{i-1}$ is ${i \choose i-1}(-1)^{i-1}\alpha^1 = (-1)^{i-1}i \alpha$. If $p \not \mid i$, then $(-1)^{i-1}i$ is invertible, so $\alpha \in k(\alpha^p, \beta^p)$. This would say that there is a polynomial $f(x,y) \in k[x,y]$ so that $f(\alpha^p, \beta^p) = \alpha$. Defining $q(x,y) = f(x^p, y^p) - x$, we see that $q(\alpha, \beta) = 0$, which shows that $q \equiv 0$ by algebraic independence. Thus the coefficient of $x$ in $f(x^p, y^p)$ is 1, a contradiction, since powers of $x$ can only show up divisible by $p$. Thus $|k(\alpha, \beta^p) : k(\alpha^p, \beta^p)| = p$ and similarly $|k(\alpha, \beta) : k(\alpha, \beta^p)| = p$, showing that $|k(\alpha, \beta) : k(\alpha^p, \beta^p)| = p^2$. Define $E = k(\alpha^p, \beta^p)$ and consider the fields $E(\alpha + c \beta)$. $E$ is infinite, as $\Set{1, \alpha^p, \alpha^{2p}, \ldots}$ is linearly independent since being algebraically independent from $\beta$ also implies that $\alpha$ is transcendental over $k$. We see that $(\alpha + c\beta)^p = \alpha^p + c^p\beta^p \in E$, so the minimal polynomial of $\alpha + c\beta$ over $E$ has degree $\leq p$. If there existed $c \neq d$ so that $E(\alpha+c\beta) = E(\alpha+d\beta)$, the proof of the primitive element theorem as before would show that $E(\alpha+c\beta) = k(\alpha, \beta)$, but this would say that $p^2 = |E(\alpha+c\beta) : E| \leq p$, a contradiction. We used characteristic $p$ in two places: first, showing that $x^p - \alpha^p$ is irreducible, and secondly to conclude an upper bound on the degree of the minimal polynomial of $\alpha + c\beta$ over $E$.
+\end{document}

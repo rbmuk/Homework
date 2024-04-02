@@ -1,0 +1,238 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{R:/sty/quiver}
+
+%\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle#1, #2\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 506 HW2}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}
+		\item We need only verify that $\Hom(M, M)$ has inverses. Let $T \neq 0 \in \Hom(M, M)$ be a linear map. Then $\ker T$ is a submodule of $M$. Since $M$ is irreducible, and $T$ is nonzero, we must have $\ker T = 0$, and similarly $\Im T = M$. Thus $T$ has a two-sided inverse $T^{-1}$ that is also a linear transformation, which shows that $\Hom(M, M)$ is a division ring.
+		
+		\item We shall use the vertices $\SET{-1, 1}^2$ of the square. Recall that $r \in D_8$ will result in a 90 degree rotation of the square, and $s$ will result in a reflection about the $x$-axis. Thus, we calculate the image of $r$ to be:
+		\[T = \begin{pmatrix}
+			0 & -1 \\
+			1 & 0 \\
+			\end{pmatrix}\]
+		And similarly, flipping across the $x$-axis would be represnted by:
+		\[S = \begin{pmatrix}
+			1 & 0 \\
+			0 & -1 \\
+			\end{pmatrix}\]
+		Thus we can define a (faithful) degree 2 representation of $D_8$ by sending $r \mapsto T$ and $s \mapsto S$.
+
+		\item Let $T = \pi(x^2)$. Since $x$ has order 4 in $Q_8$, and $\pi$ is an embedding, we have that $T^2 - I = 0$, meaning that the minimal polynomial of $T$ divides $x^2-1$. It cannot be $x-1$ for obivous reasons, and we wish to show that it is $x+1$, so suppose by contradiction that it were $x^2-1$. Then $T$ is similar to the following matrix:
+		\[D = \begin{pmatrix}
+			1 & 0 \\
+			0 & -1 \\
+			\end{pmatrix}\]
+		Recall that $Z(Q_8) = \gen{x^2}$. Let $T = PDP^{-1}$. Then $\cph = P\pi P^{-1}$ is another embedding of $Q_8$ into $\mathrm{GL}_2(\R)$, and now we have $\cph(x^2) = D$. Let $\cph(y) = \begin{pmatrix}
+			a & b \\
+			c & d \\
+		\end{pmatrix}$. Then we have:
+		\begin{align*}
+			\begin{pmatrix}
+				a & -b \\
+				-c & d \\
+			\end{pmatrix} = \cph(x^2)\cph(y)\cph(x^2) = \cph(y) = \begin{pmatrix}
+				a & b \\
+				c & d \\
+			\end{pmatrix}
+		\end{align*}
+		This in particular shows that $b = c = 0$, hence $\cph(y)$ is diagonal. However, the condition that $\cph(y) \neq I$ and $\cph(y^4) = I$ would show that $a \neq 1$ is a fourth root of $1$, which is a contradiction. Thus the minimal polynomial of $T$ is $x+1$, and $\cph(x) = -I$. In particular, $\pi(x) = P^{-1}(-I)P = -I$ as well. Thus the minimal polynomial of $\pi(x)$ is $x^2+1=0$, and it's rational canonical form is:
+		\[\begin{pmatrix}
+			0 & -1 \\
+			1 & 0 \\
+		\end{pmatrix}\]
+		Replacing $\pi$ with a conjugate shows that $\pi(x)$ is the above matrix. A quick calculation shows that if $T^2 = -I$, then $T$ is of the form:
+		\begin{align*}
+			\begin{pmatrix}
+				a & b \\
+				c & -a
+			\end{pmatrix}
+		\end{align*}
+		So let $\pi(y)$ equal the above matrix for a suitable choice of $a,b,c,d$. Rewriting the last relation for the quarternion group, we get $y = x^{-1}yx^{-1}$. Applying $\pi$ from above gives us the following equation:
+		\begin{align*}
+			\begin{pmatrix}
+				a & b \\
+				c & -a
+			\end{pmatrix} = \begin{pmatrix}
+				0 & 1 \\
+				-1 & 0
+			\end{pmatrix}\begin{pmatrix}
+				a & b \\
+				c & -a
+			\end{pmatrix}\begin{pmatrix}
+				0 & 1 \\
+				-1 & 0
+			\end{pmatrix} = \begin{pmatrix}
+				a & c \\
+				b & -a
+			\end{pmatrix}
+		\end{align*}
+		This of course tells us that $b = c$. Thus $\pi(y^2)$ is just
+		\begin{align*}
+				(a^2+b^2)I
+		\end{align*}
+		We cannot possibly have $a^2+b^2 = -1$ when $a, b \in \R$, which completes the proof. I note that the above contradictions could easily be used to find a degree 2 representation $\pi: Q_8 \to \mathrm{GL}_2(\C)$.
+		
+		\item Assume by contradiction that $V$ was decomposable, i.e. $V = V_1 \oplus V_2$ for some nonzero submodules $V_1, V_2$. Let $S = \mathrm{span}\Set{v_i \mid i \in \Z}$. Define the following projection:
+		\begin{align*}
+			\pi: V \to S \quad \text{by} \quad v_i \mapsto v_i, \; w_i \mapsto 0
+		\end{align*}
+		And let $\sum b_i v_i \in \pi(V_1) \cap \pi(V_2)$. Finding $\sum a_iv_i + \sum c_iw_i \in V_1$ and $\sum a_i'v_i' + \sum c_i'w_i' \in V_2$ with the above image, by applying our projection we see that 
+		\begin{align*}
+			\sum b_iv_i = \sum a_iv_i = \sum a_i'v_i'
+		\end{align*}
+		Which shows that terms of each sum is equal by linear independence of the $v_i$. Since $V_1 + V_2 = V$, it must be that $\sum b_iv_i \in V_1$ or $V_2$, so suppose without loss of generality it is the first case. Then we have the updated set of equations:
+		\begin{align*}
+			\sum b_iv_i = \pi\qty(\sum b_iv_i) = \pi \qty(\sum b_iv_i + \sum c_i'w_i')
+		\end{align*}
+		Where $\sum b_iv_i \in V_1$ and $\sum b_iv_i + \sum c_i'w_i' \in V_2$. Once again, if $\sum c_i'w_i' \in V_1$, we get a contradiction since then $\sum b_iv_i + \sum c_i'w_i' \in V_1 \cap V_2$, where the sum would be nonzero since $\sum b_iv_i \neq 0$ and the $v_i, w_i$ are linearly independent. Similarly if $\sum c_i'w_i' \in V_2$, we get a contradiction. Thus we have verified that $S = P_1 \oplus P_2$. 
+
+		Now note that $x-1, y-1 \neq 0$, so it acts as an invertible linear transformation. In particular, $(x-1)P_1 \cap (x-1)P_2 = (x-1)(P_1 \cap P_2) = (y-1)P_1 \cap (y-1)P_2 = 0$ by injectivity. Also note that for each $w_i \in T$, $w_i$ is the image of $(x-1)v_{i-1}$ and $(y-1)v_i$ per a simple calculation. These facts together show that $T = (x-1)P_1 \oplus (x-1)P_2 = (y-1)P_1 \oplus (y-1)P_2$.
+
+		Now take $\sum a_iw_i \in (x-1)P_1 \cap (y-1)P_2$, and suppose that (WLOG) $\sum a_iw_i \in V_1$. Then $\sum a_iw_i = (x-1)\sum a_iv_{i-1}$ where $\sum a_iv_{i-1} \in P_1$, and $\sum a_iw_i = (y-1)\sum a_iv_i$ where $\sum a_iv_i \in P_2$. Since the projections trivially intersect, it must be that $\sum a_iv_{i-1} \in V_1$ and similarly $\sum a_iv_i \in V_2$. Since $V_1, V_2$ are $K$-stable, $(y-1)\sum a_iv_i \in V_2$ and not in $V_1$, showing that $\sum a_iw_i = 0$. Then $(x-1)P_1 = T \cap (x-1)P_1 = (y-1)P_1 \cap (x-1)P_1$, showing that $(x-1)P_1 \subset (y-1)P_1$. Applying this logic in reverse shows that $(x-1)P_1 = (y-1)P_1$ and that $(x-1)P_2 = (y-1)P_2$.
+
+		Since $P_1 \oplus P_2 = S$, suppose WLOG that $v_0 \in P_1$. By the above equality, we have that $(x-1)v_0 = w_1 \in (y-1)P_1$. Thus $(y-1)^{-1} w_1 = v_1 \in P_1$. Similarly, $(y-1)v_0 = w_0 \in (x-1)P_1$, showing that $(x-1)^{-1} w_0 = v_{-1} \in P_1$. By induction $v_i \in P_1$ for all $i \in \bZ$, which shows that $P_1 = S$. At last, if any of the $v_i \in V_2$, then $v_i \in P_1 \cap P_2$ a contradiction, so $V$ contains all the $v_i$. Since $V$ is $K$-stable, $(y-1)v_i = w_i \in V_1$ for all $i$, which shows that $V_1 = V$, a contradiction. Thus $V$ is indecomposable.
+	\end{enumerate}
+\end{document}
