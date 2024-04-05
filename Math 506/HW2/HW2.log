@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  2 APR 2024 15:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  2 APR 2024 16:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -211,63 +211,36 @@ File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfarrowsep=\dimen186
-) (C:\Users\Rohan Mukherjee\Apng@range@num=\count274
-\pgf@shadingcount=\count275
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basicla
-yer\pgfcoreimage.code.tex
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen187
+\pgf@sys@shading@range@num=\count273
+\pgf@shadingcount=\count274
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basicla
-yer\pgfcoreexternal.code.tex
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfexternal@startupbox=\box56
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basicla
-yer\pgfcorelayers.code.tex
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basicla
-yer\pgfcoretransparency.code.tex
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basicla
-yer\pgfcorepatterns.code.tex
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basicla
-yer\pgfcorerdf.code.tex
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex
 File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)))
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules
-\pgfmoduleshapes.code.tex
+))) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfnodeparttextbox=\box57
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules
-\pgfmoduleplot.code.tex
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibi
-lity\pgfcomp-version-0-65.sty
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
 \pgf@nodesepstart=\dimen188
 \pgf@nodesepend=\dimen189
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibi
-lity\pgfcomp-version-1-18.sty
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
-))
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities
-\pgffor.sty
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities
-\pgfkeys.sty
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utiliti
-es\pgfkeys.code.tex))
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfm
-ath.sty
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pg
-fmath.code.tex)ata\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
+)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.sty (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen190
 \pgffor@skip=\dimen191
@@ -767,29 +740,19 @@ Package: needspace 2010/09/12 v1.3d reserve vertical space
 \mdf@subtitleinneraboveskip@length=\skip103
 \mdf@subtitleinnerbelowskip@length=\skip104
 \mdf@subsubtitleabovelinewidth@length=\skip105
-\mdf@subsubtitlebelowlinewidth@length=\skip106@extratopheight@length=\skip98
-\mdf@subtitleabovelinewidth@length=\skip99
-\mdf@subtitlebelowlinewidth@length=\skip100
-\mdf@subtitleaboveskip@length=\skip101
-\mdf@subtitlebelowskip@length=\skip102
-\mdf@subtitleinneraboveskip@length=\skip103
-\mdf@subtitleinnerbelowskip@length=\skip104
-\mdf@subsubtitleabovelinewidth@length=\skip105
 \mdf@subsubtitlebelowlinewidth@length=\skip106
 \mdf@subsubtitleaboveskip@length=\skip107
 \mdf@subsubtitlebelowskip@length=\skip108
 \mdf@subsubtitleinneraboveskip@length=\skip109
 \mdf@subsubtitleinnerbelowskip@length=\skip110
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mdframed\md-f
-rame-0.mdf
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mdframed\md-frame-0.mdf
 File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 )
-\mdf@frametitlebox=\box72
-\mdf@footnotebox=\box73
-\mdf@splitbox@one=\box74
-\mdf@splitbox@two=\box75
-\mdf@splitbox@save=\box76
+\mdf@frametitlebox=\box69
+\mdf@footnotebox=\box70
+\mdf@splitbox@one=\box71
+\mdf@splitbox@two=\box72
+\mdf@splitbox@save=\box73
 \mdfsplitboxwidth=\skip111
 \mdfsplitboxtotalwidth=\skip112
 \mdfsplitboxheight=\skip113
@@ -817,57 +780,53 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@horizontalspaceofbox=\skip135
 \mdfsubtitleheight=\skip136
 \mdfsubsubtitleheight=\skip137
-\c@mdfcountframes=\count326
+\c@mdfcountframes=\count321
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count327
-\c@mdf@env@i=\count328
-\c@mdf@env@ii=\count329
-\c@mdf@zref@counter=\count330
+\mdf@envdepth=\count322
+\c@mdf@env@i=\count323
+\c@mdf@env@ii=\count324
+\c@mdf@zref@counter=\count325
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
-\c@mytheorem=\count331
-\c@corollary=\count332
-\c@lemma=\count333
-\c@mydef=\count334
+\c@mytheorem=\count326
+\c@corollary=\count327
+\c@lemma=\count328
+\c@mydef=\count329
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/braket\braket.sty)
+LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 146.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\ot1pxr.fd
+File: ot1pxr.fd 2000/12/14 v1.0
+) (HW2.aux)
+\openout1 = `HW2.aux'.
 
-
-! LaTeX Error: Command \set undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.119 \renewcommand{\set}
-                         [1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.119 \renewcommand{\set}
-                         [1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
- 
-Here is how much of TeX's memory you used:
- 27339 strings out of 475249
- 520090 string characters out of 5753084
- 1918782 words of memory out of 5000000
- 48427 multiletter control sequences out of 15000+600000
- 558367 words of font info for 37 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 131i,0n,135p,474b,105s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
-ages of output.
-t of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 131i,0n,135p,474b,105s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
-Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 146.
+LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 146.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omlpxmi.fd
+File: omlpxmi.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 146.
+LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 146.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omspxsy.fd
+File: omspxsy.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 146.
+LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 146.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omxpxex.fd
+File: omxpxex.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    ... okay on input line 146.
 LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 146.
 LaTeX Font Info:    Trying to load font information for U+pxexa on input line 146.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxexa.fd
@@ -883,17 +842,6 @@ LaTeX Font Info:    ... okay on input line 146.
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: <default>
-* layout: <same size as paper>
-* lar PD1/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-
-*geometry* driver: auto-detecting
-*geometry* detected driver: dvips
-*geometry* verbose mode - [ preamble ] result:
-* driver: dvips
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -924,24 +872,34 @@ LaTeX Font Info:    ... okay on input line 146.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.d
-ef
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-)
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count330
+\scratchdimen=\dimen296
+\scratchbox=\box74
+\nofMPsegments=\count331
+\nofMParguments=\count332
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count333
+\MPscratchDim=\dimen297
+\MPnumerator=\count334
+\makeMPintoPDFobject=\count335
+\everyMPtoPDFconversion=\toks53
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
 Package hyperref Info: Link coloring ON on input line 146.
  (HW2.out) (HW2.out)
 \@outlinefile=\write4
 \openout4 = `HW2.out'.
 
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
-\c@maskedRefs=\count335
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/apacite\engli
-sh.apc
+\c@maskedRefs=\count336
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/apacite\english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
@@ -952,88 +910,52 @@ Package microtype Info: Applying patch `toc' on input line 146.
 Package microtype Info: Applying patch `eqnum' on input line 146.
 Package microtype Info: Applying patch `footnote' on input line 146.
 Package microtype Info: Applying patch `verbatim' on input line 146.
-Package microtype Info: Generating DVI output.
+Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: No font expansion.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 146.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-
-ppl.cfg
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 1
-47.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
-a.fd
+LaTeX Font Info:    Trying to load font information for U+pxsya on input line 147.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsya.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 1
-47.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
-b.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 147.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyb.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxmia on input line 1
-47.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmi
-a.fd
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 147.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmia.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 1
-47.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
-c.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 147.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
-7.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
-s.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 147.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
-7.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
-.fd
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 147.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
-)
-! Undefined control sequence.
-<recently read> \SET 
-                     
-l.151 		\item We shall use the vertices $\SET
-                                             {-1, 1}^2$ of the square. Recal...
+) [1
 
-? 
-! Emergencye}
-                      
-End of file on the terminal!
-
- 
-Here is how much of TeX's memory you used:
- 27965 strings out of 475249
- 532984 string characters out of 5753084
- 1934782 words of memory out of 5000000
- 48983 multiletter control sequences out of 15000+600000
- 579258 words of font info for 110 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 131i,14n,135p,1002b,597s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on HW2.dvi (2 pages, 20988 bytes).
-ons out of 8191
- 131i,6n,135p,1002b,266s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
-0
- 1141 hyphenation exceptions out of 8191
- 131i,14n,135p,1002b,597s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on HW2.dvi (2 pages, 20988 bytes).
+{C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3] (HW2.aux)
+ ***********
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-08-29>
+ ***********
+Package rerunfilecheck Info: File `HW2.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+ ) 
 Here is how much of TeX's memory you used:
  28509 strings out of 475248
  540237 string characters out of 5753057

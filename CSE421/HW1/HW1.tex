@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parindent}{4em}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathrm{Pr}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+
+% Sets
+\usepackage{braket}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 421 HW1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We give the following counter-example:
+			\[\begin{tikzcd}
+				{c_1: a_1>a_2>a_3} && {a_1: c_3 > c_2 > c_1 } \\
+				{c_2: a_3 > a_1 > a_2 } && {a_2: c_2 > c_1 > c_3 } \\
+				{c_3: a_2 > a_3 > a_1 } && {a_3: c_1 > c_3 > c_2 }
+				\arrow[no head, from=1-1, to=2-3]
+				\arrow[no head, from=2-1, to=1-3]
+				\arrow[no head, from=3-1, to=3-3]
+			\end{tikzcd}\]
+			We see that each company is paired with their second favorite applicant and each applicant their second favorite company, and this this is indeed a perfect matching. We need only check stability, and we can do so by just checking it on the applicants. Since there is only company $a_1$ likes more than its current pair, we only need to check that that company does not also prefer $a_1$. Indeed, $c_3$'s least favorite applicant is $a_1$ and that is below its current pair of $a_3$. The same pattern holds for each of the other $a_i$'s, completing the counter-example.
+			
+			\item We give the (very complicated) counter-example:
+			\[\begin{tikzcd}
+				{c_1:a_1>a_4>a_3>a_2} & {a_1:c_4>c_3>c_2>c_1} \\
+				{c_2:a_1>a_4>a_3>a_2} & {a_2:c_4>c_3>c_2>c_1} \\
+				{c_3:a_1>a_4>a_3>a_2} & {a_3:c_4>c_3>c_2>c_1} \\
+				{c_4:a_4>a_1>a_2>a_3} & {a_4:c_1>c_2>c_3>c_4}
+			\end{tikzcd}\]
+			If $c_1$ gets its favorite, $c_4$ must also get it's favorite because it cannot have either $a_2$ or $a_3$ or else it would deviate with $a_1$. Then if we have $c_2 \leftrightarrow a_2$ and $c_3 \leftrightarrow a_3$ or vice versa, both will want to deviate with $a_1$.
+			
+			If $c_2$ gets its favorite, once again $c_4$ must be with it's favorite otherwise $a_1$ will prefer $c_4$. Then in any arrangement of $c_1$ and $c_3$, they both prefer $a_4$ over their current match and $a_4$ prefers them over their current match. The case $c_3$ is exactly the same and is thus skipped.
+			
+			If $c_4$ gets its favorite, $c_1$ must get its favorite otherwise $c_1$ and $a_4$ will deviate. Then in any assignment of $c_2$ and $c_3$, they both prefer $a_4$ over their current matches and $a_4$ prefers them as well.
+			
+			Thus there is no stable matching where a company gets its favorite in this instance.
+		\end{enumerate}
+		\item Suppose instead that at least two companies $c_1, c_2$ get their last choice (where there are $n$ companies $c_i$ $1 \leq i \leq n$ and $n$ applicants $a_i$ $1 \leq i \leq n$). Our first observation is the last choice of $c_1$ is distinct from $c_2$ (since we have a perfect matching), and WLOG we shall call them $a_1$ and $a_2$ respectively. We observe that for $c_1$ to be rejected by it's first $n-1$ choices, those $n-1$ choices must currently have their final company currently married with them. This is because (1) for an applicant to replace / reject a company, it needs to either have gotten a new company with a better priority, or already have a company with better priority, in any case it will have a company. Next we observe (2) that it must be the case that $a_1$ is free, by our last observation we have used up the rest of the $n-1$ companies. Then the algorithm will assign $c_1$ to $a_1$ and then immediately terminate, since no other company is free. In particular, it cannot be the case that the second company was rejected by $a_1$, otherwise $a_1$ by observation (1) would not be free, a contradiction. Thus, $n-1$ of the companies make at most $n-1$ offerings, and the last company, the only one who potentially gets it's last choice, makes $n$ offerings, giving us a total of
+		\begin{align*}
+			(n-1)(n-1) + n = (n-1)(n-1) + n-1 + 1 = n(n-1) + 1
+		\end{align*}
+		
+		\item We proceed by induction on $k$. For $k = 0$, we have $2^0 = 1$ numbers, say $x$. The condition $\sum_i x_i = 1$ just says that $x = 1$. In this case, $\sum_i x_i^2 = \sum_i 1^2 = 1 \geq \frac{1}{2^0}$, completing the base case. In general, assume that for every list of $2^k$ real numbers $z_1, \ldots, z_{2^k}$ satisfying $\sum_{i=1}^{2^k} z_i = 1$ we have that 
+		\begin{align*}
+			\sum_i z_i^2 \geq \frac{1}{2^k}
+		\end{align*}
+		And let $x_1, \ldots, x_{2^{k+1}}$ be a list of $2^{k+1}$ numbers. Consider the list of $2^k$ numbers $y_i = x_{2i-1} + x_{2i}$ for $1 \leq i \leq 2^k$ (i.e, $y_1 = x_1 + x_2, y_2 = x_3 + x_4$ and so on). Clearly,
+		\begin{align*}
+			\sum_{i=1}^{2^k} y_i = \sum_{i=1}^{2^{k+1}} x_i = 1
+		\end{align*}
+		Thus we see that
+		\begin{align*}
+			\frac{1}{2^k} \leq \sum_{i=1}^{2^k} y_i^2 \leq \sum_{i=1}^{2^k} (2x_{2i-1}^2 + 2x_{2i}^2) = 2\sum_{i=1}^{2^{k+1}} x_i^2
+		\end{align*}
+		Thus,
+		\begin{align*}
+			\sum_{i} x_i^2 \geq \frac{1}{2^{k+1}}
+		\end{align*}
+		which completes the proof.
+		
+		\item Our final answer is
+		\begin{align*}
+			a \ll h \ll c \ll i \ll g \ll b \ll j \ll e \ll d \ll f
+		\end{align*}
+		Meaning:
+		\begin{align*}
+			2^{2\sqrt{\log n}} &\ll n^{\frac{1}{\log\log(n)}} \ll \frac{n (\log\log(n))^{99}}{\log(n)^{99}} \ll 2^{\log n-\log \log n} 
+			\\&\ll \log(n!) \ll 2^{\log(n^2)} \ll (4^2)^{\log n} \ll 4^{2^{\log n}} \ll n!^2 \ll n^{n \log n}
+		\end{align*}
+	\end{enumerate}
+\end{document}
