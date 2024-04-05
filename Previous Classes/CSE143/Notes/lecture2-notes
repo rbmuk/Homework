@@ -1,0 +1,29 @@
+abstraction
+   separating essential properties from unimportant details
+   
+interfaces
+   list of behaviors
+   
+// iterators
+for (int i = 0; i < list.size(); ++i) {
+   System.out.println(list.get(i));
+}
+
+// foreach loops: only used for read-only operations
+for (String s : list) {
+   System.out.println(s);
+}
+
+//iterator--an object that is used to traverse a structure
+// hasNext() -- is there more data?
+// next() -- returns next value, moves to one beyond
+// remove() -- removes the value most recently returned by next
+Iterator<String> itr = list.iterator();
+while (itr.hasNext()) {
+   String next = itr.next();
+   System.out.println(next);
+}
+
+you can use foreach loops on arrays
+
+//wrapper classes: Integer, Character

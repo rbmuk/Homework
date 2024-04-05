@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 Quiz 6}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}
+		\item 
+		The bug is in the last step of the inductive step. If $k = 1$, then we have 2 dogs in our group of $k+1$ dogs. The assertion that each $k+1-1$ group of dogs have the same name is indeed true, as there would be only one dog in each of those groups, but those dogs don't necessarily have to have the same name. For example, take $\set{Tom, Sal}$ as our 2 dogs. Applying this argument will show that all dogs in $\set{Tom}$ have the same name, which is true. Similarly, all dogs in $\set{Sam}$ have the same name as there is only one dog. However, putting these dogs together we see that the whole group doesn't have the same name. That actually depends on $k \geq 2$, which shows that we can't prove the base case $P(2)$.
+		\item 
+		Let $P(n) = 9 \mid n^3 + (n+1)^3 + (n+2)^3$. Our proof is by induction.
+		
+		\textbf{Base case: } $2^3+3^3+4^3=99 = 11 \cdot 9$, so $P(2)$ holds.
+		
+		\textbf{Inductive hypothesis: } Suppose that $P(k)$ holds for an arbitrary integer $k \geq 1$.
+		
+		\textbf{Inductive Step: } We see that
+		\begin{align*}
+			(k+1)^3+(k+2)^3+(k+3)^3 &= k^3 + (k+1)^3+(k+2)^3+(k+3)^3 - k^3 \\
+			&= 9l + (k+3)^3-k^3
+		\end{align*}
+		By the inductive hypothesis. It therefore suffices to show that $(k+3)^3 - k^3$ is a multiple of 9. Note that
+		\begin{align*}
+			(k+3)^3 - k^3 &= (k+3-k)((k+3)^2+k(k+3)+k^2) \\
+			&= 3(k^2+6k+9+k^2+3k+k^2) \\
+			&= 3(3k^2+9k+9) \\
+			&= 9(k^2+3k+3)
+		\end{align*}
+		Where in the first step we factored the difference of cubes, and then just expanded from there and eventually factored out a 3. In any case, as $k$ is an integer, $k^2+3k+3$ is also an integer, so we see that $(k+3)^3-k^3 = 9m$ for some integer $m$. So we see that
+		\begin{align*}
+			(k+1)^3+(k+2)^3+(k+3)^3 &= 9l + 9m \\
+			&= 9(l+m)
+		\end{align*}
+		As $l+m$ is an integer, we see that $9 \mid (k+1)^3+(k+2)^3+(k+3)^3$, which is precisely what $P(k+1)$ states. Therefore, we may conclude that $P(n)$ holds true for all $n \geq 2$ by mathematical induction.
+		
+		\item Let $P(k) = f(k) = k$. 
+		
+		\textbf{Base cases: } $f(0) = 0$, so $P(0)$ holds, and $f(1) = 1$, so $P(1)$ holds.
+		
+		\textbf{Inductive hypothesis: } Suppose $P(0) \land \cdots \land P(k)$ for an arbitrary $k \geq 1$.
+		
+		\textbf{Inductive step: }
+		As $k \geq 1$, $k + 1 \geq 2$, so we see that $f(k+1) = 2f(k)-f(k-1)$. By our inductive hypothesis, $f(k) = k$, and $f(k-1)=k-1$, so we see that $f(k+1)=2k-(k-1)=2k-k+1=k+1$, which is what $P(k+1)$ asserts. So we may conclude that $P(n)$ holds for all $n \geq 0$ by mathematical induction.
+		
+		\item 
+		\begin{enumerate}
+			\item 
+			$\forall x (whole(x) \ra \lnot vegan(x))$
+			\item $\exists x \forall y (RobbieLikes(x) \land \lnot vegan(x)) \land (RobbieLikes(y) \ra y = x)$
+			\item $\exists x (sugar(x) \land soy(x))$
+			
+			Every decaf drink that Robbie likes has sugar in it.
+		\end{enumerate}
+		\item Given an arbitrary $X \in P(A)$, we know that $X \subseteq A$. Given any arbitrary $x \in X$, we know that $x \in A$, because $X \subset A$. Because $A \subset B$, we know that $x \in B$. As $x$ was arbitrary, we see that $X \subset B$. But $X \subset B$ iff $X \in P(B)$, and as $X$ was arbitrary, this shows that $P(A) \subset P(B)$.
+		
+		\item 
+			\begin{enumerate}
+				\item 
+				If $y \equiv 1\mod p$, then $p \mid y - 1$ which means that there exists $k$ so that $y-1 = pk$. Multiplying both sides by $y+1$ shows that $y^2-1 = pk(y+1) = p(ky+k)$. As $ky+k$ is an integer, this says that $p \mid y^2-1$, which says that $y^2 \equiv 1 \mod p$.
+				\item It seems I did this from the start! I guess for part (a) you could use the multiplicity of modular arithmetic, that is because $y \equiv 1 \mod p$, you can multiply both sides by $y$ and see that $y^2 \equiv 1 \mod p$.
+				\item I'm omitting this because I have seen/done it before at least 3 times.
+			\end{enumerate}
+		
+		\setItemnumber{8}
+		\item First note that this is asserting that every integer $n \geq 24$ can be equal to the sum of some positive multiple of 5 and some positive multiple of 7, that is that there exists positive $s, t$ so that $n = 5s+7t$. So, 
+		Let $P(n) = \exists s \in \bZ_{> 0} \exists t \in \bZ_{>0} n = 5s+7t$.
+		
+		\textbf{Base cases: } 24 = $5 \cdot 2 + 7 \cdot 2$, 25 = $5 \cdot 5$, $26 = 7 \cdot 3 + 5$, $27 = 5 \cdot 4 + 7$, $28 = 7 \cdot 4$, which shows $P(24), P(25), P(26), P(27), P(28)$.
+		
+		\textbf{Inductive Hypothesis: } Suppose $P(24) \land \cdots P(k)$ for an arbitrary $k \geq 28$.
+		
+		\textbf{Inductive Step: } $k + 1 = k + 1 + 4 - 4 = k - 4 + 5$. Because $k \geq 28$, we see that $k-4 \geq 24$, so we may apply our inductive hypothesis to it. Then there exists positive $s, t$ so that $k-4 = 5s+7t$. Rewriting, we see that $k+1 = 5s+7t+5 = 5(s+1)+7t$. As $s+1 > 0$, we see that $k+1$ can be written as a sum of a positive multiple of 5 and a positive multiple of 7, which is exactly what $P(k+1)$ asserts. By induction, we can conclude that $P(n)$ holds for all $n \geq 24$.
+		\end{enumerate}
+\end{document}

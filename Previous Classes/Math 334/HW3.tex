@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\func}[3]{#1\colon#2\to#3}
+\newcommand{\vfunc}[5]{\func{#1}{#2}{#3},\quad#4\longmapsto#5}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 334 HW 3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		Let $S_i = [-i, i], i \in \mathbb{N}$. Note that
+		\begin{align*}
+			\bigcup_{i=2}^{\infty} \left[\frac1i, 1-\frac1i\right] = (0, 1)
+		\end{align*}
+		and that each $\left[\frac1i, 1-\frac1i\right]$ is closed. 
+		\begin{proof}
+			$\\$\fbox{$\subseteq$}
+			
+			Let $x \in \bigcup_{i=2}^{\infty} \left[\frac1i, 1-\frac1i\right]$. Then $x \in \qty[\frac1j, 1-\frac1j]$ for some $j \geq 2$. Then $0 < \frac1j \leq x \leq 1-\frac1j < 1$, so $x \in (0, 1)$.
+			
+			\fbox{$\supseteq$}
+			
+			Let $x \in (0, 1)$. Choose $j \geq \max{\left\{\frac1x, \frac1{1-x}\right\}}$. Note that $\frac1j \leq x$ and that $\frac1j \leq 1-x$, so $1-\frac1j \geq x$. Combining these, we get $\frac1j \leq x \leq 1-\frac1j$, which means that $x \in \qty[\frac1j, 1-\frac1j]$ for some $j$.
+		\end{proof}
+		
+		Let $\bigcup_{i=1}^{\infty} G_i$ be an infinite union of open sets. Note that if $x \in \bigcup_{i=1}^{\infty} G_i$, then $x \in G_j$, for some $j \in \mathbb{N}$. Then, because $G_j$ is open, $x$ is an interior point, and therefore $\bigcup_{i=1}^{\infty} G_i$ is open.
+		
+		\begin{lemma}
+			\begin{align*} \qty(\bigcap_{i=1}^{n} H_i)^C = \bigcup_{i=1}^{n} H_i^C \end{align*}
+		\end{lemma}
+		\begin{proof}
+			We know from elementary set theory that $\qty(A \cap B)^C = A^C \cup B^C$. If we continue this inductively, we attain the result from above.
+		\end{proof}
+		
+		Let $\bigcap_{i=1}^{n} H_i$ be a finite intersection of closed sets. Consider the complement of this set, i.e. $\bigcup_{i=1}^{n} H_i^C$. Note that each $H_i^C$ is open (complement of a closed set is open). The proof above showing that an infinite union of open sets is open also works in the finite case, so we see that this finite intersection of open sets is open. Thus its complement is closed, i.e. $\bigcap_{i=1}^{n} H_i$ is closed. 
+		
+		Finally, note that $\bigcap_{k=1}^{\infty} \qty(-\frac1k, \frac1k) = \{0\}$.
+		\begin{proof}
+			$\\$\fbox{$\subseteq$}
+			
+			Let $k>1$. Then $-\frac1k < 0 < \frac1k$, so $0 \in \bigcap_{k=1}^{\infty} \qty(-\frac1k, \frac1k)$. 
+			
+			\fbox{$\supseteq$}
+			
+			Suppose by way of contradiction that $\bigcap_{k=1}^{\infty} \qty(-\frac1k, \frac1k)$ contained something nonzero, say $b$. Then $-\frac1k < b < \frac1k$ for all $k > 1$. Now choose $k \geq \frac1b$, and note that $\frac1k \leq b$, a contradiction.
+		\end{proof}
+		 Clearly $\{0\}$ is closed because the boundary of $\R - \{0\}$ is just $\{0\}$, so $\{0\}$ equals its closure. This is an example of an infinite intersection of open sets not being open.
+		
+		A set that is neither closed or open is $(0, 1]$, because this set contains half of its boundary (it contains 1, but not 0).
+		
+		\item
+		The first thing to note is that $0 \leq \mg{x-y}^2 = \ip{x-y}{x-y} = \mg{x}^2+\mg{y}^2-2\ip{x}{y} = 2-2\ip{x}{y} \leq 2-2(1-\ve) = 2\ve$. The other thing to note is that this is also true for $\ip{y-z}{y-z}$. By taking square roots, we have $\mg{x-y} \leq \sqrt{2\ve}$, and $\mg{y-z} \leq \sqrt{2\ve}$. Now notice that 
+		\begin{align*}
+			\mg{x-z} = \mg{x-y+y-z} \leq \mg{x-y}+\mg{y-z} \leq 2\cdot \sqrt{2\ve} = \sqrt{8\ve}
+		\end{align*}
+		Finally, if we square both sides, we get that $\mg{x-z}^2 = \ip{x-z}{x-z} = 2-2\ip{x}{z} \leq 8\ve$, so therefore $\ip{x}{z} \geq 1-4\ve \geq 1-100\ve$. $\hfill \qedsymbol$
+		
+		\item 
+		I did all the work on paper, but five such vectors are $w_1 = (1, 0)$, $w_2 = w_3 = (\sqrt{3/8}, \sqrt{5/8})$, and $w_4=w_5=(\sqrt{3/8}, -\sqrt{5/8})$. If $x = (a, b)$, we see that
+		\begin{align*}
+			\sum_{i=1}^{5}\ip{x}{w_i}^2 &= a^2+2(a\sqrt{3/8}+b\sqrt{5/8})^2+2(a\sqrt{3/8}-b\sqrt{5/8})^2 \\
+			&= a^2+2(3/8a^2+2\sqrt{3/8}\sqrt{5/8}ab+5/8b^2)+2(3/8a^2-2\sqrt{3/8}\sqrt{5/8}ab+5/8b^2) \\
+			&= a^2+12/8a^2 + 20/8b^2 \\
+			&= 5/2(a^2+b^2) \\
+			&= 5/2\mg{x}^2 \\
+		\end{align*}
+		
+		\item 
+		First, we define another type of continuity, something we will call $\infty$ continuity:
+		\begin{definition}
+			A function $f: \R^n \to \R^m$ is $\infty$-continuous if $\forall \varepsilon > 0, \exists \delta > 0$ such that $\max_{1\leq i \leq n} |x_i-y_i| < \delta \implies \linf{m} |f(x)_i-f(y)_i| < \varepsilon$.
+		\end{definition}
+		\begin{lemma}
+			For all $x \in \R^n$, $\linf{n} |x_i| \leq \|x\|_p \leq \sqrt[p]{n} \linf{n} |x_i|$.
+		\end{lemma}
+		\begin{proof}
+			Let $x \in \R^n$. 
+			\begin{align*}
+				\linf{n} |x_i| = \sqrt[p]{\left(\linf{n} |x_i|\right)^p} \leq \sqrt[p]{|x_1|^p+|x_2|^p + \ldots + |x_n|^p} = \mg{x}_p
+			\end{align*}
+			The inequality is true because we are just adding a bunch of positive things under the $p$-th root, which will definitely make the number bigger. Next, because every $|x_i| \leq \linf{n} |x_i|$, we have that
+			\begin{align*}
+				\mg{x}_p \leq \sqrt[p]{n \cdot \left(\linf{n} |x_i|\right)^p} = \sqrt[p]{n} \linf{n} |x_i|
+			\end{align*}
+		\end{proof}
+		We now claim that being $p$-continuous is equivalent to being $\infty$-continuous (at $x$).
+		\begin{proof}
+			$\\$ \fbox{$\implies$}
+			
+			Let $1 \leq p < \infty$, and suppose that $f: \R^n \to \R^m$ is $\infty$-continuous, and let $\ve > 0$. Choose $\delta$ so that $\forall y \in \R^m$ with $0 < \linf{n} |x_i-y_i| < \delta$, we have that $\linf{n} |f(x)_i - f(y)_i| < \ve / \sqrt[p]{n}$. Then for all $y \in \R^m$ with $0 < \mg{x-y}_p < \delta$, we also know that ${\color{red}0 <} \linf{n}|x_i-y_i| < \delta$ by Lemma 0.2. Now note that $\mg{f(x)-f(y)}_p \leq \sqrt[p]{n}\linf{m} |f(x)_i -f(y)_i| < \sqrt[p]{n} \cdot \frac{\ve}{\sqrt[p]{n}}=\ve$. 	
+			
+			\fbox{$\impliedby$}
+			
+			Let $1 \leq p < \infty$, and suppose now that $f:\R^n \to \R^m$ is $p$-continuous, and let $\ve > 0$. Choose $\delta$ so that $\forall y \in \R^n$ with $0 < \mg{x-y}_p < \delta \implies \mg{f(x)-f(y)}_p < \ve$. Now choose $\delta' = \delta/\sqrt[p]{n}$. Note that $\forall y \in \R^n$ with $0 < \linf{n}|x_i-y_i| < \delta'$, we have that ${\color{red}0 <} \mg{x-y}_p \leq \sqrt[p]{n}\linf{n}|x_i-y_i|< \sqrt[p]{n}\delta'=\sqrt[p]{n}\delta/\sqrt[p]{n}=\delta$ and so $\linf{n} |f(x)_i-f(y)_i| \leq \mg{x-y}_p < \ve$. Note for both of these cases if the vector has nonzero length then it has a nonzero element, so having a nonzero element $\iff$ having nonzero length, which is why the inequalities in red are justified.
+		\end{proof}
+		Let $1\leq p < \infty$. By the above, we have that $2$-continuous $\iff$ $\infty$-continuous $\iff$ $p$-continuous, so $p$-continuous iff $2$-continuous. Now let $1 \leq p,q < \infty$. By the above again, we see that $p$-continuous $\iff$ $\infty$-continuous $\iff$ $q$-continuous, so $p$-continuous iff $q$-continuous.
+		
+		\item 
+		The only places $f(x, y)$ can't be continuous is the line $y = 0$, and the line $y = x^2$. Everywhere else it is well defined and continuous (quotient of two continuous functions are continuous as long as the bottom is nonzero, and 0 is obviously continuous). If $x \neq 0$,  $\frac{y(y-x^2)}{x^4} \to 0$ as $y \to x^2$ because $f(x, y)$ is continuous. Clearly if we are above the line $y=x^2$, the function is constantly $0$, so $f(x,y)$ is continuous at all $y=x^2, x \neq 0$. Now consider the line $y=0$. Exact same story as above, we need the limit to be 0 (as that is the actual function value), and because $\frac{y(y-x^2)}{x^4}$ is continuous, the limit is actually going to be 0. Finally, we consider $(x, y)=(0, 0)$. Note that our limit should be 0, because that is what our functions value is. If we consider $y=2x^2$, we get that for $0 < y < x^2$, $f(x, y)=\frac{2x^2(2x^2-x^2)}{x^4}=\frac{2x^4}{x^4} \to 2$ as $x \to 0$. So $f(x,y)$ is continuous at all points except $(x, y) = (0, 0)$. 
+	\end{enumerate}
+\end{document}

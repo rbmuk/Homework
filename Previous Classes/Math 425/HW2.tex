@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 Pset 2}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	
+	\begin{lemma}
+		Let $(X, d)$ be a metric space, let $A \subset X$, and suppose there is a sequence $A \supset \set{a_n} \to a \not \in A$. Then $a$ is a limit point of $A$.	
+	\end{lemma}
+	\begin{proof}
+		Given any $r > 0$, we can find a $N$ so that if $n \geq N$, $d(a_n, a) < r$. Note also that since $a_n \neq a$, $a_n \in N_r(a) \setminus \set{a}$ by definition, and consequently since $a_n \in A$ for every $n$, we see that $(N_r(a) \setminus \set{a}) \cap A \neq \emptyset$, so $a$ is indeed a limit point of $A$, as claimed.
+	\end{proof}
+	I use this lemma countless times during this homework assignment, so I thought it would be a good idea to put it right here.
+
+	\begin{enumerate}[leftmargin=\labelsep]
+		
+		
+		
+		\item A clean example is $\mathfrak{G} = \set{(1/n, 1-1/n)}_{n=1}^\infty$. One notes clearly, that as each $(1/n, 1-1/n) \subset (0, 1)$ for positive $n$, we have that the union is contained in $(0, 1)$. Similarly, given any $x \in (0, 1)$, WLOG $|x| \leq 1/2$, we can choose an integer $n > 1/x$ so that $x \in (1/n, 1-1/n)$, which completes double inclusion (I realize now that double inclusion is not necessary, but this doesn't affect the claim). Let $S_i = (1/i, 1-1/i)$, and suppose $\mathfrak{G}$ had a finite subcover, say $\set{S_l, \ldots, S_k}$ (where the indices are increasing). One notes clearly that $S_l \subset S_{l+1} \subset \cdots \subset S_k$, so it suffices to show that $S_k$ does not cover $(0, 1)$ (i.e., $\bigcup_{i=l}^k S_l = S_k$). Clearly, $(2k)^{-1} \not \in (1/k, 1-1/k)$.
+		
+		\item $E$ is not countable. For if it was, there would be a bijection $f: \bN \to E$. From this consider the number with its $i$-th digit a 4 if $f(i)$ has a 7 in the $i$-th place, or in the case where $f(i)$ has a 4 in the $i$-th place, make the new number have a $7$ in the $i$-th place. Clearly this number is not on our list, so indeed $E$ is not countable. $E$ is also not dense in $[0, 1]$, for the largest possible number in $E$ would be the number with all digits being a $7$. Then we could just choose $x=1$ and $\ve = 0.2$, and we see that as every number in $E$ is less than $0.8$, we cannot be within $0.2$ of $x$, so $E$ is not dense by counterexample. Let $x$ be a point in $[0, 1]$ with a non 4 or 7 digit, and call the first digit place that is not a 4 or 7 $n$, and for any number $z \in [0, 1]$, let $z_l$ where $l\in \bN$ denote the $l$th digit of $z$. Let $y \in E$, and let $m \leq n$ be the first digit place that $y$ and $x$ differ (Note: $y$ and $x$ certainly differ at the digit place $n$, but they might differ before that too). Then $|y-m| = |(y_m - x_m)/10^m + \sum_{k=m+1}^\infty (y_k-x_k)/10^k| \geq |(y_m-x_m)/10^m| - |\sum_{k=m+1}^\infty (y_k-x_k)/10^k|$ by the reverse triangle inequality. Since $y_k$ is either a $4$ or a $7$, and $x_k \in \set{0, \cdots, 9}$, we see that $|y_k-x_k| \leq 7$. Also, $|\sum_{k=m+1}^\infty (y_k-x_k)/10^k| \leq \sum_{k=m+1}^\infty |y_k-x_k|/10^k \leq \sum_{k=m+1}^\infty 7/10^k = 7 \cdot (1/10^{m+1}) / (9/10) = 7/9 \cdot 1/10^m$, so $|(y_m-x_m)/10^m| - |\sum_{k=m+1}^\infty (y_k-x_k)/10^k| \geq |(y_m-x_m)/10^m| - 7/9 \cdot 1/10^m \geq 1/10^m - 7/9 \cdot 1/10^m = 2/9 \cdot 1/10^m \geq 2/9 \cdot 1/10^n$. Since $y$ was arbitrary, we see that taking $r < 2/9 \cdot 1/10^n$ will be so that $(N_r(x) \setminus x) \cap E = \emptyset$, which shows that $x$ is not a limit point of $E$. Since everything not in $E$ is not a limit point of $E$, we see that all limit points of $E$ lie in $E$, i.e. that $E$ is closed. Finally, $E$ is also perfect since $E$ is closed (we showed this above), and given any $x \in E$, and given any $\ve > 0$, by the archimedian property we can find $n$ so that $1/10^n < \ve$, and just flip the $n$th digit of $x$ to get something in $E$, not equal to $x$, which is within $1/10^n < \ve$ of $x$. So indeed every point in $E$ is a limit point of $E$, as claimed.
+		
+		\item Let $x$ be a limit point of $A + B \subset \R^d$. Then for $i \in \bN$, there is some $a_i+b_i\in A+B$ so that $|a_i+b_i - x| < 1/i$. So, there is a sequence $\set{a_i+b_i}_{i=1}^\infty \to x$. Because $\set{a_i} \subset A$, and $A$ is compact, there is some $R > 0$ so that $|a_i| < R$. Similarly, since there is some $N$ sufficiently large so that if $n \geq N$, $|a_n + b_n - x| < \ve$, we see that $|b_n| \leq |a_n+b_n| + |a_n| \leq \ve + x + R$, and as $\set{b_1, \ldots, b_{n-1}}$ is clearly finite, the ${b_i}$'s are bounded. Therefore, $b_i$ has a convergent subsequence, so pass to a convergent subsequence say $b_{k} \to b$. Suppose $c_k \to c$, $\set{c_k} \subset C$, then if $C$ is closed, $c \in C$. For if $c$ was not in $C$, then given any $\ve > 0$ there is some $N$ so that if $n \geq N$, $|c_n-c| < \ve$, i.e. that $(N_\ve(c) \setminus c) \cap C \neq \emptyset$ (clearly $c_n \neq c$ for every $c_n$). So $c$ is a limit point of $C$ that $C$ does not contain, a contradiction. So $b \in B$. Given any $\ve > 0$, since $a_i + b_i \to x$, there is $N_1$ so that for every $n \geq K_1$, $|a_k-b_k-x| < \ve/2$ (we passed to the same indices as the new convergent subsequence of $b$). Similarly, since $b_k \to b$, there is some $K_2$ so that if $k \geq K_2$, $|b_k - b| < \ve/2$. So for any $k \geq \max\set{K_1, K_2}$, and any $m, n \geq K$, $|a_m-a_n| - \ve/2\leq |a_m-a_n| - |b_m - b_n| \leq |a_m+b_m - a_n - b_n| < \ve/2$, i.e. that $|a_m-a_n| < \ve$, so $a_k$ is Cauchy and therefore convergent, call its limit $a$. Since $a_k \subset A$ and $A$ is closed (By Heine-Borel, compact $\implies$ closed + bounded), $a \in A$. Clearly $a_k+b_k$ is a subsequence of the original $a_i+b_i$, so $a_k+b_k \to x$ as well, but this time we know that we can split up the limits to get that $a_k+b_k \to a+b$ as well. Since $x = a+b \in A + B$, $A+B$ contains all it's limit points, and is therefore closed, as claimed. $\hfill$ Q.E.D.
+		
+		\item Consider $A = \set{1+1/10, 2+1/10^2, \cdots}$ and $B = \set{-1, -2, \cdots}$. Both these sets are closed because both of their complements is a countable union of open intervals (For example, $B^c = (-1, \infty) \cup \bigcup_{k=-\infty}^{-1} (k-1, k)$). Also, if $0 \in A+B$, then $0 = a+b$ for some $a \in A, b \in B$. Everything in $A$ is of the form $a + 1/10^a$ for a natural $a$, and everything in $B$ is of the form $-b$ for a natural $b$. This says that $a + 1/10^a = b$, i.e. that $1/10^a = b-a$, which is impossible since the LHS is not an integer. Finally, given any $\ve > 0$, $N_\ve(0) \setminus 0 \cap A+B$ is nonempty because we can find a natural number $i$ so that $10^i > \ve$ (by the Archimedian property), i.e. that $1/10^i < \ve$, which tells us that $|i + 1/10^i - i - 0| = 1/10^i < \ve$, and clearly $i+1/10^i \in A$ and $-i \in B$, so $0$ is a limit point of $A+B$ that is not in $A+B$, so $A+B$ is not closed.
+		
+		\item Suppose instead that $d(A, B) \leq 0$ for some compact set $A$ and closed set $B$. Since $d(x, y) \geq 0$ for every $x, y$, it follows that $d(A, B)$ (the $\inf$ of many distances) is also nonnegative, so we see that $d(A,B) = 0$. By the definition of the $\inf$, given any $n \in \bN$, we can find $a_n \in A$, $b_n \in B$, so that $d(a_n, b_n) < 1/n$. Now clearly $\set{a_n} \subset A$, and since compact $\iff$ sequentially compact, $a_n$ has a convergent subsequence. So, pass to a convergent subsequence $a_k \to a \in A$. I claim that $b_k \to a$ as well. Given any $\ve > 0$, choose $K_1$ large enough so that $d(a_k, a) < \ve/2$, and also choose $K_2 > 2/\ve$, and choose $K = \max\set{K_1, K_2}$. Then $d(b_k, a) \leq d(b_k, a_k) + d(a_k, a) < \ve/2 + \ve/2 = \ve$, so indeed $b_k \to a$ (Note: by construction, for any $m > K_2$, $d(a_m, b_m) < 1/m < 1/K_2 < \ve$). Since $A \cap B = \emptyset$, we know that $a \not \in B$, and by Lemma 0.1 $a$ is a limit point of $B$. But then $B$ doesn't contain one of it's limit points, so $B$ is not closed, a contradiction. So $d(A, B) > 0$, as claimed.
+		
+		\item \begin{enumerate}
+			\item Suppose that one of $A \cap \overline{B} \neq \emptyset$ or $\overline{A} \cap B \neq \emptyset$ were true. Since both $A, B$ are closed, $\overline{A} = A$ and similarly $\overline{B} = B$. Then this would tell us that $A \cap B \neq \emptyset$ is true, a contradiction.
+			
+			\item WLOG, suppose that $A \cap \overline{B} \neq \emptyset$. Then let $y \in A \cap \overline{B}$. If $y \in B$, then $y \in A \cap B$, a contradiction, so $y \in B'$. Then since $y$ is a limit point of $B$, $\forall r > 0$ $N_r(y) \setminus y \cap B \neq \emptyset$. Also, since $y \in A$, and $A$ is open, $\exists l > 0, N_r(y) \subset A$. One therefore sees that $N_l(y) \setminus y \cap B \neq \emptyset$, and similarly that $N_l(y) \subset A$, which combined tells us that $A \cap B \neq \emptyset$, a contradiction. The other case follows in exactly the same way, so we are done.
+			
+			\item Theorem $2.19$ tells us that every neighborhood is an open set, so $N_\delta(p)$ is open. Similarly, let $q \in \set{q \in X \given d(p, q) > \delta}$. Since $d(p, q) > \delta$, $d(p, q) = \delta + a$ for some $a > 0$. Now consider $N_{a/2}(q)$. I claim that everything in this neighborhood also has distance at least $\delta$ from $p$. Certainly, given $b \in N_{a/2}(q)$, $\delta + a = d(p, q) \leq d(q, b) + d(b, p) < a/2 + d(b, p)$, which says that $\delta + a/2 < d(b,p)$, or more importantly that $\delta < d(b, p)$, as claimed. So $q$ is an interior point of $\set{q \in X \given d(p, q) > \delta}$, and since $q$ was arbitrary $\set{q \in X \given d(p, q) > \delta}$ is open. Finally, suppose there was an $x \in N_\delta(p) \cap \set{q \in X \given d(p, q) > \delta}$. Then $d(x, p) < \delta$, and $d(x, p) > \delta$, a contradiction, so these sets are disjoint. We proved in the last part that two disjoint open sets are separated, so these two sets are separated, as claimed.
+			
+			\item Suppose there was a connected metric space that is countable. Fix $p \in X$. I claim that there is a $\delta \in \R_{> 0}$ so that given any $y \in X$, $d(p, y) \neq \delta$. If for all $\delta > 0$ there was a point $y_{\delta} \in X$ so that $d(y_{\delta}, p) = \delta$, we could define an onto map to the reals by $f: X \to \R_{> 0}$ by $f(y) = d(y, p)$. But then $X$ would be uncountable, a contradiction. So, there is at least one $\delta > 0$ so that for every $y \in X$, $d(y, p) \neq \delta$. Since given any $x \in X$ $d(x, p)$ is either $\geq \delta$, or $< \delta$, and we have shown that it cannot equal $\delta$, $N_{\delta}(p)$ and $\set{q \in X \given d(p, q) > \delta}$ partition $X$. But by part c), these two sets are separated, so $X$ is not connected, a contradiction.
+		\end{enumerate}
+
+		\item Let $k \in K$. Since $K \subset U$, there is a $r_k > 0$ so that $N_{r_k}(k) \subset U$.	Also, note that $\overline{N_{r_k/2}(k)} \subset N_{r_k}(k)$, since if $x \in \overline{N_{r_k/2}(k)}$, then either $x \in N_{r_k/2}(k)$ or $x \in N_{r_k/2}(k)'$. In the first case, $d(x, k) < r_k/2 < r_k$, so clearly $x \in N_{r_k}(k)$. In the second case, we know that since $x$ is a limit point of $N_{r_k/2}(k)$, $(N_{r_k/2}(x) \setminus{x}) \cap N_{r_k/2}(k) \neq \emptyset$, so we can find a $y \in (N_{r_k/2}(x) \setminus{x}) \cap N_{r_k/2}(k)$. Finally, one notes that $d(x, k) \leq d(x, y) + d(y, k) < r_k/2 + r_k/2 = r_k$, so indeed $x \in N_{r_k}(k)$, as claimed. Next, one notes that since $k \in N_{r_k/2}(k)$, $K \subset \bigcup_{k \in K} N_{r_k/2}(k)$. Since $K$ is compact, this open cover has a finite subcover, say $\bigcup_{i=1}^{l} N_{r_{k_i}/2}(k)$, where $l < \infty$. Because this is an open cover of $K$, $K \subset \bigcup_{i=1}^{l} N_{r_{k_i}/2}(k)$. Next, $\overline{\bigcup_{i=1}^{l} N_{r_{k_i}/2}(k)} = \bigcup_{i=1}^{l} \overline{N_{r_{k_i}/2}(k)}$, since this is a \textit{finite} union. Finally, since $\overline{N_{r_{k_i}/2}(k)} \subset N_{r_{k_i}}(k)$, we see that $\overline{\bigcup_{i=1}^{l} N_{r_{k_i}/2}}(k_i) \subset \bigcup_{i=1}^l N_{r_{k_i}}(k_i) \subset U$ (again, since each $N_{r_{k_i}}(k_i) \subset U$ by construction, and since this is a finite union). In the end, we get the chain $K \subset \bigcup_{i=1}^{l} N_{r_{k_i}/2}(k) \subset \overline{\bigcup_{i=1}^{l} N_{r_{k_i}/2}(k)} = \bigcup_{i=1}^{l} \overline{N_{r_{k_i}/2}(k)} \subset \bigcup_{i=1}^l N_{r_{k_i}}(k_i) \subset U$, which completes the proof. $\hfill$ Q.E.D.
+	\end{enumerate}
+\end{document}

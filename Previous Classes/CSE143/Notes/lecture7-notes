@@ -1,0 +1,22 @@
+ADT: lists, sets, stacks, queues, maps
+Map is a set of key/value pairs
+Map<K, V>
+key=value <=> key -> value (when printing)
+
+if you just want things, without duplicates, then just use Set<E>
+
+count.put(next, 1);
+count.put(next, count.get(next) + 1);
+
+how to iterate over the map:
+for (String word : count.keySet()) {
+	// do something with the KEY word, and the VALUE count.get(word)
+}
+
+public static void addTo(Map<String, Set<String>> friends, String name1, String name2) {
+	if (!friends.containsKey(name1)) // if the map does NOT contain key name1
+		friends.put(name1, new TreeSet<>());
+	friends.get(name1).add(name2);
+}
+
+This is the MOST important thing from today's lecture!!

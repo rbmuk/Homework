@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE Section 8}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item
+		\begin{enumerate}
+			\item $0 \cup ([1,9][0,9]^*)$.
+			\item $0 \cup (1 \cup 2)(0 \cup 1 \cup 2)^*0$.
+			\item $[(01 \cup 10) \cup (001 \cup 100 \cup 1)^*]111[(01 \cup 10) \cup (001 \cup 100 \cup 1)^*]$.
+			\item $((0 \cup \ve)(10)^*) \cup ((01)^*(0 \cup \ve))$
+			\item $(1[1 0^* \cup 0^* 1])^*(0 \cup 1)^*$
+		\end{enumerate}
+	
+		\begin{enumerate}
+			\item 
+			$S \to T00 \\
+			T \to 1T \; | \; 0T \; | \; T1 \; | \; T0 \; | \; 0 \; | \; 1 \; | \; \ve $
+			\item $S \to T1T1T1T \\
+			T \to 1T \; | \; 0T \; | \; T1 \; | \; T0 \; | \; 0 \; | \; 1 \; | \; \ve$
+			\item $S \to 1S0 \; | \; 0S1 \; | \; \ve$
+			\item $S \to 0S0 \; | \; 1T0 \; | \; 0T1 \; | \; 1S1 \\
+			T \to 0T0 \; | \; 1T0 \; | \; 0T1 \; | \; 1T1 \; | \; 00 \; | \; 01 \; | \; 10 \; | \; 11$ This last one does this: keep adding stuff to both sides until you pick one where they are different, then just go to the next level, where you can just do whatever you want and eventually end (guaranteed different though, because to get there you must've picked at least 1 digit different).
+		\end{enumerate}
+		\setItemnumber{5}
+		\item
+		\begin{enumerate}
+			\item The bug in this proof is that they only proved it for one of the recursive steps given, but there are 4. The author only proved this for trees that have both left and right child nodes always, which is not necessarily the case.
+			
+			\item Let $T$ be an arbitrary tree of height $k$. Pick an arbitrary leaf node at the bottom level of this tree. There are three ways to make this tree height $k+1$:
+			
+			(1) We add a node to the right of this leaf,
+			
+			(2) We add a node to the left of this leaf,
+			
+			(3) We could add both a left node and a right node.
+			
+			...So we see that in any case, the tree has an odd number of nodes. As we chose a leaf node arbitrarily, we could do case 1 2 or 3 to any leaf node, our proposition would still hold true, as our proof only depended on the tree currently having an odd number of nodes. 
+		\end{enumerate}
+		\item For a \textbf{Tree} T, let $P(T) \coloneqq \mathrm{sum}(T) = \mathrm{sum}(\mathrm{reverse}(T))$.
+		
+		\textbf{Base case: } We notice that $\mathrm{sum}(\mathrm{Nil}) = \mathrm{sum}(\mathrm{reverse}(\mathrm{Nil})) = 0$, because $\mathrm{reverse}(\mathrm{Nil}) = \mathrm{Nil}$.
+		
+		\textbf{Inductive Hypothesis: } Suppose for some arbitrary \textbf{Trees} $L$ and $R$, $P(L)$ and $P(R)$ hold, and that $x \in \bZ$ is an arbitrary integer.
+		
+		\textbf{Inductive Step: } \boxed{\text{Goal: } P(\mathrm{Tree}(x, L, R))}
+		
+		 We notice that $\mathrm{reverse}(\mathrm{Tree}(x, L, R)) = \mathrm{Tree}(x, \mathrm{reverse}(L), \mathrm{reverse}(R))$.  Then, $\mathrm{sum}(\mathrm{Tree}(x, L, R)) = x + \mathrm{sum}(L) + \mathrm{sum}(R)$ by definition, and we also see that
+		 $\mathrm{sum}(\mathrm{reverse}(\mathrm{Tree}(x, L, R))) = \mathrm{sum}(\mathrm{Tree}(x, \mathrm{reverse}(L), \mathrm{reverse}(R))) = x + \mathrm{sum}(\mathrm{reverse}(L)) + \mathrm{sum}(\mathrm{reverse}(R))$. By the inductive hypothesis, $\mathrm{sum}(\mathrm{reverse}(L)) = \mathrm{sum}(L)$, and $\mathrm{sum}(\mathrm{reverse}(R)) = \mathrm{sum}(R)$, so we see that these quantities are indeed equal.
+		 
+		 By the principal of induction, we see that $P(T)$ holds for all trees $T$.
+	\end{enumerate}
+\end{document}

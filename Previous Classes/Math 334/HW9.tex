@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 334 HW 9}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item As $f(x)$, $g(y)$ are differentiable on all of $\R$, given any point $(x, y)$ there is some $\delta, \delta'$ about $x$ and $y$ (resp.) so that $f(x+h)=f(x)+f'(x)h+E(h)$, and $g(y+h')=g(y)+g'(y)h'+E'(h')$ where $E(h), E'(h')$ shrink faster than $h, h'$ (resp.). Then we see that, for $h = (h, h')$ with $\mg{h} < \min{\delta, \delta'}$, 
+		\begin{align*}
+			h(x+h, y+h') &= [f(x)+f'(x)h+E(h)][g(y)+g'(y)h'+E'(h')]
+			\\&= f(x)g(y)+f'(x)g(y)h + f(x)g'(y)h' 
+			\\&+ \big(f'(x)g'(y)hh'+E(h)[g(y)+g'(y)h+E'(h')]
+			\\&+ E'(h')[f(x)+f'(x)h+E(h)]\big)
+		\end{align*}
+		We now see that everything in brackets goes to 0 faster than $\mg{h}$, as for example $\lim_{(h, h') \to (0, 0)} E(h)[g(y)+g'(y)h'+E'(h')]/\sqrt{h^2+h'^2}$ is trivial as $\sqrt{h^2+h'^2} \geq \sqrt{h^2}=|h|$, so $E(h)/\sqrt{h^2+h'^2} \leq E(h)/|h|$, which tends to $0$ as $h \to 0$, so both limits go to $0$. The right side now is just a constant, namely $g(y)$, so the entire limit goes to 0. The last term is $f'(x)g'(y)hh'/\sqrt{h^2+h'^2}$, and as before $hh'/\sqrt{h^2+h'^2} \leq hh'/|h|$, which is always smaller in magnitude than $h'$, which is tending towards 0. So all terms in the big parenthesis go to 0, and we see that $h(x, y)$ is differentiable at all $(x, y) \in \R^2$.
+		
+		\item 
+		We construct a counterexample.
+		\begin{align*}
+			f(x) = -x + 1
+		\end{align*}
+		The theorem states for all functions that satisfy the hypothesis and all $0 \leq x_0 \leq 1$. However, for our function, if we choose $x_0 = 1$, then we see that $x_1 = f(1)=0, x_2 = f(0)=1, ...$ and so on. Then our sequence is $\seq{x}{n} = 
+		\begin{cases}
+			1, \quad n \equiv 0 \mod{2}\\
+			0, \quad n \equiv 1 \mod{2}
+		\end{cases}$.
+	
+		Clearly this sequence doesn't converge, as if it were to, there would be some $N > 0$ so that for all $m, n > N$, $|x_m-x_n| < 1/2$. But if we choose $m = n+1$, we get that $|x_m-x_n| = 1 < 1/2$, a contradiction.
+		
+		\item
+		\begin{enumerate}[label=(\alph*)]
+			\item 
+			First off, consider the function defined by $G(s)=f(s+\frac{b-a}2)-f(s)-1/2[f(b)-f(a)]$. We see that $G((a+b)/2)=1/2f(b)-f((a+b)/2)+1/2f(a)=-G(a)$. 
+			If one side is $0$, $s = a$ is so that $\frac{f(a+(b-a)/2)-f(a)}{\frac{b-a}2} = \frac{f(b)-f(a)}{b-a}$. Else, one side is positive and one side is negative, so by the IVT ($G(s)$ is continuous because $f$ differentiable $\implies$ continuity, and the composition of continuous functions is continuous) there is some $s \in [a, (a+b)/2]$ so that $G(s) = 0$. This makes $s$ satisfy $\frac{f(s+(b-a)/2)-f(s)}{\frac{b-a}2} = \frac{f(b)-f(a)}{b-a}$ by rearranging and dividing both sides by $(b-a)/2$.
+			\item 
+			The base case, $n=1$, has been proven above. Suppose that for some $n \geq 1$, we have that there is some $s_n \in [a, b]$ so that $\frac{f\qty(s_n+\frac{b-a}{2^n})-f\qty(s_n)}{\frac{b-a}{2^n}} = \frac{f\qty(b)-f\qty(a)}{b-a}$.
+			Now I define $G(s) = f\qty(s+\frac{b-a}{2^{n+1}})-f\qty(s)-\frac{f\qty(b)-f\qty(a)}{2^{n+1}}$. We see that 
+			\begin{align*}
+				G(s_n) &= f\qty(s_n+\frac{b-a}{2^{n+1}})-f\qty(s_n)+f\qty(s_n+\frac{b-a}{2^{n}})-f\qty(s_n+\frac{b-a}{2^{n}})-\frac{f\qty(b)-f\qty(a)}{2^n}
+				\\&= -f\qty(s_n+\frac{b-a}{2^n})+f\qty(s_n+\frac{b-a}{2^{n+1}})+\frac{f\qty(b)-f\qty(a)}{2^{n+1}}
+			\end{align*}
+			As $-f\qty(s_n)+f\qty(s_n+\frac{b-a}{2^{n}}) = \frac{f\qty(b)-f\qty(a)}{2^n}$ by hypothesis. Note also that
+			\begin{align*}
+				G\qty(s_n+\frac{b-a}{2^{n+1}}) = f\qty(s_n+\frac{b-a}{2^n})-f\qty(s_n+\frac{b-a}{2^{n+1}})-\frac{f\qty(b)-f\qty(a)}{2^{n+1}}
+			\end{align*}
+			That is, $G(s_n+\frac{b-a}{2^{n+1}}) = -G(s_n)$. Then if we look back to the 3 cases in the base case, they also hold here, and we see that in any case, there is some $s_{n+1}$ so that $G(s_{n+1}) = 0 \iff \frac{f\qty(s_{n+1} + \frac{b-a}{2^{n+1}})-f\qty(s_{n+1})}{\frac{b-a}{2^{n+1}}} = \frac{f\qty(b)-f\qty(a)}{b-a}.$
+			
+			\item 
+			Then we have generated a sequence $\seq{s}{n}$ entirely contained in $[a, b]$. Therefore it has a convergent subsequence, say $(s_{n_k})_{k=1}^{\infty} \to s$. Now,
+			\begin{align*}
+				\lim_{k \to \infty} \frac{f\qty(s_{n_k}+\frac{b-a}{2^{n_k}})-f(s_{n_k})}{\frac{b-a}{2^{n_k}}} &= \lim_{k \to \infty} \frac{f(b)-f(a)}{b-a}
+			\end{align*}
+			Because $f(x)$ is differentiable, 
+			\begin{align*}
+				\frac{f\qty(s_{n_k}+\frac{b-a}{2^{n_k}})-f(s_{n_k})}{\frac{b-a}{2^{n_k}}} = f'(s_{n_k}) - \frac{E(\frac{b-a}{2^{n_k}})}{\frac{b-a}{2^{n_k}}}
+			\end{align*}
+			where $E(\frac{b-a}{2^{n_k}})/\frac{b-a}{2^{n_k}} \to 0$. Thus the entire LHS tends to $f'(s)$, where $s \in [a, b]$. Equating the LHS to the RHS gives the desired result. $\qed$
+			
+		\end{enumerate}
+		\item By the chain rule, the derivative of $f(g(x))$ is $Df(g(x)) \cdot Dg(x)$. Because $f(g(x)) = x$, its jacobian is also just the identity matrix (2x2). So all that we have to do is find what $g(0, 0)$ can be. We know that $f(g(0, 0)) = (0, 0)$. So we see that, by the definition of $f(x)$, $x+\sin(y) = 0$, and $y-x^2 = 0$. $g(0, 0)$ will be whatever $(x, y)$ we get. The second equation tells us that $y = x^2$, so we get that $-x = \sin(x^2)$. Notice that if $|x| > 1$, this situation is impossible, so $|x| \leq 1$. Suppose that there was a solution other than $x = 0$, as $x = 0$ obviously works. Then by the mean value theorem, treating $x^2$ as our "$x$", we get that there is some $c \in (0, x^2)$ ($|x| > 0$ so $x^2 > 0$) so that $|\sin(x^2)| = |\cos(c)||x^2|$. On $c \in (0, 1)$, the possible values for $x^2$, $|\cos(c)| < 1$, so we see that $|\sin(x^2)| < |x^2| < |x|$, so we don't have a solution. Therefore $x = 0$, and $y = 0$. Then $g(0, 0) = (0, 0)$. $Df = 
+		\begin{pmatrix}
+			1 & \cos(y) \\
+			-2x & 1
+		\end{pmatrix}$, So $Df(g(0, 0)) = Df(0, 0) = \begin{pmatrix}
+		1 & 1 \\
+		0 & 1
+		\end{pmatrix}$. Now solving this linear system, we see that 	$Dg(0, 0) = \begin{pmatrix}
+		1 & -1 \\
+		0 & 1
+		\end{pmatrix}$.
+		
+		
+		\item 
+		I shall look at each function separately. We know that $\ip{b}{x} = \sum_{i=1}^{n} b_ix_i$. If we apply $\pdv{x_i}$, we get that $\grad{\ip{b}{x}} = b$ (only the $b_i$ stays per partial derivative). For the second part, let $g(x) = \ip{x}{Ax}$. Notice that $A = (a_1 \hdots a_n)$ for some $a_1, \hdots, a_n \in \R^n$. Notice that $g(x+h)-g(x)=\ip{x+h}{A(x+h)} = \ip{h}{Ah} + \ip{x}{Ah} + \ip{Ax}{h}$, but because $A$ is symmetric, the last two terms are the same, so $g(x+h)-g(x)=\ip{h}{Ah} + 2\ip{Ax}{h} = \ip{\grad{g(x)}}{h} + E(h)$, where $E(h)/\mg{h} \to 0$. So therefore I claim that $\ip{h}{Ah}/\mg{h} \to 0$. Notice that $|\ip{h}{Ah}/\mg{h}| \leq \mg{h}/\mg{h} \mg{Ah} = \mg{Ah}$. Now, $h = h_1e_1 + \hdots + h_ne_n$ for some $h_i \in \R$, $i\in 1, \hdots, n$, where $e_i$ has a 1 in the $i$-th column and 0 everywhere else. Then for any $\ve > 0$, choose $\delta = \ve/(n\max_{1 \leq i \leq n} \mg{a_i})$. Then we see that for any $h \in \R^n$ with $\mg{h} < \delta$, $\max_{1 \leq i \leq n} |h_i| < \delta$, $\mg{Ah} = \mg{h_1a_1 + \dots + h_na_n} \leq \sum_{i = 1}^{n} |h_i|\mg{a_i} \leq \sum_{i=1}^{n} \max_{ 1 \leq i \leq n} |h_i| \max_{1 \leq i \leq n} \mg{a_i} < \ve$. So therefore $\grad{g(x)} = 2Ax$. So $\grad{f}(x) = 2Ax+b$. By langrange multipliers, the gradient of $\mg{x} = 1$ is the same as the gradient of $\ip{x}{x} = 1$, i.e. $2x$. So we see that $2Ax + b = \lambda 2x$ for some $\lambda$. If $b = 0$, this certainly implies the existence of eigenvalues / vectors.
+		
+		\end{enumerate}
+	
+		\newpage
+		Note that $|x_n|$ is monotonically decreasing, and bounded below, so it converges to some $x \geq 0$. Then, as $(x_n)$ is bounded by $|x_0|$, it has a convergent subsequence, say $(x_{n_k})$. $x = \lim_{k \to \infty} |x_{n_k}| = |\lim_{k \to \infty} x_{n_k}|$, so $(x_{n_k}) \to \pm x$ (one of them). Finally, $|\sin(x_{n_k})| = |x_{n_k+1}| \to x$, and also to $|\sin(\pm x)|$. In any case, $|\sin(\pm x)| = |\sin(x)|$, as $\sin(x)$ is odd. Note that $|x_1| \leq 1$, so $\inf |x_n| \leq 1$ as well (either 1 is the smallest element, or there is something smaller). If $x \in [-1, 1] - {0}$, $|\cos(x)| < 1$, so by the mean value theorem $|\sin(x)| < |x|$ for $x$ in that set. So $x$ must be 0. Finally, as $|x_n| \to 0$, we see that $x_n \to 0$.
+\end{document}

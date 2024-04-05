@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra,amsfonts, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+\newcommand{\ol}{\overline}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 336 HW1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Given fixed  $a \in \C$, and $z \in \C$ so that $|z| = 1$,
+		\begin{align*}
+			|1-\overline{a}z| = |\overline{z}||1-\overline{a}z| = |\overline{z}-\overline{a}|z|^2| = |\overline{z} - \overline{a}| = |\overline{z-a}| = |z-a|
+		\end{align*}
+		So clearly if the far LHS is nonzero than the ratio of the RHS with the LHS is going to be 1. We have used that the complement distributes over addition, that the norm is multiplicative, and that the norm of a number is the norm of its complement.
+		
+		\item $\cos(2\theta) + i\sin(2\theta) = (e^{i\theta})^2 = (\cos(\theta) + i\sin(\theta))^2 = \cos^2(\theta) - \sin^2(\theta) + 2i\sin(\theta)\cos(\theta)$. Equating the real part tells us that $\cos(2\theta) = \cos^2(\theta) - \sin^2(\theta)$. Also,
+		\begin{align*}
+			\cos(4\theta) + i\sin(4\theta) = e^{4i\theta} &= (\cos(\theta)+i\sin(\theta))^4 \\
+			&= \cos^4(\theta) + 4\cos^3(\theta)i\sin(\theta) - 6\cos^2(\theta)\sin^2(\theta) - 4i\cos(\theta)\sin^3(\theta) + \sin^4(\theta)
+		\end{align*}
+		Equating real parts gives us the nice formula that $\cos(4\theta) = \cos^4(\theta) - 6\cos^2(\theta)\sin^2(\theta) + \sin^4(\theta)$.
+		
+		\item Clearly $1 = 1-z^{0+1}/1-z$, so the base case holds. Suppose $\sum_{k=0}^{n} z^k = \frac{1-z^{n+1}}{1-z}$ for some $n \geq 0$. Then $\sum_{k=0}^{n+1} z^k = z^{n+1} +\frac{1-z^{n+1}}{1-z} = \frac{z^{n+1}-z^{n+2} + 1 - z^{n+1}}{1-z} = \frac{1-z^{n+2}}{1-z}$, so it is true for all naturals by induction.
+		
+		We notice, by our proof above, that
+		\begin{align*}
+			e^{0} + e^{i \cdot \theta} + \cdots + e^{i n \theta} = \frac{1-e^{i(n+1)\theta}}{1-e^{i\theta}}
+		\end{align*}
+		where we have used that $(e^{i\theta})^{n+1} = e^{i(n+1)\theta}$. We now simplify the RHS,
+		\begin{align*}
+			\frac{1-e^{i(n+1)\theta}}{1-e^{i\theta}} &= \frac{1-\cos((n+1)\theta)-i\sin((n+1)\theta)}{1-\cos(\theta)-i\sin(\theta)} \cdot \frac{1-\cos(\theta)+i\sin(\theta)}{1-\cos(\theta)+i\sin(\theta)} \\
+			&= \frac{1-\cos(\theta)-\cos((n+1)\theta)+\cos(\theta)\cos((n+1)\theta)+\sin(\theta)\sin((n+1)\theta)}{2-2\cos(\theta)} \\ &+ i\frac{\sin(\theta)-\cos((n+1)\theta)\sin(\theta)-\sin((n+1)\theta)+\cos(\theta)\sin((n+1)\theta)}{2-2\cos(\theta)}
+		\end{align*}
+		Clearly now, 
+		\begin{align*}
+			\frac{1-\cos(\theta)-\cos((n+1)\theta)+\cos(\theta)\cos((n+1)\theta)+\sin(\theta)\sin((n+1)\theta)}{2-2\cos(\theta)} \\
+			= \frac{1-\cos(\theta)-\cos((n+1)\theta)+\cos((n+1)\theta - \theta)}{2-2\cos(\theta)}\\
+			= \frac{1-\cos(\theta)-\cos((n+1)\theta)+\cos(n\theta)}{2-2\cos(\theta)} \\
+			= \frac 12 + \frac{\cos(n\theta) - \cos((n+1)x)}{2(1-\cos(\theta))}
+		\end{align*}
+		Finally, we use that $\cos(\theta) = 1 - 2\sin^2(\theta/2)$, to see that
+		\begin{align*}
+			\frac 12 + \frac{\cos(nx) - \cos((n+1)x)}{2(1-\cos(x))} &= \frac12 + \frac{-\sin^2(n\theta/2) + \sin^2((n+1)\theta/2)}{2\sin^2(\theta/2)}
+		\end{align*}
+		
+		Finally, using the sum formula for $\sin((n+1)\theta/2)$ gives us
+		\begin{align*}
+			\sin((n+1)\theta/2) &= \sin(n\theta/2)\cos(\theta/2)+\cos(n\theta/2)\sin(\theta/2)
+		\end{align*}
+		Squaring each side gives
+		\begin{align*}
+			&\sin^2((n+1)\theta/2) - \sin^2(n\theta/2)\\ &=\cos^2(n\theta/2)\sin^2(\theta/2)+2\cos(n\theta/2)\cos(\theta/2)\sin(\theta/2)\sin(n\theta/2)+\cos^2(\theta/2)\sin^2(n\theta/2) - \sin^2(n\theta/2) \\
+			&= \cos^2(n\theta/2)\sin^2(\theta/2) + \sin(n\theta)\cos(\theta/2)\sin(\theta/2) - \sin^2(\theta/2)\sin^2(n\theta/2) \\
+			&= \cos(n\theta)\sin^2(\theta/2) + \sin(n\theta)\cos(\theta/2)\sin(\theta/2) \\
+			&= \sin(\theta/2)(\cos(n\theta)\sin(\theta/2)+\sin(n\theta)\cos(\theta/2)) \\
+			&= \sin(\theta/2)\sin((n+1)\theta/2)
+		\end{align*}
+		We conclude that
+		\begin{align*}
+			\frac12 + \frac{-\sin^2(n\theta/2) + \sin^2((n+1)\theta/2)}{2\sin^2(\theta/2)} &= \frac{\sin((n+1)\theta/2)}{2\sin(\theta/2)}
+		\end{align*}
+		As we simply wanted to equate real parts, there is no reason to work out the imaginary part. As the real part distrubites over addition, one sees clearly that the real part of the geometric series that we started with does indeed equal $\sum_{k=0}^{n} \cos(k\theta)$, which shows that
+		\begin{align*}
+			\sum_{k=0}^{n} \cos(k\theta) &= \frac{\sin((n+1)\theta/2)}{2\sin(\theta/2)}
+		\end{align*}
+		which is beautiful. After looking at the trick on the page about Direchlet Kernel, I can say this way was quite painful compared to that. At least I won't ever forget the trig identities now.
+	
+		\item As $i \neq 0$, either $i \prec 0$ or $0 \prec i$. In the second case, we may use the last property given to multiply both sides by $i$ to see that $0 \prec i^2 = -1$. Multiplying by the positive number $i$ again gives us $0 \prec -i$, which tells us that $i \prec 0$, which is absurd. In the second case, we can use property 2 to add $-i$ to both sides and get that $0 \prec -i$. Multiplying both sides by the positive number $-i$ gives us $0 \prec -1$. Doing this again gives us $0 \prec -1 \cdot -i = i$, which is the opposite of what we started with! As those were the only two cases, there can't be a total ordering on the complex numbers.
+		
+		\item 
+		\begin{enumerate}[label=(\arabic*)]
+			\item Suppose $p(z) \neq 0$ for all $z \in \C$ and that $|p(z)| \leq 0$ for some $z \in \C$. Then $|p(z)| = 0$ for some $z \in \C$, which means that $p(z) = 0$ for some $z \in \C$, a contradiction. So $|p(z)| > 0$ for all $z \in \C$.
+			\item I claim that for every polynomial $p(z) = a_nz^n + \cdots + a_0$, where $a_n \neq 0$, and $n \geq 1$, $\lim_{|z| \to \infty} |p(z)| = \infty$. This follows as,
+			\begin{align*}
+				|p(z)| = |z^n(a_n + a_{n-1}z^{-1} + \cdots + a_0z^{-n})| = |z|^n \cdot |a_n + a_{n-1}z^{-1} + \cdots + a_0z^{-n}|
+			\end{align*}
+			Next, as $z^{-n} \to 0$ when $|z| \to \infty$ and $n \in \bN$, we know that $\lim_{|z| \to \infty} a_n + a_{n-1}z^{-1} + \cdots + a_0z^{-n} = a_n$, and in particular, for $|z|$ sufficiently large, $|a_n + a_{n-1}z^{-1} + \cdots + a_0z^{-n} - a_n| < |a_n/2|$, which tells us, by the reverse triangle inequality, that, $|a_n/2|<|a_n a_{n-1}z^{-1} + \cdots + a_0z^{-n}|$. Therefore, 
+			\begin{align*}
+				|z|^n \cdot |a_n/2| < |z|^n \cdot |a_n a_{n-1}z^{-1} + \cdots + a_0z^{-n} - a_n|
+			\end{align*}
+			and as $a_n$ is nonzero by hypothesis, $|a_n/2| > 0$, so clearly the LHS goes to $\infty$, which tells us that the RHS goes to $\infty$ as claimed. Let $M = 2|p(0)| + 1$. We wish to show that $\set{z \in \C \given |p(z)| \leq M}$ is compact and non-empty. Clearly $0$ is in this set as $|p(0)| \leq 2|p(0)| + 1$, so now it suffices to show it is bounded, and that it's complement is open. Suppose it wasn't bounded, then we could find a sequence of $z_n$'s so that $|z_n| \to \infty$, while $|p(z_n)| \leq M$ for all $n \in \bN$. But this is impossible as we showed this limit goes to $\infty$, and in particular won't be $\leq M$. The complement of this set is $\set{z \in \C \given |p(z)| > M}$. Let $z$ be an arbitrary element of this set. Then $|p(z)| =  J > M$. As $p$ is continuous (it is a polynomial), we can find a $\delta > 0$ so that for all $w \in B(z, \delta)$, we have that $|f(z) - f(w)| < (J-M) / 2$, and by reverse triangle inequality this tells us that $M \leq J/2 + M/2=J - (J-M)/2 \leq |f(z)| - (J-M) / 2 < |f(w)|$, so clearly $|f(w)| > M$. As $z$ was arbitrary, this set is open, which tells us it's complement is closed, i.e. that $\set{z \in \C \given |p(z)| \leq M}$ is compact. By the extreme value theorem, $|p(z)|$ has a minimum in this domain, say at some point $z_0$.
+			
+			\item Let $h(z) = p(z+z_0)/|p(z_0)|$, and $q(z) = |h(z)|$. By what we did above $h$ has it's minimum at $0$ (dividing by a constant doesn't change anything, and $p$ has it's minimum at $z_0$). Let $m$ be the smallest non-zero power of $z$ in $h$ (that doesn't have 0 coefficient). We can do this because if there were no such $m$, then $h$ would be a a constant function, but then $p$ would be a constant function, contrary to our assumption. Then $h(z) = 1 + az^m + t(z)$ where the lowest order term in $z$ is at least $m+1$ ($h$ is a polynomial, who's constant term is $h(0)=1$, so this is just rewriting $h$ in a nice form).
+			
+			\item Note $n > m$, 
+			\begin{align*}
+				\lim_{|z| \to 0} \frac{z^n}{z^m} = \lim_{|z| \to 0} z^{n-m} = 0
+			\end{align*}
+			because $n-m > 0$. The sum of 0's is just another 0, so 
+			\begin{align*}
+				\lim_{|z| \to 0} \frac{t(z)}{z^m} = 0
+			\end{align*}
+			As well. In particular, for sufficiently small $|z|$, $|\frac{t(z)}{z^m}| < |a/2|$, i.e. $|t(z)| < |az^m/2|$. We therefore can conclude that
+			\begin{align*}
+				q(z) = |1 + az^m + t(z)| \leq |1+az^m| + |t(z)| < |1+az^m| + |az^m/2|
+			\end{align*}
+			I claim that for sufficiently small $\ve > 0$, $\sqrt[m]{-1}/a \cdot \ve$ will force $q < 1$. An interesting part here, is that the complex structure is only needed for polynomials of even degree, because for polynomials of odd degree you could prove they have a root by the IVT. Anyways, $\sqrt[m]{-1}/a \cdot \ve = \ve/a \cdot e^{i\pi/m}$, and plugging this into $q$ gives us:
+			\begin{align*}
+				q(\ve/a \cdot e^{i\pi/m}) &\leq |1+a \ve/a \cdot -1| + |a\ve/a \cdot -1 / 2| \\
+				&= |1 - \ve| + |\ve/2| \\
+				&= 1 - \ve + \ve/2 \\
+				&= 1 - \ve/2 < 1
+			\end{align*}
+			(Note: we can take $\ve$ smaller than $1$) as claimed. But this is a contradiction, completing the proof.$\hfill$ Q.E.D.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

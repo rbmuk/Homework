@@ -1,0 +1,262 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+%\usepackage{eulervm}
+%\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item See the attached pdf file.
+		\item We describe the region $\set{(t, y) \given 0 \leq t \leq y, \; 0 \leq y \leq x}$ instead as $\set{((t, y) \given 0 \leq \; t \leq x \land t \leq y \leq x}$, so we may note that
+		\begin{align*}
+			\int_0^x \int_0^y g(t)dtdy &= \int_0^x \int_t^x g(t)dydt \\
+			&= \int_0^x (x-t)g(t)dt
+		\end{align*}
+		As $g(t)$ is constant when integrating w.r.t. $y$. So we have concluded the first part of the problem. We notice therefore that 
+		\begin{align}
+			j(x) &= \int_0^x \int_0^y e^{x-t}g(t)dtdy \\
+			&= e^x \cdot \int_0^x \int_0^y e^{-t}g(t)dtdy
+		\end{align}
+		By the FTC, we see that
+		\begin{align*}
+			\dv{x} \int_0^x \int_0^y e^{-t}g(t)dtdy &= \int_0^x e^{-t}g(t)dt
+		\end{align*}
+		So by the product rule, we get that
+		\begin{align*}
+			j'(x) = e^x \cdot \qty(\int_0^x e^{-t}g(t)dt + \int_0^x \int_0^y e^{-t}g(t)dtdy)
+		\end{align*}
+		Doing almost the same steps, using the FTC yet again, we conclude that 
+		\begin{align*}
+			j''(x) &= e^x\cdot \qty(2\int_0^x e^{-t}g(t)dt + \int_0^x \int_0^y e^{-t}g(t)dtdy+e^{-x}g(x))
+		\end{align*}
+		So, by using what we learned above, we see that
+		\begin{align*}
+			j''-2j'+j&= e^x\cdot \qty(2\int_0^x e^{-t}g(t)dt + \int_0^x \int_0^y e^{-t}g(t)dtdy+e^{-x}g(x)-g(0)) \\
+			&- 2e^x \cdot \qty(\int_0^x e^{-t}g(t)dt + \int_0^x \int_0^y e^{-t}g(t)dtdy) + e^x \cdot \int_0^x \int_0^y e^{-t}g(t)dtdy \\
+			&= g(x) - e^x\int_0^x \int_0^y e^{-t}g(t)dtdy + e^x \cdot \int_0^x \int_0^y e^{-t}g(t)dtdy \\
+			&= g(x)
+		\end{align*}
+		
+		\item By the Liebniz Rule for integration, we see that
+		\begin{align*}
+			\pdv{t} \int_0^1 e^{-(x-y)^2/4t}g(y)dy &= \int_0^1 \pdv{t} e^{-(x-y)^2/4t}g(y)dy \\
+			&= \int_0^1 g(y)e^{-(x-y)^2/4t} \cdot \frac{(x-y)^2}{4t^2}dy
+		\end{align*}
+		So, by the product rule, we see that
+		
+		\begin{align*}
+			\pdv{t} h(t, x) &= \frac{1}{\sqrt{t}} \cdot \int_0^1 g(y)e^{-(x-y)^2/4t} \cdot \frac{(x-y)^2}{4t^2}dy + \frac{-1/2}{t^{3/2}} \int_0^1 e^{-(x-y)^2/4t}g(y)dy \\
+			&= \frac{1}{4t^{5/2}} \int_0^1 g(y)e^{-(x-y)^2/4t}(x-y)^2dy - \frac{1}{2t^{3/2}} \int_0^1 e^{-(x-y)^2/4t}g(y)dy
+		\end{align*}
+		Once again by the Leibniz Rule for integration we get that
+		\begin{align*}
+			\pdv{x} h(t, x) &= -\frac{1}{\sqrt{t}} \int_0^1 e^{-(x-y)^2/4t} g(y) \cdot \frac{(x-y)}{2t}dy \\
+			&= -\frac{1}{2t^{3/2}} \int_0^1 (x-y)e^{-(x-y)^2/4t} g(y)dy
+		\end{align*}
+		By differentiating again, we get that
+		\begin{align*}
+			\pdv[2]{x} h(t, x) &= -\frac{1}{2t^{3/2}}\int_0^1 g(y)e^{-(x-y)^2/4t} dy + \frac{1}{4t^{5/2}}\int_0^1 g(y)e^{-(x-y)^2/4t} (x-y)^2dy
+		\end{align*}
+		So we conclude that $\pdv{t} h(t, x) = \pdv[2]{x} h(t, x)$, which is pretty nice.
+		
+		Note that $t > 0$. Then clearly $-(x-y)^2/4t < 0$. Noting that $e^z$ preserves inequalities, we see that $\exp(-(x-y)^2/4t) < 1$. Second, as $g(x)$ is continuous on $[0, 1]$, it is bounded, say by $R_g$. Then, noting that the integral preserves inequalities,
+		\begin{align*}
+			|h(x, y)| &\leq \frac{1}{\sqrt{t}} \int_0^1 \exp(-(x-y)^2/4t) \cdot g(y)dy \\
+			&\leq \frac1{\sqrt{t}}\int_0^1 1 \cdot R_gdy = \frac{R_g}{\sqrt{t}}
+		\end{align*}
+		And clearly $R_g$ depends only on $g$. 
+		
+		Consider an arbitrary $t \in \bR_{>0}$. We can find the $x \in \bR$ that maximizes $h(t, x)$. At a maximum, $\dv[2]{h}{x} \leq 0$--it must be concave down (ish). If it is 0, then $h$ is governed by the second derivative, and the argument is almost the same, except with more algebra. In the case where $h$ is constant around $(t, x)$, it is certainly monotonically decreasing. Ignoring this case, we only consider the case where the second derivative is not 0 (Aleister told me to). Then it is negative. Because $\pdv{h}{t} = \pdv[2]{h}{x}$, we see that $\pdv{h}{t} < 0$. At the max $\dv{x} h(t, x) = 0$. We now find 
+		\begin{align*}
+			h(t+\ve, x+\nu) = h(t, x) + \ve \cdot \pdv{h}{t} + E(\sqrt{\ve^2+\nu^2}) 
+		\end{align*}
+		We can now find $\eta > 0$ so that for all $\mg{(\ve, \nu)} < \eta$, $E(\sqrt{\ve^2+\nu^2}) \leq \sqrt{\ve^2+\nu^2}/2 \cdot \pdv{h}{t} \leq |\ve|/2 \pdv{h}{t}$. So in our $\eta$-ball, $h(t+\ve, x+\nu) = h(t, x) + \pdv{h}{t} \cdot (\ve+|\ve|/2)$. Because $\ve+|\ve|/2 > 0$ for $\ve > 0$, and $< 0$ for $\ve < 0$, our function is decreasing as $t$ increases, and increasing $t$ decreases. If the maximum of some $t_1 > t$ in this ball doesn't occur inside of it, we could go apply this same argument to it, show that it would be increasing as you travel backwards, and then say that when you hit the right $t$ value from moving backwards, the function value there would be less than $h(t, x)$ by construction (it is the max). So in any case it would be monotonic. The same thing could be done to $t_1 < t$, so we have concluded that given arbitrary $t$, $\max_{x \in \bR} h(t, x)$ would exhibit monotonic behavior.
+		
+		\item 
+		\begin{lemma}
+			\begin{align*}
+				\int_x^{x+P} f(x)dx = 0
+			\end{align*}
+		for any $x \in \R$.
+		\end{lemma}
+		\begin{proof}
+			Let $h(x) = \int_x^{x+P} f(x)dx$. By The FTC, because $f(x)$ is continuous, we can say that $h(x)$ is differentiable. Also by the FTC, we see that $h'(x) = f(x+P)-f(x) = 0$ because $f$ is $P$-periodic. So we see $h$ is constant. In particular, for any $x \in \R$, we notice that $h(x) = h(0) = 0$.
+		\end{proof}
+		Next, notice that 
+		\begin{align*}
+			\int_0^\infty \frac{f(x)}{1+x}dx &= \sum_{k=0}^{\infty} \int_{kP}^{(k+1)P} \frac{f(x)}{1+x}dx
+		\end{align*}
+		For any $k \geq 0$, we see that 
+		\begin{align*}
+			\int_{kP}^{(k+1)P} \frac{f(x)}{1+x}dx
+		\end{align*}
+		exists because the integrand is a quotient of continuous functions, where the denominator is never 0. As all integrals exist, they may be approached using Riemann sums. Then,
+		\begin{align*}
+			\int_{kP}^{(k+1)P} \frac{f(x)}{1+x}dx = \lim_{n_k \to \infty} \sum_{l=0}^{n_k-1} \frac{f(kP + \frac {Pl}{n_k})}{1+\frac{Pl}{n_k}+kP} \cdot \frac P{n_k}
+		\end{align*}
+		We notice that $f(kP+Pl/n_k) = f(Pl/n_k)$. For simplicity I will call $\frac{Pl}{n_k} = x_{k,l}$ and $\frac P{n_k} = \Delta x_{k}$. Our integral becomes
+		\begin{align*}
+			\lim_{n_k \to \infty} \sum_{l=0}^{n_k-1} \frac{f(x_{k,l})}{1+kP+x_{k,l}} \cdot \Delta x
+		\end{align*}
+		The original integral, on $[0, \infty]$, becomes 
+		\begin{align*}
+			\sum_{k=0}^{\infty} \lim_{n_k \to \infty} \sum_{l=0}^{n_k-1} \frac{f(x_{k,l})}{1+kP+x_{k,l}} \cdot \Delta x
+		\end{align*}
+		Next notice that $$-\frac{1}{1+kP+x_{k,l}}+\frac1{1+kP} = \frac1{(1+kP+c_{k,l})^2}$$ for some $0 \leq c_{k,l} \leq x_{k,l}$ by the mean value theorem on $f(x) = x^{-1}$. So $$\frac{1}{1+kP+x_{k,l}} = \frac1{1+kP} - \frac1{(1+kP+c_{k,l})^2}$$
+		Rewriting this, we see that 
+		\begin{align*}
+			\sum_{k=0}^{\infty} \lim_{n_k \to \infty} \sum_{l=0}^{n_k-1} \frac{f(x_{k,l})}{1+kP+x_{k,l}} \cdot \Delta x &= \sum_{k=0}^{\infty} \lim_{n_k \to \infty} \sum_{l=0}^{n_k-1} \qty(\frac{f(x_{k,l}) \Delta x}{1+kP} - \frac{f(x_{k,l})\Delta x}{(1+kP+c_{k,l})^2})
+		\end{align*}
+		We may now re-use the constant $R$ that we had up above that bounded $f$ on all intervals. We therefore see that 
+		\begin{align*}
+			\qty|\sum_{l=0}^{n_k-1} \frac{f(x_l)\Delta x}{(1+kP+c_{k,l})^2}| \leq \sum_{l=0}^{n_k-1} \frac{R\Delta x}{(1+kP+c_{k,l})^2}
+		\end{align*}
+		By the triangle inequality. Finally, we notice that the summand is largest when the denominator is smallest, so we may drop the positive term $c_{k,l}$ to get a larger summand. In the end, our sum is smaller in magnitude than
+		\begin{align*}
+			\sum_{l=0}^{n_k-1} \frac{R\Delta x}{(1+kP)^2}
+		\end{align*}
+		Finally, recalling the definition of  $\Delta x$, we see that this sum equals 
+		\begin{align*}
+			\frac{R}{(1+kP)^2}
+		\end{align*}
+		We conclude that
+		\begin{align*}
+			\qty|\sum_{k=0}^{\infty} \lim_{n_k \to \infty} \sum_{l=0}^{n_k} \qty(\frac{f(x_{k,l})\Delta x}{1+kP} - \frac{f(x_{k,l})\Delta x}{(1+kP+c_{k,l})^2})| \leq \sum_{k=0}^{\infty} \lim_{n_k \to \infty} \qty(\qty|\sum_{l=0}^{n_k} \frac{f(x_{k,l})\Delta x}{1+kP}| + \frac{R}{(1+kP)^2})
+		\end{align*}
+		By splitting the sums, using the triangle inequality on the outer sum, and using the result we derived above. We see this equals
+		\begin{align*}
+			\sum_{k=0}^{\infty} \lim_{n_k \to \infty} \qty|\sum_{l=0}^{n_k} \frac{f(x_{k,l})\Delta x}{1+kP}| + \sum_{k=0}^{\infty} \frac{R}{(1+kP)^2}
+		\end{align*}
+		Finally, we see that
+		\begin{align*}
+			\sum_{k=0}^{\infty} \lim_{n_k \to \infty} \qty|\sum_{l=0}^{n_k} \frac{f(x_{k,l})\Delta x}{1+kP}| &= \sum_{k=0}^{\infty} \frac{1}{1+kP} \qty|\lim_{n_k \to \infty} \sum_{l=0}^{n_k} f(x_{k,l})\Delta x|
+		\end{align*}
+		As we may interchange the limit and the absolute value as the absolute value is continuous. The limit is 0, so we are summing up a bunch of zeros, which ends up being zero. We conclude that
+		\begin{align*}
+			\sum_{k=0}^{\infty} \lim_{n_k \to \infty} \qty|\sum_{l=0}^{n_k} \frac{f(x_{k,l})}{1+kP}| + \sum_{k=0}^{\infty} \frac{R}{(1+kP)^2} = \sum_{k=0}^{\infty} \frac{R}{(1+kP)^2}
+		\end{align*}
+		Which clearly converges in limit comparison to $\sum_{k=1}^{\infty} \frac1{k^2}$. We therefore see that our original integral converges as well. What is interesting is that this actually doesn't depend on $f$ being periodic--we may weaken the claim to simply that there exists a $P > 0$ so that $\int_{kP}^{(k+1)P} f(x)dx = 0$ for all $k \in \bN$, and that $f$ is bounded on $\R$.
+		
+		
+		\newpage
+		
+		\item We notice that, supposing $\gamma = \partial \Omega$, we have that
+		\begin{align*}
+			\int_{\gamma} y^3 dx + (3x-x^3)dy &= \int_\Omega 3-(x^2+y^2)dA
+		\end{align*}
+		By Green's theorem. We want to maximize this integral--i.e., we want to integrate over everywhere its positive, and integrate nowhere when its negative. We notice that:
+		\begin{align*}
+			3-(x^2+y^2) \geq 0 \implies x^2+y^2 \leq 3
+		\end{align*}
+		So we see that we want to integrate over the ball with radius $\sqrt{3}$. Any other curve will give less, as it will either 1) not give enough of the positive, or 2) give too much negative contribution.
+		
+		By Green's theorem, we know that
+		\begin{align*}
+			\int_{\partial S} Pdx + Qdy = \int \int_S \pdv{Q}{x} - \pdv{P}{y}dA
+		\end{align*}
+		Where $P = -x^2y$, and $Q =xy^2$. 
+		So 
+		\begin{align*}
+			\int_{\partial S} xy^2dy - xy^2dx &= \int\int_S y^2 + x^2dA
+		\end{align*}
+		Now we change of variables to polar, and noting that $r^2 = x^2+y^2$, we see that $1 \leq r^2 \leq 4$, and as $r > 0$, we may conclude that $1 \leq r \leq 2$. As $\theta \in [0, 2\pi]$ because we are integrating over the entire washer, we see that
+		\begin{align*}
+			\int\int_S y^2 + x^2dA &= \int_0^{2\pi} \int_1^2 r^2 \cdot r drd\theta \\
+			&= 2\pi \frac{r^4}4 \eval_1^2 \\
+			&= \frac{15\pi}{2}
+		\end{align*}
+		We notice that $\partial S = \set{(x, y) \in \R^2 \given x^2+y^2 = 1} \cup \set{(x, y) \in \R^2 \given x^2+y^2=4}$. The first set can be parameterized as $(\cos(t), \sin(t))$, and the second as $(2\cos(t), 2\sin(t))$ where $t \in [0, 2\pi]$. Then we may conclude 
+		\begin{align*}
+			\int_{\partial S} xy^2dy - x^2ydx &= \int_{\partial S} (-x^2y, xy^2) \cdot d\vec{r} \\
+			&= -\int_0^{2\pi} (-\cos^2(t)\sin(t), \cos(t)\sin^2(t)) \cdot (-\sin(t), \cos(t)) dt  \\ &+\int_0^{2\pi} (-4\cos^2(t)2\sin(t), 2\cos(t)4\sin^2(t)) \cdot 2(-\sin(t), \cos(t)) dt \\
+			&= 15 \int_0^{2\pi} \cos^2(t)\sin^2(t)+\cos^2(t)\sin^2(t)dt \\
+			&= \frac{15}2 \int_0^{2\pi} \sin^2(2t)dt \\
+			&= \frac{15}4 \int_0^{2\pi} 1 - \cos(4t)dt \\
+			&= \frac{15}4 \qty(2\pi - \frac14 \sin(4t)\eval_0^{2\pi}) \\
+			&= \frac {15}4 \qty(2\pi) \\
+			&= \frac{15\pi}{2}
+		\end{align*}
+		\end{enumerate}
+\end{document}

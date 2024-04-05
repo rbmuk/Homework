@@ -1,0 +1,320 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\Re}{\mathfrak{R}\qty}
+\renewcommand{\Im}{\mathfrak{I}\qty}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 336 HW6}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Let $C_N$ be the circle $|z| = N + 1/2$ where $N \geq |u|$ be the circle described in question. We wish to evaluate
+		\begin{align*}
+			\lim_{N \to \infty} \int_{C_N} f(z)dz
+		\end{align*}
+		We know from in class that the poles of $\pi \cot(\pi z)$ are the integers, all of which have order 1 because $\sin(z) / z \to 1$. Since $u$ is not an integer, the pole of
+		\begin{align*}
+			\frac{1}{(u+z)^2}
+		\end{align*}
+		which occurs at $z = -u$, is also not an integer. So there is some ball around it in which everything in the ball is also not an integer, in which $\pi\cot(\pi z)$ is a well defined holomorphic function in this disc, since we never divide by 0. One also notes that the pole $-u$ has order 2, so, 
+		\begin{align*}
+			\Res(f, -u) = \lim_{z \to -u} \dv{z} \pi\cot(\pi z) = -\pi^2 \csc^2(\pi u)
+		\end{align*}
+		The poles of $\pi \cot(\pi z)$ are the integers, as discussed above, of which $\set{-N, -N + 1, \ldots, N}$ are inside our circle. Near each integer, $\frac{1}{(u+z)^2}$ is well defined and holomorphic for a similar reason as last time, so
+		\begin{align*}
+			\sum_{k=-N}^{N} \Res(f, k) = \sum_{k=-N}^{N} \lim_{z \to k} \pi \frac{\cos(\pi z)(z-k)}{(u+z)^2 \sin(\pi z)}
+		\end{align*}
+		Note that if $k$ is even, then $\cos(\pi k) = 1$, and $\sin(\pi z) = \sin(\pi (z-k))$, so 
+		\begin{align*}
+			\lim_{z \to k} \pi \frac{\cos(\pi z)(z-k)}{(u+z)^2 \sin(\pi z)} = \lim_{z \to k}\frac{\cos(\pi z)\pi(z-k)}{\sin(\pi(z-k))(u+z)^2}
+		\end{align*}
+		Using that $\sin(x) / x \to 1$ gives that this limit equals $\frac{1}{(u+z)^2}$. In the case that $k$ is odd, we have that $\cos(\pi k) = -1$ and that $\sin(\pi z) = -\sin(\pi (z-k))$, so the negatives cancel and we reduce to the case before. So,
+		\begin{align*}
+			\sum_{k=-N}^{N} \Res(f, k) = \sum_{k=-N}^{N} \frac{1}{(u+z)^2}
+		\end{align*}
+		By the residue theorem,
+		\begin{align*}
+			\int_{C_N} \frac{\pi\cot(\pi z)}{(u+z)^2}dz = \sum_{k=-N}^{N} \frac{1}{(u+z)^2} -\pi^2 \csc^2(\pi u)
+		\end{align*}
+		Also,
+		\begin{align*}
+			\cot(\pi z) = i\frac{e^{i \pi z} + e^{-i \pi z}}{e^{i\pi z} - e^{-i \pi z}}
+		\end{align*}
+		Plugging in $z = x + iy$ gives
+		\begin{align*}
+			\cot(\pi z) = i\frac{e^{i \pi x} \cdot e^{-\pi y} + e^{-i \pi x} \cdot e^{\pi y}}{e^{i \pi x} \cdot e^{-\pi y} - e^{-i \pi x} \cdot e^{\pi y}}
+		\end{align*}
+		I claim that this function is bounded as $|z| \to \infty$. In the case that $y = 0$, $\cot(\pi z)$ is clearly bounded around integers + $1/2$, as it only explodes around integers. Notice that $|e^{i \pi x} \cdot e^{-\pi y} + e^{-i \pi x} \cdot e^{\pi y}| \leq e^{-\pi y} + e^{\pi y}$, and also that (WLOG $y > 0$, in the other case that you would have $e^{- \pi y} - e^{\pi y}$, you could also do this argument with $|y|$, but I already wrote it up...) $|e^{i \pi x} \cdot e^{-\pi y} - e^{-i \pi x} \cdot e^{\pi y}| \geq e^{\pi y} - e^{- \pi y}$. Thus, (since $y$ is positive),
+		\begin{align*}
+			|\cot(\pi z)| \leq \frac{e^{-\pi y} + e^{\pi y}}{e^{\pi y} - e^{- \pi y}}
+		\end{align*}
+		As $|z| \to \infty$, since we ensured that $e^{\pi y} - e^{- \pi y} > 0$, we can confidently say that (we already handled the case when $y = 0$), $y \to \infty$ too (we assume $y$ is positive), and taking a simple limit shows that this tends towards 1. Now we can find $|z|$ sufficiently large so that $|\cot(\pi z)| \leq 1.5$, and then by ML,
+		\begin{align*}
+			\qty|\int_{C_N} \frac{\pi \cot(\pi z)}{(u+z)^2}dz| \leq 2\pi^2 (N+1/2) \cdot \frac{1.5}{\min_{z \in C_N} |u+z|^2}
+		\end{align*}
+		Finally, $\min |u+z|^2 \geq (N + 1/2 - |u|)^2$, and we can just take $N$ sufficiently large so that this isn't negative. We conclude that
+		\begin{align*}
+			\qty|\int_{C_N} \frac{\pi \cot(\pi z)}{(u+z)^2}dz| \leq C \cdot \frac{(N + 1/2)}{(N + 1/2 - u)^2} \to 0
+		\end{align*}
+	
+		Taking $N \to \infty$ gives 
+		\begin{align*}
+			\sum_{k=-\infty}^{\infty} \frac{1}{(u+z)^2} = \pi^2 \csc^2(\pi u)
+		\end{align*}
+		Quite a fantastic result!
+		
+		\item \begin{enumerate}
+			\item We need to find $\ve$ so that $\ve |g| \leq |f|$. We showed that in class $\ve < \frac{\min_{z \in \mbb{D}} |f|}{\max_{z \in \mbb{D}} |g|}$ suffices, since the min of $f$ won't be zero since it is nonzero outside of $0$, and now we have 2 cases:
+			the max of $|g|$ is zero, in which case the theorem obviously holds (since this would mean $|g|$ is equivalently zero), or the max of $|g|$ is not zero. Then the RHS is well-defined, so we can choose $\ve < \frac{\min_{z \in \mbb{D}} |f|}{\max_{z \in \mbb{D}} |g|}$ to get  that $|\ve g| \leq |f|$, and we now apply Rouches theorem to see that $f + \ve g$ has the same number of zeros as $f$ inside $\mbb{D}$, which is 1.
+			
+			\item Let $b_n \to b \in \C$ be any convergent sequence. Since $|g|$ is continuous on a compact domain, it is bounded by some constant $R$. Then for every $z$, $|f_{b_n}(z) - f_b(z)| = |f(z)+b_ng(z) - f(z) - bg(z)| = |b_n-b||g(z)| \leq R|b_n-b|$. Now let $\ve > 0$. Since $b_n \to b$, we can find $N$ sufficiently large so that $n > N \implies |b_n-b| < \ve/R$. We see then for any $n > N, z \in \C$, that $|f_{b_n}(z) - f_b(z)| < \ve$, which establishes that $f_{b_n}(z) \to f_b(z)$ uniformly. Define 
+			\begin{align*}
+				\Phi: \qty[0, \frac{\min_{z \in \mbb{D}} |f|}{2\max_{z \in \mbb{D}} |g|}] \to \C, \quad
+				\Phi(x) = z_x
+			\end{align*}
+			Suppose $\Phi$ was discontinuous--then there would be some sequence $b_n \to b \in \qty[0, \frac{\min_{z \in \mbb{D}} |f|}{2\max_{z \in \mbb{D}} |g|}]$ and $\eta > 0$ so that for any $N > 0$, there is some $n > N$ so that $|\Phi(b_n)-\Phi(b)| > \eta$. We can pass to a subsequence $b_k$ so that $|\Phi(b_k)-\Phi(b)| > \eta$ holds for all $k > 0$ and $b_k \to b$. Since $\Phi(b)$ is the unique zero of $f_b$, $f_b$ is nonzero on the compact set $\mbb{D} \setminus B_{\eta/2}(\Phi(b))$. So $|f_b(z)| > c$ on $\mbb{D} \setminus B_{\eta/2}(\Phi(b))$ for some $c > 0$. Since we have uniform convergence, find $K > 0$ so that $k \geq K \implies |f_{b_k}(z) - f_b(z)| < c/2$ for every $z \in \mbb{D}$. By our hypothesis, the zero of $b_K$, $\Phi(b_K)$, is indeed in $\mbb{D} \setminus B_{\eta/2}(\Phi(b))$. By the reverse triangle inequality,
+			\begin{align*}
+				c/2 \leq |f_b(z)| - |f_b(z) - f_{b_k}(z)| \leq |f_{b_k}(z)|
+			\end{align*}
+			Holds for every $z \in \mbb{D} \setminus B_{\eta/2}(\Phi(b))$. But $f_{b_K}(\Phi(b_K)) = 0$, a contradiction.
+		\end{enumerate}
+	
+		\item By the ML estimate, if $C$ denotes the boundary of the unit circle,
+		\begin{align*}
+			\qty|\int_C f(z) - \frac1zdz| \leq \max_{|z| = 1} \qty|f(z) - \frac1z| \cdot 2\pi
+		\end{align*}
+		Also, $\int_C f(z) - \frac1zdz = 0 - 2\pi i$ (By Cauchy's integral formula), so we have that 
+		\begin{align*}
+			2\pi \leq \max_{|z| = 1} \qty|f(z) - \frac1z| \cdot 2\pi \\
+			\iff 1 \leq \max_{|z| = 1} \qty|f(z) - \frac1z|
+		\end{align*}
+		So it suffices to pick $c = 1$.
+		
+		\item We proved on the first homework that $|1-\overline{a}z| = |z - a|$. Since $|z| = 1$, and $|\overline{a}| = |a| < 1$, $|az| < 1$, so $1 - az$ cannot be zero, which tells us that 
+		\begin{align*}
+			\qty|\frac{z-a}{1-\overline{a}z}| = 1
+		\end{align*}
+		Then, for $|z| = 1$,
+		\begin{align*}
+			\qty|\prod_{k=1}^n \frac{z-a_k}{1-\overline{a_k}z}| = \prod_{k=1}^n 1 = 1
+		\end{align*}
+		I apologize for the monstrosity that will follow. First, note that
+		\begin{align*}
+			\arg\qty(\frac{e^{it}-(x+iy)}{1-(x-iy)e^{it}}) = \arg(e^{it}-(x+iy)) - \arg(1-(x-iy)e^{it})
+		\end{align*}
+		I have found many discoveries about these functions. We know that $\arg(z) = \arctan(\Im(z)/\Re(z))$. We see that
+		\begin{align*}
+			\Im(e^{it}-(x+iy)) = \sin(t) - y \\
+			\Re(e^{it}-(x+iy)) = \cos(t) - x
+		\end{align*}
+		And hence 
+		\begin{align*}
+			\arg(e^{it}-(x+iy)) = \arctan(\frac{\sin(t) - y}{\cos(t) - x})
+		\end{align*}
+		Similarly, 
+		\begin{align*}
+			\Im(1-(x-iy)e^{it}) = -x\sin(t)+y\cos(t) \\
+			\Re(1-(x-iy)e^{it}) = 1-x\cos(t)-y\sin(t)
+		\end{align*}
+		And hence 
+		\begin{align*}
+			\arg(1-(x-iy)e^{it}) = \arctan(\frac{-x\sin(t)+y\cos(t)}{1-x\cos(t)-y\sin(t)})
+		\end{align*}
+		I totally did these derivative calculations myself. \#MathematicaFTW
+		\begin{align*}
+			\dv{t} \arg(e^{it}-(x+iy)) = \frac{1-x\cos(t)-y\sin(t)}{1+x^2+y^2-2x\cos(t)-2y\sin(t)}
+		\end{align*}
+		And,
+		\begin{align*}
+			\dv{t} -\arg(1-(x-iy)e^{it}) = -\frac{x^2+y^2-x\cos(t)-y\sin(t)}{1+x^2+y^2-2x\cos(t)-2y\sin(t)}
+		\end{align*}
+		A little algebra shows that $-\dv{t} \arg(1-(x-iy)e^{it}) = \dv{t} \arg(e^{it}-(x+iy)) - 1$ (Yes, this step is magic. The only reason I even found something like this is because I plotted everything on desmos!). So,
+		\begin{align*}
+			\dv{t} \qty(\arg(e^{it}-(x+iy)) - \arg(1-(x-iy)e^{it})) =  2\frac{1-x\cos(t)-y\sin(t)}{1+x^2+y^2-2x\cos(t)-2y\sin(t)}-1
+		\end{align*}	
+		We wish to show that this quantity is always positive. Solving this equal to 0 gives us
+		\begin{align*}
+			\frac12 = \frac{1-x\cos(t)-y\sin(t)}{1+x^2+y^2-2x\cos(t)-2y\sin(t)}
+		\end{align*}
+		Cross multiplying gives
+		\begin{align*}
+			1+x^2+y^2-2x\cos(t)-2y\sin(t) = 2-2x\cos(t)-2y\sin(t)
+		\end{align*}
+		Which tells us that
+		\begin{align*}
+			1+x^2+y^2 = 2
+		\end{align*}
+		But this is impossible--as $x^2+y^2 < 1$, so this means that our function never takes on the value of 0. But then we can just evaluate it anywhere and see what it's sign is, and that will be its global sign. One notices that evaluating it at 0 gives
+		\begin{align*}
+			2\frac{1-x}{1+x^2+y^2-2x}-1 = 2\frac{1-x}{(x-1)^2+y^2}-1
+		\end{align*}
+		We want to show that this is positive. That claim is equivalent to
+		\begin{align*}
+			\frac{1-x}{(x-1)^2+y^2} > \frac12
+		\end{align*}
+		Which is equivalent to
+		\begin{align*}
+			2-2x > (x-1)^2 + y^2 = x^2-2x+1+y^2
+		\end{align*}
+		Which is equivalent to
+		\begin{align*}
+			2 > x^2+y^2+1
+		\end{align*}
+		Which is of course true, since $x^2+y^2 < 1$. Indeed, our derivative is therefore always positive, so our function is monotonically increasing. We just proved that
+		\begin{align*}
+			h(e^{it}) = \frac{e^{it}-a}{1-\overline{a}e^{it}}
+		\end{align*}
+		Is a monotonically increasing function of $t$ as long as $|a| < 1$. So indeed, as every factor in the Blaschke product 
+		\begin{align*}
+			\prod_{k=1}^n \frac{z-a_k}{1-\overline{a_k}z}
+		\end{align*}
+		is of this form, every factor's argument is a monotonically increasing function of $t$. Their product's argument is the sum of their arguments--and one notes that the sum of two monotonically increasing functions is again another monotonically increasing function. Therefore, the entire Blaschke product's argument is a monotonically increasing function, and we are done. $\hfill$ \textbf{Q.E.D.}
+		
+	
+		\item If $f(z) = \sum_{n=0}^\infty a_nz^n$, then $f(z) = a_0 + z\sum_{n=0}^\infty a_{n+1}z^n$, so in this case $g(z) = \sum_{n=0}^\infty a_{n+1}z^n$. Now, $\mg{g}^2_X = \sum_{n=0}^\infty \gamma_n|a_{n+1}|^2 = \sum_{n=1}^\infty \gamma_{n-1}|a_{n}|^2$. The RHS is $\sum_{n=0}^\infty \gamma_n|a_n|^2 - \sum_{n=0}^\infty (\gamma_n-\gamma_{n-1})|a_n|^2 = \sum_{n=0}^\infty \gamma_{n-1}|a_n|^2$. Since the $\gamma_n$'s are positive, $\mg{g}^2_X$ is just the RHS minus one term, and so we see that $\mg{g}^2_X \leq \mg{f}_X^2 - \mg{f}_Y^2$, as claimed.
+		
+		Now, let $f_1(z) = \sum_{n=0}^\infty a_nz^n$ be the first function in the sequence. We are looking to find a general formula for $f_N(z)$. We know that 
+		\begin{align*}
+			a_0 + z\sum_{n=1}^\infty a_nz^{n-1} = f_1(z) = f_1(0) + zf_2(z)
+		\end{align*}
+		And hence $f_2(z) =\sum_{n=1}^\infty a_nz^{n+1} = \sum_{n=0}^\infty a_{n+1}z^{n}$. Suppose for some $l \geq 2$ that $f_l(z) = \sum_{n=0}^\infty a_{n+l-1}z^{n}$. By the sequential definition,
+		\begin{align*}
+			a_{l-1} + z \sum_{n=0}^\infty a_{n+l-1}z^{n-1} = f_l(z) = f_l(0) + z \cdot f_{l+1}(z)
+		\end{align*}
+		Once again $f_{l+1}(z) =\sum_{n=1}^\infty a_{n+l-1}z^{n-1} = \sum_{n=0}^\infty a_{n+l}z^{n}$, which completes the inductive step. By the inequality we proved in the first part,
+		\begin{align*}
+			\mg{f_{n+1}}_X^2 \leq \mg{f_n}_X^2 - \mg{f_n}_Y^2 \\
+			\iff \mg{f_n}_Y^2 \leq \mg{f_n}_X^2 - \mg{f_{n+1}}_X^2
+		\end{align*}
+		Note that $\mg{f_l}_X^2 = \sum_{n=0}^\infty \gamma_n |a_{n+l-1}|^2 = \sum_{n=l-1}^\infty \gamma_{n-l+1} |a_n|^2$, and that $\mg{f_{l+1}}_X^2 = \sum_{n=0}^\infty \gamma_n |a_{n+l}|^2$. The difference is therefore
+		\begin{align*}
+			\sum_{n=0}^\infty \gamma_n (|a_{n+l-1}|^2 - |a_{n+l}|^2) = \sum_{n=l-1}^\infty \gamma_{n-l+1} (|a_n|^2 - |a_{n+1}|^2) \leq \sum_{n=l-1}^\infty \gamma_{n} (|a_n|^2 - |a_{n+1}|^2) \leq \sum_{n=l-1}^\infty \gamma_{n} |a_n|^2
+		\end{align*}
+		The second to last inequality holds since $\gamma_n$ is strictly increasing and positive, and the last since $\gamma_n |a_{n+1}|^2$ is positive. The RHS is the tail of a convergent series, and hence goes to 0. Hence, $\mg{f_n}_Y^2 \to 0$.
+	\end{enumerate}
+\end{document}

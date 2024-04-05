@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE section 4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\setItemnumber{2}
+		\item 
+		\begin{enumerate}
+			\item Let the domain of discourse be integers. $Greater(x, y) = x > y$, and $Even(x) = \exists k x = 2k$. The statement is now $\exists x (Greater(x^2, 10) \land Even(3x))$.
+		\begin{alignat*}{2}
+			Greater(4^2, 10) \justif{Definition of Greater} \\
+			Even(3\cdot 4) \justif{Definition of  Even} \\
+			\exists x (Greater(x^2, 10) \land Even(3x)) \justif{Intro $\land$}
+		\end{alignat*}
+		\item Let the domain of discourse be integers. Let $Prime(x) = x$ is prime, our statement is now $\forall n \exists p(Prime(p) \land Greater(p, n))$
+		\begin{alignat*}{2}
+			\text{Let $a$ be arbitrary} \\
+			Prime(p) \justif{Definition of prime} \\
+			Greater(p) \justif{Definition of greater} \\ 
+			\forall n \exists p (Prime(p) \land Greater(p, n)) \justif{Intro $\forall$}
+		\end{alignat*}
+		\end{enumerate}
+		\item 
+		\begin{enumerate}
+			\item 3 elements.
+		\item Infinitely many elements.
+		\end{enumerate}
+		\item Given any $(x, y) \in (A \cap B)\cross C$, we know that $x \in (A \cap B)$, and that $y \in C$. Clearly then $y \in C \cup D$, and also that $x \in A$, because $x \in A$ and $x \in B$. So we have figured out that $(x, y) \in A \cross (C \cup D)$.
+		\item 
+		$A \cap (A \cup B) = \set{x \given x \in A \land (x \in A \lor x \in B)} = \set{x \given x \in A}$, as $p \land (p \lor q) \equiv p$. (Also, the first part is just writing out what the set operations mean).
+	\end{enumerate}
+\end{document}

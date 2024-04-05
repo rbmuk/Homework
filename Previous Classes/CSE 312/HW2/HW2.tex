@@ -1,0 +1,213 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 312 HW2}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We are choosing an unordered subset of size $m$ from a group of $n+m$ people, so the number of ways to do this is just ${n+m \choose m}$ by definition. Instead, we could add up all groups with exactly $k$ Americans, where $k$ ranges from $0$ to $m$ (the group has no Americans up to the entire group is all American). The number of ways of picking $k$ Americans is just $n \choose k$, so to complete the group, we need to pick the remaining $m-k$ people from the $m$ canadians. This is just ${m \choose m-k}$, and as this is equivalent to picking which $k$ Canadians are \textit{not} in the group, so this is just equal to ${m \choose k}$. So we get our total number to be
+			\begin{align*}
+				\sum_{k=0}^{m} {m \choose k} \cdot {n \choose k}
+			\end{align*}
+			As claimed.
+			
+			\item We wish to answer the question: ``How many ways are there to choose a subset of $n$ people where you designate $m$ to be leaders?'' ($n \geq m$, both fixed). So the first thing we could do is fix the size of the subset to be $k$, and then choose a subset of size $m$ of that subset to designate as the people that are leaders. Then we could just sum over $k$ to range from $m$ up to $n$ (Note: it needs to be at least $m$, for if it were less than no subset would have enough people to be leaders) to get the total number of ways. There are precisely $n \choose k$ subsets of size $k$, and any subset of size $k$ has precisely ${k \choose m}$ subsets of size $m$. So we would get
+			\begin{align*}
+				\sum_{k=m}^n {n \choose k} \cdot {k \choose m}
+			\end{align*}
+			As our first answer. Instead, we could first pick the $m$ people from the large group of $n$ to be leaders, and then see how many groups this $m$ person subgroup is part of. The number of ways to pick $m$ from $n$ is just ${n \choose m}$, so that's the number of all possible ways we could find the leaders. Now we need to find the number of subsets this $m$ person subset is a part of--i.e., which subsets of the original $n$ people \textit{contain} these $m$ people. If we let $U=$ the set of the $m$ leaders, it is clear that all subsets containing $U$ must be of the form $U \cup S$ where $S$ is contained in the set of the original $n$ people that are \textit{not} any of the $m$ people. Since the set of all $n$ people that aren't any of the $m$ people has size $n-m$, this set will have exactly $2^{n-m}$ subsets. So there are precisely $2^{n-m}$ subsets of the original $n$ people containing the $m$ leaders, so our final answer is just ${n \choose m} \cdot 2^{n-m}$, as claimed.
+		\end{enumerate}
+	
+		\newpage
+		\item First, there are $67 \cdot 68 / 2 = 2278$ possible pairs, since if we pretend these were ordered pairs, there would be $68$ possibilities for the first spot, and $67$ for the second spot, but since there isn't actually an ordering so we need to divide by $2! = 2$. Suppose by way of contradiction that every pair of these students did not get a perfect score. Then there are $2^7 - 1 = 127$ possible test outcomes, i.e. the set of all possible test outcomes and take away the perfect score (Clearly you can either get each question right or wrong, so there are 2 choices for each of the 7 questions). By the stronger pigeonhole principle, one test outcome must have at least $\ceil{2268/127} = 17$ pairs. Every test outcome has at least 1 question wrong, so this means that at least 17 pairs got the same question wrong. If one student in the pair got the question right, then the pair would get it right, so we see that both students in all 17 pairs got this one question wrong. This would mean that at least 34 students out of the 68 got this question wrong--i.e. that no more than 34 students got this question right. But that is a contradiction, as each question was answered correctly by at least 43 students. $\hfill$ Q.E.D.
+		
+		\newpage
+		\item \begin{enumerate}
+			\item Well, the first person can go in any of the 40 rooms, the second person can go in any of the 40 rooms, and so on, so we just get $40^{20}$ by the ``and'' rule.
+			\item This time we get to use the balls in the urns formula. By that formula, we would get
+			\begin{align*}
+				{30 + 20 - 1 \choose 20 - 1} = {49 \choose 19}
+			\end{align*}
+			\item Each box must have at least two apples in it, so, to start, just put 2 apples in every box. Then we can just use balls in the urns on the remaining apples. So, we have to disperse the remaining $30 - 16 = 14$ apples among $8$ boxes, which gives us
+			\begin{align*}
+				{14 + 8 - 1 \choose 8 - 1} = {21 \choose 7}
+			\end{align*}
+		\end{enumerate}
+	
+		\newpage
+		\item \begin{enumerate}
+			\item The sample space for this first one is just $\set{H, T}^{50}$, since we could get either heads or tails for the first coin, than heads or tails again for the second, and so on. By the product rule, this set has $2^{50}$ elements. If we think of the 50 flips as a length 50 string, then we just need to choose the location of 20 heads. This can be done in $50 \choose 20$ ways, so the probability of picking exactly $20$ heads is just ${50 \choose 20} / 2^{50}$.
+			
+			\item The sample space is just $\set{1, 2, 3, 4, 5, 6}^2$, since we can think of each dice roll as different, and do the red one first and the blue one second, we would get these ordered pairs. This set clearly has size $6^2 = 36$ by the product rule. The only way to get a 4 is $1 + 3, 3 + 1, $ or $2 + 2$, which would give us the event $\set{(1, 3), (2, 2), (3, 1)}$, which has size 3. So, since every outcome is equally likely, we would just get $3/36 = 1/12$ for our probability.
+			
+			\item The sample space is the set of all 5 hand cards, which clearly has ${52 \choose 5}$ elements (the number of of size 5 from a set of 52 cards). First, we pick the rank that will have 3 cards, which can be done in $13$ ways. Then we pick 3 cards from this rank, which can be done in ${4 \choose 3} = 4$ ways. Next we pick the rank with 2 cards, which can be done in 12 ways (since we already used up a rank). Then we pick 2 cards from this rank to complete the full house, which can be done in ${4 \choose 2} = 6$ ways.
+			\begin{align*}
+				\frac{13 \cdot 4 \cdot 12 \cdot 6}{{52 \choose 5}}
+			\end{align*}
+			which, unpredictably, is quite small.
+			
+			\item I will assume that ``labeled'' means distinct. Then our sample space is going to be the set of all possible ways to put the distinct balls into the distinct bins, which, since there are 20 balls where each could go in one of 10 bins, you would get $10^{20}$ as it's size. We want to find the number of ways that you could distribute these balls if bin 1 has exactly 3 balls. First, we choose the 3 balls to go into bin 1--which can be done in ${20 \choose 3}$ ways. Then we have to find the number of ways to disperse the remaining balls among the other 9 bins. Since there are 17 (distinguishable) balls left with 9 (distinguishable) bins for them to go into, we can just do what we did before to find this number to be $9^{17}$. So, we get a probability of 
+			\begin{align*}
+				{20 \choose 3} \cdot 9^{17} / 10^{20}
+			\end{align*}
+			Which is around 20\%. 
+			
+			\item First, the sample space is the set of all 3-person subsets of the 54 total people, which can be done in ${54 \choose 3}$ ways. ``at least one psychologist is chosen'' = the total number of ways - the number of ways when no psychologist is chosen, so we just have to find the number of ways when no psychologist is chosen. Therefore, every person in the 3 person group is going to be a psychiatrist, and there are precisely ${30 \choose 3}$ ways to do this. So we get the number of ways where at least one psychologist is chosen to be ${54 \choose 3} - {30 \choose 3}$. By uniformity, the probability is just $1 - {30 \choose 3}/{54 \choose 3}$. The number of ways to choose exactly three psychologists, by the logic previously, is just ${24 \choose 3}$. So the probability of exactly three psychologists is just ${24 \choose 3} / {54 \choose 3}$.
+			
+			\item The sample space is the set of all cupcake orders, which, by stars and bars, has size ${10 + 3 - 1 \choose 3 - 1} = {12 \choose 2}$ (Since every cupcake order can be described by the number of indistinguishable cupcakes inside 3 cupcake boxes, and we have 10 cupcakes going into 3 boxes). We wish to find the probability that we have at least one of each type, by inclusion-exclusion, this is just the 1 - the probability that we have none of at least one type. So let $A = $ we have no chocolate, $B = $ we have no vanilla, and $C = $ we have no caramel. Then we need to find $|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$. First, we see that we obviously can't have no cupcakes, so $|A \cap B \cap C| = 0$. The number of ways we could have no chocolate can be described by orders with only vanilla and caramel, which by stars and bars is just ${10 + 2 - 1 \choose 2 - 1} = {11 \choose 1}$. A similar explanation works for $|B|, |C|$, so we see that $|A| = |B| = |C| = {11 \choose 1}$. For $|A \cap B|$, if we have no chocolate and no vanilla, then we only have caramel. There is precisely one way of doing this, so $|A \cap B| = 1$. Similar reasoning works for the other two intersections, so $|A \cap B| = |A \cap C| = |B \cap C| = 1$. In the end, we get $|A \cup B \cup C| = 3 \cdot {11 \choose 1} - 3 + 0 = 33 - 3 = 30$. Since we were looking for the probability of the complement of this set, we get the probability to be 
+			\begin{align*}
+				1 - \frac{30}{{12 \choose 2}}
+			\end{align*}
+		\end{enumerate}
+	
+		\newpage
+		\item \begin{enumerate}
+			\item This problem overcounts the number of ways, for example, 
+			
+			Pick ace and 7 as the two ranks.
+			Pick the ace of hearts, clubs, and diamonds as the three cards from the lower rank.
+			Pick the 7 of hearts, clubs, and diamonds as the three cards from the higher rank.
+			Pick the ace of spades as the last card.
+			
+			This would give you the same as:
+			
+			Pick ace and 7 as the two ranks.
+			Pick the ace of hearts, clubs, and spades as the three cards from the lower rank.
+			Pick the 7 of hearts, clubs, and diamonds as the three cards from the higher rank.
+			Pick the ace of diamonds as the last card.
+			
+			One notices that we could put any of the 4 aces in the last slot, and they would ALL be counted. So this problem counts these 4-of-a-kind hands 4 times, so we must subtract off 3 of these duplicate cases to get an accurate number.
+			
+			\item I just showed above that this problem overcounts, so it doesn't undercount.
+			
+			\item We overcounted the number of hands that fit the description and have a 4-of-a-kind, so we need to subtract (and first find) 3 times this number off from the total. First, pick the rank with a 4-of-a-kind, which can be done in 13 ways. There is only one way to get a 4-of-a-kind. Then, pick the rank with the 3-of-a-kind, which can be done in 12 ways (we used up a rank already). Then pick the 3 cards from this rank, which can be done in 4 ways (choose a card that isn't in the 3-of-a-kind). In total, we get $13 \cdot 1 \cdot 12 \cdot 4$ as the number of hands with a 4-of-a-kind and a 3-of-a-kind. I talked above on how these hands were counted 4 times, so we must subtract off 3 of them. So, our final answer is 
+			\begin{align*}
+				{13 \choose 2} \cdot {4 \choose 3} \cdot {4 \choose 3} \cdot {46 \choose 1} - 3 \cdot 13 \cdot 12 \cdot 4
+			\end{align*}
+		
+			\item Another way you could do this is like this: either both ranks have a 3 of a kind, or one rank has a 4 of a kind. In the case where they both have a 3 of a kind, we could first pick the two ranks, which can be done in ${13 \choose 2}$ ways, then pick 3 cards from the lower rank, which can be done in $4$ ways, then pick the 3 cards from the higher rank, which can be done in $4$ ways, and then pick one of the remaining $52 - 4 - 4 = 44$ cards (Note: we excluded all cards of the ranks already chosen), which can be done in ${44 \choose 1} = 44$ ways. This gives us a total of ${13 \choose 2} \cdot 4^2 \cdot 44$ ways for the case where both are 3 of a kind. In the second case, one is 4 of a kind, and one is 3 of a kind. So first pick the rank that is 4 of a kind, which can be done in 13 ways, then it's cards are fixed like last time, then pick the one that's 3 of a kind, which can be done in 12 ways, then pick the card that's not in the 3-of-a-kind, which can be done in 4 ways. This gives us a total of $13 \cdot 12 \cdot 4$ as our total for this case. In total, we get ${13 \choose 2} \cdot 4^2 \cdot 44 + 13 \cdot 12 \cdot 4$. These numbers are indeed equal. This check was actually really important, because originally I thought it only double-counted, not quad-counted.
+		\end{enumerate}
+		
+		\newpage
+		\item
+		\begin{enumerate}
+			\item Robbie's favorite--induction. We recall Pascal's rule: 
+			\begin{align*}
+				{n \choose k} = {n-1 \choose k-1} + {n-1 \choose k}
+			\end{align*}
+			Sending $n \to n+1$, we get that
+			\begin{align*}
+				{n+1 \choose k} = {n \choose k-1} + {n \choose k} \implies {n+1 \choose k} - {n \choose k} = {n \choose k-1}
+			\end{align*}
+			Now we have to use sum magic. Consider
+			\begin{align*}
+				\sum_{k=0}^{n+1} {n+1 \choose k} - \sum_{k=0}^n {n \choose k} &= {n+1 \choose n+1} + \sum_{k=0}^{n} {n+1 \choose k} - \sum_{k=0}^n {n \choose k} \\
+				&= 1 + \sum_{k=0}^{n} {n+1 \choose k} - \sum_{k=0}^n {n \choose k} \justif{${a \choose a} = 1$}  \\
+				&= 1 + \sum_{k=0}^n {n+1 \choose k} - {n \choose k} \\
+				&= 1 + \sum_{k=1}^n {n+1 \choose k} - {n \choose k} \justif{${n+1 \choose 0} - {n \choose 0} = 1 - 1 = 0$} \\
+				&= 1 + \sum_{k=1}^n {n \choose k-1} \justif{Pascal's rule} \\
+				&= 1 + \sum_{k=0}^{n-1} {n \choose k} \justif{Reindex} \\
+				&= {n \choose n} + \sum_{k=0}^{n-1} {n \choose k} \justif{See above} \\
+				&= \sum_{k=0}^n {n \choose k}
+			\end{align*}
+			Which shows the identity holds. 
+			
+			\item Let $P(n) \coloneqq $ ``$\sum_{k=0}^n {n \choose k} = 2^n$''. 
+			
+			\textbf{Base case:} Since $\sum_{k=0}^0 {0 \choose k} = {0 \choose 0} = 1 = 2^0$, $P(0)$ holds.
+			
+			\textbf{Inductive Hypothesis:} Suppose $P(j)$ holds for an arbitrary $j \geq 0$.
+			
+			\textbf{Inductive Step:} Notice that 
+			\begin{align*}
+				\sum_{k=0}^{j+1} {j+1 \choose k} &= 2 \sum_{k=0}^j {j \choose k} \justif{See part (a)} \\
+				&= 2 \cdot 2^j \justif{Inductive Step} \\
+				&= 2^{j+1}
+			\end{align*}
+			So $P(j+1)$ holds. As $j$ was arbitrary, by induction we see that $P(n)$ holds for all $n \geq 0$.
+			
+			\item The one I prefer most by far is the combinatorics proof. The binomial one comes in a close second, but that's mainly because the binomial theorem is so beautiful, not the result. This result is especially nice because it has a fantastic real world interpretation, and is not just numbers on a screen (the binomial theorem is too!). But this proof is nothing short of straight nasty. So this one is by far the worst, and the combinatorics one is by far the best.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+%\usepackage{eulervm}
+%\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\setItemnumber{2}
+		\item We prove that $\sqrt{19}$ is irrational by contradiction. Suppose on the contrary that it was rational. Then there exists $p, q \in \bZ$ so that $q \neq 0$, and $\sqrt{19} = \frac pq$. We then see that as $\sqrt{19} > 0$, either $p$ and $q$ are both positive or both negative, if they are both negative replace them with their positive counterparts. Along with this, choose $s = \frac{p}{\gcd(p, q)}$ and $t = \frac{q}{\gcd(p, q)}$. By the fundamental theorem of arithmetic, we have divided out all common factors of $p$ and $q$, so $\gcd(s, t) = 1$. At the same time that $\sqrt{19} = \frac pq = \frac{\frac{p}{\gcd(p, q)}}{\frac{q}{\gcd(p, q)}} = \frac{s}{t}$. Squaring both sides we see that $19 = \frac{s^2}{t^2}$, which shows that $t^2 \cdot 19 = s^2 = s \cdot s$. Therefore, $19 \mid s^2=s \cdot s$. As 19 is prime, either $19 \mid s$ (case 1) or $19 \mid s$ (case 2) (by the fact given in the problem). In case 1, $19 \mid s$, and in case 2, $19 \mid s$, so in any case, $19 \mid s$. Then there exists a $k \in \bZ$ so that $s = 19k$ (this line is equivalent to letting $P = 19 \mid s$, we have concluded $P \lor P$, and as $P \lor P \equiv P$, we may conclude $P$). Plugging this back into the equation for above, we see that $19t^2 = (19k)^2 = 19^2k^2$. Canceling the 19 from both sides, we see that $t^2 = 19 k^2$. So we see that $19 \mid t^2$, which, in the same manner as above, means that $19 \mid t$. But then $\gcd(s, t) \geq 19$, in particular it is not 1, which is a contradiction.
+		
+		\newpage
+		\item Let $P(n) = T(n) \leq 20n$. We prove $P(n) \; \forall n \in \bN$ with $n \geq 1$ by strong induction.
+		
+		\textbf{Base cases: } $T(1) = 5\cdot 1 \leq 20 \cdot 1$, so $P(1)$ holds. $T(2) = 5 \cdot 2 = 10 \leq 20 \cdot 2 = 40$, so $P(2)$ holds. $T(3) = 5 \cdot 3 = 15 \leq 20 \cdot 3 = 60$, so $P(3)$ holds. $T(4) = 5 \cdot 4 = 20 \leq 20 \cdot 4 = 80$, so $P(4)$ holds.
+		
+		\textbf{Inductive Hypothesis: } Suppose $P(1) \land \cdots  \land P(k)$ for an arbitrary $k \geq 4$. 
+		
+		\textbf{Inductive Step: } Noting that $k+1 \geq 5 > 4$, we see that $T(k+1) = T(\floor{(k+1)/2}) + T(\floor{(k+1)/4}) + 5(k+1)$ by the definition of $T$. We see that as $1 \leq k$, $1 + k \leq 2k$ (add $k$ to both sides), and finally $(1+k)/2 \leq k$. We then notice that $1 \leq \floor{(k+1)/2} \leq (k+1)/2 \leq k$ by our discussion above, and from the second hint: $1 \leq \floor{x} \leq x$. Similarly, because $0 \leq k$, we may multiply both sides by the positive number 2 to get that $0 \leq 2k$. We then use the property that $1 \leq k$ to get that $1 \leq 3k$. Finally we add $k$ to both sides to get that $1 + k \leq 4k$, which means that $(1+k)/4 \leq k$. So we see that $1 \leq \floor{(1+k)/4} \leq k$ (by our discussion, and the second hint). Finally, note that both $\floor{(1+k)/4}, \floor{(1+k)/2}$ are integers in the correct range, as we showed above, so we may apply our inductive hypothesis to $T(\floor{(1+k)/4})$ and $T(\floor{(1+k)/2})$. We conclude that
+		\begin{align*}
+			T(\floor{(k+1)/2}) + T(\floor{(k+1)/4}) + 5(k+1) &\leq 20 \cdot \floor{(k+1)/2} + 20 \cdot \floor{(k+1)/4} + 5(k+1) \justif{I.H.} \\
+			&\leq 20 \cdot (k+1)/2 + 20 \cdot (k+1)/4 + 5(k+1) \justif{$\floor{x} \leq x$} \\
+			&= 10(k+1) + 5(k+1) + 5(k+1)\\
+			&= 20(k+1)
+		\end{align*}
+		which shows $P(k+1)$. So we conclude that $P(n)$ holds for all $n \in \bN$ with $n \geq 1$ by the principle of induction.
+		
+		\newpage
+		\item Let $P(n) = 1^n \in S$. We prove $P(n) \; \forall n \geq 20$ by strong induction. 
+		
+		\textbf{Base cases: } $1^{20} = 1^{11} \cdot 1^3 \cdot 1^3 \cdot 1^3$. Clearly $1^3 \in S$ (by $S$'s construction), so $1^3 \cdot 1^3 \in S$, so therefore $1^3 \cdot (1^3 \cdot 1^3) \in S$ ($S$ is closed under string concatenation), and as $1^{11} \in S$, we see that $1^{20} \in S$, so $P(20)$ holds. Similarly, $1^{21} = \underbrace{1^3 \cdot \cdots \cdot 1^3}_{\text{7 times}}$, so $1^{21} \in S$ (Once again $S$ is closed under concatenation, we showed above that $1^3 \cdot 1^3 \cdot 1^3 \in S$, we could simply multiply this by $1^3$ to get $1^{3 \cdot 4}$, and then continue until we get all 7 $1^{3}$s). Finally, as $1^{11} \in S$, $1^{22} = 1^{11} \cdot 1^{11} \in S$ (closed under string concatenation), so $P(22)$ holds. 
+		
+		\textbf{Inductive Hypothesis: } Suppose $P(20) \land \cdots \land P(k)$ for an arbitrary $k \geq 22$. 
+		
+		\textbf{Inductive Step: }
+		We notice that $1^{k+1} = 1^3 \cdot 1^{k-2}$ (a string of $(k+1)$ 1's is just a string of 3 1's followed by a string of $k-2$ 1's). We see that as $20 \leq k - 2 \leq k$, the inductive hypothesis applies, so we conclude $1^{k-2} \in S$. As $1^3 \in S$, we see that $1^3 \cdot 1^{k-2} = 1^{k+1} \in S$ (because $S$ is closed under string concatenation--see the recursive step), which is what $P(k+1)$ asserts. By the principle of induction, we conclude that $P(n)$ holds for all $n \geq 20$.
+		
+		\newpage
+		\item For a JTree $X$, let $P(X) = $ ``if $X$ has $c-1$ copies of $data$, then $X$ has $c$ copies of $nil$." We prove $P(X)$ for all JTrees $X$ by structural induction on $X$.
+		
+		\textbf{Base Case ($X=nil$):} $nil$ has 0 copies of data, and 1 copy of nil, so we conclude that $P(nil)$ is true.
+		
+		\textbf{Inductive Hypothesis:} Suppose $P(X)$ and $P(Y)$ hold for some arbitrary JTrees $X,Y$, and let $c-1$ be the number of copies of data $X$ has, and $d-1$ be the number of copies of data $Y$ has.
+		
+		\textbf{Inductive Step:} \boxed{\text{Goal: Show that $P(data, X, Y)$ holds.}} 
+		
+		 We notice that $(data, X, Y)$ has $(c-1)+(d-1)+1 = c + d - 1$ copies of $data$, because it would have all the copies of data that $X$ has, plus all the copies of data that $Y$ has, plus 1 because we are adding 1 piece of data to this tree. By the inductive hypothesis, $X$ has $c$ copies of $nil$, and $Y$ has $d$ copies of $nil$. So, $(data, X, Y)$ has $c+d$ copies of $nil$ as $(data, X, Y)$ would have all of $X$'s $nil$ copies (look at the left half of the tree), and all of $Y$'s $nil$ copies (look at the right half of the tree). This proves $P(data, X, Y)$.
+		 
+		 \textbf{Conclusion:} Thus, $P(X)$ holds for all JTrees $X$ by structural induction.
+		 
+		 \newpage
+		 \item This problem set took me around 3 hours to complete. I spent the most time on problem 5, as the argument was pretty hard to think about. I don't have any other feedback.
+	\end{enumerate}
+\end{document}

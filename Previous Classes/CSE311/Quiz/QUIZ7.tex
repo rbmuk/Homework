@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 Quiz 7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\setItemnumber{0}
+		\item Let $P(n) = f(n) = n$. I prove $P(n) \; \forall n \in \bN$ by strong induction.
+		
+		\textbf{Base cases: } $f(0)=0$, and $f(1)=1$, so we may conclude $P(0), \; P(1)$.
+		
+		\textbf{Inductive Hypothesis: } Suppose $P(0) \land \cdots \land P(k)$ for an arbitrary $k \geq 1$.
+		
+		\textbf{Inductive Step: } We see that as $k+1 \geq 2$, we have to use the last definition for $f(k+1)$. So we see that $f(k+1)=2f(k)-f(k-1) = 2k-(k-1)$ by the inductive hypothesis. We conclude that $f(k+1)=k+1$ by algebra. As this is what $P(k+1)$ asserts, we see that $P(n)$ holds for all integer $n \geq 1$.
+		
+		\item Let $P(n) = 6n+6 < 2^n$. We prove $P(n) \forall n \geq 6$ by induction.
+		
+		\textbf{Base case: } $6 \cdot 6 +  6 = 42 < 2^6 = 64$ so we see that $P(6)$ holds.
+		
+		\textbf{Inductive Hypothesis: } Suppose $P(k)$ for an arbitrary $k \geq 6$.
+		
+		\textbf{Inductive Step: } We notice that $6(k+1)+6=6k+6+6<2^k+6$ by the inductive hypothesis. We also note that $6 < 2^6 \leq 2^k$, because $k \geq 6$, and $2^z$ is an increasing function. So $6(k+1)+6 < 2^k+6 \leq 2^k + 2^k = 2^{k+1}$, which is what $P(k+1)$ asserts. We conclude that $P(n)$ holds for all integer $n \geq 6$ by induction.
+		
+		\item[3 b) ] Let $P(x) = leaves(x) \geq size(x)/2 + 1/2$. We prove $P(x)$ for all trees $x$ by structural induction.
+		\textbf{Base case: } $size(\bullet)/2 + 1/2 = 1/2 + 1/2 = 1 \leq leaves(\bullet) = 1$, so we see that $P(\bullet)$ is true.
+		
+		\textbf{Inductive Hypothesis: } Suppose $L, R$ are  trees, and suppose $P(L), P(R)$. We notice that 
+		\begin{align*}
+			leaves((L, R, \bullet)) &= leaves(L) + leaves(R) \\
+			&\geq size(L)/2 + 1/2 + size(R)/2 + 1/2 \justif{(I.H.)}\\
+			&= 1/2(size(L) + size(R) + 1) + 1/2 \\
+			&= 1/2size(Tree(\bullet, L, R)) + 1/2
+		\end{align*}
+		Which is precisely what $P(Tree(\bullet, L, R))$ states. So we may conclude that $P(x)$ holds for all trees $x$ by structural induction.
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 Pset 1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Given $x, y \in \R^k$, 
+		\begin{align*}
+			\mg{x+y}^2 + \mg{x-y}^2 &= \ip{x+y}{x+y} + \ip{x-y}{x-y} \\
+			&= \mg{x}^2 + 2\ip{x}{y} + \mg{y}^2 + \mg{x}^2 - 2\ip{x}{y} + \mg{y}^2 \\
+			&= 2\mg{x}^2 + 2\mg{y}^2
+		\end{align*}
+		By the linearity of the inner product, and noting that $\mg{x}^2 = \ip{x}{x}$.
+		
+		\item $r > d/2$: WLOG suppose that $x$ is the origin and $y = (d, 0, \cdots, 0)$ (we may do this because the euclidean norm is rotation invariant). In the case where $k = 3$, the balls about $x, y$ will have equations:
+		\begin{align*}
+			x^2 + y^2 + z^2 = r^2 \\
+			(x-d)^2 + y^2 + z^2 = r^2
+		\end{align*}
+		Let $w = \sqrt{r^2 - (d/2)^2}$ ($w$ being well-defined is why $r$ must be $> d/2$).
+		I claim that $r(t) = (d/2, w\cos(t), w\sin(t))$ satisfies both equations. Note: $r$ clearly gives infinitely many different points (which would correspond to infinitely many different $z$ values). Notice:
+		\begin{align*}
+			(d/2)^2+w^2\cos^2(t)+w^2\sin^2(t) = (d/2)^2 + w^2 = (d/2)^2 + r^2 - (d/2)^2 = r^2
+		\end{align*}
+		and similarly,
+		\begin{align*}
+			(d/2-d)^2 + w^2\cos^2(t) + w^2\sin^2(t) = (d/2)^2 + w^2 = r^2
+		\end{align*}
+		Which certainly gives infinitely many points, which completes the case $k = 3$. For general $k > 3$, the equations will be:
+		\begin{align*}
+			x_1^2 + x_2^2 + \cdots + x_k^2 = r^2 \\
+			(x_1-a)^2 + x_2^2 + \cdots + x_k^2 = r^2
+		\end{align*}
+		One notices that $r(t) = (d/2, w\cos(t), w\sin(t), 0, \cdots, 0)$ also satisfies these equations (I believe this is similar to projecting onto something of dimension 3, but that is obviously quite hard to visualize), and this will again give infinitely many points, so we are done.
+		
+		$r = d/2$: (Existence) I claim that $(x+y)/2$ is distance $r$ away from both vectors. Clearly, $\mg{(x+y)/2 - x} = \mg{y/2 - x/2} = 1/2 \mg{y-x} = 1/2 \cdot d = r$, and similarly, $\mg{(x+y)/2 - y} = \mg{y/2 - x/2} = 1/2 \mg{x-y} = 1/2 \cdot d = r$. (Uniqueness) We know from the second part of the Cauchy-Schwartz inequality that $|\ip{x}{y}| = \mg{x}\mg{y}$ iff $x = \lambda y$ for some $\lambda \in \R$. Also, $x = |x|$ iff $x \geq 0$, so we see $\ip{x}{y} = \mg{x}\mg{y}$ iff $x = \lambda y$ and $\ip{x}{y} \geq 0$. So $\ip{y}{\lambda y} \geq 0$, which tells us that $\lambda \mg{y}^2 \geq 0$, which happens iff $\lambda \geq 0$ or $y = 0$. In sum, from Cauchy-Schwartz we see that $x = \lambda y$ where $\lambda \geq 0$ or $y = 0$. Suppose that $w$ is another vector distance $d/2$ to both $x$ and $y$. Then $d = \mg{y-w} = \mg{y-x+x-w} \leq \mg{y-x} + \mg{w-x} = d/2 + d/2 = d$, so as equality holds, we see that $w-x = \lambda(y-x)$, i.e. that $w = \lambda(y-x) + x$, where $\lambda \geq 0$ because $y-x$ is nonzero by construction. Clearly now, $d/2 = \mg{w-x} = \mg{\lambda(y-x)} = |\lambda| \cdot d$,  so clearly $|\lambda| = 1/2$ ($d$ is nonzero by hypothesis). Then $\lambda = 1/2$ or $\lambda = -1/2$. We already eliminated $\lambda = -1/2$, as we concluded that $\lambda \geq 0$, and if $\lambda = 1/2$, we simply get the vector from before, so the vector I gave above is indeed unique.
+		
+		$r < d/2$: Suppose there was such a vector $z$, so that $\mg{z-x} = \mg{z-y} = r < d/2$. Then $r = \mg{z-y} = \mg{(y-x) - (z-x)} \geq \mg{y-x} - \mg{z-x} = d + r > 2r - r = r$, a contradiction.
+		
+		If $k = 2$, when $r > d/2$, there are exactly 2 points, instead of infinitely many, if $r = d/2$, there is still exactly one point of tangency, and if $r < d/2$, there are still zero points (this follows by thinking about it visually).
+		
+		\item Given $x = (x_1, \ldots, x_k) \in \R^k$ where $k \geq 2$ there are two cases: either the first two coordinates are 0, or they are not. If the first two coordinates are zero, $y = (1, 0, \ldots, 0)$ clearly has dot product 0 with $x$ (and $y$ is clearly nonzero). If at least one is not zero, then I claim that $y = (x_2, -x_1, 0, \ldots, 0)$ has dot product zero with $x$. This follows as $y \cdot x = x_2 \cdot x_1 + (-x_1) \cdot x_2 = 0$, and $y$ is nonzero since at least one of $x_1, x_2$ is nonzero in this case. This is \textbf{not} true if $k = 1$. For if it were, it would be true for $x = 3$, and since the dot product in dimension 1 is just regular multiplication we are looking for a nonzero solution to $xy = 3y = 0$, which doesn't exist (for $\R$ is an integral domain).
+		
+		\item Let $x \in E$ be arbitrary, and suppose $E$ is open. Then $x$ is an interior point, by definition, and is therefore in $E^\mathrm{int}$ because the ladder is defined as the set of all interior points of $E$. $E^\mathrm{int}$ is contained in $E$ by definition, which shows that $E = E^\mathrm{int}$. If $E = E^\mathrm{int}$, then given an arbitrary $x \in E$, $x \in E^{\mathrm{int}}$, so $x$ is an interior point of $E$. So $E$ is open, as all points are interior points.
+		
+		\item 
+		\begin{enumerate}
+			\item We show that $\overline{A \cup B} = \overline{A} \cup \overline{B}$, then we argue that the general case holds by induction. Firstly, given an arbitrary point $x \in \overline{A} \cup \overline{B}$, either $x \in \overline{A}$ or $x \in \overline{B}$. WLOG suppose $x \in \overline{A}$. Then either $x \in A$ or $\forall r > 0$, $(B_r(x) \setminus \set{x}) \cap A \neq \emptyset$. If $x \in A$, then $x \in A \cup B$, and as $\overline{A \cup B} = (A \cup B) \cup (A \cup B)'$, $x \in \overline{A\cup B}$. In the other case, $x$ is a limit point of $A$, so $\forall r > 0, (B_r(x) \setminus \set{x}) \cap (A \cup B) \neq \emptyset$, so $x \in \overline{A\cup B}$, as claimed. For the second case this argument is simply just replacing $A$ with $B$. Given an arbitrary $x \in \overline{A \cup B}$, either $x \in A \cup B$ or $x$ is a limit point of $A \cup B$. If $x \in A \cup B$, either $x \in A$ or $x \in B$, in the first case $x \in A \cup A' = \overline{A}$, and in the second case $x \in \overline{B}$, so in any case $x \in \overline{A} \cup \overline{B}$. If $x$ is a limit point of $A \cup B$, then $\forall r > 0 (B_r(x) \setminus \set{x}) \cap (A \cup B) \neq \emptyset$. So there is some $y \in (B_r(x) \setminus \set{x}) \cap (A \cup B)$, which tells us that $y \in (B_r(x) \setminus \set{x})$ and $y \in A \cup B$. The second condition tells us $y \in A$ or $y \in B$. In the first case, this tells us that for a fixed $r$, $x \in \overline{A}$, and in the second case it tells us that $x \in \overline{B}$. In any case, given any $r$, $x \in \overline{A}$ or $x \in \overline{B}$, which says $x \in \overline{A} \cup \overline{B}$, so we have indeed shown double inclusion. In general, suppose given any list of sets $A_1, \cdots, A_k$ we have that $\overline{\bigcup_{i=1}^k A_i} = \bigcup_{i=1}^k \overline{A_i}$ for some $k \geq 2$. We just showed the base case, so given any list of sets $A_1, \ldots, A_{k+1}$, we see that $\overline{\bigcup_{i=1}^{k+1} A_i} = \overline{\bigcup_{i=1}^k A_i \cup A_{k+1}} = \overline{\bigcup_{i=1}^k A_i} \cup \overline{A_{k+1}} = \bigcup_{i=1}^{k} \overline{A_i} \cup \overline{A_{k+1}} = \bigcup_{i=1}^{k+1} \overline{A_i}$, as claimed. We used the inductive hypothesis and the base case in the middle.
+			\item 
+			Given $x \in \bigcup_{i=1}^\infty \overline{A_i}$, we know that $x \in \overline{A_j}$ for some $j \in \bN$. Then either $x \in A_j$, or $\forall r > 0 (B_r(x) \setminus \set{x}) \cap A_j \neq \emptyset$. If $x \in A_j$, then $x \in \bigcup_{i=1}^\infty A_i$, so certainly $x \in \overline{\bigcup_{i=1}^{\infty} A_i}$. In the second case, since $A_j \subset \bigcup_{i=1}^\infty A_i$, it is also the case that $\forall r > 0 (B_r(x) \setminus \set{x}) \cap \bigcup_{i=1}^{\infty} A_i \neq \emptyset$. But this just says that $x \in \overline{\bigcup_{i=1}^\infty A_i}$ (for $x$ is a limit point of the big union), and as $x$ was arbitrary, this completes the proof.
+			
+			Let $A_i = [1/i, 1]$ for $i \geq 1$. We see that $B = \bigcup_{i=1}^{\infty} A_i = (0, 1]$.
+			\begin{proof}
+				$\\$\fbox{$\subseteq$}
+				
+				Let $x \in \bigcup_{i=1}^{\infty} \qty[\frac1i, 1]$. Then $x \in \qty[\frac1j, 1]$ for some $j \geq 1$, so $0 < \frac1j \leq x \leq 1$, so $x \in (0, 1]$.
+				
+				\fbox{$\supseteq$}
+				
+				Let $x \in (0, 1]$. We can find an integer $j \geq 1/x$ by the Archimedian property, so we see that $1/j \leq x$, which means that $x \in [1/j, 1]$ for some $j$.
+			\end{proof}
+			As the $A_i$'s are already closed, $\bigcup_{i=1}^{\infty} \overline{A_i} = \bigcup_{i=1}^{\infty} A_i = (0, 1]$, while $\overline{B} = [0, 1]$, so the inclusion can indeed be proper.
+		\end{enumerate}
+	
+		\item 
+		$d_1$ is not a metric, because it does not satisfy the triangle inequality, consider $x = 0, y = -2, z = -1$. $(x-y)^2 = 4 > (x-z)^2 + (y-z)^2 = 1 + 1 = 2$.
+		
+		$d_2$ is a metric, because if $\sqrt{|x-y|} = 0$, then $|x-y| = 0$ so $x = y$. Also, it suffices to show that $\sqrt{|x+y|} \leq \sqrt{|x|} + \sqrt{|y|}$. By squaring both sides (which is justified, because each side is positive, so we can revert this step), we get that $|x+y| \leq |x| + 2\sqrt{|x|}\sqrt{|y|} + |y|$, which is clearly true as $|x+y| \leq |x| + |y| \leq  |x| + 2\sqrt{|x|}\sqrt{|y|} + |y|$. So the triangle inequality does indeed hold. For arbitrary $a, b, c \in \R$, letting $x = a-c, y = c-b$ gives us the regular formation of the triangle inequality. Finally, this distance function is clearly symmetric as the regular absolute value is clearly symmetric.
+		
+		$d_3$ is not a metric, because $x = -1, y = 1$ have distance 0 from each other but are not equal.
+		
+		$d_4$ is not a metric because $x = 2, y = 1$ have distance 0 from each other but are also not equal.
+		
+		$d_5$ is a metric, as if $d_5 = 0$ then we can multiply both sides by $1 + |x-y|$ to get that $|x-y| = 0$, i.e. $x = y$. It is clearly symmetric, as $|x-y|$ is symmetric, and finally the triangle inequality holds, as 
+		\begin{align*}
+			\frac{|x+y|}{1+|x+y|} \leq \frac{|x|}{1+|x+y|} + \frac{|y|}{1+|x+y|}
+		\end{align*}
+		Also, since $|y| \geq 0$, $1 + |x| \leq 1 + |x| - |y| \leq 1 + |x+y|$, by the reverse triangle inequality, so clearly $\frac{1}{1+|x+y|} \leq \frac{1}{1+|x|}$, and similarly $\frac{1}{1+|x+y|} \leq \frac{1}{1+|y|}$. In the case where $|x| - |y| = -1$, i.e. $|x| = |y| + 1$, you can divide into cases (by saying that $x \geq 0, y \geq 0$, $x < 0, y < 0$, or WLOG $x > 0, y < 0$) and show that the inequality still holds--I have done this, but won't type it up, as it would make this problem much too long. So,
+		\begin{align*}
+			\frac{|x|}{1+|x+y|} + \frac{|y|}{1+|x+y|} \leq \frac{|x|}{1+|x|} + \frac{|y|}{1+|x|}
+		\end{align*}
+		which shows that the reformulated triangle inequality holds. Again for arbitrary $a, b, c \in \R$, if we let $x = a-c$, $y = c-b$ we get the original triangle inequality back. It is much easier to prove this simpler one though.
+		
+		\item $E$ is bounded as if $|q| > \sqrt{3}$, then $q^2 > 3$, i.e. $q \not \in E$. So everything in $E$ has magnitude less than or equal to $\sqrt{3}$. $E$ is non-empty, as $3/2 \in E$, so one sees that, given any $p \in E$, $d(3/2, p) = |3/2-p| \leq |3/2| + |p| \leq |3/2| + \sqrt{3}$, which shows that $E$ is bounded. One notes that $E^c = \set{p \in \bQ \given q^2 \leq 2 \lor q^2 \geq 3}$ by elementary set theory. We wish to show this set is open--given any $p \in E^c$, either $p^2 \leq 2$ or $p^2 \geq 3$. In the first case, $p \in [-\sqrt{2}, \sqrt{2}]$, so there are two cases: either $p$ is negative or $p$ is positive. WLOG, $p$ is positive, so let $\eta = (\sqrt{2}-p)/2$. $\eta$ is positive because $\sqrt{2}$ is irrational. I claim that $\set{q \in \bQ \given d(p, q) < \eta} = N_\eta(p) \subset E^c$. It suffices to show everything in $N_\eta(p)$ has magnitude less than or equal to $\sqrt{2}$. So given any $q \in N_\eta(p)$, we know that $|p-q| < \eta$, and by the reverse triangle inequality, we get that $|q| - |p| < \eta = (\sqrt{2}-|p|)/2$. This tells us that $|q| < (\sqrt{2}+|p|)/2$, and as $|p| \leq \sqrt{2}$, we get that $|q| < 2\sqrt{2}/2 = \sqrt{2}$, as claimed. One sees that the argument would be extremely similar for the other cases mentioned, so this shows that $E^c$ is open. By Theorem 2.23, $E$ is closed, so $E$ is closed and bounded. Given any $p \in E$, there are two cases, either $p$ is positive, or $p$ is negative, like last time. Second, either $\sqrt{3}-p \leq p-\sqrt{2}$ or vice versa. WLOG, it is the first case. Let $\delta = \sqrt{3}-p/2$, I claim that $N_\delta(p) = \set{q \in \bQ \given |p-q| < \delta} \subset E$. Clearly, $|q| < \delta + |p| \leq (\sqrt{3}-p)/2 + p \leq \sqrt{3}$, as claimed. Also, $|p| - |q| \leq \delta$, so $|p| - \delta \leq |q|$. One notes that $\sqrt{2} \leq p/2 + \sqrt{2}/2 \leq p - (p - \sqrt{2})/2 \leq |p| - \delta$, so $|q| > \sqrt{2}$. These combined tell us $2 < q^2 < 3$, as claimed, and as all other cases would follow in almost the exact same fashion, we see that it is indeed the case that $E$ is open.
+	\end{enumerate}
+\end{document}

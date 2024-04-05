@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 334 HW 5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		\textbf{Part 2:} Suppose that $\seq{x}{n} \to x$ is a sequence of reals that converges to $x$. Then there is some $N > 0$ such that $\forall n > N$, $|x_n-x| < 1$. Clearly there are only finitely many elements in $\set{x_n \given 1 \leq n \leq N}$, because $N$ is a finite number. But every finite set is bounded, therefore there is some $R > 0$ such that $\set{x_n \given 1 \leq n \leq N} \subset B(x, R)$. But clearly $\set{x_n \given n > N} \subset B(x, 1)$, and so if we pick $R^* = \max\{1, R\}$, we have that $\seq{x}{n} \subset B(x, R^*)$, i.e. that $\seq{x}{n}$ is bounded. $\qed$
+		
+		\textbf{Part 3:} Let $\qty(x_{n_k})_{k=1}^{\infty}$ be a subsequence of $\seq{x}{n} \to x$, and let $\ve > 0$. Then, because $\seq{x}{n}$ is convergent, we know that there is some $N > 0$ such that $|x_n-x| < \ve$ for all $n > N$. Suppose on the contrary that $n_k < k$. It is clear that $n_1 \geq 1$, by the definition of a subsequence (the smallest value in $\bN$ is certainly 1). Then we have that $1 \leq n_k < k$. If we choose $k=1$, we see that $1 \leq n_1 < 1$, which is impossible. So $n_k \geq k$. Then for all $k > N$, we see that $n_k \geq k$ so $|x_{n_k} - x| < \ve$, and so $\qty(x_{n_k})_{k=1}^{\infty} \to x$. If all subsequences converge, then because $\seq{x}{n}$ is a subsequence of itself, it also converges. $\qed$
+		
+		\textbf{Part 1:}  We shall construct a subsequence of $\qty(x_{2n})_{n=1}^{\infty}$, that is, $\qty(x_{6n})_{n=1}^{\infty}$. Because this sequence is a subsequence of $\qty(x_{2n})_{n=1}^{\infty}$, its limit must also go to $\alpha_1$. But we notice that each $6n$ is divisible by 3, and so we see that $\qty(x_{6n})_{n=1}^{\infty}$ is also a subsequence of $\qty(x_{3n})_{n=1}^{\infty}$. As all subsequences must go to the same limit as the main sequence by part 2 (if the main sequence converges), we see that $\qty(x_{6n})_{n=1}^{\infty} \to \alpha_2$. Because the limit is unique, we see that $\alpha_1 = \alpha_2$. Similarly, we define $\qty(x_{3^n})_{n=1}^{\infty}$. Clearly this is a subsequence of $\qty(x_{3n})_{n=1}^{\infty}$, as each index is certainly divisible by 3, and it is also a subsequence of $\qty(x_{2n+1})_{n=1}^{\infty}$ because each $3^n$ is odd. By the same reasoning, we see that $\alpha_2 = \alpha_3$, so we conclude that $\alpha_1=\alpha_2=\alpha_3$. $\qed$
+		
+		\item 
+		\begin{theorem}
+			If $\seq{a}{n} \to a$, then $b_n = \frac1n \sum_{k=1}^{n} a_k \to a$.
+		\end{theorem}
+		\begin{proof}
+			Omitted (See Homework 4).
+		\end{proof}
+		Consider the sequence $(f(x_n))_{n=1}^{\infty}$. Because $f(x)$ is continuous, and because $\seq{x}{n} \to x$, we know that $f(x_n) \to f(x)$. Then, by Theorem 0.1, we see that $\frac1n \sum_{k=1}^{n} f(x_n) \to f(x). \qed$
+		
+		\item 
+		One such function is 
+		$$\frac1{\pi} \arctan(x)+\frac12$$
+		This function is bijective because it has a (2-sided) inverse--namely $f^{-1}: (0,1) \to \bR$ defined by $f^{-1}(x)=\tan(\pi\qty(x-\frac12))$. Its continuity comes from $\arctan(x), \frac1{\pi},$ and $\frac12$ being continuous, and the sum/product/difference of continuous functions being continuous.
+		
+		\item 
+		Note that $f'(x)=2-4x \geq 0$ on $[0, 1/2]$, so $f(x)$ is increasing on $[0, 1/2]$. Note that because $0<x_0<1$, we have that $2x > 0$ and $1-x > 0$, therefore $2x(1-x) > 0$. The maximum of $2x(1-x)$ is $1/2$, which can be found by setting $f'(x)$ above to 0, using the second derivative test to see that $f(x)$ is concave down everywhere, and noting that the $f(x)$ goes to $-\infty$. We conclude that $0 < x_1=f(x_0) \leq 1/2$. By the first line, we also see that for all $n \geq 1$, $x_n \leq f(x_n)=x_{n+1}$. Then by the monotone convergence theorem, $\seq{x}{n} \to x$ for some $x$. I claim that $(x_n)_{n=0}^{\infty}$ converges. Given any $\ve > 0$, there is some $N \geq 1$ such that for all $n > N$, $|x_n-x| < \ve$ because $(x_n)_{n=1}^{\infty}$ converges. So $(x_n)_{n=1}^{\infty}$ converges as well. This argument is just saying that if we "throw out" the first value, the rest of the sequence behaves nicely. Because $(x_n)_{n=0}^{\infty}$ converges, all of its subsequences converge. $\qed$
+		
+		\item
+		If $\seq{x}{n}$ does not converge to 0, then there is an $\ve^*$ such that for all $N \in \bN$ there is some $n > N$ such that $|x_n| \geq \ve^*$. First, note that $y_{n+1} = x_{n+1}^{12} + y_n \geq y_n$ because $x_{n+1}^{12} \geq 0$. Now suppose that $\seq{y}{n}$ is bounded. Then $y_n \to \sup_{n \in \bN}\{y_n\}$ by the monotone convergence theorem. By the definition of the supremum, we see that there is some $l \in \bN$ such that $\sup_{n \in \bN}\{y_n\} - (\ve^*)^{12}/2 \leq y_l \leq \sup_{n \in \bN}\{y_n\}$. Now because $x_n$ does not converge to 0, we see that there is some $N > l$ such that $|x_N| \geq \ve^*$. Then $y_N \geq (\ve^*)^{12} + y_l \geq \sup_{n \in \bN}\{y_n\} - (\ve^*)^{12}/2 + (\ve^*)^{12} > \sup_{n \in \bN}\{y_n\}$, a contradiction. Thus $y_n$ is not bounded, and therefore doesn't converge. $\qed$
+		
+		\item 
+		We shall construct the maximal subset, and then claim that $N(\ve)$ works on it, therefore it works on every subset. Note first that $0 \leq p(x) \leq 4$ for all $x \in [0,1]$. The case where $a > 0$ is very similar, as instead of saying "below the tangent line" you would say "above the tangent line" and get that (WLOG) $f(1)$ is too large, so the proof of that case has been omitted. So suppose $a \leq 0$ and that the maximum value of $p(x)$ on $[0, 1/2]$ is $f(c) \geq 4$. Then the tangent line to $x=1/2$, which $p(x)$ is below, has slope less than (or equal to) $\frac{4-1}{c-1/2}$, as the maximum value $f(1/2)$ can be is 1. Then this secant line is going to be $y=\frac3{c-1/2}(x-1/2)+1$, and when you plug in $x=0$, you see that this quantity is $<0$, as the largest value of $c-1/2$ can be is $1/2$. Now we construct the maximal example. The quadratic closest to $y=0$ is $p(x)=0$ itself. The steepest quadratic has maximum value $\leq 4$, say $d$. I claim that the distance between any other polynomial and these two will be $\leq d/2$. Suppose that $q(x) \in A$ has distance $>d/2$ from both of these polynomials. We see that $q(max) \geq d/2$, but because the largest value of the polynomial has maximum value $d$, this maximum could at most be at the same $x$-coordinate, where the distance between them would be maximal, and less than $d/2$, a contradiction. We repeat this process and see that if we have $2^n$ curves, the distance between them is $<1/2^{n-4}$. So given any $\ve$, choose $N(\ve) = \ceil{\log_2{1/\ve}+4}.$ We see that $\sup_{x\in[0,1]}|p(x)-q(x)| < \frac{1}{2^{N-4}} < \ve. \qed$
+	\end{enumerate}
+\end{document}

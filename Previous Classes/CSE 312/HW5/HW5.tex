@@ -1,0 +1,196 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\renewcommand{\P}{\mathbb{P}}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=ForestGreen!30,
+linewidth=2pt,
+linecolor=ForestGreen,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand{\E}{\mathbb{E}}
+\graphicspath{{./}}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Overleaf Example},
+	pdfpagemode=FullScreen,
+}
+\newcommand{\Var}{\mathrm{Var}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 312 HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item Since $X$ is the face value of a fair dice flip, with sides from 1 through 12, it is discrete and $X \sim \mathrm{Unif}(1, 12)$, and hence $\E[X] = \frac{12+1}{2}$, and $\Var(X) = \frac{(12-1)(12-1+2)}{12}$.
+			
+			\item Let $Y_i$ be the value of the $i$th dice. By linearity of expectation, $\E[Y] = \sum_{i=1}^5 \E[Y_i] = \sum_{i=1}^5 \E[Y_1]$ (identically distributed). We found last time that $\E[Y_1] = \frac{13}{2}$, so $\E[Y] = \frac{65}{2}$. We also know that $\Var(Y) = \Var(\sum_{i=1}^5 Y_i)$ (since $Y = \sum_{i=1}^5 Y_i$). Since the $Y_i$'s are i.i.d. random variables, (this is precisely where I use independence), we are allowed to move the sum out of the variance, and we get that $\Var(Y) = \sum_{i=1}^5 \Var(Y_i) = \sum_{i=1}^5 \Var(Y_1) = 5 \cdot \frac{11 \cdot 13}{12}$.
+			
+			\item We do almost the same thing. Using the notation from last time, $Z = \frac15 \sum_{i=1}^5 Y_i$, so by linearity of expectation, we have that $\E[Z] = \frac15 \sum_{i=1}^5 \E[Y_i] = \frac15 \sum_{i=1}^5 \E[Y_1] = \E[Y_1] = \frac{13}{2}$. We also know that $\Var(Z) = \Var(\frac15 \sum_{i=1}^5 Y_i)$. First we use the property of variance that $\Var(aX) = a^2\Var(X)$ to get that this equals $\frac1{25} \Var(\sum_{i=1}^5 Y_i)$. Now, since the $Y_i$'s are i.i.d. (this is precisely where I use independence), we can pull the sum out of the variance and then look to our answer from last question to get that this equals $\frac15 \cdot \frac{11 \cdot 13}{12}$.
+		\end{enumerate}
+	
+		\newpage
+		\item Since the score starts off tied, what we know is that we need the last two points to be won by the same team (one can prove this inductively, the first time a team can win is after 2 turns, in which case the winning team would need to score both wins. Now suppose it's true for $n$. By the inductive hypothesis, the teams are at the same score, and now we can apply the base case to see one team would need to win the next two points to win). So, we may think of this as a geometric variable, with the probability in the geometric variable being the probability that some team scores two points in a row. The probability the first team wins two in a row is $p^2$, and the probability the second team wins two in a row is $(1-p)^2$. So our geometric variable would have probability $p^2 + (1-p)^2$. So, let $X = $ the number of 2-rounds up to an including the first time a team scores two points in a row. By our discussion above, $X \sim \mathrm{Geo}(p^2+(1-p)^2)$. $\E[X]$, from the zoo, is now $\frac{1}{p^2+(1-p)^2}$. But, this was the number of double-rounds played, so we need to double this number to get the number of rounds played, so we conclude that our answer equals $\frac{2}{p^2+(1-p)^2}$. I also did the infinite sum way and got the same answer, but I agree this was is much nicer. It took a while to fix that answer (no need to be more confusing!).
+		
+		\newpage
+		\item
+		\begin{enumerate}
+			\item We need 
+			\begin{align*}
+				\int_\R f_X(x)dx = 1
+			\end{align*}
+			Plugging this in gives (Note: $f_X(x) = 0$ for any $x \not \in [-1/2, 1/2]$)
+			\begin{align*}
+				\int_{-1/2}^{1/2} r(1-3x^2)dx = 1
+			\end{align*}
+			We see that, since $1-3x^2$ is an even function, and since we can pull constants out,
+			\begin{align*}
+				r\int_{-1/2}^{1/2} (1-3x^2)dx = 2r\int_0^{1/2} 1-3x^2dx = \eval{2r(x-x^3)}_0^{1/2} = 2r(1/2-1/8) = \frac{3r}4
+			\end{align*}
+			So we need $\frac{3r}4 = 1$, which says that $r = \frac43$.
+			
+			\item $F_X(k) = \int_{-\infty}^k f_X(x)dx$, so we have to evaluate this definite integral. Since $f_X(x) = 0$ for $x < -1/2$, if $k < -1/2$, then $f_X(k) = 0$ (we are integrating the 0 function in that case). We showed in part (a) that if $k > 1/2$, then $F_X(k) = 1$ (Indeed: $\int_{-\infty}^k f_X(x)dx = \int_{-1/2}^k f_X(x)dx = \int_{-1/2}^{1/2} f_X(x)dx = 1$), so we just have to evaluate this integral for $-1/2 \leq k \leq 1/2$:
+			\begin{align*}
+				\int_{-1/2}^k f_X(x)dx = \frac43 \int_{-1/2}^k (1-3x^2)dx &= \frac43 (x-x^3)\eval_{-1/2}^k \\
+				&= \frac43 \qty[(k-k^3)-(-1/2-(-1/2)^3)] \\
+				&= \frac43 \qty[(k-k^3) + 3/8]
+			\end{align*}
+			So, $F_X(k) = \begin{cases}
+				0, \quad x < -1/2 \\
+				\frac43 \qty[(k-k^3)+3/8], \quad -1/2 \leq x \leq 1/2 \\
+				1, \quad x > 1/2
+			\end{cases}$
+		\end{enumerate}
+	
+		\newpage
+		\item
+		\begin{enumerate}
+			\item We know that $F_X(x) = \P(X \leq x)$. Since the flea always lands in the ball, if $x > c$ then the fleas distance from the center is certainly less than than or equal to $c$, so $F_X(x) = 1$ for all $x > c$. Similarly, the flea cannot have negative distance to the center, so $F_X(x) = 0$ for $x < 0$. We are left to evaluate $\P(X \leq x)$ for $0 \leq x \leq c$. The flea will have distance less than or equal to $x$ when it lands in the ball of radius $x$, so we can find the probability by just taking the ratio of the volumes. The volume of the ball with radius $x$ is $\frac43 \pi x^3$, and the volume of the entire ball is $\frac43 \pi c^3$. We conclude that for $0 \leq c \leq x$, \begin{align*}
+				F_X(x) = \frac{\frac43 \pi x^3}{\frac43 \pi c^3} = \frac{x^3}{c^3}
+			\end{align*}
+			Quite a spectacular answer! So the CDF in its entirety equals
+			\begin{align*}
+				F_X(x) = \begin{cases}
+					0, \quad x < 0 \\
+					\frac{x^3}{c^3}, \quad 0 \leq x \leq c \\
+					1, \quad c < x
+				\end{cases}
+			\end{align*}
+		
+			\item We can find the pdf from the cdf by just taking derivatives, so the pdf, $f_X(x)$ equals
+			\begin{align*}
+				f_x(X) = \begin{cases}
+					0, \quad x < 0 \\
+					\frac{3x^2}{c^3}, \quad 0 \leq x \leq c \\
+					0, \quad c < x
+				\end{cases}
+			\end{align*}
+			
+			\item The expected value of $X$ is $\E[X] = \int_\R xf_X(x)dx$. Plugging everything in, and using that $f_X(x) = 0$ for $x \not \in [0, c]$, we see that
+			\begin{align*}
+				\int_\R xf_X(x)dx = \int_0^c \frac{3x^3}{c^3}dx = \frac3{4c^3} x^4 \eval_0^c = \frac34 c
+			\end{align*}
+			Which is quite a spectacular answer! Very intuitive, since there is more volume near the outside of the ball, so the flea on average should be closer to the outside, which is reflected by the number.
+			
+			\item The variance is equal to $\E[X^2] - \E[X]^2$. We found $\E[X]$, above, so we are left to evaluate $\E[X^2]$. By the law of an unconscious statistician, and from the same reasoning about the pdf as last time,
+			\begin{align*}
+				\E[X^2] = \int_\R x^2f_X(x)dx = \int_0^c \frac{3x^4}{c^3}dx = \frac{3}{5c^3} x^5\eval_0^c = \frac{3}{5}c^2
+			\end{align*}
+			We conclude that $\Var(X) = \E[X^2] - \E[X]^2 = \frac35 c^2 - \frac{9}{16} c^2 = \frac3{80}c^2$.
+		\end{enumerate}
+	
+		\newpage
+		\item \begin{enumerate}
+			\item I asked on the message board and they confirmed that $\P(X < m) = \P(X \leq m)$, so we are looking for $\P(X \leq m) = 1 - \P(X \leq m)$ by complimentary counting. This in turn says that $\P(X \leq m) = 1/2$, which, plugging in the CDF for exponential gives us $1 - e^{-\frac3r m} = \frac12$ (We may assume that $m \geq 0$, since if $m < 0$, then $F_X(m) = 0$, i.e. $\P(X \leq m) = 0 \neq \frac12$). Solving this equation gives us $-\ln(2) = -\frac3r m$, or that $m = \frac{r\ln(2)}{3}$.
+			
+			\item For $r = 12$, plugging this into the formula above gives us $m = \frac{12 \ln(2)}{3} \approx 2.773$.
+			
+			\item The probability that you miss the target completely, since the target is perfectly circular with radius $r$, is going to be $\P(X > r)$. This of course equals $1 - \P(X \leq r)$. Using the exponential CDF, we see that $\P(X \leq r) = 1 - e^{-\frac3r \cdot r} = 1 - e^{-3}$. Therefore, $\P(X > r) = e^{-3} \approx 0.0498$, which is surprisingly high.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

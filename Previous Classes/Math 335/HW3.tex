@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+\usepackage{bbm}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		
+		\item First we find the mass, which is given by $M = \int_0^1 \int_0^1 \int_0^1 yz dx dy dz = \frac14$ (split up the integrals). To find the $x$-coordinate, we do the integral of $\qty(\int_0^1 \int_0^1 \int_0^1 x \rho(x, y, z) dx dy dz)/M = \int_0^1 \int_0^1 \int_0^1 xyzdxdydz / \frac 14 = \frac 12$. The $y$-coordinate is given by $\qty(\int_0^1 \int_0^1 \int_0^1 y^2zdxdydz)/M = \frac16/ \frac14 = \frac 23$. Similarly, the $z$-coordinate is given by $\qty(\int_0^1 \int_0^1 \int_0^1 yz^2dxdydz)/M = \frac 23$. So the center of mass of the object is $(\frac 12, \frac 23, \frac 23)$.
+		
+		First, we are trying to calculate $\int_S 1dx = \int_{[-1,1]^3} \mathbbm{1}_{\set{x \in S}} dx$. I did the monte-carlo method by generating 10,000 random points in $\R^3$ with coordinates in $[-1, 1]$, and after evaluating this function all 10,000 times and taking the average, and finally multiplying by $\mathrm{Vol}([-1, 1]^3) = 8$, I got the values (with error afterwards) 6.504, 0.017262221084884993, 6.4528, 0.017224162331819403, 6.4872, 0.017220396186809907, 6.4432, 0.017157130211726594, 6.5064, 0.01725586235622602, 6.46, 0.017226497354807708, 6.508, 0.017285140609703806, 6.5336, 0.01729061480301157, 6.4616, 0.017164359855272343, 6.4528, 0.017149391474143596. This has average 6.48096 with error having average 0.01722. So the volume of this set is 6.48096 $\pm$ 0.01722.
+		
+		
+		Doing the same for the second ball, with 10000 values per result, I get the numbers (with error after) 2.1504, 0.018272905722269802, 2.9696, 0.018250433483306107, 2.4576, 0.018194015112309052, 2.9696, 0.018224532839013294, 3.1744, 0.01820809727471864, 2.3552, 0.018268916734159063, 1.7408, 0.018239957782635895, 2.4576, 0.01825645205162949, 2.048, 0.018289979231869827, 1.4336, 0.018283082673488375, with average 2.37568, and error average 0.1748. So the volume of the unit ball in 10 dimensions is 2.37568 $\pm 0.1748$.
+		
+		\item 
+		\begin{lemma}
+			\begin{align*}
+				\sqrt{d} \sqrt{\sum_{k=1}^{d} x_k^2} \geq \sum_{k=1}^{d} |x_k|
+			\end{align*}
+		\end{lemma}
+		\begin{proof}
+			If we take $a = (1, \ldots, 1)$, and $b = (|x_1|, |x_2|, \ldots, |x_d|)$, we see that $\sum_{k=1}^{d} |x_k| = \ip{a}{b} \leq \mg{a}\mg{b} = \sqrt{d} \sqrt{\sum_{k=1}^{d} x_k^2}$
+		\end{proof}
+		With the above lemma, we can confidently say that
+		\begin{align*}
+			\int_{[0,1]^d} \sqrt{\sum_{k=1}^{d} x_k^2}dx_1\cdots dx_d &\geq \int_{[0, 1]^d} \frac1{\sqrt{d}} \sum_{k=1}^{d} |x_k| dx_1 \cdots dx_d \\ 
+			&= \frac1{\sqrt{d}} \sum_{k=1}^{d} \int_{[0, 1]^d} x_k dx_1 \cdots dx_d \\
+			&= \frac1{\sqrt{d}} \sum_{k=1}^{d} \int_0^1 \cdots \int_0^1 \qty(\int_0^1 x_k dx_k) dx_1 \cdots dx_{k-1} dx_{k+1} \cdots dx_d \\
+			&= \frac1{\sqrt{d}} \sum_{k=1}^{d} \int_0^1 x_kdx_k \\
+			&= \frac{\sqrt{d}}2
+		\end{align*}
+		Finally, I claim that $\sqrt{d}/2 \geq \log(d)/100$ for every $d \geq 1$. Letting $h(d) = \sqrt{d}/2 - \log(d)/100$, we see that $h(1) = \frac 12 > 0$, and that $h'(d) = \frac{1}{4\sqrt{x}}-\frac{1}{100x}$.
+		\begin{align*}
+			&\frac{1}{4\sqrt{x}}-\frac{1}{100x} > 0 \iff \\
+			&\frac1{4\sqrt{x}} > \frac1{100x} \iff \\
+			&\frac{\sqrt{x}}4 > \frac1{100} \iff \\
+			&\sqrt{x} > \frac1{25} \iff \\
+			&x > \frac1{625}
+		\end{align*}
+		(In the last step we are allowed to square because $x > 0$) Which is certainly true for all $x \geq 1$, so we have found a constant $c = \frac1{100}$ so that our integral is $\geq c\log(d)$ for every $d \geq 1$.
+		
+		\item 
+		$f(x,y)$ cannot possibly be integrable on the unit square $[0, 1]^2$ because it is unbounded near the origin. More precisely, given $M > 1$, $f(1/\sqrt{M+2}, 1/\sqrt{M+1}) = M+1 > M$, and clearly $(1/\sqrt{M+2}, 1/\sqrt{M+1}) \in [0, 1]^2$. As integrability $\implies$ bounded, $f$ is not integrable. Given a $y \in (0, 1)$, for $x \in [0, 1]$, $f(x) = 
+		\begin{cases}
+			y^{-2}, 0 < x < c \\
+			-x^{-2}, c < x < 1 \\
+			0, x = 0 \text{ or } x = 1
+		\end{cases}$
+	
+		Note that if $y = 0, 1$, $f(x) \equiv 0$. For $y \neq 0, 1$, this function is continuous on $(0, c)$, and $(c, 1)$, and it has 3 discontinuities at $x=c, 0, 1$. By \textbf{Theorem 4.12}, $f(x)$ is integrable on $[0, 1]$. If $y = 0, 1$, $f$ is constant and therefore clearly integrable. 
+		
+		\begin{align*}
+			\int_0^1 \int_0^1 f(x, y)dydx &= \lim_{a \to 0} \int_a^1 \qty(\int_0^x -x^{-2}dy + \int_x^1 y^{-2}dy)dx \\
+			&= \lim_{a \to 0} \int_a^1 -x^{-1} - 1 + x^{-1} dx \\
+			&= -1
+		\end{align*}
+		However, 
+		\begin{align*}
+			\int_0^1 \int_0^1 f(x, y)dxdy &= \lim_{a \to 0} \int_a^1 \qty(\int_0^y y^{-2}dx + \int_y^1 -x^{-2}dx)dy \\
+			&= \lim_{a \to 0} \int_a^1 y^{-1} + 1 - y^{-1} dy \\
+			&= 1
+		\end{align*}
+		Which shows that Fubini's Thoerem clearly didn't apply! However, this seems really specific, and like Steinerberger said probably won't come up in practice.
+		
+		\item 
+		Using the transformation given in the problem, $G(s, t) = (xy, x^2-y^2)$, we find that 
+		\begin{align*}
+			\frac{\partial (s, t)}{\partial (x, y)} = \qty|\det\begin{pmatrix}
+			y & x \\
+			2x & -2y
+		\end{pmatrix}| = |-2y^2-2x^2| = 2(x^2+y^2)
+		\end{align*}
+		Next, note that $t^2+4s^2=x^4+y^4-2x^2y^2+4x^2y^2=(x^2+y^2)^2$. Finally, note that we are now integrating over the rectangle $[1, 3] \cross [1, 4]$. So, our integral becomes:
+		\begin{align*}
+			\int_1^4 \int_1^3 (x^2+y^2) \cdot 2(x^2+y^2)dsdt &= 2\int_1^4 \int_1^3 t^2+4s^2 dsdt \\
+			&= 2\int_1^4 2t^2 + \frac 43 \cdot 26 dt \\
+			&= 2(104 + 42) \\
+			&= 292
+		\end{align*}
+		Which is amazing, as the region of integration was super crazy!
+		
+		\item Note that it suffices to show that $\int_{0}^{t} f^{[n-1]} = f^{[n]}$, as the fundamental theorem of calculus would guarantee our result. So,
+		\begin{align*}
+			\int_{0}^{t} f^{[n-1]} &= \frac{1}{(n-2)!} \int_{0}^{t} \int_{0}^{x} (x-y)^{n-2}f(y)dydx \\
+			&= \frac1{(n-2)!} \int_{0}^{t} \int_{y}^{t} (x-y)^{n-2}f(y)dxdy
+		\end{align*}
+		The last inequality comes from interchanging the order of integration, as fubini's theorem applies because $f$ is continuous everywhere.
+		\begin{align*}
+			\frac1{(n-2)!} \int_{0}^{t} \int_{y}^{t} (x-y)^{n-2}f(y)dxdy &= \frac1{(n-2)!} \int_{0}^{t} f(y) \cdot \frac1{n-1} (x-y)^{n-1} \eval_y^t dy \\
+			&= \frac{1}{(n-1)!} \int_0^t f(y) (t-y)^{n-1} dy \\
+			&= f^{[n]}
+		\end{align*}
+		And we are done.
+	\end{enumerate}
+\end{document}

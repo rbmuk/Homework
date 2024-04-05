@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 HW 1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item I have watched lecture 0 and/or read the syllabus, and agree to follow the collaboration policies.
+		
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item Let $P=$ Parking is allowed on Saturday, and $Q=$ Parking is allowed on Sunday. Then a) translates to $P\land Q$.
+			\item Let $P=$ You can become the Queen of England, $Q=$ You are born a royal, $R=$ You participate in a popular uprising, then b) translates to $(Q \lor R) \implies P$.
+			\item Let $P=$ I go to the library, $Q=$ I want to study, and $R=$ I bring my husky card. i) translates to $Q \implies P$, ii) translates to $P \implies R$, iii) translates to $\lnot Q \implies (\lnot P \land R)$.
+		\end{enumerate}
+	
+	\newpage
+	\item Let $P=$ You carry cash with you, $Q=$ You have your Husky card, $R=$ You can ride the bus, $S=$ You can ride the light rail. Then a) translates to $$\left [(\lnot P \land \lnot Q) \implies (\lnot R \land \lnot S)\right ] \land \left [P \implies (R \land S)\right ].$$ The equivalent English statement is: If you aren't carrying cash, and you don't have your husky card, then you can't ride the light rail and you also can't ride the bus, and if you are carrying cash, then you can ride both the light rail and the bus.
+	
+	\newpage
+	\item 
+	\begin{enumerate}
+		\item I make the first one true, and the second one false. Consider $r = T$, $p = F$, $q=F$. Then $(p \land q) \lor r = T$ (logical or only requires one to be true) as $r$ is true while $p \land (q \lor r) = F$ as $p$ is false (logical and requires both to be true to output true).
+		\item Let $r=F$, $q=F$, $p=F$. Then $(r \implies q) \implies p$ would simplify to $(F \implies F) \implies F$, which would be false as $T \implies F$ is false. However, $r \implies (q \implies p)$ = $F \implies (F \implies F)$, and as $F \implies T$ is clearly true, $F \implies T$ is true so the right side is true while the left is false. 
+		\item Let $p=T$, $q=T$, $r=T$. Then $(p \lor q) \implies r = T \implies T = T$, as $(T \lor T) = T$ and $T \implies T = T$. However, $\lnot p \lor \lnot q \lor \lnot r = F \lor F \lor F = F$, as $F \lor F = F$.
+	\end{enumerate}
+	
+	\newpage
+	\item I shall take the approach of: either one is true and the other is false, or vice versa. Firstly, to get at least 2 to be true, we can simply divide into cases, i.e. $((p \land q) \lor (p \land r) \lor (q \land r)) = S$. I call this quantity $S$ for clarity. The second part simplifies to $p \land \lnot r = U$. I call it $U$ for clarity. Then the final answer is:
+	$(S \land \lnot U) \lor (\lnot S \land U)$. The first sentence describes why this functions as an exclusive or.
+	
+	\newpage
+	\item
+	\begin{enumerate}
+		\item There are two reasons: one, he does not know that it's the only way to get there--I have only told him that it is a way to get there. Two: I have not told him that I will make it to the show.
+		
+		\item 
+		We have now satisfied the first part of the last answer: the contra-positive of the statement I just said is, "If you come to the show, then you have to take the bus". So the bus is indeed the only way to get there. But I still have not guaranteed him that I will show up.
+		
+		\item 
+		I tell my friend, ``I guarantee that I will make it to the show."
+		
+		My friend had 2 conditions to take the bus: 1) knowing that I will make it to the show, and 2) that its the only way to get there. The answer in part b) shows that it is indeed the only way to get there, and my answer to part c) guarantees that I will make it to the show.
+	\end{enumerate}
+
+	\newpage
+	\item 
+	This assignment took me about an hour and a half. The problem that took the most time was 3), as it was most confusing. I have no other feedback. Also, for anyone interested I am using the package \textbf{charter} for my font, and the package \textbf{eulervm} for the math symbols. I think they are better than the classic \LaTeX.
+	\end{enumerate}
+\end{document}

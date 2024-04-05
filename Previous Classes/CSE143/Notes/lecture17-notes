@@ -1,0 +1,19 @@
+in a method, you are able to change the state of the object, but NOT the reference.
+so we do x = change(x).
+
+public static void main(String[] args) {
+	Point x = new Point(2, 8);
+	System.out.println("x = " + x);
+	x = change(x); // <------- this is key!
+	System.out.println("x = " + x); // <---- will now say (-7, -14).
+}
+
+public static Point change(Point p) {
+	// we are able to change the state of the object
+	p.translate(3, 5);
+	System.out.println("p = " + p);
+	// we are NOT able to change the reference
+	p = new Point(-7, -14);
+	System.out.println("now p = " + p);
+	return p; // <----- add this
+}

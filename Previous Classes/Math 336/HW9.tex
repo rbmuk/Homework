@@ -1,0 +1,332 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \D{\mbb{D}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 33x Final Homework}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Plugging $z = \frac12$ into this formula gives us
+		\begin{align*}
+			\frac{1}{\pi} = \frac12 \prod_{n=1}^\infty \qty(1-\frac{1}{4n^2})
+		\end{align*}
+		Which says (Note: $\prod \frac{1}{a_n} = \frac{1}{\prod a_n}$),
+		\begin{align*}
+			\frac{\pi}{2} = \prod_{n=1}^\infty \frac{1}{1-\frac{1}{4n^2}} = \prod_{n=1}^\infty \frac{4n^2}{4n^2-1} = \prod_{n=1}^\infty \frac{2n \cdot 2n}{(2n+1)(2n-1)}
+		\end{align*}
+	
+		We wish to find $N$ so that 
+		\begin{align*}
+			1 \leq \prod_{k=N}^\infty \qty(1+\frac{1}{4k^2-1}) \leq 1+\ve
+		\end{align*}
+		Taking logs on both sides gives
+		\begin{align*}
+			0 \leq \sum_{k=N}^\infty \log(1+\frac{1}{4k^2-1}) \leq \log(1+\ve)
+		\end{align*}
+		Now, $\log(1+\ve) = \ve + O(\ve^2)$, and also, we are going to forget about the 4, since all that will do is add a constant. So, this is equivalent to asking when,
+		\begin{align*}
+			0 \leq \sum_{k=N}^\infty \log(1+\frac{1}{k^2}) \leq \ve
+		\end{align*}
+		Which is equivalent to asking when
+		\begin{align*}
+			0 \leq \sum_{k=N+1000}^\infty \log(1+\frac{1}{k^2}) \leq \ve
+		\end{align*}
+		This sum is bounded above by (Note: we used IBP),
+		\begin{align*}
+			\int_N^\infty \log(1+\frac{1}{x^2})dx = x\log(1+\frac1{x^2})\eval_N^\infty + \int_N^\infty \frac{2x}{x^3+x}dx \leq x\log(1+\frac1{x^2})\eval_N^\infty + \int_N^\infty \frac{2}{x^2}dx
+		\end{align*}
+		One notes that
+		\begin{align*}
+			\lim_{x \to \infty} \frac{\log(1+\frac1{x^2})}{\frac 1x} = \lim_{x \to \infty} \frac{\frac{-2}{x^3+x}}{-\frac{1}{x^2}} = \frac{2x^2}{x^3+x} \to 0
+		\end{align*}
+		And also that 
+		\begin{align*}
+			\int_N^\infty \frac{2}{x^2}dx = \frac{2}{N}
+		\end{align*}
+		And so the furthest RHS equals
+		\begin{align*}
+			N\log(1+\frac{1}{N^2}) + \frac{2}{N}
+		\end{align*}
+		Taylor expanding the log gives
+		\begin{align*}
+			\log(1+\frac{1}{N^2}) = \frac{1}{N^2} + O\qty(\frac{1}{N^4})
+		\end{align*}
+		And so,
+		\begin{align*}
+			N\log(1+\frac{1}{N^2}) + \frac{2}{N} = N\qty(\frac{1}{N^2} + O\qty(\frac{1}{N^4})) + \frac{2}{N} = \frac{3}{N} + O\qty(\frac{1}{N^3})
+		\end{align*}
+		$O\qty(\frac{1}{N^3}) \ll \frac{1}{N}$, so it suffices to take $N \approx \frac14 \ve^{-1}$.
+	
+		\item Take $a_1 = -1$ and $a_n = \frac{1}{n^2}$ for $n \in \bN_{> 1}$. Clearly 
+		\begin{align*}
+			\prod_{n=1}^\infty (1+a_n) = 0
+		\end{align*}
+		While the sum obviously converges to $\frac{\pi^2}{6} - 2$. For the second part, take $a_n = (-1)^n$. It is clear that 
+		\begin{align*}
+			\prod_{n=1}^\infty (1+a_n) = 0
+		\end{align*}
+		While the sum diverges.
+		
+		\item After playing around with the first couple of factors, I came up with the correct conjecture that 
+		\begin{align*}
+			\prod_{k=0}^n \qty(1+z^{2^k}) = \sum_{k=0}^{2^{n+1}-1} z^k
+		\end{align*}
+		\begin{proof}
+			The base case is clear. Suppose it is true for $n-1$. Then
+			\begin{align*}
+				\qty(1+z^{2^n}) \cdot \sum_{k=0}^{2^n-1} z^k = \sum_{k=0}^{2^n - 1} z^k + \sum_{k=0}^{2^n-1} z^{k+2^n} = \sum_{k=0}^{2^n - 1} z^k + \sum_{k=2^n}^{2^n + 2^n - 1} z^k = \sum_{k=0}^{2^{n+1} - 1} z^k
+			\end{align*}
+		\end{proof}
+		Letting $n \to \infty$ shows that 
+		\begin{align*}
+			\prod_{k=0}^\infty \qty(1+z^{2^k}) = \sum_{k=0}^\infty z^k = \frac{1}{1-z}
+		\end{align*}
+	
+	\item First, notice that for any $0 < r < 1$, $\overline{\D_r} \subset \D$. If $f$ has a zero in 0, we may find an $m > 0$ so that $f/z^m$ is holomorphic everywhere and doesn't vanish in 0 by the power series expansion, and also that $f$ is not equivalently 0. In the sum, this shall translate to adding $m$ 1s, which obviously does not affect convergence. Thus, we shall show that if $g$ satisfies the hypothesis, the theorem works on it, and that shall prove the general case from what we talked about above. So suppose $g$ is holomorphic in $\C$ and extends continuously to the unit disc, is bounded, and has zeros $(z_n)_{n=1}^\infty$ inside the unit disc none of which are 0. By Jensen's formula, for any $0 < r < 1$, $g$ only has finitely many roots in $\overline{\D_r}$ (choose $r$ so that no roots are on the boundary), and hence
+	\begin{align*}
+		\log |g(0)| = \sum_{i=1}^{N_r} \log(\frac{|z_i|}{r}) + \int_0^{2\pi} \qty|\log(re^{i\theta})|d\theta
+	\end{align*}
+	Rearranging gives
+	\begin{align*}
+		\log |g(0)| - \int_0^{2\pi} \qty|\log(re^{i\theta})|d\theta = \sum_{i=1}^{N_r} \log(\frac{|z_i|}{r})
+	\end{align*}
+	Taking a limit as $r \to 1$ on both sides, noting that the integral will exist since $f$ is continuously defined on the boundary of the unit circle, shows that 
+	\begin{align*}
+		\log |g(0)| - \int_0^{2\pi} \qty|\log(e^{i\theta})|d\theta = \sum_{i=1}^\infty \log(|z_i|)
+	\end{align*}
+	The LHS is just a number, and hence 
+	\begin{align*}
+		\sum_{i=1}^\infty \log(|z_i|)
+	\end{align*}
+	converges. We showed long ago that if the sum converges, then it's terms go to 0. Using this gives that
+	\begin{align*}
+		\log(|z_i|) \to 0
+	\end{align*}
+	And hence,
+	\begin{align*}
+		|z_i| \to 1
+	\end{align*}
+	from taking the exponential on both sides, noting that $e^x$ is continuous everywhere. Now, for the really good idea. One notices that
+	\begin{align*}
+		\lim_{x \to 1} \frac{-\log(x)}{1-x} = \lim_{x \to 1} \frac{-\frac1x}{-1} = 1
+	\end{align*}
+	Now, since $|z_i| < 1$ always, it follows immediately that $\log|z_i| < 0$. That is, $-\log|z_i| > 0$. Thus,
+	\begin{align*}
+		\sum_{i=1}^\infty -\log|z_i|
+	\end{align*}
+	is a positive termed series. Also, $1-|z_i| > 0$ as well, and hence
+	\begin{align*}
+		\sum_{i=1}^\infty 1-|z_i|
+	\end{align*}
+	is another positive termed series. Now, defined a new function
+	\begin{align*}
+		f(x) = \begin{cases}
+			\frac{-\log(x)}{1-x}, \; x > 0, \; x \neq 1 \\
+			1, \; x = 1
+		\end{cases}
+	\end{align*}
+	The limit calculation we did above shows this function is continuous on $\R_{>0}$. Consider the limit
+	\begin{align*}
+		\lim_{i \to \infty} \frac{-\log(|z_i|)}{1-|z_i|} = \lim_{i \to \infty} f(|z_i|) = f(\lim_{i \to \infty} |z_i|) = f(1) = 1
+	\end{align*}
+	We may now apply the limit comparison test to conclude that
+	\begin{align*}
+		\sum_{i=1}^\infty 1-|z_i|
+	\end{align*}
+	also converges. $\hfill$ \textbf{Q.E.D.}
+	
+	
+	\item let $\lambda$ be the order of an entire function $f: \C \to \C$. Then
+	\begin{align*}
+		&|f(z)| \leq Ae^{B|z|^\lambda} \\
+		&\implies \log|f(z)| \leq B|z|^\lambda \quad \text{for sufficiently large $|z|$ (Take $B$ bigger)} \\
+		&\implies \log \log |f(z)| \leq \lambda \log|z| \\
+		&\implies \frac{\log \log |f(z)|}{\log|z|} \leq \lambda \\
+		&\implies \frac{\log \log \sup_{|z| = r} |f(z)|}{\log r} \leq \lambda \\
+		&\implies \limsup_{r \to \infty} \frac{\log \log \sup_{|z| = r} |f(z)|}{\log r} \leq \lambda
+	\end{align*}
+	If $\eta = \limsup_{r \to \infty} \frac{\log \log \sup_{|z| = r} |f(z)|}{\log r} < \lambda$, then we could do these steps backwards to get that $|f(z)| < Ae^{B|z|^\eta}$ for sufficiently large $|z|$, but then it would not be the case that $\lambda$ was the order of $f$, a contradiction. This establishes that $\limsup_{r \to \infty} \frac{\log \log \sup_{|z| = r} |f(z)|}{\log r} = \lambda$.
+	
+	Now, expanding $f$ into a power series as $f(z) = \sum_{n=0}^\infty c_nz^n$, let \begin{align*}
+		\beta = \limsup_{n \to \infty} \frac{n\log n}{\log \frac{1}{|c_n|}}
+	\end{align*}
+	And let $\ve > 0$. By how we defined order, we can take $r$ sufficiently large so that 
+	\begin{align*}
+		|f(z)| \leq Ae^{B|z|^{\lambda+\ve/2}}=e^{B|z|^{\lambda+\ve/2}+C}
+	\end{align*}
+	For some constant $C = \log(A)$. Notice now that 
+	\begin{align*}
+		\lim_{|z| \to \infty} \frac{|z|^{\lambda + \ve}}{B|z|^{\lambda + \ve/2} + C} = \lim_{|z| \to \infty} \frac{|z|^{\lambda+\ve}}{B|z|^{\lambda+\ve/2}} = \lim_{|z| \to \infty} \frac1B |z|^{\ve/2} \to \infty
+	\end{align*}
+	Hence we may choose $|z|$ sufficiently large so that $B|z|^{\lambda + \ve/2} + C \leq |z|^{\lambda + \ve}$. Thus for $|z|$ sufficiently large,
+	\begin{align*}
+		|f(z)| \leq e^{|z|^{\lambda + \ve}} \implies \sup_{|z| = r} |f(z)| \leq e^{r^{\lambda + \ve}}
+	\end{align*}
+	We recall that $c_n = \frac{f^{(n)}(0)}{n!}$, and Cauchy's inequality, which says
+	\begin{align*}
+		|c_n| = \qty|\frac{f^{(n)}(0)}{n!}| \leq \sup_{|z| = r} |f(z)| r^{-n}
+	\end{align*}
+	Taking $r = n^{1/(\lambda + \ve)}$ gives us (and $n$ sufficiently large)
+	\begin{align*}
+		|c_n| \leq \sup_{|z| = r} |f(z)| n^{-n/(\lambda + \ve)} \leq n^{-n/(\lambda + \ve)} e^{n} \\
+		\implies \log|c_n| \leq -\frac{n}{\lambda + \ve}\log(n) + n
+	\end{align*}
+	We recall that entire functions are holomorphic everywhere, that is, they radius of convergence $\infty$, which says $\limsup_{n \to \infty} |c_n|^{1/n} = 0$, and in particular $\limsup_{|c_n|} \to 0$. Then for any positive $\ve > 0$, $|a_n|^{1/n} < \ve$ for all large $n$, and taking logs on both sides  gives $\frac1n \log|c_n| < \log(\ve)$. Since $\ve$ will be made smaller than 1, $\log(\ve)$ is negative, and hence $\frac{1}{\log(\ve)} < \frac{n}{\log|c_n|}$. Letting $\ve \to 0$ and taking a limsup on both sides shows that $\limsup_{n \to \infty} \frac{n}{\log|c_n|} = 0$ (since $n/\log|c_n|$ is negative, and bounded below by something going to 0). Taking quotients, noting that $\log|c_n| < 0$ eventually, and being very careful with the sign gives,
+	\begin{align*}
+		\frac{n\log n}{-\log|c_n|} + \frac{n}{\log|c_n|} \leq \lambda + \ve
+	\end{align*}
+	By what we just proved above, taking the limsup on both sides gives
+	\begin{align*}
+		\limsup_{n \to \infty} \frac{n\log n}{-\log|c_n|} + \frac{n}{\log|c_n|} = \limsup_{n \to \infty} \frac{n\log n}{-\log|c_n|} \leq \lambda + \ve
+	\end{align*}	
+	Letting $\ve \to 0$ gives us that $\beta \leq \lambda$. Now, let $\ve > 0$ once again. By definition of $\beta$, we can find $n$ sufficiently large so that (Note: we can also find $n$ sufficiently large so that $|c_n| < 1/2$, so the log of it is negative, and hence $-\log|c_n| > 0$),
+	\begin{align*}
+		&\frac{n\log n}{-\log|c_n|} < \beta + \ve \\
+		&\implies n\log n < -(\beta+\ve)\log|c_n| \\
+		&\implies (\beta+\ve)) \log|c_n| < -n\log n \\
+		&\implies \log|c_n| < -\frac{n}{\beta + \ve} \log n \\
+		&\implies |c_n| < n^{-n/(\beta+\ve)}
+	\end{align*}
+	One also notices, by triangle inequality, that
+	\begin{align*}
+		\sup_{|z| = r} |f(z)| \leq \sum_{n=0}^\infty \sup_{|z| = r} |c_n||z|^n = \sum_{n=0}^\infty |c_n|r^n
+	\end{align*}
+	By the maximum modulus princple, $\sup_{|z| \leq r} |f(z)| = \sup_{|z| = r} |f(z)|$, so it follows that the maximum on the disk is also less than or equal to this sum. Now, we see that
+	\begin{align*}
+		\sum_{n=0}^\infty |c_n|r^n = \sum_{n = 0}^{\floor{(2r)^{\mu + \ve}}} |c_n|r^n + \sum_{\floor{(2r)^{\mu + \ve}}}^\infty |c_n|r^n
+	\end{align*}
+	Examining the first sum, 
+	 \begin{align*}
+	 	\sum_{n = 0}^{\floor{(2r)^{\mu + \ve}}} |c_n|r^n  \leq r^{(2r)^{\mu + \ve}} \sum_{n = 0}^{\floor{(2r)^{\mu + \ve}}} |c_n|
+	 \end{align*}
+ 	Since $r$ is positive and eventually greater than 1. Since for sufficiently large $n$ $|c_n| < n^{-n/(\beta + \ve)}$, comparing the RHS of 
+ 	\begin{align*}
+ 		\sum_{n=0}^{\floor{(2r)^{\mu + \ve}}} |c_n| \leq \sum_{n=0}^{\infty} |c_n|
+ 	\end{align*}
+ 	to 
+ 	\begin{align*}
+ 		\sum_{n=0}^\infty n^{-n/(\beta + \ve)}
+ 	\end{align*}
+ 	will give that the first sum converges (Note: $\lim_{n \to \infty} \sqrt[n]{n^{-n/(\beta + \ve)}} = n^{-1/(\beta+\ve)} \to 0 < 1$, so the last sum I wrote does indeed converge by the root test). Hence, 
+ 	\begin{align*}
+ 			\sum_{n = 0}^{\floor{(2r)^{\mu + \ve}}} |c_n|r^n \leq C \cdot r^{(2r)^{\mu + \ve}}
+ 	\end{align*}
+ 	for some constant $C > 0$. Next, notice that for the second sum, since $n \geq (2r)^{\mu + \ve}$, $n^{n/(\beta+\ve)} \geq (2r)^{n}$, and hence $n^{-n/(\beta+\ve)} \leq (2r)^{-n}$. Therefore, for $r$ sufficiently large,
+ 	\begin{align*}
+ 		\sum_{\floor{(2r)^{\beta + \ve}}}^\infty |c_n|r^n \leq \sum_{\floor{(2r)^{\beta + \ve}}}^\infty n^{-n/(\beta+\ve)}r^n \leq \sum_{n=\floor{(2r)^{\beta + \ve}}}^\infty (2r)^{-n} \cdot r^n \leq \sum_{n=0}^\infty 2^{-n} = 1
+ 	\end{align*}
+ 	And hence, letting $M(r) = \sup_{|z| = r} |f(z)|$,
+ 	\begin{align*}
+ 		&M(r) \leq r^{(2r)^{\beta + \ve}} + 1 \leq 2r^{(2r)^{\beta + \ve}} \\
+ 		&\implies \log M(r) \leq (2r)^{\beta + \ve} \log(r) + \log2 \\
+ 		&\implies \log \log M(r) \leq \log((2r)^{\mu + \ve} \log(r) + \log2) \leq \log(2(2r)^{\beta + \ve} \log(r)) \\
+ 		&\implies \log \log M(r) \leq \log2 + (\beta + \ve) \log(2r) + \log \log r = (1 + \beta + \ve)\log 2 + \log \log r + (\beta + \ve)\log(r) \\
+ 		&\implies \frac{\log \log M(r)}{\log(r)} \leq \frac{(1 + \beta + \ve)\log 2 + \log \log r}{\log r} + \beta + \ve
+ 	\end{align*}
+ 	Finally, letting $u = \log r$, noting that $u \to \infty$ as $r \to \infty$,
+ 	\begin{align*}
+ 		\lim_{r \to \infty} \frac{\log \log r}{\log r} = \lim_{u \to \infty} \frac{\log u}{u} = 0
+ 	\end{align*}
+ 	Hence taking a limit as $r \to \infty$ on both sides gives
+ 	\begin{align*}
+ 		\lambda \leq \beta + \ve
+ 	\end{align*}
+ 	Letting $\ve \to 0$ gives $\lambda \leq \beta$. Hence, $\lambda = \beta$. Finally, the order of the series we wanted is
+ 	\begin{align*}
+ 		\sum_{n=0}^\infty \frac{z^n}{(n!)^{\alpha}}
+ 	\end{align*}
+	Using the formula we just proved gives
+	\begin{align*}
+		\lambda = \lim_{n \to \infty} \frac{n\log n}{\alpha \log n!} = \qty(\lim_{n \to \infty} \frac{\alpha \log n!}{n \log n})^{-1}
+	\end{align*}
+	Using that $\log(n!) = n\log n - n + O(\log n)$, we get that inside limit equals
+	\begin{align*}
+		\alpha \lim_{n \to \infty} \frac{n \log n - n + O(\log n)}{n \log n} = \alpha + \alpha \lim_{n \to \infty} \frac{n + O(\log n)}{n \log n} = \alpha
+	\end{align*}
+	Since clearly $1/\log n \to 0$, and $O(\log n) / (n \log n) = O(1) / n \to 0$. Thus, $\lambda = \alpha^{-1}$, and we are done.
+	
+	\item \begin{align*}
+		\lim_{k \to \infty} \frac{2\sqrt{k+1}}{\sqrt{2k+1}} &= \lim_{k \to \infty} \frac{2\sqrt{1+\frac1k}}{\sqrt{2 + \frac 1k}} = \frac{2\lim_{k \to \infty} \sqrt{1+\frac 1k}}{\lim_{k \to \infty} \sqrt{2+\frac 1k}} \\
+		&= \frac{2\sqrt{\lim_{k \to \infty} 1 + \frac1k}}{\sqrt{\lim_{k \to \infty} 2 + \frac1k}} = \frac{2\sqrt{1+0}}{\sqrt{2+0}} = \sqrt{2}
+	\end{align*}
+	\end{enumerate}
+\end{document}

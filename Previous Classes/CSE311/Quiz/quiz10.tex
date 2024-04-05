@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Suppose for the sake of contradiction that $\Sigma$ is regular. Then there is some DFA $M$ that recognizes $L$.
+		
+		let $S$ be $\set{0^n1^n \given n \geq 0}$. 
+		
+		Because the DFA is finite, and $S$ is infinite, there are two strings $x \neq y \in S$ so that $x, y$ go to the same state when read by $M$. So we see that $x = 0^a1^a$ for some $a \geq 0$, and $y = 0^b1^b$ for some $b \geq 0$. WLOG $a > b$. 
+		
+		Consider the string $z = 0^a$. We notice that $xz = 0^a1^a0^a$, and that $xy = 0^b1^b0^a$, so $xz$ is of the form in $\Sigma$, while $xy$ is not of the form in $\Sigma$.
+		
+		Since $xz \in \Sigma$ while $yz \not \in \Sigma$, $M$ does not recognize $L$. But that's a contradiction! So $\Sigma$ must be an irregular language.
+		
+		\setItemnumber{6}
+		\item Let $y \in f(A \cap B)$ be an arbitrary element in the image. By definition of the image, we see that there exists an $x \in A \cap B$ so that $f(x) = y$. Then clearly $x \in A$ and $x \in B$, which means that $f(x) \in f(A)$ by definition and at the same time $f(x) \in f(B)$. By the definition of intersection, $f(x) = y \in f(A) \cap f(B)$. As $y$ was an arbitrary element of $f(A \cap B)$, we see that $f(A \cap B) \subseteq f(A) \cap f(B)$.
+		
+		\item For a Husky Tree $T$, let $P(T) \coloneq $ ``if $T$ has a purple root, then it has an even number of leaves $\land$ if $T$ has a gold root, then it has an odd number of leaves."
+		
+		\textbf{Base case:} If $T$ is a single gold node, then it clearly has an odd number of leaves (it has only 1 leaf, which is itself). As $T$ is does not have a purple root, we see the other part of $P$ holds vacuously, so $P(T)$ holds.
+		
+		\textbf{Inductive Hypothesis:} Let $T_1, T_2$ be arbitrary Husky Trees, and suppose $P(T_1)$ and $P(T_2)$.
+		
+		\textbf{Inductive Step:} There are three cases (without loss of generality): both $T_1$ and $T_2$ have gold roots, both $T_1$ and $T_2$ have purple roots, or $T_1$ has a gold root and $T_2$ has a purple root.
+		
+		In the first case, by the recursive rule the new husky tree has a purple root with $T_1$ and $T_2$ as it's children. By our inductive hypothesis, $T_1$ and $T_2$ both have an odd number of leaves, and as odd $+$ odd = even, the new tree has an even number of leaves. As this new tree does not have a gold root, the second part of $P$ holds vacuously, so we see $P(\mathrm{new tree})$ holds.
+		
+		In the second case, by the recursive rule the new tree would be one with a purple root and $T_1$, $T_2$ as its children. As in this case $T_1$ and $T_2$ have purple nodes, and as $P(T_1)$ and $P(T_2)$ hold true, we see that $T_1$ and $T_2$ both have an even number of leaves. The number of leaves of the new tree is equal to the sum of the number of leaves of $T_1$ and $T_2$, which would be even $+$ even, which is of course even. As this new tree does not have a gold root, the second part of $P$ holds vacuously, So $P(\mathrm{new tree})$ holds in this case.
+		
+		Finally, in the last case $T_1$ has a gold root and $T_2$ has a purple root. The new tree would have a gold root and $T_1$ and $T_2$ as it's children. By the inductive hypothesis, $T_1$ has an odd number of leaves and $T_2$ has an even number of leaves. So the new tree would have odd $+$ even = odd number of leaves. As the new tree does not have a purple root, the second part of $P$ holds vacuously, which shows $P(\mathrm{new tree})$. 
+		
+		Therefore, $P(T)$ holds for every husky tree $T$ by structural induction.
+		
+		\item For a positive integer $n$, let $P(n) \coloneq \sum_{k=1}^n 4k-3 = n(2n-1)$. We show $P(n)$ for all $n \geq 1$ by induction.
+		
+		\textbf{Base case:} $\sum_{k=1}^1 4k-3 = 4\cdot 1 - 3 = 1 = 1(2 \cdot 1 - 1)$, $P(1)$ holds.
+		
+		\textbf{Inductive Hypothesis:} Suppose $P(w)$ for an arbitrary $w \geq 1$. 
+		
+		\textbf{Inductive Step:} We notice that
+		\begin{align*}
+			\sum_{k=1}^{w+1} 4k-3 &= \sum_{k=1}^w 4k-3 + 4(w+1)-3 \\
+			&= w(2w-1) + 4w+4 - 3 \justif{Inductive Hypothesis} \\
+			&= 2w^2 - w + 4w + 1 \\
+			&= 2w^2 + 3w + 1 \\
+			&= (w+1)(2w+1) \\
+			&= (w+1)(2(w+1) - 1)
+		\end{align*}
+		Which shows $P(w+1)$. So we conclude that $P(n)$ holds for all $n \geq 1$.
+	\end{enumerate}
+\end{document}

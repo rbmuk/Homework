@@ -1,0 +1,212 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathrm{Pr}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+
+% Sets
+\usepackage{braket}
+
+% algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\S}{\mbb S}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 521 HW6 (Midterm)}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		\begin{enumerate}
+			\item Consider the following greedy algorithm:
+			\begin{algorithm}
+				\caption{$1/4$-net}
+				\begin{algorithmic}
+					\State $N \gets \Set{(1, 0, \ldots, 0)}$
+					\While{there is some $x \in \overline B(0, 1)$ with $d(x, N) > 1/4$}
+						\State $N \gets N \cup \Set{x}$
+					\EndWhile \\
+					\Return $N$
+				\end{algorithmic}
+			\end{algorithm}
+		
+			We can see that at the end, every point in the ball is within $1/4$ of $N$. We also see that every point in $N$ is at least $1/4$ away from all other points. This means that the balls centered at each $x \in N$ with radius $1/8$ are disjoint, and the union of all these balls is contained in $\overline B(1+1/8, 0)$, which has volume $c_n \cdot (1+1/8)^n = c_n \cdot (9/8)^n = 9^n \cdot c_n \cdot 1/8^n$. Each ball has volume $c_n \cdot (1/8)^n$, so we must have no more than $9^n = 2^{\log_2(9)n} = 2^{O(n)}$ balls.
+			
+			\item Let $x \in \overline B(0, 1)$ be the maximizer of $|x^TMx|$ and decompose $x = y + z$ where $y \in N$ and $|z| < 1/4$. Then
+			\begin{align*}
+				\sigma_1 = |x^TMx| &= |(y+z)^TM(y+z)| = |(y+z)^T(My+Mz)| \\
+				&= |y^TMy + z^TMz + z^TMy + y^TMz| \\
+				&\leq |y^TMy| + |z^TMz| + 2|z^TMy| \\
+				&\leq |y^TMy| + \frac14 \sigma_1 + 2 \cdot \frac14 \sigma_1 = |y^TMy| + \frac34 \sigma_1
+			\end{align*}
+			Hence $\sigma_1 \leq 4|y^TMy|$, thus $\sigma_1 \leq 4\max_{y \in N} |y^TMy|$.
+			
+			\item Notice that
+			\begin{align*}
+				\E[\sum r_ia_i] = \sum a_i \E[r_i] = 0
+			\end{align*}
+			Since $\E[r_i] = 0$. Therefore, by Hoeffding's inequality,
+			\begin{align*}
+				\P[|\sum r_ia_i - 0| \geq t] \leq 2\exp(\frac{-2t^2}{\sum (2a_i)^2}) = 2\exp(-\frac{t^2}{2\sum a_i^2})
+			\end{align*}
+			Since $-1 \leq r_i \leq 1$ we have $-|a_i| \leq a_ir_i \leq |a_i|$.
+			
+			\item Fix $y \in N$. Then,
+			\begin{align*}
+				y^T(A-\E[A])y = \sum_{i, j} (A-\E[A])_{ij} y_i y_j
+			\end{align*}
+			Now notice that $A_{ij}$ is a Bernoulli random variable with $p = \frac12$ for $i \neq j$. Then $\E[A_{ij}] = \frac12$, and $A_{ij} = \E[A_{ij}] = 0$ for $i = j$. Then for $i \neq j$, \begin{align*}
+				(A-\E[A])_{ij} = A_{ij} - \E[A_{ij}] = \begin{cases}
+					\frac12, \; \text{w.p } \frac12 \\
+					-\frac12, \; \text{o.w.}
+				\end{cases}
+			\end{align*}
+			That is, $(A-\E[A])$ is 1/2 times a Radamacher random variable. Thus we write $A_{ij} = \sigma_{ij}$ for $i \neq j$ and $A_{ij} = 0$ otherwise. Now,
+			\begin{align*}
+				y^T(A-\E[A])y = \sum_{i \neq j} \frac{y_iy_j}{2} \sigma_{ij}
+			\end{align*}
+			By part c) we can conclude that
+			\begin{align*}
+				\P[\qty|\sum_{i \neq j} \frac{y_iy_j}{2} \sigma_{ij}| \geq C\sqrt{n}] \leq 2\exp(-\frac{C^2n}{\frac{2}{4}\sum_{i \neq j} y_i^2 y_j^2})
+			\end{align*}
+			Notice now that,
+			\begin{align*}
+				\sum_{i \neq j} y_i^2y_j^2 \leq \sum_{i, j} y_i^2 y_j^2 = \sum_{i} y_i^2 \cdot \sum_{j} y_j^2 = \mg{y}^4 \leq 1
+			\end{align*}
+			So,
+			\begin{align*}
+				\P[\qty|\sum_{i \neq j} \frac{y_iy_j}{2} \sigma_{ij}| \geq C\sqrt{n}] \leq 2e^{-2C^2n}
+			\end{align*}
+			By the union bound we have that
+			\begin{align*}
+				\Pr[\max_{y \in N}|y^T(A - \E[A])y| \geq C\sqrt{n}] \leq 2 \cdot 9^n e^{-C^2n}
+			\end{align*}
+			Choosing $C = 4\sqrt{\ln(18)}$ yields
+			\begin{align*}
+				\Pr[4\max_{y \in N} |y^T(A - \E[A])y| \geq C\sqrt{n}] \leq 2^{-n}
+			\end{align*}
+			Now, by part b), since $\sigma_1(A - \E[A]) = \max_{x \in \S^n} |x^T(A - \E[A])x| \leq 4\max_{y \in N}|y^T(A - \E[A])y|$, we have that
+			\begin{align*}
+				\Pr[\mg{A - \E[A]} \leq C\sqrt{n}] &\geq \Pr[4\max_{y \in N} |y^T(A - \E[A])y| \geq C\sqrt{n}] \\
+				&\geq 1 - 2^{-n}
+			\end{align*}
+			\end{enumerate}
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 336 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Let $u(x, y)$ be harmonic everywhere. Since $u(x,y)$ is a harmonic function on a simply connected domain (i.e., a domain without holes), it can be extended to a holomorphic function $f(x,y) = u(x,y) + iv(x,y)$ where $f: \C \to \C$ is holomorphic everywhere. Let $z \in \C$ be arbitrary, and $R > 0$. By the Cauchy Integral Formula, if we let $C = $ the circle of radius $R$ about the point $z$, we get
+		\begin{align*}
+			f(z) = \frac{1}{2\pi i} \int_{C} \frac{f(\zeta)}{\zeta-z}d\zeta
+		\end{align*}
+		Evaluating this integral directly by parameterizing the circle as $\gamma(t) = z + Re^{it}$, $0 \leq t \leq 2\pi$, and noting that $\gamma'(t) = iRe^{it}$, we see that
+		\begin{align*}
+			\frac{1}{2\pi i} \int_{C} \frac{f(\zeta)}{\zeta-z}d\zeta &= \frac{1}{2\pi i} \int_0^{2\pi} \frac{f(z+Re^{it})}{z + Re^{it} - z}iRe^{it}dt \\
+			&= \frac{1}{2\pi} \int_0^{2\pi} f(z+Re^{it})dt
+		\end{align*}
+		Writing $f(z) = u(x, y) + iv(x,y)$, and noting that $z + Re^{it} = (x+r\cos(t), y+r\sin(t))$,
+		\begin{align*}
+			u(x,y) + iv(x,y) = \frac{1}{2\pi} \int_0^{2\pi} (x+r\cos(t), y+r\sin(t))dt + \frac{i}{2\pi} \int_0^{2\pi} v(x+r\cos(t), y+r\sin(t))dt
+		\end{align*}
+		Matching real parts gives us $u(x,y) = \frac{1}{2\pi} \int_0^{2\pi} u(x+r\cos(t), y+r\sin(t))dt$, which completes the proof.
+		
+		\item The cauchy integral formula states
+		\begin{align*}
+			\frac{2\pi i f^{(n)}(z)}{n!} = \int_C \frac{f(\zeta)}{(\zeta - z)^{n+1}}d\zeta
+		\end{align*}
+		For the first integral, since $\cosh(z)$ is holomorphic, we see that this integral is just the 2nd derivative of $\cosh(z)$ evaluated at the origin, times $2 \pi i / 3!$.  Noting the crucial identity that $\dv{z} \cosh(z) = \sinh(z)$, and that $\dv{z} \sinh(z) = \cosh(z)$, we get that this integral equals $\frac{\pi i}{3} \cosh(0) = \frac{\pi i}{3}$, which is nice. For the second integral, note that 
+		\begin{align*}
+			\int_{\gamma_2} \frac{1}{z(z^2-4)}dz = \int_{\gamma_2} \frac {-\frac14}z + \frac{\frac18}{z-2} + \frac{\frac18}{z+2}dz
+		\end{align*}
+		$\frac{1}{z+2}$ is holomorphic on a neighborhood of the inside of $\gamma_2$, so integrating it along a circle is 0 by Goursat's theorem. By the Cauchy integral theorem, $\int_{\gamma_2} \frac1z dz = 2\pi i$, and similarly, $\int_{\gamma_2} \frac1{z+2} dz=2\pi i$ (the function in both cases is just $f(z) \equiv 1$). Therefore, our original integral equals $-\frac14 2\pi i + \frac18 2\pi i = -\frac14 \pi i$.
+		
+		\item For any $\theta \in [0, 2\pi)$, $f(z) = e^{i\theta}z^n$ satisfies the hypothesis, since
+		$|f(z)| = |e^{i\theta}z^n| = |z^n| \leq |z^n|$, and similarly, $|f(z)/z^n| = |e^{i\theta}| = 1 \overset{|z| \to \infty}{\to} 1$, and $f$ is just $z^n$ times a constant, so it is holomorphic and therefore analytic. Clearly $[0, 2\pi)$ is uncountable, so the set of all functions satisfying these conditions is too.
+		
+		\item We prove that $H$ is holomorphic by giving a formula for the derivative. By definition,
+		\begin{align*}
+			\lim_{w \to 0} \frac 1w (H(z+w)-H(z)) = \lim_{w \to 0} \frac 1w \qty(\int_a^b h(t)\qty[e^{-it(z+w)}-e^{-itz}]dt)
+		\end{align*}
+		Next, since $g(z) = e^{-itz}$ is a composition of holomorphic functions, it too is holomorphic. We therefore see that for all sufficiently small $w$, $g(z+w) - g(z) = g'(z) \cdot w + E(w)$ where $|E(w)/w| \to 0$. This says that $e^{-it(z+w)} - e^{-itz} = w(-it)e^{-itz} + E(w)$. Plugging this in we get:
+		\begin{align*}
+			\lim_{w \to 0} \frac 1w \qty(\int_a^b h(t)\qty[e^{-it(z+w)}-e^{-itz}])dt &= \lim_{w \to 0} \int_a^b (-it)e^{-itz}dt + \frac 1w \int_a^b h(t)E(w)dt \\
+			&= \int_a^b (-it)e^{-itz}dt + \lim_{w \to 0} \int_a^b h(t)\frac{E(w)}{w}dt
+		\end{align*}
+		Finally, one notes that given any $\ve > 0$, there is some $\delta > 0$ so that if $|w| < \delta$, $|E(w)/w| < \ve$. Then
+		\begin{align*}
+			\qty|\int_a^b h(t)E(w)/wdt| \leq \ve \int_a^b |h(t)|dt
+		\end{align*}
+		The integral on the right exists because $|h|$ is just another continuous function. Since the LHS is less than every positive number, we see it equals 0, so our function is indeed holomorphic everywhere. By the triangle inequality,
+		\begin{align*}
+			|H(x+iy)| \leq \int_a^b |h(t)||e^{-it(x+iy)}|dt &= \int_a^b |h(t)|e^{ty}dt \\
+			&\leq \int_a^b |h(t)| e^{b|y|}dt = \int_a^b |h(t)|dt \cdot e^{b|y|}
+		\end{align*}
+		So indeed, $H(z)$ is entire of finite type.
+		
+		\item We are going to show that the Riemann zeta function, $\zeta(z) = \sum_{n=1}^\infty 1/n^z$ is holomorphic on $\mathfrak{R}(z) \geq 2$. This is clearly not obvious, as the Riemann zeta function is actually very complicated. We recall that if $f_n \to f$ uniformly, then
+		\begin{align*}
+			\lim_{n \to \infty} \oint f_n(z)dz = \oint \lim_{n \to \infty} f_n(z)dz
+		\end{align*}
+		So I claim that $\zeta_n(z) =  1/n^z$ converges uniformly. Notice that, for any $z$ with real part at least 2,
+		\begin{align*}
+			\qty|\frac{1}{n^z}| \leq |\frac{1}{n^{x+iy}}| = \frac{1}{n^x} \leq \frac{1}{n^2}
+		\end{align*}
+		And clearly $\sum_{n=1}^\infty \frac{1}{n^2} \to \pi^2/6$, so by the Weistrass M-test the Riemann zeta function converges uniformly on $\mathfrak{R}(z) \geq 2$. Therefore, for any triangle $T \subset \mathfrak{R}(z) > 2$, we see that
+		\begin{align*}
+			\oint_T \lim_{N \to \infty} \sum_{n=1}^N \frac{1}{n^z}dz = \lim_{N \to \infty} \oint_T \sum_{n=1}^N \frac{1}{n^z}dz = \lim_{N \to \infty} \sum_{n=1}^N \oint_T \frac{1}{n^z}dz = \sum_{n=1}^\infty 0 = 0
+		\end{align*}
+		Since $n^z$ is clearly holomorphic on $\mathfrak{R}(z) \geq 2$ for any natural number $n$ (indeed, $n^z = \exp(-z\ln(n))$, and as $\ln(n)$ is just a number, $\exp(z\ln(n))$ is a composition of holomorphic functions and therefore also holomorphic). By Moreras Theorem, we see that the Riemann zeta function is holomorphic on $\mathfrak{R}(z) \geq 2$.
+	\end{enumerate}
+\end{document}

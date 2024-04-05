@@ -1,0 +1,35 @@
+// pre: result is empty, list1, list2 have to be sorted
+
+public static void mergeInto(Queue<String> result, Queue<String> list1, Queue<String> list2) {
+	while (!list1.isEmpty() && !list2.isEmpty()) {
+		if (list1.peek().compareTo(list2.peak()) <= 0) {
+			result.add(list1.remove());
+		} else {
+			result.add(list2.remove());
+		}
+	}
+	while (!list1.isEmpty()) {
+		result.add(list1.remove();
+	}
+	while (!list2.isEmpty()) {
+		result.add(list2.remove());
+	}
+}
+
+public static void sort(Queue<String> list) {
+	if (list.size() > 1) {
+		Queue<String> half1 = new LinkedList<>();
+		Queue<String> half2 = new LinkedList<>();
+		int size1 = list.size()/2;
+		int size2 = list.size() - size1; // This is a cool trick!
+		for (int i = 0; i < size1; ++i) {
+			half1.add(list.remove());
+		}
+		for (int i = 0; i < size2; ++i) {
+			half2.add(list.remove());
+		}
+		sort(half1);
+		sort(half2);
+		mergeInto(list, half1, half2);
+	}
+}

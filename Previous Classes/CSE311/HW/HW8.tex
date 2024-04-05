@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 HW8}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item
+		\begin{enumerate}
+			\item Let $a, b, c \in \bZ^+$ be arbitrary positive integers. Suppose that $(a, b) \in R$ and $(b, c) \in R$. By the definition of being in $R$, we see that there exists integers $k, l \in \bZ$ so that $\frac ab = 2k$, and $\frac bc = 2l$. We notice that, because $b \neq 0$, 
+			\begin{align*}
+				\frac ac = \frac{\frac ab}{\frac cb} = \frac{2k}{\frac 1{2l}} &= 4kl 
+				\\& = 2(2kl)
+			\end{align*}
+			As $2kl \in \bZ$, $\frac ac$ is an even integer. We see that by the definition of being in $R$, $(a, c) \in R$, so $R$ is indeed a transitive relation. $\qed$
+			\item We notice that $(4, 2) \in R$, as $\frac 42 = 2$ which is of course an even integer, but as the description of the problem states, $(2, 4) \not \in R$.
+		\end{enumerate}
+	
+		\newpage
+		\item
+		\begin{enumerate}
+			\item Let $X, Y$ be arbitrary subsets of the naturals of size 2. Then $X = \set{x_1, x_2}$ for some $x_1 < x_2$ (it is not $\leq$ because then the set could potentially have only one element), and similarly $Y = \set{y_1, y_2}$ with $y_1 < y_2$. Suppose $X \preceq Y$ and $Y \preceq X$. Because $X \preceq Y$, we have that $x_1 \leq y_1$, and $x_2 \leq y_2$. Similarly, because $Y \preceq X$, we have that $y_1 \leq x_1$ and that $y_2 \leq x_2$. Because $\leq$ is antisymmetric, we see that both $x_1 = y_1$ and that $x_2 = y_2. \qed$
+			
+			\item[(c)] No. For example, the smaller element of $X$ could be less than the smaller element of $Y$, while the larger element of $X$ is greater than the larger element of $Y$. For example, take $X = \set{1, 4}$, and $Y = \set{2, 3}$. As the larger element of $X$ is larger than the larger element of $Y$, $X \not \preceq Y$. Similarly, as the smaller element of $Y$ is larger than the smaller element of $X$, we see that $Y \not \preceq X$, so we see that $\preceq$ is \textbf{not} a total order by counterexample (we just have to find one counterexample because we are disproving a $\forall$ statement).
+			
+			\item[(d)] Consider $X = \set{1, 2}$, $Y = \set{-1, 3}$, and $Z = \set{0, 1}$. Because the largest element of $X$ is less than the largest element of $Y$, we have that $X \preceq Y$. Because the smaller element of $Y$ is less than the smaller element of $Z$, we have that $Y \preceq Z$. But as the smaller element of $X$ is strictly greater than the smaller element of $Z$, and the larger element of $X$ is strictly greater than the larger element of $Z$, $X \not \preceq Z$. So we see our relation is not transitive by counterexample (once again, this is a $\forall$ statement, so we just have to find one counterexample).
+		\end{enumerate}
+	
+		\newpage
+		\setItemnumber{5}
+		\item 
+		\begin{enumerate}
+			\item Let the domain of discourse be integers for the rest of this problem. We see that $\mathrm{TWIN-PRIME}(x) \coloneqq \mathrm{PRIME}(x) \land (\mathrm{PRIME}(x+2) \lor \mathrm{PRIME}(x-2))$.
+			\item $\forall N \; \exists x > N \; (\mathrm{TWIN-PRIME}(x))$.
+			\item \begin{align*}
+				\lnot (\forall N \; \exists x > N \; (\mathrm{TWIN-PRIME}(x))) &\equiv \exists N \lnot(\exists x > N \; (\mathrm{TWIN-PRIME}(x)) \\
+				&\equiv \exists N  \; \forall x > N \; (\lnot \mathrm{TWIN-PRIME}(x))
+			\end{align*}
+			\item There is an integer so that every integer larger than it is not a twin prime.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item $\forall x \forall y ([\mathrm{Rational}(x) \land \lnot \mathrm{Rational}(y)] \ra \lnot \mathrm{Rational}(x+y))$.
+			\item $\exists x \exists y ([\mathrm{Rational}(x) \land \lnot \mathrm{Rational}(y)] \land \mathrm{Rational}(x+y))$.
+			\item Suppose by way of contradiction that there were two real numbers $x, y$ where $x$ is rational, $y$ is irrational, and $x+y$ is rational. Because $x$ is rational, there are integers $a, b$ where $b \neq 0$ so that $x = \frac ab$. Similarly, as $x+y$ is rational, there are integers $c, d$ where $d \neq 0$ so that $x+y = \frac cd$. By plugging in these values, we notice that
+			\begin{align*}
+				\frac ab + y &= \frac cd \\
+				y &= \frac cd - \frac ab \justif{Rearrange} \\
+				y &= \frac {bc-da}{db} \justif{Combine fractions}
+			\end{align*}
+			As $bc - da \in \bZ$, $db \in \bZ$, and as $d \neq 0$, and $b \neq 0$, $db \neq 0$, we see that by definition $y$ is rational, which is a contradiction. $\qed$
+		\end{enumerate}
+	
+		\newpage
+		\item The author didn't assume the negation of the claim properly. He should've started with ``Suppose both $L_1$ and $L_2$ are irregular and that $L_1 \cap L_2$ is regular." (The negation of $p \ra q$ is $p \land \lnot q$). Instead, assuming that the original statement can be written as $p \ra q$, he assumed $p \ra \lnot q$, and showed that claim to be false. So, assuming his proof is correct, the negation of $p \ra \lnot q$ should be true, which the negation of this is going to be $p \land q$, which is definitely NOT equivalent to $p \ra q$.
+		
+		\newpage
+		\item This assignment took me around 3.5 hours to complete. I don't have any comments.
+		
+		\newpage
+		\item Assume by way of contradiction that $S = \set{a^{311}b^{311}b^mc^m \given m \geq 0}$ was regular (rearrange the given set a little bit). Then the pumping lemma applies. So there exists a $p \in \bZ$ so that every string $w$ with length greater than $p$ can be divided into three parts, $w = xyz$, with the length of $xy$ not larger than $p$, the length of $y$ not smaller than 1, and $\forall i \in \bN$ $xy^iz \in S$. $y$ may be in one of four places:
+		
+		\textbf{Case 1:} $y$ is in the $a^{311}b^{311}$ part of the string. Then $y$ is of the form $a^kb^l$ for some $k, l \geq 0$ but not both zero. If $k \neq 0$, $xy^2z$ has $311+k$ $a$'s, so therefore it can't be in $S$. If $k = 0$, then $y$ is of the form $b^l$ with $l \geq 1$. We notice that $xy^2z$ is of the form $a^{311}b^{311+l}b^mc^m$, after rearrangement, which clearly isn't in $S$ because the number of $b$'s is $311+m+l \neq 311+m$ because $l \neq 0$. 
+		
+		\textbf{Case 2:} $y$ is in the $b^{311+m}$ part. Then $y$ is of the form $b^l$ for some $l \neq 0$, and we see that the last part of the previous case applies, so this too is impossible.
+		
+		\textbf{Case 3:} $y$ is in the $c^m$ part. Then $y$ is of the form $c^l$ for some $l \neq 0$. Clearly then $xy^2z = a^{311}b^{311}b^mc^{m+l}$. We notice that $m+l+311 \neq 311 + m$, as $l \neq 0$, so the number of $b$'s is not 311 more than the number of $c$'s, which is again a contradiction. Finally,
+		
+		\textbf{Case 4:} $y$ is in the $b^mc^m$ part. Then $y$ is of the form $b^kc^l$, where $k, l \neq 0$ (the above cases handled where they were already 0). We see that $xy^2z = a^{311}b^{311}b^{311-k}b^kc^lb^kc^lc^{311-l}$. This shows that there would be a $b$ after a $c$, which is of course not in $S$. As these were the only four cases, we see that $S$ cannot possibly be regular. $\qed$
+		
+		I found that using the regular method with $S = \set{a^{311}b^{311}b^m \given m \geq 0}$ would be a lot simpler of a proof. 
+		
+		\newpage
+		\item We define function $\mathrm{ends}$ from the set of all regex to the set of all regex as follows. 
+		
+		$\mathrm{ends}(\ve) = \ve$, $\mathrm{ends}(\emptyset) = \emptyset$, and $\mathrm{ends}(a) = a \cup \ve$. Then we define it structurally by, given regular expressions $A, B$, $\mathrm{ends}(AB) = \mathrm{ends}(A)B\cup \mathrm{ends}(B)$, $\mathrm{ends}(A \cup B) = \mathrm{ends}(A) \cup \mathrm{ends}(B)$, and finally $\mathrm{ends}(A^*) = \mathrm{ends}(A) A*$. Now, for a regular language $L$, we know there exists a regular expression $R$ for it. Let $P(L) \coloneqq \mathrm{ends}(L)$ is recognized by $\mathrm{ends}(R)$. We start by proving the base cases.
+		
+		The ends of the language that recognizes only the empty set is also empty, so $P(\emptyset)$ is true. The ends of the language that recognizes only $\ve$ is also just the language that include $\ve$, because if it was something non-$\ve$ in $\Sigma^*$, then it would already not be recognized. And clearly if it is $\ve$ then it is recognized. Finally, ends of the language that recognizes $a$ is just going to be $a$ and $\ve$, because we could add an $a$ to $\ve$. Suppose $A, B$ are arbitrary languages and suppose $P(A), P(B)$. I tried finishing this, but I couldn't really figure out how to word this correctly. I do believe the bulk of the problem was finding the recursive definition of $\mathrm{ends}$, so I am happy enough with this attempt.
+		\end{enumerate}
+\end{document}

@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+\usepackage{braket}
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\S}{\mbb S}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{MATH 461 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}
+		\item By integrating the binomial theorem,
+		\begin{align*}
+			\frac{1}{n+1} (x+1)^{n+1}=\int_0^x (x+1)^ndx = \int_0^x \sum_{k=0}^n {n \choose k} x^k = \sum_{k=0}^n {n \choose k} \frac{1}{k+1} x^k
+		\end{align*}
+		Plugging in $x=1$ yields
+		\begin{align*}
+			{n \choose 0} + \frac12 {n \choose 1} + \cdots + \frac{1}{n+1} {n \choose n} = \frac{1}{n+1}2^{n+1}
+		\end{align*}
+	
+		\newpage
+		\item Equivalently, since 
+		\begin{align*}
+			\sum_{k=0}^{n} k{n \choose k} = n2^{n-1}
+		\end{align*}
+		We want to show that
+		\begin{align*}
+			\sum_{k=0}^{n} k(k-1) {n \choose k} = n(n+1)2^{n-2} - 2n \cdot 2^{n-2} = n(n-1)2^{n-2}
+		\end{align*}
+		If we had $n$ people and wanted to choose a committee, the left hand side first picks a $k$ person committee, then picks a leader ($k$ ways), then picks a co-leader ($k-1$ ways) for all $k$. On the right, we pick a leader (1 of $n$ people), a co-leader (1 of $n-1$ people), and we pick the rest of their team (a subset of the remaining $n-2$ people, which can be found in $2^{n-2}$ ways). These are clearly equal and hence we have proven the identity.
+		
+		\newpage
+		\item Pair up the number of odd summing subsets with the number of even summing subsets, by doing the following:
+		
+		If $1 \in S$ then $S \leftrightarrow S \setminus 1$, and 
+		
+		If $1 \not \in S$ then $S \leftrightarrow S \cup 1$.
+		
+		This is clearly a bijection, and since adding/removing $1$ will flip the sign, we have concluded the number of odd summing subsets equals the number of even summing subsets. Since each subset sums to either an odd or even number, we have that $\text{\# odd summing subsets} + \text{\# even summing subsets} = 2^n$, and thus $\text{\# odd summing subsets} = 2^{n-1}$.
+		
+		\newpage
+		\item We want to examine the coefficient of $m$ in $(1-x^2)^n$. First, by the binomial theorem we see this equals $(-1)^m {2m \choose m}$. Also, since
+		\begin{align*}
+			(1-x^2)^n = (1-x)^n(1+x)^n = \sum_{k=0}^n (-1)^k {n \choose k} x^k \cdot \sum_{k=0}^n {n \choose k} x^k
+		\end{align*}
+		We see that the coefficient of $x^n$ in the RHS is 
+		\begin{align*}
+			\sum_{k=0}^n (-1)^k {n \choose k} x^k {n \choose n-k} x^{n-k}
+		\end{align*}
+		Since if we pick $x^k$ in the first sum, we need to pick $x^{n-k}$ in the second to get a term of $x^n$. This is of course equal to
+		\begin{align*}
+			\sum_{k=0}^{n} (-1)^k {n \choose k}^2
+		\end{align*}
+		On the other hand, if $n$ is odd since the LHS, equal to 
+		\begin{align*}
+			\sum_{k=0}^{n} (-1)^k {n \choose k} x^{2k}
+		\end{align*}
+		has only even powers of $x$, this coefficient will be 0. If $n=2m$ is even, the coefficient of $x^n$ in this sum is just ${2m \choose m}$.
+		
+		\newpage
+		\item By Newton's binomial theorem, we see that the taylor expansion of $(1-4x)^{-1/2}$ is
+		\begin{align*}
+			\sum_{k=0}^\infty {-1/2 \choose k} (-1)^k 4^k x^k
+		\end{align*}
+		Since 
+		\begin{align*}
+			{-1/2 \choose k} &= \frac{-1/2(-1/2-1)(-1/2-2)\cdots(-1/2-k+1)}{k!} = \frac{-1(-1-2)(-1-4) \cdots (-1-2k+2)}{2^k k!} \\
+			&= (-1)^k \frac{1 \cdot 3 \cdot 5 \cdots (2k-1)}{2^k k!} = (-1)^k \frac{(2k-1)!!}{2^k k!}
+		\end{align*}
+		Where $(2k-1)!!$ is of course the double factorial. From the identity $(2k)! = (2k)!! \cdot (2k-1)!!$, and since $(2k)!! = 2^k k!$ (simply remove a 2 from each factor), we have concluded that $(2k-1)!! = (2k)!/2^k k!$. We have concluded that the quantity above equals
+		\begin{align*}
+			(-1)^k \frac{(2k)!}{4^k (k!)^2}
+		\end{align*}
+		Thus the power series at the start equals
+		\begin{align*}
+			\sum_{k=0}^\infty (-1)^2k \frac{(2k)!}{4^k k!} 4^kx^k = \sum_{k=0}^\infty {2k \choose k} x^k
+		\end{align*}
+	\end{enumerate}
+\end{document}

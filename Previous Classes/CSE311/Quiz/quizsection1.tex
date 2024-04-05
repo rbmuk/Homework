@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Quiz Section 1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		\begin{enumerate}
+			\item Let $P=$I am lifting weights this afternoon, and $Q$=I do a warm up exercise. a) translates to $P \implies Q$.
+			\item Let $P=$I am cold, $Q=$I am going to bed, $R=$I am two years old, and $S=$ I carry a blanket. Then b) would translate to $P \land Q \lor R \implies S$.
+		\end{enumerate}
+	
+		\item
+		
+		
+		\begin{enumerate}
+			\item 
+			Let $P=$I walk my dog, and $Q=$I make new friends. Then a) would translate to $P \implies Q$ (If I walk my dog, then I make new friends).
+			\item 
+			Let $P=$I will drink coffee, and $Q=$if Starbucks is open, and $R=$my coffeemaker works. Then b) translates to $Q \lor R \implies P$.
+			\item 
+			Let $P=$you are a US citizen, $Q=$you are over 18, and $R=$you are eligible to vote. Then c) translates to $P \land Q \implies R$.
+			\item 
+			Let $P=$I can go home, $Q=$I have finished my homework. Then d) translates to $Q \implies P$.
+			\item 
+			Let $P=$I have an internet connection, $Q=$I am logged into zoom. Then e) translates to $Q \implies P$.
+			\item 
+			Let $P=$I am a student, and $Q=$I attend university. Then f) translates to $Q \implies P$.
+		\end{enumerate}
+		\item
+		
+		\begin{enumerate}
+			\item 
+			If the sun is out, then we have class outside. 
+			
+			The sun is out is sufficient for us to have class outside.
+			\item 
+			If the book has been out for a week and I don't have homework then I have finished reading the book.
+			
+			The book being out for a week and me not having homework is sufficient for me finishing reading the book.
+			
+			\item 
+			If I operate the machine, then I have read the manual.
+			Me operating the machine is sufficient for me having read the manual.
+		\end{enumerate}
+	\item 
+		\begin{enumerate}
+			\item Let $P=$You send me an email message, and $Q=$I will remember to send you the address, then a) translates to $P \implies Q$. (note not the other direction, as it simply says "only if".
+			\item 
+			Let $P=$Berries are ripe along the trail, $Q=$Hiking is safe, $R=$Grizzly bears have been seen in the area. Then b) translates to $P \implies (Q \iff \lnot R)$.
+			\item 
+			Let $P=$I am trying to type something, $Q=$My cat is eating, $R=$My cat is sleeping. Then c) translates to $\lnot P \implies Q \lor R$.
+		\end{enumerate}
+	\item 
+		\begin{enumerate}
+			\item Let $P=$I am drinking tea, $Q=$I am eating a cookie. Then a) translates to $P \implies Q \lor Q \implies P$. If at least one of $P$ or $Q$ is false, then the above statement is of course true, by the truth tables for $R \implies S$. If none are false, then both are true, so both statements above are true as well. In any case, the statement above is always true.
+		\end{enumerate}
+	\item 
+		\begin{enumerate}
+			\item Likely this would be inclusive or, because having experience in 2 programming languages would help the company hiring you, not hinder them. 
+			\item 
+			I believe this would be inclusive or, as the lunch lady could serve both salad and soup at the same time. 
+			\item 
+			This would definitely be exclusive or. You would not want to perish, and its phrased in the way of like "do this or else." So it would make the most sense to be $\oplus$.
+			\item 
+			This would also be inclusive or. If you have both, that's fine, you have more than you needed! One verification wouldn't hinder the other.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

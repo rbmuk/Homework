@@ -1,0 +1,43 @@
+if you are iterating over a structure, and you want to remove from the structure,
+you want to have the iterator do the remove, instead of talking to the structure directly.
+
+e.g.
+ArrayIntList list = ...
+Iterator<Integer> itr = list.iterator(); <- NOT Iterator<ArrayIntList>, instead Iterator<Integer>
+while (itr.hasNext()) {
+	int next = itr.next();
+	if (next % 3 == 0)
+		itr.remove();
+}
+
+public class ArrayIntListIterator implements Iterator<Integer> {
+
+	private int position;
+	private ArrayIntList list;
+	private boolean removeOK;
+	
+	public ArrayIntListIterator(ArrayIntList list) {
+		this.list = list;
+		position = 0;
+		removeOK = false;
+	}
+	
+	public boolean hasNext() {
+		return position < list.size();
+	}
+	
+	public Integer next() {
+		if (!hasNext()) throw new NoSuchElementException();
+		int result = list.get(position);
+		position++;
+		removeOK = false;
+		return result;
+	}
+	
+	public void remove() {
+		if (!removeOK) throw new IllegalStateException();
+		list.remove(position - 1);
+		position--;
+		removeOK = false;
+	}
+}

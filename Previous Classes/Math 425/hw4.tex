@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item Suppose that $G \setminus F_1$ was empty. Then $F_1 \supset G$. Take any $g \in G$. Since $G$ is open, there is a neighborhood $N(g) \subset G \subset F$, so the interior of $F_1$ isn't empty, a contradiction. Since $G \setminus F_1$ is not empty, we can take $x$ in it. Next, since $F_1$ is closed, $d(\set{x}, F_1) = d > 0$ because if it was 0 then $x \in \overline{F_1} = F_1$, which is impossible. Since $x \in G$, there is some $r_1 > 0$ so that $N_{r_1}(x) \subset G$. Take $r_2 = \min\set{r_1, d/2}$. If $N_{r_2}(x) \cap F_1 \neq \emptyset$, there would be some $f \in F_1$ so that $d(x, f) < d/2$. But for any $f \in F$, $d(x, f) \geq d$, a which is a contradiction. So $N_{r_2}(x) \cap F_1 = \emptyset$, and therfore $N_{r_2}(x) \subset G \setminus F_1$. Finally, let $r = r_2/2$. Since we are in $\R^d$, $\overline{N_r(x)} \subset N_{r_2}(x)$, so indeed, there is a closed ball about a point in $G$.
+			
+			\item I claim that if $A, B$ are closed and have empty interiors, then $A \cup B$ is also closed and has empty interior. It is closed since the finite union of closed sets is also closed. Suppose it had an interior point--say $u \in (A \cup B)^{\circ}$. Then there is some $r_1 > 0$ so that $N_{r_1}(u) \subset A \cup B$. Since $A, B$ have empty interiors, we have that $N_{r_1}(u) \not \subset A$, and that $N_{r_1}(u) \not \subset B$. Since it is contained in the union, and not entirely contained in $A$, we can find a point $b \in B$ so that $b \in N_{r_1}(u) \setminus A$. From last time, $d(\set{b}, A) = \delta > 0$, since if it was $0$ then $b \in \overline{A} = A$, which isn't true. Let $r = \min\set{\delta/2, (r_1-d(u,b))/2}$. If there was some $x \in N_r(b) \cap A$, then $\delta \leq d(x, b) < \delta/2$, a contradiction. So $N_r(b) \cap A = \emptyset$. Since $N_r(b) \subset N_{r_1}(u) \subset A \cup B$, we see by the last two facts that $N_r(b) \subset B$, which shows that $B$ doesn't have empty interior, a contradiction. It follows clearly by induction that if $F_1, \ldots, F_n$ are closed sets with empty interior, then $\cup_{k=1}^n F_k$ is also a closed set with empty interior. Continuing on from part (a), since $N_r(x) \subset G$, we see that $N_r(x) \cap G = N_r(x)$. Now we need to find a sub-neighborhood of this neighborhood that is contained in $N_r(x) \setminus (F_1 \cup F_2)$. Since $F_1 \cup F_2$ has empty interior (by the lemma above), we see that $F_1 \cup F_2 \not \supset N_r(x)$. Then there is a point $x_2 \in N_r(x)$ so that $x_2 \not \in F_1 \cup F_2$. We see that $d(\set{x_2}, F_1 \cup F_2) = \delta > 0$, since it can't be 0 by the same reasoning above. Since $x_2$ is an interior point of $N_r(x)$ (clearly open) we can find an $r_2^*$ so that $N_{r_2^*}(x) \subset N_r(x)$. Clearly $\overline{N_{r_2*/2}(x)} \subset N_r(x)$.Taking $r_2 = \min\set{r_2^*/2, (r-d(x_2, x)/10)}$ will have $\overline{N_{r_2}(x_2)} \subset N_r(x) \setminus (F_1 \cup F_2)$ since $\overline{N_{r_2}(x_2)} \subset N_{r_2*}(x)$ which is disjoint from $F_1 \cup F_2$ by the reasoning above (if it wasn't, it would contradict the minimality of $d$). We have therefore generated a point $x_2$ and a radius $r_2$ so that $\overline{N_{r_2}(x_2)} \subset N_r(x) = G \cap N_r(x) \subset G \setminus G \setminus (F_1)$ while also having that $N_{r_2}(x_2) \subset N_r(x) \setminus (F_1 \cup F_2) \subset G \setminus (F_1 \cup F_2)$. We can now clearly continue this process for all $n \in \bN$ (the important part is that the union of closed sets with empty interiors is also a closed set with empty interior), so we can indeed generate a sequence of points $\set{x_n}_{n=1}^\infty$ and radii $\set{r_n}_{n=1}^\infty$ satisfying the conditions in this part.			
+			\item We see that $\overline{N_{r_n}(x_n)}$ is a sequence of nested, nonempty, closed sets, and therefore,
+			\begin{align*}
+				\bigcap_{n=1}^\infty \overline{N_{r_n}(x_n)} \neq \emptyset
+			\end{align*}
+			Since this intersection is in $G \setminus \qty(\bigcup_{k=1}^\infty F_k)$ by construction, we see that $\bigcup_{k=1}^\infty F_k \not \supset G$, and therefore can't be all of $\R^d$.
+		\end{enumerate}
+		
+		\item Let $\set{r_n}$ be an enumeration of the rationals. Suppose there were open sets $\set{U_n}_{n=1}^\infty$ so that $\bQ = \cap_{n=1}^\infty U_n$. Since $\bQ$ is dense, each $U_n$ is dense (i.e., $\bQ \subset U_n$ $\implies \R = \overline{\bQ} \subset \overline{U_n}$). First, take any point $u_1 \in U_1$, since $u_1$ is an interior point there is an $\eta > 0$ so that $N_\eta(u_1) \subset U$. Let $\eta_1 = \min\set{r, |u-r_1}/2$. Clearly, $a_1 \not \in \overline{N_{\eta_1}(u_1)} \subset U$. Next, choose any point $u_2 \in \overline{N_{\eta_1}(u_1)} \cap U_2$ (such a point exists since $U_2$ is dense). Repeat the same process, choose $\eta_2$ so that $\eta_2 < |u_2 - u_1|/10$, $\eta_2 < |u_2-r_2|/10$ and $\overline{N_{\eta_2}(u_2)} \subset U_2$. Repeating this process, we get a sequence of closed intervals $\overline{N_{\eta_n}(u_n)} \subset U_n$ all nested, and nonempty. Then there is some point in the intersection $x \in \bigcap_{k=1}^\infty N_{\eta_k}(u_k)$. Since $x \neq r_k$ for every $k \in \bN$, it cannot be that $x$ is rational (we excluded the $n$th rational in $I_n$). Since $\bigcap_{n=1}^\infty I_n \subset \bigcap_{n=1}^\infty U_n$, we have shown that $U_n$ contains an irrational point, a contradiction.
+		
+		\item $\R$ is closed since it is the entire space, and bounded since $\R \subset N_2(0)$. I claim that $\set{a_n}_{n=1}^\infty$ where $a_n=n$ has no convergent subsequence. Suppose it did, say $\set{a_{n_k}}_{k=1}^\infty$. Then this would also be cauchy, so there would be some $K > 0$ so that if $k > K$, $d(n_k, n_{k+1})=d(a_{n_k}, a_{n_{k+1}}) < 1/2$. Since $n_k$ is an injection from $\bZ_+$ to $\bZ_+$, it is also strictly increasing, so $|n_{k+1} - n_k| \geq 1$. But then $d(n_k, n_{k+1}) \geq 1$, a contradiction. So $\R$ is not compact with this metric.
+		
+		\item Suppose instead there was some $\emptyset \neq A \subset X$ that is both closed and open. Then $A^c$ is nonempty, since $A \neq X$, closed (since $A$ is open) and open (since $A$ is closed). Clearly $X = A \cup A^c$. Also, $A \cap \overline{A^c} = A \cap A^c = \emptyset$, and $\overline{A} \cap A^c = A \cap A^c = \emptyset$. But then $X$ is disconnected, a contradiction.
+		
+		\item \fbox{$\implies$} 
+		
+		If $E \subset X$ is closed and bounded, since its bounded there is some $R > 0$ and $x \in E$ so that if $y \in E$, $d(y, x) < R$. Then $E \subset N_r(x) \subset \overline{N_r(x)}$, and since $E$ is closed and a subset of a compact set, it is also compact.
+		
+		\fbox{$\impliedby$}
+		
+		If $E$ is compact, we know that $E \subset \cup_{x \in E} N_1(x)$, so it admits a finite subcover $\cup_{k=1}^n N_1(x_k)$. Let $d = \max_{1 \leq i, j \leq n} d(x_i, x_j)$. For any $q \in E$, we know that $q \in N_1(x_j)$ for some $j$. Then $d(x_1, q) \leq d(x_1, x_j) + d(q, x_j) \leq d + 1$, so $E$ is bounded. Since $E$ is compact, it is limit point compact. If $E$ wasn't closed, we could take $x \in E' \setminus E$. Then at step $n$, choose $x_n \in E$ so that $d(x_n, x) < 1/n$. Clearly $x$ is a limit point of $\set{x_n}_{n=1}^\infty$. Suppose it had another limit point, say $y$. At step 1, find an $x_{n_1} \in N_{1/1}(y) \setminus y$. At step $k$, since $N_{1/n}(y) \setminus y$ intersects $E$ infinitely many times, we can find an $x_{n}$ in this intersection with index greater than all previous $x_{n_l}$'s, so call this new one $x_{n_k}$. This gives a sequence $x_{n_k} \to y$. Since $x_{n_k}$ is a subsequence of $x_n$, it also converges to $x$, so $x = y$. Then $\set{x_n}_{n=1}^\infty$ is an infinite subset of $E$ with no limit points in $E$, which is a contradiction. So indeed, $E$ is closed and bounded.
+		
+		\item Let \begin{align*}
+			f_n(x) = \begin{cases}
+			1, \quad 0 \leq x \leq 1/n \\
+			-n/2(x-(1/2+1/n)), \quad 1/2-1/n \leq x \leq 1/2+1/n \\
+			0, \quad x > 1/2 + 1/n
+			\end{cases}
+		\end{align*} For $n \geq 2$. A quick calculation shows that $\lim_{x \to 1/2 - 1/n} f_n(x) = 1$, and that $\lim_{x \to 1/2+1/n} f_n(x) = 0$, so $f$ is continuous for every $n \geq 1$. Suppose that $f_n$ had some convergent subsequence, say $f_{n_k} \to f$. Since $f_{n_k} \to f$ uniformly (given the metric), $f$ is also continuous. Let $\delta > 0$. We can find $K > 100/\delta$ so that $d_\infty(f_{n_K}, f) < 1/3$. In particular, $|f_{n_K}(1/2-1/K) - f(1/2-1/K)| = |1 - f(1/2-1/K)| < 1/3$, and that $|f_{n_K}(1/2+1/K)-f(1/2+1/K)| = |f(1/2+1/N)|< 1/3$. Clearly $2/K < \delta$. The first part says, by the reverse triangle inequality, that $|f(1/2-1/K)| > 1 - 1/3 = 2/3$, and the second says that $|f(1/2+1/K)| < 1/3$. Then, $|f(1/2-1/K)-f(1/2+1/K)| \geq |f(1/2-1/K)| - |f(1/2+1/K)| > 2/3 - 1/3 = 1/3$. Since this is true for every $\delta$, we see that $f$ is not continuous. But then $f_{n_k}$ didn't converge in this metric space, a contradiction.
+		
+	\end{enumerate}
+\end{document}

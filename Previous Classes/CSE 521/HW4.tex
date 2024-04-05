@@ -1,0 +1,241 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{bbm}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb{P}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\renewcommand{\O}{O\qty}
+
+% Sets
+\usepackage{braket}
+
+% Code
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\lp}[1]{\mg{#1}_p}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 521 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item Notice for $\alpha > 0$ and some fixed $y \in \R^n$, 
+			\begin{align*}
+				\P[\sum_{i=1}^n y_i \alpha Z_i \geq x] = \P[\sum_{i=1}^n y_i Z_i \geq \frac{x}{\alpha}] = \P[\mg{y}_p Z \geq \frac{x}{\alpha}] = \P[\mg{y}_p \alpha Z \geq x]
+			\end{align*}
+		
+			\item Since the pdf is continuous and bounded, we see that $\int_{1-\ve}^1 p(x)dx = p(c_\ve) \cdot \ve$ for some suitable choice of $c_\ve \in (1-\ve, 1)$. The pdf is also symmetric, since $-Z$ has the same distribution as $\mg{-1}_p Z = Z$. Thus 
+			\begin{align*}
+				\P[-1 + \ve < Z < 1 - \ve] = 2\qty(\int_0^1 p(x)dx - \int_{1-\ve}^{1} p(x)dx) = \frac 12 - 2p(c_\ve) \ve \leq \frac12 - c \ve
+			\end{align*}
+		
+			Similarly $\int_{1}^{1+\ve} p(x)dx = p(d_\ve) \cdot \ve$ for a suitable choice of $c_\ve$. Thus,
+			\begin{align*}
+				\P[-1-\ve < Z < 1 + \ve] = 2\qty(\int_0^1 p(x)dx + \int_{1}^{1+\ve} p(x)dx) = \frac12 + 2p(d_\ve)\ve \geq \frac12 + c \ve
+			\end{align*}
+			Since $p(1) > 0$ we can find a sufficiently small neighborhood so that $p(x) > p(1)/2=c$ for all $x$ close to 1. 
+		
+			\item Notice that $y_i = (Px)_i = \sum_j x_j Z_{ij}$ just by matrix multiplication. Define $a_i = |y_i| < \lp{x}(1-\ve)$ and $b_i = |y_i| > \lp{x}(1+\ve)$. Clearly $\mbb E a_i = \P[|y_i| < \lp{x}(1-\ve)] = \P[|Z| < 1-\ve] \leq \frac12 - c\ve$, and $\mbb E b_i \geq \frac12 + c\ve$. Let $S_\ell = \sum_{i=1}^\ell a_i$. Notice that
+			\begin{align*}
+				\P[S_\ell \geq \ell/2] = \P[S_\ell - \mbb E S_\ell \geq \ell/2 - \mbb E S_\ell] \leq \P[|S_\ell - \mbb E S_\ell| \geq 2C\ve l] \leq 2e^{-2C^2 \ve^2 l}
+			\end{align*}
+			Similarly if we let $T_\ell = \sum_{i=1}^\ell b_i$ we get
+			\begin{align*}
+				\P[T_\ell \geq \ell/2] \leq 2e^{-2C^2\ve^2 \ell}
+			\end{align*}
+			Now we want 
+			\begin{align*}
+				\P[S_\ell \leq \ell/2, \; T_\ell \leq \ell/2] \geq 1 - 4e^{-2C^2\ve^2\ell} \geq 1 - \delta
+			\end{align*}
+			It suffices to choose $\ell = \frac{\log(4/\delta)}{C^2\ve^2} = \O(\frac{\log 1/\delta}{\ve^2})$. Notice that if both $S_l \leq \ell/2$ and $T_l \leq \ell/2$, and $\ell$ is odd, then we certainly have that the median is in $[\lp{x}(1-\ve), \lp{x}(1+\ve)]$.
+			
+			\item Notice that, if $Z \sim \mathrm{Cauchy}(0, 1)$,
+			\begin{align*}
+				\P[1+\ve < Z < 1-\ve] = \frac1\pi \arctan(1-\ve) - \frac1\pi \arctan(1+\ve) \approx \frac{1}{2\pi} 2\ve = \frac{\ve}{\pi}
+			\end{align*}
+			By the mean value theorem. So we must use $\ell = \pi^2\log(4/0.01)/\ve^2$ to get a $1\pm \ve$ approximation with probability $99/100$. I shall choose $\ve = 0.01$ as well, so we need $\ell \approx 591334$. Here is my code:
+			\begin{lstlisting}
+				import numpy as np
+				from numpy import random as rand
+				
+				x = [int(x) for x in open("p4.in", "r")]
+				P = rand.standard_cauchy((591334, len(x)))
+				y = np.absolute(P.dot(x))
+				print(np.median(y))
+			\end{lstlisting}
+			I get a value of 4788.158226259304.
+		\end{enumerate}
+	
+		\item \begin{enumerate}
+			\item For $a = 0$, 
+		\begin{align*}
+			\P[\floor{\frac{-s}{w}} = \floor{\frac{b-s}{w}}] = \P[-1 = \floor{\frac{b-s}{w}}]
+		\end{align*}
+		This happens precisely when $-w < b-s < 0$, or $b < s < b+w$. $s$ can only be in this range if $|b| < w$, else the probability is 0. If $b$ is positive then we need $b < s < w$, which happens with probability $(w-b)/w = 1 - b/w$. Similarly if it is negative we need $1+b/w$. So the probability is $\max \Big\{0, 1 - \frac{|b|}{w}\Big\}$. Similarly, if 
+		\begin{align*}
+			\floor{\frac{a-s}{w}} = \floor{\frac{b-s}{w}}
+		\end{align*}
+		Then,
+		\begin{align*}
+			\frac{a-s}{w} - 1 &\leq \frac{b-s}{w} \leq \frac{a-s}{w} + 1 \\
+			\iff a - s - w &\leq b - s \leq a - s + w \\
+			\iff a - w &\leq b \leq a + w \\
+			\iff |b-a| &\leq w
+		\end{align*}
+		So if $|b-a| > w$ the probability is already 0. Now WLOG $b > a$. Since $\floor{x} = \floor{y}$ iff $\floor{x-k} = \floor{y-k}$ (for integer $k$), and since $|b-a| < 1$, we can assume that $0 < a,b < 2$. Now either $(a, b) \subset (0, 1)$ or $1 \in (a, b)$. In the first case, the only way the floors won't be equal is if $s \in (a, b)$, since then $\floor{a-s} = -1$ while $\floor{b-s} = 0$ (Else they are either both 0 or both -1). In the second case, the only way they won't be equal is if $s$ takes away too little from $b$, or too much from $a$. That is, if $s \in (0, b-1)$, or $s \in (a, 1)$. The probability this bad event happens is just $b-a$. Similarly, in the general case, for $k$ an integer, $\floor{x/w} = \floor{y/w}$ iff $\floor{x/w + kw/w} = \floor{y/w + kw/w}$. We can again assume that $0 < a,b < 2w$. The exact same logic as before works again but just having dividing by $w$ everywhere (indeed: we are just stretching the number line by a factor of $1/w$), so we can conclude the probability is $\max \Big\{0, 1 - \frac{|a-b|}{w}\Big\}$.
+		
+		\item We see that
+		\begin{align*}
+			\P[h(p)=h(q)] &= \P[\bigcap_{i=1}^d \floor{\frac{p_i-s_i}{w}} = \floor{\frac{q_i-s_i}{w}}] = \prod_{i=1}^d \qty(1-\frac{\alpha_i}{w}) \\
+			&\approx \exp(-\frac1w\sum_{i=1}^d \alpha_i) = \exp(-\frac1w \mg{p-q}_1)
+		\end{align*}
+		So if $d(p, q) = \mg{p-q}_1 \leq r$, we have
+		\begin{align*}
+			\P[h(p)=h(q)] \geq \exp(-\frac rw)
+		\end{align*}
+		And when $d(p, q) \geq c \cdot r$, we have
+		\begin{align*}
+			\P[h(p)=h(q)] \leq \exp(-\frac{cr}{w})
+		\end{align*}
+		So this hash function is $(r, c \cdot r, e^{-r/w}, e^{-cr/w})$-sensitive.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

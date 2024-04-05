@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Answer to P2}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item[9.] Define the function $f$ by $f(x) = e^{-1/x^2}$ if $x \neq 0$, and $f(0) = 0$. 
+		\begin{enumerate}
+			\item Show that $\lim_{x \to 0} f(x)/x^n = 0$ for all $n > 0$. 
+			
+			\begin{align*}
+				\lim_{x \to 0} \frac{e^{-1/x^2}}{x^n} = \lim_{y \to \infty} \frac{y^{n/2}}{e^{y}} = 0
+			\end{align*}
+			
+			\item Show that $f$ is differentiable at 0 and that $f'(0) = 0$.
+			
+			\begin{align*}
+				f'(0) = \lim_{h \to 0} \frac{f(h)-f(0)}{h} = \frac{e^{-1/h^2}}{h} = 0 \quad \text{ by part (a)}
+			\end{align*}
+			
+			\item Show by induction on $k$ that for $x \neq 0$, $f^{(k)}(x) = P(1/x)e^{-1/x^2}$, where $P$ is a polynomial of degree $3k$. 
+			
+			We see that, for $x \neq 0$, $f'(x) = -\frac{2}{x^3} e^{-1/x^2}$, and that $-2/x^3$ is a polynomial in $1/x$ of degree 3.
+			
+			Next, suppose that $f^{(k)}(x) = P(1/x)e^{-1/x^2}$ for some polynomial $P(x)$ of degree $3k$ and all $x \neq 0$. We see that:
+			\begin{align*}
+				f^{(k+1)}(x) = e^{-1/x^2} \qty(P(1/x) \cdot \frac{-2}{x^3} + P'(1/x) \cdot \frac{-1}{x^2})
+			\end{align*}
+			$P'(x)$ is a polynomial of degree $3k-1$ and thus $P'(1/x) \cdot -1/x^2$ is a polynomial in $1/x$ of degree $3k+1$. $P(1/x) \cdot -2/x^3$ is a polynomial of $3k+3$, thus $P(1/x) \cdot -2/x^3 + P'(1/x) \cdot -1/x^2$ is a polynomial of degree $3k+3$, completing the inductive step.
+			
+			\item We recall that $f'(0) = 0$. Suppose that $f^{(k)}(0) = 0$ for some $k \geq 2$. Then
+			\begin{align*}
+				f^{(k+1)}(0) = \lim_{h \to 0} \frac{f^{(k)}(h) - f^{(k)}(0)}{h} = \lim_{h \to 0} \frac{P(1/h) \cdot e^{-1/h^2}}{h}
+			\end{align*}
+			for some polynomial $P(x)$. Then $1/hP(1/h)$ is a polynomial in $1/h$ with no constant term, and thus may be written in the form $\sum_{k=1}^{N} a_kh^{-k}$. Now,
+			\begin{align*}
+				\lim_{h \to 0} \frac{P(1/h) \cdot e^{-1/h^2}}{h} = \lim_{h \to 0} e^{-1/h^2} \cdot \sum_{k=1}^{N} a_kh^{-k} = \sum_{k=1}^{N} a_k \lim_{h \to 0} e^{-1/h^2} \cdot h^{-k}
+			\end{align*}
+			Part (a) shows that the limit inside of the sum is always 0, thus this quantity is 0, which completes the inductive step.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

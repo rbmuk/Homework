@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 HW6}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Finally, time for the easy one. If $f$ is not uniformly continuous, then there is some $\eta > 0$ so that for every $\delta > 0$ we have $p, q \in X$ so that $d_X(p, q) < \delta$ and $d_Y(f(p), f(q)) > \eta$. So at step $n$ find $p_n, q_n$ so that $d_X(p, q) < 1/n$ and $d_Y(f(p_n), f(q_n)) > \eta$. We see that $0 \leq \lim_{n \to \infty} d_X(p_n, q_n) \leq \lim_{n \to \infty} 1/n = 0$, so by the squeeze theorem $d_X(p_n, q_n) \to 0$. Since $X$ is compact, it is sequentially compact, and as $q_n$ is a sequence in a sequentially compact metric space, it has a convergent subsequence, say $q_{n_k} \to q \in X$. One also notices that $d_X(p_{n_k}, q_{n_k})$ is a subsequence of $d_X(p_n, q_n)$, and hence has the same limit, which is 0. Then for any $\ve > 0$, we can find $K > 0$ so that $k > K \implies d_X(q_{n_k}, q) < \ve/2$ and $d_X(p_{n_k}, q_{n_k}) < \ve/2$. By the triangle inequality, $d_X(p_{n_k}, q) \leq d_X(p_{n_k}, q_{n_k}) + d_X(q_{n_k}, q) < \ve$, establishing that $p_{n_k} \to q$. One also notices that since $p_{n_k}, q_{n_k}$ are subsequences of $p_n, q_n$, it also holds that $d_Y(p_{n_k}, q_{n_k}) > \eta$. But, by continuity, $\lim_{k \to \infty} f(p_{n_k}) = f(q)$, and also $\lim_{k \to \infty} f(q_{n_k}) = f(q)$. Then we could find $K$ sufficiently large so that $d_Y(f(p_{n_k}), f(q)) < \eta/4$ and also $d(f(q_{n_k}), f(q)) < \eta/4$, which shows by the triangle inequality that $d(f(p_{n_k}), f(q_{n_k})) < \eta/2$, a contradiction.
+		
+		\item Let $\set{x_n}$ be Cauchy in $X$. For any $\ve > 0$, there is some $\delta > 0$ so that $d(x, y) < \delta \implies d(f(x), f(y)) < \ve$. Since $\set{x_n}$ is Cauchy, there is some $N > 0$ so that $n,m \geq N \implies d(x_n, x_m) < \delta$. This in turn implies $d(f(x_n), f(x_m)) < \ve$, which establishes that $f(x_n)$ is Cauchy. Given any $p \in X$, since $E$ is dense there is some sequence $x_n \to p$. Then $x_n$ is a cauchy sequence, and by the lemma above $f(x_n)$ is Cauchy. $f(x_n)$ is a Cauchy sequence of real numbers, and therefore has a limit in $\R$, which we shall label $g(p)$. We first need to show that this limit is unique, so let $y_n \to p$ be another sequence converging to $p$. Since $f$ is uniformly continuous we can find $\delta > 0$ so that $d(x, y) < \delta \implies |f(x)-f(y)| < \ve/2$. We can then find $N > 0$ so that $|f(x_n) - g(p)| < \ve/2$, $d(x_n, p) < \delta / 2$ and $d(y_n, p) < \delta / 2$. Then $d(x_n, y_n) < \delta$, and so $|f(x_n) - f(y_n)| < \ve/2$. We see that $|f(y_n)-g(p)| < \ve$ by the triangle inequality, which establishes that $g$ is well defined. Suppose $a_n \to a$ is a convergent sequence in $X$. Let $\ve > 0$. By uniform continuity, we can find a $\delta > 0$ so that $d(x,y) < \delta \implies d(f(x), f(y)) < \ve/3$. Find $N_1 > 0$ so that $n > N$ means $d(a_n, a) < \delta/2$. Since $E$ is dense, we can find a $x_n \to a$. We showed above that $f(x_n) \to g(a)$, so find $N_2 > 0$ so that if $n > N$, then $d(x_n, a) < \delta/2$ and $|f(x_n) - g(a)| < \ve/3$. Choosing $N = \max\set{N_1, N_2}$ ensures that both inequalities are true at the same time. Let $n > N$ be arbitrary. Since $E$ is dense, we can find a sequence $y_k \to a_n$. Take $K > 0$ so that $k > K$ means $d(y_k, a_n) < \delta/2$ and $|f(y_k)-g(a_n)| < \ve/3$ (since once again, by the uniqueness $f(y_k) \to g(a_n)$, take the max!). We see that $d(y_k, x_n) \leq d(y_k, a_n) + d(a_n, x_n) < \delta$. Then $|f(y_k) - f(x_n)| < \ve/3$ by uniform continuity. Finally, putting our calculations together, $|g(a_n)-g(a)| \leq |g(a_n)-f(y_k)| + |f(y_k)-f(x_n)|+|f(x_n)-g(a)| < \ve/3 + \ve/3 + \ve/3 = \ve$.
+		
+		\item Indeed, let $V_n(p) \coloneqq \set{q \in E \given d(p, q) < 1/n}$. I claim that $V_n(p)$ is nonempty for every $p, n$. Given any $p \in E, n \in \bN$, as $\overline{E} = X$, we can find a $y \in N_{1/n}(p) \setminus p \cap E$, which shows that every $V_n(p)$ is nonempty. Now, let $\ve > 0$. Since $f$ is uniformly continuous, there is some $\delta > 0$ so that $d(x, y) < \delta \implies d(f(x), f(y)) < \ve/2$. Choosing $1/N > \delta$, I claim that for any $n \geq N$, $\mathrm{diam}(f(V_n(p))) < \ve$. Given any $z \in f(V_n(p))$, we have that $d(p, z) < 1/n \leq 1/N < \delta$, so $d(f(p), f(z)) < \ve/2$. Since this is true for every $z \in V_n(p)$, we have that $\mathrm{diam}(f(V_n(p))) \leq \ve/2 < \ve$, as claimed. We showed in class that $\mathrm{diam}(\overline{A}) = \mathrm{diam}(A)$, so indeed, for any $n \geq N$, $\mathrm{diam}(\overline{f(V_n(p))}) < \ve$. This establishes that $\mathrm{diam}(\overline{f(V_n(p))}) \to 0$. We showed on a previous homework that this means that $\bigcap_{n=1}^\infty V_n(p) = \set{y}$ for some $y \in Y$. Call $g(p) = y$.
+		
+		
+		 Suppose $x_n \to x$ is a sequence of points in $X$. Because $\lim_{n \to \infty} \mathrm{diam}(f(V_n(x))) = 0$, there is some $N > 0$ so that $\mathrm{diam}(f(V_N(x))) < \ve$. Also, find $N_2 > 0$ so that $n_2 > 0 \implies d(x_{n_2}, x) < \frac1{100N}$. Then for any $n > 0$, since $E$ is dense, we can find a sequence $E \supset r_k \to x_n$. Since $\lim_{k \to \infty} \mathrm{diam}(f(V_k(x_n))) = 0$, there is some $K_1 > 0$ so that $\mathrm{diam}(f(V_{K_1}(x_n))) < \ve$. Also, find a $K > K_1$ so that $k > K \implies d(r_k, x_n) < \min\set{\frac{1}{100N}, \frac{1}{K_1}}$. It follows that $d(r_k, x) \leq d(r_k, x_n) + d(x_n, x) < \frac{1}{100N} + \frac{1}{100N} < \frac{1}{N}$, so we have $r_k \in V_N(x)$, since $r_k \in E$. This means that $|f(r_k) - g(x)| < \ve$ (Note: $f(r_k) \in \overline{f(V_N(x))}$, which contains $g(x)$). Also, since $d(r_k, x_n) < \frac{1}{K_1}$, we have that $r_k \in V_{K_1}(x_n)$, and so $f(r_k) \in f(V_{K_1}(x_n))$, which shows that $|f(r_k) - g(x_n)| < \ve$. By the triangle inequality, $|g(x_n)-g(x)| \leq |f(r_k)-g(x_n)| + |f(r_k)-g(x)| \leq \ve + \ve$, which shows that $g(x_n) \to g(x)$, which establishes that $g$ is continuous. Now let $e \in E$. By the same diameter reasoning, we can find some $V_N(e)$ so that $\mathrm{diam}(\overline{f(V_N(e))}) < \ve$. Now, clearly $f(e) \in V_N(e)$, and also $g(e) \in V_N(e)$ (since $g(e)$ is in ALL of the $V_N(e)$'s). Since the diameter is smaller than $\ve$, it follows that $|f(e) - g(e)| < \ve$. Since $\ve$ was arbitrary, we have that $f(e) = g(e)$, completing the proof.
+		 
+		 Finally, our proof depended on the lemma from last time, which held in any complete metric space. So this proof would work in any complete metric space, as that was all our proof depended on. Also, since we could construct Cauchy sequences that DON'T converge in incomplete metric spaces, it might not work in incomplete metric spaces. Also, all compact metric spaces are complete, and $\R^d$ is complete for every $d \geq 1$.
+		
+		\item We assume the intermediate value theorem. Suppose that $f(x) \neq x$ for all $x \in [0, 1]$. Then for any fixed $x$, $f(x) > x$ or $f(x) < x$. If for every $x$, $f(x) > x$, then $f(1) > 1$, a contradiction. Similarly, if for all $x$ $f(x) < x$, $f(0) < 0$, a contradiction. So there must be $x, y$ so that $f(x) > x$, and $f(y) < y$. Letting $g(x) = f(x) - x$, we see by the IVT that $g(z) = 0$ for some $z \in [0, 1]$, which says that $f(z) = z$ ($g$ is negative somewhere and positive somewhere else, so it must be 0 in between).
+		
+		\item Let $x$ be fixed. We notice that $\rho_E(x) \leq d(x, z)$ for any $z \in E$, by definition of the inf. By the triangle inequality, $d(x, z) \leq d(x, y) + d(y, z)$. This establishes that $\rho_E(x) \leq d(x, y) + d(y, z)$ for every $z \in E$. Since $d(x, y)$ is a constant, it follows that $\inf_{z \in E} d(x, y) + d(y, z) = d(x, y) + \inf_{z \in E} d(y, z) = d(x, y) + \rho_E(y)$. By definition of the inf, we see that $\rho_E(x) \leq d(x, y) + d(y, z)$. Doing the exact same thing but starting with $\rho_E(y)$, we get that $\rho_E(y) \leq d(x, y) + \rho_E(x)$. These together show that $\rho_E(x) - \rho_E(y) \leq d(x,y)$ and $\rho_E(y) - \rho_E(x) \leq d(x, y)$, which by definition of the absolute value establishes that $|\rho_E(x) - \rho_E(y)| \leq d(x, y)$. Given any $\ve > 0$, if $d(x, y) < \ve$, we see that $|\rho_E(x) - \rho_E(y)| \leq d(x, y) < \ve$, which establishes that $\rho_E(x)$ is uniformly continuous. 
+		
+		\item The denominator, $\rho_A(p) + \rho_B(p)$ is the sum of two uniformly continuous functions (and hence the sum of two continuous functions) and is therefore also continuous. I claim that $\rho_A(p) + \rho_B(p) \neq 0$. I first show that if $\rho_E(p) = 0$ then $p \in \overline{E}$. If $p \in E$, we are done, so suppose $p \not \in E$. Construct a sequence $\set{x_n} \subset E$ so that $d(x_n, p) < \min\set{1/n, d(x_{n-1}, p)/2}$ at every step (since the inf is zero, we can always do this since $\inf + \ve$ is never an upper bound). Clearly $x_n \to p$, and since $x_n \in E$, it follows that $x \in \overline{E}$. If $\rho_A(p) + \rho_B(p) = 0$, then $\rho_A(p) = \rho_B(p) = 0$. Then $p \in \overline{A} = A$, and $p \in \overline{B} = B$, a contradiction since $A \cap B = \emptyset$. $\frac{\rho(_A(p)}{\rho_A(p)+\rho_B(p)}$ is the quotient of two continuous functions who's denominator is never zero, and is therefore also continuous on all of $E$. If $f(p) = 0$, then $\rho_A(p) = 0$, so $p \in \overline{A} = A$. Since $A \cap B = \emptyset$, it follows that $p \not \in B$, so $f(p) = 0$ precisely when $p \in A$. Similarly, if $f(p) = 1$, then $\rho_B(p) = 0$, so $p \in B$, and since $A, B$ disjoint $p \not \in A$. Also, one notes that $\rho_A(p) \leq \rho_A(p) + \rho_B(p)$, so it follows that $\rho_A(p)/(\rho_A(p) + \rho_B(p)) \leq 1$. Also, $\rho_A(p) \geq 0$, and we showed the denominator is always positive, so $f(p) \geq 0$, which shows that the range of $f$ is $[0, 1]$.
+		
+		Since $V = f^{-1}([0, 1/2)) = f^{-1}(\set{0}) \cup f^{-1}((0, 1/2))$, and we already established that $f^{-1}(\set{0}) = A$, it follows that $A \subset V$. By the exact same reasoning $B \subset W$. We notice that $f^{-1}((0, 1/2))$ is the preimage of an open set and therefore also open. We are left to show that everything in $f^{-1}(\set{0})$ is an interior point of $V$. Let $x \in f^{-1}(\set{0})$. Since $f$ is continuous, there is some $\delta > 0$ so that if $d(x, z) < \delta$, $|f(z) - f(x)| < 1/2$, i.e. $|f(z)| < 1/2$. Since $f(z) \geq 0$, this says that $0 \leq f(z) < 1/2$, which says that $z \in f^{-1}([0, 1/2))$, which shows that $N_\delta(x) \subset V$, so $V$ is indeed open. The exact same reasoning would work for $W$, so $W$ is also open, completing the proof.
+		\end{enumerate}
+\end{document}

@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathrm{Pr}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 521 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item I claim that $h_A = h_B$ iff the minimum value of $h$ among $A \cup B$ occurs in $A \cap B$. The reverse direction is clear, so suppose that the minimum value of $h$ was in $(A \cup B) \setminus (A \cap B)$. Then $h_A < h_B$ or vice versa, a contradiction. Thus, 
+		\begin{align*}
+			\P[h_A = h_B] = \frac{|A \cap B|}{|A \cup B|} = J(A, B)
+		\end{align*}
+	
+		\item We see that
+		\begin{align*}
+			\E[Y] = \int_0^1 \P[Y \geq x]dx = \int_0^1 \prod_{i=1}^n \P[X_i \geq x]dx = \int_0^1 (1-x)^ndx = \int_0^1 x^ndx = \frac{1}{n+1}
+		\end{align*}
+		Also, since $Y^2 = \min \Set{X_1, \ldots, X_n}^2 = \min\Set{X_1^2, \ldots, X_n^2}$, we have that 
+		\begin{align*}
+			\E[Y^2] = \int_0^1 \P[Y^2 \geq x]dx = \int_0^1 \prod_{i=1}^n \P[X_i \geq \sqrt{x}]dx = \int_0^1 (1-\sqrt{x})^n dx = \frac{2}{(n+1)(n+2)} \leq \frac{2}{(n+1)^2}
+		\end{align*}
+		Thus $\Var(Y) = \E[Y^2] - \E[Y]^2 \leq \frac{1}{(n+1)^2}$.
+		
+		\item \begin{enumerate}
+			\item At the end of the stream $Y$ is the minimum of $F_0$ independent uniformly distributed r.v.s (since $h(i)$ is a uniform r.v. in $[0,1]$ for each $i$) in $[0, 1]$, and hence by question 2 its expectation is $\frac{1}{F_0+1}$. So $\frac{1}{\E[Y]}-1 = F_0$.
+			
+			\item We also see that $\Var(Y) \leq \frac{1}{(F_0+1)^2}$. Thus $t(Y) \leq 1$. So $Y$ is an unbiased estimator of $\frac{1}{F_0+1}$ with relative variance at most 1, and hence we can approximate $\frac{1}{F_0+1}$ within a $1 \pm \ve$ multiplicative factor using only $k = O\qty(\frac{1}{\ve^2}\log \frac1{0.1})=O\qty(\frac{1}{\ve^2})$ independent samples of $Y$ with probability $1-0.1 = 9/10$. I claim that finding $\frac{1}{F_0+1}$ within a $1 \pm \ve$ multiplicative error is enough to find $F_0$ within a $1\pm 4\ve$ multiplicative error. This is true because
+			\begin{align*}
+				\frac{1-\ve}{F_0+1} \leq Y \leq \frac{1+\ve}{F_0+1} \iff \frac{F_0-\ve}{1+\ve} \leq \frac{1}{Y} - 1 \leq \frac{F_0+\ve}{1-\ve}
+			\end{align*}
+			And because 
+			\begin{align*}
+				\frac{F_0+\ve}{1-\ve} = F_0 \frac{1+\ve/F_0}{1-\ve} \leq F_0\frac{1+\ve}{1-\ve} \leq F_0(1+\ve)(1+2\ve) = F_0(1+3\ve+2\ve^2) \leq F_0(1+4\ve)
+			\end{align*}
+			Where the first inequality holds since $F_0 \geq 1$, the second since $\sum_{k=1}^\infty \ve^k \leq \ve/(1-\ve) \leq 2\ve$ for $\ve < 1/2$, and the last when $\ve$ is sufficiently small.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

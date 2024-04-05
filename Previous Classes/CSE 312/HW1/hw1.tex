@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, newpxtext, newpxmath}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 312 HW1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We are simply choosing a 4-person subset from the set of people who show up, which, by definition, would just be $10 \choose 4$.
+			
+			\item For this one we have a sequential process, if we label the distinct infield positions position 1, position 2, position 3, and position 4. 10 possible people can play position 1, 9 can play position 2, 8 can play position 7, and 7 can play position 4, so there are $10 \cdot 9 \cdot 8 \cdot 7 = P(10, 4)$ possible ways to assign them to the four infield positions.
+			
+			\item We must divide into cases in this part, and we have 4 cases: exactly 1 faculty, 2 faculty, 3 faculty. In the case where there is exactly one faculty, there are $4 \choose 1$ ways of choosing which faculty member that is, and then you must choose 3 of the 7 students, which you can do in $7 \choose 3$ ways. So there are ${4 \choose 1} \cdot {7 \choose 3}$ ways to pick a team with precisely one faculty member. Similarly, there are $3 \choose 2$ ways of choosing the 2 faculty members, and then we must pick 2 of the 7 students, which you can do in $7 \choose 2$ ways. So there are ${3 \choose 2} \cdot {7 \choose 2}$ ways of picking a team with precisely 2 faculty members. The last case follows similarly, so our final answer is
+			\begin{align*}
+				{3 \choose 1} \cdot {7 \choose 3} + {3 \choose 2} \cdot {7 \choose 2} + {3 \choose 3} \cdot {7 \choose 1}
+			\end{align*}
+		\end{enumerate}
+	
+		\newpage
+		\item \begin{enumerate}
+			\item We can think of a path as a string of $R$'s and $U$'s, where $R$ means right and $U$ means up. A path will have precisely 90 $R$'s--the $U$'s will be everywhere else. So we just have to choose the position of 90 $R$'s in a string of length $90 + 160 = 250$, which of course is ${250 \choose 160} = {250 \choose 90}$.
+			
+			\item We may think about this in two steps: first, a path from $(0, 0)$ to $(80, 70)$, \textbf{and} (multiply!) second a path from $(80, 70)$ to $(90, 160)$. The number of paths from $(0, 0)$ to $(80, 70)$ is just ${150 \choose 80}$ (we showed this formula in class), and similarly the number of paths from $(80, 70)$ to $(90, 160)$ is the same as the number of paths from $(0, 0)$ to $(10, 90)$ (just shift the origin to $(80, 70)$), which of course is just ${100 \choose 10}$. So in sum, the total number of paths is going to be ${150 \choose 80} \cdot {100 \choose 10}$.
+			
+			\item Let $A = $the path passes through $(40, 50)$, and $B =$ the path passes through $(80, 70)$. We wish to find $|A \cup B| = |A| + |B| - |A \cap B|$. By the same process above, we see that $|A| = {90 \choose 40} \cdot {160 \choose 50}$. We found the size of $B$ in the last part to be ${150 \choose 80} \cdot {100 \choose 10}$. To find the size of $|A \cap B|$, we just have to think of a path passing through both $(40, 50)$ and $(80, 70)$ and $(90, 160)$ as 3 paths--one from $(0, 0) \to (40, 50)$, another from $(40, 50) \to (80, 70)$, and finally one from $(80, 70) \to (90, 160)$. We know from similar logic to the last problem that the number of paths from $(0, 0) \to (40, 50)$ is just $90 \choose 40$, for the middle part, we just get ${20+40 \choose 20} = {60 \choose 20}$, and finally the last path we found before to be ${100 \choose 10}$. Multiplying these out because they are and statements, we get that $|A \cap B| = {90 \choose 40} \cdot {60 \choose 20} \cdot {100 \choose 10}$. So, $|A \cup B| = {90 \choose 40} \cdot {160 \choose 50} + {150 \choose 80} \cdot {100 \choose 10} - {90 \choose 40} \cdot {60 \choose 20} \cdot {100 \choose 10}$. We were actually looking for the number of paths that pass through neither $(40, 50)$ nor $(80, 70)$, which we can now do by complimentary counting to get the total number of paths - $|A \cup B|$ which is just ${250 \choose 90} - \qty({90 \choose 40} \cdot {160 \choose 50} + {150 \choose 80} \cdot {100 \choose 10} - {90 \choose 40} \cdot {60 \choose 20} \cdot {100 \choose 10})$ (we found the total number of paths in part (a)).
+		
+			\item One may think of every path as a string of $L$'s, $U$'s, and $B$'s (left, right, back), where we need 300 $L$'s, 10 $U$'s, and 20 $B$'s. So we just need to choose the position of 300 $L$'s, from the remaining open positions we have to choose the position of 10 $U$'s, and the last 20 $B$'s will be fixed (i.e., the last factor will be $20 \choose 20$). So the total number of paths is going to be
+			\begin{align*}
+				{300+10+20 \choose 300} \cdot {10 + 20 \choose 10} = {330 \choose 300} \cdot {30 \choose 10}
+			\end{align*}
+		\end{enumerate}
+	
+		\newpage
+		\item Originally I had done exactly the ``solution with a problem'' in class. I now understand why that was wrong--here is the actual solution. The nice thing about the conditions is that there will be exactly 1 suit that has 2 cards in the deck, and every other suit will have exactly one card. So, to outline how to pick a hand, we may:
+		
+		(1) Pick the suit that has 2 cards (5)
+		
+		(2) Choose 2 cards from that suit ${12 \choose 2}$
+		
+		(3) Pick one card from the second suit (12)
+		
+		(4) Pick one card from the third suit (12)
+		
+		(5) Pick one card from the fourth suit (12)
+		
+		(6) Pick one card from the fifth suit (12)
+		
+		In the end, we get:
+		\begin{align*}
+			5 \cdot {12 \choose 2} \cdot 12^4
+		\end{align*}
+		One notices that there is indeed precisely one way to get each hand. For example, let $n_k$ denote the card with number $n$ and suit $k$. If we wanted the hand $\set{1_1, 1_2, 1_3, 1_4, 1_5, 2_1}$, we would HAVE to pick suit 1 as our hand with two cards, then we would have to choose $1_1, 2_1$ from the hand, and then we could just pick the other cards as follows. Because we are choosing each card from disjoint sets, order does not inherently matter.
+		
+		\newpage
+		\item \begin{enumerate}
+			\item The first step is to pick the orientation of EFG and CD. There are 2 possible orientations (EFG to the left of CD or CD to the left of EFG). The remaining two people can sit in any of the last 4 places. First, we pick the position of the first remaining person, which has 4 possible places. Then we pick the position of the last remaining person, which can be in any of the remaining 3 places. So we get a total of $2 \cdot 4 \cdot 3 = 2^3 \cdot 3$.
+			\item We do the same thing as last time. If we think of EFG and CD as units, there are two ways to permute them. Then, because E and G can switch places, we have to multiply by 2. Similarly, as CD can switch places, we also have to multiply by two. Finally, the number of ways the last two people can sit in the remaining 4 seats is $4 \cdot 3$. So we get a total of $2 \cdot 2 \cdot 2 \cdot 4 \cdot 3 = 2^5 \cdot 3$.
+			
+			\item First we can think of EFG, CD, and AB as units, and decide their orientation from there. There are $3!$ ways of permuting them. As E and G can swap, we have to multiply this number by 2, and as C and D can swap, we have to again multiply this number by 2, and finally as A and B can swap, we have to multiply this number by 2 a third time. So we get a total of $3! \cdot 2^3$ ways. The idea for all of these problems is this:
+			
+			(1) Put the groups in order
+			
+			(2) Orient the first group
+			
+			(3) Orient the second group...
+			
+			(n) Place the remaining people
+			
+			As we are doing this in steps, we have to use the product rule.
+			
+			\item I will do this problem by complementary counting. The number of ways that EFG sit together, where E and G can swap positions, where CD must sit together in either order and where A and B must not sit together is the number of ways where EFG sits together, E and G can swap, CD sits together in either order - the number of ways where EFG sits together, E and G can swap, CD sits together in either order and AB sit together in either order. So we get a total of $2^5 \cdot 3 - 3! \cdot 2^3$ ways.
+		\end{enumerate}
+		
+		\newpage
+		\item \begin{enumerate}
+			\item We know that 
+			\begin{align*}
+				(2x-y^2)^{11} = \sum_{k=0}^{11} {11 \choose k} (2x)^k (y^2)^{11-k} &= \sum_{k=0}^{11} {11 \choose k} 2^k x^k y^{22-2k}
+			\end{align*}
+			The only way to get $x^5$ in this formula is when $k = 5$, and of course if $k = 5$ then the power of $y = 22 - 2 \cdot 5 = 12$, as the problem asked. So the coefficient is going to be $2^5 \cdot {11 \choose 5}$.
+			\item By the binomial theorem,
+			\begin{align*}
+				3^{200} = (-3)^{200} = (1-4)^{200} = \sum_{i=0}^{200} {200 \choose i} 1^i \cdot (-4)^{200 - i} &= \sum_{i=0}^{200} {200 \choose i} (-4)^{200 - i}
+			\end{align*}
+			because $x^{2k} = (-x)^{2k}$ for integer $k$ and $1^i$ is $1$ for every integer $i$.
+		\end{enumerate}
+	
+		\newpage
+		\item I didn't really find anything that confusing, but I found that being able to plot things in the last slide is very interesting, as it is MUCH simpler than I would've thought. I know a little bit of Mathematica, and the command to plot in that is Plot[$y=x^2$, $\set{x, -1, 1}, \set{y, -1, 1}$] which looks a lot more complicated. Also, the arrange command works like magic. I wonder how they ever coded that... probably with two for loops.
+	\end{enumerate}
+\end{document}

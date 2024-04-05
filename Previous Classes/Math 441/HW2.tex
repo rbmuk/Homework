@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 441 HW2}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We recall that $\mathcal{B}$ is a basis of a topology $\mathcal{T}$ if every open $U \in \mathcal{T}$ can be written of the form $\bigcup_{\alpha \in I} B_\alpha$ with $B_\alpha \in \mathcal{B}$. Since $X \in \mathcal{T}$, write $X = \bigcup_{\alpha \in I} B_\alpha$. Now given any $x \in X$, we must have $x \in B_\alpha$ for some $\alpha \in I$, which completes (B1). One notices that $B_1$ and $B_2$ are unions of elements in $\mathcal{B}$ (namely, themselves), so they are both open. By the definition of a topology, $B_1 \cap B_2$ is open, and since $\mathcal{B}$ is a basis, we can write $B_1 \cap B_2 = \bigcup_{\alpha \in I} C_\alpha$ with $C_\alpha \in \mathcal B$. Now given any $x \in B_1 \cap B_2$, $x \in \bigcup_{\alpha \in I} C_\alpha$, which says that $x \in C_\alpha$ for some $\alpha \in I$. Thus $x \in C_\alpha \subset B_1 \cap B_2$, and we are done with this direction. 
+		
+		For the other direction, consider $\mathcal{T}$, the set of all subsets of $X$ of the form $\bigcup_{\alpha \in I} B_\alpha$ with $B_\alpha \in \mathcal{B}$ and $I$ any indexing set along with the empty set. Given any $x \in X$ there exists some $B_x$ so that $x \in B_x$. Since $B_x \subset X$, $X = \bigcup_{x \in X} B_x$, which shows that $X \in \mathcal{T}$. By construction of $\mathcal{T}$ the empty set is in $\mathcal{T}$. Given any $\set{U_\alpha}_{\alpha \in I} \subset \mathcal{T}$, WLOG we may assume that none of the $U_\alpha$'s are the empty set since they contribute nothing to the union. Write $U_\alpha = \bigcup B_\alpha$ with $B_\alpha \in \mathcal{B}$. One notices now that
+		\begin{align*}
+			\bigcup_{\alpha \in I} U_\alpha = \bigcup_{\alpha \in I} \bigcup B_\alpha
+		\end{align*}
+		which is just an arbitrary union of things in $\mathcal{B}$ and hence in $\mathcal{T}$. Finally, let $U_1, U_2 \in \mathcal{T}$, and again write $U_1 = \bigcup_{\alpha \in \Delta_1} B_{\alpha}$ and $U_2 = \bigcup_{\beta \in \Delta_2} B_{\beta}$. From elementary set theory we see that
+		\begin{align*}
+			U_1 \cap U_2 = \bigcup_{\substack{\alpha \in \Delta_1 \\ \beta \in \Delta_2}} \qty(B_\alpha \cap B_\beta)
+		\end{align*}
+		Now, for any $\alpha \in \Delta_1$, $\beta \in \Delta_2$, and any $x \in B_\alpha \cap B_\beta$, we can find a $C_{x} \in \mathcal{B}$ with $x \in B_x$ and $B_x \subset B_\alpha \cap B_\beta$. By the union lemma we can write $B_\alpha \cap B_\beta = \bigcup_{x \in B_\alpha \cap B_\beta} B_x$. Thus,
+		\begin{align*}
+			\bigcup_{\substack{\alpha \in \Delta_1 \\ \beta \in \Delta_2}} \qty(B_\alpha \cap B_\beta) = \bigcup_{\substack{\alpha \in \Delta_1 \\ \beta \in \Delta_2}} \bigcup_{x \in B_\alpha \cap B_\beta} B_x
+		\end{align*}
+		Which is just an arbitrary union of things in $\mathcal{B}$. By induction this holds for any finite number of sets, and thus $\mathcal{T}$ is a topology.
+		
+		\item Given any $x \in \R$, $x \in [\floor{x}, \floor{x}+1)$, which establishes (B1). Given any $[n, n+1)$ and $[m, m+1)$ both in $\mathcal{B}$, either $n = m$ or $n \neq m$. In the first case the intersection is just $[n, n+1)$ which is in $\mathcal{B}$, so we are done. In the second case, WLOG $n < m$, and hence $[n, n+1) \cap [m, m+1) = \emptyset$, so we are also done. Thus $\mathcal{B}$ defines a topology on $\R$. This topology gives a hole on the real line next to every integer.
+		
+		\item \begin{enumerate}
+			\item Let $U$ be an open subset of $\R$ (with the euclidean topology), and let $x \in U$. Since $U$ is open, we can find an $\ve > 0$ so that $(x-\ve, x + \ve) \subset U$. By truncating the decimal expansion of $x$, we can find an increasing sequence of rational numbers $a_n \to x$. Thus find $N \in \bN$ so that $x - \ve/2 < a_N \leq x$. By choosing $\ve/3 < 1/K < \ve/2$, we see that $(a_N - 1/K, a_N + 3/K)$ is a neighborhood of $x$ with both endpoints in $\bQ$. By the union lemma all open sets in $\R$ are just the union of intervals with rational endpoints. Since intervals with rational endpoints are open, we are done.
+			
+			\item Suppose that $[\sqrt{2}, 3)$ could be written as the union of things in the given basis. Thus $[\sqrt{2}, 3) = \bigcup [a, b)$. We see that $a \geq \sqrt{2}$ for every $a$, since otherwise the union would contain too many elements. Thus $a > \sqrt{2}$, since $\sqrt{2}$ isn't rational. We also see that $\sqrt{2} \in [a, b)$ for some $a, b$ rational. But this can't be, since $a > \sqrt{2}$, a contradiction. Question 2 shows that this basis satisfies (B1). Given two sets in this collection $[a, b)$ and $[c, d)$, either these two intervals are disjoint or they are not. If they are not disjoint, $[a, b) \cap [c, d) = [\max\set{a, c}, \min\set{b, d})$, which is in the collection, so we are done.
+		\end{enumerate}
+	
+		\item Given any $(x, y) \in \R^2$, $(x, y) \in {x} \times (y-1, y+1)$, which shows (B1). Given any two $\set{a} \times (b, c)$ and $\set{d} \times (e, f)$, either $a = d$ or not. If not, then the sets are disjoint. If they equal, their intersection is $\set{a} \times (\max\set{b, e}, \min\set{c, f})$, which is in the vertical interval topology, hence this defines a basis for a topology. This is like being attached to a line. Everything is super close to each other on the x-axis, and and looks like a normal real line on the y-axis. 
+		
+		\item Notice that given any $x \in \bZ$, $\set{x} = \bZ \cap (x-1/2, x+1/2)$, hence all singletons are open. Since any subset of $\bZ$ is just the union of singletons, all subsets of $\bZ$ are open. Thus the subspace topology on $\bZ$ is the discrete topology.
+		
+		\item In the first case, the open sets in $Z$ are of the form $U \cap Z$ where $U \in \mathcal{T}$. In the second case, open sets in $Z$ are of the form $V \cap Z$ where $V$ is of the form $Y \cap U$ where $U$ is in $\mathcal{T}$. Thus the open sets are of the form $U \cap Y \cap Z = U \cap Z$. So the open sets are exactly of the same form, and we are done. (Equivalently, in the first case you are also equal to $U \cap Z \cap Y$, and in the second case you are equal to $U \cap Z$, as stated.)
+		
+		\item The subspace topology is the collection of sets of the form $Y \cap U$, where $U \in \mathcal{T}_X$. Since the only things in $\mathcal{T}_X$ are $\emptyset$, $X$, the only things in $\mathcal{T}_Y$ are $Y \cap X = Y$, and $Y \cap \emptyset = \emptyset$, thus the subspace topology on $Y$ is the indiscrete topology. One notices that the subspace topology on $\set{1} \subset \R$ ($\R$ with the euclidean topology) is the indiscrete topology (since the only subsets of $\set{1}$ are $\emptyset$, and $\set{1}$), but that the euclidean topology is of course not indiscrete.
+	
+		\item Notice that if $\set{U_\alpha}_{\alpha \in \Delta} \subset \mathcal{T}$, 
+		\begin{align*}
+			\qty(\bigcup_{\alpha \in \Delta} U_\alpha)^C = \bigcap_{\alpha \in \Delta} U_\alpha^c
+		\end{align*}
+		Since $U_\alpha^C$ is bounded, we can find an $M > 0$ so that $\mg{x} \leq M$ for every $x \in U_\alpha^C$. By inclusion this holds for everything in the above intersection, so arbitrary intersections are in $\mathcal{T}$. Similarly, if $U_1, U_2 \in \mathcal{T}$, find $M_1, M_2$ so that if $x \in U_1^c, y \in U_2^c$, then $\mg{x} \leq M_1^c$, and $\mg{y} \leq U_2^c$. Thus $(U_1 \cap U_2)^c = U_1^c \cup U_2^c$ is bounded by $\max\set{M_1, M_2}$, and by induction this holds for any finite number of sets. Finally, $\emptyset \in \mathcal{T}$ by definition, and $\R^2 \setminus \R^2 = \emptyset$ is bounded vacuously, so it is also in our collection. Thus we have a topology. Since smaller open neighborhoods are those that have a huge hole in the middle, I'm going to say that it would be in the shape of an ice cream cone with a filled inside.
+	\end{enumerate}
+\end{document}

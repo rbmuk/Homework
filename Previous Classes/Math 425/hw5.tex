@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand{\infnorm}[1]{\mg{#1}_{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{425 HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Given any function $h(x): [a, b] \to \R$, note that $|h(x)| \geq 0$. Therefore, $\sup_{x \in [a, b]} |h| \geq 0$. Therefore, $\infnorm{f-g} \geq 0$ for any functions $f,g$. We conclude that $\infnorm{f'-g'} \geq 0$ for any $f, g \in C^1([a,b], \R)$, and therefore the sum of these two is positive too. if $d(f, f) = 0$, then $\infnorm{f-g} + \infnorm{f'-g'} = 0$, and since this is a sum of two positive things, it follows that $\infnorm{f-g} = 0$. This is equivalent to saying that $f=g$. Finally, note that for any functions $f, g, h$, we have that $|f(x)-g(x)| \leq |f(x)-g(x)| + |g(x)-h(x)|$ by the regular triangle inequality. We therefore see that $\sup_{x \in [a,b]} |f(x)-g(x)| \leq \sup_{x \in [a,b]} |f(x)-g(x)| + |g(x)-h(x)| \leq \sup_{x \in [a,b]} |f(x)-g(x)| + \sup_{x \in [a,b]} |g(x)-h(x)|$, i.e. that $\infnorm{f-g} \leq \infnorm{f-h}+\infnorm{h-g}$. Since this holds for any functions $f, g, h \in C^1([a, b], \R)$, it also holds for their derivatives (if they exist, which they do). We conclude that $\infnorm{f'-g'} \leq \infnorm{f'-h'}+\infnorm{h'-g'}$. Adding these gives $\infnorm{f-g} + \infnorm{f'-g'} \leq \infnorm{f-h}+\infnorm{h-g} + \infnorm{f'-h'}+\infnorm{h'-g'}$, i.e. that $d(f, g) \leq d(f,h) + d(g, h)$. Also, $\sup_{x \in [a,b]} |f-g| = \sup_{x \in [a,b]} |g-f|$, so it follows that $d(f, g) = d(g, f)$. 
+		
+		\item Let $\ve > 0$. We can find a $\delta > 0$ so that for all $x, y$ with $d(x,y) < \delta$, we have that $d(f(x), f(y)) < \ve$. Since $X$ is totally bounded, there exists a finite set $\set{x_1, \ldots, x_n} \subset X$ so that \begin{align*}
+			X \subset \bigcup_{j=1}^n N_\delta(x_j)
+		\end{align*}
+		Let $y \in f(X)$ be arbitrary. Then $y = f(x)$ for some $x \in X$. Since $x \in \bigcup_{j=1}^n N_\delta(x_j)$, $x \in N_\delta(x_j)$ for some $j \in \set{1, \ldots, n}$. Therefore, $d(x, x_j) < \delta$. It follows then that $d(f(x), f(x_j)) < \ve$, i.e. that $x \in N_\ve(f(x_j))$. It follows that $f(X) \subset \bigcup_{j=1}^n N_{\ve}(f(x_j))$.
+		
+		\item Since each $E_n$ is nonempty, we can find an $x_n \in E_n$. For any $\ve > 0$, since $\mathrm{diam}(E_n) \to 0$, we can find an $N > 0$ so that for all $n \geq N$, one has that $\mathrm{diam}(E_n) < \ve$. Since $x_n \in E_n \subset E_N$ for all $n \geq N$, it follows that for any $m, n > N$, $d(x_m, x_n) < \ve$, so $\set{x_n}_{n=1}^\infty$ is a Cauchy sequence. Since $X$ is complete, $x_n \to x$ for some $x \in X$. Since $x_n$ is convergent, all subsequences converge. Then for any $l \in \bN$, $\set{x_{l+n}}_{n=1}^\infty \to x$. Also, $\set{x_{l+n}}_{n=1}^\infty \subset E_l$ since $x_{l+n} \in E_{l+n} \subset E_l$ for each $n \in \bN$. If $x = x_{l+n}$ for some $n \geq 1$, $x \in E_l$. Else, $x \neq x_{l+n}$ for every $n \geq 1$, and then for every $r > 0$, we can find an $x \neq x_{l+n} \in E_{l+n} \subset E_l$ so that $d(x_{l+n}, x) < r$ by the definition of convergence. Then $x$ is a limit point of $E_l$, and therefore $x \in E_l$ since $E_l$ is closed. Since $l$ was arbitrary, it follows that $x \in \bigcap_{n=1}^{\infty} E_n$. Suppose there was a $x \neq y \in \bigcap_{n=1}^{\infty} E_n$. We can find $N$ sufficiently large so that for all $n \geq N$, $\mathrm{diam}(E_n) < d(x, y) / 2$. But then $x, y \in E_N$, so $d(x,y)/2 > \mathrm{diam}(E_N) \geq d(x,y)$, a contradiction.
+		
+		\item We see that, for any $m, n \geq  1$,
+		\begin{align*}
+			d(p_n, q_n) \leq d(p_n, p_m) + d(p_m, q_m) + d(q_m, q_n) \\
+			\iff d(p_n, q_n) - d(p_m, q_m) \leq d(p_n, p_m) + d(q_m, q_n)
+		\end{align*}
+		and 
+		\begin{align*}
+			d(p_m, q_m) \leq d(p_m, p_n) + d(p_n, q_n) + d(q_n, q_m) \\
+			\iff d(p_m, q_m) - d(p_n, q_n) \leq d(p_m, p_n) + d(q_n, q_m)
+		\end{align*}
+		Which combined tells us that $|d(p_n, q_n) - d(p_m, q_m)| < d(p_n, p_m) + d(q_m, q_n)$. For any $\ve > 0$, since both $\set{p_n}_{n=1}^{\infty}$, and $\set{q_n}_{n=1}^{\infty}$, we can find $N_1, N_2$ so that for any $m, n \geq N_1$, and any $r, s \geq N_2$, $d(p_n, p_m) < \ve/2$, and $d(q_r, q_s) < \ve/2$. Taking $N = \max\set{N_1, N_1}$ gives us that for any $m,n \geq N$, we have that both $d(p_n, p_m) < \ve/2$, and $d(q_n, q_m) < \ve/2$. Using the inequality from above, we conclude that $|d(p_n, q_n) - d(p_m, q_m)| < \ve$, which establishes that $\set{d(p_n, q_n)}_{n=1}^\infty$ is Cauchy. Since $\R$ is complete, it follows that $\set{d(p_n, q_n)}_{n=1}^\infty$ converges.
+		
+		\item We know from elementary set theory that $f(E \cup E') = f(E) \cup f(E')$. Clearly, $f(E) \subset \overline{f(E)}$. We are left to show that $f(E') \subset \overline{f(E)}$. Given any $y \in f(E')$, there is some $x \in E'$ so that $f(x) = y$. Since $x \in E'$, there is a sequence of points $\set{x_n}_{n=1}^\infty \to x$. Since $f$ is continuous, $f(x_n) \to f(x)$. If at any point $f(x_n) = f(x)$, $f(x) \in f(E)$. If $f(x_n) \neq f(x)$ for all $n \in \bN$, for any $r > 0$ we can find $N > 0$ so that for all $n \geq N$, $d(f(x_n), f(x)) < r$. Since $f(x_N) \neq f(x)$, $f(x_N) \in N_r(f(x)) \setminus f(x) \cap f(E)$, so $f(x) \in f(E)'$, completing the proof. A counterexample would be choosing $X = (0, 1)$ (as a metric space), and $Y = \R$, and letting $f: X \to Y$ be defined as $f(x) = x$. Since $\overline{X} \subset X$, $X = \overline{X}$, and so $f(\overline{X}) = f(X) = (0, 1)$. However, $\overline{f(X)} = \overline{(0, 1)} = [0, 1]$, so the inclusion can be strict.
+		
+		\item First we show the forward direction, so suppose $f: X \to Y$ is uniformly continuous. Then for any $\ve > 0$, there is some $\delta > 0$ so that for all $x, y \in X$, $d(x,y) < \delta \implies d(f(x), f(y)) < \ve/2$. Now let $E$ be an arbitrary set with $\mathrm{diam}(E) < \delta$. Taking any $x, y \in E$, since $d(x, y) < \mathrm{diam}(E) < \delta$, we see that $d(f(x), f(y)) < \ve/2$. Since this is true for every $x, y \in E$, it follows that $\sup_{x,y \in E} d(f(x), f(y)) \leq \ve/2 < \ve$, as claimed. For the reverse direction, suppose to every $\ve > 0$ there exists $\delta > 0$ so that if $\mathrm{diam}(E) < \delta$, then $\mathrm{diam}(f(E)) < \ve$. Let $x, y \in X$ be arbitrary, with $d(x, y) < \delta/2$. Clearly $\mathrm{diam}(N_{\delta/2})(x) = \delta/2 < \delta$, and note that $y \in N_{\delta/2}(x)$. Since $f(x), f(y) \in f(E)$, and $\mathrm{diam}(f(E)) < \ve$, it follows that $d(f(x), f(y)) < \ve$, which completes the proof.
+	\end{enumerate}
+\end{document}

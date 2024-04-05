@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\Z{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Fun facts about rotation matrices}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	Here is a fun proof of the trig addition identities. We know that rotating the vector $(x, y)$ by $\theta$ degrees is given by 
+	\begin{align*}
+		\begin{pmatrix}
+			\cos(\theta) & -\sin(\theta) \\
+			\sin(\theta) & \cos(\theta)
+		\end{pmatrix}
+	\end{align*}
+	This can be found by drawing the points $(1, 0)$ and $(0, 1)$ and then sliding these points on the unit circle counterclockwise by $\theta$ degrees, and then describing the new $x,y$ coordinates with $\sin(\theta)$ and $\cos(\theta)$.
+	
+	We know that if we want to rotate by $\theta + \gamma$ degrees we could use the formula above, or we could first rotate by $\theta$ degrees and then by $\gamma$ degrees, whose matrix is given by multiplying the matrix that rotates by $\theta$ degrees by the matrix that rotates by $\gamma$ degrees, given by the formula above. So, putting it all together:
+	\begin{align*}
+		\begin{pmatrix}
+			\cos(\theta+\gamma) & -\sin(\theta+\gamma) \\
+			\sin(\theta+\gamma) & \cos(\theta+\gamma)
+		\end{pmatrix}
+		&=
+		\begin{pmatrix}
+			\cos(\gamma) & -\sin(\gamma) \\
+			\sin(\gamma) & \cos(\gamma)
+		\end{pmatrix} \cdot
+		\begin{pmatrix}
+			\cos(\theta) & -\sin(\theta) \\
+			\sin(\theta) & \cos(\theta)
+		\end{pmatrix}
+	\\&=
+	\begin{pmatrix}
+		\cos(\theta)\cos(\gamma)-\sin(\theta)\sin(\gamma) & -\cos(\theta)\sin(\gamma)-\sin(\theta)\cos(\gamma) \\
+		\sin(\theta)\cos(\gamma)+\cos(\theta)\sin(\gamma) & -\sin(\theta)\sin(\gamma)+\cos(\theta)\cos(\gamma)
+	\end{pmatrix}
+	\end{align*}
+	Finally, equating the $(1,1)$ coordinate and the $(1, 2)$ coordinate yields the familiar formulae: $\sin(\theta+\gamma) = \sin(\theta)\cos(\gamma)+\cos(\theta)\sin(\gamma)$, and $\cos(\theta+\gamma) = \cos(\theta)\cos(\gamma)-\sin(\theta)\sin(\gamma)$. A fun corollary of this geometric interpretation is that the special orthogonal group of 2x2 matrices, namely, $\mathrm{SO}(2)$ must be abelian, as there is no difference between rotating first by $\theta$ degrees and then $\gamma$, versus rotating by $\gamma$ degrees and then $\theta$.
+	
+	\begin{theorem}
+		 $p\Z/p^m\Z$ is a nilpotent ideal in $\Z/p^m\Z$, where $p$ is prime. 
+	\end{theorem}
+	\begin{proof}
+	For simplicity let $p\Z/p^m\Z = M$. We see that, everything in $M^2$ is of the form $\sum a_ib_i$. Then everything in $M^3$ is of the form $\sum c_j \sum a_ib_i = \sum \sum a_ib_ic_j$, and in general everything in $M^n$ is of the form $\sum \sum \hdots \sum a_1a_2\cdots a_n$, where there are $n-1$ sums. Because $p$ is prime, the only elements of $p\Z/p^m\Z$ are $0, p, 2p, \ldots, p^{m-1}$. So there are $p^{m-1}$ elements of $M$. Note also that as every element of $M$ is of the form $pn$, where $n \in \Z/p^m\Z$, we see that $(pn)^m = p^mn^m = 0$, as $p^m = 0$. Finally, note that every element of $M^{p^{m-1} \cdot m}$ is the sum of $p^{m-1} \cdot m$ factors, and by the pigeonhole principle there must be $p^{m-1} \cdot m / p^{m-1}$ elements that are the same in this factorization, as there are only $p^{m-1}$ elements of $M$. Then there is necessarily a 0 in this factorization, and we are simply summing up a bunch of 0's. So 0 is the only element in $M^{p^{m-1}m}$, and we are done.
+	\end{proof}
+\end{document}

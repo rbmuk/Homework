@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item The cantor set contains no open interval of the form $\big(\frac{3k+1}{3^m}, \frac{3k+2}{3^m}\big)$ where $k, m \in \bN$, since if $k > 3^{m-1}$, then this wouldn't even be in $[0, 1]$, and if $k < 3^{m-1}$, this would correspond to the middle of the closed interval $[\frac{3k}{3^m}, \frac{3k+2}{3^m}]$, whose middle is removed in the next step. Suppose there was an element of the cantor set with a coefficient of 1, i.e. $x \in C$ with $x = \sum_{k=1}^{\infty} a_k/3^k$ where $a_l = 1$ and $l$ is the smallest such natural making this true. If after $l$ all the coefficients are all $2$, then we could write $x = \sum_{k=1}^{l} a_k/3^k + 0$ or $\sum_{k=1}^{l} a_k/3^k + 1/3^l$, which would be in the cantor set regularly (i.e., it didn't actually have a 1 in the ternary expansion). If $a_{d} = 1$ for the smallest $d > l$ making this true, then $\sum_{k=1}^{l-1} a_k/3^k < x < \sum_{k=1}^{l-1} a_k/3^k+2/3^l$, which would put $x \in \big(\frac{3k+1}{3^m}, \frac{3k+2}{3^m}\big)$ for some $k, m$, a contradiction. It can't be always 2, so it must be 0 somewhere, which would also allow us to put $x$ in the same set as above, so $x$ cannot be in the cantor set. 
+			\item The cantor set $C$ is the intersection of all previous steps, which are all finite unions of closed sets, so are closed themselves. An infinite intersection of closed intervals is closed, so we see that the cantor set $C$ is closed. Since $C \subset [0, 1]$, it is bounded, and by heine-borel it is compact. Let $\ve>0$, and let $x \in C$, and let $I$ be an open interval of length $\ve$. If we let $C_n$ be the cantor set at step $n$, we see that $x \in C_n$ for every $n \in \bN$. Since $C_n$ is the union of a large amount of intervals of length $2^{-n}$, and since $x$ is in at least one of these, we can choose $n > \log_2(\ve)$ to see that $x$ is in a cantor set of length $< \ve$. Let $x_n$ be the endpoint of this interval, and if $x$ is an endpoint already, choose the other endpoint. Then $x_n$ will be in the infinite intersection as well (only the middle third will be removed, i.e. the endpoints will be left), so we see that $x_n \in C$. Since we can approach $x$ with a sequence of $x_n$'s that aren't equal to $x$, $x$ is a limit point of $C$, so $C$ is perfect (i.e., if $r > 0$, we can find $n > 1/r$, so that $N_r(x) \setminus x \cap C \supset \set{x_n}$, so it is indeed a limit point). Finally, it is totally disconnected because if $x, y \in C$ let $|x-y| = \delta$. After $\log_2(\delta/2)$ steps, each interval will have length $\delta/2$ and since these are farther away than $\delta/2$ from each other, they cannot possibly be in the same closed interval. So the middle third of some closed interval containing them was removed, which means there is an open interval in the complement of $C$ between them.
+		\end{enumerate}
+		
+		\item Although boring, an example is the empty set $\emptyset$. Since given any $x \in \R$, and any $r > 0$, $N_r(x) \setminus x \cap \emptyset = \emptyset$, so we see that $\emptyset$ has no limit points. Since it contains all it's limit points (vacuously), and as it is clearly bounded (it is contained in $B_1(0)$), $\emptyset$ is compact by Heine-Borel. It's set of limit points is empty, i.e. has cardinality 0, and is clearly countable. 
+		
+		\item \begin{enumerate}
+			\item First: since $d(x, y) \geq 0$ for any $x, y \in X$, $\inf\set{d(x,y) \given x \in X \land y \in Y} \geq 0$ by definition of the inf. If $d(\set{x}, A) = 0$, we have two cases: $x \in A$, or $x \not \in A$. If $x \in A$ then $x \in \overline{A}$, so we are done. In the other case, by the definition of inf there is some $a_n \in A$ so that $0 = d(\set{x}, A) \leq d(x, a_n) < d(\set{x}, A) + 1/n = 1/n$ for any $n \in \bZ^+$. This says that $d(x, a_n) \to 0$ i.e. that $a_n \to x$, and by the lemma that I put at the top of homework 2, since $x \not \in A$, we see that $x$ is a limit point of $A$, which says that $x \in \overline{A}$. Similarly, if $x \in \overline{A}$, $x \in A$ or $x \in A'$. In the first case, since $x \in \set{x}$ and $x \in A$, $d(x, x) = 0$, we see that $\inf\set{d(x, y) \given y \in A} \leq 0$ i.e. that $d(\set{x}, A) = 0$. By definition of a limit point, given any $r > 0$ we can find a $y \in N_r(x) \setminus x \cap A$, i.e. there is some $y$ with $0 \leq d(x, y) < 0 + r$. Since the inf is unique, we see that $d(\set{x}, A) = 0$, as claimed.
+			
+			\item Since $A$ is compact, it is limit point compact. Let $\delta = \inf\set{d(x, a) \given a \in A}$. By definition of the inf, for any $n \in \bN$ we can find an $a_n$ so that $d(x, a_n) < 1/n$. If $x \in A$, then we can pick $a = x$ to see that $d(\set{x}, A) = 0 = d(x, x)$, and we are done. If $x \not \in A$, then the $\set{a_n}$ would give us an infinite subset of $A$, and hence has a limit point in $A$, say $a$. For any $k \in \bN$, we can find some $b_k \in N_{1/2k}(a) \setminus a \cap {a_n}$. There cannot be a lower bound on $d(x, b_k) - \delta$ because we could throw away all $b_k$'s which correspond to an indicie of $a_n$ with index less than $m$ (Note: there must be infinitely many left), which would force the rest of the $b_k$'s to have distance $< 1/m + \delta$ from $x$. Therefore, we can find a $b_l$ so that simultaneously $d(x, b_l) < 1/2l$, and at the same time $d(b_l, a) < 1/2l$. We conclude that $\delta \leq d(x, a) \leq d(x, b_l) + d(b_l, a) = \delta + 1/l$, and since this is true for every $l$, we see that $d(x, a) = \delta$, which completes the proof.
+			
+			\item Let $x \in \bigcup_{x \in A} N_\ve(x)$. Then $x \in N_\ve(a)$ for some $a \in A$. This means that $d(x, a) < \ve$, which means that $d(\set{x}, A) \leq d(x, a) < \ve$ (by definition of the inf), so $x \in U(A, \ve)$. Let $x \in U(A, \ve)$. Then $\inf\set{d(x, a) \given a \in A} < \ve$, so $\inf\set{d(x, a) \given a \in A} = \ve - \xi$ for some $\xi > 0$. We can find a $y \in A$ so that $d(x, y) < \inf\set{d(x, a) \given a \in A} + \xi / 2 = \ve - \xi / 2 < \ve$ by definition, so clearly $x \in N_\ve(y)$, and since $N_\ve(y) \subset \bigcup_{x \in A} N_\ve(x)$, $x \in \bigcup_{x \in A} N_\ve(x)$ as claimed.
+			
+			\item Let $V_\ve \coloneqq \set{x \in U \given d(\set{x}, X \setminus U) > \ve}$. Given any $u \in U$, $d(\set{u}, X \setminus U) > \eta$ for some $\eta > 0$, because if it was less than all positive $\eta$, $u$ would be in the closure of $X \setminus U$, but as $X \setminus U$ is closed, it's closure is itself and we see $u$ is simultaneously in $U$ and $U^c$, a contradiction. This tells us that $\bigcup_{\ve > 0} V_\ve$ covers all of $U$, and in particular, it covers all of $A$. Since $A$ is compact, this has a finite subcover, and since $V_\ve \subset V_\xi$ for $\ve < \xi$, this finite subcover would just be the set $V_\beta$ for some $\beta$. This tells us that every point in $A$ has distance at least $\beta$ to the complement of $U$, and in particular, we see that for any $a \in A$, $N_{\beta/2}(a) \subset U$ (if not, there would be a point distance $\beta/2$ away from $A$ in the complement of $U$, contradicting our assumption). We therefore see that $U(A, \beta/2) \subset U$, which completes the proof.
+			
+			A counterexample is $\R \cross \R_{>0}$. Since $\R_{>0} \cross \R_{>0}$ is open, given any $x \in \R_{>0} \cross \R_{>0}$, we can find an $r_x > 0$ so that $N_{r_x}(x) \subset \R_{>0} \cross \R_{>0}$. Clearly then $\R_{>0} \cross \R_{>0} \subset \bigcup_{x \in \R_{>0} \cross \R_{>0}} N_{r_x}(x)$, and the union of any collection of open sets is open. Next, add a ball of radius $1/n$ at $(\sum_{k=1}^{n} \frac 1k, 0)$ (this would cover everything because the harmonic series diverges). If $U(\R \cross \R_{>0}, \ve)$ were to be contained in this union, then we could find an $N > 1/\ve$, but this would tell us that $N_\ve(\sum_{k=1}^{N} \frac 1k, 0) \subset N_{1/N}(\sum_{k=1}^{N} \frac 1k, 0)$, which is a contradiction. So compactness is necessary.
+		\end{enumerate}
+	
+		\item Let $V$ be the open set. Clearly, $\mathfrak{G} = \set{(q-a, q+b) \given q \in \bQ \; a, b \in \bQ^+}$ is an open cover of $\R$. Let $\mathfrak{U}=\set{U \in \mathfrak{G} \given U \subset V}$. Let $I_x = $ the union of all sets $U \in \mathfrak{U}$ that contain $x$. $I_x$ is an open interval because it is the union of overlapping open intervals, i.e. if $x \in (a, b)$ and $x \in (c, d)$, then we can just pick $e = \min \set{a, c}$, $f = \max \set{b, d}$ and we see that
+		\begin{align*}
+			(a, b) \cup (c, d) = (e, f)
+		\end{align*}
+		which is just another segment. By induction any finite union of overlapping segments is another segment. Also, suppose there were $y, z \in V$ so that (WLOG) $I_y \not \subset I_z$, and that $I_y \cap I_z \not = \emptyset$. But then $I_y \cup I_z$ would be a subset of $V$ containing $z$, and so $I_y \subset I_z$, but that's a contradiction. So either $I_y = I_z$ or $I_y \cap I_z = \emptyset$. It is now clear that
+		\begin{align*}
+			\bigcup_{x \in V} I_x
+		\end{align*}
+		is an open cover of $V$. Since there were only countably many things in $\mathfrak{G}$ to start with, this union has at most countably many distinct intervals, which shows that every open set is the union of at most countably many distinct intervals.
+	
+		\item A good example is $\overline{B}((0, 0), 1) \cup [1, 2] \times \set{0} \cup \overline{B}((3, 0), 1)$. The interior of this set is just $B((0, 0), 1) \cup B((3, 0), 1)$ (i.e., the open balls with the line removed), since anything in the interior of the two side balls is in the interior of this set, and given any $(x, 0) \in [1, 2] \times \set{0}$, and any $r > 0$ $N((x, 0), r)$ contains things not in the set, say, for example, $(x, r/2)$, so $(x, 0)$ cannot possibly be an interior point. Therefore, the interior of our original set is just $B((0, 0), 1) \cup B((3, 0), 1)$ (these are obviously disconnected as both don't intersect the closure of the other). We proved last time that the union of two disjoint open sets are separated, so this interior is not connected. Also, given two connected sets that aren't disjoint, their union is connected. Let $A, B$ be the connected sets in question, with $A \cap B \neq \emptyset$. If $A\cup B$ were disconnected, it could be written as $C \cup D$ for some $C, D$ separated. Let $x \in A \cap B$, and WLOG suppose $x \in C$. Now choose any $y \in D$. Then WLOG $y \in A$. We see that $x \in C \cap A$, $y \in D \cap A$. However, $(A \cap C) \cup (A \cap D) = A \cap (C \cup D) = A \cap (A \cup B) = A$, while at the same time, $A \cap C$ and $A \cap D$ are still separated (since the closures of $A \cap C$, $A \cap D$ are contained in the closures of $C$, $D$, which are already disjoint). This means that $A$ is not connected, a contradiction. Since all sets in question are closed, and connected (lines and balls are clearly connected), and all overlapping (at either $(0, 1)$ or $(2, 0)$), we conclude that the set I gave is connected too with disconnected interior.
+		
+		\item Suppose that $X$ is disconnected, then $X = A \cup B$ where $A, B \neq \emptyset$, and $A \cap \overline{B} = \overline{A} \cap B = \emptyset$. Importantly, $A \cap B = \emptyset$. Since $X$ is the entire universe, and since $A \cap B = \emptyset$, we see that $A^c = X \setminus A = B$. Also, given any $a \in A'$, we know that $a \in A \cup B$ since $a \in X$. If $a \in B$, then $B$ contains a limit point of $A$, so $\overline{A} \cap B \neq \emptyset$, a contradiction. So $a \in A$, and $A$ is closed. The exact same reasoning in the other direction shows $B$ is closed. But $B = A^c$, so $A$ is open, and since $A, B \neq \emptyset$, $A$ is a proper nontrivial subset of $X$ that is both open and closed.
+	\end{enumerate}
+\end{document}
