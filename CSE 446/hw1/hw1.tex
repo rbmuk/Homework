@@ -134,7 +134,15 @@ skipbelow=\baselineskip,
 \begin{document}
     \maketitle
     \begin{enumerate}[leftmargin=\labelsep]
-        \item \begin{enumerate}
+        \item 
+        \begin{enumerate}
+            \item Bias of a model arises from picking too specific / the wrong model for predictions. For example, the true model might be quadratic, but we tried to approximate it with a linear function instead. Variance arises from having too much complexity in the model, where we will overfit each data set, so when we take an expected value, we get huge deviation from the mean since each data set is different and will yield a function that is far from the mean.
+            \item As discussed above and in class, with more complexity we can get closer to the true model, so bias would go down, but we would start overfitting each dataset, so the variance goes up.
+            \item 
+        \end{enumerate}
+
+        \item 
+        \begin{enumerate}
             \item Given the $x_i$, the probability of seeing the $x_i$ in that order is given by the following likelihood function:
             \begin{align*}
                 \mathscr{L}(\lambda) = \prod_{i=1}^n e^{-\lambda} \frac{\lambda^{x_i}}{x_i!}
@@ -166,6 +174,20 @@ skipbelow=\baselineskip,
             \begin{align*}
                 \P(5 \mid \lambda) = e^{-4.1667}\frac{4.1667^5}{5!} \approx 0.156
             \end{align*}
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item By definition, $\mg{W}_F^2 = \sum_{i,j} w_{ij}^2$. We see then that $\pdv{w_{ij}} \mg{W}_F^2 = 2w_{ij}$, which shows that $\grad_W \mg{W}_F^2 = 2W$. Per the hint, we know that 
+            \begin{align*}
+                \sum_{i=1}^n \mg{W^Tx_i - y_i}_2^2 = \sum_{j=1}^k \mg{Xw_j-Ye_j}_2^2
+            \end{align*}
+            We see now that, if $f(W) = \sum_{i=1}^n \mg{W^Tx_i-y_i}_2^2$,
+            \begin{align*}
+                \grad_{w_j} \mg{Xw_j-Ye_j}_2^2 &= \grad_{w_j} (Xw_j-Ye_j)^T(Xw_j-Ye_j) \\
+                &= \grad_{w_j} w_j^TX^TXw_j - 2e_j^TY^TXw_j \\
+                &= 2X^TXw_j - 2X^TYe_j
+            \end{align*}
+            That is, the $j$th column of $\grad_W f(W)$ is $2X^TXw_j - 2X^TYe_j$, so $\grad_W f(W) = 2X^TXW - 2X^TY$. Thus the gradient of $g(W) = F(W) + \lambda \mg{W}_F^2$ is just $2X^TXW - 2X^TY + 2\lambda W$. Setting this to zero shows that $(X^TX+\lambda I)W = X^TY$, which shows that $\hat{W} = (X^TX+\lambda I)^{-1}X^TY$.
         \end{enumerate}
     \end{enumerate}
 \end{document}

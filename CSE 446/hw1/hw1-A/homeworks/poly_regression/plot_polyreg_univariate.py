@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utils import load_dataset
+from ..utils import load_dataset
 
 if __name__ == "__main__":
     from polyreg import PolynomialRegression  # type: ignore

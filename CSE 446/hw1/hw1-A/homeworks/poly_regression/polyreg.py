@@ -18,8 +18,10 @@ class PolynomialRegression:
         self.degree: int = degree
         self.reg_lambda: float = reg_lambda
         # Fill in with matrix with the correct shape
-        self.weight: np.ndarray = np.ndarray(degree)  # type: ignore
+        self.weight: np.ndarray = np.ndarray((degree+1, 1))  # type: ignore
         # You can add additional fields
+        self.mean: np.ndarray = np.ndarray((degree, 1))
+        self.std: np.ndarray = np.ndarray((degree, 1))
 
     @staticmethod
     @problem.tag("hw1-A")
@@ -39,6 +41,7 @@ class PolynomialRegression:
 
         """
         X = X.squeeze()
+        
         return np.array([np.power(X, i) for i in range(1, degree+1)]).T
 
     @problem.tag("hw1-A")
@@ -53,7 +56,17 @@ class PolynomialRegression:
         Note:
             You will need to apply polynomial expansion and data standardization first.
         """
-        X = PolynomialRegression.polyfeatures(X, self.degree).T
+        X_ = PolynomialRegression.polyfeatures(X, self.degree)
+        self.mean = np.mean(X_, axis=0)
+        self.std = np.std(X_, axis=0)
+        X_ = (X_ - self.mean)/self.std
+        n, d = X_.shape
+        X_ = np.c_[np.ones((n, 1)), X_]
+
+        reg_matrix = self.reg_lambda * np.eye(d+1)
+        reg_matrix[0,0] = 0
+        
+        self.weight = np.linalg.solve(X_.T @ X_ + reg_matrix, X_.T @ y)
 
     @problem.tag("hw1-A")
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -66,7 +79,16 @@ class PolynomialRegression:
         Returns:
             np.ndarray: Array of shape (n, 1) with predictions.
         """
-        raise NotImplementedError("Your code goes here")
+        print(f"X: {X}")
+        X_ = PolynomialRegression.polyfeatures(X, self.degree)
+        X_ = (X_-self.mean)/self.std
+        n = X_.shape[0]
+        X_ = np.c_[np.ones((n, 1)), X_]
+
+        print(f"X_: {X_}")
+        print(f"Weight: {self.weight}")
+
+        return X_ @ self.weight
 
 
 @problem.tag("hw1-A")
