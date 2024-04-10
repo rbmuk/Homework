@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  4 APR 2024 17:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  9 APR 2024 18:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Rohan Mukherjee/Documents/CSE 421/hw2.tex"
-(c:/Users/Rohan Mukherjee/Documents/CSE 421/hw2.tex
+**"c:/Users/Rohan Mukherjee/Documents/Major/CSE421/HW2/hw2.tex"
+(c:/Users/Rohan Mukherjee/Documents/Major/CSE421/HW2/hw2.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -964,32 +964,38 @@ LaTeX Font Info:    ... okay on input line 139.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count344
-\scratchdimen=\dimen304
-\scratchbox=\box86
-\nofMPsegments=\count345
-\nofMParguments=\count346
-\everyMPshowfont=\toks56
-\MPscratchCnt=\count347
-\MPscratchDim=\dimen305
-\MPnumerator=\count348
-\makeMPintoPDFobject=\count349
-\everyMPtoPDFconversion=\toks57
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
+) (C:\Users\Ro30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.d
+ef
+File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
+)
 Package hyperref Info: Link coloring ON on input line 139.
  (hw2.out) (hw2.out)
 \@outlinefile=\write4
 \openout4 = `hw2.out'.
 
-\c@maskedRefs=\count350
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/apacite\english.apc
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+\c@maskedRefs=\count349
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/apacite\engli
+sh.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
@@ -1000,49 +1006,69 @@ Package microtype Info: Applying patch `toc' on input line 139.
 Package microtype Info: Applying patch `eqnum' on input line 139.
 Package microtype Info: Applying patch `footnote' on input line 139.
 Package microtype Info: Applying patch `verbatim' on input line 139.
-Package microtype Info: Generating PDF output.
+Package microtype Info: Generating DVI output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
-Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 139.
+Package microtype Info: No font expansion.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ppl.cfg
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-
+ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 140.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsya.fd
+LaTeX Font Info:    Trying to load font information for U+pxsya on input line 1
+40.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
+a.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 140.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyb.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 1
+40.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
+b.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxmia on input line 140.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmia.fd
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 1
+40.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmi
+a.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 140.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyc.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 1
+40.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
+c.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 140.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
+0.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
+s.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 140.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
+0.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
+.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 ) [1
 
-{C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+]
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
 (Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 158.
-LaTeX Font Info:    Trying to load font information for OT1+pxtt on input line 219.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\ot1pxtt.fd
+LaTeX Font Info:    Trying to load font information for OT1+pxtt on input line 
+219.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\ot1px
+tt.fd
 File: ot1pxtt.fd 2000/12/14 v1.0
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -1059,31 +1085,49 @@ Overfull \hbox (5.87494pt too wide) in paragraph at lines 233--268
 $[]$ 
  []
 
-[5] [6]
-Overfull \hbox (5.87494pt too wide) in paragraph at lines 283--315
-$[]$ 
- []
+[5] [6] [7]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.305 
+      
+? 
+! Emergency stop.
+<inserted text> 
+                $
+l.305 
+      
+End of file on the terminal!
 
-[7] [8] (hw2.aux)
- ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
- ***********
-Package rerunfilecheck Info: File `hw2.out' has not changed.
+ 
+Here is hoch of TeX's memory you used:
+ 30153 strings out of 475249
+ 572169 string characters out of 5753084
+ 1933782 words of memory out of 5000000
+ 51127 multiletter control sequences out of 15000+600000
+ 580539 words of font info for 114 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 131i,20n,135p,1135b,1210s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on hw2.dvi (6 pages, 32232 bytes).
+539 words of font info for 114 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 131i,20n,135p,1135b,1210s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on hw2.dvi (7 pages, 41324 bytes).
+ has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30680 strings out of 475248
- 577465 string characters out of 5753057
- 1933785 words of memory out of 5000000
- 51401 multiletter control sequences out of 15000+600000
- 596864 words of font info for 257 fonts, out of 8000000 for 9000
+ 30801 strings out of 475248
+ 580138 string characters out of 5753057
+ 1936785 words of memory out of 5000000
+ 51499 multiletter control sequences out of 15000+600000
+ 598034 words of font info for 275 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 131i,20n,135p,1178b,1234s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 131i,20n,135p,1187b,1234s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsya.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txtt.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hw2.pdf (8 pages, 96782 bytes).
+Output written on hw2.pdf (8 pages, 99126 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 18 named destinations out of 1000 (max. 500000)
+ 101 PDF objects out of 1000 (max. 8388607)
+ 17 named destinations out of 1000 (max. 500000)
  58893 words of extra memory for PDF output out of 61914 (max. 10000000)
 

@@ -79,14 +79,10 @@ class PolynomialRegression:
         Returns:
             np.ndarray: Array of shape (n, 1) with predictions.
         """
-        print(f"X: {X}")
         X_ = PolynomialRegression.polyfeatures(X, self.degree)
         X_ = (X_-self.mean)/self.std
         n = X_.shape[0]
         X_ = np.c_[np.ones((n, 1)), X_]
-
-        print(f"X_: {X_}")
-        print(f"Weight: {self.weight}")
 
         return X_ @ self.weight
 

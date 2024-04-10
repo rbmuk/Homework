@@ -278,41 +278,32 @@ skipbelow=\baselineskip,
         \begin{align*}
             \sum_{i=1}^{n-1} \log(w_{(v_i, v_{i+1})})
         \end{align*}
-        Our solution is now clear: We can just run Dijkstra's algorithm, but replace the weight of each edge by the log of its weight. We have the following algoirthm:
+        Our algorithm will thus have 3 steps:
 
-        \begin{algorithm}[H]
-            \SetAlgoLined
-            \SetKwFunction{Dijkstra}{Dijkstra}
+        (1) Collapse each weight-1 edge. We must define the subroutine $\text{collapse}(v,w)$ that takes in two vertices, with the assumption that there is a weight-0 edge between them, removes one of the vertices (say, the one with lower lexicorigraphical ordering) $v$, and collapses the edge into a vertex $vw$ where all the old edges going to $v$ now point to $w$ with the same weight, where if $w$ was already connected to one of those vertices pointing to $v$ then we break ties by picking the smaller-weight edge. For example,
+        \[\begin{tikzcd}
+            b &&& b \\
+            c & v & w & c & w \\
+            a &&& a
+            \arrow["0", no head, from=2-2, to=2-3]
+            \arrow["0", no head, from=2-1, to=2-2]
+            \arrow["0"', no head, from=2-2, to=1-1]
+            \arrow["1"', no head, from=2-2, to=3-1]
+            \arrow["0", no head, from=3-4, to=2-5]
+            \arrow["0", no head, from=2-4, to=2-5]
+            \arrow["0", no head, from=1-4, to=2-5]
+            \arrow["0"', no head, from=3-1, to=2-3]
+        \end{tikzcd}\]
 
-            \SetKwProg{Fn}{Function}{:}{}
+        We define the subroutine $\text{collapse}(G)$ by calling collapse on each of its edges. This can be accomplished using an adjacency matrix in $O(n+m)$ time, since given a weight 0 edge $(v,w)$, all $m_v$ of $v$'s edges will have to be transferred to $w$, and breaking ties can be accomplished in $O(1)$ time since we can just access entry $(v,w)$ in the adjacency matrix and set it to the minimum of the it's current weight and the new proposed weight. Doing this on all $n$ vertices yields a running time of $\sum_{i=1}^n m_i = m$, and since we need to access each vertex at least once to collapse its edges, we see that the running time is $O(n+m)$. 
+        
+        We claim that the collapsing procedure preserves the length of the shortest path. We shall show this by showing that given a path of the original vertices, there is a path of the new vertices with the same weight, and vice versa. Suppose that the path is $v_1, \ldots, v_n$. If there is a weight 1 edge between $v_i$ and $v_{i+1}$, then the collapse procedure will collapse (WLOG) $v_i$ into $v_{i+1}$, whence we have a new path $v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n$ of the same length since we just divided by 1. Given a path of the collapsed vertices $w_1, \ldots, w_k$, we can unravel this path by remembering which vertices we collapsed into which, and lift this to a path $v_1, \ldots, v_n$ (where $n \geq k$ possibly), of the same length, just multiplied by a high power of 1.
 
-            \Fn{\Dijkstra{$G$, $s$}}{
-                Initialize an empty priority queue $Q$\;
-                Initialize an empty dictionary $dist$\;
-                Initialize an empty dictionary $prev$\;
-                \For{each vertex $v$ in $G$}{
-                    $dist[v] \leftarrow \infty$\;
-                    $prev[v] \leftarrow$ None\;
-                }
-                $dist[s] \leftarrow 0$\;
-                $Q$.enqueue($s$, 0)\;
-                \While{$Q$ is not empty}{
-                    $u, d \leftarrow Q$.dequeue()\;
-                    \If{$d > dist[u]$}{
-                        \textbf{continue}\;
-                    }
-                    \For{each neighbor $v$ of $u$}{
-                        $alt \leftarrow dist[u] + \log(w_{(u, v)})$\;
-                        \If{$alt < dist[v]$}{
-                            $dist[v] \leftarrow alt$\;
-                            $prev[v] \leftarrow u$\;
-                            $Q$.enqueue($v$, alt)\;
-                        }
-                    }
-                }
-                \Return $2^{dist[t]}$\;
-            }
-        \end{algorithm}
-        This is just Dijkstras algorithm, with an $O(1)$ change in calculating the weight of an edge, so the running time is still $O(n+m)$. Our algorithm is correct by the correctness of Djikstra's algorithm and the observations we made above.
+        (2) After collapsing edges, we know we will be left with just weight-2 edges, so we can replace the weight of each edge with the log of it's weight. This can clearly be done in $O(n+m)$ time, and ensures that the BFS level of each vertex is the log of the shortest path to it.
+
+        (3) Finally, we can run BFS on the graph starting at $s$, and return $2^{\text{BFSLevel}(t)}$ as the answer. Since BFS will return the shortest path, by our logic in previous two steps we can see that we will return the shortest path in the original graph with the original weights and weight function. Since BFS runs in $O(n+m)$ time, we see that our entire procedure runs in $O(n+m)$ time, and we are done.
+
+
+        
     \end{enumerate}
 \end{document}

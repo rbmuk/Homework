@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from ..utils import load_dataset
+from utils import load_dataset
 
 if __name__ == "__main__":
     from polyreg import PolynomialRegression  # type: ignore
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     y = allData[:, [1]]
 
     # regression with degree = d
-    d = 8
+    d = 12
     model = PolynomialRegression(degree=d, reg_lambda=0)
     model.fit(X, y)
 
