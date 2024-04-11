@@ -20,8 +20,8 @@ if __name__ == "__main__":
     y = allData[:, [1]]
 
     # regression with degree = d
-    d = 12
-    model = PolynomialRegression(degree=d, reg_lambda=0)
+    d = 100
+    model = PolynomialRegression(degree=d, reg_lambda=1)
     model.fit(X, y)
 
     # output predictions

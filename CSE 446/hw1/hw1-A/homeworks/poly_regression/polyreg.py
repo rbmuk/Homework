@@ -40,9 +40,15 @@ class PolynomialRegression:
                 Note that the returned matrix will not include the zero-th power.
 
         """
-        X = X.squeeze()
-        
-        return np.array([np.power(X, i) for i in range(1, degree+1)]).T
+        V = np.array([np.power(X.squeeze(), i) for i in range(1, degree+1)])
+        # if X is 1x1, then squeeze makes it a 1d array, so the above gives a 
+        # length d array instead of a 1xd ndarray, so we need to reshape it
+        # One might think that this is where ndmin would help, but
+        # it prepends 1s instead of postpends !!!!
+        if (X.shape[0] == 1):
+              return V.reshape(-1, 1).T
+        return np.array([np.power(X.squeeze(), i) for i in range(1, degree+1)]).T
+
 
     @problem.tag("hw1-A")
     def fit(self, X: np.ndarray, y: np.ndarray):
@@ -134,4 +140,11 @@ def learningCurve(
     errorTrain = np.zeros(n)
     errorTest = np.zeros(n)
     # Fill in errorTrain and errorTest arrays
-    raise NotImplementedError("Your Code Goes Here")
+    for i in range(1, n):
+        X = Xtrain[0:(i+1)]
+        y = Ytrain[0:(i+1)]
+        model = PolynomialRegression(degree=degree, reg_lambda=reg_lambda)
+        model.fit(X, y)
+        errorTrain[i] = mean_squared_error(model.predict(X), y)
+        errorTest[i] = mean_squared_error(model.predict(Xtest), Ytest)
+    return errorTrain, errorTest
