@@ -1,4 +1,5 @@
 import numpy as np
+from matplotlib import pyplot as plt
 
 from utils import load_dataset, problem
 
@@ -95,6 +96,14 @@ def main():
     )
     print(f"\tTest Error:  {np.average(1 - np.equal(y_test_pred, y_test)) * 100:.6g}%")
 
+    wrong_indices = [i for i, pred in enumerate(y_test_pred) if pred != y_test[i]]
+    fig = plt.figure(figsize=(10, 7))
+    for i, img in enumerate(x_train[wrong_indices][:10]):
+        fig.add_subplot(2, 5, i+1)
+        plt.axis('off')
+        plt.imshow(img.reshape(28,28))
+        plt.title(f'Predicted {y_test_pred[wrong_indices][i]}')
+    plt.show()
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,21 @@
+# Fdb version 4
+["latex"] 1712875252 "test.tex" "test.dvi" "test" 1712875253 0
+  "C:/Users/Rohan" 1711311262 18932 39e4f843bb26a14bb44ee3dae7b99f7c ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/miktex/data/le/pdftex/latex.fmt" 1712017024 24146601 eefe0e53892f01218379a0ef2b3d002e ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr12.tfm" 1136765053 1288 655e228510b4c2a1abe905c368440826 ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty" 1643997108 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/generic/iftex/ifvtex.sty" 1643997108 1057 525c2192b5febbd8c1f662c9468335bb ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/base/article.cls" 1687174146 20144 fbcf51733730d8f1a62143512ff5b1fe ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/base/size12.clo" 1687174146 8449 9de778d73ba774a5f2bd601f23f8922e ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.cfg" 1578053545 1104 7ac475a4e3466b0b43e138e9356bda83 ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.sty" 1578053545 42759 9cf6c5257b1bc7af01a58859749dd37a ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1665067579 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-dvips.def" 1681896761 35615 a6d1a4c99e7a18682a65dab9f3f2d901 ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
+  "test.aux" 1712875252 32 3985256e7290058c681f74d7a3565a19 "latex"
+  "test.tex" 1712867900 652 928d2a7cb0eff1edbf406ec144587658 ""
+  (generated)
+  "test.aux"
+  "test.dvi"
+  "test.log"
+  (rewritten before read)

@@ -20,7 +20,7 @@ if __name__ == "__main__":
     y = allData[:, [1]]
 
     # regression with degree = d
-    d = 100
+    d = 8
     model = PolynomialRegression(degree=d, reg_lambda=1)
     model.fit(X, y)
 

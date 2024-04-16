@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  11 APR 2024 19:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  14 APR 2024 19:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Rohan Mukherjee/Documents/Major/CSE 446/hw1/hw1.tex"
-(c:/Users/Rohan Mukherjee/Documents/Major/CSE 446/hw1/hw1.tex
+**"c:/Users/Rohan Mukherjee/Documents/Major/CSE421/HW3/HW3.tex"
+(c:/Users/Rohan Mukherjee/Documents/Major/CSE421/HW3/HW3.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -45,7 +45,9 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layouthoffset=\dimen147
 \Gm@layoutvoffset=\dimen148
 \Gm@dimlist=\toks18
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucs.sty
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucs.sty
 Package: ucs 2022/08/07 v2.3 UCS: Unicode input support
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs/data\uni-global.def
 File: uni-global.def 2022/08/07 UCS: Unicode global data
@@ -200,7 +202,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip53
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 18.
+Package hyperref Info: Option `colorlinks' set `true' on input line 23.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip54
@@ -422,27 +424,6 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box56
 ))
 Package: xparse 2023-08-29 L3 Experimental document command parser
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel.sty
-Package: cancel 2013/04/12 v2.2 Cancel math terms
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
-Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\euscript.sty
-Package: euscript 2009/06/22 v3.00 Euler Script fonts
-LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
-(Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\wasysym.sty
-Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
-\symwasy=\mathgroup11
-LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
-(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/apacite\apacite.sty
-Package: apacite 2013/07/21 v6.03 APA citation
-\c@BibCnt=\count293
-\bibleftmargin=\skip64
-\bibindent=\skip65
-\bibparsep=\skip66
-\bibitemsep=\skip67
-\biblabelsep=\skip68
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/physics\physics.sty
 Package: physics 
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikz-cd.sty
@@ -490,14 +471,14 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yd=\dimen190
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count294
-\c@pgf@countb=\count295
-\c@pgf@countc=\count296
-\c@pgf@countd=\count297
+\c@pgf@counta=\count293
+\c@pgf@countb=\count294
+\c@pgf@countc=\count295
+\c@pgf@countd=\count296
 \t@pgf@toka=\toks42
 \t@pgf@tokb=\toks43
 \t@pgf@tokc=\toks44
-\pgf@sys@id@count=\count298
+\pgf@sys@id@count=\count297
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -508,21 +489,21 @@ File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count299
-\pgfsyssoftpath@bigbuffer@items=\count300
+\pgfsyssoftpath@smallbuffer@items=\count298
+\pgfsyssoftpath@bigbuffer@items=\count299
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
 \pgfmath@dimen=\dimen191
-\pgfmath@count=\count301
+\pgfmath@count=\count300
 \pgfmath@box=\box58
 \pgfmath@toks=\toks45
 \pgfmath@stack@operand=\toks46
 \pgfmath@stack@operation=\toks47
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count302
+\c@pgfmathroundto@lastzeros=\count301
 )) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.tex) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@picminx=\dimen192
@@ -552,7 +533,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box59
 \pgf@hbox=\box60
 \pgf@layerbox@main=\box61
-\pgf@picture@serial@count=\count303
+\pgf@picture@serial@count=\count302
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen266
@@ -573,8 +554,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen271
-\pgf@sys@shading@range@num=\count304
-\pgf@shadingcount=\count305
+\pgf@sys@shading@range@num=\count303
+\pgf@shadingcount=\count304
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
@@ -609,7 +590,7 @@ Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count306
+\pgf@plot@mark@count=\count305
 \pgfplotmarksize=\dimen276
 )
 \tikz@lastx=\dimen277
@@ -624,17 +605,17 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box65
 \tikz@tempbox=\box66
 \tikz@tempbox@bg=\box67
-\tikztreelevel=\count307
-\tikznumberofchildren=\count308
-\tikznumberofcurrentchild=\count309
-\tikz@fig@count=\count310
+\tikztreelevel=\count306
+\tikznumberofchildren=\count307
+\tikznumberofcurrentchild=\count308
+\tikz@fig@count=\count309
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count311
-\pgfmatrixcurrentcolumn=\count312
-\pgf@matrix@numberofcolumns=\count313
+\pgfmatrixcurrentrow=\count310
+\pgfmatrixcurrentcolumn=\count311
+\pgf@matrix@numberofcolumns=\count312
 )
-\tikz@expandcount=\count314
+\tikz@expandcount=\count313
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymatrix.code.tex
@@ -651,7 +632,7 @@ File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
 Package: microtype 2023/03/13 v3.1a Micro-typographical refinements (RS)
 \MT@toks=\toks50
 \MT@tempbox=\box68
-\MT@count=\count315
+\MT@count=\count314
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1059.
 LaTeX Info: Redefining \leftprotrusion on input line 1060.
 \MT@prot@toks=\toks51
@@ -659,35 +640,35 @@ LaTeX Info: Redefining \rightprotrusion on input line 1078.
 LaTeX Info: Redefining \textls on input line 1368.
 \MT@outer@kern=\dimen289
 LaTeX Info: Redefining \textmicrotypecontext on input line 1988.
-\MT@listname@count=\count316
+\MT@listname@count=\count315
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdftex.def
 File: microtype-pdftex.def 2023/03/13 v3.1a Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 902.
 LaTeX Info: Redefining \lslig on input line 902.
-\MT@outer@space=\skip69
+\MT@outer@space=\skip64
 )
 Package microtype Info: Loading configuration file microtype.cfg.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
 File: microtype.cfg 2023/03/13 v3.1a microtype main configuration file (RS)
 )) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip70
+\labelindent=\skip65
 \enit@outerparindent=\dimen290
 \enit@toks=\toks52
 \enit@inbox=\box69
-\enit@count@id=\count317
-\enitdp@description=\count318
+\enit@count@id=\count316
+\enitdp@description=\count317
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/titling\titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip71
-\thanksmargin=\skip72
-\droptitle=\skip73
+\thanksmarkwidth=\skip66
+\thanksmargin=\skip67
+\droptitle=\skip68
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mdframed\mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/zref\zref-abspage.sty
 Package: zref-abspage 2023-09-14 v2.35 Module abspage for zref (HO)
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/zref\zref-base.sty
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/zref\zref-base.sty
 Package: zref-base 2023-09-14 v2.35 Module base for zref (HO)
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
@@ -696,52 +677,52 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count319
+\c@abspage=\count318
 Package zref Info: New property: abspage on input line 67.
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/needspace\needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
-\mdf@templength=\skip74
-\c@mdf@globalstyle@cnt=\count320
-\mdf@skipabove@length=\skip75
-\mdf@skipbelow@length=\skip76
-\mdf@leftmargin@length=\skip77
-\mdf@rightmargin@length=\skip78
-\mdf@innerleftmargin@length=\skip79
-\mdf@innerrightmargin@length=\skip80
-\mdf@innertopmargin@length=\skip81
-\mdf@innerbottommargin@length=\skip82
-\mdf@splittopskip@length=\skip83
-\mdf@splitbottomskip@length=\skip84
-\mdf@outermargin@length=\skip85
-\mdf@innermargin@length=\skip86
-\mdf@linewidth@length=\skip87
-\mdf@innerlinewidth@length=\skip88
-\mdf@middlelinewidth@length=\skip89
-\mdf@outerlinewidth@length=\skip90
-\mdf@roundcorner@length=\skip91
-\mdf@footenotedistance@length=\skip92
-\mdf@userdefinedwidth@length=\skip93
-\mdf@needspace@length=\skip94
-\mdf@frametitleaboveskip@length=\skip95
-\mdf@frametitlebelowskip@length=\skip96
-\mdf@frametitlerulewidth@length=\skip97
-\mdf@frametitleleftmargin@length=\skip98
-\mdf@frametitlerightmargin@length=\skip99
-\mdf@shadowsize@length=\skip100
-\mdf@extratopheight@length=\skip101
-\mdf@subtitleabovelinewidth@length=\skip102
-\mdf@subtitlebelowlinewidth@length=\skip103
-\mdf@subtitleaboveskip@length=\skip104
-\mdf@subtitlebelowskip@length=\skip105
-\mdf@subtitleinneraboveskip@length=\skip106
-\mdf@subtitleinnerbelowskip@length=\skip107
-\mdf@subsubtitleabovelinewidth@length=\skip108
-\mdf@subsubtitlebelowlinewidth@length=\skip109
-\mdf@subsubtitleaboveskip@length=\skip110
-\mdf@subsubtitlebelowskip@length=\skip111
-\mdf@subsubtitleinneraboveskip@length=\skip112
-\mdf@subsubtitleinnerbelowskip@length=\skip113
+\mdf@templength=\skip69
+\c@mdf@globalstyle@cnt=\count319
+\mdf@skipabove@length=\skip70
+\mdf@skipbelow@length=\skip71
+\mdf@leftmargin@length=\skip72
+\mdf@rightmargin@length=\skip73
+\mdf@innerleftmargin@length=\skip74
+\mdf@innerrightmargin@length=\skip75
+\mdf@innertopmargin@length=\skip76
+\mdf@innerbottommargin@length=\skip77
+\mdf@splittopskip@length=\skip78
+\mdf@splitbottomskip@length=\skip79
+\mdf@outermargin@length=\skip80
+\mdf@innermargin@length=\skip81
+\mdf@linewidth@length=\skip82
+\mdf@innerlinewidth@length=\skip83
+\mdf@middlelinewidth@length=\skip84
+\mdf@outerlinewidth@length=\skip85
+\mdf@roundcorner@length=\skip86
+\mdf@footenotedistance@length=\skip87
+\mdf@userdefinedwidth@length=\skip88
+\mdf@needspace@length=\skip89
+\mdf@frametitleaboveskip@length=\skip90
+\mdf@frametitlebelowskip@length=\skip91
+\mdf@frametitlerulewidth@length=\skip92
+\mdf@frametitleleftmargin@length=\skip93
+\mdf@frametitlerightmargin@length=\skip94
+\mdf@shadowsize@length=\skip95
+\mdf@extratopheight@length=\skip96
+\mdf@subtitleabovelinewidth@length=\skip97
+\mdf@subtitlebelowlinewidth@length=\skip98
+\mdf@subtitleaboveskip@length=\skip99
+\mdf@subtitlebelowskip@length=\skip100
+\mdf@subtitleinneraboveskip@length=\skip101
+\mdf@subtitleinnerbelowskip@length=\skip102
+\mdf@subsubtitleabovelinewidth@length=\skip103
+\mdf@subsubtitlebelowlinewidth@length=\skip104
+\mdf@subsubtitleaboveskip@length=\skip105
+\mdf@subsubtitlebelowskip@length=\skip106
+\mdf@subsubtitleinneraboveskip@length=\skip107
+\mdf@subsubtitleinnerbelowskip@length=\skip108
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mdframed\md-frame-0.mdf
 File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 )
@@ -750,144 +731,135 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@splitbox@one=\box72
 \mdf@splitbox@two=\box73
 \mdf@splitbox@save=\box74
-\mdfsplitboxwidth=\skip114
-\mdfsplitboxtotalwidth=\skip115
-\mdfsplitboxheight=\skip116
-\mdfsplitboxdepth=\skip117
-\mdfsplitboxtotalheight=\skip118
-\mdfframetitleboxwidth=\skip119
-\mdfframetitleboxtotalwidth=\skip120
-\mdfframetitleboxheight=\skip121
-\mdfframetitleboxdepth=\skip122
-\mdfframetitleboxtotalheight=\skip123
-\mdffootnoteboxwidth=\skip124
-\mdffootnoteboxtotalwidth=\skip125
-\mdffootnoteboxheight=\skip126
-\mdffootnoteboxdepth=\skip127
-\mdffootnoteboxtotalheight=\skip128
-\mdftotallinewidth=\skip129
-\mdfboundingboxwidth=\skip130
-\mdfboundingboxtotalwidth=\skip131
-\mdfboundingboxheight=\skip132
-\mdfboundingboxdepth=\skip133
-\mdfboundingboxtotalheight=\skip134
-\mdf@freevspace@length=\skip135
-\mdf@horizontalwidthofbox@length=\skip136
-\mdf@verticalmarginwhole@length=\skip137
-\mdf@horizontalspaceofbox=\skip138
-\mdfsubtitleheight=\skip139
-\mdfsubsubtitleheight=\skip140
-\c@mdfcountframes=\count321
+\mdfsplitboxwidth=\skip109
+\mdfsplitboxtotalwidth=\skip110
+\mdfsplitboxheight=\skip111
+\mdfsplitboxdepth=\skip112
+\mdfsplitboxtotalheight=\skip113
+\mdfframetitleboxwidth=\skip114
+\mdfframetitleboxtotalwidth=\skip115
+\mdfframetitleboxheight=\skip116
+\mdfframetitleboxdepth=\skip117
+\mdfframetitleboxtotalheight=\skip118
+\mdffootnoteboxwidth=\skip119
+\mdffootnoteboxtotalwidth=\skip120
+\mdffootnoteboxheight=\skip121
+\mdffootnoteboxdepth=\skip122
+\mdffootnoteboxtotalheight=\skip123
+\mdftotallinewidth=\skip124
+\mdfboundingboxwidth=\skip125
+\mdfboundingboxtotalwidth=\skip126
+\mdfboundingboxheight=\skip127
+\mdfboundingboxdepth=\skip128
+\mdfboundingboxtotalheight=\skip129
+\mdf@freevspace@length=\skip130
+\mdf@horizontalwidthofbox@length=\skip131
+\mdf@verticalmarginwhole@length=\skip132
+\mdf@horizontalspaceofbox=\skip133
+\mdfsubtitleheight=\skip134
+\mdfsubsubtitleheight=\skip135
+\c@mdfcountframes=\count320
 
 ****** mdframed patching \endmdf@trivlist
 
 ****** -- success******
 
-\mdf@envdepth=\count322
-\c@mdf@env@i=\count323
-\c@mdf@env@ii=\count324
-\c@mdf@zref@counter=\count325
+\mdf@envdepth=\count321
+\c@mdf@env@i=\count322
+\c@mdf@env@ii=\count323
+\c@mdf@zref@counter=\count324
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
-\c@mytheorem=\count326
-\c@corollary=\count327
-\c@lemma=\count328
-\c@mydef=\count329
+\c@mytheorem=\count325
+\c@corollary=\count326
+\c@lemma=\count327
+\c@mydef=\count328
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/braket\braket.sty) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count330
+\c@float@type=\count329
 \float@exts=\toks53
 \float@box=\box75
 \@float@everytoks=\toks54
 \@floatcapt=\box76
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
-Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen291
-\captionmargin=\dimen292
-\caption@leftmargin=\dimen293
-\caption@rightmargin=\dimen294
-\caption@width=\dimen295
-\caption@indent=\dimen296
-\caption@parindent=\dimen297
-\caption@hangindent=\dimen298
-Package caption Info: Standard document class detected.
+) (quiver.sty
+Package: quiver 2021/01/11 quiver
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen291
+\pgfdecoratedremainingdistance=\dimen292
+\pgfdecoratedinputsegmentcompleteddistance=\dimen293
+\pgfdecoratedinputsegmentremainingdistance=\dimen294
+\pgf@decorate@distancetomove=\dimen295
+\pgf@decorate@repeatstate=\count330
+\pgfdecorationsegmentamplitude=\dimen296
+\pgfdecorationsegmentlength=\dimen297
 )
-\c@caption@flags=\count331
-\c@continuedfloat=\count332
-Package caption Info: float package is loaded.
-Package caption Info: hyperref package is loaded.
-)
-Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count333
-Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count334
-)
-LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 135.
+\tikz@lib@dec@box=\box77
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathmorphing.code.tex)))
+LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\ot1pxr.fd
 File: ot1pxr.fd 2000/12/14 v1.0
-) (hw1.aux)
-\openout1 = `hw1.aux'.
+) (HW3.aux)
+\openout1 = `HW3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 135.
-LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 135.
+LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 141.
+LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omlpxmi.fd
 File: omlpxmi.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 135.
-LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 135.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 141.
+LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omspxsy.fd
 File: omspxsy.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 135.
-LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 135.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 141.
+LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omxpxex.fd
 File: omxpxex.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 135.
-LaTeX Font Info:    Trying to load font information for U+pxexa on input line 135.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 141.
+LaTeX Font Info:    Trying to load font information for U+pxexa on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxexa.fd
 File: upxexa.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: <default>
+* paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
+* bindingoffset: 14.45377pt
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* h-part:(L,W,R)=(54.2025pt, 474.64911pt, 54.2025pt)
+* v-part:(T,H,B)=(54.2025pt, 736.64185pt, 54.2025pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=474.64911pt
+* \textheight=736.64185pt
+* \oddsidemargin=-3.61372pt
+* \evensidemargin=-18.06749pt
+* \topmargin=-55.06749pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
-* \footskip=30.0pt
+* \footskip=18.06749pt
 * \marginparwidth=44.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
@@ -905,16 +877,16 @@ LaTeX Font Info:    ... okay on input line 135.
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count335
-\scratchdimen=\dimen299
-\scratchbox=\box77
-\nofMPsegments=\count336
-\nofMParguments=\count337
+\scratchcounter=\count331
+\scratchdimen=\dimen298
+\scratchbox=\box78
+\nofMPsegments=\count332
+\nofMParguments=\count333
 \everyMPshowfont=\toks55
-\MPscratchCnt=\count338
-\MPscratchDim=\dimen300
-\MPnumerator=\count339
-\makeMPintoPDFobject=\count340
+\MPscratchCnt=\count334
+\MPscratchDim=\dimen299
+\MPnumerator=\count335
+\makeMPintoPDFobject=\count336
 \everyMPtoPDFconversion=\toks56
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -922,143 +894,76 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 135.
- (hw1.out) (hw1.out)
+Package hyperref Info: Link coloring ON on input line 141.
+ (HW3.out) (HW3.out)
 \@outlinefile=\write4
-\openout4 = `hw1.out'.
+\openout4 = `HW3.out'.
 
-\c@maskedRefs=\count341
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/apacite\english.apc
-File: english.apc 2013/07/21 v6.03 apacite language file
-LaTeX Info: Redefining \BPBI on input line 129.
-LaTeX Info: Redefining \BHBI on input line 130.
-)
-LaTeX Info: Redefining \microtypecontext on input line 135.
-Package microtype Info: Applying patch `item' on input line 135.
-Package microtype Info: Applying patch `toc' on input line 135.
-Package microtype Info: Applying patch `eqnum' on input line 135.
-Package microtype Info: Applying patch `footnote' on input line 135.
-Package microtype Info: Applying patch `verbatim' on input line 135.
+LaTeX Info: Redefining \microtypecontext on input line 141.
+Package microtype Info: Applying patch `item' on input line 141.
+Package microtype Info: Applying patch `toc' on input line 141.
+Package microtype Info: Applying patch `eqnum' on input line 141.
+Package microtype Info: Applying patch `footnote' on input line 141.
+Package microtype Info: Applying patch `verbatim' on input line 141.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 135.
+LaTeX Info: Redefining \showhyphens on input line 141.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 136.
- (C:\Users\Rohan Mukherjee\Ane 1
-36.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
-c.fd
+LaTeX Font Info:    Trying to load font information for U+pxsya on input line 142.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsya.fd
+File: upxsya.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 142.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyb.fd
+File: utxsyb.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 142.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmia.fd
+File: upxmia.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 142.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 13
-6.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
-s.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 142.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 13
-6.
+LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <14.4> not available
+(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 143.
+LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
+(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 147.
+ [1
 
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
-.fd
-File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
-)
-LaTeX Font Info:    Trying to load font information for U+eus on input line 152
-.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueus
-.fd
-File: ueus.fd 2013/01/14 v3.01 Euler Script
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-
-eus.cfg
-File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
-) [1
-
-]
-
-! LaTeX Error: Cannot determine size of graphic in no_reg_plot.png (no Bounding
-Box).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.187 ...aphics[width=\textwidth]{no_reg_plot.png}
-                                                  
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.187 ...aphics[width=\textwidth]{no_reg_plot.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
- 
-Here is how much of TeX's memory you used:
- 29104 strings out of 475249
- 547608 string characters out of 5753084
- 1932782 words of memory out of 5000000
- 50109 multiletter control sequences out of 15000+600000
- 579858 words of font info for 113 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 116i,9n,121p,1002b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on hw1.dvi (1 page, 17248 bytes).
-8 bytes).
-f)             Requested size: 211.38832pt x 158.54192pt.
-<learning_curve.png, id=29, 1084.05pt x 650.43pt>
-File: learning_curve.png Graphic file (type png)
-<use learning_curve.png>
-Package pdftex.def Info: learning_curve.png  used on input line 205.
-(pdftex.def)             Requested size: 469.75502pt x 281.85297pt.
- [2 <./no_reg_plot.png> <./reg_1_plot.png>]
-
-LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 211.
-
-
-LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 211.
-
-<10_wrong_numbers.png, id=41, 722.7pt x 505.89pt>
-File: 10_wrong_numbers.png Graphic file (type png)
-<use 10_wrong_numbers.png>
-Package pdftex.def Info: 10_wrong_numbers.png  used on input line 227.
-(pdftex.def)             Requested size: 469.75502pt x 328.8323pt.
-[3 <./learning_curve.png>] [4 <./10_wrong_numbers.png>] (hw1.aux)
+{C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3] [4] [5] (HW3.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
-Package rerunfilecheck Info: File `hw1.out' has not changed.
+Package rerunfilecheck Info: File `HW3.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29823 strings out of 475248
- 557352 string characters out of 5753057
- 1932785 words of memory out of 5000000
- 50593 multiletter control sequences out of 15000+600000
- 607589 words of font info for 271 fonts, out of 8000000 for 9000
+ 28405 strings out of 475248
+ 540770 string characters out of 5753057
+ 1936785 words of memory out of 5000000
+ 49124 multiletter control sequences out of 15000+600000
+ 598244 words of font info for 289 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,12n,121p,1055b,892s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/euler/eusm10.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxbsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyb.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hw1.pdf (4 pages, 193474 bytes).
+ 116i,15n,121p,1442b,1066s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsya.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyc.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on HW3.pdf (5 pages, 94003 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
- 63521 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 96 PDF objects out of 1000 (max. 8388607)
+ 18 named destinations out of 1000 (max. 500000)
+ 63501 words of extra memory for PDF output out of 74296 (max. 10000000)
 
