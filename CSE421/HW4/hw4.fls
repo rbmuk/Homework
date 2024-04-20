@@ -1,7 +1,7 @@
-PWD c:\Users\Rohan Mukherjee\Documents\Major\CSE421\HW3
+PWD c:\Users\Rohan Mukherjee\Documents\Major\CSE421\HW4
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\miktex\data\le\pdftex\latex.fmt
-INPUT HW3.tex
-OUTPUT HW3.log
+INPUT hw4.tex
+OUTPUT hw4.log
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\size12.clo
@@ -130,8 +130,8 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\amscls\am
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\amscls\amsthm.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsxtra.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsxtra.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\pxfonts.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\pxfonts.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\eulervm.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\eulervm.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mathtools.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mathtools\mathtools.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
@@ -148,6 +148,16 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-dvips.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-dvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\cancel\cancel.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\cancel\cancel.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\textcomp.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\textcomp.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\euscript.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\euscript.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\wasysym\wasysym.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\wasysym\wasysym.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\apacite.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\apacite.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\physics\physics.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\physics\physics.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikz-cd.sty
@@ -266,35 +276,6 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\fro
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype-pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype-pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype-pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\titling\titling.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\titling\titling.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\mdframed.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\mdframed.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-abspage.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-abspage.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-base.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-base.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\etexcmds\etexcmds.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\etexcmds\etexcmds.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\needspace\needspace.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\needspace\needspace.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\braket\braket.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\braket\braket.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
 INPUT .\quiver.sty
 INPUT quiver.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
@@ -306,120 +287,107 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\fro
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\modules\pgfmoduledecorations.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\ot1pxr.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\ot1pxr.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\ot1pxr.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT .\HW3.aux
-INPUT .\HW3.aux
-INPUT HW3.aux
-OUTPUT HW3.aux
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omlpxmi.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omlpxmi.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omlpxmi.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omspxsy.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omspxsy.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omspxsy.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omxpxex.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omxpxex.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omxpxex.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxexa.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxexa.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxexa.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\titling\titling.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\titling\titling.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\mdframed.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\mdframed.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-abspage.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-abspage.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-base.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\zref\zref-base.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\etexcmds\etexcmds.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\etexcmds\etexcmds.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\needspace\needspace.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\needspace\needspace.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\mdframed\md-frame-0.mdf
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\braket\braket.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\braket\braket.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
+INPUT .\hw4.aux
+INPUT .\hw4.aux
+INPUT hw4.aux
+OUTPUT hw4.aux
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucsencs.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucsencs.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucsencs.def
-INPUT .\HW3.out
-INPUT .\HW3.out
-INPUT HW3.out
-INPUT HW3.out
-INPUT .\HW3.out
-INPUT .\HW3.out
-OUTPUT HW3.out
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-ppl.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-ppl.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-ppl.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsy.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsy.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsy.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxex.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxex.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxex.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsya.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsya.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsya.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsya.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsya.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsya.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsyb.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsyb.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsyb.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxmia.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxmia.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxmia.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmia.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmia.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmia.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsyc.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsyc.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\upxsyc.fd
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyc.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyc.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyc.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxexa.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxexa.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxexa.tfm
+INPUT .\hw4.out
+INPUT .\hw4.out
+INPUT hw4.out
+INPUT hw4.out
+INPUT .\hw4.out
+INPUT .\hw4.out
+OUTPUT hw4.out
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-cmr.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-cmr.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-cmr.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeur.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeur.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeur.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeurm10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-eur.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-eur.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-eur.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeurm10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeurm7.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeus.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeus.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeus.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeusm10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-eus.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-eus.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-eus.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeusm10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeusm7.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeuex.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeuex.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\eulervm\uzeuex.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeuex10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeuex10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\eulervm\zeuex10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-msa.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-msa.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-msa.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-msb.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-msb.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\microtype\mt-msb.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\jknappen\ursfs.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\jknappen\ursfs.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\jknappen\ursfs.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs7.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsy.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsy.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsy.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxex.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxex.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxex.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsya.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsya.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsya.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmia.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmia.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmia.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyc.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyc.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyc.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxexa.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxexa.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxexa.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.tfm
-OUTPUT HW3.dvi
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\wasysym\uwasy.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\wasysym\uwasy.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\wasysym\uwasy.fd
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy10.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy7.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT .\counter.jpg
+INPUT .\counter.jpg
+INPUT .\counter.jpg
+INPUT counter.jpg
