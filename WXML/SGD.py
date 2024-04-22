@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -31,16 +32,19 @@ def stochastic_gradient_ascent(A: torch.Tensor, learning_rate: float, num_iterat
     return best_A
 
 
-n, d = 3, 5
-num_tests = 100
-learning_rate = 0.01
-num_iterations = 10000
-A = torch.tensor([[ 0.2990,  0.0538, -0.2262, -0.6447,  0.6640],
-        [ 0.0618,  0.0838,  0.6374,  0.5797,  0.4968],
-        [-0.2256,  0.0323,  0.6684, -0.6644, -0.2448]], device='cuda:0')
-for _ in range(num_tests):
-    A = stochastic_gradient_ascent(A, learning_rate, num_iterations)
-    print(f"result: {A}, error: {avg_large_coordinate(A)}")
+root2 = torch.sqrt(torch.tensor(2.0, device='cuda:0'))
+n, d = 2,3
+A = torch.tensor([[1/root2, 1/root2, 0], [-1/root2, 1/root2, 0]], device='cuda:0')
+print(f"Thought optimal: {avg_large_coordinate(A)}")
+
+
+# num_tests = 100
+# learning_rate = 0.01
+# num_iterations = 10000
+# A = sample(n,d)
+# for _ in range(num_tests):
+#     A = stochastic_gradient_ascent(A, learning_rate, num_iterations)
+#     print(f"result: {A}, error: {avg_large_coordinate(A)}")
 
 # Best 2x5 case: tensor([[-0.0078, -0.0155, -0.6870,  0.7255,  0.0366],
 #                       [-0.0134, -0.0184,  0.7240,  0.6888,  0.0296]], device='cuda:0'), 

@@ -166,16 +166,16 @@ skipbelow=\baselineskip,
             \end{align*}
             Thus, the probability that the Reign score exactly 4 goals in the next game is just
             \begin{align*}
-                \P(4 \mid \lambda) = e^{-3.4}\frac{3.4^4}{4!} \approx 0.168
+                \P(4 \mid \lambda) = e^{-3.4}\frac{3.4^4}{4!} \approx 0.186
             \end{align*}
 
             \item Given that Reign actually scored 8 goals in their last game, the updated $\lambda$ is just
             \begin{align*}
-                \lambda = \frac16 (3+7+5+0+2+8) = 4.1667
+                \lambda = \frac16 (3+7+5+0+2+8) = \frac{25}{6}
             \end{align*}
             Now, the probability that Reign scores 5 goals in their next game is just
             \begin{align*}
-                \P(5 \mid \lambda) = e^{-4.1667}\frac{4.1667^5}{5!} \approx 0.156
+                \P(5 \mid \lambda) = e^{-4.1667}\frac{4.1667^5}{5!} \approx 0.162
             \end{align*}
         \end{enumerate}
 
@@ -214,11 +214,12 @@ skipbelow=\baselineskip,
             \end{align*}
             We see now that, if $f(W) = \sum_{i=1}^n \mg{W^Tx_i-y_i}_2^2$,
             \begin{align*}
-                \grad_{w_j} \mg{Xw_j-Ye_j}_2^2 &= \grad_{w_j} (Xw_j-Ye_j)^T(Xw_j-Ye_j) \\
+                \grad_{w_j} \sum_{j=1}^{k}\mg{Xw_j-Ye_j}_2^2 &= \grad_{w_j} \mg{Xw_j-Ye_j}_2^2 \\
+                &= \grad_{w_j} (Xw_j-Ye_j)^T(Xw_j-Ye_j) \\
                 &= \grad_{w_j} w_j^TX^TXw_j - 2e_j^TY^TXw_j \\
                 &= 2X^TXw_j - 2X^TYe_j
             \end{align*}
-            That is, the $j$th column of $\grad_W f(W)$ is $2X^TXw_j - 2X^TYe_j$, so $\grad_W f(W) = 2X^TXW - 2X^TY$. Thus the gradient of $g(W) = F(W) + \lambda \mg{W}_F^2$ is just $2X^TXW - 2X^TY + 2\lambda W$. Setting this to zero shows that $(X^TX+\lambda I)W = X^TY$, which shows that $\hat{W} = (X^TX+\lambda I)^{-1}X^TY$.
+            That is, the $j$th column of $\grad_W f(W)$ is $2X^TXw_j - 2X^TYe_j$, so $\grad_W f(W) = 2X^TXW - 2X^TY$. Thus the gradient of $g(W) = F(W) + \lambda \mg{W}_F^2$ is just $2X^TXW - 2X^TY + 2\lambda W$. Setting this to zero shows that $(X^TX+\lambda I)W = X^TY$, which shows that $\widehat{W} = (X^TX+\lambda I)^{-1}X^TY$.
 
             \item The training error I got was $14.805\%$ and the test error was $14.66\%$.
             \item Here is the plot of 10 samples:
@@ -228,9 +229,9 @@ skipbelow=\baselineskip,
                 \caption{10 samples of wrong numbers}
                 \label{fig:10_wrong_numbers}
             \end{figure}
-            The big pattern I notice is that most of the numbers that it wrongly predicted seemed to be tilted left or right or disconnected. I would guess that most of the data in MNIST does not have these features, so it is definitely expected that it would get these wrong.
+            The big pattern I notice is that most of the numbers that it wrongly predicted seemed to be tilted left or right or disconnected. After looking at the numbers the model got right, most of these features did not show up in those samples.
         \end{enumerate}
 
-        \item This assignment took me around 7 hours.
+        \item This assignment took me around 10 hours.
     \end{enumerate}
 \end{document}

@@ -851,6 +851,19 @@ LaTeX Font Info:    ... okay on input line 141.
 * v-part:(T,H,B)=(54.2025pt, 736.64185pt, 54.2025pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
+* \textwidth=474.6491metry* driver: auto-detecting
+*geometry* detected driver: dvips
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvips
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* bindingoffset: 14.45377pt
+* modes: 
+* h-part:(L,W,R)=(54.2025pt, 474.64911pt, 54.2025pt)
+* v-part:(T,H,B)=(54.2025pt, 736.64185pt, 54.2025pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
 * \textwidth=474.64911pt
 * \textheight=736.64185pt
 * \oddsidemargin=-3.61372pt
@@ -873,31 +886,19 @@ LaTeX Font Info:    ... okay on input line 141.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.d
+ef
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count331
-\scratchdimen=\dimen298
-\scratchbox=\box78
-\nofMPsegments=\count332
-\nofMParguments=\count333
-\everyMPshowfont=\toks55
-\MPscratchCnt=\count334
-\MPscratchDim=\dimen299
-\MPnumerator=\count335
-\makeMPintoPDFobject=\count336
-\everyMPtoPDFconversion=\toks56
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
+)
 Package hyperref Info: Link coloring ON on input line 141.
  (HW3.out) (HW3.out)
 \@outlinefile=\write4
 \openout4 = `HW3.out'.
+
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 LaTeX Info: Redefining \microtypecontext on input line 141.
 Package microtype Info: Applying patch `item' on input line 141.
@@ -905,37 +906,51 @@ Package microtype Info: Applying patch `toc' on input line 141.
 Package microtype Info: Applying patch `eqnum' on input line 141.
 Package microtype Info: Applying patch `footnote' on input line 141.
 Package microtype Info: Applying patch `verbatim' on input line 141.
-Package microtype Info: Generating PDF output.
+Package microtype Info: Generating DVI output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
-Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 141.
+Package microtype Info: No font expansion.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ppl.cfg
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-
+ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 142.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsya.fd
+LaTeX Font Info:    Trying to load font information for U+pxsya on input line 1
+42.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
+a.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 142.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyb.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 1
+42.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
+b.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxmia on input line 142.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmia.fd
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 1
+42.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmi
+a.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 142.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyc.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 1
+42.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
+c.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 142.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
+2.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
+s.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <14.4> not available
@@ -944,17 +959,40 @@ LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
 (Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 147.
  [1
 
-{C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3] [4] [5] (HW3.aux)
- ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
- ***********
-Package rerunfilecheck Info: File `HW3.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
- ) 
+] [2] [3] [4]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.230 
+      
+? 
+! Emergency stop.
+<inserted text> 
+                $
+l.230 
+      
+End of file on the terminal!
+
+ 
 Here is how much of TeX's memory you used:
- 28405 strings out of 475248
- 540770 string characters out of 5753057
+ 27726 strings out of 475249
+ 532670 string characters out of 5753084
+ 1935782 words of memory out of 5000000
+ 48756 multiletter control sequences out of 15000+600000
+ 578849 words of font info for 106 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 116i,14n,121p,1390b,1050s stack positions out of 10000i,1000n,200
+ 48756 multiletter control sequences out of 15000+600000
+ 578849 words of font info for 106 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 116i,14n,121p,1390b,1050s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on HW3.dvi (3 pages, 34684 bytes).
+out of 10000i,1000n,20000p,200000b,200000s
+Output written on HW3.dvi (3 pages, 34684 bytes).
+0s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on HW3.dvi (3 pages, 34684 bytes).
+.
+aracters out of 5753057
  1936785 words of memory out of 5000000
  49124 multiletter control sequences out of 15000+600000
  598244 words of font info for 289 fonts, out of 8000000 for 9000

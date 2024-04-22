@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  11 APR 2024 19:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  17 APR 2024 20:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -955,71 +955,47 @@ File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for U+pxsya on input line 136.
- (C:\Users\Rohan Mukherjee\Ane 1
-36.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
-c.fd
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsya.fd
+File: upxsya.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 136.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyb.fd
+File: utxsyb.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 136.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmia.fd
+File: upxmia.fd 2000/12/14 v1.0
+)
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 136.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 13
-6.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
-s.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 136.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 13
-6.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
-.fd
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 136.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+eus on input line 152
-.
-
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueus
-.fd
+LaTeX Font Info:    Trying to load font information for U+eus on input line 152.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
-)
-(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-
-eus.cfg
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-eus.cfg
 File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
 ) [1
 
-]
-
-! LaTeX Error: Cannot determine size of graphic in no_reg_plot.png (no Bounding
-Box).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.187 ...aphics[width=\textwidth]{no_reg_plot.png}
-                                                  
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.187 ...aphics[width=\textwidth]{no_reg_plot.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
- 
-Here is how much of TeX's memory you used:
- 29104 strings out of 475249
- 547608 string characters out of 5753084
- 1932782 words of memory out of 5000000
- 50109 multiletter control sequences out of 15000+600000
- 579858 words of font info for 113 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 116i,9n,121p,1002b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on hw1.dvi (1 page, 17248 bytes).
-8 bytes).
-f)             Requested size: 211.38832pt x 158.54192pt.
+{C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+<no_reg_plot.png, id=26, 462.528pt x 346.896pt>
+File: no_reg_plot.png Graphic file (type png)
+<use no_reg_plot.png>
+Package pdftex.def Info: no_reg_plot.png  used on input line 187.
+(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
+<reg_1_plot.png, id=28, 462.528pt x 346.896pt>
+File: reg_1_plot.png Graphic file (type png)
+<use reg_1_plot.png>
+Package pdftex.def Info: reg_1_plot.png  used on input line 193.
+(pdftex.def)             Requested size: 211.38832pt x 158.54192pt.
 <learning_curve.png, id=29, 1084.05pt x 650.43pt>
 File: learning_curve.png Graphic file (type png)
 <use learning_curve.png>
@@ -1037,7 +1013,7 @@ LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
 <10_wrong_numbers.png, id=41, 722.7pt x 505.89pt>
 File: 10_wrong_numbers.png Graphic file (type png)
 <use 10_wrong_numbers.png>
-Package pdftex.def Info: 10_wrong_numbers.png  used on input line 227.
+Package pdftex.def Info: 10_wrong_numbers.png  used on input line 228.
 (pdftex.def)             Requested size: 469.75502pt x 328.8323pt.
 [3 <./learning_curve.png>] [4 <./10_wrong_numbers.png>] (hw1.aux)
  ***********
@@ -1048,15 +1024,15 @@ Package rerunfilecheck Info: File `hw1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29823 strings out of 475248
- 557352 string characters out of 5753057
+ 29827 strings out of 475248
+ 557381 string characters out of 5753057
  1932785 words of memory out of 5000000
  50593 multiletter control sequences out of 15000+600000
- 607589 words of font info for 271 fonts, out of 8000000 for 9000
+ 607784 words of font info for 274 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,12n,121p,1055b,892s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/euler/eusm10.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxbsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyb.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hw1.pdf (4 pages, 193474 bytes).
+Output written on hw1.pdf (4 pages, 193470 bytes).
 PDF statistics:
  106 PDF objects out of 1000 (max. 8388607)
  25 named destinations out of 1000 (max. 500000)
