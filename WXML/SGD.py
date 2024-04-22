@@ -37,13 +37,14 @@ n, d = 2,3
 A = torch.tensor([[1/root2, 1/root2, 0], [-1/root2, 1/root2, 0]], device='cuda:0')
 print(f"Thought optimal: {avg_large_coordinate(A)}")
 
-num_tests = 100
-learning_rate = 0.01
-num_iterations = 10000
-A = sample(n,d)
-for _ in range(num_tests):
-    A = stochastic_gradient_ascent(A, learning_rate, num_iterations)
-    print(f"result: {A}, error: {avg_large_coordinate(A)}")
+
+# num_tests = 100
+# learning_rate = 0.01
+# num_iterations = 10000
+# A = sample(n,d)
+# for _ in range(num_tests):
+#     A = stochastic_gradient_ascent(A, learning_rate, num_iterations)
+#     print(f"result: {A}, error: {avg_large_coordinate(A)}")
 
 # Best 2x5 case: tensor([[-0.0078, -0.0155, -0.6870,  0.7255,  0.0366],
 #                       [-0.0134, -0.0184,  0.7240,  0.6888,  0.0296]], device='cuda:0'), 
