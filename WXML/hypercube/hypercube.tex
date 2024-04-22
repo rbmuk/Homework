@@ -175,5 +175,22 @@ skipbelow=\baselineskip,
     \end{figure}
     Funnily enough, this is precisely the place where the program starts to take a really long time. One can verify empirically that this is the right turning point, as the beta value (times $\sqrt{n}$) for $n=21$ is around $0.807$ while for $n=22$ it is around $0.788$.
 
-    
+    \[A = \begin{bmatrix}
+        -\frac{\sqrt{3}}{3} & -\frac{\sqrt{3}}{3} & 0 & 0 & 0 & 0 & \frac{\sqrt{3}}{3} \\
+        -0.5 & 0.5 & -0.5 & 0 & 0 & 0 & 0.5 \\
+        -0.5 & 0.5 & 0.5 & 0 & 0 & 0 & 0.5 \\
+        0.5 & -0.5 & -0.5 & 0 & 0 & 0 & 0.5 \\
+        0.5 & -0.5 & 0.5 & 0 & 0 & 0 & 0.5 \\
+        0.5 & 0.5 & -0.5 & 0 & 0 & 0 & 0.5 \\
+        0.5 & 0.5 & 0.5 & 0 & 0 & 0 & 0.5 \\
+    \end{bmatrix}, \quad \beta(A) = 1.933\]
+
+    \[B = \begin{bmatrix}
+        -\frac{\sqrt{3}}{3} & -\frac{\sqrt{3}}{3} & 0 & 0 & 0 & \frac{\sqrt{3}}{3} \\
+        -\frac{\sqrt{3}}{3} & \frac{\sqrt{3}}{3} & 0 & 0 & 0 & \frac{\sqrt{3}}{3} \\
+        0.5 & -0.5 & -0.5 & 0 & 0 & 0.5 \\
+        0.5 & -0.5 & 0.5 & 0 & 0 & 0.5 \\
+        0.5 & 0.5 & -0.5 & 0 & 0 & 0.5 \\
+        0.5 & 0.5 & 0.5 & 0 & 0 & 0.5 \\
+        \end{bmatrix}, \quad \beta(B) = 1.866\]
 \end{document}

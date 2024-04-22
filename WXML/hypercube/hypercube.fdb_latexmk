@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1713228653 "/Users/rbmuk/Documents/School/Major/WXML/hypercube.tex" "hypercube.pdf" "hypercube" 1713228654
-  "/Users/rbmuk/Documents/School/Major/WXML/hypercube.tex" 1713228653 5779 7a6ba4b2de362127d64f6a7b69707bd7 ""
+["pdflatex"] 1713576175 "/Users/rbmuk/Documents/School/Major/WXML/hypercube/hypercube.tex" "hypercube.pdf" "hypercube" 1713576176
+  "/Users/rbmuk/Documents/School/Major/WXML/hypercube/hypercube.tex" 1713576175 6625 b2d6a3a5be5add91aa3fcfc150f2243e ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
@@ -213,9 +213,9 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1652765441 2826452 a833057ab1846d09124b400dce25c60c ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "hypercube.aux" 1713228654 927 7cfc74d892744d0f017b89b8e68ff4bd "pdflatex"
+  "hypercube.aux" 1713576176 927 7cfc74d892744d0f017b89b8e68ff4bd "pdflatex"
   "hypercube.out" 0 -1 0 "pdflatex"
-  "hypercube.tex" 1713228653 5779 7a6ba4b2de362127d64f6a7b69707bd7 ""
+  "hypercube.tex" 1713576175 6625 b2d6a3a5be5add91aa3fcfc150f2243e ""
   "max.png" 1713227385 18268 69c178cffaf82454caea8259ed386af0 ""
   (generated)
   "hypercube.aux"
