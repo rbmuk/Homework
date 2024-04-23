@@ -1,0 +1,188 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{A1.}  
+    \begin{enumerate}[label=\alph*.]
+        \item In the L1 norm, small numbers are punished more than in the L2 norm. For example, in the L2 norm a coordinate of 0.1 translates to an increase in only 0.01, which is almost negligible. But in the L1 norm it still has a lot of weight.
+        \item This is true, since we might step past the minimum with too large a step size, and then we will try to step back towards it, but just end up oscillating far from the minimum.
+        \item SGD runs much, much faster than GD, bringing the running time from $O(n \cdot d)$ per iteration to only $O(d)$. GD on the other hand is much more stable, not relying on randomness and we don't have to worry about conrtrolling the step size.
+        \item Logistic regression does not have a closed form solution, while linear regression does.
+    \end{enumerate}
+
+    \subsection*{A2.}
+    \begin{enumerate}
+        \item Notice that,
+        \begin{align*}
+            (|a+b|)^2 = (a+b)^2 = a^2+b^2+2ab \leq a^2+b^2+2|a||b| = (|a|+|b|)^2
+        \end{align*}
+        Since $f(x) = \sqrt(x)$ is increasing, and both the LHS and RHS are positive, taking square roots on both sides shows that $|a+b| \leq |a| + |b|$.
+        \item Consider the vectors $x = (1/4, 0)$ and $y = (0, 1/4)$. Then,
+        \begin{align*}
+            g(x+y) = (\frac{1}{2} + \frac{1}{2})^2 = 1
+        \end{align*}
+        while,
+        \begin{align*}
+            g(x) + g(y) = \frac{1}{4} + \frac{1}{4} = \frac{1}{2}
+        \end{align*}
+        Which shows that the triangle inequality does not hold.
+    \end{enumerate}
+
+    \subsection*{A3.}
+    Note that the set of points $\SET{\lambda a + (1-\lambda)b \mid 0 \leq \lambda \leq 1} = \SET{a + \lambda(b-a) \mid 0 \leq \lambda \leq 1}$ is precisely the lien conneting $a$ with $b$. Since in part I, the line connecting the point $b$ with $c$ does not live fully within the set, we see that I is not convex. Similarly, applying the same logic to points a and d in the second picture shows that the II is not convex either.
+
+    \subsection*{A4.}
+    The first function I is convex because it is a quadratic function pointing upwards, with always-positive second derivative. The second function is not convex because The secant line between $b$ and $c$ lies below the curve, not above it (Recall that the line $\lambda f(x) + (1-\lambda)f(y)$ for $0 \leq \lambda \leq 1$ is the secant line of $f$ between $x$ and $y$).
+
+    \subsection*{A7.}
+    \begin{enumerate}[label=\alph*.]
+        \item Notice that
+        \begin{align*}
+            \dv{x} \log(1+e^{-x}) = \frac{-e^{-x}}{1+e^{-x}} = \frac{1}{1+e^{-x}}-1
+        \end{align*}
+        We recall the chain rule: if $f: \R \to \R$, $g: \R^n \to \R$ are differentiable, then $\nabla_x (f \circ g)(x) = f'(g(x)) \nabla_x g(x)$. Taking $f(x) = \log(1+e^{-x})$ and $g(x) = y_i(b+x_i^Tw)$, we get that
+        \begin{align*}
+            \nabla_w f(g(x)) = \qty(\frac{1}{1+e^{-y_i(b+x_i^Tw)}}-1) y_ix_i = (\mu_i(w,b) - 1)y_ix_i
+        \end{align*}
+        Because $\nabla_w y_i(b+x_i^Tw) = \nabla_w y_ix_i^Tw = y_ix_i$. Similarly, 
+        \begin{align*}
+            \pdv{b} f(g(x)) = \qty(\frac{1}{1+e^{-y_i(b+x_i^Tw)}}-1) y_i = (\mu_i(w,b)-1)y_i
+        \end{align*}
+        Since $\grad_w \lambda w^Tw = \lambda 2w$, we have that
+        \begin{align*}
+            \grad_w J(w,b) &= \frac1n\sum_{i=1}^n \qty(\mu_i(w,b)-1)y_ix_i + 2\lambda w \\
+            \pdv{b} J(w,b) &= \frac1n\sum_{i=1}^n \qty(\mu_i(w,b)-1)y_i
+        \end{align*}
+    \end{enumerate}
+\end{document}
