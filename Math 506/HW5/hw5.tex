@@ -45,6 +45,7 @@ pdfpagemode=FullScreen
 
 % Fancy theorems due to @intuitively on discord
 \usepackage{mdframed}
+\theoremstyle{definition}
 \newmdtheoremenv[
 backgroundcolor=NavyBlue!30,
 linewidth=2pt,
@@ -58,7 +59,6 @@ innerrightmargin=10pt,
 innerleftmargin=10pt,
 skipabove=\baselineskip,
 skipbelow=\baselineskip]{mytheorem}{Theorem}
-
 \newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
 
 \newtheorem{corollary}{Corollary}
@@ -140,7 +140,7 @@ skipbelow=\baselineskip,
 %==========================================================================================%
 % End of commands specific to this file
 
-\title{Math Template}
+\title{Math 506 HW5}
 \date{\today}
 \author{Rohan Mukherjee}
 
@@ -251,7 +251,118 @@ skipbelow=\baselineskip,
         \item We need only show that $\delta_n(x+y) = \delta_n(x) + \delta_n(y)$. Taking representatives $c, c'$ of $x,y$ respectively, if we write the class corresponding to $c, c'$ as $\overline a$ and $\overline{a'}$ resp., the last paragraph shows that the class corresponding to $c+c'$ is precisely $\overline a + \overline{a'}$. Since the $\delta_n(x)$ is independent of the choice of $c$, this shows that $\delta_n(x+y)=\delta_n(x) + \delta_n(y)$.
     \end{enumerate}
 
+    \newpage
+    \begin{theorem}
+        Let $F_n = \Z G \otimes_{\Z} \cdots \otimes_{\Z} \Z G$ ($n+1$ factors) for $n \geq 0$ with $G$-action defined on simple tensors by $g \cdot (g_0 \otimes \cdots \otimes g_n) = gg_0 \otimes \cdots \otimes g_n$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that $F_n$ is a free $\Z G$ module of rank $|G|^n$ with $\Z G$ basis $1 \otimes g_1 \otimes \cdots \otimes g_n$ for $g_i \in G$.
+        \end{enumerate}
+        Denote the basis element $1 \otimes g_1 \otimes \cdots \otimes g_n$ by $(g_1, \ldots, g_n)$ and define the $G$-module homomorphisms $d_n$ for $n \geq 1$ on these basis elements by $d_1(g_1) = g_1-1$ and 
+        \begin{align*}
+            d_n(g_1, \ldots, g_n) = g_1 \cdot (g_2, \ldots, g_n) + \sum_{i=1}^{n-1} (-1)^i (g_1, \ldots, g_ig_{i+1}, \ldots, g_n) + (-1)^n (g_1, \ldots, g_{n-1})
+        \end{align*}
+        for $n \geq 2$. Define the $\Z$-module contracting homomorphisms
+        \[\begin{tikzcd}
+            \Z & {F_0} & {F_1} & {F_2} & \cdots
+            \arrow["{s_{-1}}", from=1-1, to=1-2]
+            \arrow["{s_0}", from=1-2, to=1-3]
+            \arrow["{s_1}", from=1-3, to=1-4]
+            \arrow["{s_2}", from=1-4, to=1-5]
+        \end{tikzcd}\]
+        on a $\Z$ basis by $s_{-1}(1) = 1$ and $s_n(g_0 \otimes \cdots \otimes g_n) = 1 \otimes g_0 \otimes \cdots \otimes g_n$.
+        \begin{enumerate}
+            \item[(b)] Prove that
+            \begin{align*}
+                \ve s_{-1} = 1, \quad d_1s_0 + s_{-1}\ve = 1, \quad d_{n+1}s_n + s_{n-1}d_n = 1 \quad \text{for } n \geq 1
+            \end{align*}
+            \item[(c)] Prove that the maps $s_n$ are a chain homotopy between the identity (chain) map and the zero (chain) map from the chain
+            \[\begin{tikzcd}
+                \cdots & {F_n} & {F_{n-1}} & \cdots & {F_0} & \Z & 0
+                \arrow[from=1-1, to=1-2]
+                \arrow["{d_n}", from=1-2, to=1-3]
+                \arrow["{d_{n-1}}", from=1-3, to=1-4]
+                \arrow["{d_1}", from=1-4, to=1-5]
+                \arrow["\ve", from=1-5, to=1-6]
+                \arrow[from=1-6, to=1-7]
+            \end{tikzcd}\]
+            of $\Z$-modules to itself.
 
+            \item[(d)] Deduce from (c) that all $\Z$-module homology groups of the above chain complex is 0, i.e. that the above is exact. Conclude that the above is a projective $G$-module resolution of $\Z$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $F_n = \Z G \otimes_\Z \otimes \cdots \otimes_\Z \Z G$ ($n+1$ factors). Since $\Z G$ is a free $\Z$-module with rank $|G|$, $F_n$ is a free $\Z$-module with rank $|G|^{n+1}$. We seek to show that the elements
+        \begin{align*}
+            \mathscr S = \SET{1 \otimes g_1 \otimes \cdots \otimes g_n \mid g_i \in G}
+        \end{align*}
+        are linearly independent for $F_n$. Indeed, if
+        \begin{align*}
+            0 = \sum a_ig_i (1 \otimes g_1 \otimes \cdots \otimes g_n) = \sum a_i (g_i \otimes g_1 \otimes \cdots \otimes g_n)
+        \end{align*}
+        Since the $a_i$ are integers and $F_n$ is a free $\Z$-module, we see that all $a_i = 0$ which shows that $\sum a_ig_i = 0$. The elements of $\mathscr S$ obviously span $F_n$, so we are done.
+
+        \item Since $\Z$ is free we only have to determine that $\ve s_{-1}(1) = 1$. This is clear since $\ve s_{-1}(1) = \ve(1) = 1$. Next notice that $d_1s_0(g) = d_1(1 \otimes g) = g - 1$ and that $s_{-1} \ve(g) = s_{-1}(1) = 1$, so $d_1s_0 + s_{-1}\ve = 1$ since it acts by identity on all the basis elements. Next, notice that, after a sum manipulation,
+        \begin{align*}
+            d_{n+1}s_n(g_0 \otimes \cdots \otimes g_n) &= d_{n+1}(1 \otimes g_0 \otimes \cdots \otimes g_n) \\&= g_0 \otimes g_1 \otimes \cdots \otimes g_n + \sum_{i=0}^{n-1} (-1)^{i+1} (1 \otimes g_0 \otimes \cdots \otimes g_ig_{i+1} \otimes \cdots \otimes g_n) \\ &+ (-1)^{n+1} (1 \otimes g_0 \otimes \cdots \otimes g_{n-1})
+        \end{align*}
+        and, since $d_n$ is a $G$-module homomorphism,
+        \begin{align*}
+            s_{n-1}d_n(g_0 \otimes \cdots \otimes g_n) &= s_{n-1}\bigg(g_0g_1 \otimes \cdots \otimes g_n + \sum_{i=1}^{n-1} (-1)^i (g_0 \otimes g_1 \otimes \cdots \otimes g_ig_{i+1} \otimes \cdots \otimes g_n) 
+            \\& + (-1)^n (g_0 \otimes g_1 \otimes \cdots \otimes g_{n-1})\bigg)
+            \\&= 1 \otimes g_0g_1 \otimes \cdots \otimes g_n + \sum_{i=1}^{n-1} (-1)^i (1 \otimes g_0 \otimes \cdots \otimes g_ig_{i+1} \otimes \cdots \otimes g_n) \\
+            &+ (-1)^n (1 \otimes g_0 \otimes \cdots \otimes g_{n-1})
+        \end{align*}
+        Notice that $(-1)^k + (-1)^{k+1} = 0$. We can clearly see that the terms of the sums will cancel with each other, except for the 0th term of the sum in $d_{n+1}s_n$. This cancels with the first term in $s_{n-1}d_n$. Lastly, by the fact mentioned above again the terms with $(-1)^n$ and $(-1)^{n+1}$ cancel with each other, which just leaves $g_0 \otimes g_1 \otimes \cdots \otimes g_n$. So indeed $d_{n+1}s_n + s_{n-1}d_n = 1$.
+
+        \item We wish to show that the two homomorphisms of chain complexes in the below diagram are chain homotopic via the homomorphisms $s_n$:
+        \[\begin{tikzcd}
+            \cdots & {F_n} & {F_{n-1}} & \cdots & {F_0} & \Z & 0 \\
+            \cdots & {F_n} & {F_{n-1}} & \cdots & {F_0} & \Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["{d_n}", from=1-2, to=1-3]
+            \arrow["1"', shift right, from=1-2, to=2-2]
+            \arrow["0", shift left, from=1-2, to=2-2]
+            \arrow["{d_{n-1}}", from=1-3, to=1-4]
+            \arrow["{s_{n-1}}"{description}, from=1-3, to=2-2]
+            \arrow["1"', shift right, from=1-3, to=2-3]
+            \arrow["0", shift left, from=1-3, to=2-3]
+            \arrow["{d_1}", from=1-4, to=1-5]
+            \arrow["{s_{n-2}}"{description}, from=1-4, to=2-3]
+            \arrow["\ve", from=1-5, to=1-6]
+            \arrow["{s_0}"{description}, from=1-5, to=2-4]
+            \arrow["1"', shift right, from=1-5, to=2-5]
+            \arrow["0", shift left, from=1-5, to=2-5]
+            \arrow[from=1-6, to=1-7]
+            \arrow["{s_{-1}}"{description}, from=1-6, to=2-5]
+            \arrow["1"', shift right, from=1-6, to=2-6]
+            \arrow["0", shift left, from=1-6, to=2-6]
+            \arrow["0"{description}, from=1-7, to=2-6]
+            \arrow["0", shift left, from=1-7, to=2-7]
+            \arrow["1"', shift right, from=1-7, to=2-7]
+            \arrow[from=2-1, to=2-2]
+            \arrow["{d_n}", from=2-2, to=2-3]
+            \arrow["{d_{n-1}}", from=2-3, to=2-4]
+            \arrow["{d_1}", from=2-4, to=2-5]
+            \arrow["\ve", from=2-5, to=2-6]
+            \arrow[from=2-6, to=2-7]
+        \end{tikzcd}\]
+        Equivalently that $1 - 0 = 1 = d_{n+1}s_n + s_{n-1}d_n$ for all $n$. This is precisely what we verified in part (c).
+
+        \item We first prove the following lemma:
+        
+        \begin{lemma}
+            Let $\mathscr{A} = \SET{A^n}$ and $\mathscr{B} = \SET{B^n}$ be chain complexes, and let $\alpha, \beta$ be (chain) homomorphisms between them. If $\alpha$ and $\beta$ are chain homotopic via the maps $s_n: A^n \to B^{n+1}$, then they induce the same homomorphisms on homology groups.
+        \end{lemma}
+        \begin{proof}
+            Recall that by definition of chain homotopy, if the maps $A^{n+1} \to A^n$ and $B^{n+1} \to B^n$ are both denoted $d_{n+1}$, then $\alpha - \beta = d_{n+1}s_n + s_{n-1}d_n$. Thus, if $z \in \ker d_n$, then $(\alpha - \beta)(z) = d_{n+1}s_n(z) + s_{n-1}d_n(z) = d_{n+1}(s_n(z))$, so $(\alpha - \beta)(z) \in \Im d_{n+1}$. Recall that the induced map of $\alpha$ on homology groups $H^n(\mathscr{A}) \to H^n(\mathscr{B})$ is defiined as $\alpha_n(\overline z) = \overline{\alpha_n(z)}$. In particular, we see the induced map of $\alpha - \beta$ on homology groups $H^n(\mathscr{A}) \to H^n(\mathscr{B})$ is $\overline{(\alpha_n - \beta_n)(z)} = \overline{\alpha_n}(z) - \overline{\beta_n}(z) = 0$, as verified above, so $\alpha$ and $\beta$ induce the same homomorphisms on homology groups.
+        \end{proof}
+        From the definition we can see clearly that the induced map on homology groups of the identity chain map are just the identity maps, and the induced map on homology groups of the zero map is just the zero map. Since the identity chain map is homotopic to the zero chain map, we have that the identity map on the $n$th homology group of the above chain is precisely equal to the zero map. This is only possible if every homology group is 0, so the chain complex is exact. 
+        
+        Since each term in the chain is a free $G$-module, and in particular projective, and each $d_n$ and $\ve$ are actually $G$-module homomorphisms, we have that the chain complex is a projective $G$-module resolution of $\Z$.
+    \end{enumerate}
+
+    \newpage
     \begin{theorem}
         Suppose $G$ is an infinite cyclic group with generator $\sigma$. 
         \begin{enumerate}[label=(\alph*)]
@@ -313,43 +424,8 @@ skipbelow=\baselineskip,
             d_1(\Hom_{\Z G}(\Z G, A)) &= \SET{\cph((\sigma-1)x) \mid \cph \in \Hom_{\Z G}(\Z G, A)} 
             \\&= \SET{(\sigma-1)\cph \mid \cph \in \Hom_{\Z G}(\Z G, A)} = (\sigma-1)\Hom_{\Z G}(\Z G, A)
         \end{align*}
-        The image of the last term on the right under the above map is clearly $(\sigma-1)A$. Thus by the lemma we have that $H^1(G, A) \cong A/(\sigma-1)A$. Since the kernel of $d_n$ is 0 for $n \geq 3$, we see that $H^n(G, A) = 0$ for $n \geq 3$.
+        The image of the last term on the right under the above map is clearly $(\sigma-1)A$. Thus by the lemma we have that $H^1(G, A) \cong A/(\sigma-1)A$. Since the kernel of $d_n$ is 0 for $n \geq 3$, we see that $H^n(G, A) = 0$ for $n \geq 2$.
+        
+        Finally, we have that $H^1(G, \Z G) \cong \Z G / (\sigma-1) \Z G \cong \Z$ since the sequence in part (a) is exact.
     \end{enumerate}
-
-    \newpage
-        \begin{theorem}
-            $\Hom_R(\cdot, D)$ is a left-exact functor.
-        \end{theorem}
-        \begin{proof}
-            I leave it as an exercise to see that $\Hom_R(\cdot, D)$ is a contravariant functor by sending the diagram
-            \[\begin{tikzcd}
-                A & B
-                \arrow["\varphi", from=1-1, to=1-2]
-            \end{tikzcd}\]
-            to 
-            \[\begin{tikzcd}
-                {\Hom_R(B, D)} & {\Hom_R(A,D)}
-                \arrow["{\psi \mapsto \psi \circ \varphi}", from=1-1, to=1-2]
-            \end{tikzcd}\]
-
-            We need to show that given a short exact sequence 
-            \[\begin{tikzcd}
-                A & B & C & 0
-                \arrow["\psi", from=1-1, to=1-2]
-                \arrow["\varphi", from=1-2, to=1-3]
-                \arrow[from=1-3, to=1-4]
-            \end{tikzcd}\]
-            The sequence
-            \[\begin{tikzcd}
-                0 & {\Hom_R(C,D) } & {\Hom_R(B, D)} & {\Hom_R(A, D)}
-                \arrow[from=1-1, to=1-2]
-                \arrow["\tau", from=1-2, to=1-3]
-                \arrow["\sigma", from=1-3, to=1-4]
-            \end{tikzcd}\]
-            is exact. If $\Psi \circ \varphi = \Psi' \circ \varphi$, since $\varphi$ is surjective it has a right inverse, which shows that $\Psi = \Psi'$. Given $\Phi \in \ker \sigma$, we know that $\Phi \circ \psi = 0$, so $\Im \psi \subset \ker \Phi$. Since $\Im \psi = \ker \cph$, we know that $\ker \cph \subset \ker \Phi$. We seek to find $a \in \Hom_R(C,D)$ so that $a \circ \cph = \Phi$. Thus, we look to define $a(c) = \Phi \circ \cph^{-1}(c)$. Notice that 
-            \begin{align*}
-                \cph(\cph^{-1}(rc)) = rc = \cph(r\cph^{-1}(c))
-            \end{align*}
-            This shows that $\cph^{-1}(rc) - r\cph^{-1}(c) \in \ker \cph \subset \Im \Phi$. Thus we see that $\Phi(\cph^{-1}(rc)) = \Phi(r\phi^{-1}(c)) = r\Phi(\phi^{-1}(c))$, so $\Phi \circ \cph^{-1}$ is indeed a $R$-module homomorphism, completing the proof.
-        \end{proof}
 \end{document}

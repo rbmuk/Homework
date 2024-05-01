@@ -102,8 +102,9 @@ def train(
     
     start_weight, start_bias = step(X, y, start_weight, start_bias, _lambda, eta)
     while (not convergence_criterion(start_weight, old_w, start_bias, old_b, convergence_delta)):
-        old_w, old_b = start_weight, start_bias
+        old_w, old_b = np.copy(start_weight), start_bias
         start_weight, start_bias = step(X, y, start_weight, start_bias, _lambda, eta)
+        assert(old_w is not start_weight)
     return [start_weight, start_bias]
 
 @problem.tag("hw2-A")
@@ -143,7 +144,7 @@ def main():
     while (np.count_nonzero(weight) < 950):
             curr_lambda /= 2
             lambdas.append(curr_lambda)
-            weight, bias = train(X, y, convergence_delta=0.01, _lambda=curr_lambda)
+            weight = train(X, y, convergence_delta=1e-2, _lambda=curr_lambda)[0]
             nonzeros.append(np.count_nonzero(weight))
             FDR.append(np.sum([1 if weight[i] != 0 else 0 for i in range(100, weight.shape[0])])/nonzeros[len(nonzeros)-1])
             TPR.append(np.sum([1 if weight[i] != 0 else 0 for i in range(0, 100)])/100)
