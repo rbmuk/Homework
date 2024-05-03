@@ -2,7 +2,6 @@ from typing import Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
-from tqdm import tqdm
 
 from utils import load_dataset, problem
 
@@ -220,7 +219,7 @@ class BinaryLogReg:
             "test_errors": [],
         }
 
-        for _ in tqdm(range(epochs)):
+        for _ in range(epochs):
             for _ in range(num_batches):
                 indices = RNG.choice(len(X_train), batch_size, replace=False)
                 self.step(X_train[indices], y_train[indices], learning_rate)
@@ -231,6 +230,7 @@ class BinaryLogReg:
         return result
 
 if __name__ == "__main__":
+    model = BinaryLogReg(_lambda=1e-1)
     model = BinaryLogReg(_lambda=1e-1)
     (x_train, y_train), (x_test, y_test) = load_2_7_mnist()
     history = model.train(x_train, y_train, x_test, y_test, batch_size=len(x_train), epochs=30, learning_rate=3e-1)
