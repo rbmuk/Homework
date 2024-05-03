@@ -1,7 +1,7 @@
-PWD c:\Users\Rohan Mukherjee\Documents\Major\CSE 446\hw2
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Rohan Mukherjee\Documents\Major\CSE 446\hw2\hw2.tex
-OUTPUT hw2.log
+PWD c:\Users\Rohan Mukherjee\Documents\Major\CSE421\HW5
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\miktex\data\le\pdftex\latex.fmt
+INPUT hw5.tex
+OUTPUT hw5.log
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\size12.clo
@@ -19,6 +19,8 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\iftex\i
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\setspace\setspace.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\setspace\setspace.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucs.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucs.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\data\uni-global.def
@@ -34,9 +36,9 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\xcolor\xc
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\dvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\dvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\dvips.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
@@ -95,14 +97,17 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\bigintc
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\atbegshi\atbegshi.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\atbegshi-ltx.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\atbegshi-ltx.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hpdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hpdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hpdftex.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hdvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hdvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hdvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\pdfmark.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\pdfmark.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\pdfmark.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\rerunfilecheck\rerunfilecheck.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\rerunfilecheck\rerunfilecheck.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\atveryend\atveryend.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\atveryend-ltx.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\atveryend-ltx.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\rerunfilecheck\rerunfilecheck.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\rerunfilecheck\rerunfilecheck.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\amsmath\amsmath.sty
@@ -141,8 +146,8 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3package
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-dvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-dvips.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\cancel\cancel.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\cancel\cancel.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\textcomp.sty
@@ -189,9 +194,9 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\sys
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\utilities\pgfkeyslibraryfiltered.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgf.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-dvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-dvips.def
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-common-postscript.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
@@ -300,14 +305,22 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\braket\br
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\braket\braket.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\algorithms\algorithm.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\algorithms\algorithm.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algpseudocode.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algpseudocode.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algorithmicx.sty
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algorithmicx.sty
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\ot1pxr.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\ot1pxr.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\ot1pxr.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
-INPUT .\hw2.aux
-INPUT .\hw2.aux
-INPUT hw2.aux
-OUTPUT hw2.aux
+INPUT .\hw5.aux
+INPUT .\hw5.aux
+INPUT hw5.aux
+OUTPUT hw5.aux
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omlpxmi.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omlpxmi.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\omlpxmi.fd
@@ -323,22 +336,13 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\pxfonts\u
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucsencs.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucsencs.def
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\ucs\ucsencs.def
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT .\hw2.out
-INPUT .\hw2.out
-INPUT hw2.out
-INPUT hw2.out
-INPUT .\hw2.out
-INPUT .\hw2.out
-OUTPUT hw2.out
-OUTPUT hw2.pdf
+INPUT .\hw5.out
+INPUT .\hw5.out
+INPUT hw5.out
+INPUT hw5.out
+INPUT .\hw5.out
+INPUT .\hw5.out
+OUTPUT hw5.out
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\apacite\english.apc
@@ -401,6 +405,8 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wa
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy10.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy7.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxb.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxb.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsc.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
@@ -436,120 +442,20 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy10.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy8.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy6.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxr.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\base\8r.enc
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxr.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxb.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxb.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxr.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxmi.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplri.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxmi.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplri.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxr.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplr.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxr.tfm
-INPUT .\regpath_fdr_tpr.png
-INPUT .\regpath_fdr_tpr.png
-INPUT .\regpath_fdr_tpr.png
-INPUT .\regpath_fdr_tpr.png
-INPUT .\regpath_fdr_tpr.png
-INPUT .\regpath_fdr_tpr.png
-INPUT .\regpath_fdr_tpr.png
-INPUT .\crime_nonzero_weights.png
-INPUT .\crime_nonzero_weights.png
-INPUT .\crime_nonzero_weights.png
-INPUT .\crime_nonzero_weights.png
-INPUT .\crime_nonzero_weights.png
-INPUT .\crime_nonzero_weights.png
-INPUT .\crime_nonzero_weights.png
-INPUT .\features_weight.png
-INPUT .\features_weight.png
-INPUT .\features_weight.png
-INPUT .\features_weight.png
-INPUT .\features_weight.png
-INPUT .\features_weight.png
-INPUT .\features_weight.png
-INPUT .\MSE_crime.png
-INPUT .\MSE_crime.png
-INPUT .\MSE_crime.png
-INPUT .\MSE_crime.png
-INPUT .\MSE_crime.png
-INPUT .\MSE_crime.png
-INPUT .\MSE_crime.png
-INPUT .\grad_descent_loss.png
-INPUT .\grad_descent_loss.png
-INPUT .\grad_descent_loss.png
-INPUT .\grad_descent_loss.png
-INPUT .\grad_descent_loss.png
-INPUT .\grad_descent_loss.png
-INPUT .\grad_descent_loss.png
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\vf\public\pxfonts\pxmi.vf
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxmi.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\rpxpplri.tfm
-INPUT .\grad_descent_misclass.png
-INPUT .\grad_descent_misclass.png
-INPUT .\grad_descent_misclass.png
-INPUT .\grad_descent_misclass.png
-INPUT .\grad_descent_misclass.png
-INPUT .\grad_descent_misclass.png
-INPUT .\grad_descent_misclass.png
-INPUT .\SGD_batch_size_100_MSE.png
-INPUT .\SGD_batch_size_100_MSE.png
-INPUT .\SGD_batch_size_100_MSE.png
-INPUT .\SGD_batch_size_100_MSE.png
-INPUT .\SGD_batch_size_100_MSE.png
-INPUT .\SGD_batch_size_100_MSE.png
-INPUT .\SGD_batch_size_100_MSE.png
-INPUT .\SGD_batch_size_100_misclass.png
-INPUT .\SGD_batch_size_100_misclass.png
-INPUT .\SGD_batch_size_100_misclass.png
-INPUT .\SGD_batch_size_100_misclass.png
-INPUT .\SGD_batch_size_100_misclass.png
-INPUT .\SGD_batch_size_100_misclass.png
-INPUT .\SGD_batch_size_100_misclass.png
-INPUT .\batch_size_1_MSE.png
-INPUT .\batch_size_1_MSE.png
-INPUT .\batch_size_1_MSE.png
-INPUT .\batch_size_1_MSE.png
-INPUT .\batch_size_1_MSE.png
-INPUT .\batch_size_1_MSE.png
-INPUT .\batch_size_1_MSE.png
-INPUT .\batch_size_1_missclass.png
-INPUT .\batch_size_1_missclass.png
-INPUT .\batch_size_1_missclass.png
-INPUT .\batch_size_1_missclass.png
-INPUT .\batch_size_1_missclass.png
-INPUT .\batch_size_1_missclass.png
-INPUT .\batch_size_1_missclass.png
-INPUT hw2.aux
-INPUT .\hw2.out
-INPUT .\hw2.out
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxex.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxex.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxsy.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxsy.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxsyb.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxsyb.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxsyc.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\pxsyc.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\rpxmi.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\rpxmi.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\rpxr.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\public\pxfonts\rpxr.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplb8a.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplb8a.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplr8a.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplr8a.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplri8a.pfb
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplri8a.pfb
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsc.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsc.tfm
+OUTPUT hw5.dvi
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxr.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmi.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsy.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxex.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsya.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyb.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxi.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxmia.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxsyc.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxexa.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy5.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxb.tfm
+INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\pxfonts\pxb.tfm

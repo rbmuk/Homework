@@ -16,9 +16,9 @@ def plot(x: list, y: list, xlabel: str, ylabel: str, numcols: int, numrows: int,
     plt.ylabel(ylabel)
 
 def plot_reg(columns, lambdas: list, weight_bias, variable: str, numcols: int, numrows: int, loc: int) -> None:
-    plt.subplot(numcols, numrows, loc)
+    # plt.subplot(numcols, numrows, loc)
     plt.xscale('log')
-    plt.plot(lambdas, [weight[columns.get_loc(variable)-1] for weight, bias in weight_bias], 'r-')
+    plt.plot(lambdas, [weight[columns.get_loc(variable)-1] for weight, bias in weight_bias], label=variable)
     plt.xlabel('lambda')
     plt.ylabel(f'Weight of {variable}')
 
@@ -48,16 +48,16 @@ def main():
     # plt.ylabel('nnz(w)')
 
     # Regularization Path
-    # plot_reg(columns, lambdas, weight_bias, 'agePct12t29', 2, 3, 1)
-    # plot_reg(columns, lambdas, weight_bias, 'pctWSocSec', 2, 3, 2)
-    # plot_reg(columns, lambdas, weight_bias, 'pctUrban', 2, 3, 3)
-    # plot_reg(columns, lambdas, weight_bias, 'agePct65up', 2, 3, 4)
-    # plot_reg(columns, lambdas, weight_bias, 'householdsize', 2, 3, 6)
+    plot_reg(columns, lambdas, weight_bias, 'agePct12t29', 2, 3, 1)
+    plot_reg(columns, lambdas, weight_bias, 'pctWSocSec', 2, 3, 2)
+    plot_reg(columns, lambdas, weight_bias, 'pctUrban', 2, 3, 3)
+    plot_reg(columns, lambdas, weight_bias, 'agePct65up', 2, 3, 4)
+    plot_reg(columns, lambdas, weight_bias, 'householdsize', 2, 3, 6)
 
-    weight_fixed_lambda = weight_bias[-1][0]
-    ten_largest_vars = columns[(np.argsort(weight_fixed_lambda)+1)[-8:]]
-    for i in range(8):
-        plot_reg(columns, lambdas, weight_bias, ten_largest_vars[i], 2, 4, i+1)
+    # weight_fixed_lambda = weight_bias[-1][0]
+    # ten_largest_vars = columns[(np.argsort(weight_fixed_lambda)+1)[-8:]]
+    # for i in range(8):
+    #     plot_reg(columns, lambdas, weight_bias, ten_largest_vars[i], 2, 4, i+1)
 
     # MSE (train) and MSE (test)
     # mse_train = [np.sum((X @ weight + bias - y) ** 2) for weight, bias in weight_bias]
@@ -66,12 +66,13 @@ def main():
     # mse_test = [np.sum((X_test @ weight + bias - y_test) ** 2) for weight, bias in weight_bias]
     # plot(lambdas, mse_train, 'lambda', 'MSE (train)', 1, 2, 1)
     # plot(lambdas, mse_test, 'lambda', 'MSE (test)', 1, 2, 2)
+    plt.legend()
     plt.show()
 
     # Finding the largest and smallest important features for lambda = 30
-    weight = train(X, y, convergence_delta=1e-4, _lambda=30)[0]
-    max_arg, argmin = np.argmax(weight)+1, np.argmin(weight)+1
-    print(columns[max_arg], columns[argmin])
+    # weight = train(X, y, convergence_delta=1e-4, _lambda=30)[0]
+    # max_arg, argmin = np.argmax(weight)+1, np.argmin(weight)+1
+    # print(columns[max_arg], columns[argmin])
 
 if __name__ == "__main__":
     main()

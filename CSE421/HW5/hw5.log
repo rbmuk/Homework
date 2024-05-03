@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  1 MAY 2024 20:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  2 MAY 2024 21:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Rohan Mukherjee/Documents/Major/CSE 446/hw2/hw2.tex"
-(c:/Users/Rohan Mukherjee/Documents/Major/CSE 446/hw2/hw2.tex
+**"c:/Users/Rohan Mukherjee/Documents/Major/CSE421/HW5/hw5.tex"
+(c:/Users/Rohan Mukherjee/Documents/Major/CSE421/HW5/hw5.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -45,7 +45,9 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layouthoffset=\dimen147
 \Gm@layoutvoffset=\dimen148
 \Gm@dimlist=\toks18
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucs.sty
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucs.sty
 Package: ucs 2022/08/07 v2.3 UCS: Unicode input support
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/ucs/data\uni-global.def
 File: uni-global.def 2022/08/07 UCS: Unicode global data
@@ -200,7 +202,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip53
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 18.
+Package hyperref Info: Option `colorlinks' set `true' on input line 20.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip54
@@ -381,24 +383,33 @@ LaTeX Font Info:    Redeclaring math symbol \mathsterling on input line 164.
 LaTeX Info: Redefining \not on input line 997.
 LaTeX Info: Redefining \textsquare on input line 1017.
 LaTeX Info: Redefining \openbox on input line 1018.
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mathtools.sty
+) (C:\97.
+LaTeX Info: Redefining \textsquare on input line 1017.
+LaTeX Info: Redefining \openbox on input line 1018.
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mat
+htools.sty
 Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.st
+y
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count288
-\calc@Bcount=\count289
+\calc@Acount=\count289
+\calc@Bcount=\count290
 \calc@Adimen=\dimen167
 \calc@Bdimen=\dimen168
 \calc@Askip=\skip60
 \calc@Bskip=\skip61
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count290
+\calc@Ccount=\count291
 \calc@Cskip=\skip62
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.sty
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhs
+etup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count291
+\g_MT_multlinerow_int=\count292
 \l_MT_multwidth_dim=\dimen169
 \origjot=\skip63
 \l_MT_shortvdotswithinadjustabove_dim=\dimen170
@@ -407,30 +418,45 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 \l_MT_below_intertext_sep=\dimen173
 \l_MT_above_shortintertext_sep=\dimen174
 \l_MT_below_shortintertext_sep=\dimen175
-\xmathstrut@box=\box55
+\xmathstrut@box=\box56
 \xmathstrut@dim=\dimen176
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\mathrsfs.sty
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\math
+rsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup10
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\dsfont.sty
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\
+dsfont.sty
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xp
+arse\xparse.sty
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl
+3.sty
 Package: expl3 2023-08-29 L3 programming layer (loader) 
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count292
-\l__pdf_internal_box=\box56
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3b
+ackend-dvips.def
+File: l3backend-dvips.def 2023-04-19 L3 backend support: dvips
+\l__pdf_internal_box=\box57
+\g__pdf_backend_object_int=\count293
+\l__pdf_backend_content_box=\box58
+\l__pdf_backend_model_box=\box59
+\g__pdf_backend_annotation_int=\count294
+\g__pdf_backend_link_int=\count295
+\g__pdf_backend_link_sf_int=\count296
 ))
 Package: xparse 2023-08-29 L3 Experimental document command parser
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel.sty
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel
+.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp
+.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\euscript.sty
-Package: euscript 2009/06/22 v3.00 Euler Script fonts
-LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
-(Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
-) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\wasysym.sty
+)sers\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\wasysym.sty
 Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
 \symwasy=\mathgroup11
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
@@ -800,47 +826,72 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box75
 \@float@everytoks=\toks54
 \@floatcapt=\box76
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 134.
+\@float@every@algorithm=\toks55
+\c@algorithm=\count331
+) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
+Package: algpseudocode 
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count332
+\c@ALG@rem=\count333
+\c@ALG@nested=\count334
+\ALG@tlm=\skip141
+\ALG@thistlm=\skip142
+\c@ALG@Lnr=\count335
+\c@ALG@blocknr=\count336
+\c@ALG@storecount=\count337
+\c@ALG@tmpcounter=\count338
+\ALG@tmplength=\skip143
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+)
+LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\ot1pxr.fd
 File: ot1pxr.fd 2000/12/14 v1.0
-) (hw2.aux)
-\openout1 = `hw2.aux'.
+) (hw5.aux)
+\openout1 = `hw5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 134.
-LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 134.
+LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 141.
+LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omlpxmi.fd
 File: omlpxmi.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 134.
-LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 134.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 141.
+LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omspxsy.fd
 File: omspxsy.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 134.
-LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 134.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 141.
+LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omxpxex.fd
 File: omxpxex.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 134.
-LaTeX Font Info:    Trying to load font information for U+pxexa on input line 134.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 141.
+LaTeX Font Info:    Trying to load font information for U+pxexa on input line 141.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxexa.fd
 File: upxexa.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -880,207 +931,135 @@ LaTeX Font Info:    ... okay on input line 134.
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count331
+\scratchcounter=\count339
 \scratchdimen=\dimen291
 \scratchbox=\box77
-\nofMPsegments=\count332
-\nofMParguments=\count333
-\everyMPshowfont=\toks55
-\MPscratchCnt=\count334
+\nofMPsegments=\count340
+\nofMParguments=\count341
+\everyMPshowfont=\toks56
+\MPscratchCnt=\count342
 \MPscratchDim=\dimen292
-\MPnumerator=\count335
-\makeMPintoPDFobject=\count336
-\everyMPtoPDFconversion=\toks56
+\MPnumerator=\count343
+\makeMPintoPDFobject=\count344
+\everyMPtoPDFconversion=\toks57
 ) (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 134.
- (hw2.out) (hw2.out)
+Package hyperref Info: Link coloring ON on input line 141.
+ (hw5.out) (hw5.out)
 \@outlinefile=\write4
-\openout4 = `hw2.out'.
+\openout4 = `hw5.out'.
 
-\c@maskedRefs=\count337
+\c@maskedRefs=\count345
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/apacite\english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
-LaTeX Info: Redefining \microtypecontext on input line 134.
-Package microtype Info: Applying patch `item' on input line 134.
-Package microtype Info: Applying patch `toc' on input line 134.
-Package microtype Info: Applying patch `eqnum' on input line 134.
-Package microtype Info: Applying patch `footnote' on input line 134.
-Package microtype Info: Applying patch `verbatim' on input line 134.
+LaTeX Info: Redefining \microtypecontext on input line 141.
+Package microtype Info: Applying patch `item' on input line 141.
+Package microtype Info: Applying patch `toc' on input line 141.
+Package microtype Info: Applying patch `eqnum' on input line 141.
+Package microtype Info: Applying patch `footnote' on input line 141.
+Package microtype Info: Applying patch `verbatim' on input line 141.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 134.
+LaTeX Info: Redefining \showhyphens on input line 141.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 135.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsya.fd
-File: upxsya.fd 2000/12/14 v1.0
-)
-LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 135.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyb.fd
-File: utxsyb.fd 2000/12/14 v1.0
-)
-LaTeX Font Info:    Trying to load font information for U+pxmia on input line 135.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmia.fd
-File: upxmia.fd 2000/12/14 v1.0
-)
-LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 135.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsyc.fd
+LaTeX Font Info:    Trying to load font information for U+pxsya on input ad font information for U+pxsyc on input line 1
+42.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
+c.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 135.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
+2.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
+s.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 135.
- (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
+2.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
+.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <14.4> not available
-(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 136.
+(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 143.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 146.
+LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
+(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 146.
  [1
 
-{C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
-<regpath_fdr_tpr.png, id=27, 925.7787pt x 509.5035pt>
-File: regpath_fdr_tpr.png Graphic file (type png)
-<use regpath_fdr_tpr.png>
-Package pdftex.def Info: regpath_fdr_tpr.png  used on input line 176.
-(pdftex.def)             Requested size: 469.75502pt x 258.53725pt.
- [2 <./regpath_fdr_tpr.png>]
-<crime_nonzero_weights.png, id=39, 1092.7224pt x 656.9343pt>
-File: crime_nonzero_weights.png Graphic file (type png)
-<use crime_nonzero_weights.png>
-Package pdftex.def Info: crime_nonzero_weights.png  used on input line 193.
-(pdftex.def)             Requested size: 375.80544pt x 225.92085pt.
-<features_weight.png, id=40, 1084.05pt x 650.43pt>
-File: features_weight.png Graphic file (type png)
-<use features_weight.png>
-Package pdftex.def Info: features_weight.png  used on input line 200.
-(pdftex.def)             Requested size: 469.75502pt x 281.85297pt.
- [3
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.203 
-       <./crime_nonzero_weights.png>]
-<MSE_crime.png, id=52, 1084.05pt x 650.43pt>
-File: MSE_crime.png Graphic file (type png)
-<use MSE_crime.png>
-Package pdftex.def Info: MSE_crime.png  used on input line 207.
-(pdftex.def)             Requested size: 375.80544pt x 225.48038pt.
- [4
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.212 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.212 
-       <./features_weight.png> <./MSE_crime.png>]
-Overfull \hbox (4.90884pt too wide) detected at line 225
-[]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+
  []
 
-<grad_descent_loss.png, id=63, 462.528pt x 346.896pt>
-File: grad_descent_loss.png Graphic file (type png)
-<use grad_descent_loss.png>
-Package pdftex.def Info: grad_descent_loss.png  used on input line 241.
-(pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
-[5]
-<grad_descent_misclass.png, id=74, 462.528pt x 346.896pt>
-File: grad_descent_misclass.png Graphic file (type png)
-<use grad_descent_misclass.png>
-Package pdftex.def Info: grad_descent_misclass.png  used on input line 248.
-(pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
-<SGD_batch_size_100_MSE.png, id=75, 462.528pt x 346.896pt>
-File: SGD_batch_size_100_MSE.png Graphic file (type png)
-<use SGD_batch_size_100_MSE.png>
-Package pdftex.def Info: SGD_batch_size_100_MSE.png  used on input line 258.
-(pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
- [6
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.261 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.261 
-       <./grad_descent_loss.png> <./grad_descent_misclass.png>]
-<SGD_batch_size_100_misclass.png, id=87, 462.528pt x 346.896pt>
-File: SGD_batch_size_100_misclass.png Graphic file (type png)
-<use SGD_batch_size_100_misclass.png>
-Package pdftex.def Info: SGD_batch_size_100_misclass.png  used on input line 265.
-(pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
-<batch_size_1_MSE.png, id=88, 462.528pt x 346.896pt>
-File: batch_size_1_MSE.png Graphic file (type png)
-<use batch_size_1_MSE.png>
-Package pdftex.def Info: batch_size_1_MSE.png  used on input line 275.
-(pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
- [7
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.278 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.278 
-       <./SGD_batch_size_100_MSE.png> <./SGD_batch_size_100_misclass.png>]
-<batch_size_1_missclass.png, id=101, 462.528pt x 346.896pt>
-File: batch_size_1_missclass.png Graphic file (type png)
-<use batch_size_1_missclass.png>
-Package pdftex.def Info: batch_size_1_missclass.png  used on input line 282.
-(pdftex.def)             Requested size: 281.85587pt x 211.39981pt.
- [8
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.292 \end{document}
-                    
-pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.292 \end{document}
-                     <./batch_size_1_MSE.png> <./batch_size_1_missclass.png>] (hw2.aux)
- ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
- ***********
-Package rerunfilecheck Info: File `hw2.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
- ) 
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 179.
+
+LaTeX Font Warning: Font shape `OT1/pxr/m/scit' undefined
+(Font)              using `OT1/pxr/m/sc' instead on input line 183.
+
+
+LaTeX Font Warning: Font shape `OT1/pxr/m/scit' undefined
+(Font)              using `OT1/pxr/m/sc' instead on input line 183.
+
+[2] [3] [4]
+! Argument of \equal has an extra }.
+<inserted text> 
+                \par 
+l.258                 \State
+                             $A \gets \text{an } n \times k \text{ matrix fi...
+
+? 
+! Emergency stop.
+<inserted text> 
+                \par 
+l.258                 \State
+                             $A \gets \text{an } n \times k \text{ matrix fi...
+End of file on the terminal!
+
+ 
 Here is how much of TeX's memory you used:
- 28340 strings out of 475248
- 528604 string characters out of 5753057
- 1936785 words of memory out of 5000000
- 49112 multiletter control sequences out of 15000+600000
- 593696 words of font info for 230 fonts, out of 8000000 for 9000
+ 28370 strings out of 475249
+ 530915 string characters out of 5753084
+ 1933782 words of memory out of 5000000
+ 49374 multiletter control sequences out of 15000+600000
+ 585100 words of font info for 127 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,12n,121p,1055b,752s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyb.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyc.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hw2.pdf (8 pages, 356918 bytes).
+ 116i,11n,121p,1028b,536s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on hw5.dvi (4 pages, 27856 bytes).
+ font info for 129 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 116i,11n,121p,1028b,536s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on hw5.dvi (4 pages, 27716 bytes).
+tiletter control sequences out of 15000+600000
+ 603098 words of font info for 292 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 116i,11n,121p,1274b,536s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsya.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxsc.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on hw5.pdf (6 pages, 99612 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 52 named destinations out of 1000 (max. 500000)
- 49215 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 93 PDF objects out of 1000 (max. 8388607)
+ 17 named destinations out of 1000 (max. 500000)
+ 71693 words of extra memory for PDF output out of 74296 (max. 10000000)
 
