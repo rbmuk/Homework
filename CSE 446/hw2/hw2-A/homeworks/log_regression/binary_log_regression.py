@@ -231,9 +231,9 @@ class BinaryLogReg:
         return result
 
 if __name__ == "__main__":
-    model = BinaryLogReg()
+    model = BinaryLogReg(_lambda=1e-1)
     (x_train, y_train), (x_test, y_test) = load_2_7_mnist()
-    history = model.train(x_train, y_train, x_test, y_test, batch_size=784, epochs=200, learning_rate=3e-1)
+    history = model.train(x_train, y_train, x_test, y_test, batch_size=len(x_train), epochs=30, learning_rate=3e-1)
 
     # Plot losses
     plt.plot(history["train_losses"], label="Train")
