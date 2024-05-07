@@ -10,7 +10,7 @@
 % Required to support mathematical unicode
 \usepackage[warnunknown, fasterrors, mathletters]{ucs}
 \usepackage[utf8x]{inputenc}
-\usepackage{R:/sty/quiver}
+%\usepackage{R:/sty/quiver}
 
 \usepackage{hyperref} % links
 \hypersetup{
@@ -160,6 +160,7 @@ skipbelow=\baselineskip,
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\Hom}{\mathrm{Hom}_R}
 \usepackage{float}
+\newcommand{\E}{\mathbb E}
 
 %==========================================================================================%
 % End of commands specific to this file
@@ -289,4 +290,23 @@ skipbelow=\baselineskip,
         \beta(A) = \frac{a\sqrt{k} + b\sqrt{k+1}}{2^{n-1}}
     \end{align*}
     with $a+b=2^{n-1}$. This is because the above procedure clearly puts the vertices of the hypercube on two infinity balls with the expected inner product being $\sqrt{k}$ and $\sqrt{k+1}$ respectively, and since it puts the vertices into disjoint groups, we get the above form. So powers of 2 are special in the sense that the optimal matrix can pack all the points on one infinity ball, but there is even more going on behind the scenes (and in fact I like to describe this as discretely interpolating between $\sqrt{k}$ and $\sqrt{k+1}$ when the number of rows are between $2^{k-1}$ and $2^k$).
+
+    Robert has proved that $n \times 1$ is tight in the following way:
+
+    Recall that we can reformulate our problem using probability by showing that 
+    \begin{align*}
+        \E_x[|a^t x|] \leq 1
+    \end{align*}
+    Where $x$ is uniformly distributed on $\SET{\pm 1}^n$. Notice that 
+    \begin{align*}
+        (xx^t)_{ij} = x_i x_j
+    \end{align*}
+    And thus $\E[xx^t] = I$ by independence. Then,
+    \begin{align*}
+        \E[\ip{a,x}^2] = a^t \E[xx^t] a = a^t a = \mg{a}^2
+    \end{align*}
+    By Jensens,
+    \begin{align*}
+        \E[|a^t x|] = \E[\sqrt{\ip{a,x}^2}] \leq \sqrt{\E[\ip{a,x}^2]} = \mg{a} = 1
+    \end{align*}
 \end{document}
