@@ -1,32 +1,40 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.16)  8 MAY 2024 16:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=latex 2022.5.16)  8 MAY 2024 15:58
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/rbmuk/Documents/School/Major/CSE421/HW5/hw5.tex
-(/Users/rbmuk/Documents/School/Major/CSE421/HW5/hw5.tex
+**hw5.tex
+(./hw5.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24> (/usr/local/texlive/2022/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/local/texlive/2022/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
-)
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\bibindent=\dimen138
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
- (/usr/local/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks16
+L3 programming layer <2022-02-24>
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 a
+     
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.1 a
+     
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 17 strings out of 478269
+ 500 string characters out of 5846373
+ 289375 words of memory out of 5000000
+ 18325 multiletter control sequences out of 15000+600000
+ 469259 words of font info for 28 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 13i,0n,12p,41b,14s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.
+oks16
 ) (/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
@@ -944,61 +952,68 @@ File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
-LaTeX Info: Redefining \microtypecontext on input line 142.
-Package microtype Info: Applying patch `item' on input line 142.
-Package microtype Info: Applying patch `toc' on input line 142.
-Package microtype Info: Applying patch `eqnum' on input line 142.
-Package microtype Info: Applying patch `footnote' on input line 142.
-Package microtype Info: Generating PDF output.
-Package microtype Info: Character protrusion enabled (level 2).
-Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
-Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 142.
+LaTeX Infoicrotype Info: Using default protrusion set `alltext'.
+Package microtype Info: No font expansion.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-ppl.cfg
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 143.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsya.fd
+LaTeX Font Info:    Trying to load font information for U+pxsya on input line 1
+43.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsya.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 143.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsyb.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 1
+43.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsyb.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxmia on input line 143.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxmia.fd
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 1
+43.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxmia.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 143.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsyc.fd
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 1
+43.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 143.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
+3.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 143.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/wasysym/uwasy.fd
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
+3.
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <14.4> not available
 (Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 144.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 147.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 147.
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
 (Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 147.
  [1
 
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
+
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 180.
 
-
 LaTeX Font Warning: Font shape `OT1/pxr/m/scit' undefined
 (Font)              using `OT1/pxr/m/sc' instead on input line 184.
 
@@ -1006,18 +1021,37 @@ LaTeX Font Warning: Font shape `OT1/pxr/m/scit' undefined
 LaTeX Font Warning: Font shape `OT1/pxr/m/scit' undefined
 (Font)              using `OT1/pxr/m/sc' instead on input line 184.
 
-[2] [3
-pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.212     \newpage
-                  ] [4] [5] [6] [7] (./hw5.aux)
-Package rerunfilecheck Info: File `hw5.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
- ) 
+[2] [3] [4] [5] [6]
+! Argument of \align* has an extra }.
+<inserted text> 
+                \par 
+l.309 ...leq \ell < j \\ j-Closer[j,\ell] \geq k}}
+                                                   OPT(j-Closer[j,\ell]-1, \...
+
+? 
+! Emergency stop.
+<inserted text> 
+                \par 
+l.309 ...leq \ell < j \\ j-Closer[j,\ell] \geq k}}
+                                                   OPT(j-Closer[j,\ell]-1, \...
+End of file on the terminal!
+
+ 
 Here is how much of TeX's memory you used:
- 29588 strings out of 478268
- 552203 string characters out of 5846347
+ 29077 strings out of 478269
+ 548207 string characters out of 5846373
+ 898189 words of memory out of 5000000
+ 46738 multiletter control sequences out of 15000+600000
+ 496290 words of font info for 119 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 114i,14n,118p,1026b,969s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on hw5.dvi (6 pages, 39824 bytes).
+letter control sequences out of 15000+600000
+ 496290 words of font info for 119 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 114i,11n,118p,1026b,466s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on hw5.dvi (5 pages, 31572 bytes).
+ string characters out of 5846347
  869688 words of memory out of 5000000
  46949 multiletter control sequences out of 15000+600000
  514678 words of font info for 290 fonts, out of 8000000 for 9000
