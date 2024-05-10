@@ -130,6 +130,7 @@ skipbelow=\baselineskip,
 \usepackage{algpseudocode}
 \newcommand{\OPT}{\mathrm{OPT}}
 \newcommand{\Indp}{\textsc{Indp}}
+\usepackage{csvsimple}
 
 %==========================================================================================%
 % End of commands specific to this file
@@ -199,6 +200,16 @@ skipbelow=\baselineskip,
     \end{align*}
     Which shows that $T(n) = O(k(n^2+nm))$.
 
+    \newpage
+    \subsection*{P2.}
+    This is the table for the DP knapsack algorithm I got, where the $(i,j)$ position is the maximum value that can be obtained using the first $i$ items and a knapsack of size $j$:
+    \begin{table}[htbp]
+        \centering
+        \caption{Knapsack Data}
+        \csvautotabular{knapsack.csv}
+    \end{table}
+
+    \newpage
     \subsection*{P3.}
     Our algorithm is as follows:
     \begin{algorithm}
@@ -227,6 +238,7 @@ skipbelow=\baselineskip,
     \end{align*}
     This is because we are simply partitioning over the number of times we use the $n$th coin. If we use the $n$th coin $\ell$ times, then we need to make change for $k - \ell \cdot v_n$ using the first $n-1$ coins, and the total number of coins will be the minimum number of coins needed for that plus the $\ell$ copies of the $n$th coin. Since the minimum will have between $0$ and $k/v_n$ copies of the $n$th coin, we are taking the minimum over all possibilities and thus the claim is proven, which shows the algorithm is correct.
 
+    \newpage
     \subsection*{P4.}
     Our algorithm is as follows, where we use the convention that if $i < 0$ then $C[i] = 0$ for every list $C$:
     \begin{algorithm}
@@ -245,43 +257,48 @@ skipbelow=\baselineskip,
 
     First, we can see that the sum inside the for loop will take  $O(k_A+k_B)$ time, and the loop runs $n$ times  thus our algorithm runs in $O(n(k_A+k_B))$ time.
 
-    We now prove the correctness of this algorithm. We claim that $EA[n]$ and $EB[n]$ represent the number of valid strings with $n$ letters that end in $A$ and $B$ respectively. Clearly the claim is true for $n=1$ beacuse $k_A, k_B \geq 1$ and there is precisely 1 string that ends in $A$, $B$ respectively. Suppose the claim is true for $<n$. If $S$ is a valid string with $n$ letters ending in $A$, then the consecutive subsequence containing the last $A$ has length $1 \leq \ell \leq k_A$. The final observation is that the number of valid strings on $n$ letters which has a length $\ell$ consecutive subsequence as 0s on the right is the same as the number of strings on $n-\ell$ letters ending in $B$. Appying the inductive hypothesis now shows that $EA$ has the correct value. Applying the exact same logic shows that $EB$ has the correct value, so our inductive step. Finally, every valid subsequence on $n$ letters either ends in $A$ or $B$, which proves the correctness of the algorithm.
+    We now prove the correctness of this algorithm. We claim that $EA[n]$ and $EB[n]$ represent the number of valid strings with $n$ letters that end in $A$ and $B$ respectively. Clearly the claim is true for $n=1$ beacuse $k_A, k_B \geq 1$ and there is precisely 1 string that ends in $A$, $B$ respectively. Suppose the claim is true for $<n$. If $S$ is a valid string with $n$ letters ending in $A$, then the consecutive subsequence containing the last $A$ has length $1 \leq \ell \leq k_A$. The final observation is that the number of valid strings on $n$ letters which has a length $\ell$ consecutive subsequence as 0s on the right is the same as the number of strings on $n-\ell$ letters ending in $B$, since we have fixed the last $\ell$ letters to be $A$ and we need this sequence to stop at letter $n-l$--i.e., it the $n-l$th letter needs to be $B$. Applying symmetric logic to $B$ and then using the inductive hypothesis shows that $EA, EB$ hold the right values. Finally, every valid subsequence on $n$ letters either ends in $A$ or $B$, which proves the correctness of the algorithm.
 
     \newpage
     \subsection*{P5.}
-    Our algorithm is as follows:
+    Let $d(x,y) = |x-y|$ be the usual Euclidean metric over $\R$. Our algorithm is as follows:
     \begin{algorithm}
         \caption{Optimal Village Cost Procedure}
         \begin{algorithmic} % The number indicates line number visibility
             \Procedure{Optimal-Village-Cost}{$x_1, \ldots, x_n, K$}
                 \State \textbf{Sort} $x_1, \ldots, x_n$
-                \State $A \gets \text{an } n \times n \times K \text{ tensor filled with } \infty$
-                \State $Closer \gets \text{an } n \times n \times n \text{ matrix filled with } 0$
-                \State $D \gets \text{an } n \times n \text{ matrix filled with } 0$
+                \State $A \gets \text{an } n \times n \times K \text{ tensor}$
+                \State $Closer \gets \text{an } n \times n \times n \text{ tensor}$
+                \State $D \gets \text{an } n \times n \times n \text{ tensor}$
                 \For{$1 \leq i \leq n$}
                     \For{$1 \leq l < u \leq n$}
                         \State $D[i, l,u] \gets \displaystyle \sum_{\alpha=l}^u d(x_\alpha, x_i)$
                     \EndFor
                 \EndFor
                 \For{$1 \leq i < j \leq n$}
-                    \State $Closer[i,j] \gets \displaystyle i - \min\SET{\ell : d(x_\ell,x_i) \leq d(x_\ell, x_j)}$
+                    \State $Closer[i,j] \gets \displaystyle \min\SET{\ell : d(x_\ell,x_i) \leq d(x_\ell, x_j)}$
                 \EndFor
                 \For{$1 \leq i < j \leq n$}
-                    \State $A[i,j,1] \gets \sum_{\ell=1}^i |x_\ell - x_j|$
+                    \State $A[i,j,1] \gets D[j, 1, i]$
                 \EndFor
                 \For{$k = 2 \text{ to } K$}
                     \For{$k \leq i, j \leq n$}
-                        \State $A[i,j,k] \gets \displaystyle \min_{1 \leq \ell < j} \SET{A[i-Closer[j,\ell], \ell,k-1] + D[j, j-Closer[j,\ell], i]}$
+                        \State $A[i,j,k] \gets \displaystyle \min_{k-1\leq \ell \leq j} A[Closer[j,\ell]-1, \ell,k-1] + D[j, Closer[j,\ell], i]$
                     \EndFor
                 \EndFor
-                \State \Return $\min_{K \leq j \leq n} A[n,j,K]$
+                \State \Return $\displaystyle \min_{K \leq j \leq n} A[n,j,K]$
             \EndProcedure
         \end{algorithmic}
     \end{algorithm}
 
-    First observe that for $i > j$, $Closer[i,j]$ is the number of villages between $i$ and $j$ that are closer to $i$ than $j$. I claim that $A[i,j,k]$ equals the sum of the distances to each village to its nearest post office using only the first $i$ villages with the rightmost post office in village $j$ where we are allocated $k$ post offices. We prove this by induction on $k$. The claim is true for $k = 1$ because when we only have one post office, the index $j$ specifies where it is and then we just set $A[i,j,1]$ equal to the sum of the distances from the $i$ villages to the post office. Now suppose the claim is true for $<k$. 
+    Let $OPT(i,j,k)$ for $k \leq j \leq i$ be the optimal sum of the distances from each village to its nearest post office, where we use only the first $i$ villages, the rightmost post office is at position $j$, and we are allocated $k$ post offices. It is easy to see that if $k=1$, then $OPT(i,j,1)$ is just the sum of the distances from the first $i$ villages to the post office at position $j$, because there is only one post office and it is at position $j$. 
 
-    I claim that the optimal post office placement on $i$ villages, when we are allocated $k$ post offices, and when the rightmost post office is at position $j$ can be found using formula in the algorithm. This is because we can partition over where the second rightmost post office is. When the second rightmost post office is at position $\ell$, the villages that overlap between $\ell$ and $j$ will precisely be the ones between them. In this case, those that are closer to $j$ will be served by the post office at $j$, and those that are closer to $\ell$ will be served by the post office at $\ell$. So to find the optimal post office placement with rightmost position $j$, we just need to optimize over $\ell$, the second rightmost post office location, on only the villages that are benefitting from $\ell$--i.e. those that are closer to $\ell$ than to $j$. After this we add the distances from the villages closest to $j$ (Note: if $j$ is the rightmost post office than anything to the right of it is certainly closest to $j$ because the $x_i$ are sorted), which gives us the sum of the distances from any post office to the villages it serves. This completes the proof of the claim. 
+    We shall now prove the recursive formula in the algorithm. The main idea is to guess where the second rightmost post office is. Let $k \leq j \leq i$ be fixed. Since we have used the $k$th post office by putting it at position $j$, we see that the second rightmost post office must be at position $\geq k-1$ otherwise there could not possibly be $k-1$ post offices placed to the left and including it. So we guess the position of the second rightmost post office to be at $k-1 \leq \ell < j$. Now we want to find the distance from the first $i$ villages to their nearest post office. Since $j$ is the rightmost post office, we see obviously that for $k > j$ the $k$th village is certainly closest to $j$. However, between $\ell$ and $j$ could be incredibly complicated and intertwined.
+
+    We use the following trick: let $Closer[j,\ell]$ be the index of the leftmost post office that is closer to $j$ than to $\ell$. This is certainly less than $j$ because $j$ is closer to $j$ itself than to $\ell$. Since every other post office is to the left of $\ell$, the post offices that are closest to $j$ are precisely those with index between $Closer[j, \ell]$ and $i$. Now, to find the optimal placement of the villages with rightmost post office $j$ and second rightmost post office $\ell$, we simply need to look for the optimal position of the villages that are closer to $\ell$ than to $j$ (which is just those with index strictly less than $Closer[j,\ell]$ by construction), with $\ell$ as the rightmost post office, and then finally add the distances from every village that is closer to $j$ than to $\ell$ (also by construction just those that come after and including $Closer[j, \ell]$). Since the second rightmost post office is certainly somewhere left of $j$ (since the villages are in sorted order), taking the minimum over all (feasible) $\ell$ indeed finds the right value. Putting all this together we get the following formula:
+    \begin{align*}
+        OPT(i, j, k) = \min_{k-1 \leq \ell < j} OPT(Closer[j,\ell]-1, \ell, k-1) + \sum_{\alpha=Closer[j,\ell]}^i d(x_\alpha, x_j).
+    \end{align*}
 
     The last step in the algorithm is to simply take a minimum over all possible rightmost post office locations, which shows correctness.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.16)  3 MAY 2024 14:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.16)  8 MAY 2024 16:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -809,47 +809,62 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip142
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/csvsimple/csvsimple.sty (/usr/local/texlive/2022/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
 )
-LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 141.
+Package: csvsimple 2022/02/01 v2.3.0 LaTeX CSV file processing
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/csvsimple/csvsimple-legacy.sty
+Package: csvsimple-legacy 2022/02/01 version 2.3.0 LaTeX2e CSV file processing
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+)
+\csv@file=\read3
+\c@csvinputline=\count338
+\c@csvrow=\count339
+\c@csvcol=\count340
+\csv@out=\write4
+)
+LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 142.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/ot1pxr.fd
 File: ot1pxr.fd 2000/12/14 v1.0
 ) (./hw5.aux)
 \openout1 = `hw5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 141.
-LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 141.
+LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 142.
+LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 142.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/omlpxmi.fd
 File: omlpxmi.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 141.
-LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 142.
+LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 142.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/omspxsy.fd
 File: omspxsy.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 141.
-LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 142.
+LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 142.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/omxpxex.fd
 File: omxpxex.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 141.
-LaTeX Font Info:    Trying to load font information for U+pxexa on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 142.
+LaTeX Font Info:    Trying to load font information for U+pxexa on input line 142.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxexa.fd
 File: upxexa.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -889,16 +904,16 @@ LaTeX Font Info:    ... okay on input line 141.
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 ) (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count338
+\scratchcounter=\count341
 \scratchdimen=\dimen289
 \scratchbox=\box76
-\nofMPsegments=\count339
-\nofMParguments=\count340
+\nofMPsegments=\count342
+\nofMParguments=\count343
 \everyMPshowfont=\toks54
-\MPscratchCnt=\count341
+\MPscratchCnt=\count344
 \MPscratchDim=\dimen290
-\MPnumerator=\count342
-\makeMPintoPDFobject=\count343
+\MPnumerator=\count345
+\makeMPintoPDFobject=\count346
 \everyMPtoPDFconversion=\toks55
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -906,7 +921,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 141.
+Package hyperref Info: Link coloring ON on input line 142.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/local/texlive/2022/texmf-dist/tex/latex/refcount/refcount.sty
@@ -914,100 +929,105 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/local/texlive/2022/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count344
+\c@section@level=\count347
 )
-LaTeX Info: Redefining \ref on input line 141.
-LaTeX Info: Redefining \pageref on input line 141.
-LaTeX Info: Redefining \nameref on input line 141.
+LaTeX Info: Redefining \ref on input line 142.
+LaTeX Info: Redefining \pageref on input line 142.
+LaTeX Info: Redefining \nameref on input line 142.
  (./hw5.out) (./hw5.out)
-\@outlinefile=\write4
-\openout4 = `hw5.out'.
+\@outlinefile=\write5
+\openout5 = `hw5.out'.
 
-\c@maskedRefs=\count345
+\c@maskedRefs=\count348
  (/usr/local/texlive/2022/texmf-dist/tex/latex/apacite/english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
-LaTeX Info: Redefining \microtypecontext on input line 141.
-Package microtype Info: Applying patch `item' on input line 141.
-Package microtype Info: Applying patch `toc' on input line 141.
-Package microtype Info: Applying patch `eqnum' on input line 141.
-Package microtype Info: Applying patch `footnote' on input line 141.
+LaTeX Info: Redefining \microtypecontext on input line 142.
+Package microtype Info: Applying patch `item' on input line 142.
+Package microtype Info: Applying patch `toc' on input line 142.
+Package microtype Info: Applying patch `eqnum' on input line 142.
+Package microtype Info: Applying patch `footnote' on input line 142.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 141.
+LaTeX Info: Redefining \showhyphens on input line 142.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 142.
+LaTeX Font Info:    Trying to load font information for U+pxsya on input line 143.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsya.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 142.
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 143.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsyb.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxmia on input line 142.
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 143.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxmia.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 142.
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 143.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/pxfonts/upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 142.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 143.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 142.
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 143.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <14.4> not available
-(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 143.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 146.
+(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 144.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 147.
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
-(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 146.
+(Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 147.
  [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 179.
+(mdframed)              on input line 180.
 
 
 LaTeX Font Warning: Font shape `OT1/pxr/m/scit' undefined
-(Font)              using `OT1/pxr/m/sc' instead on input line 183.
+(Font)              using `OT1/pxr/m/sc' instead on input line 184.
 
 
 LaTeX Font Warning: Font shape `OT1/pxr/m/scit' undefined
-(Font)              using `OT1/pxr/m/sc' instead on input line 183.
+(Font)              using `OT1/pxr/m/sc' instead on input line 184.
 
-[2] [3] [4] [5] [6] (./hw5.aux)
+[2] [3
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.212     \newpage
+                  ] [4] [5] [6] [7] (./hw5.aux)
 Package rerunfilecheck Info: File `hw5.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 28938 strings out of 478268
- 535299 string characters out of 5846347
- 857773 words of memory out of 5000000
- 46326 multiletter control sequences out of 15000+600000
- 514288 words of font info for 284 fonts, out of 8000000 for 9000
+ 29588 strings out of 478268
+ 552203 string characters out of 5846347
+ 869688 words of memory out of 5000000
+ 46949 multiletter control sequences out of 15000+600000
+ 514678 words of font info for 290 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,11n,118p,1267b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/rpxsc.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hw5.pdf (6 pages, 90263 bytes).
+ 114i,11n,118p,1229b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/pxfonts/rpxsc.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on hw5.pdf (7 pages, 97105 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
- 17 named destinations out of 1000 (max. 500000)
+ 109 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
+ 20 named destinations out of 1000 (max. 500000)
  71693 words of extra memory for PDF output out of 74296 (max. 10000000)
 
