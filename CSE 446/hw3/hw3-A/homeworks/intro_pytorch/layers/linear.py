@@ -2,6 +2,7 @@ from typing import Optional
 
 import torch
 from torch import nn
+from torch.nn.parameter import Parameter
 
 from utils import problem
 
@@ -31,8 +32,9 @@ class LinearLayer(nn.Module):
             - Make use of pytorch documentation: https://pytorch.org/docs/stable/index.html
         """
         super().__init__()
-        self.weight = torch.randn((dim_in, dim_out), generator=generator)
-        self.bias = torch.randn((1, dim_out), generator=generator)
+        self.weight = Parameter(torch.randn((dim_in, dim_out), generator=generator))
+        self.bias = Parameter(torch.randn((1, dim_out), generator=generator))
+        
 
     @problem.tag("hw3-A")
     def forward(self, x: torch.Tensor) -> torch.Tensor:

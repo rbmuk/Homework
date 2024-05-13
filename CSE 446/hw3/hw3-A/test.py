@@ -1,3 +1,6 @@
-import numpy as np
-x = np.array([1,2,3,4,5])
-print(np.concatenate((x[:3], x[3:])))
+import torch
+
+x = torch.tensor([1, 2, 3])
+y = torch.tensor([0, 0, 1])
+print(x)
+print(torch.argmax(x) == torch.argmax(y))

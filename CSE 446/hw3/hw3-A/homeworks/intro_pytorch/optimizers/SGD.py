@@ -22,7 +22,7 @@ class SGDOptimizer(torch.optim.Optimizer):
             - Make use of pytorch documentation: https://pytorch.org/docs/stable/index.html
         """
         super().__init__(params, {"lr": lr})
-        #raise NotImplementedError("Your Code Goes Here")
+        self.lr = lr
 
     @problem.tag("hw3-A")
     def step(self, closure=None):  # noqa: E251
@@ -36,7 +36,8 @@ class SGDOptimizer(torch.optim.Optimizer):
         Hint:
             - Superclass stores parameters in self.param_groups (you will have to discover in what format).
         """
-        for group in self.param_groups:
-            for p in group['params']:
-                if p.grad is not None:
-                    p = p + -group['lr'] * p.grad
+
+        with torch.no_grad():
+            for group in self.param_groups:
+                for p in group['params']:
+                    p.add_(p.grad, alpha=-self.lr)

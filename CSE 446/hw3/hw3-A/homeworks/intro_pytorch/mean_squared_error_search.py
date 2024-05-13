@@ -45,7 +45,12 @@ def accuracy_score(model: nn.Module, dataloader: DataLoader) -> float:
         - This is similar to CrossEntropy accuracy_score function,
             but there will be differences due to slightly different targets in dataloaders.
     """
-    raise NotImplementedError("Your Code Goes Here")
+    running_loss = 0
+    for data in iter(dataloader):
+        inputs, labels = data
+        outputs = model(inputs)
+        running_loss += np.mean(torch.gather(labels, torch.argmax(outputs), dim=1))
+    return running_loss / len(dataloader)
 
 
 @problem.tag("hw3-A")
@@ -84,8 +89,22 @@ def mse_parameter_search(
                 }
             }
     """
-    raise NotImplementedError("Your Code Goes Here")
+    history: Dict[str, Any] = {}
+    models = {'linear': LinearLayer(2, 2), 
+              'sigmoid': nn.Sequential(LinearLayer(2, 2), SigmoidLayer()),
+              'relu': nn.Sequential(LinearLayer(2, 2), ReLULayer()),
+              'sigmoid relu': nn.Sequential(LinearLayer(2, 2), SigmoidLayer(), ReLULayer()),
+              'relu sigmoid': nn.Sequential(LinearLayer(2, 2), ReLULayer(), SigmoidLayer())}
+    for name, model in models.items():
+        history[name] = train_model(model, dataset_train, dataset_val)
+        history[name]['model'] = model
+    return history
 
+def train_model(model: nn.Module, dataset_train, dataset_val) -> dict:
+    criterion = MSELossLayer()
+    optimizer = SGDOptimizer(model.parameters(), lr=1e-3)
+    hist = train(dataset_train, model, criterion, optimizer, dataset_val, epochs=50)
+    return hist
 
 @problem.tag("hw3-A", start_line=11)
 def main():
@@ -113,8 +132,27 @@ def main():
         torch.from_numpy(x_test).float(), torch.from_numpy(to_one_hot(y_test))
     )
 
+    models = {'linear', 
+              'sigmoid',
+              'relu',
+              'sigmoid relu',
+              'relu sigmoid'}
+    #train_models(models, dataset_train, dataset_val)
+    model = torch.load('data/models/relu sigmoid')
+    
+    
+
+def train_models(models, dataset_train, dataset_val):
+    
     mse_configs = mse_parameter_search(dataset_train, dataset_val)
-    raise NotImplementedError("Your Code Goes Here")
+    for model in models:
+        plt.plot(mse_configs[model]['train'], label=f'{model} train')
+        plt.plot(mse_configs[model]['val'], label=f'{model} val')
+    plt.legend()
+    plt.show()
+
+    for model in models:
+        torch.save(mse_configs[model]['model'], f'data/models/{model}')
 
 
 def to_one_hot(a: np.ndarray) -> np.ndarray:
