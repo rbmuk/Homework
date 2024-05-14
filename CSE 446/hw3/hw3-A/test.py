@@ -1,6 +1,5 @@
 import torch
 
-x = torch.tensor([1, 2, 3])
-y = torch.tensor([0, 0, 1])
-print(x)
-print(torch.argmax(x) == torch.argmax(y))
+x = torch.tensor([[1, 2, 3], [4, 5, 6]])
+y = torch.argmax(x, dim=1).view(-1,1)
+print(torch.gather(x, 1, y))

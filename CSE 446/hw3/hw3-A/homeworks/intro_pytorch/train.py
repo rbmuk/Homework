@@ -54,9 +54,11 @@ def train(
     """
     history = {'train': [], 'val': []}
     for _ in tqdm(range(epochs)):
+        model.train()
         running_loss = 0
         for data in iter(train_loader):
             inputs, labels = data
+            
             for param in model.parameters():
                 param.grad = None
             outputs = model(inputs)
@@ -68,9 +70,12 @@ def train(
             running_loss += loss
         history['train'].append(running_loss.item() / len(train_loader))
         running_loss = 0
+
+        model.eval()
         with torch.no_grad():
             for data in iter(val_loader):
                 inputs, labels = data
+
                 outputs = model(inputs)
                 loss = criterion(outputs, labels)
                 running_loss += loss

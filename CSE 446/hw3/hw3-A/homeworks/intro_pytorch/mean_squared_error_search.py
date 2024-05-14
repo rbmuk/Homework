@@ -45,12 +45,12 @@ def accuracy_score(model: nn.Module, dataloader: DataLoader) -> float:
         - This is similar to CrossEntropy accuracy_score function,
             but there will be differences due to slightly different targets in dataloaders.
     """
-    running_loss = 0
+    accuracy = 0
     for data in iter(dataloader):
         inputs, labels = data
         outputs = model(inputs)
-        running_loss += np.mean(torch.gather(labels, torch.argmax(outputs), dim=1))
-    return running_loss / len(dataloader)
+        accuracy += torch.mean(torch.gather(labels, 1, torch.argmax(outputs, dim=1).view(-1, 1)))
+    return accuracy.item() / len(dataloader)
 
 
 @problem.tag("hw3-A")
@@ -90,11 +90,27 @@ def mse_parameter_search(
             }
     """
     history: Dict[str, Any] = {}
-    models = {'linear': LinearLayer(2, 2), 
-              'sigmoid': nn.Sequential(LinearLayer(2, 2), SigmoidLayer()),
-              'relu': nn.Sequential(LinearLayer(2, 2), ReLULayer()),
-              'sigmoid relu': nn.Sequential(LinearLayer(2, 2), SigmoidLayer(), ReLULayer()),
-              'relu sigmoid': nn.Sequential(LinearLayer(2, 2), ReLULayer(), SigmoidLayer())}
+    models = {'linear': LinearLayer(2, 2, RNG), 
+              'sigmoid': nn.Sequential(
+                  LinearLayer(2, 2, RNG),
+                  SigmoidLayer(),
+                  LinearLayer(2, 2, RNG)),
+              'relu': nn.Sequential(
+                  LinearLayer(2, 2, RNG),
+                  ReLULayer(),
+                  LinearLayer(2, 2, RNG)),
+              'sigmoid relu': nn.Sequential(
+                  LinearLayer(2, 2, RNG), 
+                  SigmoidLayer(), 
+                  LinearLayer(2, 2, RNG),
+                  ReLULayer(), 
+                  LinearLayer(2, 2, RNG)),
+              'relu sigmoid': nn.Sequential(
+                  LinearLayer(2, 2, RNG), 
+                  ReLULayer(), 
+                  LinearLayer(2, 2, RNG),
+                  SigmoidLayer(), 
+                  LinearLayer(2, 2, RNG))}
     for name, model in models.items():
         history[name] = train_model(model, dataset_train, dataset_val)
         history[name]['model'] = model
@@ -102,8 +118,8 @@ def mse_parameter_search(
 
 def train_model(model: nn.Module, dataset_train, dataset_val) -> dict:
     criterion = MSELossLayer()
-    optimizer = SGDOptimizer(model.parameters(), lr=1e-3)
-    hist = train(dataset_train, model, criterion, optimizer, dataset_val, epochs=50)
+    optimizer = SGDOptimizer(model.parameters(), lr=1e-2)
+    hist = train(dataset_train, model, criterion, optimizer, dataset_val, epochs=250)
     return hist
 
 @problem.tag("hw3-A", start_line=11)
@@ -132,17 +148,21 @@ def main():
         torch.from_numpy(x_test).float(), torch.from_numpy(to_one_hot(y_test))
     )
 
+    dataloader_train = DataLoader(dataset_train, batch_size=128, shuffle=True)
+    dataloader_val = DataLoader(dataset_val, batch_size=128, shuffle=True)
+    dataloader_test = DataLoader(dataset_test, batch_size=128, shuffle=True)
+
     models = {'linear', 
               'sigmoid',
               'relu',
               'sigmoid relu',
               'relu sigmoid'}
-    #train_models(models, dataset_train, dataset_val)
-    model = torch.load('data/models/relu sigmoid')
-    
-    
+    save_models(models, dataloader_train, dataloader_val)
+    model = torch.load('data/models/mse/relu sigmoid')
+    print(accuracy_score(model, dataloader_test))
+    plot_model_guesses(dataloader_test, model, 'Test accuracy')
 
-def train_models(models, dataset_train, dataset_val):
+def save_models(models, dataset_train, dataset_val):
     
     mse_configs = mse_parameter_search(dataset_train, dataset_val)
     for model in models:
@@ -152,7 +172,7 @@ def train_models(models, dataset_train, dataset_val):
     plt.show()
 
     for model in models:
-        torch.save(mse_configs[model]['model'], f'data/models/{model}')
+        torch.save(mse_configs[model]['model'], f'data/models/mse/{model}')
 
 
 def to_one_hot(a: np.ndarray) -> np.ndarray:

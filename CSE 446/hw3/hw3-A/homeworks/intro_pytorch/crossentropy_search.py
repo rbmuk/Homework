@@ -60,7 +60,38 @@ def crossentropy_parameter_search(
                 }
             }
     """
-    raise NotImplementedError("Your Code Goes Here")
+    history: Dict[str, Any] = {}
+    models = {'linear': LinearLayer(2, 2, RNG), 
+              'sigmoid': nn.Sequential(
+                  LinearLayer(2, 2, RNG),
+                  SigmoidLayer(),
+                  SoftmaxLayer()),
+              'relu': nn.Sequential(
+                  LinearLayer(2, 2, RNG),
+                  ReLULayer(),
+                  SoftmaxLayer()),
+              'sigmoid relu': nn.Sequential(
+                  LinearLayer(2, 2, RNG), 
+                  SigmoidLayer(), 
+                  LinearLayer(2, 2, RNG),
+                  ReLULayer(), 
+                  SoftmaxLayer()),
+              'relu sigmoid': nn.Sequential(
+                  LinearLayer(2, 2, RNG), 
+                  ReLULayer(), 
+                  LinearLayer(2, 2, RNG),
+                  SigmoidLayer(), 
+                  SoftmaxLayer())}
+    for name, model in models.items():
+        history[name] = train_model(model, dataset_train, dataset_val)
+        history[name]['model'] = model
+    return history
+
+def train_model(model: nn.Module, dataset_train, dataset_val) -> dict:
+    criterion = CrossEntropyLossLayer()
+    optimizer = SGDOptimizer(model.parameters(), lr=1e-1)
+    hist = train(dataset_train, model, criterion, optimizer, dataset_val, epochs=250)
+    return hist
 
 
 @problem.tag("hw3-A")
@@ -83,7 +114,12 @@ def accuracy_score(model, dataloader) -> float:
         - This is similar to MSE accuracy_score function,
             but there will be differences due to slightly different targets in dataloaders.
     """
-    raise NotImplementedError("Your Code Goes Here")
+    running_loss = 0
+    for data in iter(dataloader):
+        inputs, labels = data
+        outputs = model(inputs)
+        running_loss += torch.sum(labels == torch.argmax(outputs, dim=1))
+    return running_loss.item() / len(dataloader)
 
 
 @problem.tag("hw3-A", start_line=7)
@@ -107,10 +143,33 @@ def main():
     dataset_train = TensorDataset(torch.from_numpy(x).float(), torch.from_numpy(y))
     dataset_val = TensorDataset(torch.from_numpy(x_val).float(), torch.from_numpy(y_val))
     dataset_test = TensorDataset(torch.from_numpy(x_test).float(), torch.from_numpy(y_test))
+    
+    dataloader_train = DataLoader(dataset_train, batch_size=128, shuffle=True)
+    dataloader_val = DataLoader(dataset_val, batch_size=128, shuffle=True)
+    dataloader_test = DataLoader(dataset_test, batch_size=128, shuffle=True)
 
+    models = {'linear', 
+                'sigmoid',
+                'relu',
+                'sigmoid relu',
+                'relu sigmoid'}
+   # save_models(models, dataloader_train, dataloader_val)
+
+    model = torch.load('data/models/ce/relu sigmoid')
+    print(accuracy_score(model, dataloader_test))
+    plot_model_guesses(dataloader_test, model, 'Test accuracy')
+
+def save_models(models, dataset_train, dataset_val):
+    
     ce_configs = crossentropy_parameter_search(dataset_train, dataset_val)
-    raise NotImplementedError("Your Code Goes Here")
+    for model in models:
+        plt.plot(ce_configs[model]['train'], label=f'{model} train')
+        plt.plot(ce_configs[model]['val'], label=f'{model} val')
+    plt.legend()
+    plt.show()
 
+    for model in models:
+        torch.save(ce_configs[model]['model'], f'data/models/ce/{model}')
 
 if __name__ == "__main__":
     main()

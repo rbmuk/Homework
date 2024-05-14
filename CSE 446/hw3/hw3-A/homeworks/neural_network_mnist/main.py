@@ -26,7 +26,12 @@ class F1(Module):
             k (int): Output dimension/number of classes.
         """
         super().__init__()
-        raise NotImplementedError("Your Code Goes Here")
+        gen_0 = Uniform(-1/math.sqrt(d), 1/math.sqrt(d))
+        self.W0 = Parameter(gen_0.sample((h, d)))
+        self.b0 = Parameter(gen_0.sample((h, 1)))
+        gen_1 = Uniform(-1/math.sqrt(h), 1/math.sqrt(h))
+        self.W1 = Parameter(gen_1.sample((k, h)))
+        self.b1 = Parameter(gen_1.sample((k, 1)))
 
     @problem.tag("hw3-A")
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -48,7 +53,7 @@ class F1(Module):
         Returns:
             torch.Tensor: FloatTensor of shape (n, k). Prediction.
         """
-        raise NotImplementedError("Your Code Goes Here")
+        return relu(x @ self.W0.T + self.b0.T) @ self.W1.T + self.b1.T
 
 
 class F2(Module):
@@ -63,7 +68,15 @@ class F2(Module):
             k (int): Output dimension/number of classes.
         """
         super().__init__()
-        raise NotImplementedError("Your Code Goes Here")
+        gen_0 = Uniform(-1/math.sqrt(d), 1/math.sqrt(d))
+        self.W0 = Parameter(gen_0.sample((h0, d)))
+        self.b0 = Parameter(gen_0.sample((h0, 1)))
+        gen_1 = Uniform(-1/math.sqrt(h0), 1/math.sqrt(h0))
+        self.W1 = Parameter(gen_1.sample((h1, h0)))
+        self.b1 = Parameter(gen_1.sample((h1, 1)))
+        gen_2 = Uniform(-1/math.sqrt(h1), 1/math.sqrt(h1))
+        self.W2 = Parameter(gen_2.sample((k, h1)))
+        self.b2 = Parameter(gen_2.sample((k, 1)))
 
     @problem.tag("hw3-A")
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -85,8 +98,18 @@ class F2(Module):
         Returns:
             torch.Tensor: FloatTensor of shape (n, k). Prediction.
         """
-        raise NotImplementedError("Your Code Goes Here")
+        return relu(relu(x @ self.W0.T + self.b0.T) @ self.W1.T + self.b1.T) @ self.W2.T + self.b2.T
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+def accuracy(model: Module, train_loader: DataLoader):
+    acc = 0
+    with torch.no_grad():
+        for data in train_loader:
+            inputs = data[0].to(device)
+            labels = data[1].to(device)
+            acc += torch.mean((labels == torch.argmax(model(inputs), dim=1)).to(dtype=float))
+    return acc.item() / len(train_loader)
 
 @problem.tag("hw3-A")
 def train(model: Module, optimizer: Adam, train_loader: DataLoader) -> List[float]:
@@ -104,8 +127,22 @@ def train(model: Module, optimizer: Adam, train_loader: DataLoader) -> List[floa
     Returns:
         List[float]: List containing average loss for each epoch.
     """
-    raise NotImplementedError("Your Code Goes Here")
-
+    history = []
+    model.train()
+    while (accuracy(model, train_loader) < 0.99):
+        print(accuracy(model, train_loader))
+        running_loss = 0
+        for data in train_loader:
+            inputs = data[0].to(device)
+            labels = data[1].to(device)
+            optimizer.zero_grad()
+            outputs = model(inputs)
+            loss = cross_entropy(outputs, labels)
+            loss.backward()
+            running_loss += loss.item()
+            optimizer.step()
+        history.append(running_loss / len(train_loader))
+    return history
 
 @problem.tag("hw3-A", start_line=5)
 def main():
@@ -123,10 +160,22 @@ def main():
     (x, y), (x_test, y_test) = load_dataset("mnist")
     x = torch.from_numpy(x).float()
     y = torch.from_numpy(y).long()
+    train_dataloader = DataLoader(TensorDataset(x, y), batch_size=128, shuffle=True)
     x_test = torch.from_numpy(x_test).float()
     y_test = torch.from_numpy(y_test).long()
-    raise NotImplementedError("Your Code Goes Here")
+    test_dataloader = DataLoader(TensorDataset(x_test, y_test), batch_size=128, shuffle=True)
+    model = F1(64, 28 ** 2, 10)
+    #model = F2(32, 32, 28 ** 2, 10)
+    model = model.to(device)
+    history = train(model, Adam(model.parameters(), lr=1e-3), train_dataloader)
 
+    plt.plot(history)
+    plt.xlabel('epoch')
+    plt.ylabel('Training loss')
+    plt.show()
+
+    print(f'accuracy on test data: {accuracy(model, test_dataloader)}')
+    print(f'loss: {cross_entropy(model(x_test.to(device)), y_test.to(device))}')
 
 if __name__ == "__main__":
     main()
