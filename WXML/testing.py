@@ -13,6 +13,17 @@ def beta(A: np.ndarray) -> float:
 # print(f'inf-norm of A @ [-1,-1,1]: {np.linalg.norm(A @ np.array([1,-1,1]), ord=np.inf)}')
 # print(f'beta(A): {beta(A)}')
 
-for i in range(1,15):
-    A = np.c_[np.c_[np.array(list(it.product([-1,1], repeat=i))), np.zeros((2**i, 2**i-i-1))], np.ones((2**i, 1))]
-    np.savetxt(f'matrices/{2**i}x{2**i}.csv', A, delimiter=',', fmt='%f')
+# for i in range(1,15):
+#     A = np.c_[np.c_[np.array(list(it.product([-1,1], repeat=i))), np.zeros((2**i, 2**i-i-1))], np.ones((2**i, 1))]
+    # np.savetxt(f'matrices/{2**i}x{2**i}.csv', A, delimiter=',', fmt='%f')
+#A = np.array([[1., -1, -1, 1,], [-1, 1, -1, 1], [1, 1, 1, 1], [-1, -1, 1, 1]])
+A = np.array([[1.,1,1,1],
+              [-1, 1, 1, 1],
+              [1,1,1,-1],
+              [-1,1,1,-1]])
+A /= np.sqrt(4)
+print(beta(A))
+
+B = np.array([[1, 1], [1, 1]])
+B[:,1] = -B[:,1]
+print(B)
