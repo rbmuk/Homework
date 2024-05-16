@@ -266,4 +266,19 @@ skipbelow=\baselineskip,
         T(n) = \sum_{(v,w_i) \in E} T(|C_i|) + O(k \cdot n^3)
     \end{align*} 
     This because the third for loop is easily seen to be the most expensive part of the algorithm, and there are ${n + 3 - 1 \choose 3} = O(n^3)$ loop iterations (by stars and bars), all of which take $O(1)$ time, which is being run inside of a bigger for loop iterating over $\ell$ which runs through $k$. Then we call the algorithm recursively on the connected components who have total number of vertices summing to $n-1$. Thus our time complexity is as above. I have shown on a previous homework that $\sum_{(v,w_i) \in E} T(|C_i|) \leq T(n-1)$ because $T$ is growing at least polynomially, and hence we see that $T(n) \leq T(n-1) + O(n^3)$ in any case which shows that $T(n) = O(k \cdot n^4) \leq O(n^5)$ because $k \leq n$.
+
+    \newpage
+    \subsection*{Problem 4.}
+    The residual graph I got is:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{residual.png}
+    \end{figure}
+    The flow and cut I got are:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{flow_cut.png}
+    \end{figure}
 \end{document}
