@@ -168,6 +168,7 @@ def save_models(models, dataset_train, dataset_val):
     for model in models:
         plt.plot(mse_configs[model]['train'], label=f'{model} train')
         plt.plot(mse_configs[model]['val'], label=f'{model} val')
+    plt.title('MSE Loss for different models')
     plt.legend()
     plt.show()
 
