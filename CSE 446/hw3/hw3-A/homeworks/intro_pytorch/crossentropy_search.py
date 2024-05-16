@@ -61,26 +61,32 @@ def crossentropy_parameter_search(
             }
     """
     history: Dict[str, Any] = {}
-    models = {'linear': LinearLayer(2, 2, RNG), 
+    models = {'linear': nn.Sequential(
+                  LinearLayer(2, 2, RNG), 
+                  SoftmaxLayer()),
               'sigmoid': nn.Sequential(
                   LinearLayer(2, 2, RNG),
                   SigmoidLayer(),
+                  LinearLayer(2, 2, RNG),
                   SoftmaxLayer()),
               'relu': nn.Sequential(
                   LinearLayer(2, 2, RNG),
                   ReLULayer(),
+                  LinearLayer(2, 2, RNG),
                   SoftmaxLayer()),
               'sigmoid relu': nn.Sequential(
                   LinearLayer(2, 2, RNG), 
                   SigmoidLayer(), 
                   LinearLayer(2, 2, RNG),
                   ReLULayer(), 
+                  LinearLayer(2, 2, RNG),
                   SoftmaxLayer()),
               'relu sigmoid': nn.Sequential(
                   LinearLayer(2, 2, RNG), 
                   ReLULayer(), 
                   LinearLayer(2, 2, RNG),
                   SigmoidLayer(), 
+                  LinearLayer(2, 2, RNG),
                   SoftmaxLayer())}
     for name, model in models.items():
         history[name] = train_model(model, dataset_train, dataset_val)
@@ -118,7 +124,7 @@ def accuracy_score(model, dataloader) -> float:
     for data in iter(dataloader):
         inputs, labels = data
         outputs = model(inputs)
-        running_loss += torch.sum(labels == torch.argmax(outputs, dim=1))
+        running_loss += torch.mean((labels == torch.argmax(outputs, dim=1)).to(dtype=torch.float))
     return running_loss.item() / len(dataloader)
 
 
@@ -153,7 +159,7 @@ def main():
                 'relu',
                 'sigmoid relu',
                 'relu sigmoid'}
-   # save_models(models, dataloader_train, dataloader_val)
+    #save_models(models, dataloader_train, dataloader_val)
 
     model = torch.load('data/models/ce/relu sigmoid')
     print(accuracy_score(model, dataloader_test))
@@ -165,6 +171,7 @@ def save_models(models, dataset_train, dataset_val):
     for model in models:
         plt.plot(ce_configs[model]['train'], label=f'{model} train')
         plt.plot(ce_configs[model]['val'], label=f'{model} val')
+    plt.title('CrossEntropy Loss for different models')
     plt.legend()
     plt.show()
 

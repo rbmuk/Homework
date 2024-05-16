@@ -167,6 +167,13 @@ def main():
     model = F1(64, 28 ** 2, 10)
     #model = F2(32, 32, 28 ** 2, 10)
     model = model.to(device)
+    total_params = 0
+    for parameter in model.parameters():
+        curr = 1
+        for axis in iter(parameter.shape):
+            curr *= axis
+        total_params += curr
+    print(total_params)
     history = train(model, Adam(model.parameters(), lr=1e-3), train_dataloader)
 
     plt.plot(history)

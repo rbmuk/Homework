@@ -234,6 +234,7 @@ def main():
     unit_interval = np.linspace(0, 1, num=100)
     plt.plot(unit_interval, f_true(unit_interval), label='true function')
     plt.plot(unit_interval, predict(x_30, unit_interval, rbf_kernel, rbf_gamma, alpha), label='prediction')
+    plt.title(f'RBF gamma: {rbf_gamma}, lambda: {rbf_lambda}')
     plt.legend(loc='lower right')
     plt.show()
 
@@ -241,7 +242,9 @@ def main():
     plt.plot(x_30, y_30, linestyle='None', marker='.', color='r', markersize=10.0, label='original data')
     plt.plot(unit_interval, f_true(unit_interval), label='true function')
     plt.plot(unit_interval, predict(x_30, unit_interval, poly_kernel, poly_d, alpha), label='prediction')
+    plt.title(f'Poly d: {poly_d}, lambda: {poly_lambda}')
     plt.ylim(-6, 6)
+    plt.legend()
     plt.show()
 
 
