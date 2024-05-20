@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Problem 1.}
+    We use a truly mindblowing trick to solve this problem. First replace every edge of $G$ with two directed edges, one going forward and the other going backwards. Then for each $v \in G$, replace $v$ with two vertices $v_{in}$ and $v_{out}$, with one edge $v_{in} \to v_{out}$, and for each neighbor edge $w \to v$ add $w \to v_in$ and for each $v \to u$, add $v_{out} \to u$. After running this on the entire graph, let $\hat S$ be the collection of $s_{in}$'s attained in this way from the original vertices in $S$, and similarly $\hat T$ to be  the collection of $t_{in}$'s attained in this way from the original vertices in $T$. Remove all the $t_{out}$s and $s_{in}$s, and add the vertices $\hat S$ and $\hat T$ with edge $\hat S \to s_{out}$ for each $s_{out}$ in the graph, and $t_{in} \to \hat T$. Return the number of edge-disjoint paths from $\hat S$ to $\hat T$ in the new graph.
+
+    We now prove the correctness of the above algorithm. Suppose we start with $\mathscr{P}$ being some set of edge disjoint paths in the original graph. Let $P = s = v^{(1)}, \ldots, v^{(n)}= t$ be one of those paths. We then can put $P$ on the transformed graph $G'$ by $v^{(1)}_{in} \to v^{(1)}_{out}, \ldots, v^{(n)}_{in} \to v^{(n)}_{out}$. This is a path in the new graph by construction, and the set of such paths are edge-disjoint because the original ones were vertex disjoint by what we did in class. 
+
+    Similarly, given a set of edge-disjoint paths in the new graph, we can put them backe on the original graph by noticing the following: if $v_{in}$ is in the path $P$ for some $v \in G$, then we must have $v_{out}$ be the next vertex in the path because that is the only place $v_{in}$ goes to. Recalling then that we start at some $s_{in}$ for some $s \in S$ and end at some $t_{out}$ for some $t \in T$, we then notice that every path is of the following type:
+    \begin{align*}
+        s_{in} \to s_{out} \to v_{in} \to v_{out} \to \ldots \to t_{in} \to t_{out}
+    \end{align*}
+    From here we can put this path on the original graph by decreeing that $s \to v \to \ldots \to t$ in the original graph. The set of such paths in the original graph is vertex disjoint because otherwise we would be using the edge $v_{in} \to v_{out}$ multiple times, which completes the proof.
+
+    \subsection*{Problem 2.}
+    Suppose instead that the max number of edge-disjoint paths from $s$ to $u$ is $\ell < k$. By Mengers theorem, this says that the min cut between $s$ and $u$ is just $\ell$. Thus we can remove $\ell$ edges from the digraph $G$ to separate $s$ and $u$, i.e. put them into two different connected components. Since there are at least $k$ edge-disjoint paths from $s$ to $t$ and $t$ to $u$, we need to remove at least $k$ edges to separate $s$ from $t$ or $t$ from $u$. In particular, since we removed $<k$ edges from the graph, there is still at least one path from $s \to t$ and $t \to u$. Let such two paths be $P_1$ and $P_2$. By looking at the last time $P_2$ intersects $P_1$, and removing all edges before that, we get a path from $s \to u$, a contradiction, because by hypothesis $s$ and $u$ are separated.
+\end{document}
