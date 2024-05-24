@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1716254322 "/Users/rbmuk/Documents/School/Major/CSE421/HW7/hw7.tex" "hw7.pdf" "hw7" 1716254323
-  "/Users/rbmuk/Documents/School/Major/CSE421/HW7/hw7.tex" 1716254321 11053 7ff8a491bd83f2ac15f75dedcae5b5d2 ""
+["pdflatex"] 1716404612 "/Users/rbmuk/Documents/School/Major/CSE421/HW7/hw7.tex" "hw7.pdf" "hw7" 1716404613
+  "/Users/rbmuk/Documents/School/Major/CSE421/HW7/hw7.tex" 1716404612 12330 18b89f37253c6d290f4058fae86f2b15 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/euler/eusm10.tfm" 1246382020 896 1783287efa3eab95c325db36ffb6426d ""
@@ -227,9 +227,9 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1652765441 2826452 a833057ab1846d09124b400dce25c60c ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "hw7.aux" 1716254323 758 2c778f0d429fcbf12771c7690038b46f "pdflatex"
+  "hw7.aux" 1716404613 758 83fa4dec09649afffdcc1a1a9240dc54 "pdflatex"
   "hw7.out" 0 -1 0 "pdflatex"
-  "hw7.tex" 1716254321 11053 7ff8a491bd83f2ac15f75dedcae5b5d2 ""
+  "hw7.tex" 1716404612 12330 18b89f37253c6d290f4058fae86f2b15 ""
   (generated)
   "hw7.aux"
   "hw7.log"

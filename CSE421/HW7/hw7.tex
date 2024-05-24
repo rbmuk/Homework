@@ -150,8 +150,10 @@ skipbelow=\baselineskip,
     \end{align*}
     From here we can put this path on the original graph by decreeing that $s \to v \to \ldots \to t$ in the original graph. The set of such paths in the original graph is vertex disjoint because otherwise we would be using the edge $v_{in} \to v_{out}$ multiple times, which completes the proof.
 
+    For the runtime, we added one vertex and one middle edge for each vertex not in $S$ or $T$. Thus our new graph has potentially less vertices than the original and $O(n)$ more edges, which shows that after constructing the new graph in linear time, Ford Furkerson runs in polynomial time on the new graph and hence the full algorithm is polynomial time. 
+
     \subsection*{Problem 2.}
-    Suppose instead that the max number of edge-disjoint paths from $s$ to $u$ is $\ell < k$. By Mengers theorem, this says that the min cut between $s$ and $u$ is just $\ell$. Thus we can remove $\ell$ edges from the digraph $G$ to separate $s$ and $u$, i.e. put them into two different connected components. Since there are at least $k$ edge-disjoint paths from $s$ to $t$ and $t$ to $u$, we need to remove at least $k$ edges to separate $s$ from $t$ or $t$ from $u$. In particular, since we removed $<k$ edges from the graph, there is still at least one path from $s \to t$ and $t \to u$. Let such two paths be $P_1$ and $P_2$. By looking at the last time $P_2$ intersects $P_1$, and removing all edges before that, we get a path from $s \to u$, a contradiction, because by hypothesis $s$ and $u$ are separated.
+    Suppose instead that the max number of edge-disjoint paths from $s$ to $u$ is $\ell < k$. By Mengers theorem, this says that the min cut between $s$ and $u$ is just $\ell$. Thus we can remove $\ell$ edges from the digraph $G$ to separate $s$ and $u$, i.e. put them into two different connected components. Since there are at least $k$ edge-disjoint paths from $s$ to $t$ and $t$ to $u$, we need to remove at least $k$ edges to separate $s$ from $t$ or $t$ from $u$. In particular, since we removed $<k$ edges from the graph, there is still at least one path from $s \to t$ and $t \to u$. Walking along this first path to $t$ and then walking along the second path to $u$ shows that $s$ and $u$ cannot possibly be separated, a contradiction. Thus the max number of edge-disjoint paths from $s$ to $u$ is $\geq k$.
 
     \subsection*{Problem 3.}
     Given a min $s-t$ cut $(A,B)$ of $H$, we can construct a vertex cover $S \subset X \cup Y$ by doing the following. First initialize $S \gets \emptyset$. Then for each edge $e$ crossing the cut, we have 3 cases:
@@ -193,10 +195,14 @@ skipbelow=\baselineskip,
     Return $S$\;
 
     \end{algorithm}
-    The above steps show the correctness of this algorithm.
+    The above steps show the correctness of this algorithm. This algorithm runs in polynomial time because we have added 2 vertices and $O(n)$ edges, and then we run Ford Furkerson on this graph, which is polynomial time. 
 
     We claim there is an inclusion-reversing bijection between vertex covers and independent sets by $S \mapsto V \setminus S$. Indeed, if $S$ is a vertex cover, then for each $x, y \in V \setminus S$, we cannot possibly have $x \to y$ because otherwise the edge $x \to y$ would have neither of its endpoints in the vertex cover $S$. Similarly, if $I$ is an independent set, then let $e = (x,y)$ be any edge. We must have either $x \in I^c$ or $y \in I^c$, otherwise both $x, y \in I$ which shows that $I$ is not independent. As $U \subset V$ is equivalent to $U^c \supset V^c$, we have shown the claim. In particular, finding the maximum independent set is thus easily seen to be equivalent to finding the minimum vertex cover, by this argument, which completes the proof.
 
     \subsection*{Problem 4.}
     Make a graph from the $n \times n$ chess board by making each allowed square a vertex, and connecting two vertices with an edge if the corresponding squares can be attacked by a knight. Make $G$ bipartite by coloring the board with adjacent squares having different colors. Then return the maximum independent set on this graph. 
+    
+    First, since every knight can attack at most 8 squares, every vertex in this graph has degree $\leq 8$, thus Ford-Ferkerson runs in polynomial time. 
+
+    We now prove the correctness of this algorithm. Given a maximum independent set $I$ in the graph, we can construct a set of knights by placing a knight on each square in $I$. This shows that the maximum number of knights on the board that are not attacking each other is bounded below by the maximum independent set. Similarly, given a set of knights that cannot attack each other, we can add the corresponding vertices to our set and get an independent set, which shows that the maximum independent set is bounded below by the maximum number of passive knights. This completes the proof.
 \end{document}

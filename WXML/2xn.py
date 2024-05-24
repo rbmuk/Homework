@@ -1,6 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+import itertools as it
 rng = np.random.default_rng()
 
 n = 128
@@ -14,21 +15,38 @@ def approx_beta(M: np.ndarray):
     X = rng.choice([-1,1], size=(len(M), 1000), p=[1/2, 1/2])
     return np.mean(np.linalg.norm(M @ X, axis=0, ord=np.inf))
 
+def H(n: int) -> np.ndarray:
+    if n == 1:
+        return np.array([[1., 0], [1, 1]])
+    return np.block([[H(n-1), H(n-1)], [H(n-1), -H(n-1)]])
+
+def beta(A: np.ndarray) -> float:
+    d = A.shape[1]
+    combinations = np.array(list(it.product([-1,1], repeat=d)))
+    return np.mean(np.linalg.norm(A @ combinations.T, axis=0, ord=np.inf))
+
+H = H(5)
+print(H.shape)
+H /= np.linalg.norm(H, axis=1, ord=2)
+print(H)
+print(f'approx: {approx_beta(H)}')
+print(f'true: {beta(H)}')
+
 hist = []
 ps = []
 
-for p in np.linspace(0, 0.9, 10):
-    ps.append(p)
-    p_hist = []
-    for i in tqdm(range(2000)):
-        M = rng.choice([-1., 0., 1.], size=(n, n), p=[(1-p)/2, p, (1-p)/2])
-        M /= np.linalg.norm(M, axis=1, ord=2).reshape(-1, 1)
+# for p in np.linspace(0, 0.9, 10):
+#     ps.append(p)
+#     p_hist = []
+#     for i in tqdm(range(2000)):
+#         M = rng.choice([-1., 0., 1.], size=(n, n), p=[(1-p)/2, p, (1-p)/2])
+#         M /= np.linalg.norm(M, axis=1, ord=2).reshape(-1, 1)
 
-        X = rng.choice([-1,1], size=(n, 1000), p=[1/2, 1/2])
-        p_hist.append(np.mean(np.linalg.norm(M @ X, axis=0, ord=np.inf)))
-    hist.append(np.max(p_hist))
+#         X = rng.choice([-1,1], size=(n, 1000), p=[1/2, 1/2])
+#         p_hist.append(np.mean(np.linalg.norm(M @ X, axis=0, ord=np.inf)))
+#     hist.append(np.max(p_hist))
 
-plt.plot(ps, hist)
-plt.xlabel('p')
-plt.ylabel('beta')
-plt.show()
+# plt.plot(ps, hist)
+# plt.xlabel('p')
+# plt.ylabel('beta')
+# plt.show()

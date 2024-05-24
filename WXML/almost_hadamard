@@ -1,0 +1,26 @@
+import numpy as np
+from tqdm import tqdm
+import itertools as it
+rng = np.random.default_rng()
+
+def approx_beta(M: np.ndarray):
+    X = rng.choice([-1,1], size=(len(M), 1000), p=[1/2, 1/2])
+    return np.mean(np.linalg.norm(M @ X, axis=0, ord=np.inf))
+
+def H(n: int) -> np.ndarray:
+    if n == 1:
+        return np.array([[1., 1], [1, 0]])
+    return np.block([[H(n-1), H(n-1)], [H(n-1), -H(n-1)]])
+
+def beta(A: np.ndarray) -> float:
+    d = A.shape[1]
+    combinations = np.array(list(it.product([-1,1], repeat=d)))
+    return np.mean(np.linalg.norm(A @ combinations.T, axis=0, ord=np.inf))
+
+H = H(9)
+U, S, V = np.linalg.svd(H)
+print(np.max(S) / np.min(S))
+print(H.shape)
+H /= np.linalg.norm(H, axis=1, ord=2)
+print(f'approx: {approx_beta(H)}')
+# print(f'true: {beta(H)}')
