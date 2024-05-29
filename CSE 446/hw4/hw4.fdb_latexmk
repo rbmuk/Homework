@@ -1,5 +1,5 @@
 # Fdb version 4
-["latex"] 1716859394.37094 "hw8.tex" "hw8.dvi" "hw8" 1716859395.11074 2
+["latex"] 1716961686.91351 "hw4.tex" "hw4.dvi" "hw4" 1716961687.56519 2
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmr12.tfm" 1136765053 1288 655e228510b4c2a1abe905c368440826 ""
   "C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb" 1136882148 52406 dad2f72863a03727d5f536c64a69c452 ""
   "C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb" 1136882148 52665 661b1e6b26edb5f50dd491f8a701cb57 ""
@@ -127,9 +127,8 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/wasy/wasy6.tfm" 1578656733 912 8da0595e5e615d33e0b2860959a58bf8 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/wasy/wasy7.tfm" 1578656728 912 e43f3049348c6f2670d3b324e657c6e7 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/wasy/wasy8.tfm" 1578656721 904 a3deb54664adaaa632c6cdee911ffe34 ""
-  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb" 977316540 18964 e01e97f07816aeb524ad5d4384a80c12 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb" 977316540 20626 c292fe290cca6e2f2dfcae6644c2f432 ""
-  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb" 1231975860 14672 3ebf07b0dca23cd3f277dcca5042673e ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyb.pfb" 977316540 24771 eb123b1d6db1a8a40172a27eb12cf6d5 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb" 977316540 7191 79607a98b23ce10ce99a66b7d89948fa ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/generic/etexcmds/etexcmds.sty" 1576433638 7734 b98cbb34c81f667027c1e3ebdbfce34b ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/generic/infwarerr/infwarerr.sty" 1575399508 8356 7bbb2c2373aa810be568c29e333da8ed ""
@@ -184,12 +183,10 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1695383086 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
   "c:/Users/Rohan" 1711311262 18932 39e4f843bb26a14bb44ee3dae7b99f7c ""
-  "hw8.aux" 1716859393 116 041b220f573a4bcbf5656b24df73791a "latex"
-  "hw8.out" 1716851241 0 d41d8cd98f00b204e9800998ecf8427e "latex"
-  "hw8.tex" 1716859244 9170 16252bc2c6cf925bb167d288307eb1d9 ""
+  "hw4.aux" 1716961686 67 3705c6601359574168251466ef4fff2b "latex"
+  "hw4.tex" 1716961599 8127 7087dedaeb9006ce48f99c844425c504 ""
   (generated)
-  "hw8.aux"
-  "hw8.dvi"
-  "hw8.log"
-  "hw8.out"
+  "hw4.aux"
+  "hw4.dvi"
+  "hw4.log"
   (rewritten before read)

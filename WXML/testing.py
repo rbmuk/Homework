@@ -18,11 +18,10 @@ def beta(A: np.ndarray) -> float:
     # np.savetxt(f'matrices/{2**i}x{2**i}.csv', A, delimiter=',', fmt='%f')
 #A = np.array([[1., -1, -1, 1,], [-1, 1, -1, 1], [1, 1, 1, 1], [-1, -1, 1, 1]])
 
-def H(n: int) -> np.ndarray:
-    if n == 1:
-        return np.array([[1., 0], [1, 1]])
-    return np.block([[H(n-1), H(n-1)], [H(n-1), -H(n-1)]])
+A = np.array([
+    [1/np.sqrt(3), 1/np.sqrt(3), 1/np.sqrt(3)],
+    [1/np.sqrt(3), -1/np.sqrt(3), 1/np.sqrt(3)],
+    [-1/np.sqrt(2), 0, 1/np.sqrt(2)]
+])
 
-H = H(8)
-H /= np.linalg.norm(H, axis=1, ord=2)
-print(beta(H))
+print(beta(A))

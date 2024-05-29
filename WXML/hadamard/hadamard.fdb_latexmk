@@ -1,5 +1,5 @@
 # Fdb version 4
-["latex"] 1716524135 "hadamard.tex" "hadamard.dvi" "hadamard" 1716524136 2
+["latex"] 1716601397 "hadamard.tex" "hadamard.dvi" "hadamard" 1716601398 2
   "C:/Users/Rohan" 1711311262 18932 39e4f843bb26a14bb44ee3dae7b99f7c ""
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1679959159 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1679959160 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -211,9 +211,9 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
   "R:/sty/quiver.sty" 1711413394 1629 3c908b2d88a3a96d8eba0aa8dcf741cd ""
   "c:/Users/Rohan" 1711311262 18932 39e4f843bb26a14bb44ee3dae7b99f7c ""
-  "hadamard.aux" 1716524135 589 15206d825e71e4945cf0e46f2b8fd73d "latex"
-  "hadamard.out" 1716523594 0 d41d8cd98f00b204e9800998ecf8427e "latex"
-  "hadamard.tex" 1716523592 5039 f1f83a72eb58dd398d444d0fb97947c6 ""
+  "hadamard.aux" 1716601397 589 15206d825e71e4945cf0e46f2b8fd73d "latex"
+  "hadamard.out" 1716598237 0 d41d8cd98f00b204e9800998ecf8427e "latex"
+  "hadamard.tex" 1716598236 5297 a42961208e6cb9f72c40a17f2b7efb3a ""
   (generated)
   "hadamard.aux"
   "hadamard.dvi"

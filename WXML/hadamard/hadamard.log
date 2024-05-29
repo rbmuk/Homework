@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  23 MAY 2024 21:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.5)  24 MAY 2024 17:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -960,33 +960,33 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
 .fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
-))
-Runaway argument?
-{\sqrt {2^{n-1}} H_{n-1})$. This would say that $\beta (H_n) \approx \ETC.
-! File ended while scanning use of \frac .
-<inserted text> 
-                \par 
-<*> ./hadamard.tex
-                  
+)
+! Missing { inserted.
+<to be read again> 
+                   }
+l.161     \end{align*}
+                      
 ? 
 ! Emergency stop.
-<inserted text> 
-                \par 
-<*> ./hadamard.tex
-                  
+<to be read again> 
+                   }
+l.161     \end{align*}
+                      
 End of file on the terminal!
 
  
 Here is how much of TeX's memory you used:
  28166 strings out of 475249
  536176 string characters out of 5753084
- 1923782 words of memory out of 5000000
+ 1924782 words of memory out of 5000000
  49175 multiletter control sequences out of 15000+600000
  579258 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,15n,135p,1007b,266s stack positions out of 10000i,1000n,20000p,200000b,200000s
 No pages of output.
- <2023-06-01> patch level 1
+AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] (hadamard.aux)
+ ***********
+LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
 Package rerunfilecheck Info: File `hadamard.out' has not changed.
@@ -995,13 +995,13 @@ Package rerunfilecheck Info: File `hadamard.out' has not changed.
 Here is how much of TeX's memory you used:
  28669 strings out of 475248
  543084 string characters out of 5753057
- 1934785 words of memory out of 5000000
+ 1936785 words of memory out of 5000000
  49543 multiletter control sequences out of 15000+600000
  590177 words of font info for 179 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  131i,15n,135p,1062b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hadamard.pdf (1 page, 45999 bytes).
+Output written on hadamard.pdf (1 page, 47543 bytes).
 PDF statistics:
  45 PDF objects out of 1000 (max. 8388607)
  2 named destinations out of 1000 (max. 500000)

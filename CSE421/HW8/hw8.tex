@@ -10,14 +10,6 @@
 \usepackage[utf8x]{inputenc}
 
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
-\usepackage{hyperref} 
-\hypersetup{
-colorlinks=true,
-linkcolor=blue,
-filecolor=magenta,
-urlcolor=cyan,
-pdfpagemode=FullScreen
-}
 
 % Standard mathematical typesetting packages
 \usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
@@ -129,7 +121,7 @@ skipbelow=\baselineskip,
 %==========================================================================================%
 % End of commands specific to this file
 
-\title{CSE Template}
+\title{CSE 421 Last Homework}
 \date{\today}
 \author{Rohan Mukherjee}
 
@@ -146,20 +138,33 @@ skipbelow=\baselineskip,
     \end{align*}
 
     \subsection*{Problem 2.}
-    If we were to write an integer program for this problem, we would do so by doing the following:
 
-    For each $1 \leq i \leq m$, let $x_i \in \SET{0, 1}$ represent if we include $S_i$ or not. Then the cost of the family is $\sum_{i=1}^m x_ic_i$. Since we want each element in $\SET{1, \ldots, n}$ to be in at least one of the sets in our family, we need that 
+    The standard form of the LP is just:
+    \begin{align*}
+        \max -\sum_{i=1}^m c_ix_i \\ 
+        \text{s.t.,} \quad -\sum_{i: j \in S_i} x_i & \leq -1 \quad \forall j \in \SET{1, \ldots, n} \\
+        x_i &\geq 0 \quad \forall i \in \SET{1, \ldots, m}
+    \end{align*}
+
+    We see that the LP in question is a relaxation of the weighted set cover problem because given a minimum cost family $F \subset \SET{S_1, \ldots, S_m}$, let $x_i = 1$ if $S_i \in F$ and $x_i = 0$ otherwise. The condition that every element in $\SET{1, \ldots, n}$ is in at least one set is thus equivalent to the following:
     \begin{align*}
         \sum_{i : j \in S_i} x_i \geq 1
     \end{align*}
-    Meaning that we need to include at least one of the sets including $j$ for each $j$. Thus the integer program is the following:
+    Since this sum counts the number of sets in our family with $j$ in it for each $j$. Clearly the $x_i \geq 0$, so the answer to the weighted set cover problem is a feasible solution to the LP and hence the LP is a relaxation of the weighted set cover problem. If you let $y_j$ be the variable for the constraint $\sum_{i: j \in S_i} x_i \geq 1$, then we need the coefficient of $x_i$ to be $\geq c_i$. Notice that $x_i$ shows up in the above sum iff $j \in S_i$ for each $j$. Thus the coefficient of $x_i$ in terms of the $y_i$ is just $\sum_{j \in S_i} x_i$. This gives the following dual LP:
+
     \begin{align*}
-        \min \quad &\sum_{i=1}^m x_ic_i \\
-        \text{s.t.,} \quad &\sum_{i : j \in S_i} x_i \geq 1 \quad \forall 1 \leq j \leq n \\
-        &x_i \in \SET{0, 1} \quad \forall 1 \leq i \leq m
+        \min \quad &\sum_{j=1}^n y_j \\
+        \text{s.t.,} \quad &\sum_{j \in S_i} y_j \geq c_i \quad \forall i \in \SET{1, \ldots, m} \\
+        &y_j \geq 0 \quad \forall j \in \SET{1, \ldots, n}
+    \end{align*}
+    Putting this in standard forms yields:
+    \begin{align*}
+        \max \quad &-\sum_{j=1}^n y_j \\
+        \text{s.t.,} \quad &-\sum_{j \in S_i} y_j \leq c_i \quad \forall i \in \SET{1, \ldots, m} \\
+        &y_j \geq 0 \quad \forall j \in \SET{1, \ldots, n}
     \end{align*}
 
-    Thus part (a) follows since the LP in the question is just the relaxation of the integer condition $x_i \in \SET{0, 1}$ to $x_i \geq 0$.
+
 
     \subsection*{Problem 3.}
     Define a free variable $x_e$ for each directed edge $e \in E$. This will represent the flow passing along edge $e$. By the flow constraint that the incoming and outgoing flow have to be equal for each vertex, we can see that $f(v) = \sum_{e \text{ into } v} x_e$ and clearly $f(e) = x_e$. From these observations, we can see that we want the following constraints:
