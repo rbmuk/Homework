@@ -27,12 +27,16 @@ def Hs(n: int) -> np.ndarray:
 def random(n: int) -> np.ndarray:
     return rng.choice([-1., 1], size=(2**n, 2**n))
 
-n = 5
-H = Hs(n)
-H /= np.sqrt(2**n)
-print(approx_beta(H))
-# for i in range(1, 10):
-#     H = Hs(i)/np.sqrt(2**i)
-#     r = random(i)/np.sqrt(2**i)
-#     print(f'H beta value for shape {H.shape}: {approx_beta(H)}')
-    # print(f'random beta value for shape {H.shape}: {approx_beta(r)}')
+def Xs(n: int) -> np.ndarray:
+    return np.array(list(it.product([-1,1], repeat=2**n)))
+
+for i in range(1, 5):
+    H = Hs(i)
+    print(f"n={i}")
+    print(H @ Xs(i).T)
+    vals = np.linalg.norm(H @ Xs(i).T, axis=0, ord=np.inf)
+    print(vals)
+    print(beta(H/np.sqrt(2**i)))
+    unique, counts = np.unique(vals, return_counts=True)
+    print(dict(zip(unique, counts)))
+    print()
