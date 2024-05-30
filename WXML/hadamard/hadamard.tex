@@ -154,4 +154,12 @@ skipbelow=\baselineskip,
         H_n x = \begin{pmatrix} H_{n-1} & H_{n-1} \\ H_{n-1} & -H_{n-1} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} H_{n-1} x_1 + H_{n-1} x_2 \\ H_{n-1} x_1 - H_{n-1} x_2 \end{pmatrix}
     \end{align*}
     If the max coordinate in $H_{n-1}x_1$ has the same sign as the max coordinate in $H_{n-1}x_2$, then the max coordinate in $H_n x$ is just $|H_{n-1}x_1 + H_{n-1}x_2|$. On the other hand, if they have differing signs, the max coordinate is just $|H_{n-1}x_1 - H_{n-2}x_2|$. Since $|H_{n-1}x_1| \approx \beta(H_{n-1})$, we have that that $|H_{n} x| \approx 2\beta(H_{n-1})$. Normalizing $H_{n}$ wil give that $|\frac{1}{\sqrt{2^{n}}} H_{n}x| \approx \frac{2}{\sqrt{2}} \beta\qty(\frac{1}{\sqrt{2^{n-1}}} H_{n-1})$. This would say that $\beta(H_n) \approx \sqrt{2^n}$ up to constants.
+
+    We write
+    \begin{align*}
+        2^8 = 2^4 \cdot 7 + 2^7 + 2^4
+    \end{align*}
+    \begin{align*}
+        2^{16} = 2^7 \cdot 7 + 2^{11} \cdot 7 + 2^5 \cdot 5^3 \cdot 7 + 2^9 \cdot 5 \cdot 7 + 2^8 \cdot 3 \cdot 5 + 2^9 + 2^5
+    \end{align*}
 \end{document}
