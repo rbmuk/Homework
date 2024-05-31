@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.27)  28 MAY 2024 22:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.27)  30 MAY 2024 15:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -864,55 +864,79 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <14.4> not available
 (Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 130.
- [1
 
-] [2]
 
-! LaTeX Error: Something's wrong--perhaps a missing \item.
+! LaTeX Error: Command \item invalid in math mode.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.153     \end{enumerate}
-                         
+l.134         \item
+                    False. Choosing $k$ to minimize the $k$ means objective ...
+
 ? 
 ! Emergency stop.
  ...                                              
                                                   
-l.153     \end{enumerate}
-                         
+l.134         \item
+                    False. Choosing $k$ to minimize the $k$ means objective ...
+                                          
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
  
 Here is how much of TeX's memory you used:
- 21652 strings out of 474371
- 420015 string characters out of 5750344
+ 21670 strings out of 474371
+ 420363 string characters out of 5750344
  1936751 words of memory out of 5000000
- 43623 multiletter control sequences out of 15000+600000
+ 43639 multiletter control sequences out of 15000+600000
  579711 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,7n,121p,1040b,285s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,7n,121p,1138b,434s stack positions out of 10000i,1000n,20000p,200000b,200000s
 Output written on hw4.dvi (2 pages, 17340 bytes).
-m Files/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3] (hw4.aux)
+w4.dvi (2 pages, 17340 bytes).
+g>
+Package pdftex.def Info: FC_acc.png  used on input line 157.
+(pdftex.def)             Requested size: 328.82707pt x 256.38684pt.
+<CNN_acc.png, id=22, 450.9648pt x 327.3831pt>
+File: CNN_acc.png Graphic file (type png)
+<use CNN_acc.png>
+Package pdftex.def Info: CNN_acc.png  used on input line 165.
+(pdftex.def)             Requested size: 328.82707pt x 238.7279pt.
+ [4 <./FC_acc.png>]
+LaTeX Font Info:    Trying to load font information for OT1+pxtt on input line 169.
+ (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\ot1pxtt.fd
+File: ot1pxtt.fd 2000/12/14 v1.0
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pxtt' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [5 <./CNN_acc.png>]
+<clusters.png, id=33, 724.1454pt x 508.7808pt>
+File: clusters.png Graphic file (type png)
+<use clusters.png>
+Package pdftex.def Info: clusters.png  used on input line 187.
+(pdftex.def)             Requested size: 328.82707pt x 231.03758pt.
+ [6 <./clusters.png>] [7] (hw4.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22294 strings out of 474370
- 427961 string characters out of 5750318
+ 22360 strings out of 474370
+ 429143 string characters out of 5750318
  1933754 words of memory out of 5000000
- 44049 multiletter control sequences out of 15000+600000
- 593589 words of font info for 240 fonts, out of 8000000 for 9000
+ 44111 multiletter control sequences out of 15000+600000
+ 593865 words of font info for 241 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,7n,121p,1093b,285s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyb.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hw4.pdf (3 pages, 59257 bytes).
+ 116i,7n,121p,1093b,388s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/pxsyb.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/pxfonts/rpxr.pfb><C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txtt.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on hw4.pdf (7 pages, 205650 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 49165 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 49692 words of extra memory for PDF output out of 51595 (max. 10000000)
 
