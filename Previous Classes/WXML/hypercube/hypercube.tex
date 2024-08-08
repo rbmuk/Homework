@@ -1,0 +1,171 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+%\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+\usepackage{float}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=blue!30,
+linewidth=2pt,
+linecolor=blue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Hypercube Vertices}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    Our main result today is to show that in the $1 \times n$ case, picking vertices of the hypercube is the "worst possible" in the sense that the beta value tends to 0. We make the following result precise in the following sense:
+
+    \begin{theorem}[Hypercube Vertices Scale Poorly]
+        Let $a \in \SET{-1, 1}^n$ be any hypercube vertex. Then,
+        \begin{align*}
+            \sqrt{n}\beta(a) = \frac{1}{2^n} \sum_{x \in \SET{-1, 1}^n} |a^tx| \ll n^2(0.91)^n.
+        \end{align*}
+    \end{theorem}
+    We claim that we can assume without loss of generality that $a = \mathbf{1}$. Indeed, If $a \in \SET{-1, 1}^n$, then we can write
+    \begin{align*}
+        a^tx = \mathrm{diag}(a) \mathbf{1}^tx = x^t\mathrm{diag}(a)\mathbf{1}
+    \end{align*}
+    Since $x$ will run through all $\pm 1$ combinations, multiplying $x^t$ on the right by a $\pm 1$ diagonal matrix will just permute those vectors among themselves. Thus, we can assume that $a = \mathbf{1}$.
+
+    Notice that in this case, $a^tx = $ \# of $1$s in $x$ - \# of $-1$s in $x$. We divide the $x$'s into classes based on the number of $1$s in $x$. Let $S_{n-k}$ be the set of $x$'s with $n-k$ $1$s and $k$ $-1$s. Clearly, $|S_{n-k}| = {n \choose k}$. We see then that (after some simple approximations)
+    \begin{align*}
+        \sqrt{n}\beta(\mathbf{1}) &= \frac{1}{2^n} \sum_{x \in \SET{-1, 1}^n} |a^tx| = \frac{1}{2^n} \sum_{k=0}^n {n \choose k} |n-2k| = \frac{1}{2^n} \sum_{k=0}^{n/2} {n \choose k} (n-2k) \\
+        &= \sum_{k=0}^{n/2} \frac{n^k}{k!} (n-2k) = n^2 \frac{n^{n/4}}{(n/4)!} = n^2\frac{(4e)^{n/4}}{2^n} = n^2(0.91)^n.
+    \end{align*}
+
+    We give a second proof. Let $S_n = X_1 + \cdots + X_n$ be the sum of $n$ i.i.d. Radamacher random variables. By Hoeffding's Inequality,
+    \begin{align*}
+        \P(S_n \neq 0) = \P(|S_n| \geq \frac 12) \leq e^{-4/n}
+    \end{align*}
+    Recall that if $a$ has norm 1 and $x \in \SET{\pm 1}^n$, then by Cauchy-Schwartz $|a^Tx| \leq \sqrt{n}$. Putting these together tells us that,
+    \begin{align*}
+        \beta\qty(\frac{\mathbf 1}{\sqrt{n}}) = \E_{x}\qty[\qty|\qty(\frac{\mathbf 1}{\sqrt{n}})^T x|] \leq \sqrt{n}e^{-4/n}  \to 0
+    \end{align*}
+\end{document}

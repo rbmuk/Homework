@@ -1,0 +1,203 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 421 Last Homework}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Problem 1.}
+    The LP in standard form is the following:
+    \begin{align*}
+        \min \quad  3x_1 - x_2 \\
+        \text{s.t.,} \quad x_1+x_2+z_1 - z_2 &\leq 1 \\
+        -x_1-x_2-z_1+z_2 &\leq -1 \\
+        -2x_1 + x_2 + z_1 - z_2 &\leq 2 \\
+        x_1, x_2, z_1, z_2 &\geq 0
+    \end{align*}
+
+    \subsection*{Problem 2.}
+
+    The standard form of the LP is just:
+    \begin{align*}
+        \max -\sum_{i=1}^m c_ix_i \\ 
+        \text{s.t.,} \quad -\sum_{i: j \in S_i} x_i & \leq -1 \quad \forall j \in \SET{1, \ldots, n} \\
+        x_i &\geq 0 \quad \forall i \in \SET{1, \ldots, m}
+    \end{align*}
+
+    We see that the LP in question is a relaxation of the weighted set cover problem because given a minimum cost family $F \subset \SET{S_1, \ldots, S_m}$, let $x_i = 1$ if $S_i \in F$ and $x_i = 0$ otherwise. The condition that every element in $\SET{1, \ldots, n}$ is in at least one set is thus equivalent to the following:
+    \begin{align*}
+        \sum_{i : j \in S_i} x_i \geq 1
+    \end{align*}
+    Since this sum counts the number of sets in our family with $j$ in it for each $j$. Clearly the $x_i \geq 0$, so the answer to the weighted set cover problem is a feasible solution to the LP and hence the LP is a relaxation of the weighted set cover problem. If you let $y_j$ be the variable for the constraint $\sum_{i: j -\in S_i} x_i \leq -1$, then we need the coefficient of $x_i$ to be $\geq -c_i$. Notice that $x_i$ shows up in the above sum iff $j \in S_i$ for each $j$. Thus the coefficient of $x_i$ in terms of the $y_i$ is just $-\sum_{j \in S_i} x_i$. This gives the following dual LP:
+
+    \begin{align*}
+        \min \quad &-\sum_{j=1}^n y_j \\
+        \text{s.t.,} \quad &-\sum_{j \in S_i} y_j \geq -c_i \quad \forall i \in \SET{1, \ldots, m} \\
+        &y_j \geq 0 \quad \forall j \in \SET{1, \ldots, n}
+    \end{align*}
+    Putting this in standard forms yields:
+    \begin{align*}
+        \max \quad &\sum_{j=1}^n y_j \\
+        \text{s.t.,} \quad &\sum_{j \in S_i} y_j \leq c_i \quad \forall i \in \SET{1, \ldots, m} \\
+        &y_j \geq 0 \quad \forall j \in \SET{1, \ldots, n}
+    \end{align*}
+
+
+
+    \subsection*{Problem 3.}
+    Define a free variable $x_e$ for each directed edge $e \in E$. This will represent the flow passing along edge $e$. By the flow constraint that the incoming and outgoing flow have to be equal for each vertex, we can see that $f(v) = \sum_{e \text{ into } v} x_e$ and clearly $f(e) = x_e$. From these observations, we can see that we want the following constraints:
+    \begin{align*}
+        x_e \leq c_e \quad \forall e \in E \\
+        \sum_{e \text{ into } v} x_e \leq c_v \quad \forall v \in V - \SET{s, t}
+    \end{align*}
+    With the above observations about the flow values, we can see that the old payment value:
+    \begin{align*}
+        \sum_v f(v)p_v + \sum_e f(e)p_e = \sum_v \sum_{e \text{ into } v} x_ep_v + \sum_e x_ep_e
+    \end{align*}
+    Since each edge $e = (u,v)$ is going into precisely one vertex $v$, we can rewrite the first sum on the right hand side as:
+    \begin{align*}
+        \sum_{e = (u,v)} p_vx_e
+    \end{align*}
+    We also want the constraints that the incoming flow to a vertex is the same as the outcoming flow, and finally that the flow leaving $S$ is equal to $D$, by the demand constraint. Since we want to minimize the total payment, the LP becomes the following:
+    \begin{align*}
+        \min \quad &\sum_{e = (u,v)} p_vx_e \\
+        \text{s.t.,} \quad &x_e \leq c_e \quad \forall e \in E \\
+        &\sum_{e \text{ into } v} x_e \leq c_v \quad \forall v \in V - \SET{s, t} \\
+        &\sum_{e \text{ into } v} x_e = \sum_{e \text{ out of } v} x_e \quad \forall v \in V - \SET{s, t}\\
+        &\sum_{e \text{ out of } s} x_e = D \\
+        &x_e \geq 0 \quad \forall e \in E
+    \end{align*}
+    
+
+    \subsection*{Problem 4.}
+    Construct an undirected graph $G'$ so that for each vertex $v \in G$, we add 3 new vertices to $G'$: $v_s, v, v_e$ with two new edges $v_s \to v$ and $v \to v_e$. For each edge $u \to v$ in the original directed graph $G$, add an edge $u_e \to v_s$ in $G$. We claim that $G$ has a hamiltonian path from $a$ to $b$ iff $G'$ has a hamiltonian path from $a_s$ to $b_e$. If $G$ has a hamiltonian path from $a$ to $b$, say $P = a=v_1, \ldots, a_n=b$, then we can construct a hamiltonian path for $G'$ by setting $P' = a_s, a, a_e, \ldots, b_s, b, b_e$. Since the edge from $v_{i, e} \to v_{i+1, s}$ always exists, and this path runs through all vertices of $G'$ by looking at our construction, this gives a Hamiltonian path for $G'$. Similarly, suppose that $P$ is a Hamiltonian path for $G'$ starting at $a_s$ and ending at $b_e$. We seek to show that if $v_s$ is in this path for some $s$, the next two elements of the path must be $v$ and $v_e$. Suppose otherwise. The vertex $v$ of $G'$ has precisely two edges: $v_s \to v$ and $v_e \to v$. Since this is a Hamiltonian path, and $v$ did not come right after $v_s$, we must have used the edge $v_e \to v$. But then there would be no way to escape $v$: $v$ must be the last element in the path. But this is clearly nonsensical, a contradiction. Thus after every $v_s$, the next two elements of the Hamiltonian path are $v, v_e$. The only edges out of $v_e$ are those of the form $v_e \to u_s$ for some $u$. By stringing these together, we see that every path has the aforementioned form, that being,
+    \begin{align*}
+        a_s, a, a_e, v_{1, s}, v_{1}, v_{1, e}, \ldots, b_s, b, b_e
+    \end{align*}
+    This shows that we can take the path $P = a, v_1, \ldots, b$ in $G$ to get a Hamiltonian path of the original graph. The function transforming $G$ to $G'$ is clearly polynomial in the input size: we simply add 3 vertices for each vertex of $G$ and add 2 edges for vertex of $G$. Thus we see that 
+    \begin{align*}
+        \text{Directed Hamiltonian Path} \leq_p \text{Undirected Hamiltonian Path}
+    \end{align*}
+\end{document}

@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{listings}
+\usepackage{lstautogobble}
+\lstset{
+    basicstyle=\ttfamily,
+    mathescape=true,
+    autogobble=true
+}
+\newcommand{\doubleplus}{\mathbin{+\mkern-10mu+}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[leftmargin=0pt, label=(\alph*), labelindent=0pt, labelwidth=!, wide]
+        \item We have the following.
+        
+        \begin{lstlisting}
+            let R: string[][] = [];
+            let i: number = 0;
+            {{P_1: R = [], i = 0}}
+            {{Inv: R = replace(A[0 .. i-1], M)}}
+            while (i !== A.length) {
+                if (contains_key(A[i], M)) {
+                    const val = get_value(A[i], M);
+                    {{Inv, contains-key(A[i], M), val = get-value(A[i], M)}}
+                    R.push(val);
+                    {{P_2: R[0 .. i-1] = replace(A[0 .. i-1], M), R[i] = val, 
+                    contains-key(A[i], M), val = get-value(A[i], M)}}
+                } else {
+                    {{Inv, !contains-key(A[i], M)}}
+                    R.push([A[i]]);
+                    {{P_3: R[0 .. i-1] = replace(A[0 .. i-1], M), 
+                    not contains-key(A[i], M), R[i] = [A[i]]}}
+                }
+                {{P_2 or P_3}}
+                {{Q: R = replace(A[0 .. i], M)}}
+                i = i+1;
+                {{Inv}}
+            }
+            {{P_4: R = replace(A[0 .. i-1], M) and i = n}}
+            {{R = replace(A, M)}}
+        \end{lstlisting}
+
+        \item We prove that $P_1 \implies $ the loop invariant. Since $i = 0$, we know that $A[0 .. -1] = []$, the empty list. By definition of replace, we have that $replace([], M) = []$. Thus, $R = [] = \rm replace(A[0 .. i-1], M)$ and the loop invariant holds.
+        
+        Next we prove that $P_4 \implies $ Post. Since $i = n$, we know that $A[0 .. i-1] = A[0 .. n-1] = A$, since $n$ is the length of $A$. Thus $R = \rm replace(A[0 .. i-1], M) = replace(A, M)$ and the postcondition holds.
+        
+        Finally we prove that $P_2$ or $P_3$ implies $Q$. We do this by cases. In the first case, we assume $P_2$, which is that $R[0 .. i-1] = \rm replace(A[0 .. i-1, M])$, $R[i] = \rm val$, $\rm contains-key(A[i], M)$ is true, and that $\rm val = get-value(A[i], M)$. We have that:
+        \begin{align*}
+            \begin{aligned}
+                \rm replace(A[0 .. i], M) &= \rm replace(A[0 .. i-1] \doubleplus A[i], M) && A[0 .. i] = A[0 .. i-1] \doubleplus A[i] \\
+                &= \rm replace(A[0 .. i-1], M) \doubleplus \rm [get-value(A[i], M)] && \text{def replace, contains-key(A[i], M)} \\
+                &= R[0 .. i-1] \doubleplus \rm [val] && \text{$\rm val = get-value(A[i], M)$}\\
+                &= R[0 .. i-1] \doubleplus [R[i]] && \text{$R[i] = val$} \\
+                &= R && \text{$R = R[0 .. i-1] \doubleplus R[i]$}
+            \end{aligned}
+        \end{align*}
+        Thus $P_2 \implies Q$. 
+
+        In the second case, we assume $P_3$, which is that $R[0 .. i-1] = \rm replace(A[0 .. i-1, M])$, $! \rm contains-key(A[i], M)$ is true, and that $R[i] = [A[i]]$. We have that:
+        \begin{align*}
+            \begin{aligned}
+                \rm replace(A[0 .. i], M) &= \rm replace(A[0 .. i-1] \doubleplus A[i], M) && A[0 .. i] = A[0 .. i-1] \doubleplus A[i] \\
+                &= \rm replace(A[0 .. i-1], M) \doubleplus \rm [A[i]] && \text{def replace, !$\rm contains-key(A[i], M)$} \\
+                &= R[0 .. i-1] \doubleplus \rm [A[i]] && \text{R[0..i-1] = replace(A[0.. i-1])}\\
+                &= R[0 .. i-1] \doubleplus [R[i]] && \text{$R[i] = [A[i]]$} \\
+                &= R && \text{$R = R[0 .. i-1] \doubleplus [R[i]]$}
+            \end{aligned}
+        \end{align*}
+        Thus $P_3 \implies Q$. Combining these together shows that $P_2$ or $P_3 \implies Q$.
+    \end{enumerate}
+\end{document}
