@@ -8,7 +8,7 @@ dependencies:
   - matplotlib
   - seaborn
   - scikit-learn
-  - numpy==1.20.3
+  - numpy==1.21.0
   - pandas==1.2.4
   - invoke
   - black
@@ -18,7 +18,7 @@ dependencies:
   - tqdm
   - pip
   - pytorch==1.9.0
-  - torchvision
+  - torchvision==0.10
   - pip:
     - gradescope-utils==0.4.0
     - wget==3.2
