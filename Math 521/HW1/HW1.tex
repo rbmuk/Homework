@@ -130,6 +130,7 @@ skipbelow=\baselineskip,
 \newcommand{\1}{\mathds 1}
 \newcommand{\N}{\mathbb N}
 \renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
 
 %==========================================================================================%
 % End of commands specific to this file
@@ -163,11 +164,58 @@ skipbelow=\baselineskip,
 
         \item We shall show that if $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$, then $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$ and $0$ otherwise. Let $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$. Then there is some $N$ so that $\omega \in \bigcap_{n \geq N} E_n$. This means that $\1_{E_n}(\omega) = 1$ for all $n \geq N$, and hence $\inf_{n \geq m} \1_{E_n}(\omega) = 1$ for any $m \geq N$. This means that $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$. Conversely, if $\omega \not \in \SET{E_n \text{ ev.}}$, then for every $m \geq 1$ we can find some $n \geq m$ so that $\omega \not \in E_n$. This means that $\1_{E_n}(\omega) = 0$. This also means that $\inf_{n \geq m} \1_{E_n}(\omega) = 0$ for all $m \geq 1$, and hence $\liminf_{n \to \infty} \1_{E_n}(\omega) = 0$. This completes the proof.
 
-        \item Suppose per the contrary that $D$ was uncountable. I claim that $D \cap [a, a+1)$ is uncountable for some $a$. This is because if $D \cap [a, a+1)$ were always countable, then $D = \bigcup_{a \in \Z} D \cap [a, a+1)$ would be a countable union of countable sets and therefore itself countable, a contradiction. So assume WLOG that $D \cap [0,1)$ were uncountable. We shall prove that $f(1)$ cannot possibly be finite. Recall that $f$ is continuous at $a$ if 
+        \item Suppose per the contrary that $D$ was uncountable. I claim that $D \cap [a, a+1)$ is uncountable for some $a$. This is because if $D \cap [a, a+1)$ were always countable, then $D = \bigcup_{a \in \Z} D \cap [a, a+1)$ would be a countable union of countable sets and therefore itself countable, a contradiction. So assume WLOG that $D \cap [0,1)$ were uncountable. We shall prove that $f(1)$ cannot possibly be finite. Define for each point of discontinuity $a$ the following:
         \begin{align*}
-            \lim_{x \to a^-} f(x) = f(a) = \lim_{x \to a^+} f(x)
+            l_a = f(a) - \sup_{x < a} f(x) \quad \text{and} \quad r_a = \inf_{x > a} f(x) - f(a)
         \end{align*}
-        Since $f$ is non-decreasing, we have that $\lim_{x \to a^-} f(x) \leq f(a) \leq \lim_{x \to a^+} f(x)$. If $f$ is not continuous at $a$ then (possibly both) of these inequalities must be strict. Thus to each point of discontinuity $a \in D \in [0, 1)$, associate $j_a$ to be the size of the jump at $a$, i.e. $j_a = \max (\lim_{x \to a^+} f(x) - f(a), f(a) - \lim_{x \to a^-} f(a)) > 0$ by the above. We shall show there exists an $\ve > 0$ so that $j_a > \ve$ for infinitely many $j_a$. Otherwise, for each $n \in \N$, there are only finitely many $j_a$ so that $j_a > \frac{1}{n}$, call this set $J_n$. Since $D \cap [0, 1) = \bigcup_n J_n$, and the right is countable being a countable union of finite sets, we have reached a contradiction. Thus there is some $\ve > 0$ so that $j_{a_i} > \ve$ for an infinite increasing sequence $\SET{a_i}$. Suppose that $f(1) < C$, and WLOG $f(0) = 0$ (the number of discontinuities is invariant under vertical shifts). Choose $N$ large enough so that $N \cdot \ve > C$. Then $f(1) > \sum_{i=1}^N j_{a_i} > N \cdot \ve > C$, a contradiction.
+        Both of these are finite being bounded below by $0$. If $l_a = r_a = 0$, then $f$ is continuous at $a$. Otherwise, we have $l_a > 0$ or $r_a > 0$. Define $j_a = \max(l_a, r_a)$ to be the size of the jump at $a$. 
+
+        We shall show that there is an $\ve > 0$ so that uncountably many of the $j_a$ are greater than $\ve$. Otherwise, the set of such $j_a$'s is a countable union of countable sets, namely the union of those that are greater than $1/n$ for each $n$, a contradiction. 
+
+        Suppose that $f(1) = M$, and assume WLOG that $f(0)=0$. Choose $N$ so large so that $N \cdot \ve > M$. Choose $N$ elements from $D \cap (0, 1)$ with $j_a > \ve$ and put them in increasing order, $a_1, a_2, \ldots, a_N$. Now writing,
+        \begin{align*}
+            f(1) &= f(1) - f(a_N) + \sum_{i=2}^N \qty[f(a_i) - f\qty(\frac{a_i + a_{i-1}}2) + f\qty(\frac{a_i + a_{i-1}}2) - f(a_{i-1})] + f(a_1) - f(0) \\
+            &\geq r_{a_N} + \sum_{i=2}^N l_{a_i} + r_{a_{i-1}} + l_{a_1} = \sum_{i=1}^N r_{a_i} + l_{a_i} \geq \sum_{i=1}^N j_{a_i} > N \cdot \ve > M
+        \end{align*}
+        A contradiction. Thus $f$ must have only countably many points of discontinuity.
+
+        \item By Holder's inequality, we know that:
+        \begin{align*}
+            \int \qty|X_n \cdot \1_{|X_n| \geq k}|d \mbb P \leq \qty(\int |X|^p d \mbb P)^{1/p} \qty(\int \1_{|X| \geq k}^q d\mbb P)^{1/q}
+        \end{align*}
+        Where $1/p + 1/q = 1$. Notice that:
+        \begin{align*}
+            \int \1_{|X_n| \geq k}^q d\mbb P = \P(|X_n| \geq k)
+        \end{align*}
+        From here, by Markov's inequality,
+        \begin{align*}
+            \P(|X_n| \geq k) = \P(|X_n|^p \geq k^p) \leq \frac{\E[|X_n|^p]}{k^p}
+        \end{align*}
+        Finally, using that $\sup_n \E[|X_n|^p] = C < \infty$, we have that:
+        \begin{align*}
+            \sup_n \E[|X_n \cdot \1_{|X_n| \geq k}|] \leq C^{1/p} \cdot \frac{C^{1/q}}{k^{p/q}} \overset{k \to \infty}{\to} 0
+        \end{align*}
+        which shows that $X_n$ is uniformly integrable.
+
+        \item I claim that, if $\mathscr B$ is any $\sigma$-algebra, then
+        \begin{align*}
+            \SET{B : X^{-1}(B) \in \mathscr B}
+        \end{align*}
+        is too. This is because, given $A \in \SET{B : X^{-1}(B) \in \mathscr B}$, we know that $X^{-1}(A^c) = X^{-1}(A)^c \in \mathscr B$, and if $\SET{A_i}_{i=1}^\infty \subset \SET{B : X^{-1}(B) \in \mathscr B}$, then $X^{-1}\qty(\bigcup_{i=1}^\infty A_i) = \bigcup_{i=1}^\infty X^{-1}(A_i) \in \mathscr B$.
+
+        We now apply this result to $\mathscr B = \sigma(X^{-1}(\mathscr A))$. Clearly,
+        \begin{align*}
+            \mathscr A \subset \SET{B : X^{-1}(B) \in \mathscr \sigma(X^{-1}(\mathscr A))}
+        \end{align*}
+        Thus,
+        \begin{align*}
+            \mathscr G = \sigma(\mathscr A) \subset \SET{B : X^{-1}(B) \in \mathscr \sigma(X^{-1}(\mathscr A))}
+        \end{align*}
+        Then,
+        \begin{align*}
+            \sigma(X) = X^{-1}(\mathscr G) \subset \sigma(X^{-1}(\mathscr A))
+        \end{align*}
+        The reverse is easier, clearly $X^{-1}(\mathscr A) \subset X^{-1}(\mathscr G)$. Thus $\sigma(X^{-1}(\mathscr A)) \subset X^{-1}(\mathscr G)$ and we are done.
 
         \item 
         \begin{enumerate}[label=\alph*)]
@@ -193,6 +241,5 @@ skipbelow=\baselineskip,
             \end{align*} 
             by finite additivity and because $\P(A_i) = \P(\emptyset) = 0$ for all $i \geq m$. Thus $\mathbb P$ is countably additive.
         \end{enumerate}
-        
     \end{enumerate}    
 \end{document}

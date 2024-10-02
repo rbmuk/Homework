@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=latex 2024.9.25)  25 SEP 2024 21:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=latex 2024.9.25)  1 OCT 2024 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -988,7 +988,7 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/braket\braket
 .sty)
 LaTeX Font Info:    Trying to load font information for OT1+pxr on input line 1
-41.
+42.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\ot1px
 r.fd
@@ -996,48 +996,48 @@ File: ot1pxr.fd 2000/12/14 v1.0
 ) (HW1.aux)
 \openout1 = `HW1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 141.
+LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 142.
 LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 
-141.
+142.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omlpx
 mi.fd
 File: omlpxmi.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 142.
 LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 
-141.
+142.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omspx
 sy.fd
 File: omspxsy.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 141.
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 142.
 LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 
-141.
+142.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\omxpx
 ex.fd
 File: omxpxex.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
-LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 142.
 LaTeX Font Info:    Trying to load font information for U+pxexa on input line 1
-41.
+42.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxex
 a.fd
 File: upxexa.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    ... okay on input line 142.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -1086,12 +1086,12 @@ File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
-LaTeX Info: Redefining \microtypecontext on input line 141.
-Package microtype Info: Applying patch `item' on input line 141.
-Package microtype Info: Applying patch `toc' on input line 141.
-Package microtype Info: Applying patch `eqnum' on input line 141.
-Package microtype Info: Applying patch `footnote' on input line 141.
-Package microtype Info: Applying patch `verbatim' on input line 141.
+LaTeX Info: Redefining \microtypecontext on input line 142.
+Package microtype Info: Applying patch `item' on input line 142.
+Package microtype Info: Applying patch `toc' on input line 142.
+Package microtype Info: Applying patch `eqnum' on input line 142.
+Package microtype Info: Applying patch `footnote' on input line 142.
+Package microtype Info: Applying patch `verbatim' on input line 142.
 Package microtype Info: Generating DVI output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1105,90 +1105,110 @@ ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+pxsya on input line 1
-42.
+43.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
 a.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 1
-42.
+43.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
 b.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+pxmia on input line 1
-42.
+43.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxmi
 a.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 1
-42.
+43.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/pxfonts\upxsy
 c.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
-2.
+3.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
 s.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
-2.
+3.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
 .fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 1
-64.
+65.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\
 udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/12'
-(microtype)             (new value: 12.0pt) on input line 164.
+(microtype)             (new value: 12.0pt) on input line 165.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/8'
-(microtype)             (new value: 8.0pt) on input line 164.
+(microtype)             (new value: 8.0pt) on input line 165.
 Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/6'
-(microtype)             (new value: 6.0pt) on input line 164.
+(microtype)             (new value: 6.0pt) on input line 165.
 
 
 [1
 
 ]
 
-! LaTeX Error: Command \item invalid in math mode.
+[2]
+LaTeX Font Info:    Trying to load font information for U+eus on input line 200
+.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.171         \item
-                   
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueus
+.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-
+eus.cfg
+File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
+)
+
+[3]
+
+[4]
+Runaway argument?
+ 
+! Paragraph ended before \align* was complete.
+<to be read again> 
+                   \par 
+l.248 
+      
 ? 
 ! Emergency stop.
- ...                                              
-                                                  
-l.171         \item
-                   
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<to be read again> 
+                   \par 
+l.248 
+      
+End of file on the terminal!
 
  
 Here is how much of TeX's memory you used:
- 21522 strings out of 473900
- 425666 string characters out of 5721770
- 880585 words of memory out of 5000000
- 43964 multiletter control sequences out of 15000+600000
- 579546 words of font info for 113 fonts, out of 8000000 for 9000
+ 21556 strings out of 473900
+ 426388 string characters out of 5721770
+ 880588 words of memory out of 5000000
+ 43991 multiletter control sequences out of 15000+600000
+ 580146 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,11n,121p,1029b,315s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on HW1.dvi (1 page, 14700 bytes).
+ 116i,13n,121p,1002b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on HW1.dvi (4 pages, 26624 bytes).
+put written on HW1.dvi (4 pages, 26624 bytes).
+iletter control sequences out of 15000+600000
+ 580146 words of font info for 116 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 116i,13n,121p,1002b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on HW1.dvi (4 pages, 26624 bytes).

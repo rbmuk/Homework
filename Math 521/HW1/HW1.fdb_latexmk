@@ -1,9 +1,11 @@
 # Fdb version 4
-["latex"] 1727324163.45456 "HW1.tex" "HW1.dvi" "HW1" 1727324164.23461 2
+["latex"] 1727823827.43375 "HW1.tex" "HW1.dvi" "HW1" 1727823828.63974 2
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1727320438 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1727320440 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs7.tfm" 1727320438 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/miktex/data/le/pdftex/latex.fmt" 1727320446 11952867 508729fc780d119b932033e0a4013055 ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/euler/eusm10.tfm" 1233951852 896 1783287efa3eab95c325db36ffb6426d ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/euler/eusm7.tfm" 1233951852 896 f42c809574a0246151e60b2c0dcf38d5 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr12.tfm" 1136765053 1288 655e228510b4c2a1abe905c368440826 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/doublestroke/dsrom12.tfm" 1030470372 452 d8b5931fd510ede40dce06480d31d007 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/doublestroke/dsrom8.tfm" 1030470372 452 dc44cdd7c88ff2b15557f125edfc277b ""
@@ -87,6 +89,7 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amsfonts.sty" 1358197772 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amssymb.sty" 1358197772 13829 94730e64147574077f8ecfea9bb69af4 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/euscript.sty" 1358197772 1319 275cecae59b75cbd38ce73df76acdb23 ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/ueus.fd" 1358197772 1063 80474fdfb43411691d8ceb1c8eb7d1de ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsbsy.sty" 1718270739 2222 2166a1f7827be30ddc30434e5efcee1b ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amscd.sty" 1718270739 5321 4447401004a49a0b5df7e40e1e5ed577 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsgen.sty" 1718270739 4173 d22509bc0c91281d991b2de7c88720dd ""
@@ -134,6 +137,7 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/microtype/microtype-pdftex.def" 1711678399 48246 4fd40a0fb055e75ab59718b607ff1a02 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/microtype/microtype.cfg" 1711678399 26842 362f00e9d49f97a0d1db424012abc18b ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/microtype/microtype.sty" 1711678399 99956 8aeb768ea37a20e7c141d3963de3aa3d ""
+  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/microtype/mt-eus.cfg" 1711678399 4875 f2de1e4e05f048a4c597a1d956a2a78a ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/microtype/mt-ppl.cfg" 1711678399 6374 9f90681ffd6cfa823eee03762a8bb314 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/needspace/needspace.sty" 1364796577 852 0e34dbb72efc69fa07602405ad95585e ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/pgf/basiclayer/pgf.sty" 1673775190 1090 bae35ef70b3168089ef166db3e66f5b2 ""
@@ -172,8 +176,8 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1695383086 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
-  "HW1.aux" 1727324163 67 3705c6601359574168251466ef4fff2b "latex"
-  "HW1.tex" 1727324056 10935 31deeca485b618cb57732cf8188aa91b ""
+  "HW1.aux" 1727823826 67 9de14bf8424e832175a22010a272fb79 "latex"
+  "HW1.tex" 1727823810 13172 6a1cb34b02faa6d95e0a09f07a3af9d2 ""
   (generated)
   "HW1.aux"
   "HW1.dvi"
