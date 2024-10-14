@@ -135,7 +135,7 @@ skipbelow=\baselineskip,
 %==========================================================================================%
 % End of commands specific to this file
 
-\title{Math Template}
+\title{Math 521 HW1}
 \date{\today}
 \author{Rohan Mukherjee}
 
@@ -152,7 +152,9 @@ skipbelow=\baselineskip,
         \end{align*}
         So indeed, we have that $f(X_n) \to f(X)$ a.s.
 
-        \item Fix $\ve > 0$. For each $\omega$ with $X_n(\omega) \to X(\omega)$, there exists some $\omega_n$ so that if $N \geq \omega_n$ then $|X_N(\omega)-X(\omega)| < \ve$. Let $A_n = \SET{\omega | \omega_n \leq n}$. Immediately we have that $A_n \uparrow \SET{\omega | X_n(\omega) \to X(\omega)}$. Also, if we let $B_n = \SET{\omega | |X_n(\omega) - X(\omega)| < \ve}$, we have that $A_n \subset B_n$. Thus, we have that:
+        \item We shall show that if $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$, then $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$ and $0$ otherwise. Let $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$. Then there is some $N$ so that $\omega \in \bigcap_{n \geq N} E_n$. This means that $\1_{E_n}(\omega) = 1$ for all $n \geq N$, and hence $\inf_{n \geq m} \1_{E_n}(\omega) = 1$ for any $m \geq N$. This means that $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$. Conversely, if $\omega \not \in \SET{E_n \text{ ev.}}$, then for every $m \geq 1$ we can find some $n \geq m$ so that $\omega \not \in E_n$. This means that $\1_{E_n}(\omega) = 0$. This also means that $\inf_{n \geq m} \1_{E_n}(\omega) = 0$ for all $m \geq 1$, and hence $\liminf_{n \to \infty} \1_{E_n}(\omega) = 0$. This completes the proof.
+
+        \item Fix $\ve > 0$. For each $\omega$ with $X_n(\omega) \to X(\omega)$, there exists some $\omega_n$ so that if $N \geq \omega_n$ then $|X_N(\omega)-X(\omega)| < \ve$. Let $A_n = \SET{\omega : X_n(\omega) \to X(\omega), \; \omega_n \leq n}$. Immediately we have that $A_n \uparrow \SET{\omega : X_n(\omega) \to X(\omega)}$. Also, if we let $B_n = \SET{\omega : |X_n(\omega) - X(\omega)| < \ve}$, we have that $A_n \subset B_n$. Thus, we have that:
         \begin{align*}
             \P(A_n) \leq \P(B_n)
         \end{align*}
@@ -162,15 +164,13 @@ skipbelow=\baselineskip,
         \end{align*}
         Thus $X_n \to X$ in probability too.
 
-        \item We shall show that if $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$, then $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$ and $0$ otherwise. Let $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$. Then there is some $N$ so that $\omega \in \bigcap_{n \geq N} E_n$. This means that $\1_{E_n}(\omega) = 1$ for all $n \geq N$, and hence $\inf_{n \geq m} \1_{E_n}(\omega) = 1$ for any $m \geq N$. This means that $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$. Conversely, if $\omega \not \in \SET{E_n \text{ ev.}}$, then for every $m \geq 1$ we can find some $n \geq m$ so that $\omega \not \in E_n$. This means that $\1_{E_n}(\omega) = 0$. This also means that $\inf_{n \geq m} \1_{E_n}(\omega) = 0$ for all $m \geq 1$, and hence $\liminf_{n \to \infty} \1_{E_n}(\omega) = 0$. This completes the proof.
-
         \item Suppose per the contrary that $D$ was uncountable. I claim that $D \cap [a, a+1)$ is uncountable for some $a$. This is because if $D \cap [a, a+1)$ were always countable, then $D = \bigcup_{a \in \Z} D \cap [a, a+1)$ would be a countable union of countable sets and therefore itself countable, a contradiction. So assume WLOG that $D \cap [0,1)$ were uncountable. We shall prove that $f(1)$ cannot possibly be finite. Define for each point of discontinuity $a$ the following:
         \begin{align*}
-            l_a = f(a) - \sup_{x < a} f(x) \quad \text{and} \quad r_a = \inf_{x > a} f(x) - f(a)
+            l_a = \inf_{x < a} \qty[f(a) - f(x)] \quad \text{and} \quad r_a = \inf_{x > a} \qty[f(x) - f(a)]
         \end{align*}
         Both of these are finite being bounded below by $0$. If $l_a = r_a = 0$, then $f$ is continuous at $a$. Otherwise, we have $l_a > 0$ or $r_a > 0$. Define $j_a = \max(l_a, r_a)$ to be the size of the jump at $a$. 
 
-        We shall show that there is an $\ve > 0$ so that uncountably many of the $j_a$ are greater than $\ve$. Otherwise, the set of such $j_a$'s is a countable union of countable sets, namely the union of those that are greater than $1/n$ for each $n$, a contradiction. 
+        We shall show that there is an $\ve > 0$ so that uncountably many of the $j_a$ are greater than $\ve$. Otherwise, define $A_n = \SET{a : j_a \geq \frac 1n}$. Then $D = \bigcup_{n=1}^\infty A_n$ is a countable union of countable sets, and therefore countable, a contradiction. 
 
         Suppose that $f(1) = M$, and assume WLOG that $f(0)=0$. Choose $N$ so large so that $N \cdot \ve > M$. Choose $N$ elements from $D \cap (0, 1)$ with $j_a > \ve$ and put them in increasing order, $a_1, a_2, \ldots, a_N$. Now writing,
         \begin{align*}
@@ -197,7 +197,7 @@ skipbelow=\baselineskip,
         \end{align*}
         which shows that $X_n$ is uniformly integrable.
 
-        \item I claim that, if $\mathscr B$ is any $\sigma$-algebra, then
+        \item I claim that if $X: (\Omega_1, \mathscr F) \to (\Omega_2, \mathscr G)$ is measurable, and $\mathscr B \subset \mathscr F$ is any $\sigma$-algebra, then
         \begin{align*}
             \SET{B : X^{-1}(B) \in \mathscr B}
         \end{align*}
@@ -209,13 +209,9 @@ skipbelow=\baselineskip,
         \end{align*}
         Thus,
         \begin{align*}
-            \mathscr G = \sigma(\mathscr A) \subset \SET{B : X^{-1}(B) \in \mathscr \sigma(X^{-1}(\mathscr A))}
+            \mathscr G = \sigma(\mathscr A) \subset \SET{B : X^{-1}(B) \in \mathscr \sigma(X^{-1}(\mathscr A))} \subset \mathscr G
         \end{align*}
-        Then,
-        \begin{align*}
-            \sigma(X) = X^{-1}(\mathscr G) \subset \sigma(X^{-1}(\mathscr A))
-        \end{align*}
-        The reverse is easier, clearly $X^{-1}(\mathscr A) \subset X^{-1}(\mathscr G)$. Thus $\sigma(X^{-1}(\mathscr A)) \subset X^{-1}(\mathscr G)$ and we are done.
+        So for any set $B \in \mathscr G$, we have that $X^{-1}(B) \in \sigma(X^{-1}(\mathscr A))$. This in turn shows that $X^{-1}(\mathscr G) = \sigma(X) \subset \sigma(X^{-1}(\mathscr A))$, which completes the proof.
 
         \item 
         \begin{enumerate}[label=\alph*)]
