@@ -1,5 +1,5 @@
 # Fdb version 4
-["latex"] 1728364450.35915 "hw2.tex" "hw2.dvi" "hw2" 1728364451.3189 2
+["latex"] 1729066442.55297 "hw2.tex" "hw2.dvi" "hw2" 1729066443.09922 2
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1727320438 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1727320440 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "C:/Users/Rohan Mukherjee/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs7.tfm" 1727320438 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
@@ -10,7 +10,6 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam7.tfm" 1233951854 928 2dc8d444221b7a635bb58038579b861a ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm10.tfm" 1233951854 908 2921f8a10601f252058503cc6570e581 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1233951854 940 228d6584342e91276bf566bcf9716b83 ""
-  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmex10.tfm" 1136765053 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi12.tfm" 1136765053 1524 4414a8315f39513458b80dfc63bff03a ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi6.tfm" 1136765053 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -22,7 +21,6 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy10.tfm" 1136765053 1124 6c73e740cf17375f03eec0ee63599741 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136765053 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
-  "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136765053 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/doublestroke/dsrom12.tfm" 1030470372 452 d8b5931fd510ede40dce06480d31d007 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/doublestroke/dsrom8.tfm" 1030470372 452 dc44cdd7c88ff2b15557f125edfc277b ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/fonts/tfm/public/wasy/wasy10.tfm" 1578656704 908 375dcd194b89b9cc9481ab62f2da0667 ""
@@ -174,8 +172,8 @@
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1695383086 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "C:/Users/Rohan Mukherjee/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
-  "hw2.aux" 1728364449 67 9de14bf8424e832175a22010a272fb79 "latex"
-  "hw2.tex" 1728364419 12303 07ac1658db4eb9d1a2a1017b73ba06bb ""
+  "hw2.aux" 1729066442 67 9de14bf8424e832175a22010a272fb79 "latex"
+  "hw2.tex" 1729066330 12519 c5e96dc7679a226af60393a8fadaca9d ""
   (generated)
   "hw2.aux"
   "hw2.dvi"

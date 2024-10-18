@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=latex 2024.9.25)  7 OCT 2024 22:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=latex 2024.9.25)  16 OCT 2024 01:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1017,65 +1017,52 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
 .fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
-! Undefined control sequence.
-<recently read> \Cov 
-                     
-l.152         Hence $\Cov
-                         (X,Y) = 1
-? 
-! Emergency stop.
-<recently read> \Cov 
-                     
-l.152         Hence $\Cov
-                         (X,Y) = 1
-End of file on the terminal!
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 1
+52.
 
- 
-Here is how much of TeX's memory you used:
- 20868 strings out of 473900
- 416792 string characters out of 5721770
- 863685 words of memory out of 5000000
- 43332 multiletter control sequences out of 15000+600000
- 567917 words of font info for 78 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 116i,9n,121p,1002b,286s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
- pages of output.
-ut.
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\
+udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/12'
+(microtype)             (new value: 12.0pt) on input line 152.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/8'
+(microtype)             (new value: 8.0pt) on input line 152.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/6'
+(microtype)             (new value: 6.0pt) on input line 152.
 
 
+[1
 
-[3]
+]
 
-[4]
-
-[5] (hw2.aux)
- ***********
-LaTeX2e <2024-06-01> patch level 2
-L3 programmi*}
-                          
+[2]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.233 
+      
 ? 
 ! Emergency stop.
 <inserted text> 
-                }
-l.258         \end{align*}
-                          
+                $
+l.233 
+      
 End of file on the terminal!
 
  
 Here is how much of TeX's memory you used:
- 20898 strings out of 473900
- 417458 string characters out of 5721770
+ 20887 strings out of 473900
+ 417241 string characters out of 5721770
  878685 words of memory out of 5000000
- 43354 multiletter control sequences out of 15000+600000
+ 43345 multiletter control sequences out of 15000+600000
+ 568205 words of font info for 81 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 116i,11n,121p,1002b,348s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on hw2.dvi (2 pages, 18380 bytes).
+t of 15000+600000
  568859 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,11n,121p,1002b,375s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on hw2.dvi (3 pages, 22288 bytes).
-8191
- 116i,11n,121p,1002b,375s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on hw2.dvi (3 pages, 22288 bytes).
-for 9000
- 1141 hyphenation exceptions out of 8191
- 116i,12n,121p,1002b,375s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on hw2.dvi (4 pages, 26200 bytes).
+ 116i,12n,121p,1002b,359s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on hw2.dvi (5 pages, 30224 bytes).

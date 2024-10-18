@@ -329,12 +329,10 @@ INPUT C:\Users\Rohan Mukherjee\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy10.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy8.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\wasy\wasy6.tfm
-OUTPUT hw2.dvi
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\doublestroke\udsrom.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\doublestroke\udsrom.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex\latex\doublestroke\udsrom.fd
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\doublestroke\dsrom12.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\doublestroke\dsrom8.tfm
 INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\doublestroke\dsrom8.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti12.tfm
-INPUT C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+OUTPUT hw2.dvi
