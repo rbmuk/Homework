@@ -234,8 +234,5 @@ skipbelow=\baselineskip,
     \end{align*}
     A contradiction, since at least one of the $b_i$'s are nonzero. Thus the conditions cannot hold simultaneously. 
 
-    Now suppose that both conditions are false. Then we cannot possibly have a PSD matrix in $\widehat{\mathcal A^*}$, because that would satisfy condition (i), but condition 1 is false. Thus we have a PSD matrix in both $\widehat A$ and $\widehat A^*$. Call the PSD matrix in the first set $X$ and the one in the second set $M = \sum x_iA_i$. Now we have that $M \cdot X = 0$ obviously. Diagonlize $X = \sum \lambda_i v_iv_i^T$. Then we see that $M \cdot X = \sum \lambda_i M \cdot v_iv_i^T = 0$. Again $Mv_i = 0$ for each $i$. This tells us that,
-    \begin{align*}
-        
-    \end{align*}
+    Suppose that the second condition is false. Then if there is a matrix in $\mathcal A^*$ that is PSD, we are done. Suppose otherwise. Then we can find a matrix $M = \sum x_iA_i$ in $\widehat{\mathcal A^*}$ that is PSD. Since not all of the $b_i$ are 0, we need to show that $y^TA_iy = 0$ for all $y \in \ker M$. We make the following few simplifications. Replace $\mathcal A$ to be defined by new $A_i$'s with equations $A_i \cdot X = b_i$ for $A_i$ orthogonal (first give $\mathcal A$ a linearly independent basis then make that basis orthogonal by Gram Schmidt). Now let $y \in \ker M$. Since $\widehat{\mathcal A^*} = \mathrm{lin}(\mathcal A)^\perp$, we have that $\widehat{\mathcal A^*} \oplus \mathrm{lin}(\mathcal A)^\perp
 \end{document}

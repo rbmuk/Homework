@@ -1,10 +1,9 @@
 import numpy as np
 from tqdm import tqdm
-import matplotlib.pyplot as plt
 import itertools as it
 rng = np.random.default_rng()
 
-n = 128
+n = 256
 
 def dist(M: np.ndarray, N: np.ndarray):
     xs = np.sum(M**2, axis=1).reshape(-1, 1)
@@ -12,7 +11,7 @@ def dist(M: np.ndarray, N: np.ndarray):
     return np.mean(-2 * M @ N.T + xs + ys)
 
 def approx_beta(M: np.ndarray):
-    X = rng.choice([-1,1], size=(len(M), 1000), p=[1/2, 1/2])
+    X = rng.choice([-1,1], size=(M.shape[1], 1000), p=[1/2, 1/2])
     return np.mean(np.linalg.norm(M @ X, axis=0, ord=np.inf))
 
 def H(n: int) -> np.ndarray:
@@ -25,15 +24,24 @@ def beta(A: np.ndarray) -> float:
     combinations = np.array(list(it.product([-1,1], repeat=d)))
     return np.mean(np.linalg.norm(A @ combinations.T, axis=0, ord=np.inf))
 
-H = H(5)
-print(H.shape)
-H /= np.linalg.norm(H, axis=1, ord=2)
-print(H)
-print(f'approx: {approx_beta(H)}')
-print(f'true: {beta(H)}')
 
-hist = []
-ps = []
+
+betas = []
+for i in tqdm(range(1000)):
+    M = rng.choice([-1., 1], size=(2, 256), p=[0.5, 0.5])
+    M /= np.linalg.norm(M, axis=1, ord=2).reshape(-1, 1)
+    betas.append(approx_beta(M))
+print(np.max(betas))
+
+# H = H(5)
+# print(H.shape)
+# H /= np.linalg.norm(H, axis=1, ord=2)
+# print(H)
+# print(f'approx: {approx_beta(H)}')
+# print(f'true: {beta(H)}')
+
+# hist = []
+# ps = []
 
 # for p in np.linspace(0, 0.9, 10):
 #     ps.append(p)
