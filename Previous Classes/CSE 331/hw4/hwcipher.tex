@@ -1,0 +1,262 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\DeclareMathOperator{\wormlatinencode}{worm-latin-encode}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[leftmargin=\labelsep]
+        \item \begin{enumerate}[label=(\alph*)]
+            \item We define the following functions:
+            \[\begin{aligned}
+                &\rm cipher-encode(nil) &&= \rm nil \\
+                &\rm cipher-encode(cons(x, L)) &&= \rm cons(nc(x), cipher-encode(L)) && \text{for any L: List}
+            \end{aligned}\]
+            and
+            \[\begin{aligned}
+                &\rm cipher-decode(nil) &&= \rm nil \\
+                &\rm cipher-decode(cons(x, L)) &&= \rm cons(pc(x), cipher-decode(L)) && \text{for any L: List}
+            \end{aligned}\]
+        \end{enumerate}
+
+        \newpage
+        \item \begin{enumerate}[label=(\alph*)]
+            \item \[\begin{aligned}
+                &\rm crazy\_caps\_encode(nil) &&= \rm nil \\
+                &\rm crazy\_caps\_encode(cons(x, nil)) &&= \rm cons(x, nil) \\
+                &\rm crazy\_caps\_encode(cons(x, cons(y, nil))) &&= \rm cons(x, cons(y, nil)) \\
+                &\rm crazy\_caps\_encode(cons(x, cons(y, cons(z, L)))) &&= \rm cons(x, cons(y, cons(uc(z), \\ &&& \qquad \mathrm{crazy\_caps\_encode}(L)))) && \text{for any L: List}
+            \end{aligned}\]
+            \[\begin{aligned}
+                &\rm crazy\_caps\_decode(nil) &&= \rm nil \\
+                &\rm crazy\_caps\_decode(cons(x, nil)) &&= \rm cons(x, nil) \\
+                &\rm crazy\_caps\_decode(cons(x, cons(y, nil))) &&= \rm cons(x, cons(y, nil)) \\
+                &\rm crazy\_caps\_decode(cons(x, cons(y, cons(z, L)))) &&= \rm cons(x, cons(y, cons(lc(z),\\&&& \qquad \rm crazy\_caps\_decode(L)))) && \text{for any L: List}
+            \end{aligned}\]
+        \end{enumerate}
+
+        \newpage
+        \item \begin{enumerate}[label=(\alph*)]
+            \item Let $P(S)$ for a list $S$ be the claim that $\rm{keep}(\rm{echo}(S)) = S$. We will prove this by structural induction. First notice that,
+            \[\begin{aligned}
+                \rm keep(echo(nil)) &= \rm keep(nil) && \text{definition of echo} \\
+                &= \rm nil && \text{definition of keep}
+            \end{aligned}\]
+            Now suppose that $P(L)$ holds for some list $L$. Then,
+            \[\begin{aligned}
+                \rm keep(echo(cons(a, L))) &= \rm keep(cons(a, cons(a, echo(L)))) && \text{definition of echo} \\
+                &= \rm cons(a, drop(cons(a, echo(L)))) && \text{definition of keep} \\
+                &= \rm cons(a, keep(echo(L))) && \text{definition of drop} \\
+                &= \rm cons(a, L) && \text{inductive hypothesis} \\
+            \end{aligned}\]
+            Thus, by structural induction, $P(S)$ holds for all lists $S$, which completes the proof.
+
+            \item Notice that:
+            \[\begin{aligned}
+                \rm keep(cons(1, cons(2, echo(L)))) &= \rm cons(1, drop(cons(2, echo(L)))) && \text{definition of keep} \\
+                &= \rm cons(1, keep(echo(L))) && \text{definition of drop} \\
+                &= \rm cons(1, L) && \text{by part (a)}
+            \end{aligned}\]
+        \end{enumerate}
+
+        \newpage
+        \item \begin{enumerate}[label=(\alph*)]
+            \item We define:
+            \[\begin{aligned}
+                &\rm prefix(0, L) &&= \rm nil \\
+                &\rm prefix(n+1, nil) &&= \rm undefined && \text{for any $n \in \mbb N$}\\
+                &\rm prefix(n+1, \rm cons(x, L)) &&= \rm cons(x, \rm prefix(n, L)) && \text{for any $n \in \mbb N$, L: List}
+            \end{aligned}\]
+
+            We continue to define:
+            \[\begin{aligned}
+                &\rm suffix(0, L) &&= L \\
+                &\rm suffix(n+1, nil) &&= \rm undefined && \text{for any $n \in \mbb N$}\\
+                &\rm suffix(n+1, \rm cons(x, L)) &&= \rm suffix(n, L) && \text{for any $n \in \mbb N$, L: List}
+            \end{aligned}\]
+        \end{enumerate}
+
+        \newpage
+        \item \begin{enumerate}[label=(\alph*)]
+            \item We prove this first claim by cases. If $L = \rm nil$, then we have that:
+            \begin{align*}
+                \begin{aligned}
+                    \rm concat(L, cons(b, nil))&= \rm concat(nil, cons(b, nil)) \\
+                     &= \rm cons(b, nil) && \text{def of concat} \\
+                     &\neq \rm nil
+                \end{aligned}
+            \end{align*}
+            Otherwise, we can write $L = \rm cons(a, R)$ for some list $R$. Then we have,
+            \begin{align*}
+                \begin{aligned}
+                    \rm concat(L, cons(b, nil)) &= \rm concat(\rm cons(a, R), \rm cons(b, nil)) \\
+                    &= \rm cons(a, \rm concat(R, \rm cons(b, nil))) && \text{def of concat} \\
+                    &\neq \rm nil
+                \end{aligned}
+            \end{align*}
+            and this last list is not nil since it at least contains $a$. Thus, the claim holds.
+            \item Let $P(S)$ for a list $S$ be the claim that $\rm last(concat(S, cons(b, nil))) = b$. We prove the claim by structural induction on $S$. First, if $S = \rm nil$, then we have that:
+            \begin{align*}
+                \begin{aligned}
+                    \rm last(concat(S, cons(b, nil))) &= \rm last(concat(nil, cons(b, nil))) && \text{$S = \rm nil$}\\
+                    &= \rm last(cons(b, nil)) && \text{def of concat} \\
+                    &= b && \text{def of last}
+                \end{aligned}
+            \end{align*}
+            So the base case holds. Now suppose that the claim holds for some list $L$. Then we have that:
+            \begin{align*}
+                \begin{aligned}
+                    \rm last(concat(\rm cons(a, L), \rm cons(b, nil))) &= \rm last(\rm cons(a, \rm concat(L, \rm cons(b, nil)))) && \text{def of concat} \\
+                    &= \rm last(\rm concat(L, \rm cons(b, nil))) && \text{def of last} \\
+                    &= b && \text{inductive hypothesis}
+                \end{aligned}
+            \end{align*}
+            This completes the proof by structural induction. I don't see where you were meant to use part (a) in the above proof. I believe it might be used to show that the first statement is not undefined, since the inner list is not nil, but I don't see how that is necessary if you order the arguments in this way (you basically repeat part (a) in the proof). 
+
+            \item Notice that,
+            \begin{align*}
+                \begin{aligned}
+                    \rm last(rev(cons(a, R))) &= \rm last(concat(rev(R), cons(a, nil))) && \text{def of rev} \\
+                    &= a && \text{by part (b)}
+                \end{aligned}
+            \end{align*}
+        \end{enumerate}
+        \item \begin{enumerate}[label=(\alph*)]
+            \item We define the function as follows:
+            \begin{align*}
+                \begin{aligned}
+                    & \rm \wormlatinencode(L) &&= \rm nil && \text{$L=$ "bird"} \\
+                    & \rm \wormlatinencode(L) &&= \rm L && \text{L: List, $cc(L) = -1$} \\
+                    & \rm \wormlatinencode(L) &&= \rm concat(["w", a, "orm"], R) && \text{A} \\
+                    & \rm \wormlatinencode(L) &&= \rm concat(suffix(cc(L), L), 
+                    \\ &&&\rm \qquad concat(prefix(cc(L), L), ["orm"])) && \text{L: List, $cc(L) \geq 1$}
+                \end{aligned}
+            \end{align*}
+            Where $A$ stands for ``L: List, $\rm cc(L) = 0,\;L = \rm cons(a, R)$ for some $R: \rm List$''. Note that if $cc(L) = 0$, then $L$ has a vowel in the first position, so it is not nil and thus of the above form: $\rm cons(a, R)$ for some other list $R$.
+        \end{enumerate}
+    \end{enumerate}
+\end{document}

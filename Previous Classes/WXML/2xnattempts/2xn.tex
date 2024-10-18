@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{R:/sty/quiver}
+
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+font=\normalfont, % Add this line to remove italics
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\left\| #1 \right\|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    We pose the following question: Of all subsets $U \subset H = \SET{\pm 1}^n$ with $|U| = 2^{n-1}$ containing no antipodal points, which maximizes
+    \begin{align*}
+        \mg{\sum_{x \in U} x}?
+    \end{align*}
+    We answer this question with the following theorem:
+    \begin{theorem}
+        The best $U$ as above is just $U = \SET{x \in H : x_1 = 1}$.
+    \end{theorem}
+    The proof is as follows. Recall the structure theorem for the $m \times n$ matrices:
+    \begin{theorem}[Structure Theorem]
+        Let $A$ be the matrix maximizing 
+        \begin{align*}
+            \beta(A) = \sum_{x \in D} \mg{Ax}_\infty
+        \end{align*}
+        Define $W_i = \SET{x \in H \; | \; \mg{Ax}_\infty = |a_i^Tx|}$ to be the vertices row $a_i^T$ is useful to and $V_i = \SET{x \in W \; | \; a_i^Tx = |a_i^Tx|}$ as the positive half of $W_i$. Then,
+        \begin{align*}
+            a_i = \sum_{x \in V_i} x
+        \end{align*}
+    \end{theorem}
+    And our answer to the question for the $1 \times n$ case:
+    \begin{theorem}
+        The optimal $1 \times n$ matrix is just $(1, 0, \ldots, 0)$. 
+    \end{theorem}
+
+    We now prove Theorem 1.
+    \begin{proof}[Proof of Theorem 1.]
+        I claim that finding the optimal $1 \times n$ matrix is equivalent to the above problem. With $u = \sum_{x \in U} x$, I claim that we can reduce our search space to only those $U$ such that $u^Tx \geq 0$ for every $x \in U$. This follows because if there is an $x \in U$ with $u^Tx < 0$, then $x$ is pointing away from the average direction of the rest of the points in $U$, so swapping $x$ with $-x$ will make the sum become larger (This needs more justification). Now,
+        \begin{align*}
+            \beta(u) = \sum_{x \in \SET{\pm 1}^n} |u^Tx| = \sum_{x \in U} u^Tx - \sum_{x \in -U} u^Tx = 2\sum_{x \in U} u^Tx = \sum_{x \in U} \sum_{y \in U} y^Tx = \mg{\sum_{x \in U} x}^2
+        \end{align*}
+
+        By the structure theorem, finding the optimal matrix $A \in \R^{m \times n}$ is equivalent to finding first the optimal partition of $H$ into $m$ parts of even size, and then finding the optimal positive half for each partition. For the $1 \times n$ case, the optimal partition is just all of $H$, there is no choice. Then Theorem 3 tells us that the optimal positive half is just the positive half of $H$ associated to $(1, \ldots, 0)$, which is seen to be $\SET{x \in H : x_1 = 1}$. This completes the proof.
+    \end{proof}
+\end{document}
