@@ -219,6 +219,17 @@ skipbelow=\baselineskip,
             \E[\overline V_n] = \frac{1}{n-1} \sum_{i=1}^n \E[(X_i-\overline X)^2] = \sigma^2
         \end{align*}
 
+        Notice that
+        \begin{align*}
+            \overline V_n &= \frac{1}{n-1} \sum_{i=1}^n (X_k-\overline X_n)^2 = \frac{1}{n-1} \sum_{i=1}^n \qty(X_k^2 - 2X_k\overline X_n + \overline X_n^2) \\
+            &= \frac{1}{n-1} \sum_{i=1}^n X_k^2 - \frac{n}{n-1}\overline X_n^2 
+        \end{align*}
+        Assume WLOG that $\E[X_1]=0$ (possibly after shifting). Then,
+        \begin{align*}
+            \frac{1}{n} \sum_{i=1}^n X_k^2 \to \sigma^2
+        \end{align*}
+        in probability by the weak law of large numbers. Similarly, $\frac{n}{n-1} \to 1$ in probability so that $\frac{1}{n-1} \sum_{i=1}^n X_k^2 \to \sigma^2$ in probability. Also by the weak large of large numbers, $\overline X_n \to 0$ in probability. Thus, $\overline X_n^2 \to 0$ in probablity (since the product of two sequences converging to 0 in probability also converges to 0 in probability, by the last question). Thus $\frac{n}{n-1} \overline X_n^2 \to 0$ in probability. Thus the sum of these two terms converges to $\sigma^2$ in probability, which completes the proof.
+
         \item We shall show that 
         \begin{align*}
             (f(X)-f(Y))(g(X)-g(Y)) \geq 0
@@ -226,8 +237,10 @@ skipbelow=\baselineskip,
         For each $\omega \in \Omega$, either $X(\omega) \leq Y(\omega)$ or vice versa. In the first case, both terms in the above product are $\leq 0$ and the product is $\geq 0$. In the second, both are $\geq 0$, and so the product is $\geq 0$.
         Thus,
         \begin{align*}
-            \E[f(X)g(X)] - \E[f(X)g(Y)] - \E[f(Y)g(X)] + \E[f(Y)g(Y)]= \E[(f(X)-f(Y))(g(X)-g(Y))] \geq 0
+            \E[f(X)g(X)] - \E[f(X)g(Y)] - \E[f(Y)g(X)] + \E[f(Y)g(Y)] \\
+            = \E[(f(X)-f(Y))(g(X)-g(Y))] \geq 0
         \end{align*}
+        Now notice that $\E[f(Y)g(Y)] = \E[f(X)g(X)]$, and because $X,Y$ are independent, $\E[f(X)g(Y)] = \E[f(Y)g(X)] = \E[f(X)]\E[g(X)]$. This completes the proof.
 
         \item By Cauchy-Schwarz, we have that:
         \begin{align*}
