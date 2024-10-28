@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=latex 2024.9.25)  22 OCT 2024 23:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=latex 2024.9.25)  27 OCT 2024 02:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -900,20 +900,20 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 .sty) (hw3.aux)
 \openout1 = `hw3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 144.
+LaTeX Font Info:    ... okay on input line 144.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -962,12 +962,12 @@ File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
-LaTeX Info: Redefining \microtypecontext on input line 143.
-Package microtype Info: Applying patch `item' on input line 143.
-Package microtype Info: Applying patch `toc' on input line 143.
-Package microtype Info: Applying patch `eqnum' on input line 143.
-Package microtype Info: Applying patch `footnote' on input line 143.
-Package microtype Info: Applying patch `verbatim' on input line 143.
+LaTeX Info: Redefining \microtypecontext on input line 144.
+Package microtype Info: Applying patch `item' on input line 144.
+Package microtype Info: Applying patch `toc' on input line 144.
+Package microtype Info: Applying patch `eqnum' on input line 144.
+Package microtype Info: Applying patch `footnote' on input line 144.
+Package microtype Info: Applying patch `verbatim' on input line 144.
 Package microtype Info: Generating DVI output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -981,7 +981,7 @@ cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 144
+LaTeX Font Info:    Trying to load font information for U+msa on input line 145
 .
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa
@@ -992,7 +992,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 144
+LaTeX Font Info:    Trying to load font information for U+msb on input line 145
 .
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb
@@ -1004,48 +1004,64 @@ msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 14
-4.
+5.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursf
 s.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+wasy on input line 14
-4.
+5.
 
 (C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy
 .fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
-Runaway argument?
- 
-! Paragraph ended before \align* was complete.
-<to be read again> 
-                   \par 
-l.148 
-      
-? 
-! Emergency stop.
-<to be read again> 
-                   \par 
-l.148 
-      
-End of file on the terminal!
 
- 
+[1
+
+]
+
+[2]
+LaTeX Font Info:    Trying to load font information for U+eus on input line 199
+.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueus
+.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-
+eus.cfg
+File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
+13.
+
+(C:\Users\Rohan Mukherjee\AppData\Local\Programs\MiKTeX\tex/latex/doublestroke\
+udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/12'
+(microtype)             (new value: 12.0pt) on input line 213.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/8'
+(microtype)             (new value: 8.0pt) on input line 213.
+Package microtype Info: Fixing zero \fontdimen 6 for font `U/dsrom/m/n/6'
+(microtype)             (new value: 6.0pt) on input line 213.
+
+
+[3] (hw3.aux)
+ ***********
+LaTeX2e <2024-06-01> patch level 2
+L3 programming layer <2024-08-30>
+ ***********
+ ) 
 Here is how much of TeX's memory you used:
- 20865 strings out of 473900
- 416733 string characters out of 5721770
- 862686 words of memory out of 5000000
- 43329 multiletter control sequences out of 15000+600000
- 567917 words of font info for 78 fonts, out of 8000000 for 9000
+ 20941 strings out of 473900
+ 418457 string characters out of 5721770
+ 876687 words of memory out of 5000000
+ 43386 multiletter control sequences out of 15000+600000
+ 569833 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,7n,121p,1002b,271s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
-ng characters out of 5721770
- 862686 words of memory out of 5000000
- 43331 multiletter control sequences out of 15000+600000
- 567917 words of font info for 78 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 116i,7n,121p,1002b,271s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
+ 116i,13n,121p,1002b,424s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on hw3.dvi (3 pages, 20828 bytes).
