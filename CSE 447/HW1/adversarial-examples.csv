@@ -1,0 +1,101 @@
+,sentence,label
+0,"The start of the movie was bad , but overall it was deeply !",1
+1,"The start of the movie was worst , but overall it was smart !",1
+2,"The start of the movie was dull , but overall it was terrific !",1
+3,"The start of the movie was mess , but overall it was rare !",1
+4,"The start of the movie was minutes , but overall it was part !",1
+5,"The start of the movie was problem , but overall it was performances !",1
+6,"The start of the movie was contrived , but overall it was engrossing !",1
+7,"The start of the movie was suffers , but overall it was touching !",1
+8,"The start of the movie was neither , but overall it was human !",1
+9,"The start of the movie was flat , but overall it was spirit !",1
+10,"The start of the movie was feels , but overall it was remarkable !",1
+11,"The start of the movie was idea , but overall it was cinema !",1
+12,"The start of the movie was another , but overall it was best !",1
+13,"The start of the movie was fails , but overall it was enjoyable !",1
+14,"The start of the movie was reason , but overall it was wonderful !",1
+15,"The start of the movie was pretentious , but overall it was beautiful !",1
+16,"The start of the movie was thing , but overall it was powerful !",1
+17,"The start of the movie was less , but overall it was moving !",1
+18,"The start of the movie was none , but overall it was beautifully !",1
+19,"The start of the movie was stupid , but overall it was solid !",1
+20,"The start of the movie was plot , but overall it was works !",1
+21,"The start of the movie was lack , but overall it was fascinating !",1
+22,"The start of the movie was comes , but overall it was heart !",1
+23,"The start of the movie was mediocre , but overall it was fun !",1
+24,"The start of the movie was instead , but overall it was entertaining !",1
+25,"I didn't like the bad music of the movie , but the deeply acting was enough to make me enjoy it .",1
+26,"I didn't like the worst music of the movie , but the smart acting was enough to make me enjoy it .",1
+27,"I didn't like the dull music of the movie , but the terrific acting was enough to make me enjoy it .",1
+28,"I didn't like the mess music of the movie , but the rare acting was enough to make me enjoy it .",1
+29,"I didn't like the minutes music of the movie , but the part acting was enough to make me enjoy it .",1
+30,"I didn't like the problem music of the movie , but the performances acting was enough to make me enjoy it .",1
+31,"I didn't like the contrived music of the movie , but the engrossing acting was enough to make me enjoy it .",1
+32,"I didn't like the suffers music of the movie , but the touching acting was enough to make me enjoy it .",1
+33,"I didn't like the neither music of the movie , but the human acting was enough to make me enjoy it .",1
+34,"I didn't like the flat music of the movie , but the spirit acting was enough to make me enjoy it .",1
+35,"I didn't like the feels music of the movie , but the remarkable acting was enough to make me enjoy it .",1
+36,"I didn't like the idea music of the movie , but the cinema acting was enough to make me enjoy it .",1
+37,"I didn't like the another music of the movie , but the best acting was enough to make me enjoy it .",1
+38,"I didn't like the fails music of the movie , but the enjoyable acting was enough to make me enjoy it .",1
+39,"I didn't like the reason music of the movie , but the wonderful acting was enough to make me enjoy it .",1
+40,"I didn't like the pretentious music of the movie , but the beautiful acting was enough to make me enjoy it .",1
+41,"I didn't like the thing music of the movie , but the powerful acting was enough to make me enjoy it .",1
+42,"I didn't like the less music of the movie , but the moving acting was enough to make me enjoy it .",1
+43,"I didn't like the none music of the movie , but the beautifully acting was enough to make me enjoy it .",1
+44,"I didn't like the stupid music of the movie , but the solid acting was enough to make me enjoy it .",1
+45,"I didn't like the plot music of the movie , but the works acting was enough to make me enjoy it .",1
+46,"I didn't like the lack music of the movie , but the fascinating acting was enough to make me enjoy it .",1
+47,"I didn't like the comes music of the movie , but the heart acting was enough to make me enjoy it .",1
+48,"I didn't like the mediocre music of the movie , but the fun acting was enough to make me enjoy it .",1
+49,"I didn't like the instead music of the movie , but the entertaining acting was enough to make me enjoy it .",1
+50,"The start of the movie was deeply , but overall it was bad !",0
+51,"The start of the movie was smart , but overall it was worst !",0
+52,"The start of the movie was terrific , but overall it was dull !",0
+53,"The start of the movie was rare , but overall it was mess !",0
+54,"The start of the movie was part , but overall it was minutes !",0
+55,"The start of the movie was performances , but overall it was problem !",0
+56,"The start of the movie was engrossing , but overall it was contrived !",0
+57,"The start of the movie was touching , but overall it was suffers !",0
+58,"The start of the movie was human , but overall it was neither !",0
+59,"The start of the movie was spirit , but overall it was flat !",0
+60,"The start of the movie was remarkable , but overall it was feels !",0
+61,"The start of the movie was cinema , but overall it was idea !",0
+62,"The start of the movie was best , but overall it was another !",0
+63,"The start of the movie was enjoyable , but overall it was fails !",0
+64,"The start of the movie was wonderful , but overall it was reason !",0
+65,"The start of the movie was beautiful , but overall it was pretentious !",0
+66,"The start of the movie was powerful , but overall it was thing !",0
+67,"The start of the movie was moving , but overall it was less !",0
+68,"The start of the movie was beautifully , but overall it was none !",0
+69,"The start of the movie was solid , but overall it was stupid !",0
+70,"The start of the movie was works , but overall it was plot !",0
+71,"The start of the movie was fascinating , but overall it was lack !",0
+72,"The start of the movie was heart , but overall it was comes !",0
+73,"The start of the movie was fun , but overall it was mediocre !",0
+74,"The start of the movie was entertaining , but overall it was instead !",0
+75,"I liked the deeply music of the movie , but the bad acting was enough to make me not enjoy it .",0
+76,"I liked the smart music of the movie , but the worst acting was enough to make me not enjoy it .",0
+77,"I liked the terrific music of the movie , but the dull acting was enough to make me not enjoy it .",0
+78,"I liked the rare music of the movie , but the mess acting was enough to make me not enjoy it .",0
+79,"I liked the part music of the movie , but the minutes acting was enough to make me not enjoy it .",0
+80,"I liked the performances music of the movie , but the problem acting was enough to make me not enjoy it .",0
+81,"I liked the engrossing music of the movie , but the contrived acting was enough to make me not enjoy it .",0
+82,"I liked the touching music of the movie , but the suffers acting was enough to make me not enjoy it .",0
+83,"I liked the human music of the movie , but the neither acting was enough to make me not enjoy it .",0
+84,"I liked the spirit music of the movie , but the flat acting was enough to make me not enjoy it .",0
+85,"I liked the remarkable music of the movie , but the feels acting was enough to make me not enjoy it .",0
+86,"I liked the cinema music of the movie , but the idea acting was enough to make me not enjoy it .",0
+87,"I liked the best music of the movie , but the another acting was enough to make me not enjoy it .",0
+88,"I liked the enjoyable music of the movie , but the fails acting was enough to make me not enjoy it .",0
+89,"I liked the wonderful music of the movie , but the reason acting was enough to make me not enjoy it .",0
+90,"I liked the beautiful music of the movie , but the pretentious acting was enough to make me not enjoy it .",0
+91,"I liked the powerful music of the movie , but the thing acting was enough to make me not enjoy it .",0
+92,"I liked the moving music of the movie , but the less acting was enough to make me not enjoy it .",0
+93,"I liked the beautifully music of the movie , but the none acting was enough to make me not enjoy it .",0
+94,"I liked the solid music of the movie , but the stupid acting was enough to make me not enjoy it .",0
+95,"I liked the works music of the movie , but the plot acting was enough to make me not enjoy it .",0
+96,"I liked the fascinating music of the movie , but the lack acting was enough to make me not enjoy it .",0
+97,"I liked the heart music of the movie , but the comes acting was enough to make me not enjoy it .",0
+98,"I liked the fun music of the movie , but the mediocre acting was enough to make me not enjoy it .",0
+99,"I liked the entertaining music of the movie , but the instead acting was enough to make me not enjoy it .",0
