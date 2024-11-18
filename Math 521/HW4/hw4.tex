@@ -1,0 +1,251 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{dsfont}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra,amsfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+\newcommand{\argmax}{\mathrm{argmax}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 521 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item We check the conditions of the Lindeberg-Feller theorem. First shift all the variables by their expectation so they have expectation 0. Notice that, with $p = 2/(2+\delta)$ and $q = \delta/(2+\delta)$, by Holder's inequality we have that:
+        \begin{align*}
+            \E[|X_m| \1_{|X_m| > \ve \alpha_n}] \leq \E[|X|^{2+\delta}]^{2/(2+\delta)} \cdot \E[\1_{|X_m| > \ve \alpha_n}]^{\delta/(2+\delta)}
+        \end{align*}
+        Now, notice that, by Markov's inequality:
+        \begin{align*}
+            \E[\1_{|X_m| > \ve \alpha_n}] = \P(|X_m| > \ve \alpha_n) = \P(|X_m|^{(2+\delta)/2} > \ve^{(2+\delta)/2} \alpha_n^{(2+\delta)/2}) \leq \frac{\E[|X_m|^{2+\delta}]}{\ve^{2+\delta} \alpha_n^{2+\delta}}
+        \end{align*}
+        And thus,
+        \begin{align*}
+            \E[\1_{|X_m| > \ve \alpha_n}]^{\delta/(2+\delta)} \leq \frac{\E[|X_m|^{2+\delta}]^{\delta/(2+\delta)}}{\ve^{\delta} \alpha_n^{\delta}}
+        \end{align*}
+        We conclude that:
+        \begin{align*}
+            \E[|X_m| \1_{|X_m| > \ve \alpha_n}] &\leq \frac{\E[|X|^{2+\delta}]^{2/(2+\delta)} \cdot \E[|X_m|^{2+\delta}]^{\delta/(2+\delta)}}{\ve^{\delta} \alpha_n^{\delta}} \\
+            &= \E[|X_m|^{2+\delta}] \ve^{-\delta} \alpha_n^{-\delta}
+        \end{align*}
+        Thus,
+        \begin{align*}
+            \alpha_n^{-2} \sum_{m=1}^n \E[|X_m| \1_{|X_m| > \ve \alpha_n}] &\leq \ve^{-\delta} \alpha_n^{-2-\delta} \sum_{m=1}^n \E[|X_m|^{2+\delta}] \to 0
+        \end{align*}
+        By hypothesis. Thus the Lindeberg-Feller theorem applies and we have that:
+        \begin{align*}
+            \frac{1}{\alpha_n^2} \sum_{m=1}^n X_m \Rightarrow \mathcal N(0,1)
+        \end{align*}
+
+        \item Notice that, for $X$ uniformly distributed in $[-n, n]$, $\E[X] = 0$ and $\E[X^2] = n^2/3$. Thus,
+        \begin{align*}
+            \sigma_n^2 = \sum_{m=1}^n \E[X_m^2] = \sum_{m=1}^n \frac{n^2}{3} = \frac{1}{18} n(n+1)(2n+1)
+        \end{align*}
+        Fix $\ve > 0$. We want to show that:
+        \begin{align*}
+            \frac{1}{\sigma_n^2} \sum_{m=1}^n \E[|X_m|^2 \1_{|X_m| > \ve \sigma_n}] \to 0
+        \end{align*}
+        Note that $\sigma_n \sim \frac 13 n^{3/2}$. Since $|X_m| \leq m \leq n$, and since $n/n^{3/2} \to 0$, we know that for large enough $n$, $n < \frac{\ve}{2} \sigma_n$. But then, for every $1 \leq m \leq n$, $|X_m| \leq m \leq n < \frac{\ve}{2} \sigma_n$, so the function $|X_m|^2 \1_{|X_m| > \ve \sigma_n}$ is identically 0. Thus, this sum is eventually equal to 0, and hence its limit is 0 as well, so we are done.
+
+        This means that the Lindberg-Feller theorem applies, and we have that:
+        \begin{align*}
+            \frac{1}{\sigma_n} \sum_{m=1}^n X_m \Rightarrow \mathcal N(0,1)
+        \end{align*}
+        And since $\sigma_n \big / \frac 13 n^{3/2} \to 1$ in distribution (treated as a constant random variable), we can multiply by this to get that:
+        \begin{align*}
+            \frac{3}{n^{3/2}} \sum_{m=1}^n X_m \Rightarrow \mathcal N(0,1)
+        \end{align*}
+        By dividing both sides by $3$, noting that this will make the variance decrease by a factor of $9$, we get that $\frac{1}{n^{3/2}} \sum_{m=1}^n X_m \Rightarrow \mathcal N(0,1/9)$.
+        Thus we can take $\alpha = 3/2$, $\mu = 0$ and $\sigma^2 = 1/9$ in the statement of the quesiton.
+
+        \item 
+        We see that:
+        \begin{align*}
+            \E[|X^k|] = 2 \int_0^\infty x^k e^{-x^2/2}dx
+        \end{align*}
+        Since $x^k e^{-x^2/4} \to 0$ as $x \to \infty$, there is some $T$ so if $x > T$, $x^k < e^{x^2/4}$. Also as $x^ke^{-x^2/2}$ is continous, it is bounded. Thus we get that:
+        \begin{align*}
+            \E[|X^k|] \leq 2 \int_0^T x^k e^{-x^2/2}dx + 2 \int_T^\infty e^{x^2/4}dx
+        \end{align*}
+        The first integral is bounded by $T \cdot \sup_{0 \leq x \leq T} x^ke^{-x^2/2}$ and the second integral is obviously finite. Thus we know that $\cph^{(k)}(0) = \E[X^k]$. Now recall that the characteristic function of the standard normal distribution is just: 
+        \begin{align*}
+            \cph(t) = e^{-t^2/2} = \sum_{n=0}^\infty \frac{(-1)^n t^{2n}}{2^n n!}
+        \end{align*}
+        Since this has no odd power terms, $\E[X^k] = 0$ for every $k$ odd. On the other hand, 
+        \begin{align*}
+            \E[(iX)^{2n}] = \frac{(-1)^n (2n)!}{2^n n!}
+        \end{align*}
+        Now using that $i^{2n} = (-1)^n$ we get that $\E[X^{2n}] = (2n-1)!!$, and we are done.
+
+        \item First we prove the following lemma. If $\lim_{t \to 0^+} \frac{\cph(t) - 1}{t^2} = c > -\infty$, then $\E X = 0$ and $\E[X^2] = -2c < \infty$.
+
+        First,
+        \begin{align*}
+            c &= \Re\qty(\lim_{t \to 0^+} \frac{\cph(t) - 1}{t^2}) \\
+            &= \lim_{t \to 0^+} \frac{\Re\qty(\cph(t)) - 1}{t^2}
+        \end{align*}
+        Since $\Re(z)$ is continous at $c$. Now notice that:
+        \begin{align*}
+            \lim_{h \to 0^+} \frac{\cph(h) - 2 + \cph(-h)}{h^2} &= 2\lim_{h \to 0^+} \frac{\Re(\cph(h)) - 1}{h^2} = 2c > -\infty
+        \end{align*}
+        Thus $\E[X^2] < \infty$ by Theorem 3.3.21 in the book. As $\cph''(0) = 2c$, we know that $i^2 \E[X^2] = 2c$, and hence $\E[X^2] = -2c$. 
+
+        Now, suppose that $X+Y, X$ have the same distribution. Then $\cph_{X+Y}(t) = \cph_{X}(t) \cph_{Y}(t) = \cph_X(t)$. Since $\cph_X(0) = 1$, there is a neighborhood around 0 so that $\cph_X(t) > 1/2$ for all $t$. In this neighborhood, dividing both sides shows that $\cph_Y(t) = 1$. But then obviously, $\lim_{t \to 0^+} \frac{\cph_Y(t)-1}{t^2} = 0$, which means that $\E[Y^2] = 0$ or that $Y = 0$ almost surely. 
+
+        \item Let $Y$ be an independent copy of $X$. Then,
+        \begin{align*}
+            \E[e^{it(X-Y)}] = \E[e^{itX}]\E[e^{i(-t)Y}] = \cph_X(t) \cph_X(-t) = |\cph_X(t)|^2
+        \end{align*}
+        So $|\cph_X(t)|^2$ is a chf as well. There is a theorem in the book that says if $a_i \geq 0$ and $\sum_i a_i = 1$, and $\cph_i$ is a chf. then $\sum_i a_i\cph_i$ is one as well (They say it follows from $\int fd(\mu + \nu)) = \int fd\mu + \int f\nu$.) 
+
+        Recall that $\cph_X(-t) = \overline \cph_X(t)$, and that $\cph_X(-t)$ is the chf of $-X$. Thus $\overline \cph_X(t)$ is a chf as well. Thus,
+        \begin{align*}
+            \Re(\cph) = \frac{\cph + \overline \cph}{2}
+        \end{align*}
+        is one as well.
+
+        \item Since $X_n, Y_n$ are independent:
+        \begin{align*}
+            \cph_{X_n+Y_n}(t) = \E[e^{it(X_n+Y_n)}] &= \E[e^{itX_n}] \E[e^{itY_n}] = \cph_{X_n}(t) \cph_{Y_n}(t)
+        \end{align*}
+        Since $X_n \rightarrow X_\infty$ and $Y_n \rightarrow Y_\infty$, $\cph_{X_n} \to \cph_{X_\infty}$ pointwise and the same for $Y_n$. Thus,
+        \begin{align*}
+            \cph_{X_n+Y_n}(t) \to \cph_{X_\infty}(t) \cph_{Y_\infty}(t) = \cph_{X_infty + Y_\infty}(t)
+        \end{align*}
+        pointwise, which means that $X_n+Y_n \rightarrow X_\infty + Y_\infty$ in distribution.
+    \end{enumerate}
+\end{document}

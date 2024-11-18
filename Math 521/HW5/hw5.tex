@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\usepackage{dsfont}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+\newcommand{\argmax}{\mathrm{argmax}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item I give two proofs for this first assertion. The first is by induction. The base case, that $\P(S_1 = X_1 \leq x) = x$ for $0 \leq x \leq 1$ is true by definition. Then suppose that for $0 \leq x \leq 1$, $\P(S_n \leq x) = \frac{x^n}{n!}$. Then for $0 \leq x \leq 1$, we have that:
+        \begin{align*}
+            \P(S_{n+1} \leq x) &= \int_0^x \int_{-\infty}^\infty p_{X_{n+1}}(x-y) p_{S_n}(y) \dd y \dd x \\
+            &= \int_0^x \int_0^x \frac{s^{n-1}}{(n-1)!} \dd x \dd y \\
+            &= \int_0^x \frac{s^n}{n!} \dd x \\
+            &= \frac{x^{n+1}}{(n+1)!}
+        \end{align*}
+        In the middle we used that $p_{S_n}(x) = \dv{x} \P(S_n \leq x) = \frac{x^{n-1}}{(n-1)!}$. This completes the induction. 
+
+        Plugging in, we get $\P(S_n \leq n) = \frac{1}{n!}$. 
+
+        The second proof is by taking cross-sections. First, we know that the area of an isocoles right triangle with side lengths $x$ has area $\frac{x^2}{2}$. The horizontal cross sections of the tetrahedron defined by $x+y+z \leq 1$ are isocoles right triangles. By summing all of these, we get that the area of this tetrahedron is:
+        \begin{align*}
+            \int_0^1 \int_0^{1-x} \int_0^{1-x-y} \dd z \dd y \dd x &= \int_0^1 \int_0^{1-x} (1-x-y) \dd y \dd x \\
+            &= \int_0^1 \frac{(1-x)^2}{2} \dd x \\
+            &= \frac{1}{6}
+        \end{align*}
+        Let the volume of the $n$-simplex be $V_n$. Taking a cross-section of the $n+1$-simplex defined by $x_1 + \cdots + x_{n+1} \leq 1$ will yield an $n$-simplex. If one of the side lengths of this $n$-simplex is $x$, then by similarity with the bottom $n$-simplex who has side lengths of 1, the area of this $n$-simplex is $x^nV_n$. By summing all these up, we get that the volume of the $n+1$-simplex is:
+        \begin{align*}
+            \int_0^1 x^n V_n \dd x = \frac{V_n}{n+1}
+        \end{align*}
+        Induction yields that $V_n = \frac{1}{n!}$.
+
+        The third proof is a little bit of linear algebra, and my favorite one. Consider $S = \SET{0 \leq x_1 \leq x_2 \leq \cdots \leq x_n \leq 1}$. Then for any permutation $\pi \in S_n$, the set $\pi(S) = \SET{0 \leq x_{\pi(1)} \leq x_{\pi(2)} \leq \cdots \leq x_{\pi(n)} \leq 1}$ has the same volume as $S$. Since the disjoint union of these sets is $[0,1]^n$, we get that the volume of $S$ is just $\frac{1}{n!}$. 
+
+        This relates to the original simplex in the following way. Let $A$ be the linear map defined by $A(x_1, \ldots, x_n) = (x_1, x_2 - x_1, \ldots, x_n - x_{n-1})$. A simple exercise shows that $A(S) = \SET{x_1 + \cdots + x_n \leq 1}$. Then by high-dimensional geometry, the volume of $A(S)$ is $\det(A) \cdot S$. The matrix of $A$ is of the following form:
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 0 & 0 & \cdots & 0 \\
+                -1 & 1 & 0 & \cdots & 0 \\
+                0 & -1 & 1 & \cdots & 0 \\
+                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                0 & 0 & 0 & \cdots & 1
+            \end{pmatrix}
+        \end{align*}
+        Starting from the identity matrix, by subtracting the $i$th row from the $i+1$th row, which preserves the determinant, we get that $\det(A) = 1$. Thus the volume of $\SET{x_1 + \cdots + x_n \leq 1}$ is $\frac{1}{n!}$.
+
+        Now knowing that $\P(T \geq n) = \frac{1}{n!}$, we can compute the expected value of $T$ as:
+        \begin{align*}
+            \E[T] = \sum_{n=1}^\infty \P(T \geq n) = \sum_{n=1}^\infty \frac{1}{n!} = e
+        \end{align*}
+
+        Notice that $S_T = \sum_{n=1}^T X_n = \sum_{n=1}^\infty X_n \1_{T \geq n}$. Then as $S_T \geq 0$ and Fubini-Tonelli theorem, we can switch the order of summation and integration to get:
+        \begin{align*}
+            \E[\sum_{n=1}^\infty X_n \1_{T \geq n}] = \sum_{n=1}^\infty \E[X_n] \P(T \geq n) \\
+            &= \sum_{n=1}^\infty \frac 12 \frac{1}{n!} = \frac{e}{2}
+        \end{align*}
+    \end{enumerate}
+\end{document}
