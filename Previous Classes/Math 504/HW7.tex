@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 504 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We claim that if $\mathcal C$ is a conjugacy class of $G$, and $H \nsg G$, then either $\mathcal C \subset H$ or $\mathcal C \cap H = \emptyset$. If there is an $x \in \mathcal C \cap H$, then $gxg^{-1} \in H$ as well, and since every $y \in \mathcal C$ is of the form $gxg^{-1}$, this shows that $\mathcal C \subset H$. Since $G = Z(G) \cup \mathcal C_{g_1} \cup \cdots \cup \mathcal C_{g_r}$ where $g_1, \ldots, g_r$ are the representatives of the distinct noncentral conjugacy classes of $G$, we have that $H = (Z(G) \cap H) \cup \mathcal C_{g_1} \cup \cdots \cup \mathcal C_{g_s}$, where we have potentially re-ordered the $g_i$ to be so that $\mathcal C_{g_i} \subset H$ for all $1 \leq i \leq s$ and $\mathcal C_{g_i} \cap H = \emptyset$ for all $s+1 \leq i \leq r$. The above is a disjoint union, since the $\mathcal C_{g_i}$ are disjoint and each were disjoint from $Z(G)$, thus they must be disjoint from $Z(G) \cap H$. We have deduced that
+		\begin{align*}
+			|H| = |Z(G) \cap H| + \sum_{i=1}^s |\mathcal C_{g_i}|
+		\end{align*}
+		We recall that the orbit of the conjugacy class containing $g_i$ is just $|G : C_G(g_i)|$, and since $g_i \not \in Z(G)$ by hypothesis we must have $|G : C_G(g_i)| > 1$. Since $G$ is a $p$-group, $p \mid |G : C_G(g_i)|$, and since $p \mid |H|$ as well, $p$ divides $|H| - \sum_{i=1}^s |\mathcal C_{g_i}| = |Z(G) \cap H|$, which shows that $Z(G) \cap H \neq \gen{1}$.
+		
+		\item We claim that $\gen{a, b \mid a^4=b^4=1, bab^{-1}=a^{-1}} \cong Z_4 \rtimes Z_4$. Clearly $\gen{a^4} = \Set{e, a, a^2, a^3}$, since free groups are defined on words, and similarly $\gen{b^4} = \Set{e, b, b^2, b^3}$. Since $a \neq b$, it follows immediately that $\gen{a} \cap \gen{b} = \gen{1}$. We also claim that $\gen{a} \nsg \gen{a, b \mid a^4=b^4=1, bab^{-1}=a^{-1}}$. We need only show that every element is in the normalizer of $a$, since then we could show it by induction. Elements of the form $a^\alpha$ commute with $a$, and $b^\beta a b^{-\beta} = a^{-\beta}$, so every word in our free group will normalize $\gen{a}$. Since $\gen{a} \cong Z_4$ and $\gen{b} \cong Z_4$ we may use Theorem 12 in chapter 4 to conclude the above claim.
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 Quiz 5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}
+		\item[5. a)] If $a = 0$, we see that $0 \mid b$, which forces $b$ to be 0, as the only multiple of 0 is 0 itself. Clearly then $a = b$. The exact same scenario plays out if $b = 0$, so we may exclude the case where $a = 0$ or $b = 0$. Therefore, given $a, b \in \bZ \setminus 0$, if $a \mid b$, then there is some $k \in \bZ$ so that $b = ak$. Similarly, as $b \mid a$, there is some $l \in \bZ$ so that $a = bl$. Plugging the second equation into the first one, we see that $b = blk$, and as $b \neq 0$, we see can divide both sides by $b$ to get that $1 = lk$. The only way this is possible is if $l, k \in \set{\pm 1}$ (either -1 $\cdot$ -1, or $1 \cdot 1$). Plugging in the value for $l$, we see that $a = b$ or $a = -b$, so we are done.
+		
+		\item[6. a)] Let $P(n) = \sum_{k=0}^{n} k = \frac{n(n+1)}{2}$. Clearly $\sum_{k=0}^{0} k = 0 = 0(0+1)/2$, so the base case is finished. Now suppose for some arbitrary $l \in \bN$ that $P(l)$ holds. Then 
+		\begin{align*}
+			\sum_{k=0}^{l+1} k = \qty(\sum_{k=0}^l k) + (l+1) = \frac{l(l+1)}{2} + (l+1)
+		\end{align*}
+		Where for the last equality we have used the inductive hypothesis. Simplifying the RHS, we get that
+		\begin{align*}
+			\frac{l(l+1)}{2} + (l+1) = \frac{l(l+1)}{2} + \frac{2l+2}{2} &= \frac{l^2+l+2l+2}{2} \\
+			&= \frac{l^2+3l+2}{2} \\
+			&= \frac{(l+1)(l+2)}{2}
+		\end{align*}
+		Which shows that $P(l+1)$ holds. By the principal of mathematical induction, $P(n)$ must be true for all $n \in \bN$, and we are done.
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,194 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+\usepackage{braket}
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 441 Midterm}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item If $U$ is empty the statement is vacuously true. Else, let $x_0 \in U$, and define
+		\begin{align*}
+			V \coloneqq \Set{y \in U | \parbox{10em}{$y$ can be connected to $x_0$ via a path}}
+		\end{align*}
+		I claim that $V$ is closed and open. Indeed, let $y \in V$. Since $U$ is open, we can find $\delta > 0$ so that $$B_\delta(y) \subset U.$$
+		Now, let $z \in B_\delta(y)$, and let $\gamma: [0,1] \to U$ be the path connecting $y$ to $x_0$. Since open balls are convex, let $\eta: [0,1] \to B_\delta(y)$ be the straight line connecting $z$ to $y$. The function defined by
+		\begin{align*}
+			f(x) = \begin{cases}
+				\eta(2x), \; x \in [0, 1/2) \\
+				\gamma(2x-1), \; x \in [1/2, 1]
+			\end{cases}
+		\end{align*}
+		is continuous since each piece is continuous and
+		$$\lim_{x \to 1/2^-} f(x) = \lim_{x \to 1^-} \eta(x) = y = \lim_{x \to 0^+} \gamma(x) = \lim_{x \to 1/2^+} f(x)$$
+		Thus $z$ may be connected to $x_0$ via a path (AKA the gluing lemma in the book). Since $z \in B_\delta(y)$ was arbitrary, $B_\delta(y) \subset V$, and since $y$ was arbitrary, by the union lemma $V$ is open. Next, suppose that $$V \ni y_n \to y \in U.$$ Since $U$ is open, there is some $\ve > 0$ so that $$B_\ve(y) \subset U.$$ Thus find $N > 0$ so that if $l \geq N$, we have $$y_n \in B_\ve(y).$$ Since balls are convex, the straight line from $y_N$ to $y$ lies completely in $B_\delta(y)$. Next, let $\gamma$ denote the path from $x_0$ to $y_N$. By the same argument as above, the path going first from $x_0$ to $y_N$ and then from $y_N$ to $y$ is a continuous path in $U$, thus $y$ is in $V$. Thus $V$ is closed and open, and since it is nonempty ($x_0$ may be connected to itself by the constant path), $V = U$. $\hfill \textbf{Q.E.D.}$
+		
+		\item Letting $V = \Set{(x, y) \in \R^2 | xy = 1} \cup 0$, the restriction of a continuous map is continuous, thus $\pi \eval_V$ is continuous. Given any $x \in \R$, if $x \neq 0$, then $x$ is the image of $(x, 1/x)$. Else, $x$ is the image of 0, thus our map is surjective. We must find a set $U \in \R$ such that $\pi \eval_{V}^{-1}(U)$ is open, but $U$ is not. It suffices to take $U = [0, \infty)$. Indeed, notice that the preimage of this set equals $S = \Set{0} \cup \Set{(x, y) \in \R^2 | x > 0, \; xy = 1}$. Proof:
+		Points with negative $x$ values map to negative values, thus $S$ cannot contain anything negative. Everything of the form $(x, 1/x)$ for $x > 0$ maps to positive $x$ values, so $S$ contains all things of that form. $S$ also contains $0$ since $f(0) = 0$. Now, I claim that $S = V \cap (-1, \infty) \times (-1, \infty)$. Indeed, notice first that $S \subset (-1, \infty) \times (-1, \infty)$. We must show that nothing in $V \setminus S$ lives in $(-1, \infty) \times (-1, \infty)$. So suppose some $z \in V$ did. $z$ would be of the form $(x, 1/x)$ with $x < 0$. If $(x, 1/x) \in (-1, \infty) \times (-1, \infty)$, then $-1 < x < 0$, and $-1 < 1/x < 0$. However, elementary algebra shows that the first inequality implies $1/x < -1$, a contradiction to the second part. Thus $S$ is open in the subspace topology, and we are done.
+		
+		\item Let $x = (x_i)_{i=1}^\infty$, $y = (y_i)_{i=1}^\infty \in \prod_{i=1}^\infty X$. Since $X$ is path-connected, to each $i \in \bN$ there exists a path $\gamma_i: [0,1] \to X$ from $x_i$ to $y_i$. Letting $\gamma = (\gamma_i)_{i=1}^\infty$, as the product of continuous maps is continuous we have that $\gamma$ is continuous, and that $\gamma(0) = x$ and also $\gamma(1) = y$. Thus $\gamma$ is a path from $x$ to $y$, and since $x, y$ were arbitrary $\prod_{i=1}^\infty X$ is path connected.
+		
+		\item We recall that $$\prod_{i=1}^\infty \Set{0,1} \cong C,$$ where $C$ is of course the Cantor set. Note that elements of the Cantor set who's expansion is either 0 or 2 is unique:
+		Let $$x = \sum_{k=1}^\infty a_k3^{-k} = \sum_{k=1}^\infty c_k3^{-k},$$ and suppose that the representation is not unique. Then there exists $n > 0$ so that (WLOG) $a_n = 0$ and $c_n = 2$, and $a_k = c_k$ for $k < n$. Then,
+		\begin{align*}
+			\sum_{k=1}^\infty \frac{a_k-c_k}{3^k} = \frac2{3^n} + \sum_{k=n+1}^\infty \frac{a_k-c_k}{3^k}
+		\end{align*}
+		One notices that
+		\begin{align*}
+			\qty|\sum_{k=n+1}^\infty \frac{a_k-c_k}{3^k}| \leq \sum_{k=n+1}^\infty \frac{2}{3^k} = \frac1{3^n}
+		\end{align*}
+		Thus,
+		\begin{align*}
+			\qty|\sum_{k=1}^\infty \frac{a_k-c_k}{3^k}| \geq \frac{2-1}{3^n} = 1/3^n
+		\end{align*}
+		Which cannot be. Thus expansions of elements of the Cantor set with coefficients either 0 or 2 is unique. Notice that this also tells us that if $|x-y| \geq 3^{-n}$, then they must differ at or before the $n$th (ternary) digit. Under the homeomorphism $$\sum_{k=1}^\infty 
+		\frac{2b_k}{3^k} \mapsto (b_1, b_2, \ldots),$$ the closed set $\Set{p_n | n \geq 1} \cup \Set{p_\infty}$ pulls back to the union of the left endpoint of the rightmost interval in $C_n$ (where $C_n$ is of course constructed inductively by removing the middle thirds). That is, the set $$K = \Set{\sum_{k=1}^n \frac{2}{3^k} | n \in \bN} \cup \Set{\sum_{k=1}^\infty \frac{2}{3^k}}.$$ Let $K \ni p_n \to p$, where we inherit the metric from $\R$. By choosing $\ve < 3^{-n}$, from the previous arguments there exists an $N > 0$ so that if $l \geq N$, the first $N$ coefficients of the series expansion of $p_l$ agree those of $p$. If at any point one of the digits of $p$ is zero, if $p$ were to have a digit of $2$ afterwards, then there would exist a $p_l \in K$ so that $p_l$ has a 2 after a 0, which is impossible. Thus every digit afterwards must also be a 0, which shows that $p$ lies in $K$. Else, the digits are always 2. This is also in $K$, thus $K$ is closed. Since homeomorphisms are closed maps, $f(K) = \Set{p_n} \cup \Set{p_\infty}$ is also closed, and we are done.
+		
+		\item Let $x$, $y \in \R^\omega$, where $x_i-y_i = 0$ for all but finitely many values. Let $N = \set{i | x_i-y_i \neq 0}$. Consider
+		\begin{align*}
+			V = \set{a \in \R^\omega | a_i - x_i = 0 \text{ for all $i \in \bN \setminus N$}}
+		\end{align*}
+		It is of course clear that $y \in V$. We want $V$ to be connected, since then $x \sim_C y$ and thus $x,y$ would be in the same component. It is intuitive that $V$ should be homeomorphic to $\R^{|N|}$, since we have precisely $|N|$ degrees of freedom. Thus, consider the map $\cph$ sending $(x_i)_{i \in \bN}$ to $(x_j)_{j \in N}$ (where the right hand side is treated as an $|N|$-dimensional vector, which is finite by definition of $|N|$). Let $\prod_{i=1}^{|N|} U_i$ be a basis element for an open set in $\R^{|N|}$. Notice that $\cph^{-1}(\prod_{i=1}^{|N|} U_i) = \R \times \cdots \times U_{1} \times \cdots \times U_{2} \times \cdots$ (the dots are clear), which is open. Restricting the preimage is open, thus the map from $V$ to $\R^{|N|}$ is continuous. Now let $V \cap \prod_{j=1}^\infty U_j$ be any open set in $V$. Since $V$ is the product of $\R$'s in the coordinates specified by $N$ with the product of a bunch of $\set{0}$'s, this intersection will look something like $\set{0} \times \cdots \times U_1 \times \cdots$. The image of this is just $U_{i_1} \times \cdots \times U_{i_{|N|}}$, which is open in $\R^{|N|}$. Last, this map is clearly onto. Since the only indexes that can't be 0 are those that map directly to $\R^{|N|}$, it follows immediately that this map is injective from $V$. Thus $V \cong \R^{|N|}$, which is connected, thus $V$ is connected. So $x \sim_C y$.
+		
+		Due to the hint from the book, we must find a homeomorphism of $\R^\omega$ to $\R^\omega$ sending $y$ to a bounded sequence (I shall choose the sequence that is equivalently 0), and sending $x$ to an unbounded sequence. This is equivalent to asking the following: If $a_n$ is a sequence so that for any $N > 0$ there is some $n > N$ so that $a_n \neq 0$, find a sequence of functions $f_i$ so that $f_i(0) = 0$ and $f_n(a_n)$ has a subsequence tending to infinity. I simplified this problem by forgetting about subsequences. What I arrived at was this: Let $L = \set{i | x_i-y_i \neq 0}$. Consider
+		\begin{align*}
+			f_j(x) \coloneqq \begin{cases}
+				x-y_j, \quad j \not \in L \\
+				(x-y_j) \cdot \frac{2^j}{x_j-y_j} \quad j \in L
+			\end{cases}
+		\end{align*}
+		Indeed, one notices that if we define $f = (f_j)_{j \in \bN}$, then $f(y) = 0$, and $f(x)$ is a sequence that blows up (indeed, for any $j \in L$, the $j$-th coordinate would be $\pm 2^j$, which clearly tends to infinity, since $L$ is necessarily infinite). We must now show that $f$ is a homeomorphism. One first notices that each $f_j$ is a homeomorphism from $\R$ to $\R$, since each $f_j$ is a linear polynomial. Let $\prod_{i=1}^\infty U_i$ be a basis element for the box topology. Notice by definition of $f$ that $f(\prod_{i=1}^\infty U_i) = \prod_{i=1}^\infty f_i(U_i)$, which is the product of open sets (homeomorphisms are open maps) thus is open in the box topology. Similarly, $f^{-1}(\prod_{i=1}^\infty U_i) = \prod_{i=1}^\infty f^{-1}(U_i)$, which is again the product of open maps. We are left to check that $f$ is a bijection. If $f(x) = f(y)$, then $f_i(x_i) = f_i(y_i)$, and since each $f_i$ is a bijection, $x_i = y_i$ for all $i \in \bN$. If $x$ and $y$ were in the same component, then there would be an open, connected set $A$ containing them both. Thus, $f(A)$ is connected. Now, one recalls from page 151 of the book, looking at example 6, that the set of bounded sequences ($B$) and the set of unbounded sequences ($C$) form a separation of $\R^\omega$. But then, $f(A) \cap B$, and $f(A) \cap C$ form a separation of $f(A)$--they are both open in the subspace topology, their union is all of $f(A)$, and indeed, by the last paragraph, each is nonempty, a contradiction at last. Finally!!! This together tells us that the component containing $x$ is precisely $[x]_{\sim_c} = \set{z \in \R^\omega | z_i-x_i = 0 \text{ for all but finitely many $i$}}$.
+		
+		\item Given $n \in \bZ_{>2}$, suppose that $\cph: \R^n \overset{\sim}{\to} \R$ is a homeomorphism. Since $\cph$ is bijective, the restriction $\cph \eval_{\R^n \setminus 0}: \R \setminus 0 \to \R \setminus \cph(0)$ is also continuous. But this cannot be, as $\R \setminus \cph(0)$ is not connected, while $\R^n \setminus 0$ is (Example 4 page 156), being homeomorphic to $\R^n \setminus 0$ via the homeomorphism \begin{align*}
+			f:\; &\R^n \setminus 0 \to \R^n \setminus \cph(0) \\
+			&x \mapsto x + \cph(0)
+		\end{align*}
+		Similarly, I claim that $\R^{\omega} \setminus 0$ with the product topology is path-connected. The proof works in exactly the same way. Given $(x_i)$ and $(y_i)$ not equal, let $\gamma_i(t) = x_i + t(y_i-x_i)$, and let $\gamma_y = (\gamma_i)$, the straight line connecting $x$ to $y$. If $0 \not \in \Im(\gamma_y)$, we are done, since all component functions are obviously continuous. N.B.: throughout the rest of this answer I shall write $(x_i) = x$, with multiplication and addition being pointwise, as the notation is unambiguous, and highlights that this really is the same proof. Else, I claim that:
+		\begin{lemma}
+			If $z$ is not on the line segment connecting $x$ to $y$ extended indefinitely, i.e. if $z$ is not of the form $x + t(y-x)$ with $t \in \R$, then $\Im(\gamma_y) \cap \Im(\gamma_z) = \emptyset$.
+		\end{lemma} (Of course, $\gamma_z$ is the straight line connecting $x$ to $z$). 
+		\begin{proof}
+			If the contrary were true, we would have $x_0 = z + t_1(x-z)$ and simultaneously $x_0 = y + t_2(x-y)$, for some $x_0$ and $t_1, t_2 \in (0, 1)$ (Strict inclusion is clear--else $z=y, x=y,$ or $x=z$). Rearranging one gets $t_1(z-x) = t_2(y-x)$. From this we get that $z = x + t_2/t_1(y-x)$, a contradiction.
+		\end{proof} Choosing $z$ not of the above form (The book assumes you can do this for $\R^n$, for the infinite dimensional case project onto the first two coordinates, find something not on that line, and then go back up, you couldn't express it of the general form because if you could then you could in the first 2 coordinates, but we found the first two coordinates to not be of that form), the segment first connecting $x$ to $z$ then connecting $z$ to $y$ is continuous, and it's image does not include 0. Indeed, the component functions are continuous by gluing lemma, and if it's image were to include 0, then either the segment connecting $x$ to $z$ contains 0 or the segment connecting $y$ to $z$ contains 0. The first case cannot be by the lemma. The second case cannot happen since $z$ is not on the extended segment connecting $y$ to $x$ (which is of course the extended segment connecting $x$ to $y$), hence the segment connecting $y$ to $z$ contains none of the points on the segment connecting $y$ to $x$, which includes 0. Thus, we have found a continuous path connecting $x$ to $y$ not intersecting the origin, hence we are done. Now we just copy the same proof as above; if there were a homeomorphism $\cph: \R^\omega \overset{\sim}{\to} \R$, the restriction $\cph \eval_{\R^\omega \setminus 0}: \R^\omega \setminus 0 \to \R \setminus \cph(0)$ would be continuous. But $\R \setminus \cph(0)$ is not connected, while $\R^\omega \setminus 0$ is (being path connected), a contradiction. For the subspace $\R^\infty$, precisely the same proof as above would work, as all but finitely many of the $\gamma_i$s would be equivalently 0 (indeed, $t \cdot 0 + (1-t) \cdot 0 = 0$ for all $t$). Since $\gamma = (\gamma_i)$ is continuous from $[0,1]$ to $\R^\omega$, restricting the codomain preserves continuity, thus $\gamma$ would also be continuous from $[0,1]$ to $\R^\infty$. ``Extending the line segment'' as above is equivalent to letting $t \in \R$ instead of just $[0,1]$, and it is clear that this extension would still live entirely in $\R^\infty$. Thus, by all the same arguments as above (One note: finding a point not on the line segment is even easier--just choose one of the equivalently zero coordinates to be not 0), $\R^\infty$ too is path connected. For the third and final time, if we had a homeomorphism $\cph: \R^\infty \overset{\sim}{\to} \R$, the restriction $\cph \eval_{\R^\infty \setminus 0}: \R^\infty \setminus 0 \to \R \setminus \cph(0)$ would be continuous. Yet $\R^\infty \setminus 0$ is path connected, while $\R \setminus \cph(0)$ is not, a contradiction.
+	\end{enumerate}
+\end{document}

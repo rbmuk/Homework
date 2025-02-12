@@ -1,0 +1,271 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\P}{\mathbb{P}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\semi}{; \;}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CS 312 HW8}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We recall that 
+			\begin{align*}
+				\mathcal{L}(x_1, \ldots, x_n \semi \theta_B, \theta_C) = \prod_{i=1}^n \P(x_i \semi \theta_B, \theta_C)
+			\end{align*}
+			If $x_i$ is a Bulbasaur, 
+			\begin{align*}
+				\P(x_i \semi \theta_B, \theta_C) = \theta_B
+			\end{align*}
+			And similarly, if $x_i$ is a Charmander, $\P(x_i \semi \theta_B, \theta_C) = \theta_C$, and finally if $x_i$ is a Squirtle, $\P(x_I \semi \theta_B, \theta_C) = 1 - \theta_B - \theta_C$. Now, since precisely $n_B$ of the $x_i$'s are equal to Bulbasaur, $n_C$ are equal to Charmander, and $n_S$ are equal to Squirtle, we can simplify this product to
+			\begin{align*}
+				\mathcal{L}(x_1, \ldots, x_n \semi \theta_B, \theta_C) = \theta_B^{n_B} \cdot \theta_C^{n_C} \cdot (1-\theta_B-\theta_C)^{n_S}
+			\end{align*}
+			Since multiplication is commutative.
+			
+			\item The log of my previous answer is just
+			\begin{align*}
+				\log(\mathcal{L}(x_1, \ldots, x_n \semi \theta_B, \theta_C)) = n_B\log(\theta_B) + n_C\log(\theta_C) + n_S\log(1-\theta_B-\theta_C)
+			\end{align*}
+			\item Taking partials gives
+			\begin{align*}
+				\pdv{\log(\L(-))}{\theta_B} = \frac{n_B}{\theta_B} - \frac{n_S}{1-\theta_B-\theta_C}
+			\end{align*}
+			And similarly,
+			\begin{align*}
+				\pdv{\log(\L(-))}{\theta_C} = \frac{n_C}{\theta_C} - \frac{n_S}{1-\theta_B-\theta_C}
+			\end{align*}
+			We want each of these to be equal to 0 to find the critical point. Setting the first to 0 gives
+			\begin{align*}
+				&\quad \quad \quad \frac{n_S}{1-\theta_B-\theta_C} = \frac{n_B}{\theta_B} \\
+				&\iff n_S\theta_B = n_B(1-\theta_B-\theta_C) \\
+				&\iff (n_S+n_B)\theta_B + n_B\theta_C = n_B
+			\end{align*}
+			Doing the exact same thing in the other variable gives \begin{align*}
+				&\quad \quad \quad n_S\theta_C = n_C(1-\theta_B-\theta_C) \\
+				&\iff n_C\theta_B + (n_S+n_C)\theta_C = n_C
+			\end{align*}
+			
+			\item Plugging this into wolfram gives
+			\begin{align*}
+				\theta_B = \frac{n_B}{n_B+n_C+n_S} \text{ and } \theta_C = \frac{n_C}{n_B+n_C+n_S}
+			\end{align*}
+			Exactly what you might expect.
+		\end{enumerate}
+		
+		\newpage
+		\item \begin{enumerate}
+			\item The graph is a flipped absolute value shifted up a little bit and stretched. If theta is large the graph is flatter and wider, and if theta is small the graph is taller. It also is continuous at $x = \pm \theta$ with value 0, and zero at $|x| \geq \theta$ (i.e., the support of $f$ is just $[-\theta, \theta]$).
+			\item We recall from part c that the likelihood is only nonzero when all samples have absolute value strictly smaller than $\theta$, i.e. $\max\set{|x_1|, \ldots, |x_n|} < \theta$. If this is not the case, i.e. if there is an $x_i$ with $|x_i| \geq \theta$, then the likelihood is just 0. So, in the case where $\max\set{|x_1|, \ldots, |x_n|} < \theta$, the likelihood equals
+			\begin{align*}
+				\L(x_1, \ldots, x_n \semi \theta) = \prod_{i=1}^n f_X(x_i) = \prod_{i=1}^n \qty(-\frac{|x_i|}{\theta^2} + \frac{1}{\theta})
+			\end{align*}
+			\item The likelihood in this case would be
+			\begin{align*}
+				f_X(x_1) \cdot \prod_{i=2}^n f_X(x)
+			\end{align*}
+			If $|x_1| > \theta$, then the density gives 0, so the product (= likelihood) is 0. If $|x_1| = 1$, the density would give
+			\begin{align*}
+				-\frac{\theta}{\theta^2}+\frac{1}{\theta} = 0
+			\end{align*}
+			So again the product would be 0, and hence the likelihood is 0.
+			
+			\item Under the assumption that we have done two draws, with $x_1 = -x_2$, if $|x_1| \geq \theta$ (equivalently, $|x_2| \geq \theta$), then we know that the likelihood is just equivalently 0, so we could take for example $\theta = 1$ to be a maximizer, since constant functions are maximized (and minimized) everywhere. In the more interesting case that $|x_1| < \theta$,
+			\begin{align*}
+				\L(x_1, -x_1 \semi \theta) = \prod_{i=1}^2 \qty(-\frac{|x_i|}{\theta^2} + \frac1\theta) = \qty(-\frac{|x_1|}{\theta^2} + \frac1\theta)^2
+			\end{align*}
+			Taking the log of this quantity gives
+			\begin{align*}
+				\log(\L(-)) = 2\log(\frac{-|x_1|}{\theta^2} + \frac1\theta) = 2\log(\frac{-|x_1|+\theta}{\theta^2}) = 2\qty(\log(-|x_1|+\theta)-2\log(\theta))
+			\end{align*}
+			Taking derivatives now gives
+			\begin{align*}
+				\dv{\log(\L(-))}{\theta} = 2\qty(\frac{1}{-|x_1|+\theta} - \frac{2}{\theta})
+			\end{align*}
+			Setting this to zero gives
+			\begin{align*}
+				&\quad \quad \quad \frac{2}{\theta} = \frac{1}{-|x_1| + \theta} \\
+				&\iff 2\theta - 2|x_1| = \theta \\
+				&\iff \theta = 2|x_1|
+			\end{align*}
+			
+		\end{enumerate}
+		
+		\newpage
+		\item \begin{enumerate}
+			\item We recall that
+			\begin{align*}
+				f_{Y \mid X}(y \mid x) = \frac{f_{X,Y}(x, y)}{f_X(x)}
+			\end{align*}
+			We must find $f_X(x)$. We recall that this equals
+			\begin{align*}
+				f_X(x) = \int_{-\infty}^\infty f_{X,Y}(x, y)dy
+			\end{align*}
+			For $x \not \in [0, 3]$, the density is always zero, so $f_X(x) = 0$ there. For $x \in [0, 3]$, this integrand is only not zero when $x \leq y \leq 3$, so we get
+			\begin{align*}
+				f_X(x) = \int_x^3 \frac{4}{27}x^2dy = \frac{4}{27} x^2 \cdot y\eval_x^3 = \frac{4}{27} x^2 (3-x)
+			\end{align*}
+			We conclude that
+			\begin{align*}
+				f_{Y \mid X}(y \mid x) = \frac{\frac{4}{27}x^2}{\frac{4}{27} x^2 (3-x)} = \frac{1}{3-x}
+			\end{align*}
+		
+			\item For $x \not \in [0, 3]$, this conditional probability isn't even defined, so I will say it is 0. So assume that $x \in [0, 3]$.
+			\begin{align*}
+				\E[Y \mid X = x] = \int_{-\infty}^\infty yf_{Y \mid X}(y \mid x)dy
+			\end{align*}
+			Once again the integrand is only not zero when $x \leq y \leq 3$, so this integral simplifies to 
+			\begin{align*}
+				\int_{x}^3 y \frac{1}{3-x} dy = \frac{1}{3-x} \cdot \frac{y^2}2\eval_x^3 = \frac12 \cdot \frac{1}{3-x}(9-x^2) = \frac12(3+x)
+			\end{align*}
+		
+			\item By the law of total expectation,
+			\begin{align*}
+				\E[Y] = \int_{-\infty}^\infty \E[Y \mid X = x]f_X(x)dx
+			\end{align*}
+			The support of $X$ is just $[0, 3]$, so this integral simplifies to
+			\begin{align*}
+				\int_{0}^3 \E[Y \mid X = x]f_X(x)dx
+			\end{align*}
+			Now we may use the results from part (a) and (b) to conclude that this integral equals
+			\begin{align*}
+				\int_0^3 \frac12(3+x) \frac{4}{27}x^2(3-x)dx &= \frac{4}{54}\int_0^3  x^2(9-x^2)dx = \frac{4}{54} \int_0^3 9x^2 - x^4dx \\&= \frac{4}{54} \qty(3x^3 - \frac15 x^5) \eval_0^3 = \frac{4}{54}\qty(3 \cdot 27 - \frac{1}{5}243) = \frac{12}{5}
+			\end{align*}
+		\end{enumerate}
+		
+		\newpage
+		\item Since $X_i \sim \mathrm{Uniform}(0, \theta)$, $\E[X_i] = \theta/2$ from the zoo. Hence,
+		\begin{align*}
+			\E[\hat{\theta}] = \E[\frac2n\sum_{i=1}^n X_i] = \frac2n \sum_{i=1}^n \E[X_i] = \frac2n \cdot n \cdot \theta / 2 = \theta
+		\end{align*}
+		So yes, this estimator is unbiased.
+	\end{enumerate}
+\end{document}

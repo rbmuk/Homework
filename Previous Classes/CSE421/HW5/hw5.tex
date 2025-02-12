@@ -1,0 +1,306 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\newcommand{\OPT}{\mathrm{OPT}}
+\newcommand{\Indp}{\textsc{Indp}}
+\usepackage{csvsimple}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{P1.}
+    Our algorithm is as follows:
+    \begin{algorithm}
+        \caption{Independent Set Approximation}
+        \begin{algorithmic} % The number indicates line number visibility
+            \Procedure{Indp}{G}
+            \State $v \gets \text{a vertex in } G$
+            \State $S \gets \SET{v}$
+            \For{$u \text{ a neighbor of } v$}
+                \State $G \gets G - u$
+            \EndFor
+            \State \Return $\SET{v} \cup \Call{Indp}{G}$
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+    We prove the following lemma.
+    \begin{lemma}
+        If $G$ is a graph with $\Delta \leq k$, $\OPT(G)$ is the optimal independent set of $G$, $v \in G$ is a vertex, and $S$ is the set of neighbors of $v$, then 
+        \begin{align*}
+            |\OPT(G)| \leq |\OPT(G \setminus \SET{v} \cup S)| + k.
+        \end{align*}
+    \end{lemma}
+    \begin{proof}
+        Either $v$ is in the optimum or not. If so, none of the neighbors of $v$ are in the optimum by the property of being an independent set, and we get that $\OPT(G) = \OPT(G \setminus \SET{v} \cup S) \cup \SET{v}$, which shows that 
+        \begin{align*}
+            |\OPT(G)| = |\OPT(G \setminus \SET{v} \cup S)| + 1 \leq |\OPT(G \setminus \SET{v} \cup S)| + k.
+        \end{align*}
+        The set $\OPT(G) \setminus S$ is an independent set in $G \setminus \SET{v} \cup S$, and thus we must have $|\OPT(G) \setminus S| \leq |\OPT(G \setminus \SET{v} \cup S)|$.  Now, if $S \subset \OPT(G)$ then $|\OPT(G) \setminus S| = |\OPT(G)| - |S|$, otherwise we remove fewer than $|S|$ elements from $\OPT(G)$. In any case,
+        \begin{align*}
+            |\OPT(G)| - |S| &\leq |\OPT(G \setminus \SET{v} \cup S)| 
+            \\\implies |\OPT(G)| &\leq |\OPT(G \setminus \SET{v} \cup S)| + |S| \\
+            \implies |\OPT(G)| &\leq |\OPT(G \setminus \SET{v} \cup S)| + k.
+        \end{align*}
+        Since by hypothesis $|S| \leq k$.
+    \end{proof}
+    We now prove the correctness of the above algorithm with the following theorem.
+    \begin{theorem}
+        Let $G$ be a graph with $n$ vertices and $\Delta \leq k$. Then,
+        \begin{align*}
+            |\OPT(G)| \leq k \cdot |\Indp(G)|.
+        \end{align*}
+    \end{theorem}
+    \begin{proof}
+        We prove the claim by induction. Clearly the claim is true for all graphs of size $1$, since the only nonempty independent set is the graph itself and our algorithm clearly finds that one. Suppose the claim is true for all graphs $G$ sastisfying $\Delta \leq k$ with $<n$ vertices. Let $v$ be the vertex chosen by the algorithm, and let $S$ be $v$'s neighbors. Then by the inductive hypothesis we know that 
+        \begin{align*}
+            |\OPT(G \setminus \SET{v} \cup S)| \leq k \cdot |\Indp(G \setminus \SET{v} \cup S)|
+        \end{align*}
+        Also, by construction our algorithm has $\Indp(G) = \SET{v} \cup \Indp(G \setminus \SET{v} \cup S)$, and thus we have $|\Indp(G)| = 1 + |\Indp(G \setminus \SET{v} \cup S)|$. By the lemma we have that
+        \begin{align*}
+            |\OPT(G)| \leq |\OPT(G \setminus \SET{v} \cup S)| + k \leq k \cdot |\Indp(G \setminus \SET{v} \cup S)| + k = k \cdot |\Indp(G)|.
+        \end{align*}
+        Which completes the proof.
+    \end{proof}
+    Recall that it takes $O(n+m)$ time to remove a vertex from a graph $G$ using the adjacency list. Thus, the middle loop of our algorithm takes $\leq O(k(n+m))$ time, since $v$ has at most $k$ neighbors. Thus our algorithm satisfies:
+    \begin{align*}
+        T(n) \leq T(|G \setminus \SET{v} \cup S|) + O(k(n+m)) \leq T(n-1) + O(k(n+m)).
+    \end{align*}
+    Which shows that $T(n) = O(k(n^2+nm))$.
+
+    \newpage
+    \subsection*{P2.}
+    This is the table for the DP knapsack algorithm I got, where the $(i,j)$ position is the maximum value that can be obtained using the first $i$ items and a knapsack of size $j$:
+    \begin{table}[htbp]
+        \centering
+        \caption{Knapsack Data}
+        \csvautotabular{knapsack.csv}
+    \end{table}
+
+    \newpage
+    \subsection*{P3.}
+    Our algorithm is as follows:
+    \begin{algorithm}
+        \caption{Make Change Procedure}
+        \begin{algorithmic} % The number indicates line number visibility
+            \Procedure{Minimum-Coins}{$v_1, \ldots, v_n, k$}
+            \State $M \gets \text{an } n \times k \text{ matrix of $\infty$}$
+            \For{$c = 1 \text{ to } k/v_1$}
+                \State $M[1,v_1 \cdot c] \gets c$
+            \EndFor
+            \For{$i = 2 \text{ to } n$}
+                \For{$j = 1 \text{ to } k$}
+                    \State $M[i,j] \gets \displaystyle \min_{0 \leq \ell \leq j/v_i} M[i-1, j - \ell \cdot v_i] + \ell$
+                \EndFor
+            \EndFor
+            \State \Return $M[n,k]$
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
+    We start with the running time. The first for loop takes $O(k)$ time. The inner for loop takes $O(k^2)$ time, since $j/v_i \leq j \leq k$ and we run this loop $k$ times. Thus the outer for loop takes $O(n k^2)$ time, so the total running time of the algorithm is $O(nk^2)$.
+
+    We now prove the correctness of the above algorithm. We claim the matrix $M[i,j]$ represents the minimum number of coins needed to make change for $j$ using only the first $i$ coins, taking a value of $\infty$ if no way exists. We prove this by induction. The first coin will only be able to make change for $j$ if $j$ is a multiple of $v_1$, and in that case we will need $j/v_1$ coins. This is precisely what the first for loop accomplishes for each $j \leq k$. Now suppose that $M$ takes on the correct values for the first $n-1$ rows and $k$ columns of those rows. I claim that the minimum number of coins needed to make change for $k$ using $n$ coins is equal to 
+    \begin{align*}
+        \min_{0 \leq \ell \leq k/v_n} M[n-1, k - \ell \cdot v_n] + \ell.
+    \end{align*}
+    This is because we are simply partitioning over the number of times we use the $n$th coin. If we use the $n$th coin $\ell$ times, then we need to make change for $k - \ell \cdot v_n$ using the first $n-1$ coins, and the total number of coins will be the minimum number of coins needed for that plus the $\ell$ copies of the $n$th coin. Since the minimum will have between $0$ and $k/v_n$ copies of the $n$th coin, we are taking the minimum over all possibilities and thus the claim is proven, which shows the algorithm is correct.
+
+    \newpage
+    \subsection*{P4.}
+    Our algorithm is as follows, where we use the convention that if $i < 0$ then $C[i] = 0$ for every list $C$:
+    \begin{algorithm}
+        \caption{No Long Consecutive Subsequences Procedure}
+        \begin{algorithmic} % The number indicates line number visibility
+            \Procedure{Nlcs}{$n, k_A, k_B$}
+            \State $EA, EB \gets [1], [1]$
+            \For{$i = 2 \text{ to } n$}
+                \State $EA[i] \gets \displaystyle \sum_{\ell=1}^{k_A} EB[n-\ell]$
+                \State $EB[i] \gets \displaystyle \sum_{\ell=1}^{k_B} EA[n-\ell]$
+            \EndFor
+            \State \Return $EA[n] + EB[n]$
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
+    First, we can see that the sum inside the for loop will take  $O(k_A+k_B)$ time, and the loop runs $n$ times  thus our algorithm runs in $O(n(k_A+k_B))$ time.
+
+    We now prove the correctness of this algorithm. We claim that $EA[n]$ and $EB[n]$ represent the number of valid strings with $n$ letters that end in $A$ and $B$ respectively. Clearly the claim is true for $n=1$ beacuse $k_A, k_B \geq 1$ and there is precisely 1 string that ends in $A$, $B$ respectively. Suppose the claim is true for $<n$. If $S$ is a valid string with $n$ letters ending in $A$, then the consecutive subsequence containing the last $A$ has length $1 \leq \ell \leq k_A$. The final observation is that the number of valid strings on $n$ letters which has a length $\ell$ consecutive subsequence as 0s on the right is the same as the number of strings on $n-\ell$ letters ending in $B$, since we have fixed the last $\ell$ letters to be $A$ and we need this sequence to stop at letter $n-l$--i.e., it the $n-l$th letter needs to be $B$. Applying symmetric logic to $B$ and then using the inductive hypothesis shows that $EA, EB$ hold the right values. Finally, every valid subsequence on $n$ letters either ends in $A$ or $B$, which proves the correctness of the algorithm.
+
+    \newpage
+    \subsection*{P5.}
+    Let $d(x,y) = |x-y|$ be the usual Euclidean metric over $\R$. Our algorithm is as follows:
+    \begin{algorithm}
+        \caption{Optimal Village Cost Procedure}
+        \begin{algorithmic} % The number indicates line number visibility
+            \Procedure{Optimal-Village-Cost}{$x_1, \ldots, x_n, K$}
+                \State \textbf{Sort} $x_1, \ldots, x_n$
+                \State $A \gets \text{an } n \times n \times K \text{ tensor}$
+                \State $Closer \gets \text{an } n \times n \times n \text{ tensor}$
+                \State $D \gets \text{an } n \times n \times n \text{ tensor}$
+                \For{$1 \leq i \leq n$}
+                    \For{$1 \leq l < u \leq n$}
+                        \State $D[i, l,u] \gets \displaystyle \sum_{\alpha=l}^u d(x_\alpha, x_i)$
+                    \EndFor
+                \EndFor
+                \For{$1 \leq i < j \leq n$}
+                    \State $Closer[i,j] \gets \displaystyle \min\SET{\ell : d(x_\ell,x_i) \leq d(x_\ell, x_j)}$
+                \EndFor
+                \For{$1 \leq i < j \leq n$}
+                    \State $A[i,j,1] \gets D[j, 1, i]$
+                \EndFor
+                \For{$k = 2 \text{ to } K$}
+                    \For{$k \leq i, j \leq n$}
+                        \State $A[i,j,k] \gets \displaystyle \min_{k-1\leq \ell \leq j} A[Closer[j,\ell]-1, \ell,k-1] + D[j, Closer[j,\ell], i]$
+                    \EndFor
+                \EndFor
+                \State \Return $\displaystyle \min_{K \leq j \leq n} A[n,j,K]$
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
+    Let $OPT(i,j,k)$ for $k \leq j \leq i$ be the optimal sum of the distances from each village to its nearest post office, where we use only the first $i$ villages, the rightmost post office is at position $j$, and we are allocated $k$ post offices. It is easy to see that if $k=1$, then $OPT(i,j,1)$ is just the sum of the distances from the first $i$ villages to the post office at position $j$, because there is only one post office and it is at position $j$. 
+
+    We shall now prove the recursive formula in the algorithm. The main idea is to guess where the second rightmost post office is. Let $k \leq j \leq i$ be fixed. Since we have used the $k$th post office by putting it at position $j$, we see that the second rightmost post office must be at position $\geq k-1$ otherwise there could not possibly be $k-1$ post offices placed to the left and including it. So we guess the position of the second rightmost post office to be at $k-1 \leq \ell < j$. Now we want to find the distance from the first $i$ villages to their nearest post office. Since $j$ is the rightmost post office, we see obviously that for $k > j$ the $k$th village is certainly closest to $j$. However, between $\ell$ and $j$ could be incredibly complicated and intertwined.
+
+    We use the following trick: let $Closer[j,\ell]$ be the index of the leftmost post office that is closer to $j$ than to $\ell$. This is certainly less than $j$ because $j$ is closer to $j$ itself than to $\ell$. Since every other post office is to the left of $\ell$, the post offices that are closest to $j$ are precisely those with index between $Closer[j, \ell]$ and $i$. Now, to find the optimal placement of the villages with rightmost post office $j$ and second rightmost post office $\ell$, we simply need to look for the optimal position of the villages that are closer to $\ell$ than to $j$ (which is just those with index strictly less than $Closer[j,\ell]$ by construction), with $\ell$ as the rightmost post office, and then finally add the distances from every village that is closer to $j$ than to $\ell$ (also by construction just those that come after and including $Closer[j, \ell]$). Since the second rightmost post office is certainly somewhere left of $j$ (since the villages are in sorted order), taking the minimum over all (feasible) $\ell$ indeed finds the right value. Putting all this together we get the following formula:
+    \begin{align*}
+        OPT(i, j, k) = \min_{k-1 \leq \ell < j} OPT(Closer[j,\ell]-1, \ell, k-1) + \sum_{\alpha=Closer[j,\ell]}^i d(x_\alpha, x_j).
+    \end{align*}
+
+    The last step in the algorithm is to simply take a minimum over all possible rightmost post office locations, which shows correctness.
+
+    The sorting procedure clearly take $O(n \log n)$ time as per the usual. The first for loop takes $O(n^4)$ time, since the innermost step takes $O(n)$ time, which is being repeated $O(n^2)$ time for the $i < j$ part, which is being repeated again $O(n)$ times. The second for loop runs over all $i < j$ and takes $O(n)$ time per iteration, which gives us a total of $O(n^3)$ time. The second for loop follows similarly to be $O(n^3)$. The signle line in the triple nested for loop can be computed in $O(n)$ time, since $\ell$ runs through $\leq n$ values. This single line is then repeated $O(n^2 \cdot K)$ times, yielding an incredible final running time of $O(n^3K) \leq O(n^4)$. Clearly the final line can be computed in $O(n)$ time, which shows our algorithm runs in polynomial time. 
+\end{document}

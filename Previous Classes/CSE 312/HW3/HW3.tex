@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\\mid #1 \\mid}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 312 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item Let $H=$ the coin is heads, and $T =$ the coin is tails. $\P(G_1) = \P(G_1 \mid H)\cdot \P(H) + \P(G_1 \mid T) \cdot \P(T)$ since we either get heads or tails, and by the LTP. If we pull heads, then $5/15$ of the balls are gold, so we have a $1/3$ chance of pulling a gold ball, i.e. $\P(G_1 \mid H) = 1/3$. A coin flip is uniform, so $\P(H) = \P(T) = 1/2$. If we pull a tails, then $10/15$ of the balls are gold, so $\P(G_1 \mid T) = 2/3$, so we get $\P(G_1) = 1/2 (1/3 + 2/3) = 1/2$. Since she draws the second ball with replacement independently of the first ball, $G_1$ and $G_2$ are conditionally independent (after choosing the urn), so we can perform the same calculation to get $\P(G_2 \mid H) = 1/3$, and $\P(G_2 \mid T) = 2/3$, so again $\P(G_2) = \P(G_2 \mid H) \cdot \P(H) + \P(G_2 \mid T) \cdot \P(T) = 1/3 \cdot 1/2 + 2/3 \cdot 1/2 = 1/2$.
+			\item We see that, since $G_1, G_2$ are conditionally independent after picking the urn, i.e. after the outcome of the coin is decided, (this justifies the second equality, I ran out of space),
+			\begin{align*}
+				\P(G_1 \cap G_2) &= \P(G_1 \cap G_2 \mid H) \cdot \P(H) + \P(G_1 \cap G_2 \mid T) \cdot \P(T) \\
+				&= \P(G_1 \mid H) \cdot \P(G_2 \mid H) \cdot \P(H) + \P(G_1 \mid T) \cdot \P(G_2 \mid T) \cdot \P(T) \\
+				&= 1/3 \cdot 1/3 \cdot 1/2 + 2/3 \cdot 2/3 \cdot 1/2 \justif{See part (a)} \\
+				&= 1/2 \cdot 5/9
+			\end{align*}
+		
+			\item We see that
+			\begin{align*}
+				\P(G_1 \mid G_2) = \frac{P(G_1 \cap G_2)}{\P(G_2)} = \frac{1/2 \cdot 5/9}{1/2} = 5/9
+			\end{align*}
+			from the numerous calculations above.
+			
+			\item As $P(G_1 \mid G_2) = 5/9$ while $P(G_1) = 1/2$, we see that these events are NOT independent from the definition of independent probability.
+			
+			\item My intuition for this problem is that if we know $G_2$ happens, i.e. that the second coin pulled was gold, it is at least a little more likely that the coin flip showed up tails, which in the end would make $G_1$ more likely. This is why $\P(G_1 \mid G_2) > \P(G_1)$.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item Let $Q$ = you know the answer to the question. Clearly $\overline{Q}$ = you don't know the answer to the question. Finally, let $C$ = you get the question wrong. Note that $\overline{C}$ = you get the question right. We are looking for $\P(\overline{C}) = 1 - \P(C)$. By the LTP, $\P(C) = \P(C \mid Q) \cdot \P(Q) + \P(C \mid \overline{Q}) \cdot \P(\overline{Q})$. If you know the answer to the question, then you get it right with 100\% probability, so $\P(C \mid Q) = 0$. It stated in the problem that $\P(Q) = p$, and also that $\P(\overline{Q}) = 1-p$. If you do not know the question, you have to guess randomly among 5 options--i.e., 4/5 of the time you get the question wrong. So $\P(C \mid \overline{Q}) = 4/5$. We conclude that
+			\begin{align*}
+				\P(C) = (1-p) \cdot 4/5.
+			\end{align*}
+			Which tells us that $\P(\overline{C}) = 1 - (1-p) \cdot 4/5 = (5 - (4-4p))/5 = (1+4p)/5$.
+			\item Using the notation from part (a), we are looking for $\P(Q \mid \overline{C})$. By Bayes rule,
+			\begin{align*}
+				\P(Q \mid \overline{C}) = \frac{\P(\overline{C} \mid Q) \cdot \P(Q)}{\P(\overline{C})}
+			\end{align*}	
+			If we know the answer to the question, we get it right with 100\% probability, so $\P(\overline{C} \mid Q) = 1$. The problem states that $\P(Q) = p$. Using that $\P(\overline{C}) = (1+4p)/5$ from part (a), we get that
+			\begin{align*}
+				\P(Q \mid \overline{C}) = \frac {1 \cdot p}{(1+4p)/5} = \frac{5p}{4p + 1}
+			\end{align*}
+			For a quick check, since $p \leq 1$, $5p/(4p+1) \leq 1$, and as $p$ gets small, the probability also gets small (if the probability that you know the answer to the question is smaller, this probability should probably be smaller too, since you will be guessing more often).
+		\end{enumerate}
+	
+		\newpage
+		\item \begin{enumerate}
+			\item Since both Xena's parents have type A blood, both her parents must have at least one A gene. Since Yvonne has type O blood, and the only way to have type O blood is to have genotype OO, it must be the case that both parents also carry an O gene. So both parents have genotype AO. By Bayes rule, we see that
+			\begin{align*}
+				\P(G_X = AO \mid Ph_X = A) = \frac{\P(Ph_X = A \mid G_X = AO) \P(G_X = AO)}{\P(Ph_X = A)}
+			\end{align*}
+			If $G_X = AO$, then clearly $Ph_X = A$ (since it said that the A dominates the O), so $\P(Ph_X = A \mid G_X = AO) = 1$. The parents both have genotype AO, and since the problem states that they could give either gene down with equal probability, the multiset of all possible genotypes (where order first comes from the father, and then the mother) is $\set{AO, OA, AA, OO}$. We are looking for two of those outcomes, so $\P(G_X = AO) = 2/4 = 1/2$, since passing genes down is uniform. Finally, Xena's phenotype is uniquely determined by her genotype. 3 of the 4 possible ordered genotypes would give her a phenotype of A, so $\P(Ph_X = A) = 3/4$. We conclude that $\P(G_X = AO \mid Ph_X = A) = 1/2 / 3/4 = 2/3$, which is exactly what you would expect (i.e., her genotype could only be AA, AO, or OA, and in two of those cases she has an O).
+			
+			\item Since Zachary has type O blood, he must have genotype OO. Therefore, we can restrict to the sample space where Zachary has genotype OO. We are now looking (in the restricted sample space) for $\P(G_C = OO \mid Ph_X = A)$. Since the mother has type A blood, she can either have genotype AO, or genotype AA. By the law of total probability, $\P(G_C = OO \mid Ph_X = A) = \P(G_C = OO \mid Ph_X = A \cap G_X = AO) \cdot \P(G_X = AO \mid Ph_X = A) + \P(G_C = OO \mid Ph_X = A \cap G_X = AA) \cdot \P(G_X = AA \mid Ph_X = A)$. If the mother has genotype AA she can't pass down an O gene, so the child can't have genotype OO, so $\P(G_C = OO \mid Ph_X = A \cap G_X = AA) = 0$. We found last time that $\P(G_X = AO \mid Ph_X = A) = 2/3$. In the case where the mother has type A blood and genotype AO, the multiset of all possible outcomes with the genes from Zach would be $\set{AO, OO, AO, OO}$. Since they give their genes uniformly, the child has genotype $OO$ $1/2$ of the time, so $\P(G_C = OO \mid Ph_X = A \cap G_X = AO) = 1/2$. Therefore, $\P(G_C = OO \mid Ph_X = A) = 2/3 \cdot 1/2 = 1/3$.
+			
+			\item Finally, we are looking for $\P(G_X = AO \mid Ph_X = A \cap G_C = AO)$ (Note: the child MUST have genotype AO by the logic from the last problem, since he either has genotype AO, or OO, and only in the first case does he have phenotype A). By Bayes rule, this equals 
+			\begin{align*}
+				\frac{\P(G_C = AO \cap G_X = AO \cap Ph_X = A)}{\P(G_C = AO \cap Ph_X = A)}
+			\end{align*}
+			We notice that $(G_X = AO \cap Ph_X = A) = G_X = AO$, since if the mother has genotype AO, then she already has phenotype A. So the above equals
+			\begin{align*}
+				\frac{\P(G_C = AO \cap G_X = AO)}{\P(G_C = AO \mid Ph_X = A) \P(Ph_X = A)} \\
+				= \frac{\P(G_C = AO \mid G_X = AO) \cdot \P(G_X = AO)}{\P(G_C = AO \mid Ph_X = A) \P(Ph_X = A)}
+			\end{align*}
+			By similar logic near the end of the last problem, if the mother has genotype AO, then the child has genotype AO $1/2$ of the time (the other half of the time being OO), so $\P(G_C = AO \mid G_X = AO) = 1/2$. We found in part (a) that $\P(G_X = AO) = 1/2$. We also notice that, in the restricted space where the mother has genotype AO, the child can have either genotype AO, or genotype OO, so $\P(G_C = AO \mid Ph_X = A) = 1 - \P(G_C = OO \mid Ph_X = A) = 1 - 1/3 = 2/3$. We found in part (a) that $\P(Ph_X) = 3/4$. Putting it all together we get: $(1/2 \cdot 1/2)/(2/3 \cdot 3/4) = (1/2 \cdot 1/2) / (1/2) = 1/2$, as our final answer.
+			\end{enumerate}
+	
+		\newpage
+		\item \begin{enumerate}
+			\item The number of hands with exactly one ace is just going to be $4 \cdot {48 \choose 12}$, since it could have one of 4 aces, and then we have to exclude those 4 aces and pick 12 cards from the remaining 48 after exclusion. The total number of 13 hand cards is ${52 \choose 13}$, so since in this case the probability is uniform (i.e., we shuffle the deck uniformly at random), we see that $\P(A_1) = 4 \cdot {48 \choose 12} / {52 \choose 13}$. Since this argument didn't depend on it being the first deck we get that $\P(A_2) = 4 \cdot {48 \choose 12} / {52 \choose 13}$ as well (this works because we are working with NO other assumptions, we JUST want that a specific deck has precisely one ace). On the other hand, if we already know that $A_1$ has an ace, $A_2$ could have one of 3 aces, and then we would have to pick 12 cards from the remaining 52 - 13 - 3 (we can't pick from the aces), to get that the second deck, assuming it has one ace, could be one of $3 \cdot {36 \choose 12}$ decks. The total number of decks the second hand could be is just ${39 \choose 13}$ (since aces can be included, but none of the cards in the first hand can be included), we get that $\P(A_2 \mid A_1) = 3 \cdot {36 \choose 12} / {39 \choose 13}$. Plugging these into a calculator shows $\P(A_2 \mid A_1) \neq \P(A_2) = \P(A_1)$, so they are not independent.
+			
+			\item Continuing on with the calculation from before, assuming the first and second deck have precisely one ace, the third deck could have one of two aces, and then it needs 12 of the remaining 52 - 13 - 13 - 2 non-ace cards, which can be done in ${24 \choose 12}$ ways. The sample space, i.e. the number of possible third decks is just ${26 \choose 13}$, since an arbitrary deck could have none/more than one ace. We get that $\P(A_3 \mid A_1 \cap A_2) = 2 \cdot {24 \choose 12} / {26 \choose 13}$. Finally, note that if all 3 previous decks have exactly one ace, then the fourth deck has exactly one ace 100\% of the time, i.e. with probability 1, so $\P(A_4 \mid A_1 \cap A_2 \cap A_3) = 1$. We conclude that
+			\begin{align*}
+				\P(A_1 \cap A_2 \cap A_3 \cap A_4) &= \P(A_1) \cdot \P(A_2 \mid A_1) \cdot \P(A_3 \mid A_1 \cap A_2) \cdot \P(A_4 \mid A_1 \cap A_2 \cap A_3) \\
+				&= 4 \cdot {48 \choose 12} / {52 \choose 13} \cdot 3 \cdot {36 \choose 12} / {39 \choose 13} \cdot 2 \cdot {24 \choose 12} / {26 \choose 13}
+			\end{align*}
+			which is around $10.5$\%.
+		\end{enumerate}
+		
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item Since the $n$ profiles are shown uniformly at random (independent of what I think about them), this is just the probability that the most beautiful woman is in the $3$rd position, which happens $1/n$ of the time (she could be in any of $n$ places, and the event we want is her in $1$ specific place).
+			
+			\item We can think of this as finding the most beautiful woman in the first $i-1$ spots. We are looking for the probability that the most beautiful woman among the first $i-1$ spots (inclusive) lies somewhere in spots $1, 2, \ldots, q-1$. Since the most beautiful woman can be in any of the $i-1$ spots uniformly at random, and our event has her in $q-1$ specific spots, the probability of this event happening is just $(q-1)/(i-1)$. 
+			
+			\item In this case, we have to consider two possibilities: 
+			
+			First, if $q \leq i$, when the most beautiful woman is in position $i$, the probability that she will be matched with (i.e., $\P(\text{match using strategy} \;\mid\; \text{woman at position $i$})$), is just the probability that the most beautiful woman among the first $q-1$ is also the most beautiful woman among the first $i-1$, since if this is the case the first woman we will see who is more beautiful than all the previous ones will be ``the one''. So, given that $q \leq i$, $\P(\text{match using strategy} \;\mid\; \text{woman at position $i$}) = (q-1)/(i-1)$, the probability we found last time. 
+			
+			Second, in the case where $q > i$, we will have already seen ``the one'', and so no woman we see next will ever be as beautiful as her. Since we cannot match with any woman that came before position $q$, we see that we have a probability of 0 of matching with ``the one''.
+			
+			\item Let $q > 1$. Since the most beautiful woman can be in any of the $n$ spots, we see that (by the law of total probability),
+			\begin{align*}
+				\P(\text{match using strategy}) =\\
+				 \sum_{i=1}^{n} \P(\text{match using strategy} \;\mid\; \text{woman at position i}) \cdot \P(\text{woman at position i})
+			\end{align*}
+			We saw last time that if $i < q$, then we have no chances of matching with ``the one'', so the sum's first $q-1$ terms are just 0. Therefore, this sum equals
+			\begin{align*}
+				\sum_{i=q}^{n} \P(\text{match using strategy} \;\mid\; \text{woman at position i}) \cdot \P(\text{woman at position i})
+			\end{align*}
+			Since the woman can be in any of the $n$ spots uniformly at random, $\P(\text{woman at position $i$}) = \frac 1n$. We showed in part (b) that for $i \geq q$, $\P(\text{match using strategy} \;\mid\; \text{woman at position i}) = \frac{q-1}{i-1}$. So this sum becomes
+			\begin{align*}
+				\sum_{i=q}^{n} \P(\text{match using strategy} \;\mid\; \text{woman at position i}) \cdot \P(\text{woman at position i}) \\
+				= \sum_{i=q}^{n} \frac{q-1}{i-1} \cdot \frac 1n
+			\end{align*}
+			In the case where $q = 1$, we ``reject'' the first 0 people, and we accept the first woman who is more beautiful than the first 0 people. Since this will always just be the first woman, if $q=1$ we have a $\frac{1}{n}$ chance of matching with the most beautiful woman (by the logic from part (a)).
+			
+			\item I plugged my probability into a program, and got that for $n = 100$, the best $q$ is 38. For $n = 1000$, the best $q$ is 369. 
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

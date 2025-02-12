@@ -1,0 +1,386 @@
+\documentclass[12pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{listings}
+\usepackage{lstautogobble}
+\lstset{
+    basicstyle=\ttfamily,
+    mathescape=true,
+    autogobble=true
+}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[labelindent=0pt, labelwidth=!, wide]
+        \item \begin{enumerate}[leftmargin=0pt, label=(\alph*), labelindent=0pt, labelwidth=!, wide]
+            \item 
+            We use forward reasoning in the following way:
+            \begin{lstlisting}
+                {{$c > 0$ and $s > 0$}}
+                    e = 5n * c + 1;
+                {{$c > 0$ and $s > 0$ and $e=5c+1$}}
+                s = s + 3n; 
+                {{$c > 0$ and $s - 3> 0$ and $e=5c+1$}}
+                    c = c * s; 
+                {{$c/s > 0$ and $s>3$ and $e=5c/s+1$}}
+                {{e $>$ 1}}
+            \end{lstlisting}
+            
+            We prove that last implication. We have that $c/s > 0$, so we know since $c/s$ is an integer that $c/s \geq 1$. Thus $e = 5c/s+1 \geq 5 \cdot 1 + 1 = 6 > 1$. Thus $e > 1$.
+    
+            \item 
+            \begin{lstlisting}
+                {{$s \geq 0$ and $e = 0$}}
+                {{$3s + 2 \geq e+2$}}
+                s = 3n * s;
+                {{$s+2 \geq e+2$}}
+                e = e+2n;
+                {{$s+2 \geq e$}}
+                c = s+2n;
+                {{$c \geq e$}}
+            \end{lstlisting}
+            
+            The implication can be proved as follows. Since $s \geq 0$, we know that $3s + 2 \geq 3 \cdot 0 + 2 = 2 \geq 0 + 2 = e = 2$, since $e = 0$. Thus we have that $3s+2 \geq e+2$ from the precondition and we are done.
+            \item \begin{lstlisting}
+                {{$c \geq 1$ and $s = c^2$}}
+                if (s < 20n) {
+                    {{$c \geq 1$ and $s = c^2$ and $s<20$}}
+                    s = s + 5n;
+                    {{$c \geq 1$ and $s - 5 = c^2$ and $s-5<20$}}
+                } else if (s < 30n) {
+                    {{$c \geq 1$ and $s = c^2$ and $20 \leq s < 30$}}
+                    s = (s/c)+1n;
+                    {{$c \geq 1$ and $c(s-1)=c^2$ and $20 \leq c(s-1)<30$}}
+                } else {
+                    {{$c \geq 1$ and $s=c^2$ and $s \geq 30$}}
+                    s = s/c;
+                    {{$c \geq 1$ and $cs = c^2$ and $cs \geq 30$}}
+                }
+                {{$c \geq 1$ and $s - 5 = c^2$ and $s-5<20$ 
+                or $c \geq 1$ and $c(s-1)=c^2$ and $c(s-1)<30$ 
+                or $c \geq 1$ and $cs = c^2$ and $cs \geq 30$}}
+                {{$s > 5$}}
+            \end{lstlisting}
+            We prove the final implication by cases. In the first case, we know that $c \geq 1$, $s-5=c^2$ and $s-5 < 20$. Using the second condition, we see that $s -5 = c^2$ and so $s = 5 + c^2$. Since $c \geq 1$, we know that $c^2 \geq 1$. Using this we see that $s = 5+c^2 \geq 5+1 = 6 > 5$. 
+    
+            In the second case, we have that $c \geq 1$ and $c(s-1) = c^2$ and $20 \leq c(s-1)<30$. The second condition tells us that $s-1 = c$ after dividing by $c$ ($c$ is nonzero since by the first condition $c \geq 1$). We know from the last condition that $c(s-1) \geq 20$. Using that $s-1=c$ now tells us that $c^2 \geq 20$. Taking square roots on both sides, noting that $c \geq 1$ and hence $c \geq 0$, we have that $c \geq \sqrt{20} > 4$. Since $c$ is an integer, we must have that $c \geq 5$. Since $s = c+1$, we have that $s \geq 5+1 = 6 > 5$, and we are done.
+    
+            In the last case, we have that $c \geq 1$ and $cs = c^2$ and $cs \geq 30$. Once again using the second condition tells us that $s = c$ because $c \geq 1$ so we can divide on both sides by the nonzero constant $c$. Plugging this into $cs \geq 30$ tells us that $s^2 \geq 30$. Since $s=c$ we have that $s \geq 1$ as well. Taking square roots on both sides of $s^2 \geq 30$ tells us that $s \geq \sqrt{30} > 5$. Thus $s > 5$ as well.
+        \end{enumerate}
+
+        \newpage
+        \item \begin{enumerate}[label=(\alph*)]
+            \item Initially, we know that $x = x_0$, so we have that $4y = 4 \cdot 0 = 0 = x_0 - x$. Similarly, since $x_0 \geq 0$ we know that $x = x_0 \geq 0 \geq -4$, so the invariant holds at the top of the loop.
+            \item We use forward reasoning. We have:
+            \begin{lstlisting}
+                {{Inv: $4y =x_0 - x$ and $x \geq -4$}}
+                while (x >= 0) {
+                    {{$4y = x_0-x$ and $x \geq -4$ and $x \geq 0$}} $\iff$ {{$4y = x_0-x$ and $x \geq 0$}} 
+                    y = y + 1n;
+                    {{$4(y-1) = x_0 - x$ and $x \geq 0$}}
+                    x = x - 4n;
+                    {{$4(y-1) = x_0 - (x+4)$ and $x+4 \geq 0$}}
+                }
+            \end{lstlisting}
+            The fact that the last condition proves the invariant can be shown as follows. $4(y-1) = x_0 - (x+4)$ is the same as $4y - 4 = x_0 - x - 4$, and adding 4 to both sides shows that $4y = x_0 - x$ as required. The second condition is $x + 4 \geq 0$ which is the same as $x \geq -4$.
+            \item Once we have exited the loop we will have that $x < 0$. We can use the invariant to see then that $-4 \leq x < 0$. Using the fact that $4y = x_0 - x$, we can use the fact that $x \geq -4$ to then multiply both sides by $-1$ to get that $-x \leq 4$. Thus $4y = x_0 - x \leq x_0 + 4$. Since $x < 0$ here, and since $4y = x_0 - x$, we have again that $-x > 0$ after multiplying both sides by $-1$, so we can apply this to see that $4y = x_0 - x > x_0$. Thus $x_0 < 4y$ and we are done.
+        \end{enumerate}
+        \item
+            (a) Initially, we have that $a = 0$, $b = 0$, and $L = L_0$. So,
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-gt(L_0, x) &&= \rm sum-gt(L, x) && \text{$L = L_0$} \\
+                    &&&= \rm a + sum-gt(L, x) && \text{$a = 0$}
+                \end{aligned}
+            \end{align*}
+            Similarly, we have that:
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-lt(L_0, x) &&= \rm sum-lt(L, x) && \text{$L = L_0$} \\
+                    &&&= \rm b + sum-lt(L, x) && \text{$b = 0$}
+                \end{aligned}
+            \end{align*}
+            So the invariant holds at the top of the loop. 
+
+            (b) \begin{lstlisting}
+                {{Inv: sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                sum-lt($L_0, x$) = b + sum-lt(L, x)}}
+                while (L !== nil) {
+                    {{sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                    sum-lt($L_0, x$) = b + sum-lt(L, x) and
+                    L = cons(L.hd, L.tl)}}
+                    if (L.hd > x) {
+                        {{sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd $> x$}}
+                        a = a + (L.hd - x);
+                        {{sum-gt($L_0, x$) = a - (L.hd - x) + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd $> x$}}
+                    } else if (L.hd < x) {
+                        {{sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd $< x$}}
+                        b = b + (x-L.hd);
+                        {{sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b - (x-L.hd) + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd $< x$}}
+                    } else {
+                        // Do nothing
+                        {{sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd = x}}
+                    }
+                    {{sum-gt($L_0, x$) = a - (L.hd - x) + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd $> x$ or
+                        sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b - (x-L.hd) + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd $< x$ or
+                        sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                        sum-lt($L_0, x$) = b + sum-lt(L, x) and
+                        L = cons(L.hd, L.tl) and L.hd = x}}
+                    $\implies$
+                    {{sum-gt($L_0, x$) = a + sum-gt(L.tl, x) and
+                    sum-lt($L_0, x$) = b + sum-lt(L.tl, x)}}
+                    L = L.tl;
+                    {{sum-gt($L_0, x$) = a + sum-gt(L, x) and
+                    sum-lt($L_0, x$) = b + sum-lt(L, x)}}
+                }
+            \end{lstlisting}
+            We used backwards reasoning for the last line L = L.tl at the end there. I put the invariant under that line to make it clear how I am applying the backwards reasoning, and I added an $\implies$ to show the implication that we have to prove. We prove that now by cases. 
+        
+            In the first case, we have that sum-gt($L_0, x$) = a - (L.hd -x) + sum-gt(L, x) and sum-lt($L_0, x$) = b + sum-lt(L, x) and L = cons(L.hd, L.tl) and L.hd $> x$. We see that:
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-gt(L, x) &&= \rm sum-gt(cons(L.hd, L.tl), x) &&\text{\rm L = cons(L.hd, L.tl)} \\
+                    &&&= \rm (L.hd - x) + sum-gt(L.tl, x) &&\text{L.hd $>x$ and def of sum-gt}
+                \end{aligned}
+            \end{align*}
+            Plugging this calculation in, we see that sum-gt($L_0, x$) = a - (L.hd - x) + sum-gt(L, x) = a - (L.hd - x) + (L.hd - x) + sum-gt(L.tl, x) = a + sum-gt(L.tl, x) as desired.  Similarly,
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-lt(L, x) &&= \rm sum-lt(cons(L.hd, L.tl), x) &&\text{\rm L = cons(L.hd, L.tl)} \\
+                    &&&= \rm sum-lt(L.tl, x) &&\text{L.hd $>x$ and def of sum-lt}
+                \end{aligned}
+            \end{align*}
+            So we can plug this into the above to see that sum-lt($L_0, x$) = b + sum-lt(L, x) = b + sum-lt(L.tl, x) as well. This completes the proof of this case.
+        
+            In the second case, we know that sum-gt($L_0, x$) = a + sum-gt(L, x) and sum-lt($L_0, x$) = b - (x-L.hd) + sum-lt(L, x) and L = cons(L.hd, L.tl) and L.hd $< x$. We see that:
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-gt(L, x) &&= \rm sum-gt(cons(L.hd, L.tl), x) &&\text{\rm L = cons(L.hd, L.tl)} \\
+                    &&&= \rm sum-gt(L.tl, x) &&\text{L.hd $<x$ and def of sum-gt}
+                \end{aligned}
+            \end{align*}
+            Plugging this calculation in, we see that sum-gt($L_0, x$) = a + sum-gt(L, x) = a + sum-gt(L.tl, x) as desired.  Similarly,
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-lt(L, x) &&= \rm sum-lt(cons(L.hd, L.tl), x) &&\text{\rm L = cons(L.hd, L.tl)} \\
+                    &&&= \rm (x - L.hd) + sum-lt(L.tl, x) &&\text{L.hd $<x$ and def of sum-lt}
+                \end{aligned}
+            \end{align*}
+            So we can plug this into the above to see that sum-lt($L_0, x$) = b - (x-L.hd) + sum-lt(L, x) = b + sum-lt(L.tl, x) as well. This completes the proof of this case.
+        
+            In the last case, we know that sum-gt($L_0, x$) = a + sum-gt(L, x) and sum-lt($L_0, x$) = b + sum-lt(L, x) and L = cons(L.hd, L.tl) and L.hd = x. We see that:
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-gt(L, x) &&= \rm sum-gt(cons(L.hd, L.tl), x) &&\text{\rm L = cons(L.hd, L.tl)} \\
+                    &&&= \rm sum-gt(L.tl, x) &&\text{L.hd $=x$ and def of sum-gt}
+                \end{aligned}
+            \end{align*}
+            Plugging this calculation in, we see that sum-gt($L_0, x$) = a + sum-gt(L, x) = a + sum-gt(L.tl, x) as desired.  Similarly,
+            \begin{align*}
+                \begin{aligned}
+                    &\rm sum-lt(L, x) &&= \rm sum-lt(cons(L.hd, L.tl), x) &&\text{\rm L = cons(L.hd, L.tl)} \\
+                    &&&= \rm sum-lt(L.tl, x) &&\text{L.hd $=x$ and def of sum-lt}
+                \end{aligned}
+            \end{align*}
+            So we can plug this into the above to see that sum-lt($L_0, x$) = b + sum-lt(L, x) = b + sum-lt(L.tl, x) as well. This completes the proof of this case and hence the loop invariant.
+            \newline 
+            \newline
+            (c) When we exit the loop, we know that L = nil, that sum-gt($L_0, x$) = a + sum-gt(L, x) and sum-lt($L_0, x$) = b + sum-lt(L,x). Recalling that sum-gt(nil, x) = 0 and sum-lt(nil, x) = 0, we see that sum-gt($L_0, x$) = a + 0 = a and sum-lt($L_0, x$) = b + 0 = b. Thus we have that sum-gt($L_0, x$) = a and sum-lt($L_0, x$) = b as required which completes the proof.
+
+            \newpage
+            \item[5.] \begin{enumerate}[leftmargin=0pt, label=(\alph*), labelindent=0pt, labelwidth=!, wide]
+                \item Let $P(L)$ for a list $L$ be defined as $\rm contains(a, concat(L, S)) = \rm contains(a, L) \lor contains(a, S)$. We prove this claim by structural induction on $L$. First, if L = nil, then we have that:
+                \begin{align*}
+                    \begin{aligned}
+                        \rm contains(a, concat(L, S)) &= \rm contains(a, concat(nil, S)) && \text{L=nil} \\
+                        &= \rm contains(a, S) && \text{def of concat} \\
+                    \end{aligned}
+                \end{align*}
+                Since by definition contains(a, L) = contains(a, nil) = False, we know that contains(a, L) or contains(a, S) = contains(a, S) which shows the base case holds. Now suppose it holds for some list L. Then we have that:
+                \begin{align*}
+                    \begin{aligned}
+                        \rm contains(a, concat(cons(x, L), S)) &= \rm contains(a, cons(x, concat(L, S))) && \text{def of concat} \\
+                        &= (a=x) \rm \lor \rm contains(a, concat(L, S)) && \text{def of contains} \\
+                        &= ((a=x) \rm \lor \rm contains(a, L)) \rm \lor \rm contains(a, S) && \text{I.H.} \\
+                        &= \rm contains(a, cons(x, L)) \rm \lor \rm contains(a, S) && \text{def of contains} 
+                    \end{aligned}
+                \end{align*}
+                This completes the proof by structural induction of this first claim.
+
+                \item Let the claim $P(U)$ for a BST $U$ be defined as contains(a, toList(U)) = (search(a, U) $\neq$ undefined). We prove this claim by structural induction on $U$. First, if $U$ is empty, then we have that:
+                \begin{align*}
+                    \begin{aligned}
+                        \rm contains(a, toList(U)) &= \rm contains(a, toList(empty)) && \text{U=empty} \\
+                        &= \rm contains(a, nil) && \text{def of toList} \\
+                        &= \rm false && \text{def of contains}
+                    \end{aligned}
+                \end{align*}
+                Similarly,
+                \begin{align*}
+                    \begin{aligned}
+                        \rm search(a, U) &= \rm search(a, empty) && \text{U=empty} \\
+                        &= \rm undefined && \text{def of search}
+                    \end{aligned}
+                \end{align*}
+                So $\rm search(a, U) \neq undefined$ is false as well. Thus the base case holds. We now prove that 
+                \begin{lstlisting}
+                    contains(a, toList(node(b, S, T))) = contains(a, toLisT(S)) or (a == b) 
+                                                            or contains(a, toList(T))
+                \end{lstlisting}
+                Recall that toList(node(b, S, T)) = concat(toList(S), cons(b, toList(T))). Then by part (a), we have that:
+            
+                \begin{align*}
+                    \begin{aligned}
+                        \rm contains(a, toList(node(b, S, T))) &= \rm contains(a, concat(toList(S), cons(b, toList(T)))) && \text{def toList} \\
+                        &= \rm contains(a, toList(S)) \rm \lor \rm contains(a, cons(b, toList(T))) && \text{part (a)} \\
+                        &= \rm contains(a, toList(S)) \rm \lor (a=b) \rm \lor \rm contains(a, toList(T)) && \text{def contains} \\
+                    \end{aligned}
+                \end{align*}
+                Now suppose that $P(S), P(T)$ hold for BSTs $S, T$. 
+
+                First suppose that $a < b$. By the BST invariant, nothing $> b$ is in $S$ and nothing $\leq b$ is in $T$. In particular, $T$ does not have a node with value $a$, since all of its nodes have value $> b$. Thus we see that $\rm contains(a, toList(T)) = $false. Similarly, since $a < b$ we have that $a \neq b$. So the above in this case equals $\rm contains(a, toList(S))$, which is by the IH $\rm search(a, S) \neq undefined$. By the definition of search, we have that $\rm search(a, node(b, S, T)) = \rm search(a, S)$ since $a < b$. So we put these expressions together to get that the above equals $\rm search(a, node(b, S, T)) \neq undefined$ as desired. 
+
+                In the second case, where $a=b$, the above expression would evaluate to true. Similarly, $\rm search(a, node(b, S, T)) = \rm node(a, S, T)$ by definition. This is by definition undefined, so $\newline \rm (search(a, node(b, S, T)) \neq undefined)$ is true as well. This completes the proof in this case.
+
+                In the last case, suppose that $a > b$. Once again, by the BST invariant, nothing $> a$ appears as a node of $S$. So $\rm contains(a, toList(S)) = $false. Similarly $a \neq b$, so in this case this simplifies to $\rm contains(a, toList(T))$. By the IH, this is $\rm search(a, T) \neq undefined$. By the definition of search, $\rm search(a, search(b, S, T)) = \rm search(a, T)$ since $a > b$. So this expression also equals $\rm search(a, node(b, S, T)) \neq undefined$ as required. 
+            \end{enumerate}
+    \end{enumerate}
+\end{document}

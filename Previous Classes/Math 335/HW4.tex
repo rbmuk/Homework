@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\usepackage{listings}
+
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Given a fixed $N \in \bZ \cap [1, 100]$, and during one trial, we say that $N$ wins if the value that it returned using the strategy was within $10^{-10}$ of the actual answer. Then its win percentage is calculated as the number of times it wins / 100, as I will be using 100 trials. After testing all values of $N$, I put them into an array, took the 5 biggest winners, and took their average, and said that that would be the best theoretical $N$. After running this code $\approx$10 times, I got values within 5 of 38 (going up and down), but as python is 0-indexed, the best value is probably about 39. I think intuitively you would think it would be $>$ 50, but the results don't show that, surprisingly. Here is my code:
+		\begin{lstlisting}[language=Python]
+			import numpy as np
+			from numpy import random
+			
+			wins = np.empty(100, dtype=float)
+			for N in range(1, 100):
+			winrate = 0
+			for i in range(100):
+			x = random.uniform(0, 1, [100])
+			firstN = x[:N]
+			maxfirst = firstN.max()
+			strategy = -1
+			for j in range(100-N):
+			if x[N+j-1] >= maxfirst:
+			strategy = x[N+j-1]
+			break
+			if (strategy == 0):
+			strategy = x[99]
+			totalmax = x.max()
+			if (totalmax - strategy < 0.0000000001):
+			winrate += 1
+			wins[N] = winrate/1000
+			
+			top5 = np.argpartition(wins, -5)[-5:]
+			print(np.round(sum(top5)/5))
+		\end{lstlisting} And yes, I did have to look up how to get the indexes of the top 5 winners! argpartition is pretty magical.
+	
+		\item I ran monte-carlo with 100,000 points 10 times, and took the average, subtracted $\frac{\pi}4$ from it, and consistently got values between $-0.002$ and $-0.0017$ (I ran it a couple of times). We proved in class that monte-carlo should approximate the actual value to around $\frac1{\sqrt{100000}} \approx 0.003162$. So I would say that Monte-Carlo strongly suggests that the actual value of the integral is $\frac{\pi}4$, at least up to an error of $0.003162+0.002 \approx 0.005$, which is very precise. After looking it up I can see now that this is not entirely true, but in any case its close enough to the actual answer as one would probably want. The distance from the real answer to $\pi/4$ is $0.00196$, which is certainly in the error range that I suggested.
+		
+		\item I used a python script that took 100,000 points in (0, 1), calculated the function value given in the problem, and then averaged all of them to find a local average for $f$. I did this 100 times, and again averaged that, and I got an average of about 0.271595. The $\sqrt{n}$ error that we proved shows that this should be within $0.00316$ (times some small constant) of the actual value, and surprisingly, it is actually off by around $0.05$ (from the value given by wolfram). I believe this is because our function starts rapidly oscillating around 0, so you would need a monstrous number of points to approximate this well. I also tried using the midpoint method, but that ended up giving me worse results, so I just used this.
+		
+		\item The jacobian is \begin{align*}
+			\begin{pmatrix}
+				\cos(\theta) & \sin(\theta) & 0 & 0 \\
+				-r\sin(\theta) & r\cos(\theta) & 0 & 0 \\
+				0 & 0 & \cos(\varphi) & \sin(\varphi) \\
+				0 & 0 & -s\sin(\varphi) & s\cos(\varphi) 
+			\end{pmatrix}
+		\end{align*} If we expand along the top row, we get that the det of the jacobian is $\cos(\theta)(r\cos(\theta)s)-\sin(\theta)(-r\sin(\theta)s)$, where we have used the fact that $\sin^2(\phi) + \cos^2(\phi) = 1$. This simplifies down to $rs\cos^2(\theta)+rs\sin^2(\theta) = rs$, and this quantity is strictly positive over our entire domain, so it is it's own absolute value. Our angles run through all values, so our integral is
+		\begin{align*}
+			\int_0^{2\pi} \int_0^{2\pi} \int_0^R \int_0^{\sqrt{R^2-r^2}} rs dsdrd\theta d\phi &= \frac{4\pi^2}2 \int_0^R  r(R^2-r^2) dr \\
+			&= 2\pi^2 \qty(\frac {R^4}2 - \frac {R^4}4) \\
+			&= \frac{\pi^2 R^4}2
+		\end{align*}
+		The first step is just separating out the outer integrals, as the inside is completely independent of them. I would say the hardest part of this is finding the jacobian.
+		
+		\item Noting that everything converges (by the limit comparison test to $1/k^2$), we can say that 
+		\begin{align*}
+			\sum_{k \geq 1} \frac1{k^2} = \sum_{k \geq 1} \frac1{(2k)^2} + \sum_{k \geq 1} \frac{1}{(2k+1)^2}
+		\end{align*}
+		As the right side of the equation is simply the left side but rearranged, where this rearrangement is guaranteed to exist and converge to the actual value because everything converges (absolutely). Rearranging this equation gives us,
+		\begin{align*}
+			\frac34 \sum_{k \geq 1} \frac{1}{k^2} = \sum_{k \geq 1} \frac{1}{(2k+1)^2}
+		\end{align*}
+		Which completes the first part of the problem (as $\pi^2/8 = \frac 34 \pi^2/6$).
+		
+		Next, note that
+		\begin{align*}
+			\sum_{k \geq 1} \frac{1}{(2k+1)^2} &= \sum_{k \geq 1} \frac{x^{2k+1}}{2k+1} \eval_0^1 \cdot \frac{y^{2k+1}}{2k+1} \eval_0^1 \\
+			&= \sum_{k \geq 1} \int_0^1 x^2k dx \int_0^1 y^2kdy \\
+			&= \sum_{k \geq 1} \int_[0,1]^2 (x^2y^2)^k dA \\
+			&=  \int_{[0, 1]^2} \sum_{k \geq 1} (x^2y^2)^k dA \\
+			&= \int_0^1 \int_0^1 \frac1{1-x^2y^2}dxdy
+		\end{align*}
+		I do not believe we have been given the theory for being able to interchange an infinite sum and an integral, as that would require monotone convergence theorem, etc. so I won't say why that step is justified (mainly because I don't know why its justified). Given that crazy substitution, we see that the det of the jacobian is
+		$$\det\begin{pmatrix}
+			\frac{\cos(u)}{\cos(v)} & \frac{\sin(u)\sin(v)}{\cos^2(u)} \\
+			\frac{\sin(v)\sin(u)}{\cos^2(v)} & \frac{\cos(v)}{\cos(u)} 
+		\end{pmatrix} = 1 - \tan^2(v)\tan^2(u)$$
+		Now given the bijection, we see that our new integral is
+		\begin{align*}
+			\int_0^{\pi/2} \int_0^{\pi/2 - u} \frac{1}{1-\tan^2(u)\tan^2(v)} \cdot (1-\tan^2(u)\tan^2(v))  dvdu &= \int_0^{\pi/2} \int_0^{\pi/2 - u} 1dvdu \\
+			&= \frac{\pi^2}{8}
+		\end{align*}
+		Where the last equality comes from the formula for the area of a triangle. This is a beautiful problem! This solution is \textbf{very} simliar to \href{https://www.youtube.com/watch?v=etqcF3ZvoXA}{Apostol's solution to the basel problem} (which is something I watched around the time it came out).
+	\end{enumerate}
+\end{document}

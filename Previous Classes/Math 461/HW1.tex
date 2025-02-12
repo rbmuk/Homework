@@ -1,0 +1,154 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+\newcommand{\A}{\textcolor{magenta}{A}}
+\newcommand{\B}{\textcolor{blue}{B}}
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 461 HW1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We can distinguish our committee by the number of men vs women there are. We have 6 cases: 5 men 0 women, 4 men 1 woman, 3 men 2 women, 2 men 3 women, 1 man 4 women, and 0 men 5 women. In the first case we are choosing 5 men from a total of 6, yielding $6 \choose 5$ choices. In the second case we want 4 men from a total of 6 and 1 woman from a total of 8, giving ${6 \choose 4} \cdot {8 \choose 1}$ choices. Doing this for all the other cases gives ${6 \choose 3} \cdot {8 \choose 2}$, ${6 \choose 2} \cdot {8 \choose 3}$, ${6 \choose 1} \cdot {8 \choose 4}$, and ${6 \choose 0} \cdot {8 \choose 5}$ respectively, yielding a total of
+		\begin{align*}
+			\boxed{{6 \choose 5} + {6 \choose 4} \cdot {8 \choose 1} + {6 \choose 3} \cdot {8 \choose 2} + {6 \choose 2} \cdot {8 \choose 3} + {6 \choose 1} \cdot {8 \choose 4} + {6 \choose 0} \cdot {8 \choose 5}}
+		\end{align*}
+	
+		\newpage
+		\item Since there is precisely one F, we can partition our rearrangements by where the F is. If the F is in the first or last spot, the remaining 4 R's and 3 E's can go in any spot. If we pretend the R's and E's are distinguishable, this would give us $1 \cdot 7!$, but since they are not, we are double counting by a factor of $3! \cdot 4!$. This gives a total of $7!/(3! \cdot 4!)$ in this case. Now we can look at the 2nd 3rd 4th 5th and 6th slot. If the F is in the second slot, by the restriction it either has 2 R's surrounding it or 2 E's. In the first case the remaining 2 R's and 3 E's can go in any order in the remaining places, so by doing the same trick as before, we get a total of $5! / (2! \cdot 3!)$. If the surrounding letters are E's, we have 4 R's and 1 E to work with, which would give us a total of $5! / 4! = 5$. In sum if the F is in the second spot we get a total of $5!/(2! \cdot 3!) + 5$ rearrangements. One sees this argument works exactly the same for the 3rd, 4th, 5th, and 6th slot, so our total is
+		\begin{align*}
+			\boxed{2 \cdot \frac{7!}{3! \cdot 4!} + 5 \cdot \qty(\frac{5!}{2! \cdot 3!} + 5)}
+		\end{align*}
+	
+		\newpage
+		\item Here we can divide into cases, based on the number of 2 person groups there are. There can be 0, 1, 2, or 3 2-person groups. In the first case we are just putting the 7 people into 7 1-person groups which can be done in exactly 1 way. In the second case, ${7 \choose 2}$ people can go in the 2-person group, and the remaining 5 go into 1-person groups in 1 way. In the third case, ${7 \choose 2}$ can go into the first 2-person group, and then ${5 \choose 2}$ can go into the next 2-person group. This however double counts the groups because we could've picked the same groups in a different order, and it is clear that the remaining 3 people go into 1-person groups in just one way. So this case yields ${7 \choose 2} \cdot {5 \choose 2}/2$. In the final case through the same process we get ${7 \choose 2} \cdot {5 \choose 2} \cdot {3 \choose 2} / 3!$. Our total is thus
+		\begin{align*}
+			\boxed{1+{7 \choose 2} + \frac12 {7 \choose 2} \cdot {5 \choose 2} + \frac1{3!} {7 \choose 2} \cdot {5 \choose 2} \cdot {3 \choose 2}}
+		\end{align*}
+	
+		\newpage
+		\item We can divide our coverings by how many horizontal tiles there are. First, we prove the following lemma:
+		If there is a vertical domino on a covering, there must be a vertical domino adjacent to it (i.e., not up or down one spot). It's clear one can't have a horizontal domino adjacent to it, and WLOG, we shall only cover the case where the domino is (1) in the left column, (2) there is a vertical domino one tile up to to the right of it, and (3) we are not at the bottom (if we were, we are already done). All other cases work the same way. We must have a vertical domino on the right column below that one. This situation forces us to have a vertical domino below our original domino. We are now in the same situation as we started in, but we have moved down 1 spot. Continuing this process until we hit the bottom, we shall have one tile open on either the first or second column with a covered tile next to it, a contradiction. 
+		
+		This allows us to simplify the problem by instead looking at covering a $1 \times 10$ column by either blocks of height 1 denoted \textcolor{magenta}{A}) or blocks of height 2 (denoted \textcolor{blue}{B}). Since our column has 10 tiles, if we have an height 1 block we need another height 1 block (they come in pairs). If not, we could somehow get by with an odd number of height 1 tiles, but as our only other option is height 2 tiles, which keeps the number of tiles odd, this can't work. So, we could have 
+		\begin{center}
+			\begin{tabular}{|c | c|}
+			\hline
+			\A & \B \\
+			\hline
+			10 & 0 \\
+			\hline
+			8 & 1 \\
+			\hline
+			6 & 2 \\
+			\hline
+			4 & 3 \\
+			\hline
+			2 & 4 \\
+			\hline
+			0 & 5 \\
+			\hline
+			\end{tabular}
+		\end{center}
+		respectively. (The \A's must be even, and if, for example, there are only 4 of them, to finish the column we would need to include 1 \B). From here the idea is clear: the multinomial coefficient! The first case can be done in ${10 \choose 10,0} = 1$ ways. The second in ${9 \choose 8,1}$ ways (note although it seems we only have 5 blocks to work with, if we were to return to the $2 \times 10$ column, we have an attached vertical block by the aforementioned lemma, so we still have 6 blocks!). Continuing this pattern yields our final answer of
+		\begin{align*}
+			\boxed{{10 \choose 10,0} + {9 \choose 8,1} + {8 \choose 6,2} + {7 \choose 4, 3} + {6 \choose 2, 4} + {5 \choose 0, 5}}
+		\end{align*}
+		We generalize to the case of a $2 \times n$ column where $n$ is even by the formula
+		\begin{align*}
+			\sum_{i=0}^{n/2} {n - i \choose n-2i, i}
+		\end{align*}
+		
+		\newpage
+		\item Pretending that we are picking ordered pairs of subsets, we can instead look at the number of ways to choose 2 subsets with empty intersection, and subtract that from the total number of ways to choose 2 subsets, of course being $2^n \cdot 2^n = 2^{2n}$. Let $0 \leq i \leq n$ be the size of the first subset $S_1$. To have empty intersection the second subset needs to be a subset of $[n] \setminus S_1$, which has size $n - i$. The number of subsets of a set with $n-i$ elements is of course $2^{n-i}$. Summing over the number of subsets of size $i$ yields a total of $\sum_{i=0}^n {n \choose i} 2^{n-i} = \sum_{i=0}^n {n \choose i} 1^i 2^{n-i} = 3^n$ by the binomial theorem. We conclude the number of ways to choose 2 pairs of subsets with nonempty intersection is
+		\begin{align*}
+			\boxed{2^{2n} - 3^n}
+		\end{align*}
+	\end{enumerate}
+\end{document}

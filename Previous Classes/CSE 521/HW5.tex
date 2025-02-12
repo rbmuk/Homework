@@ -1,0 +1,192 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathrm{Pr}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+
+% Sets
+\usepackage{braket}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 521 HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We first claim that $P M P^T \in \R^{m \times m}$ is symmetric. Indeed,
+			\begin{align*}
+				(PMP^T)^T = (P^T)^T M^T P^T = P M P^T
+			\end{align*}
+			We recall that symmetric $M \in \R^{n \times n}$ is PSD iff $x^T M x \geq 0$ for all $x \in \R^n$. Thus, given an arbitrary $x \in \R^m$,
+			\begin{align*}
+				x^T PMP^T x = (P^Tx)^T M (P^Tx) \geq 0
+			\end{align*}
+			Since $P^Tx \in \R^n$ is just another vector.
+			
+			\item I claim that if $M$ has $k$ positive eigenvalues, then $M + vv^T$ has at most $k + 1$ positive eigenvalues for any $v$. Indeed, enumerate the eigenvalues of $M$ as $\lambda_1, \ldots, \lambda_n$, and the eigenvalues of $M + vv^T$ as $\beta_1, \ldots, \beta_n$. We have the following inequality:
+			\begin{align*}
+				\lambda_n \leq \beta_n \leq \cdots \leq \lambda_1 \leq \beta_1
+			\end{align*}
+			In particular, since $\lambda_{k+1} \leq 0$, we have $\beta_{k+2} \leq \lambda_{k+1} \leq 0$, and in general $\beta_{i} \leq 0$ for $i > k + 2$. Thus there can be at most $k + 1$ positive eigenvalues. My second claim is that if $M$ has $k$ positive eigenvalues, then $M - vv^T$ has at most $k$ positive eigenvalues. This follows similarly as last time, since $\lambda_{k+1} \leq \beta_{k+1} \leq 0$. With these two simple facts we can finish the problem. Write $M = \sum_{i=1}^n \lambda_i u_iu_i^T$. Clearly \begin{align*}
+				PMP^T = \sum_{i=1}^n \lambda_i (Pu_i)(Pu_i)^T = \sum_{i=1}^n \mathrm{sgn}(\lambda_i)(\sqrt{|\lambda_i|}Pu_i)(\sqrt{|\lambda_i|}Pu_i)^T.
+			\end{align*}
+			Starting from the 0 matrix, which has 0 positive eigenvalues, we now add each of the matrices in the above sum one at a time. For each $\lambda_i > 0$, we can pick up at most $1$ positive eigenvalue, and for each $\lambda_i < 0$, can pick up at most 0 eigenvalues. Since there are exactly $k$ positive eigenvalues, we conclude that $PMP^T$ has at most $k$ positive eigenvalues. Forsooth, the claim is upon us.
+			\end{enumerate}
+		
+		\item
+		\begin{enumerate}
+			\item If $\sigma_i$ are the singular values of $A$, we know that $\sigma_i^2$ are the eigenvalues of $A^TA$. What can we say about $(A^TA)^T (A^TA) = A^TAA^TA$? Clearly, if $v_i$ is the eigenvector associated with $\sigma_i^2$, we have that
+			\begin{align*}
+				A^TAA^TA v_i = A^TA \sigma_i^2 v_i = \sigma_i^4 v_i
+			\end{align*}
+			So the eigenvalues of $A^TAA^TA$ are precisely the $\sigma_i^4$. Now,
+			\begin{align*}
+				\mg{A^TA}_F^2 = \sum_{i=1}^n \lambda_i((A^TA)^T(A^TA)) = \sum_{i=1}^n \sigma_i^4 \leq \sigma_1^2 \sum_{i=1}^n \sigma_i^2 = \mg{A} \cdot \mg{A}_F
+			\end{align*}
+			We remark that this also gives equality conditions. Equality holds iff every singular value is equal.
+		
+			\item First, $\mg{A\sigma}^2 = \sigma^T A^T A \sigma$. Second, notice that
+			\begin{align*}
+				\E[\mg{A\sigma}^2] &= \E[\sum_{i=1}^n \langle a_i, \sigma \rangle^2] = \E[\sum_{i=1}^n \qty(\sum_{j=1}^n a_j^i \sigma_j)^2] \\
+				&= \sum_{i=1}^n \sum_{1 \leq j, k \leq n} \E[a_j^i a_k^i \sigma_j \sigma_k]
+			\end{align*}
+			Next notice that $\E[\sigma_i] = 0$ and that $\E[\sigma_i^2] = \frac12 \cdot 1^2 + \frac12 \cdot (-1)^2 = 1$. Thus, this equals,
+			\begin{align*}
+				\sum_{i=1}^n \sum_{j=1}^n (a_j^i)^2 = \mg{A}_F^2
+			\end{align*}
+			Now,
+			\begin{align*}
+				\P[\qty|\sigma^T A^T A \sigma - \E[\sigma^T A^TA\sigma]| > \ve \E[\sigma^T A^TA\sigma]] &= \P[\qty|\mg{A\sigma}^2 - \mg{A}_F^2| > \ve \mg{A}_F^2] \\ &\leq 2\exp(-c\frac{\ve^2 \mg{A}_F^4}{\mg{A^TA}_F^2}) \\
+				&\leq 2\exp(-c\frac{\ve^2 \mg{A}_F^4}{\mg{A}^2 \mg{A}_F^2}) \\
+				&= 2\exp(-c \frac{\ve^2 \mg{A}_F^2}{\mg{A}^2})
+			\end{align*}
+			Very nice.
+			
+			\item We see clearly that $d(\sigma, E) = \mg{\sigma - \Pi_E \sigma}$, as was shown in class and can be easily seen geometrically. Thus, $d(\sigma, E) = \mg{(I - \Pi_E)\sigma} = \mg{\Pi_E^\perp \sigma}$. Finding $w_1, \ldots, w_d$ an orthonormal basis for $E$, we have that $\Pi_E = \sum_{i=1}^d w_iw_i^T$. Extending this to a basis of $\R^n$ as $w_1, \ldots, w_d, v_1, \ldots, v_{n-d}$, we have that $\Pi_E^\perp = \sum_{i=1}^{n-d} v_iv_i^T$. Notice now that
+			\begin{align*}
+				\big\| \sum_{i=1}^{n-d} v_iv_i^T \big\|_F^2 &= \Tr(\sum_{1 \leq i,j \leq n-d} v_iv_i^T v_j v_J^T) = \Tr(\sum_{i=1}^{n-d} v_iv_i^T) = \sum_{i=1}^n \Tr(v_i v_i^T) \\
+				&= \sum_{i=1}^{n-d} \Tr(v_i^T v_i) = \sum_{i=1}^{n-d} \mg{v_i}^2 = n-d
+			\end{align*}
+			We also claim that $\mg{\Pi_E^\perp} \leq 1$. This follows since $\mg{\Pi_E^\perp}$ equals the max eigenvalue of $\Pi_E^\perp (\Pi_E^\perp)^T = \Pi_E^\perp$, and the max eigenvalue of a projection matrix is at most 1. We conclude that
+			\begin{align*}
+				\P[\qty|\frac{d(\sigma, E)}{n-d} - 1| > \ve] &= \P[\qty|\frac{\mg{\Pi_E^\perp \sigma}}{\mg{\Pi_E^\perp}_F} - 1| > \ve] \leq 2\exp(-c \frac{\ve^2 \mg{\Pi_E^\perp}_F^2}{\mg{\Pi_E^\perp}}) \\ &= 2\exp(-c \frac{\ve^2(n-d)}{\mg{\Pi_E^\perp}}) \\
+				&\leq 2\exp(-c \ve^2 (n-d))
+			\end{align*}
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

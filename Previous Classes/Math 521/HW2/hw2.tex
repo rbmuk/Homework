@@ -1,0 +1,305 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{dsfont}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra,amsfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 521 HW1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item Let $(X,Y)$ be the random vector that takes on $(0,0)$, $(1, 1)$, $(2, 0)$ each with probability $1/3$. Then,
+        \begin{align*}
+            \E[XY] &= \frac 13 \\
+            \E[X] &= 1 \\
+            \E[Y] &= \frac 13 \\
+        \end{align*}
+        Hence $\mathrm{Cov}(X,Y) = 0$. However, noticing that $Y \cdot \1_{|Y| \leq 1} = Y$,
+        \begin{align*}
+            \E[X \cdot \1_{|X| \leq 1} Y] &= 0 + \frac 13 \cdot 1 \cdot 1 + 0 = \frac 13 \\
+            \E[X \cdot \1_{|X| \leq 1}] &= \frac 13 \\
+            \E[Y] &= \frac 13
+        \end{align*}
+        thus, $\mathrm{Cov}(X \cdot \1_{|X| \leq 1}, Y) = \frac 13 - \frac 19$.
+
+        \item We see that, by Fubini's theorem,
+        \begin{align*}
+            \E[f(X)] &= \int_\R f(x) \mu_X(dx) = \int_\R \int_0^x f'(y)dy \mu_X(dx) \\ &= \int_\R \int_y^\infty f'(y)\mu_X(dx)dy = \int_\R f'(y) \P(X \geq y)dy
+        \end{align*}
+
+        \item For $m \leq n$, we know that
+        \begin{align*}
+            \E[\frac{S_m}{S_n}] = \sum_{i=1}^m \E[\frac{X_i}{S_n}]
+        \end{align*}
+        Now, notice that:
+        \begin{align*}
+            \E[\frac{X_1}{X_1+X_2}] = \int_{\R^2} \frac{x}{x+y} d(\mu_{X_1} \times \mu_{X_2}) = \int_{\R^2} \frac{x}{x+y} d(\mu_{X_2} \times \mu_{X_1}) = \E[\frac{X_2}{X_1+X_2}]
+        \end{align*}
+        Since $\mu_{X_1} = \mu_{X_2}$. Extending this result to the case of $n$ variables, we have, for $1 \leq i \leq n$,
+        \begin{align*}
+            \E[\frac{X_i}{S_n}] = \E[\frac{X_1}{S_n}]
+        \end{align*}
+        Thus,
+        \begin{align*}
+            1 = \E[\frac{S_n}{S_n}] = \sum_{i=1}^n \E[\frac{X_i}{S_n}] = n \E[\frac{X_1}{S_n}]
+        \end{align*}
+        And thus $\E[\frac{X_1}{S_n}] = \frac 1n$. In conclusion we have that $\E[S_m/S_n] = m/n$.
+
+        On the other hand, if $m > n$, we have that:
+        \begin{align*}
+            \E[\frac{S_m}{S_n}] = \E[\frac{S_n}{S_n}] + \E[\frac{S_m - S_n}{S_n}] = 1 + \E[\frac{\sum_{i=n+1}^m X_i}{S_n}]
+        \end{align*}
+        Now, each $X_i$ for $i > n$ is independent of $S_n$, and thus we have that:
+        \begin{align*}
+            \E[\frac{\sum_{i=n+1}^m X_i}{S_n}] = \sum_{i=n+1}^m \E[\frac{X_i}{S_n}] = \sum_{i=n+1}^m \E[X_i]\E[\frac{1}{S_n}] = (m-n)\E[X_1]\E[\frac{1}{S_n}]
+        \end{align*}
+        Which finally shows that:
+        \begin{align*}
+            \E[S_m/S_n] = 1 + (m-n)\E[X_1]\E[1/S_n]
+        \end{align*}
+
+        \item Recall that $X_n \to X$ in probability iff given any subsequence $X_{n_m}$ of $X_n$, there is a further subsequence $X_{n_{m_k}} \to X$ a.s. So, let $X_{n_m} + Y_{n_m}$ be a subsequence of $X_n+Y_n$. Find a subsequence of $X_{n_m}$, say $X_{n_{m_k}} \to X$ a.s.. Further, find a subsequence of $Y_{n_{m_k}}$ say $Y_{n_{m_{k_l}}} \to Y$ a.s.. Then, we have that $X_{n_{m_{k_l}}} + Y_{n_{m_{k_l}}} \to X+Y$ a.s., which shows that $X_n+Y_n \to X +Y$ in probability.
+
+        Similarly, let $X_{n_m}Y_{n_m}$ be a subsequence of $X_nY_n$. Find a subsequence of $X_{n_m}$, say $X_{n_{m_k}} \to X$ a.s.. Further, find a subsequence of $Y_{n_{m_k}}$ say $Y_{n_{m_{k_l}}} \to Y$ a.s.. Then, we have that $X_{n_{m_{k_l}}}Y_{n_{m_{k_l}}} \to XY$ a.s., which shows that $X_nY_n \to XY$ in probability.
+
+        \item For a fixed $k$, we have that,
+        \begin{align*}
+            \E[(X_k-\overline X)^2] &= \E[X_k^2] - 2\E[X_k \overline X] + \E[\overline X^2]
+        \end{align*}
+        First,
+        \begin{align*}
+            \E[X_k \overline X] = \frac 1n \sum_i \E[X_kX_i] = \frac 1n\E[X_k^2] + \frac{n-1}n\E[X_k]^2
+        \end{align*}
+        Second,
+        \begin{align*}
+            \E[\overline X^2] = \frac{1}{n^2}\sum_{i,j} \E[X_iX_j] = \frac{1}{n^2} \qty(n\E[X_k^2] + n(n-1)\E[X_k]^2) = \frac{1}{n}\E[X_k^2] + \frac{n-1}{n}\E[X_k]^2
+        \end{align*}
+        Adding these together shows that,
+        \begin{align*}
+            \E[(X_k-\overline X)^2] &= \E[X_k^2] - \frac 2n \E[X_k^2] - \frac{2(n-1)}n \E[X_k]^2 + \frac 1n\E[X_k^2] + \frac{n-1}{n}\E[X_k]^2 
+            \\&= \frac{n-1}n \E[X_k^2] - \frac{n-1}{n} \E[X_k]^2 = \frac{n-1}{n}\Var(X_1)
+        \end{align*}
+        Thus,
+        \begin{align*}
+            \E[\overline V_n] = \frac{1}{n-1} \sum_{i=1}^n \E[(X_i-\overline X)^2] = \sigma^2
+        \end{align*}
+
+        Notice that
+        \begin{align*}
+            \overline V_n &= \frac{1}{n-1} \sum_{i=1}^n (X_k-\overline X_n)^2 = \frac{1}{n-1} \sum_{i=1}^n \qty(X_k^2 - 2X_k\overline X_n + \overline X_n^2) \\
+            &= \frac{1}{n-1} \sum_{i=1}^n X_k^2 - \frac{n}{n-1}\overline X_n^2 
+        \end{align*}
+        Assume WLOG that $\E[X_1]=0$ (possibly after shifting). Then,
+        \begin{align*}
+            \frac{1}{n} \sum_{i=1}^n X_k^2 \to \sigma^2
+        \end{align*}
+        in probability by the weak law of large numbers. Similarly, $\frac{n}{n-1} \to 1$ in probability so that $\frac{1}{n-1} \sum_{i=1}^n X_k^2 \to \sigma^2$ in probability. Also by the weak large of large numbers, $\overline X_n \to 0$ in probability. Thus, $\overline X_n^2 \to 0$ in probablity (since the product of two sequences converging to 0 in probability also converges to 0 in probability, by the last question). Thus $\frac{n}{n-1} \overline X_n^2 \to 0$ in probability. Thus the sum of these two terms converges to $\sigma^2$ in probability, which completes the proof.
+
+        \item We shall show that 
+        \begin{align*}
+            (f(X)-f(Y))(g(X)-g(Y)) \geq 0
+        \end{align*}
+        For each $\omega \in \Omega$, either $X(\omega) \leq Y(\omega)$ or vice versa. In the first case, both terms in the above product are $\leq 0$ and the product is $\geq 0$. In the second, both are $\geq 0$, and so the product is $\geq 0$.
+        Thus,
+        \begin{align*}
+            \E[f(X)g(X)] - \E[f(X)g(Y)] - \E[f(Y)g(X)] + \E[f(Y)g(Y)] \\
+            = \E[(f(X)-f(Y))(g(X)-g(Y))] \geq 0
+        \end{align*}
+        Now notice that $\E[f(Y)g(Y)] = \E[f(X)g(X)]$, and because $X,Y$ are independent, $\E[f(X)g(Y)] = \E[f(Y)g(X)] = \E[f(X)]\E[g(X)]$. This completes the proof.
+
+        \item By Cauchy-Schwarz, we have that:
+        \begin{align*}
+            \E[X \cdot \1_{X > 0}]^2 &\leq \E[X^2]\E[1_{X>0}] = \E[X^2]\P(X>0)
+        \end{align*}
+        because $X \geq 0$, we know that $X \cdot \1_{X > 0} = X$ (For if $X = 0$, then both sides are just 0). So we have that:
+        \begin{align*}
+            \frac{\E[X]^2}{\E[X^2]} \leq \P(X > 0)
+        \end{align*}
+
+        \item Let $_mS_n = \sum_{k=m}^n \1_{A_k}$. Then we have that:
+        \begin{align*}
+            \E[_mS_n] = \sum_{k=m}^n \P(A_k) = \sum_{k=1}^n \P(A_k) - \sum_{k=1}^{m-1} \P(A_k)
+        \end{align*}
+        And,
+        \begin{align*}
+            \E[_mS_n^2] &= \sum_{m \leq k,j \leq n} \E[\1_{A_k}\1_{A_j}] = \sum_{m \leq k,j \leq n} \P(A_k \cap A_j) \\
+            &= \sum_{1 \leq k,j \leq n} \P(A_k \cap A_j) - 2\sum_{k=1}^n \sum_{j=1}^{m-1} \P(A_k \cap A_j) + \sum_{1 \leq k,j \leq m-1} \P(A_k \cap A_j) 
+        \end{align*}
+        We use the following lemma.
+        \begin{lemma}
+            For $a_n \uparrow \infty$ and $b_n \uparrow \infty$, if $\limsup_{n \to \infty} \frac{a_n^2}{b_n} = \alpha > 0$, then $\limsup_{n \to \infty} \frac{a_n}{b_n} = 0$ (and hence $\lim_{n \to \infty} \frac{a_n}{b_n} = 0$).
+        \end{lemma}
+        \begin{proof}
+            Suppose instead that $\limsup_{n \to \infty} \frac{a_n}{b_n} = \beta > 0$. Then, eventually $a_n/b_n \geq \beta/2$. Then eventually,
+            \begin{align*}
+                \frac{a_n^2}{b_n} \geq \frac \beta 2 a_n \uparrow \infty
+            \end{align*}
+            a contradiction.
+        \end{proof}
+        We use this to show that a number of terms are negligible in the limsup. First,
+        \begin{align*}
+            \limsup_{n \to \infty} \frac{\E[_1S_n]^2}{\E[_1S_n^2]} = \alpha > 0
+        \end{align*}
+        So by the above lemma $\E[_1S_n]/\E[_1S_n^2] \to 0$. Also,
+        \begin{align*}
+            \sum_{k=1}^n \sum_{j=1}^{m-1} \P(A_k \cap A_j) \leq \sum_{k=1}^n (m-1)\P(A_k) = (m-1)\E[_1S_n]
+        \end{align*}
+        Combining the above, we have that:
+        \begin{align*}
+            \limsup_{n \to \infty} \frac{\E[_mS_n^2]}{\E[_1S_n^2]} = \limsup_{n \to \infty} \frac{\E[_1S_n^2] - 2\sum_{k=1}^n \sum_{j=1}^{m-1} \P(A_k \cap A_j) + \E[_1S_{m-1}^2]}{\E[_1S_n^2]} = 1
+        \end{align*}
+        And also, because the bottom destroys all the lower order terms to the right of the first term on the top,
+        \begin{align*}
+            \limsup_{n \to \infty} \frac{\E[_mS_n]^2}{\E[_1S_n^2]} &= \limsup_{n \to \infty} \frac{\E[_1S_n]^2 - 2\E[_1S_n]\E[_1S_{m-1}] + \E[_1S_{m-1}]^2}{\E[_1S_n^2]} 
+            \\&= \limsup_{n \to \infty} \frac{\qty(\sum_{1 \leq k \leq n} \P(A_k))^2}{\sum_{1 \leq k,j \leq n} \P(A_k \cap A_j)} = \alpha
+        \end{align*}
+        Thus,
+        \begin{align*}
+            \limsup_{n \to \infty} \frac{\E[_mS_n]^2}{\E[_mS_n^2]} = \alpha
+        \end{align*}
+        after dividing top and bottom by $\E[_1S_n^2]$. 
+        By using the previous exercise, and noting that $_mS_n(\omega) > 0$ iff $\omega \in \bigcup_{k = m}^n A_k$, we have that:
+        \begin{align*}
+            \P(\bigcup_{k \geq m} A_k) = \P(\limsup_{n \to \infty} \bigcup_{k=m}^n A_k) \geq \limsup_{n \to \infty} \P(\bigcup_{k=m}^n A_k) \geq \limsup_{n \to \infty} \frac{\E[_mS_n]^2}{\E[_mS_n^2]} = \alpha
+        \end{align*}
+        Since this holds for any $m$, and $\bigcup_{k \geq m} A_k \downarrow \SET{A_k \text{ i.o}}$, we have that:
+        \begin{align*}
+            \P(A_k \text{ i.o.}) \geq \alpha.
+        \end{align*}
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,257 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 331 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}[leftmargin=\labelsep]
+        \item \begin{enumerate}
+            \item[(b)] Since the patterns are fixed to be $4 \times 2$, and there is only one color option, there is only one test case per function, i.e. correctness level 0. This is $<20$ so we can just test all of them and look to see that they look right.
+            \item[(d)] Since the patterns are still $4 \times 2$, except now we have a color option, each function only has two inputs, i.e. correctness level 0. So we can just test all of them and see that they look right.
+            \item[(f)] Since these functions were straight from the spec, it has correctness level 1. We need to use our testing heuristics, in this case since all the functions are recursive, we need to use the 0-1-many heuristic to test the functions are correct. It is important to write the function as closely to the mathematical description as possible to ensure that we don't need to do reasoning, instead just testing.
+        \end{enumerate}
+        \item \begin{enumerate}[label=(\alph*)]
+            \item $$\begin{aligned}
+                &sum(cons(a, cons(b, nil))) = a + sum(cons(b, nil)) && \text{def of sum} \\
+                &\qquad = a + b + sum(nil) && \text{def of sum} \\
+                &\qquad = a + b && \text{def of sum}
+            \end{aligned}$$
+            \item $$\begin{aligned}
+                sum(twice-evens(cons(a, cons(b, nil)))) &= sum(cons(2a, cons(b, twice-evens(nil)))) && \text{def of t-e} \\
+                &= 2a + sum(cons(b, twice-evens(nil))) && \text{def of sum} \\
+                &= 2a + sum(cons(b, nil)) && \text{def of t-e} \\
+                &= 2a + b && \text{def of sum}
+            \end{aligned}$$
+            \item $$\begin{aligned}
+                sum(twice-odds(cons(a, cons(b, nil)))) &= sum(cons(a, cons(2b, twice-odds(nil)))) && \text{def of t-o} \\
+                &= a + sum(cons(2b, twice-odds(nil))) && \text{def of sum} \\
+                &= a + sum(cons(2b, nil)) && \text{def of t-o} \\
+                &= a + 2b && \text{def of sum}
+            \end{aligned}$$
+            \item 
+            $$\begin{aligned}
+                sum(twice-evens(L)) + sum(twice-odds(L)) &= 2a + b + sum(twice-odds(L))&& \text{part (b)} \\
+                &=2a + b + a + 2b && \text{part (c)} \\
+                &=3a + 3b \\
+                &= 3(a+b) \\
+                &= 3 \cdot sum(L) && \text{part (a)}
+            \end{aligned}$$
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item[(a)] The mathematical definition for flipping a single block is as follows:
+            $$\begin{aligned}
+                \text{bflip-vert}(\{\text{design: $d$, color: $c$, corner: NE}\}) &= \{\text{design: $d$, color: $c$, corner: SE}\} \\
+                \text{bflip-vert}(\{\text{design: $d$, color: $c$, corner: NW}\}) &= \{\text{design: $d$, color: $c$, corner: SW}\} \\
+                \text{bflip-vert}(\{\text{design: $d$, color: $c$, corner: SE}\}) &= \{\text{design: $d$, color: $c$, corner: NE}\} \\
+                \text{bflip-vert}(\{\text{design: $d$, color: $c$, corner: SW}\}) &= \{\text{design: $d$, color: $c$, corner: NW}\}
+            \end{aligned}$$
+            \item[(c)]
+            \[\begin{aligned}
+                &rnil && rnil \\
+                &rcons(a, rnil) && rcons(b(a), rnil) \\
+                &rcons(a, rcons(c, rnil)) && rcons(b(a), rcons(b(c), rnil)) \\
+                &rcons(a, rcons(c, rcons(d, rnil))) && rcons(b(a), rcons(b(c), rcons(b(d), rnil)))
+            \end{aligned}\]
+            \item[(d)]
+            \[\begin{aligned}
+                \text{rflip-vert}(rnil) &= rnil \\
+                \text{rflip-vert}(\text{rcons}(a, R)) &= \text{rcons}(b(a), \text{rflip-vert}(R))
+            \end{aligned}\]
+            \item[(f)]
+            \[\begin{aligned}
+                &qnil && qnil \\
+                &qcons(t, qnil) && qcons(r(t), qnil) \\
+                &qcons(t, qcons(v, qnil)) && qcons(r(v), qcons(r(t), qnil)) \\
+                &qcons(t, qcons(v, qcons(w, qnil))) && qcons(r(w), qcons(r(v), qcons(r(t), qnil)))
+            \end{aligned}\]
+            \item[(g)]
+            \[\begin{aligned}
+                \text{qflip-vert}(qnil) &= qnil \\
+                \text{qflip-vert}(\text{qcons}(t, Q)) &= \text{qconcat}(\text{qflip-vert}(Q), \text{qcons}(t, qnil)) \\
+            \end{aligned}\]
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item \[\begin{aligned}
+                \text{bflip-horz}(\{\text{design: $d$, color: $c$, corner: NE}\}) &= \{\text{design: $d$, color: $c$, corner: NW}\} \\
+                \text{bflip-horz}(\{\text{design: $d$, color: $c$, corner: NW}\}) &= \{\text{design: $d$, color: $c$, corner: NE}\} \\
+                \text{bflip-horz}(\{\text{design: $d$, color: $c$, corner: SE}\}) &= \{\text{design: $d$, color: $c$, corner: SW}\} \\
+                \text{bflip-horz}(\{\text{design: $d$, color: $c$, corner: SW}\}) &= \{\text{design: $d$, color: $c$, corner: SE}\}
+            \end{aligned}\]
+            \item[(c)] From the above, we define:
+            \[\begin{aligned}
+                \text{rflip-horz}(rnil) &= rnil \\
+                \text{rflip-horz}(rcons(a, R)) &= \text{rconcat}(\text{rflip-horz}(R), rcons(b(a), rnil))
+            \end{aligned}\]
+
+            \item[(e)]
+            \[\begin{aligned}
+                \text{qflip-horz}(qnil) &= qnil \\
+                \text{qflip-horz}(\text{qcons}(t, Q)) &= \text{qcons}(r(t), \text{qflip-horz}(Q))
+            \end{aligned}\]
+            \item[(h)] Since the symmetrize function has already been tested, we only need to test that inputting the symmetrize tag into the URL is working properly, and symmetrizes the image if it appears, and not otherwise. This was an imperative spec (it told us exactly what to do), and has only a small number of inputs, namely if symmetrize is present or not, so we can just test all of them. Putting URLs with/without the symmetrize tag and checking if the image is symmetrized or not is sufficient.
+        \end{enumerate}
+
+        \item \begin{enumerate}[label=(\alph*)]
+            \item $$\begin{aligned}
+                swap(swap(cons(x, nil))) &= swap(cons(x, nil)) && \text{def of swap} \\
+                &= cons(x, nil) && \text{def of swap} 
+            \end{aligned}$$
+            \item \[\begin{aligned}
+                swap(swap(cons(x, cons(y, R)))) &= swap(cons(y, cons(x, swap(R)))) && \text{def of swap} \\
+                &= cons(x, cons(y, swap(swap(R)))) && \text{def of swap}
+            \end{aligned}\]
+            \item Let $S = cons(u, cons(v, cons(w, nil)))$. Then,
+            \[\begin{aligned}
+                swap(swap(cons(s, cons(t, S)))) &= cons(s, cons(t, swap(swap(S)))) && \text{part (b)} \\
+                &=cons(s, cons(t, cons(u, cons(v, swap(swap(w, nil)))))) && \text{part (b)} \\
+                &=cons(s, cons(t, cons(u, cons(v, cons(w, nil))))) && \text{part (a)}
+            \end{aligned}\]
+            \item If $L$ has length 3, then we can see that 
+            \[\begin{aligned}
+                len(cons(1, cons(2, L))) &= 1 + len(cons(2, L)) && \text{def of len} \\
+                &= 1 + 1 + len(L) && \text{def of len} \\
+                &= 2 + len(L) && \text{def of len} \\
+                &= 5
+            \end{aligned}\]
+            So, we can apply part (c) to see that,
+            \[\begin{aligned}
+                swap(swap(cons(1, cons(2, L)))) &= cons(1, cons(2, L)) && \text{part (c)}
+            \end{aligned}\]
+        \end{enumerate}
+
+        \item \begin{enumerate}
+            \item Since we know that $cons(a,L) \neq nil$, we use the definition of cycle to see that $cycle(cons(a,L)) = concat(L, cons(a,nil))$. Now, if $L$ is nil then $concat(L, cons(a, nil)) = cons(a, nil)$ is not nil. Otherwise, write $L = cons(b, M)$, then $concat(L, cons(a, nil)) = cons(b, concat(M, cons(a, nil)))$ by definition of concat is not nil since it at least contains $b$. 
+            \item From part (a), we know that $cycle(cons(a, L)) \neq nil$. Thus we can write $cycle(cons(a, L)) = cons(b, R)$ for some $b \in \bZ$ and some list $R$. by definition of len, we have that
+            \[\begin{aligned}
+                len(cons(b, R)) = 1 + len(R)
+            \end{aligned}\]
+            Now, per the hint we know that $len(R) \geq 0$. Thus, $len(cycle(cons(a, L))) = len(cons(b, R)) = 1 + len(R) \geq 1$, and we are done. 
+        \end{enumerate}
+    \end{enumerate}
+\end{document}

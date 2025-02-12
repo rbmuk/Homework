@@ -1,0 +1,352 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{R:/sty/quiver}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse, pxfonts}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\renewcommand{\S}{\mbb S}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 563}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Problem 1.}
+    \begin{theorem}
+        Let $G$ be a finite graph and define $d$ to be the smallest integer such that $G$ has a unit distance representation in $\R^d$. Then $\log(\chi(G))/2 \leq d \leq 2\chi(G)$. 
+    \end{theorem}
+    We shall show that if the points are required to be distinct, then $d \leq 2\chi(G)$. 
+    
+    Let $G$ be a graph with chromatic number $\chi(G)$ and let $V_1, \ldots, V_k$ be the partition of $V$ into $\chi(G)$ parts where each of the $V_i$ are independent. We embed $G$ into $\R^{2\chi(G)}$ by doing the following: for each $v_j \in V_i$, we assign a coordinate to $v$ as $(0, 0, \ldots, x_{i,j}, y_{i,j}, 0, 0, \ldots, 0, 0)$ where $x_{i,j}, y_{i,j}$ are in the $2i$th and $2i+1$th spot respectively, satisfying $x_{i,j}^2 + y_{i,j}^2 = 1/2$. We can do this since the final equation clearly has infinitely many solutions and our grpah is finite. Then we see that if $u \to v$ is an edge with $u \in V_k$ and $v \in V_\ell$, then the distance between $u$ and $v$ in the embedding is just clearly 1. The lower bound remains the same, since we have restricted the points to be distinct, so the minimal dimension can only go up. The same subgraph of $H_d$ with chromatic number $1.2^d$ shows that this bound is tight up to constants, the same way it was used to show that the dimension of the orthogonal representation of a graph is at most $2\chi(G)$. We make this a unit distance representation by making the sphere in dimension $d$ have radius $1/2$ instead of 1. Recall that there is an edge between $u, v \in \S^{d-1}$ iff $u,v$ are orthogonal. Then we see that the distance between $u$ and $v$ is just $2$, which we made a unit distance representation by normalizing.
+    
+    \subsection*{Problem 2.}
+    Find the dual of the following SDP:
+    \begin{align*}
+        \text{minimize } & x \\
+        \text{subject to } & \begin{pmatrix}
+            x & 1 \\ 
+            1 & y
+        \end{pmatrix} \succeq 0
+    \end{align*}
+    We notice that 
+    \begin{align*}
+        \begin{pmatrix}
+            x & 1 \\ 
+            1 & y
+        \end{pmatrix} = x\begin{pmatrix}
+            1 & 0 \\ 
+            0 & 0
+        \end{pmatrix} + y\begin{pmatrix}
+            0 & 0 \\ 
+            0 & 1
+        \end{pmatrix} + \begin{pmatrix}
+            0 & 1 \\ 
+            1 & 0
+        \end{pmatrix}
+    \end{align*}
+    Thus the dual becomes:
+    \begin{align*}
+        \text{minimize } & \begin{pmatrix}
+            0 & 1 \\ 
+            1 & 0
+        \end{pmatrix} \bullet X \\
+        \text{subject to } & \begin{pmatrix}
+            1 & 0 \\ 
+            0 & 0
+        \end{pmatrix} \bullet X = 1 \\
+        & \begin{pmatrix}
+            0 & 0 \\ 
+            0 & 1
+        \end{pmatrix} \bullet X = 0 \\
+        & X \succeq 0
+    \end{align*}
+    Write $X = \begin{pmatrix}
+        a & b \\ 
+        b & c
+    \end{pmatrix}$. This SDP has a feasible solution: for example, taking $X = \begin{pmatrix}
+        1 & a \\ 
+        a & 0
+    \end{pmatrix}$ satisfies the constraints and gives a value of $2a$. The above matrix is easily seen to have eigenvalues of $\frac12 \pm \frac12 \sqrt{1-4a^2}$, so taking $a^2 < 1/4$ equivalently $|a| < 1/2$ will yield a strictly feasible solution to the above SDP. Thus by strong duality the optimal value of the primal and dual are equal, and this value is easily seen to be $-1$ by our classification of the above matrix.
+
+    \subsection*{Problem 3.}
+    Let $A_1, \ldots, A_m$ be symmetric $m \times m$ matrices. Then exactly one of the following holds: (i) There are $x_1, \ldots, x_n$ so that $x_1A_1 + \cdots + x+nA_n \succeq 0$ and $\sum x_iA_i \neq 0$, (ii) There exists a matrix $Y \succ 0$ such that $A_i \cdot Y = 0$ for all $i$.
+
+    We seek to apply Farkas lemma. Let $L = \mathrm{span}\SET{A_1, \ldots, A_n}$. By Farkas lemma, there is either a matrix $X \in L^\perp$ with $X \succ 0$, or there is a matrix $Y \in (L^\perp)^\perp = L$ so that $Y \neq 0$, and $Y \succ 0$. The first condition obviously says that there is a matrix $Y$ with $A_i \cdot Y = 0$ for all $i$. The second says that there is a matrix $Y \in L$ so that $y \succeq 0$ and $Y \neq 0$. By definition of $L$, $Y = \sum x_iA_i$ for some coefficients $x_i$, which completes the proof.
+
+    \subsection*{Problem 4.}
+    Let $A_1, \ldots, A_m$ be symmetric $m \times m$ matrices and $b_1, \ldots, b_n \in \R$. Then exactly one of the following alternatives holds: (i) There exist $x_1, \ldots, x_n \in \R$ so that $x_1A_1 + \cdots + x_nA_n \succeq 0$ and $\sum_i x_ib_i \leq 0$, and if $\sum_i x_ib_i = 0$, then $\sum_i |b_i| > 0$ and $y^TA_iy = 0$ for all $y \in \R^m$ with $(x_1A_1 + \cdots + x_nA_n)y = 0$. (ii) There exists a vector $y \in \R^m$ such that $A_i \cdot y = b_i$ for all $i$.
+
+    The version of Farkas lemma proved in the book is the following:
+    Let $\mathcal A$ be defined by the set of equations $A_i \cdot X = c_i$ for $i = 1,\ldots,n$. Then define
+    \begin{align*}
+        \widehat{\mathcal A} &= \SET{X \in S \; | \; A_i \cdot X = 0}, \\
+        \widehat{\mathcal A^*} &= \SET{\sum x_iA_i \; | \; \sum x_ic_i = 0}, \\
+        \mathcal A^* &= \SET{\sum x_iA_i \; | \; \sum x_ic_i = -1}
+    \end{align*}
+    Then either $\mathcal A$ or $\mathcal A^*$ contains a nonzero PSD matrix, or both $\widehat{\mathcal A}$ and $\widehat{\mathcal A^*}$ contain nonzero PSD matrices.
+
+    Suppose that $\mathcal{A} = \SET{X \in S \; | \; A_i \cdot X = b_i}$ is so that all the $b_i$ are 0. Then as we can take $Y=0$ to show that $A_i \cdot Y = 0$ for all $i$, we have to show that the first alternative cannot hold. Suppose there were $x_1, \ldots, x_n \in \R$ so that $\sum x_i A_i \succeq 0$, $\sum x_ib_i \leq 0$, and if $\sum x_ib_i = 0$ then $\sum_i |b_i| > 0$ and $y^TAy = 0$ for all $y \in \ker \sum x_iA_i$. This follows because if we take all the $x_i = 0$, then we do have $\sum x_iA_i \succeq 0$, $\sum x_ib_i = 0 \leq 0$, while $\sum |b_i| = 0$ is not greater than 0. 
+    
+    So we can assume that not all of the $b_i$ are 0. Suppose that both conditions hold at the same time--i.e. that there is some $Y \succeq 0$ so that $A_i \cdot Y = b_i$ for all $i$, and that there exists $x_1, \ldots, x_n \in \R$ so that $\sum x_iA_i \succeq 0$, $\sum_i x_ib_i \leq 0$, and if $\sum_i x_ib_i = 0$ then $\sum_i |b_i| > 0$ and $y^tA_iy = 0$ for all $y \in \R^m$ with $\sum x_iA_i y = 0$. Then we see that 
+    \begin{align*}
+        \sum x_iA_i \cdot Y = \sum x_ib_i \leq 0
+    \end{align*}
+    But since $\sum x_iA_i, Y \succeq 0$ the above must actually equal 0. Now we factor $Y = \sum \lambda_i v_iv_i^T$ via the spectral theorem. Then we see that,
+    \begin{align*}
+        \sum x_iA_i \cdot Y = \sum x_iA_i \cdot \sum \lambda_i v_iv_i^T = \sum \lambda_i \sum x_iA_i \cdot v_iv_i^T = 0
+    \end{align*}
+    Since a sum of positive numbers is zero iff each term is 0, we have that
+    \begin{align*}
+       \sum x_iA_i \cdot v_iv_i^T = 0
+    \end{align*}
+
+    We now show that if $A \succeq 0$ and $x \in \R^n$ is so that $x^TAx = 0$, then $x \in \ker A$. Write $A = \sum \lambda_i v_i$. We have:
+    \begin{align*}
+        0 = x^TAx = \sum \lambda_i x^Tv_iv_i^Tx = \sum \lambda_i (x^Tv_i)^2
+    \end{align*}
+    Thus $x^Tv_i = 0$ for all $i$. We see that $Ax = \sum_i \lambda_i v_i(v_i^Tx) = 0$, as desired. But then,
+    \begin{align*}
+        A_i \cdot Y = A_i \cdot \sum \lambda_i v_iv_i^T = \sum(A_i \cdot v_iv_i^T) = \sum(v_i^TA_i v_i) = 0
+    \end{align*}
+    A contradiction, since at least one of the $b_i$'s are nonzero. Thus the conditions cannot hold simultaneously. 
+
+    I tried showing that the existence of $Y \succeq 0$ with $A_i \cdot Y = b_i$ implies the first statement for a very long time with no solution. By Farkas lemma you can see immediately that there must be some coefficients $x_1, \ldots, x_n$ so that $\sum x_ib_i \leq 0$. The condition that $y^TA_iy = 0$ for all $y \in \ker \sum x_iA_i$ is absurdly hard to prove. I tried using many other versions of Farkas lemma, I looked online for the original paper, I tried using the spectral theorem on $Y$, and I tried what feels like 20 other different things but none of them work. I'm not sure at all how to use the condition that $\sum x_ib_i = 0$ for some PSD matrix $M = \sum x_iA_i$. I think it requires you to make some sort of block matrix and apply Farkas lemma again. I also think it might depend on the previous question that I showed has a lot of typos.
+
+    \subsection*{Problem 5.}
+    Show that the max cut problem is a special case of the MAX-2SAT problem.
+
+    Let $G$ be a graph, and have a vertex $x_v$ for each vertex $v \in V$. For each edge $e = uv$, make two clauses $(x_u \oplus x_v) = (x_u \lor x_v) \land \lnot (x_u \land x_v) = (x_u \lor x_v) \land (\lnot x_u \lor \lnot x_v)$. Return the max number of clauses that can be satisfied minus $|E|$. Notice that if an edge does not cross the cut, then $x_u=x_v$ and precisely one of the above clauses is satisfied. Otherwise, the edge does cross the cut and both of the above clauses are satisfied. In this way we see that we count the number of edges crossing the cut plus the number of edges, so the value returned is just $|E(S, \overline S)| + |E|$. The reverse inclusion is clear, since given a satisfying assignment to the MAX 2SAT problem, we can place the vertices with $x_v=1$ in $S$ and $\overline S$ otherwise. In this way we see again that the edge $uv$ crosses the cut iff both of the above clauses are satisfied, so the counting we did before shows that this gives a cut with value equal to the number of satisfied clauses minus $|E|$.
+
+    \subsection*{Problem 6.}
+    Let $G$ be a connected simple graph. (a) if $G$ is eulerian with a an even number of nodes, then it has a spanning subgraph $G'$ such that every node $i$ is incident with $\deg i/2$ edges of $G'$. (b) If $G$ is eulerian with an odd number of nodes, then there is a spanning subgraph $G'$ such that every node except one $i$ is incident with $\deg i/2$ edges of $G'$. (c) if $G$ is not eulerian, then it has a spanning subgraph $G'$ such that every node $i$ is incident with either $\floor{\deg i/2}$ or $\ceil{\deg i/2}$ edges of $G$. 
+
+    This exercise is false. We disprove part (a) with the following counterexample. Consider the Hexagon with one embedded triangle:
+    \[\begin{tikzcd}
+        & \bullet & \bullet \\
+        \bullet &&& \bullet \\
+        & \bullet & \bullet
+        \arrow[no head, from=1-2, to=1-3]
+        \arrow[no head, from=1-3, to=2-1]
+        \arrow[no head, from=1-3, to=2-4]
+        \arrow[no head, from=1-3, to=3-3]
+        \arrow[no head, from=2-1, to=1-2]
+        \arrow[no head, from=2-1, to=3-3]
+        \arrow[no head, from=2-4, to=3-3]
+        \arrow[no head, from=3-2, to=2-1]
+        \arrow[no head, from=3-3, to=3-2]
+    \end{tikzcd}\]
+    This graph is Eulerian--3 vertices have degree 4 and the other 3 have degree 2. However, we will show there is no spanning subgraph described in the question. Since we can rotate any of the degree 4 vertices to each other and get the same graph, we can consider two cases for the top right vertex only. Either the two edges in $G'$ are the ones that go to both vertices of degree 2, or not. In the first case we get:
+    \[\begin{tikzcd}
+        & \bullet & \bullet \\
+        \bullet &&& \bullet \\
+        & \bullet & \bullet
+        \arrow[color={rgb,255:red,214;green,92;blue,92}, no head, from=1-2, to=1-3]
+        \arrow[color={rgb,255:red,92;green,92;blue,214}, no head, from=1-3, to=2-1]
+        \arrow[color={rgb,255:red,214;green,92;blue,92}, no head, from=1-3, to=2-4]
+        \arrow[color={rgb,255:red,92;green,92;blue,214}, no head, from=1-3, to=3-3]
+        \arrow[color={rgb,255:red,92;green,92;blue,214}, no head, from=2-1, to=1-2]
+        \arrow[no head, from=2-1, to=3-3]
+        \arrow[color={rgb,255:red,92;green,92;blue,214}, no head, from=2-4, to=3-3]
+        \arrow[no head, from=3-2, to=2-1]
+        \arrow[no head, from=3-3, to=3-2]
+    \end{tikzcd}\]
+    Where we cannot use any edges colored blue, as they would make the top right vertex of degree 4 to have degree 3 $>$ 2 in the subgraph. No matter how you add the remaining black edges, you cannot satisfy the condition of the question--adding the edge that goes between the two degree 4 vertices makes them both have degree 1 in the subgraph, and then you can only add one of the degree 2 vertice's edges to the subgraph, but this will only make 1, not both of them have degree 2. Similarly, if none of the degree 4 vertices have both of their edges going to the degree 2 vertices, we get:
+    \[\begin{tikzcd}
+        & \bullet & \bullet \\
+        \bullet &&& \bullet \\
+        & \bullet & \bullet
+        \arrow[color={rgb,255:red,92;green,92;blue,214}, no head, from=1-2, to=1-3]
+        \arrow[no head, from=1-3, to=2-1]
+        \arrow[color={rgb,255:red,214;green,92;blue,92}, no head, from=1-3, to=2-4]
+        \arrow[no head, from=1-3, to=3-3]
+        \arrow[color={rgb,255:red,214;green,92;blue,92}, no head, from=2-1, to=1-2]
+        \arrow[no head, from=2-1, to=3-3]
+        \arrow[color={rgb,255:red,92;green,92;blue,214}, no head, from=2-4, to=3-3]
+        \arrow[color={rgb,255:red,92;green,92;blue,214}, no head, from=3-2, to=2-1]
+        \arrow[color={rgb,255:red,214;green,92;blue,92}, no head, from=3-3, to=3-2]
+    \end{tikzcd}\]
+    Where again we cannot use blue edges, and note that we could flip the graph across the horizontal axis to get the other orientation of the red edges under the above conditions. In this case, if we add any one of the edges in the middle triangle, two of the degree 4 vertices have degree 2 in the subgraph, but we cannot add any other edge to make the third one have degree 2 in the subgraph, as this would make at least one of the other ones have degree 3. Thus the question is false. 
+
+    However, if part (a) were true, for a Eulerian graph with an odd number of vertices, we could add precisely one vertex $v$ of degree 2 and connect it to two other vertices in the graph. Now we get a connected Eulerian graph with an even number of vertices, and can apply part (a). By hypothesis the spanning subgraph uses only one of $v$'s incident edges. So removing $v$ from the subgraph will mess up the condition for precisely one vertex, which would complete the proof of (b). I am not going to attempt part (c) because I think it might follow similarly to this example to be false.  
+
+    \subsection*{Problem 7.}
+    Let $G$ be a simple conncted graph and $H = L(G)$ be the line graph. Then 
+    \begin{align*}
+        \mathrm{maxcut}(H) \leq \sum_{i \in V} \floor{\frac{\deg(i)^2}{4}}
+    \end{align*}
+    Find infinitely many line graphs for which the above inequality does not hold. 
+
+    Let $C_n$ be the cycle with $n$ vertices. We claim that the above inequality is strict for odd length cycles. First, I claim that the line graph of $C_n$ is $C_n$. This is because if we order the vertices of $C_n$ as $v_1, \ldots, v_n$, and the edge from $v_i$ to $v_{i+1}$ as $e_i$, in the line graph we have that $e_i$ is conncted only to $e_{i-1}$ and $e_{i+1}$ (where the index is taken $\mod n$). In this way we see that in the line graph each vertex (which was an edge in the original cycle) has degree precisely 2, and is connected since to get from $e_i$ to $e_j$ for $j > i$ we can simply walk along $e_i \to e_{i+1} \to \cdots \to e_j$. The only connected graph with all vertices of degree 2 is a cycle, so the line graph of $C_n$ is $C_n$. Recall that for odd $n$ $C_n$ is not bipartite, so its max cut is strictly less than $n$. Label the vertices of $C_n$ clockwise, getting something like the following:
+    \[\begin{tikzcd}
+        && {v_1} \\
+        {v_5} &&&& {v_2} \\
+        \\
+        & {v_4} && {v_3}
+        \arrow[no head, from=1-3, to=2-1]
+        \arrow[no head, from=1-3, to=2-5]
+        \arrow[no head, from=2-1, to=4-2]
+        \arrow[no head, from=2-5, to=4-4]
+        \arrow[no head, from=4-2, to=4-4]
+    \end{tikzcd}\]
+    And take $S$ to be the set of vertices with even index. By looking at the picture, and noticing a general pattern, we can see that every vertex of even index is adjacent to precisely two vertices of odd index. Since the size of the cut is the number of edges crossing the cut, equivalently the number of edges from even vertices to odd vertices by our choice of $S$, and since if $n = 2k+1$ there are $k$ even vertices and $k+1$ odd vertices, we see that precisely $2k$ edges cross this cut. This is the max cut because we cannot find a larger cut, otherwise $C_{2k+1}$ would be bipartite. This yields an infinite family whose lines graphs do not have the above inequality being an equality.
+
+    \subsection*{Problem 8.}
+    Find the dual of the following SDP:
+    \begin{align*}
+        \max \; &C \cdot X \\
+        \text{s.t.} &\Tr(X) = k, \\
+        &I_n \succeq X \succeq 0 
+    \end{align*}
+    We have a dual variable $\lambda$ for the trace equality, and $Y$ for the inequality $I_n \succeq X$. The langragian becomes $C \cdot X + \lambda(\Tr(X) - k) + \Tr(Y(I_n - X))$. After taking the derivative, and setting it to 0, we see that the dual is just,
+    \begin{align*}
+        \min \; &k\lambda\\
+        \text{s.t.} \;&C + \lambda I_n - Y = 0, \\
+        &Y \succeq 0
+    \end{align*}
+
+    The second part is to find an SDP that finds $\min\SET{\lambda_1(X)+\cdots+\lambda_k(X) : A_j \cdot X = b_j}$. We write this as follows:
+    \begin{align*}
+        \min \; &t \\
+        \text{s.t.} \;&I_n \succeq Y \succeq 0, \\
+        &t \geq X \cdot Y \\
+        &X \cdot A_j = b_j
+    \end{align*}
+    We first note that if we fix $X$ satisfying those conditions, then minimizing over $Y$ satisfying the same conditions gives us the sum of the first $k$ eigenvalues of $X$ by construction of $t$. So if we jointly optimize we get the desired result. 
+
+    \subsection*{Problem 9.}
+    Show that $p$ can be written as a sum of squares iff $p \geq 0$. First, if $p$ is ever negative, then certainly $p$ cannot be written as a sum of squares, as a sum of squares is everywhere-positive. Notice that we need $p$ to have even degree, since otherwise $p$ will be negative somewhere. Write
+    \begin{align*}
+        p(x) = C(x-r_1)^{n_1} \cdots (x-r_k)^{n_k}
+    \end{align*}
+    Where each $r_i \in \C$. Suppose that one of the $r_i$, say $r_1$, had a power appearing to a positive odd power. We can write $p(x) = (x-r_1)^{n_1} \cdot q(x)$ where $q(x) \neq 0$ in some neighborhood of $p$, since the roots of a polynomial are isolated. Then $q$ is either positive or negative around the root $r_1$, so suppose WLOG it is positive. Taking $x = r_1-\ve$ for some small $\ve$ will show that $p(x) = -\ve q(x) < 0$ since $q(x)$ is nonzero around some small neighborhood of $r_1$. Now notice that if $p(x), q(x)$ can be written as a sum of two squares, $a^2+b^2$, $c^2+d^2$, then so can $p(x)q(x) = (ac-bd)^2 + (ad+bc)^2$. Since we have shown that every real root of $p$ appears to some positive power, we can assume that $p > 0$ everywhere. In this case, remembering that complex conjugation is an automorphism of $\C$ which fixes $\R$, we have that complex roots of $p$ come in pairs: $z$ and $\overline z$. Thus we can factor $p$ as:
+    \begin{align*}
+        p(x) = \prod_i (x-z_i)(x-\overline z_i)
+    \end{align*}
+    Now the solution is clear. Taking $q(x) = \prod (x-z_i)$, since $x \in \R$ is real, we have that $p(x) = q(x)\overline{q(x)}$. Writing $q(x) = a(x) + ib(x)$ as the sum of its real and imaginary parts, which are both polynomials, we see that $p(x) = a^2(x) + b^2(x)$. Combining this with the result about being multiplicatively closed, we are done with both parts (the second part was to show that $p(x)$ is the sum of precisely two squares if $p(x) \geq 0$).
+\end{document}

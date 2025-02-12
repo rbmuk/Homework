@@ -1,0 +1,212 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\usepackage{listings}
+
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+\usepackage{pythonhighlight}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \textit{High dimensional roulette.} I would not play this game. We can show this by showing that the average value of the left hand side is greater than the average value of the right hand side, which would mean that on average, I would lose. 
+		The average value of the LHS is
+		\begin{align*}
+			\int_{[0,1]^{16}} \mg{x}^2 dx &= \int_0^1 \cdots \int_0^1 x_1^2 + \cdots x_{16}^2 dx_1 \cdots dx_{16} \\
+			&= \int_0^1 \cdots \int_0^1 x_1^2dx_1 \cdots dx_{16} + \cdots + \int_0^1 \cdots \int_0^1 x_{16}^2dx_1 \cdots dx_{16}\\ 
+			&= \frac{16}3
+		\end{align*}
+		Also note that the other 14 integrals have vanished because the inside does not depend on $x_{17}, \ldots, x_{30}$, and we are integrating over $[0. 1]$. The result holds as each integral is $1/3$. Doing the exact same argument on the RHS, but noting that we only have 14 variables this time (with 16 integrals disappearing), we would get that the average value of the RHS is $\frac{14}3$, which is indeed less than $\frac{16}3$. So on average, the LHS is greater than the RHS, which would mean that I lose. As I lose on average, I would not want to play this game. Next, this is the code that I used to simulate 
+		
+		\textit{Low dimensional roulette.}
+		The results on this one were fairly confusing. It seems that in the long run, if you are losing then you start losing a LOT. If you are winning, you start winning a LOT. For example, when I did 1000 runs of 10,000 rounds, and averaged them, sometimes I got 600, and other times I got -600. Therefore, I would probably play, and if I am consistently losing money, I should probably stop, and if I consistently winning money, I should probably continue. I will say this seems awfully intuitive. Here is my code:
+		\begin{python}
+			from numpy import random
+			import numpy as np
+			
+			moneys = np.empty([100],dtype=int)
+			money = 100
+			for k in range(100):
+				for n in range(1000):
+					money -= 1
+					m = random.randint(1, 3)
+					if m == 2:
+						money += 2
+				moneys[k]=money
+			print(np.average(moneys))
+		\end{python}
+		I also tried seeing if making it say m==2 vs m==1 made a difference, but it doesn't. It seems like this gambling can be very profitable, but if you start losing, you should definitely stop. In the real world it seems you will keep losing.
+		
+		\item Given a function $f: \R^n \to \R^n$ where $A \in \R^{n \cross n}$, I claim that $Df=A$ (the constant matrix). We consider the first row of the matrix. The first entry of the matrix product $Ax$ would be $\ip{a_1}{x}$ (where $a_1$ is the first row of $A$). We have seen in Math 334 that the gradient of this function would be simply $a_1$, so the first row of the determinant matrix would be $a_1$. Continuing this process, we see that the $i$-th row has the constant vector $a_i$ in it, that is that $Df(x) = A$ (where the right side doesn't depend on $x$). Next, given any $A, B \in \R^{n \cross n}$, let $f(x) = Ax$, and $g(x) = Bx$. Note that $(f \circ g)(x) = ABx$, and therefore $D(f \circ g)(x) = AB$ by our discussion above. Suppose first that $\det(A) = 0$. If $f \circ g$ was onto, then $f$ is necessarily onto, which would contradict the statement that $\det(A) = 0$. So it must be that $\det(AB) = 0$. If $\det(B) = 0$, then $B$ is not one-to-one, so there certainly exist vectors $a \neq b \in \R^n$ so that $Ba = Bb$. Then clearly $f(g(a)) = f(g(b))$, as the inputs to $f$ are equal, but as the inputs to $f \circ g$ are not equal, $f \circ g$ is not one-to-one, and $\det(AB) = 0$. So now suppose that neither are 0. Then $g$ maps $[0,1]^n$ bijectively to some parallelepiped $P$, and $f$ maps $P$ bijectively to some other parallelepiped $V$. Then $f \circ g$ maps $[0,1]^n$ bijectively to the parallelepiped $V$ (the composition of two bijections is bijective--the two-sided inverse of $f \circ g$ would be $g^{-1} \circ f^{-1}$). Here is a picture of what's going on:
+		\[\begin{tikzcd}
+			{[0,1]^n} \\
+			\\
+			P && V
+			\arrow["{f \circ g}", dashed, tail, two heads, from=1-1, to=3-3]
+			\arrow["g"', tail, two heads, from=1-1, to=3-1]
+			\arrow["f"', tail, two heads, from=3-1, to=3-3]
+		\end{tikzcd}\]
+		
+		From this we can say that:
+		\begin{align*}
+			\int_V 1dx = \int_{[0,1]^n} |\det(AB)|dx
+		\end{align*}
+		By our discussion above about $D(f\circ g)$, and change of variables. Note also that we could do these one at a time, that is,
+		\begin{align*}
+			\int_V 1dx = \int_P |\det(A)|dx = |\det(A)| \int_P dx = |\det(A)| \int_{[0,1]^n} |\det(B)|dx
+		\end{align*}
+		By simply doing the change of variables twice. Equating the first integral with the second, pulling out the constant and noting that $[0,1]^n$ has volume 1, we see that $|\det(A)||\det(B)|=|\det(AB)|$. I tried originally proving that if $P$ is a parallelepipid of volume $Q$, then the image of $P$ under f (that is, $AP$) would have volume $\det(A) \cdot \mathrm{Vol}(P)$, which would make a lot of intuitive sense. I believe that is what this formula is saying, but this statement was harder to prove (really just harder to formalize, like what does one mean by "Let $P$ be a parallelepipid"?), so I went with this instead.
+		
+		\item Given any list of vectors $\set{v_1, \ldots, v_m}$ so that they are pairwise orthogonal, suppose that there were constants (not all zero) $a_1, \ldots, a_m \in \R$ so that $a_1v_1 + a_2v_2 + \cdots + a_mv_m = 0$. WLOG $a_1$ is not zero (renumber the vectors if this is not the case). Then we can rearrange to find that $v_1 = -(a_2/a_1v_2 + \cdots + a_m/a_1v_m)$. Now notice that $1 = \ip{v_1}{v_1} = -\ip{v_1}{a_2/a_1v_2 + \cdots + a_m/a_1v_m} = -a_2/a_1\ip{v_1}{v_2}-a_3/a_1\ip{v_1}{v_3}-\cdots-a_m/a_1\ip{v_1}{v_m}$, and as $\ip{v_k}{v_l} = 0$ for all $k \neq l$, we see that the RHS of the above expression equals 0, a contradiction. So our assumption that the set was linearly dependent was incorrect, and the set must be linearly independent. We prove that if $S \subseteq \R^d$, then $\dim(S) \leq d$. We can find a basis for $S$, say $\set{s_1, \ldots, s_m}$. Extend this to a basis for $\R^d$, say $\set{s_1, \ldots, s_m, q_1, \ldots, q_k}$. We see that $m + k = n$, and as $k \geq 0$, we see that $m \leq n$. As our vectors above form a basis for its span, and its span has dimension $m$ by the big theorem of linear algebra, we have proven our statement. Given $x \in \mathrm{span}\set{v_1, \ldots, v_m}$, we see that $x = a_1v_1 + \ldots + a_mv_m$ for some scalars $a_1, \ldots, a_m \in \R$. It suffices to find each $a_i$. We see that $\ip{x}{v_1} = \ip{a_1v_1 + \ldots + a_mv_m}{v_1} = a_1\ip{v_1}{v_1} + a_2\ip{v_1}{v_2} + \ldots + a_n\ip{v_1}{v_m}$. All inner products that have different $v_i$'s are automatically zero, and as $\ip{v_1}{v_1} = 1$, we see that $a_1 = \ip{x}{v_1}$. The same argument works for any $v_i$, so we see that in general $a_i = \ip{x}{v_i}$, and we are done.
+		
+		\item Note that we wish to calculate the value of the integral 
+		\begin{align*}
+				\int_{B(0, 1)} \int_{B(0, 1)} (\mg{X}-\mg{Y})^2dXdY/\mathrm{Vol}(B(0, 1))^2
+		\end{align*}
+		We proceed by evaluating the inner integral using the radial trick below. Fix $Y$, then $\mg{Y} = c$ for some constant $c$. We can now say that $f(X) = (\mg{X}-c)^2$, and therefore $g(r) = (r-c)^2$, clearly now $f(X) = g(\mg{X})$. Therefore the inner integral above is equal to
+		\begin{align*}
+			c_d \int_0^1 g(r) \cdot r^{d-1}dr &= c_d \int_0^1 (r-c)^2 \cdot r^{d-1}dr \\
+			&= c_d \int_0^1 r^{d+1}-2r^dc+c^2r^{d-1}dr \\
+			&= c_d\qty(\frac1{d+2} - \frac{2c}{d+1} + \frac{c^2}{d})
+		\end{align*}
+		Now recall that $c = \mg{Y}$, so the top integral has now become (without the volume scaling)
+		\begin{align*}
+			c_d \int_{B(0, 1)} \frac1{d+2} - \frac{2\mg{Y}}{d+1} + \frac{c^2}{d}dY = c_d\qty(\frac{\rm{Vol}(B(0, 1))}{d+2}-\frac{2}{d+1}\int_{B(0, 1)} \mg{Y}dY + \frac{1}{d} \int_{B(0, 1)} \mg{Y}^2dY)
+		\end{align*}
+		Now we proceed by exactly the same trick. The first integral:
+		\begin{align*}
+			\int_{B(0, 1)} \mg{Y}dY  &= c_d \int_0^1 r^ddY \\
+			&= \frac{c_d}{d+1}
+		\end{align*}
+		Similarly, the second integral becomes $\frac{c_d}{d+2}$. So our expression is now:
+		\begin{align*}
+			c_d\qty(\frac{\rm{Vol}(B(0, 1))}{d+2} - \frac{2c_d}{(d+1)^2}+\frac{c_d}{d(d+2)})
+		\end{align*}
+		Now we simply have to express $\rm{Vol}(B(0, 1))$ in terms of $c_d$, and we are done. 
+		\begin{align*}
+			\rm{Vol}(B(0, 1)) &= \int_{B(0, 1)} 1dx \\
+			&= \int_0^1 c_dr^{d-1}dx \\
+			&= \frac{c_d}{d}
+		\end{align*}
+		Where we have done the radial transformation on the function $g(r) \equiv 1$. Therefore, the above integral above simplifies to 
+		\begin{align*}
+			c_d\qty(\frac{c_d}{d(d+2)} - \frac{2c_d}{(d+1)^2}+\frac{c_d}{d(d+2)})
+		\end{align*}
+		Finally, dividing by the volume squared nets us that the final integral equals
+		\begin{align*}
+			d^2\qty(\frac{1}{d(d+2)} - \frac{2}{(d+1)^2}+\frac{1}{d(d+2)}) = 2d^2\qty(\frac{1}{d(d+2)}-\frac{1}{(d+1)^2})
+		\end{align*} Which is pretty nice. This can be interpreted as the average value of the difference in magnitudes of two points in the $d$-dimensional sphere squared.
+		
+		\item By what we showed in class, we have that
+		\[ \int_{\R^d} e^{-x_1^2-x_2^2-\cdots-x_d^2} dx = c_d \int_0^\infty e^{-r^2}r^{d-1}dr \]
+		The LHS is equal to 
+		\begin{align*}
+			\int_{-\infty}^\infty \int_{-\infty}^\infty \cdots \int_{-\infty}^\infty e^{-x_1^2}e^{-x_2^2}\cdots e^{-x_d^2}dx_1 \cdots dx_d &= \int_{-\infty}^\infty e^{-x_1^2}dx_1 \int_{-\infty}^\infty e^{-x_2^2}dx_2 \cdots \int_{-\infty}^\infty e^{-x_d^2}dx_d \\
+			&= \underbrace{\sqrt{\pi} \cdots \sqrt{\pi}}_{\text{$d$ times}} \\
+			&= \pi^{\frac d2}
+		\end{align*}
+		Now we apply the change of variables $u = r^2$ to the right side, and by using the $1 \cross 1$ jacobian, we see that the RHS is equal to
+		\begin{align*}
+			\frac{c_d}2 \int_0^\infty e^{-u} u^{\frac d2 - 1} du &= \frac{c_d}2 \Gamma \qty(\frac d2)
+		\end{align*}
+		By rearranging, we may conclude that \[c_d = \frac{2\pi^{\frac d2}}{\Gamma\qty(\frac d2)}\]
+	\end{enumerate}
+
+	First we start with the base case that $n=0$. 
+	\begin{align*}
+		\Gamma(1) = \int_0^\infty t^0 e^{-t}dt = -\lim_{x \to \infty} e^{-t} \eval_0^x = 1-\lim_{x \to \infty} e^{-x}=1=1!
+	\end{align*}
+	Now suppose that for some $k \geq 0$, $\Gamma(k+1)=k!$. We proceed using integration by parts. 
+	\begin{align*}
+		\Gamma(k+2) &= \int_0^\infty t^{k+1}e^{-t}dt \\
+		&= \lim_{x \to \infty} t^{k+1}e^{-t} \eval_0^x + (k+1)\int_0^\infty t^ke^{-t}dt \\
+		&= (k+1)k! \\
+		&= (k+1)!
+	\end{align*}
+	(The limit vanished because as $t \to \infty$, $\frac{t^{k+1}}{e^t} \to 0$, and when evaluated at 0, $t^{k+1}=0$) And we are done. $\qed$
+\end{document}

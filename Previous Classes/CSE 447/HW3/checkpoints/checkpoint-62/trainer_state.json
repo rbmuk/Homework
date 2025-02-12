@@ -1,0 +1,90 @@
+{
+  "best_metric": null,
+  "best_model_checkpoint": null,
+  "epoch": 1.984,
+  "eval_steps": 50,
+  "global_step": 62,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 0.032,
+      "grad_norm": NaN,
+      "learning_rate": 0.0,
+      "loss": 54.6696,
+      "step": 1
+    },
+    {
+      "epoch": 0.32,
+      "grad_norm": 180.96531677246094,
+      "learning_rate": 1.4000000000000001e-06,
+      "loss": 54.6805,
+      "step": 10
+    },
+    {
+      "epoch": 0.64,
+      "grad_norm": 149.26248168945312,
+      "learning_rate": 3.2000000000000003e-06,
+      "loss": 53.0515,
+      "step": 20
+    },
+    {
+      "epoch": 0.96,
+      "grad_norm": 103.2083740234375,
+      "learning_rate": 5.2e-06,
+      "loss": 47.8807,
+      "step": 30
+    },
+    {
+      "epoch": 1.28,
+      "grad_norm": 90.99034881591797,
+      "learning_rate": 7.2000000000000005e-06,
+      "loss": 41.9868,
+      "step": 40
+    },
+    {
+      "epoch": 1.6,
+      "grad_norm": 88.55665588378906,
+      "learning_rate": 9.200000000000002e-06,
+      "loss": 37.8655,
+      "step": 50
+    },
+    {
+      "epoch": 1.6,
+      "eval_loss": 3.4629428386688232,
+      "eval_runtime": 5.1527,
+      "eval_samples_per_second": 194.072,
+      "eval_steps_per_second": 48.518,
+      "step": 50
+    },
+    {
+      "epoch": 1.92,
+      "grad_norm": 94.78369903564453,
+      "learning_rate": 1.1200000000000001e-05,
+      "loss": 34.0893,
+      "step": 60
+    }
+  ],
+  "logging_steps": 10,
+  "max_steps": 62,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 2,
+  "save_steps": 500,
+  "stateful_callbacks": {
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": true
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 758951285760000.0,
+  "train_batch_size": 4,
+  "trial_name": null,
+  "trial_params": null
+}

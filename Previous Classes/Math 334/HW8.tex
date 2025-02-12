@@ -1,0 +1,127 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 334 HW 7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		Given any $a < b$, we see that because $f'(x) \leq g'(x)$ for every $x \in \R$, we have that
+		\begin{align*}
+			f(b)-f(a) = \int_{a}^{b} f'(x)dx \leq \int_{a}^{b} g'(x)dx = g(b)-g(a)
+		\end{align*}, because the integral (on an increasing interval) preserves inequalities.
+		
+		\item 
+		Given any $a < b$, because $g$ is differentiable at $a$ and $b$, and because $f$ is differentiable on all of $\R^2$, the composition function $f \circ g: \R \to \R$ is differentiable on all of $\R$ by the chain rule. Because differentiable $\implies$ continuity, we see that the mean value theorem applies, and there is some $c \in (a, b)$ so that 
+			\begin{align*}
+				f(g(b))-f(g(a)) = (f(g(c)))'(b-a)
+			\end{align*}
+		Again by the chain rule, we see that $(f(g(a)))' = \ip{\grad{f(g(c))}}{g'(a)}$, which completes the proof.
+		
+		\item 
+		If $f'$ is continuous: let $\seq{x}{n}$ be the described sequence. Because $|x_{n+1}|=|f(x_n)|=|f'(c)||x_n| \leq |x_n|$ for some $c$, $(|x_n|)$ is bounded and monotonically decreasing, so it converges. Suppose it doesn't converge to 0. Then $\inf |x_n| = r > 0$. Because $1 - f'(x) > 0$ for every $x \in I = [-|x_0|, -\inf |x_n|] \cup [\inf |x_n|, |x_0|]$, there is some $c > 0$ so that $1 - f'(x) \geq c$ on $I$. Then $f'(x) \leq 1-c$, so we see $f$ is a contraction mapping, and $I$ is a complete metric space, therefore $f$ has a unique fixed point by Banach, which $\seq{x}{n}$ converges to. But the only fixed point of $f$ is $x=0$, and we already determined that $x_n$ does not go to 0, a contradiction.
+		
+		Alternatively, let $x_0 \in \R$. Note that $|x_{n+1}| = |f(x_n)|\leq |x_n|$ and so $|x_n| \to r$ for some $r \geq 0$ (monotone convergence theorem). Note also that $|f(x_n)| = |x_{n+1}| \to r$. Note $x_n$ must take the same sign infinitely many times, so choose a subsequence $x_{n_k} \to ar$ with $a \in \set{\pm 1}$. This is justified because if $x_{n_k}$ always has the same sign, this means $|x_{n_k}|$ is either always $x_{n_k}$ or $-x_{n_k}$ in the first case, we see that $|x_{n_k}|=x_{n_k}$, so by taking the limit $x_{n_k}$ converges to $r$. In the second case, $|x_{n_k}| = -x_{n_k}$, so by taking the limit again we see that $r = -\lim x_{n_k}$. Then $r = \lim_{n \to \infty} |f(x_{n_k})| = |f(ar)|$. If $r \neq 0$, $|r|=|f(ar)|<r$ (see uniqueness), a contradiction. Then $|x_n| \to 0$, so given any $\ve > 0$, there is some $N > 0$ so that if $n > N$, $|x_n|=||x_n|| < \ve$, which means that $x_n \to 0. \qed$
+		
+		Uniqueness: Suppose $f(y)=y$, for some $y \neq 0$. Then by the mean value theorem, there is some $c \in (\min(0, y), \max(0, y))$ so that $|y-0| = |f(y)-f(0)|=|f'(c)||(y-0)| < |y-0|$, a contradiction. 
+		
+		Consider the function 
+		$$
+			f(x) = 
+			\begin{cases}
+			x-\frac{x^3}{8N}, & |x| < \sqrt{8N}/3, \\
+			\sqrt{8N}/3 - (\sqrt{8N}/3)^3/(8N), & |x| \geq \sqrt{8N}/3
+			\end{cases}
+	$$
+	For clarity I will call $C = 8N$. We see that $f(2) = 2 - 2^3/C$. Then $f(f(2)) = (2 - 2^3/C) - 1/C(2-2^3/C)^3$. Note that $2-8/C$ is positive by construction, because the second term will never exceed $1$ (so it is in fact always greater than 1). Then because $-x^3$ is decreasing, if we plug a larger value into it we will get a smaller value, so this quantity is greater than $(2-2^3/C)-1/C \cdot 2^3 = 2 - 2 \cdot 2^3/C$. Note now that $f(x)$ is increasing on $|x| < C$, because the derivative is $0$ for the first time at $|x| = C$, and positive before that. So each value we are plugging in is going to be less than the actual value after $k$ compositions. We continue this process and see after $N$ steps we get that $f(f(...(2))) > 2 - 8N/8N = 1$. Note also that every composition before this would be $>$ than this value, by construction. $\qed$
+	
+	 \item 
+	 $Tf_0 = 1, Tf_1 = 1 + 2x, Tf_2 = 1+2x+2x^2, Tf_3 = 1+2x+2x^2+4x^3/3 = (2x)^0/0! + (2x)^1/1! + (2x^2)/2! + (2x^3)/3!$. Then I claim that 
+	 \begin{align}
+		 	f_n = \sum_{k=0}^{n} \frac{2x^k}{k!}
+	 \end{align}
+	 \begin{proof}
+		 	For $n = 0$, we see that $f_0 = 1$ which certainly equals $\sum_{k=0}^{0} (2x^k)/k!$. Then suppose for some $n \geq 0$ we have that $f_n = \sum_{k=0}^{n} \frac{2x^k}{k!}$. We see that $f_{n+1} = T(f_n) = 1 + \int_{0}^{x} 2f_n(t)dt = 1+2\sum_{k=0}^{n} \frac1{k!} \int (2t)^kdt = 1+2\sum_{k=0}^{n} \frac1{k!} \int (2t^k)dt = 1 + 2\sum_{k=0}^{n} \frac1{k!} (2x)^{k+1}/(2(k+1)) = 1 + \sum_{k=0}^{n} (2x)^{k+1}/(k+1)!$ Re-indexing, and seeing that $(2x)^0/0!=1$, we get that $f_{n+1} = \sum_{k=0}^{n+1} (2x)^k/k!$ 
+	 \end{proof}
+	 Then the solution to the integral equation is probably $e^{2x}$. I actually did this in the reverse order, by seeing that if we plug in $x = 0$ to the integral equation, we get that $f(0)=1$, and differentiating both sides we get that $f' = 2f$. Now it is very clear what function this should be, and also that the iterations are just going to be the taylor approximations of this function.
+		\end{enumerate}
+	
+	
+\end{document}

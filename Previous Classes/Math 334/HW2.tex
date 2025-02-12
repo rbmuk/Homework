@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+\usepackage[paper=letterpaper,margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+% \usepackage{newtxtext, newtxmath}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{tikz-cd}
+
+\setlength{\droptitle}{-6em}
+
+\newcommand{\ip}[2]{\langle \mathbf{#1}, \mathbf{#2} \rangle}
+\newcommand{\ipi}[2]{\langle #1, #2 \rangle}
+\newcommand{\mgi}[1]{\| #1 \|}
+\newcommand{\mg}[1]{\| \mathbf{#1} \|}
+%\newcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Enter the specific assignment number and topic of that assignment below, and replace "Your Name" with your actual name.
+\title{Math 334: Problem Set 2}
+\author{Rohan Mukherjee}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Let $\mathbf{x} \neq 0 \neq \mathbf{y}$. If we have equality, then 
+		$$ \ip{x}{y} = \mg{x}\mg{y} \iff \ip{x}{y}^2=\mg{x}^2\mg{y}^2$$
+		$$\iff 2\frac{\ip{x}{y}^2}{\mg{y}^2} - \frac{\ip{x}{y}^2}{\mg{y}^4}\mg{y}^2=\mg{x}^2$$
+		Now let $\lambda = \ip{x}{y}/\mg{y}^2$. By plugging $\lambda$ in, we get
+		$$\mg{x}^2-2\lambda\ip{x}{y} + \lambda^2\mg{y}^2=0 \iff \ip{x-\lambda y}{x-\lambda y} = 0$$
+		$$\iff \mg{x-\lambda y}^2 = 0 \iff \mathbf{x}-\lambda \mathbf{y} = 0 \implies \mathbf{x} = \lambda \mathbf{y} \qed$$
+		
+		\item Note,
+		\begin{align*}\mg{x+y}^2+\mg{x-y}^2 &= \ip{x+y}{x+y} + \ip{x-y}{x-y} 
+		\\ &= \mg{x}^2 + 2\ip{x}{y} + \mg{y}^2 + \mg{x}^2 -2\ip{x}{y} + \mg{y}^2
+		\\ &= 2(\mg{x}^2 + \mg{y}^2)
+		\end{align*}
+		\begin{align*}
+			\frac{\mg{x+y}^2-\mg{x-y}^2}{4} &= \frac14 \cdot \left(\mg{x}^2 + 2\ip{x}{y} + \mg{y}^2 - \left(\mg{x}^2 -2\ip{x}{y} + \mg{y}^2\right)\right)
+			\\&= \frac14 \cdot 4\ip{x}{y}
+			\\&= \ip{x}{y} \quad\qedsymbol
+		\end{align*}
+		\item
+		Let $\mathbf{x} \in \R^n$ with $n \geq 2$. If $\mathbf{x} = \mathbf{0}$, simply choose $\mathbf{y} = \begin{pmatrix}
+			1 \\ 1 \\ \vdots \\ 1
+		\end{pmatrix} \neq \mathbf{0}$, and note that $\ip{x}{y} = 0$. So now let $\mathbf{x} \neq \mathbf{0}$, say $$\mathbf{x} = \begin{pmatrix}
+		a_1 \\
+		a_2 \\
+		\vdots \\
+		a_n
+		\end{pmatrix}$$ Then, because $\mathbf{x} \neq \mathbf{0}$, there are $a_i$ and $a_j$ not both 0. Then, choose $$\mathbf{y} = \begin{pmatrix}
+		0 \\
+		\vdots \\
+		0 \\
+		-a_j \\
+		0 \\
+		\vdots \\
+		0 \\
+		a_i \\
+		0 \\
+		\vdots \\
+		0
+		\end{pmatrix} \text{ where } -a_j \text{ is in the $i$-th row and } a_i \text{ is in the $j$-th row.}$$ and note that $\mathbf{y} \neq \mathbf{0}$. Also note  that 
+		\begin{align*}\ip{x}{y} &= 0a_1 + 0a_2 + \cdots + 0a_{i-1} + a_i \cdot (-a_j) + 0a_{i+1} + \cdots + 0a_{j-1} + a_j \cdot a_i + 0a_{j+1} + \cdots + 0a_n \\
+			&= -a_i a_j + a_i a_j \\
+			&= 0 \quad \qedsymbol
+		\end{align*}
+		Let $\mathbf{x_i}=$ the number of Chris Pratt movies in 2021-$i$, and $\mathbf{y_i}=$ the amount of wheat produced in China in 2021-$i$. If you take all the data and find the correlation, you get that the correlation is about $0.5273$, which is much higher than I would've guessed. 
+		
+		The base case is $n=2$, so let $\mathbf{x_1}, \mathbf{x_2} \in \R^n$ with $\ip{x_i}{x_j} = 0$ if $i \neq j$. Then 
+		\begin{align*}
+			\mg{x_1+x_2}^2&=\ip{x_1+x_2}{x_1+x_2} \\&= \mg{x_1}^2+2\ip{x_1}{x_2}+\mg{x_2}^2 \\
+			&= \mg{x_1}^2+\mg{x_2}^2 \text{ because of the property above.}
+		\end{align*}
+		Let $x_1, x_2, \ldots x_m \in \R^n$ be such that if $i \neq j$, then $\ip{x_i}{x_j}=0$. Suppose now that there is some $m$ so that $$\mg{x_1+x_2+\cdots+x_m}^2=\mg{x_1}^2+\mg{x_2}^2+\cdots+\mg{x_m}^2$$
+		We see that if $x_{m+1} \in \R^n$ with the same property, then
+		\begin{align*}
+			\mg{x_1+x_2+\cdots+x_{m+1}}^2 &= \ip{x_1+x_2+\cdots+x_{m+1}}{x_1+x_2+\cdots+x_{m+1}} 
+				\\&= \mg{x_1+x_2+\cdots+x_m}^2+2\ip{x_1+x_2+\cdots+x_m}{x_{m+1}}+\mg{x_{m+1}}^2
+				\\&= \mg{x_1+x_2+\cdots+x_m}^2+2\ip{x_1}{x_{m+1}}+\cdots+2\ip{x_m}{x_{m+1}}+\mg{x_{m}}^2
+		\end{align*}
+		Then, by the induction hypothesis and because $\ip{x_i}{x_j}=0$ for all $i\neq j$, we see that the above equals $$\mg{x_1}^2+\mg{x_2}^2+\cdots+\mg{x_{m+1}}^2 \quad\qedsymbol$$
+	\item 
+	Let $\varepsilon > 0$.
+	\begin{lemma}
+		If $v_1, v_2, \ldots v_n \in \R^m$ and $n>1$, $\min\limits_{1\leq i < j \leq n}{\text{\{angle between $v_i$ and $v_j$\}}} \leq 2\pi/n$.
+	\end{lemma}
+	\begin{proof}
+	Suppose instead that $\min\limits_{1\leq i < j \leq n}{\text{\{angle between $v_i$ and $v_j$\}}} > 2\pi/n$. If we start at the origin, and move counterclockwise, the sum of the angles between two vectors that are next to each other will be equal to $2\pi$. But this is a contradiction, because the sum of all these angles must be $>n\cdot 2\pi/n = 2\pi$. 
+	\end{proof}
+	\begin{lemma}
+		For $\mathbf{x}, \mathbf{y} \in \R^2$, we have that $\ip{x}{y} =\mg{x}\mg{y} \cos(\text{angle between $\mathbf{x}$ and $\mathbf{y}$})$
+	\end{lemma}
+	\begin{proof}
+		If we treat $\mathbf{x,y}$ as points in $\R^2$, we can say that the chord connecting them is equal to $\mathbf{y-x}$. Now note that 
+		\begin{align*}
+			\mg{x}^2-2\ip{x}{y}+\mg{y}^2 &= \ip{x-y}{x-y} = \mg{x-y}^2 
+		\end{align*}
+		Now if we treat all 3 vectors as line segments, you can use the law of cosines to get that
+		\begin{align*}
+			\mg{x-y}^2 &= \mg{x}^2+\mg{y}^2-2\mg{x}\mg{y}\cos(\text{angle between $\mathbf{x}$ and $\mathbf{y}$})
+		\end{align*}
+		Now if we match these equations and rearrange, we get that
+		\begin{align*}
+			\ip{x}{y} = \mg{x}\mg{y}\cos(\text{angle between $\mathbf{x}$ and $\mathbf{y}$})
+		\end{align*}
+		The final thing to note is that this equation still works when these vectors don't make a triangle, i.e. when $\mathbf{y=x}$ or $\mathbf{y=-x}$. If $\mathbf{y=x}$, then the angle between $x, y$ is 0, so $\ip{x}{y}=\ip{x}{x}=\mg{x}^2\cdot 1 = \mg{x}^2 \cdot \cos(0)$. If $\mathbf{y=-x}$, then the angle between $\mathbf{x,y}$ is $\pi$, and $\ip{x}{y}=\ip{x}{-x}=-\ip{x}{x}=\mg{x}^2\cdot (-1) = \mg{x}^2 \cdot \cos(\pi)$.
+	\end{proof}
+	Because $\mg{v_i} = 1$ for all $i$, and $\ip{v_i}{v_j} = \mg{v_i}\mg{v_j}\cos(\text{angle between $v_i$ and $v_j$})$, we have that
+	$$\max_{1\leq i < j \leq n}{\ip{v_i}{v_j}} = \cos(\min_{1\leq i < j \leq n}{\text{\{angle between $v_i$ and $v_j$\}}}) \geq \cos(2\pi/n)$$
+	This is because the inner product will be greatest when the two vectors are closest to each other. The inequality also gets flipped because $\cos(x)$ is decreasing.
+	
+	First, if $\varepsilon \geq 1$, choose $n = 8$. We see that
+	\begin{align*}
+		\cos(2\pi/n) = \cos(\pi/4) = \sqrt{2}/2 > 0 \geq 1-\varepsilon
+	\end{align*}
+	Now, if $0 < \varepsilon < 1$, choose $$n > \frac{2\pi}{\arccos(1-\varepsilon)}$$ We also see that
+	\begin{align*}
+		\frac{2\pi}{n} &< \arccos(1-\varepsilon)
+		\\\implies \cos\left(\frac{2\pi}{n}\right) &> \cos(\arccos(1-\varepsilon)) = 1-\varepsilon
+	\end{align*} because $\cos(x)$ is decreasing. Then by our discussion above, we have proven that this $n$ works for every list $v_1, v_2, \ldots, v_n \in \R^n. \hfill\qedsymbol$
+	\item 
+		If we let $\ipi{f(x)}{g(x)} = \int_{0}^{1}  f(x)g(x)dx$, then we shall note that $\ipi{f}{g} = \ipi{g}{f}$, as multiplication is commutative, and that $\ipi{af(x)+bg(x)}{h(x)} = a\ipi{f(x)}{h(x)} + b\ipi{g(x)}{h(x)}$ because the integral is known to be a linear operator. The final thing to note is that $\ipi{f}{f} \geq 0$, because the integral of a non-negative function is going to be non-negative. So now we can say the following. Let $f,g:[0,1]\to \R$, $t \in \R$, and $\mgi{f(x)} \neq 0 \neq \mgi{g(x)}$. Then,
+		\begin{align*}
+			0 \leq \ipi{f(x)-tg(x)}{f(x)-tg(x)} &= \mgi{f(x)}^2 -2t\ipi{f(x)}{g(x)} + t^2\mgi{g(x)}^2
+		\end{align*}
+		Now choose $t=\frac{\ipi{f(x)}{g(x)}}{\mgi{g(x)}^2}$. Note that 
+		\begin{align*}
+			0 &\leq \mgi{f}^2-2 \frac{\ipi{f(x)}{g(x)}^2}{\mgi{g(x)}^2}+\frac{\ipi{f(x)}{g(x)}^2}{\mgi{g(x)}^4}\mgi{g(x)}^2 \\ \implies &
+			\ipi{f(x)}{g(x)}^2 \leq \mgi{f(x)}^2\mgi{g(x)}^2
+		\end{align*} Now if we take the square root on both sides, and write out what all of these symbols mean, we get
+	$$\left|\int_{0}^{1} f(x)g(x)dx\right| \leq \left(\int_{0}^{1} f(x)^2dx\right)^{1/2}\left(\int_{0}^{1} g(x)^2dx\right)^{1/2} \quad\qedsymbol$$
+	\end{enumerate}
+\end{document}

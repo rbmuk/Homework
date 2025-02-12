@@ -1,0 +1,249 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+%\usepackage{R:/sty/quiver}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Ind}{\mathrm{Ind}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 506 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item If we consider the group $G = D_3$, we see that $srsr^{-1} = srrs = sr^2s = r^{-2} = r$, so $\gen{r} \subset [G,G]$. Since $D_3/\gen{r} \cong \Z_2$, we have that $[G,G] = \gen{r}$ since $[G,G]$ is the smallest subgroup with abelian quotient. The one-dimensional irreducible representations of $D_3$ are thus the irreducible representations of $\Z/2$, which are just going to be the trivial representation and the representation sending $r \to 1$, $s \to -1$. Finally, we know the last irreducible representation of $D_3$ to be the representation sending $r$ to the matrix that rotates by $\frac{2\pi}{3}$ radians about the origin, and $s$ to the matrix that flips across the $x$-axis. This is the representation that sends 
+        \begin{align*}
+            r \to \begin{pmatrix} -\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & -\frac{1}{2} \end{pmatrix}, \quad s \to \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.
+        \end{align*} Since the first matrix is orthogonal, it has determinant $\pm 1$, and since it is orientation preserving it has determinant $1$. The second matrix can easily be seen to have matrix $-1$. The three conjugacy classes of $D_3$ are $\SET{e}, \SET{r, r^2}, \SET{s, sr, sr^2}$. Clearly, for a 1-dimensinoal representation, the determinant equals the trace. By our above calculations, if we call the only 1-dimensional non-trivial character $\pi_2=\chi_2$, we know that $\chi_2(e) = 1$, $\chi_2(r) = 1$ and $\chi_2(s) = -1$. If we call the 2-dimensional representation $\pi_3$, we also see that $\det(\pi_3(e)) = 1$, $\det(\pi_3(r)) = 1$ and $\det(\pi_3(s)) = -1$. Since $\pi_2, \pi_3$ are inequivalent irreducible representations, we have disproven the claim.
+        
+        \item Recall that if $\pi: G \to \GL_n(\C)$, then $\pi(g)$ is diagonalizable for any $g$, and that every eigenvalue of $\pi(g)$ is a root of unity. Suppose that the elements on the diagonal are $\lambda_1, \ldots, \lambda_n$ (where repretition is possible). If ever $\lambda \neq 1$, then $\lambda$ has a non-zero imaginary part. If we were to have $\chi(g) = \chi(1) = n$, we would need the sum of the eigenvalues to be $n$. The only way to have a sum of $n$ norm 1 numbers to be $n$ is if all the numbers are themselves 1, otherwise the weight of the imaginary part would take from the real part and we couldn't possibly have $n$ as the sum. This shows that if $\chi(g) = \chi(1)$, then $\pi(g)$ is similar to the identity matrix and hence just the identity matrix, so $g \in \ker \pi$. Now, if $g \neq 1$, then $g$ is clearly not conjugate to the identity, so by the orthogonality relations we have that
+        \begin{align*}
+            \sum_{\chi_i} \chi_i(g) \overline{\chi_i(1)} = 0.
+        \end{align*}
+        If somehow $\chi_i(g) = \chi_i(1)$ for all irreducible characters $\chi_i$, then the above sum would evaluate to
+        \begin{align*}
+            \sum_{\chi_i} \chi_i(1) \overline{\chi_i(1)} = |C_G(e)| = |G|
+        \end{align*}
+        which is certainly nonzero. This completes the proof.
+
+        \item Recall that if $g_1, \ldots, g_m$ are distinct representatives from each of the $m$ left cosets of $H$, 
+        \begin{align*}
+            c_G(g) = \Ind_H^G(c_H)(g) \coloneqq \sum_{g_i^{-1}gg_i \in H} c_H(g_i^{-1}gg_i).
+        \end{align*} Notice first that if $xh_1x^{-1} = yh_2y^{-1}$, then we have $y^{-1}xh_1x^{-1}y = h_2$, so either $y^{-1}x \in H$ or $h_1 = h_2 = 1$. This means that $xHx^{-1} \cap yHy^{-1} = 1$ if $x$ and $y$ are in different left cosets of $H$, and if $x \in yH$, then $x^{-1}Hx = y^{-1}Hy$ so there are precisely $|G : H|$ distinct conjugacy classes of $H$. We proceed with the following calculation:
+        \begin{align*}
+            \ip{c_G, c_G} &= \frac{1}{|G|} \sum_{g \in G} c_G(g) \overline{c_G(g)} = \frac{1}{|G|} \sum_{g \in G} \qty(\sum_{g_i^{-1}gg_i \in H} c_H(g_i^{-1}gg_i) \overline{\sum_{g_j^{-1}gg_j \in H} c_H(g_j^{-1}gg_j)}) \\
+            &= \frac{1}{|G|} \sum_{g \in G} \qty(\sum_{g_i^{-1}gg_i \in H} c_H(g_i^{-1}gg_i) \sum_{g_j^{-1}gg_j \in H} \overline{c_H(g_j^{-1}gg_j)}) \\
+            &= \frac{1}{|G|} \sum_{g \in G} \sum_{\substack{g_igg_i^{-1} \in H \\ g_jgg_j^{-1} \in H}} c_H(g_i^{-1}gg_i) \overline{c_H(g_j^{-1}gg_j)} \\
+        \end{align*}
+        As before, if $g_i \neq g_j$ and $g_igg_i^{-1}, g_jgg_j^{-1} \in H$ we have $g \in g_i^{-1}Hg_i \cap g_j^{-1}Hg_j = 1$ so $g = 1$ and since $c_H(1) = 0$, the only terms that contribute to the sum are those where $g_i = g_j$. This means that the above sum is just
+        \begin{align*}
+            \frac{1}{|G|} \sum_{g \in G} \sum_{g_igg_i^{-1} \in H} |c_H(g_i^{-1}gg_i)|^2
+        \end{align*}
+        We want this to equal 
+        \begin{align*}
+            \frac{1}{|H|} \sum_{h \in H} |c_H(h)|^2 = \frac{1}{|H|} \sum_{h \in H} |c_H(h)|^2 = \ip{c_H, c_H}.
+        \end{align*}
+        Thus, we count the number of times $|c_H(h)|^2$ for $h \neq 1$ shows up in the first sum. We showed above that there are precisely $|G : H|$ distinct conjugacy classes of $H$. The above also shows that $h$ has precisely $|G : H|$ distinct conjugates in $G$, namely, $g_i^{-1}hg_i$ for the $g_i$ as above. Thus the term $|c_H(h)|^2$ shows up precisely $|G : H|$ times for each $h$. This shows that
+        \begin{align*}
+            \frac{1}{|G|} \sum_{g \in G} \sum_{g_igg_i^{-1} \in H} |c_H(g_i^{-1}gg_i)|^2 = \frac{|G : H|}{|G|} \sum_{h \in H} |c_H(h)|^2 = \frac{1}{|H|} \sum_{h \in H} |c_H(h)|^2 = \ip{c_H, c_H}.
+        \end{align*}
+
+        We first seek to show that if $c_H$ is any class function on $H$, then $\Ind_H^G(c_H)$ restricts to itself on $H$. This is true because the condition $ghg^{-1} \in H$ is equivalent to $h \in g^{-1}Hg$, and by hypothesis this is only true if $g \in H$. Thus,
+        \begin{align*}
+            \Ind_H^G(c_H)(h) = \frac{1}{|H|} \sum_{h' \in H} c_H((h')^{-1}hh') = \frac{1}{|H|} \sum_{h' \in H} c_H(h) = c_H(h).
+        \end{align*}
+        Notice that if $\chi_1, \chi_2$ are two characters of $H$, then,
+        \begin{align*}
+            \Ind_H^G(a\chi_1 + b\chi_2) &= \frac{1}{|H|} \sum_{x \;:\; xgx^{-1} \in H} (a\chi_1(xgx^{-1}) + b\chi_2(xgx^{-1})) \\&= a\frac{1}{|H|} \sum_{x \;:\; xgx^{-1} \in H} \chi_1(xgx^{-1}) + b\frac{1}{|H|} \sum_{x \;:\; xgx^{-1} \in H} \chi_2(xgx^{-1}) = a\Ind_H^G(\chi_1) + b\Ind_H^G(\chi_2).
+        \end{align*}
+        Holding for any complex numbers $a, b \in \C$. In particular, $c_\chi = \Ind_H^G(\chi - d\chi_1)$ is an integer linear combination of two characters. This tells us that $c_\chi = c_1 \chi_1 + \sum_{i=2}^m c_i\chi_i$ for some $c_i \in \Z$ with the $\chi_i$ being the distinct irreducible characters of $G$. In the setting that $\chi$ is not the trivial character on $H$, and noting that restricting the trivial character clearly gives the trivial character, by Frobenius reciprocity we see that
+        \begin{align*}
+            \ip{c_\chi, \chi_1}_G = \ip{\chi - d, \chi_1}_H = \ip{\chi, \chi_1}_H - d\ip{\chi_1, \chi_1}_H = -d.
+        \end{align*}
+        Where we recall that $\ip{\chi_1, \chi_2} = 0$ if $\chi_1, \chi_2$ are distinct irreducible characters. Thus $c_\chi = -d\chi_1 + \sum_{i=2}^m c_i\chi_i$. By the previous result, we know that $\mg{c_\chi}_G^2 = \mg{\chi - d}_H^2$. Now, since $\chi$ and the trivial character are distinct irreducibles, we clearly have that $\mg{\chi - d\chi_1}_H^2 = d^2+1$. It follows then that $\mg{c_\chi}_G^2 = d^2+1$. Since distinct characters are orthogonal, this tells us that $\mg{\sum_{i=2}^m c_i\chi_i}_G^2 = 1$, so precisely one of the $c_i = \pm 1$ for $i \geq 2$, and the rest are 0. Recalling that the restrictiion of $\Ind_H^G(c_H) = c_H$ for any class function $c_H$ on $H$,
+        \begin{align*}
+            c_\chi(1) = \chi_H(1) - d = 0
+        \end{align*}
+        This shows that $c_i = 1$, since for any character $\chi_G$ of $G$, $\chi_G(1)$ equals the dimension of the representation, and is importantly positive. Thus we can write $c_\chi = \chi_G - \chi_G(1)$ for some irreducible representation $\chi_G$ of $G$. In the case where $\chi$ is the trivial character on $H$, we are inducing the 0 class function, so taking the trivial character on $G$ will suffice for $\chi_G$. Notably, we have induced a degree $d$ irreducible character and ended up with another degree $d$ irreducible character of $G$. Now define
+        \begin{align*}
+            N = \SET{g \in G \mid xgx^{-1} \not \in H \text{ for all } x \in G} \cup \SET{1}.
+        \end{align*}
+        Let $n \in N$. Then $n$ is not conjugate to anything in $H$. In particular, if $c_H$ is any class function, $\Ind_H^G(c_H)(n) = \frac{1}{|G|} \sum_{xgx^{-1} \in H} c_H(xgx^{-1}) = 0$ because the sum is empty. Conversly, if $g \neq 1 \in G$ is so that $xgx^{-1} = h \in H$ for some $x \in G$, we see first that $h \neq 1$. Thus by question 2 there is an irreducible character $\chi_H$ of $H$ so that $\chi_H(h) \neq \chi_H(1)$. In particular, if we define $c_H = \chi_H - \chi_H(1)$, $\chi_H(h) \neq 0$. Write $c_G = \Ind_H^G \chi_H = \chi_G - \chi_G(1)$ for some irreducible character $\chi_G$ of $G$. Then,
+        \begin{align*}
+            c_G(h) = \sum_{g_ihg_i^{-1}} c_H(g_ihg_i^{-1})
+        \end{align*}
+        For the final time, $g_ihg_i^{-1} \in H$ means $h \in g_i^{-1}Hg_i$ which is only true if $g_i = 1$. Thus the above sum evaluates to $c_H(h) \neq 0$. Since a class function on $G$ is constant on conjugacy classes, we see that $c_G(xgx^{-1}) = c_G(g) \neq 0$. If we write $\pi_G$ as the representation of $\chi_G$, this means that $g \not \in \pi_G$. Thus $N = \bigcap_{\pi_G} \ker \pi_G$, which shows that $N$ is the intersection of normal subgroups of $G$ and hence itself normal.
+
+        \item Let $\lambda = (2, 1)$. If we let $T_1 = \begin{array}{c|c}
+            1 & 2 \\ \hline
+            3 &
+        \end{array}$, $T_2 = \begin{array}{c|c}
+            1 & 3 \\ \hline
+            2 &
+        \end{array}$, we can see that the Tabloids of $\lambda$ are 
+        \begin{align*}
+            a = \SET{T_1} = \SET{\begin{array}{c|c}
+                1 & 2 \\ \hline
+                3 & 
+            \end{array}, 
+            \begin{array}{c|c}
+                2 & 1 \\ \hline
+                3 &
+            \end{array}}, 
+            c = \SET{T_2} = \SET{\begin{array}{c|c}
+                1 & 3 \\ \hline
+                2 & 
+            \end{array},
+            \begin{array}{c|c}
+                3 & 1 \\ \hline
+                2 &
+            \end{array}},
+            b = \SET{\begin{array}{c|c}
+                2 & 3 \\ \hline
+                1 &
+            \end{array},
+            \begin{array}{c|c}
+                3 & 2 \\ \hline
+                1 &
+            \end{array}}.
+        \end{align*}
+        We see, noting that the only nontrivial element of the column group is $(13)$, that $V_{T_1} = a-b$ and by similar reasoning $V_{T_2} = c-b$. We claim that $\mathrm{span}\SET{V_{T_1}+V_{T_2}}$ is a submodule of $S^\lambda$. Note that $(12)V_{T_1} = a - c$, $(12)V_{T_2} = b - c$. Thus $(12)(V_{T_1}+V_{T_2}) = a - c + b - c = a + b - 2c = a + c - 2b = V_{T_1}+V_{T_2}$, since $1 = -2$ in characteristic 3. Similarly, one calculates $(123)V_{T_1} = b-c$ and $(123)V_{T_2} = a-c$, so $(123)(V_{T_1}+V_{T_2}) = b - c + a - c = a + b - 2c = a + c - 2b = V_{T_1}+V_{T_2}$. Thus $\mathrm{span}\SET{V_{T_1}+V_{T_2}}$ is a submodule of $S^\lambda$, which shows that for this choice of $\lambda$ $S^\lambda$ is not irreducible. Notably, this representation collapses into the identity representation of $S_3$, since every element of $S_3$ acts as the identity on the basis elements of $S^\lambda$.
+    \end{enumerate}
+\end{document}

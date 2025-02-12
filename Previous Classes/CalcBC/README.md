@@ -1,0 +1,1 @@
+This is an article that I am writing for my AP Calculus BC class of 2022. I am a very interested student of Mathematics and plan to major it in college, which will hopefully happen by the end of next year. This is my first attempt at writing a longer article.

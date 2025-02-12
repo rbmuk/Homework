@@ -1,0 +1,183 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+\renewcommand{\mod}[1]{\;(\mathrm{mod}\; #1)}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Let $P(n) = 5 \mid 9^n - 4^n$. 
+		
+		\textbf{Base case:} $9^2 - 4^2 = 81 - 16 = 65 = 5 \cdot 13$, so clearly $5 \mid 9^2 - 4^2$, which is $P(2)$ so the base case holds.
+		
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item Given any arbitrary integer $n > 3$, I claim that the $n-3$ satisfies the conditions on $b$. First we have to show that $1 \leq n-3 \leq n$. As $n$ is an integer strictly greater than 3, we know that $n \geq 4$, and from here we can subtract 3 from both sides to get $n-3 \geq 1$. Similarly, as $-3 \leq 0$, we can add $n$ to both sides to get that $n-3 \leq n$, which shows that $n$ is in the right bounds. Now, given any $a \in \bZ$, we wish to show that $a + 3 + (n-3) \equiv a \mod n$. This statement is equivalent to showing that $n \mid (a + 3 + (n-3) - a)$, and as $n \cdot 1 = (a+3+(n-3)-a)=(3+n-3)=n$, so we see that this statement holds true. As $n$ was arbitrary, we have concluded that for any integer $n > 3$, there exists a $b$ so that $b$ undoes 3$\mod{n}$.
+			\item Let the domain of discourse be integers. The statement in predicate logic is $\\\forall n \forall b \forall b' ((Greater(n, 3) \land Undoes3(b, n) \land Undoes3(b', n)) \ra b \equiv b' \mod{n})$. Given any arbitrary integer $n>3$, and any arbitrary $b, b' \in \bZ$, suppose that $b$ and $b'$ undo 3 for$\mod{n}$ addition. Note that given any $a \in \bZ$, we know that $n \mid (a+3+b-a) \iff n \mid 3+b$ by the definition of undoing 3 for$\mod{n}$ addition. Then $3+b = kn$ for some $k \in \bZ$. Similarly, given any $c \in \bZ$, we know that $n \mid (c+3+b'-c) \iff n \mid 3+b'$, so $3+b'=ln$ for some $l \in \bZ$. Then $b-b' = 3+b-(3+b')=3k-3l=3(k-l)$, by plugging in what we learned above. As $k-l$ is an integer, this statement says that $3 \mid b-b'$, so we have concluded that $b \equiv b' \mod{n}$. Finally, as $b, b', $ and $n$ were arbitrary, we have proven our statement.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item 
+			No. If we take $x = y = z = 2$, we see that $x \mid y$, as $2 \mid 2$, and that $y \mid z$, as again $2 \mid 2$. But clearly as $xy=4$, $z = 2$, and as $4 \nmid 2$, we see that $xy \nmid z$. So we have disproven this claim by finding a counterexample.
+			\item Yes. We prove this by using the definition of divides. As $x \mid y$, we can say that $y = kx$ for some $k \in \bZ$. As $y \mid z$, we can say that $z = ly$ for some $l \in \bZ$. Plugging in the value for $y$, we see that $z = lkx$, and as $lk$ is the product of integers, it too is an integer, so this statement says that $x \mid z$.
+		\end{enumerate}
+	
+		\newpage
+		\item[\textbf{EC.}]
+		\begin{enumerate}
+			\item 
+			Note: because $\gcd(a, n) = 1$, there exists integers $s, t \in \bZ$ so that $ba + tn = 1$, which tells us that $b = a^{-1} \mod{n}$. So clearly now $r = a^{-1}ar \mod{n}$, which gives us the first inclusion. Second, given any $ax \in aR$, first simply reduce $ax$ to be between $0$ and $n-1$. It suffices to show that $\gcd(ax, n) = 1$. We know that there exists $u, v$ so that $ux + vn = 1$. Note that $1 = 1 \cdot 1 = (ux+vn)(ba+tn) = uxba+uxtn+vnba+vntn = (ub)xa + n(uxt+vba+vtn)$, so $xa$ also has an inverse mod $n$. By letting $d = \gcd(ax, n)$, we see that $d \mid 1$, which means that $d = 1$, which gives the reverse inclusion.
+			
+			\item As the elements are the same, if we list the elements of $R$ as $\set{r_1, \cdots, r_{\varphi(n)}}$, we can say that
+			\begin{align*}
+				r_1 \cdots r_{\varphi(n)} = ar_1 \cdots a r_{\varphi(n)}
+			\end{align*}
+			Now, as each element of $r$ has an inverse mod $n$, we can cancel all the $r_i$'s, and we see that $a^{\varphi(n)} \equiv 1 \mod{n}$.
+			
+			\item By the division algorithm, we see that there exists $q$ so that $b = q\varphi(n) + b \% \varphi(n)$. Then, as exponents work the same in $\bZ/n$, we see that $a^b = a^{q\varphi(n)+b \% \varphi(n)} = a^{q\varphi(n)} \cdot a^{b \% \varphi(n)} = 1^q \cdot a^{b \% \varphi(n)} = a^{b \% \varphi(n)}$ (where equality is in $\bZ/n$).
+			
+			\item What is known is that $ed \equiv 1 \mod{\varphi(n)}$. Next, as $\qty(a^b)^c = a^{bc}$ in $\bZ/n$, we see that $y^d \equiv x^{ed} \equiv x^1 \equiv x \mod{n}$, as the power is reduced mod $\varphi(n)$.
+			
+			\item For the first part, we see that for any $n$, $\gcd(n, 1) = 1$, as the largest divisor of 1 is 1. For any prime $p$, and given any $1 \leq n \leq p-1$, we see that $n \nmid p$, as $p$ is prime, as well as $p \nmid n$, as $n < p$. These facts together show that $p$ is not a common divisor of $n$ and $p$, and as $p$ only has two positive divisors, where we know that $p$ isn't a common divisor, the greatest common divisor between $n$ and $p$ must be 1. So $\varphi(p) = p-1$. Note that $(a), (b)$ are comaximal ideals of the ring $\bZ$, as there exists $s, t$ so that $as + bt = 1$, which means that the sum would contain every multiple of 1--the entire ring. Also, $(a) \cap (b) = (ab)$, as the elements of the left set are multiples of both $a$ and $b$. By the chinese remainder theroem for rings, we see that $\bZ/(a) \cross \bZ/(b) \cong \bZ/(a) \cap (b) \cong \bZ/(ab)$. It suffices to show that the group of units of the RHS is indeed $(\bZ/a)^{\cross} \cross (\bZ/b)^{\cross}$. If $(a, b)$ is a unit, then there exists $(s, t)$ so that $(c, d) \cdot (s, t) = (cs, dt) = (1, 1)$. This shows that $c$ is a unit in $\bZ/c$, and that $d$ is a unit in $\bZ/d$. The reverse inclusion is trivial. Finally note that $|(\bZ/n)^{\cross}|=\varphi(n)$, because the only numbers with an inverse mod $n$ are going to be those that have $gcd$ 1 with n (else, you could show its a zero divisor by multiplying with $n/\gcd(a, n) < n$ if $\gcd(a, n) \neq 1$. As the rings are isomorphic, their groups of units are isomorphic, which finally tells us that there is a bijection between their group of units, which tells us that their group of units have the same order--which tells us that $\varphi(ab) = \varphi(a)\varphi(b)$. Maybe this is a little overkill, but I think its cool.
+			Here is a diagram of what's going on:
+			% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXGJaLyhhKVxcY2FwKGIpIl0sWzIsMiwiXFxiWi8oYSkgXFxjcm9zcyBcXGJaLyhiKSJdLFswLDIsIlxcYlovKGFiKSJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifSwiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9LCJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwxLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn0sImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+			\[\begin{tikzcd}
+				{\bZ/(a)\cap(b)} \\
+				\\
+				{\bZ/(ab)} && {\bZ/(a) \cross \bZ/(b)}
+				\arrow[tail, two heads, from=1-1, to=3-3]
+				\arrow[tail, two heads, from=1-1, to=3-1]
+				\arrow[tail, two heads, from=3-1, to=3-3]
+			\end{tikzcd}\]
+		Where the arrows here are ring homomorphisms.
+		\end{enumerate}
+		
+		\newpage
+		\setItemnumber{4}
+		\item Let $P(n) = 4 \mid (9^n - 1)$. Our proof is by induction on $n$. 
+		
+		\textbf{Base case:} $0 \cdot 4 = 0 = 1-1 = 9^0 - 1$, so $4 \mid 9^0 - 1$, and therefore $P(0)$ is true. 
+		
+		\textbf{Inductive Hypothesis: } Suppose $P(k)$ is true for an arbitrary integer $k \geq 0$. 
+		
+		\textbf{Inductive step: } Notice that $9^{k+1}-1=9^{k+1}-9+9-1 = 9(9^k-1)+8$, where I added a smart 0 and then factored out a 9. By the inductive hypothesis, $9^k-1 = 4l$ for some $l \in \bZ$, so $9(9^k-1)+8 = 9 \cdot 4l+8$. Factoring out the 4, we see that $9 \cdot 4l + 8 = 4(9l+2)$, and as $9l+2$ is an integer, this statement shows that $4 \mid 9^{k+1}-1$, which was $P(k+1)$. 
+		
+		So $P(n)$ is true for all integer $n \geq 0$ by the principle of induction.
+		
+		\newpage
+		\item 
+		Let $P(n) = Mystery(n) = 21 \cdot 2^n + 9 \cdot (-1)^n$. We proceed by strong induction on $n$.
+		
+		\textbf{Base cases: n=0, n=1} We see that $Mystery(0) = 30$, as it would go into the second if statement, and clearly $30 =21 \cdot 2^0 + 9 \cdot (-1)^0 = 21 + 9 = 30$, which shows $P(0)$. We also see that $Mystery(1) = 33$, as it would go into the third if statement, and clearly $33 = 21 \cdot 2^1 + 9 \cdot (-1)^1 = 42 - 9 = 33$, which shows $P(1)$.
+		
+		\textbf{Inductive Hypothesis:} Suppose $P(0) \land P(1) \land \cdots \land P(k)$ for an arbitrary integer $k \geq 1$. 
+		
+		\textbf{Inductive Step:} Looking at the definition of $Mystery(k+1)$, we see that as $k + 1 \geq 2$, it is in particular not 0 or 1, so we will be in the last return statement and $Mystery(k+1) = Mystery(k) + 2 \cdot Mystery(k-1)$. By our inductive hypothesis, we know that the RHS is equal to $21 \cdot 2^k + 9 \cdot (-1)^k + 2 \cdot \qty( 21 \cdot 2^{k-1} + 9 \cdot (-1)^{k-1})$. Now,
+		\begin{align*}
+			21 \cdot 2^k + 9 \cdot (-1)^k + 2 \cdot \qty( 21 \cdot 2^{k-1} + 9 \cdot (-1)^{k-1}) &= 21 \cdot 2^k + 9 \cdot (-1)^k + 21 \cdot 2^k + 9 \cdot 2 \cdot (-1)^{k-1} \\
+			&= 21 \cdot 2^{k+1} + 9((-1)^k + 2 \cdot (-1)^{k-1})
+		\end{align*}
+		For the final equal sign, I combined the two $21 \cdot 2^k$'s, and I factored a 9 out of the other two terms. Therefore, it suffices to show that $(-1)^k + 2 \cdot (-1)^{k-1} = (-1)^{k+1}$. This requires a simple trick, i.e. multiplying by 1:
+		\begin{align*}
+			(-1)^k + 2 \cdot (-1)^{k-1} &= (-1)^k + 2 \cdot (-1)^{k-1} \cdot \frac{-1}{-1} \\
+			&= (-1)^k - 2 \cdot (-1)^k \\
+			&= -(-1)^k \\
+			&= (-1)^{k+1}
+		\end{align*}
+		Where on the second line we have brought one of the $-1$'s to the front of the two, and the second one we added to the power of the $(-1)^{k-1}$. So using this result, we see that
+		\begin{align*}
+			21 \cdot 2^{k+1} + 9((-1)^k + 2 \cdot (-1)^{k-1}) &= 21 \cdot 2^{k+1} + 9(-1)^{k+1}
+		\end{align*}
+		Which is precisely what $P(k+1)$ asserts. By the principle of strong induction, we may conclude that $P(n)$ holds for all $n \geq 0$.
+		
+		\newpage
+		\item This assignment took me around 1.5 hours to complete, and around 1.5 hours to review. I knew a lot of the number theory coming into the course, so it didn't take long to figure out the problems. The longest problem was 5, as I would say it is the most challenging on this homework assignment, utilizing at least two tricks. I do not have any other feedback.
+	\end{enumerate}
+\end{document}

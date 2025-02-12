@@ -1,0 +1,331 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathrm{Pr}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+
+% Sets
+\usepackage{braket}
+
+% Code
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=1mm,
+	belowskip=1mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{adjustbox}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item For the above graph, order the vertices as follows: the first vertex is right above the point connecting the line to the complete graph $K_n$, then proceed counterclockwise. Once returned to this connecting point, proceed down the line, and repeat clockwise on the second $K_n$. Example with $n=5$: (I have omitted the rest of the edges in the complete graph in the picture but not in the following proofs)
+		
+		\adjustbox{scale=0.8,center}{%
+		\begin{tikzcd}
+			&& {v_1} &&&&&&&&&& {v_{12}} \\
+			{v_2} &&&&&&&&&&&&&& {v_{13}} \\
+			&&&& {v_5} & {v_6} & {v_7} & {v_8} & {v_9} & {v_{10}} & {v_{11}} \\
+			{v_3} &&&&&&&&&&&&&& {v_{14}} \\
+			&& {v_4} &&&&&&&&&& {v_{15}}
+			\arrow[no head, from=1-3, to=3-5]
+			\arrow[no head, from=3-5, to=5-3]
+			\arrow[no head, from=3-5, to=3-6]
+			\arrow[no head, from=3-6, to=3-7]
+			\arrow[no head, from=3-7, to=3-8]
+			\arrow[no head, from=3-8, to=3-9]
+			\arrow[no head, from=3-9, to=3-10]
+			\arrow[no head, from=3-10, to=3-11]
+			\arrow[no head, from=3-11, to=1-13]
+			\arrow[no head, from=3-11, to=5-13]
+			\arrow[no head, from=1-13, to=2-15]
+			\arrow[no head, from=5-13, to=4-15]
+			\arrow[no head, from=2-15, to=4-15]
+			\arrow[no head, from=1-3, to=2-1]
+			\arrow[no head, from=4-1, to=5-3]
+			\arrow[no head, from=2-1, to=4-1]
+		\end{tikzcd}
+		}
+		With this setup, it is clear that $D \mbb I = (\underbrace{n, \cdots, n}_{n}, \underbrace{2, \cdots, 2}_{n}, \underbrace{n, \cdots, n}_{n})^T$. Now, we consider the vector $x = (\underbrace{1, \ldots, 1}_{n}, \underbrace{1, 1-2/n, \ldots, -1+2/n, -1}_n, \underbrace{-1, \ldots, -1}_{n})^T$. Then, if $\mathscr L$ is the normalized Laplacian of this graph, we have 
+		\begin{align*}
+			\frac{x^T\mathscr L x}{x^Tx} = \frac{\sum_{i \sim j} (x_i-x_j)^2}{\sum_i \deg(i)x_i^2}
+		\end{align*}
+		We see that 
+		\begin{align*}
+			\sum_{i \sim j} (x_i-x_j)^2 = 2 \times {n \choose 2}  \times 0 + \sum_{i=n+1}^{2n} \qty(\frac 2n)^2
+		\end{align*}
+		The 2 comes from the 2 complete graphs, the ${n \choose 2}$ from the ${n \choose 2}$ possible pairs of vertices (all which have edges), and the 0 since $x_i = x_j = 1$ for all vertices of the two complete graphs. The next sum is just evaluating the middle path.
+		And also that,
+		\begin{align*}
+			\sum_{i} \deg(i) x_i^2 \geq 2 \cdot (n-1) \cdot \qty(n \cdot 1^2) = 2n^2
+		\end{align*}
+		Since the degree of every vertex in the complete graph is $(n-1)$, we have $n$ vertices in the complete graph, and each $x_i = 1$ for the complete graph. We conclude that
+		\begin{align*}
+			\frac{x^T\mathscr L x}{x^Tx} = \frac{n \cdot 4/n^2}{(n-1)n}
+		\end{align*}
+		And, since $\langle x, D\mbb I\rangle = 0$, this tells us that $\lambda_2 = \min_{\langle y, D\mbb I \rangle=0} \frac{y^T\mathscr L y}{y^Ty} \leq O\qty(\frac{1}{n^3})$. Intuitively, this proof is assigning positive values to vertices that should be partitioned into the left complete graph, and similarly negative values to those that should go with the right complete graph. This is likely optimal but I leave the verification of this fact to the reader.
+		
+		\item 
+		Here is my code:
+		\begin{lstlisting}
+			import numpy as np
+			from numpy.random import rand, randint, normal
+			
+			eps = 0.01
+			
+			def perfect_matching(n):
+				vertices = [i for i in range(n)]
+				A = np.zeros((n, n))
+				while len(vertices) >= 2:
+					vertex_1 = vertices[randint(0, len(vertices))]
+					vertices.remove(vertex_1)
+					vertex_2 = vertices[randint(0, len(vertices))]
+					vertices.remove(vertex_2)
+					A[vertex_1][vertex_2] = A[vertex_2][vertex_1] = 1
+				return A
+			
+			def d_regular(d, n):
+			A = np.zeros((n, n))
+			for i in range(d):
+			A += perfect_matching(n)
+			return A
+			
+			def second_largest_eigenvalue(A):
+				n = len(A[0])
+				B = A @ A
+				v1 = np.array([1/np.sqrt(n) for i in range(n)])
+				v2 = normal(0, 1, n)
+				v2 = v2 - (v1 @ v2) * v1
+				for i in range(int(np.log2(n)/eps)):
+					v2 = B @ v2
+					v2 = v2 - (v1 @ v2) * v1
+					v2 = v2 / np.linalg.norm(v2)
+				return np.sqrt(v2 @ (B @ v2))
+			
+			
+			for d in range(3, 11):
+			A = d_regular(d, 10000)
+			print("d = ", d, ", n = 10000")
+			print("Approximate second largest eigenvalue: ", second_largest_eigenvalue(A/d))
+			print("True second largest eigenvalue: ", sorted(np.abs(np.linalg.eigvals(A/d)))[-2])
+			
+		\end{lstlisting}
+	
+		I learned recently that you can use @ for matrix multiplication instead of np.matmul(A, B), which was a LIFESAVER!
+		
+		My results are as follows:
+		
+		d =  3 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.9422257194941585
+		
+		True second largest eigenvalue:  0.9423078725050605
+		
+		d =  4 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.8650364072587419
+		
+		True second largest eigenvalue:  0.8650586977793632
+		
+		d =  5 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.7993390179651007
+		
+		True second largest eigenvalue:  0.7993423285813461
+		
+		d =  6 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.745164569985666
+		
+		True second largest eigenvalue:  0.745167394756143
+		
+		d =  7 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.7000123767558103
+		
+		True second largest eigenvalue:  0.7000161811816583
+		
+		d =  8 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.6603331791598479
+		
+		True second largest eigenvalue:  0.6604691793990919
+		
+		d =  9 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.627422373723629
+		
+		True second largest eigenvalue:  0.6274648749934267
+		
+		d =  10 , n = 10000
+		
+		Approximate second largest eigenvalue:  0.6002963095846212
+		
+		True second largest eigenvalue:  0.6004042904092797
+		
+		The power method runs MUCH faster than finding the true eigenvalues! Like, 100 times faster!
+		
+		
+		\item First, using the lemma, we see that
+		\begin{align*}
+			|E(S, \overline S)| \leq \frac{d \cdot |S| \cdot |\overline S|}{n} + d \cdot \lambda^* \sqrt{|S||\overline S|}
+		\end{align*}
+		Now, by the AM-GM inequality, we have that
+		\begin{align*}
+			|S| \cdot |\overline S| \leq \qty(\frac{|S|+|\overline S|}{2})^2 \leq \frac{n^2}{4}
+		\end{align*}
+		So we have that,
+		\begin{align*}
+			&\max_S|E(S, \overline S)| \leq \frac{dn}{4} + \frac{dn \lambda^*}{2} = \frac{dn}{4}(1+2\lambda^*) \\
+			&(1-2\lambda^*)\max_S|E(S, \overline S)| \leq \frac{\max_S|E(S, \overline S)|}{1+2\lambda^*} \leq \frac{dn}{4}
+		\end{align*}
+		By the trivial bound $1-x \leq \frac{1}{1+x}$ for $x > 0$. Now, for any set $T \subset V$ with $|T| = n/2$, we have, by the triangle inequality, that
+		\begin{align*}
+			|E(T, \overline T)| \geq \frac{dn}{4} - \frac{d n \lambda^*}{2} = \frac{dn}{4}(1-2\lambda^*) \geq (1-2\lambda^*)^2 \max_S |E(S, \overline S)| \geq (1-4\lambda^*) \max_S |E(S, \overline S)|
+		\end{align*}
+		Since $(1-2\lambda)^* = 1 - 4\lambda^* + 4\lambda^{*^2} \geq 1-4\lambda^*$. Our algorithm is this: If $n$ is even return $T = $ the first $n/2$ vertices. Else, let $T$ be any subset of $V$ with size $(n+1)/2$ w.p. $1/2$, and size $(n-1)/2$ o.w. Now, since 
+		\begin{align*}
+			|E(T, \overline T)| \geq \frac{d |T||\overline T|}{n} - d\lambda^* \sqrt{|T||\overline{|T|}}, \\
+			\implies \E[|E(T, \overline T)| - \frac{d |T||\overline T|}{n} + d\lambda^* \sqrt{|T||\overline{|T|}}] \geq 0 \\
+			\implies \E[|E(T, \overline T)|] \geq \E[\frac{d |T||\overline T|}{n} - d\lambda^* \sqrt{|T||\overline{|T|}}] &= \frac{dn}{4} - \frac{d n \lambda^*}{2} \\&\geq (1-4\lambda^*) \max_S |E(S, \overline S)|
+		\end{align*}
+		$E(T,\overline T)$ is a discrete distribution whose expectation is $(1-4\lambda^*) \max_S |E(S, \overline S)|$, so it either has something larger or some equal to $(1-4\lambda^*) \max_S |E(S, \overline S)|$ in it. This proves the odd case, and we are done.
+	\end{enumerate}
+\end{document}

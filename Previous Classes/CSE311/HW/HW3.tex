@@ -1,0 +1,163 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item
+		\begin{enumerate}
+			\item There is a a walla walla sweet onion who is enjoying the sun and is not a sweet onion lover.
+			\item Everyone who is a shallet lover or a shallot is not enjoying the sun, while every sweet onion lover is enjoying the sun.
+			\item There is no human who is both enjoying the sun and a shallot lover.
+			\item (1.2) Everyone is not a walla walla, or is a sweet onion lover, or is not enjoying the sun.
+		\end{enumerate}
+		
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item $GetsATreat(x) = x$ gets a treat, and $Speaks(x) = x$ speaks. Then (a) translates to $\forall x (Speaks(x) \ra GetsATreat(x))$. A domain of discourse this would work in is the set of all parrots, as talking parrots are awesome and deserve treats, while a domain of discourse where this is false is the set of all dogs, dogs ``speaking" would be barking, and barking doesn't deserve treats (unless the owner of the dog is super nice, but I can definitely find at least one owner who is not, so indeed we have found a counterexample).
+			\item $LessOrEqual(x, y) = x \leq y$. Then (b) translates to $\exists x \forall y (LessOrEqual(x, y))$. A domain of discourse where this would work is $\bN$ (axiom of well-ordering), choosing $x = 0$, and a domain of discourse where this statement is false is $\bZ$, because given any integer $x$, $x-1$ is smaller.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item A correct translation would be $\forall x (Cat(x) \ra (Happy(x) \lor Fluffy(x)))$. If $x$ was a dog, his statement would evaluate to false, but it should be vacuously true, like mine is.
+			\item A correect translation would be $\exists x \forall y (Cat(x) \land (Human(y) \ra IsPetOf(y, x)))$. If we take our domain of discourse to be only the set of dogs and humans, then as no cats exist, $Cat(x)$ is always false, so we see that our statement is false ($\forall x \exists y (\lnot Cat(x) \lor (Human(y) \land \lnot isPetOf(y, x)))$ is the negation, given any $x$, we can choose $y$ to be me--$\lnot Cat(x)$ is always true, independent of the choice of $x$, so we see that this statement is indeed true for any $x$. As the negation is true, our original statement is false). However, with the same domain of discourse his statement is true--given any $x$, as $x$ is not a cat the hypothesis will be false, so his statement will evaluate to true.
+			\item 
+			$\forall x \exists y \forall z (Mammal(x) \ra (Mammal(y) \land (Mammal(z) \ra (Cat(y) \land IsPetOf(z, x))))$. This is quite a complicated statement! Also I checked, the number of parenthesis is indeed correct.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		The first error is on line 7--the associativity rule does NOT apply here. $(p \land q) \lor r \not \equiv p \land (q \lor r)$ as the distributive rule exists. The second error is on line 9, as $(b \lor \lnot a) \equiv (\lnot a \lor b) \equiv a \ra b$, not $b \ra a$ (law of implication was applied wrong). The fourth significant error is on line 10, as it should've been broken into four steps: $(b \ra a)$ by elim $\land$, $a$ by modus ponens, $c$ by elim $\land$, and finally $c \land a$ by intro $\land$. But it skips that and just goes straight to $c \land a$, which you can't do (Modus Ponens needs $p \ra q$ and $p$, but we had $c \land (b \ra a)$ and $b$).
+		\newpage
+		\item
+		\begin{enumerate}
+			\item
+			The first error is at 6.3--the scope is the issue here, as we have assumed $s$, but $p$ was only true when was assumed $\lnot s$! So we are not allowed to use intro $\land$, because knowing $p$ was conditional on knowing $\lnot s$, not $s$. The second big error is on line 18--$(q \lor (q \lor \lnot s)) \not \equiv q$, for example take $q = F$ and $s = F$. The first expression would evaluate to true, while $q$ would evaluate to false. So that "absorption" simplification was wrong.
+			\item The conclusion of the proof is false: consider $s = T, p = F, q = F, r = T$. $\lnot s \ra (p \land q)$ is true because $F \ra $anything is true, $s \ra r$ is true because both $s, r$ are true, $(r \land p) \ra q$ is true because $r \land p$ is false, and $F \ra$ anything is true. Despite all this, $q$ is false, which means that our "Theorem" is false. 
+			\item For simplicity I will use $p, q$ instead of  $s, q$.
+			\begin{alignat*}{2}
+				(p \ra q) \land (\lnot p \ra q) \justif{Given} \\
+				(\lnot p \lor q) \land (\lnot \lnot p \lor q) \justif{LOI, twice} \\
+				(\lnot p \lor q) \land (p \lor q) \justif{Double negatives} \\
+				((\lnot p \lor q) \land p) \lor ((\lnot p \lor q) \land q) \justif{Distributivity} \\
+				(p \land (\lnot p \lor q)) \lor (q \land (q \lor \lnot p)) \justif{Commutativity, thrice} \\
+				((p \land \lnot p) \lor (p \land q)) \lor (q \land (q \lor \lnot p)) \justif{Distributivity} \\
+				(F \lor (p \land q)) \lor (q \land (q \lor \lnot p)) \justif{Negation} \\
+				((p \land q) \lor F) \lor (q \land (q \lor \lnot p)) \justif{Commutativity} \\
+				(p \land q) \lor (q \land (q \lor \lnot p)) \justif{Identity} \\
+				(p \land q) \lor q \justif{Absorption} \\ 
+				q \lor (q \land p) \justif{Commutativity, twice} \\
+				q \justif{Absorption}
+			\end{alignat*}
+			And we are done.
+		\end{enumerate}
+		
+		\newpage
+		\item[6.1.]
+		\begin{enumerate}
+			\item "Mr. Huckabee, for his part, responded with trademark humor. 'The Air Force has a saying that says if you’re not catching flak, you’re not over the target,' he said. 'I’m catching the flak; I must be over the target.'"
+			\item https://gregmankiw.blogspot.com/2008/01/funny-perhaps-but-illogical.html
+			\item $p = $ you are catching flak, $q = $ you are over the target. His statement is $(\lnot p \ra \lnot q) \ra (p \ra q)$.
+			\item If you replace the second implication with its converse, that is, $(\lnot p \ra \lnot q) \ra (q \ra p)$, this statement is now completely true, and is in fact a bidirectional arrow (as a statement and its contrapositive are logically equivalent). So indeed, you can reach the desired conclusion without making any errors as long as you replace the second part of the statement with its converse.
+			\item I don't believe this converse is often true--for example, there could be a multitude of reasons you are being criticized in the air force. You could be flying bad, the general could be criticizing your leadership, etc. so I would say its not often true, as there are just so many cases where this implication fails.
+		\end{enumerate}
+		
+		\newpage
+		\item[6.2.]
+		\begin{enumerate}
+			\item \includegraphics[scale=0.30,angle=-90]{sign.jpeg}
+			\item I found this in front of the Portuguese/Spanish department in the Padelford building. 
+			\item Let $p =$ you are bilingual, $q =$ you want to become a bilingual teacher, $r = $ you should become part of the College of Education at the University of Washington, in Seattle's bilingual teacher certificate program
+			\item $(p \lor q) \ra r$
+		\end{enumerate}
+		
+		\newpage
+		\item[7.] This assignment took me around 5 hours. The longest problem was 5, as it took quite some time to type up. Number 4 was also a little confusing, as the other two errors we blatant logical errors, but the last one was one where you had to say it was wrong because it should've been broken down into $\approx$ 4 steps. 3 part (b) was also very challenging.
+	\end{enumerate}
+\end{document}

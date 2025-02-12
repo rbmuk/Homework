@@ -1,0 +1,247 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+
+\newmdtheoremenv[
+backgroundcolor=Cerulean!30,
+linewidth=2pt,
+linecolor=Cerulean,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mylemma}{Lemma}
+\newenvironment{lemma}{\begin{mylemma}}{\end{mylemma}}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{lemma}
+		Let $A: \R^n \to \R^m$. If for every $x, y \in \R^n$, and $c \in \R$ we have that 
+		\begin{align*}
+			A(cx+y) = cAx + Ay
+		\end{align*}
+		then $A$ is linear.
+	\end{lemma}
+	
+	\begin{proof}
+		Choosing $y = 0$, we see that for every $x \in \R^n$, and $c \in \R$, we have that $A(cx) = A(cx+0) = cAx + A0 = cAx$. Choosing $c = 1$, we see that for every $x, y \in \R^n$, we have that $A(x+y) = A(1 \cdot x + y) = 1 \cdot Ax + Ay = Ax + Ay$.
+	\end{proof}
+	Since I used this lemma countless times without mentioning it, I thought I should add (and prove) it here.
+
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Denote $S = \set{x_1, \ldots, x_n}$. We recall that 
+		\begin{align*}
+			\mathrm{span}(S) = \set[\Big]{\sum_{i=1}^n {a_ix_i} \given a_i \in \R, x_i \in X}
+		\end{align*}
+		Given $\sum_{i=1}^n {a_ix_i}, \sum_{i=1}^n {b_ix_i} \in S$, we know that
+		\begin{align*}
+			\sum_{i=1}^n {a_ix_i} + \sum_{i=1}^n {b_ix_i} = \sum_{i=1}^n a_ix_i + b_ix_i = \sum_{i=1}^n (a_i+b_i)x_i \in \mathrm{span}(S)
+		\end{align*}
+		Also, given $c \in \R$,
+		\begin{align*}
+			c\sum_{i=1}^n {a_ix_i} = \sum_{i=1}^n {(ca_i)x_i} \in \mathrm{span}(S)
+		\end{align*}
+		which shows that $\mathrm{span}(S)$ is a vector space.
+		
+		\item Let $x, y \in \R^n$ and $c \in \R$. Then,
+		\begin{align*}
+			BA(cx+y) = B(cAx + Ay) = cBAx + BAy
+		\end{align*}
+		So indeed, $BA$ is linear. Next, by definition $A^{-1}$ is defined as the left inverse of $A$. Since $A$ is onto, it has a right inverse, say $B$ (We are thinking of $A, A^{-1}, B$ as functions). Now,
+		\begin{align*}
+			Bx = A^{-1}ABx = A^{-1}x
+		\end{align*}
+		Since this holds for all $x \in \R^n$, it follows that $B = A^{-1}$, and hence $A^{-1}$ is also a right inverse of $A$. Note now that, for any $x, y \in \R^n$ and $c \in \R$, $x = Az_1$ for some $z_1 \in \R^n$ and $y = Az_2$ for some $z_2 \in \R^n$ (since $A$ is onto), and so
+		\begin{align*}
+			A^{-1}(cx+y) = A^{-1}(cAz_1 + Az_2) = A^{-1}(A(cz_1) + Az_2) = A^{-1}(A(cz_1 + z_2)) = cz_1 + z_2 = cA^{-1}x + A^{-1}y
+		\end{align*}
+		Since $A^{-1}x = A^{-1}Az_1 = z_1$, and similarly $A^{-1}y = z_2$.
+		
+		\item Let $x, y \in \R^n$, and suppose that $Ax = Ay$. By lineararity, $A(x-y) = 0$. Then $x-y = 0$, which says that $x = y$, so $A$ is indeed 1--1.
+		
+		\item Let $A: \R^n \to \R^m$ be any linear transformation, $\mathrm{null}(A)$ be its nullspace, and $\mathrm{range}(A)$ be its range. First, let $x, y \in \mathrm{null}(A)$ and $c \in \R$. Then,
+		\begin{align*}
+			A(cx + y) = cAx + Ay = c \cdot 0 + 0 = 0 + 0 = 0
+		\end{align*}
+		So $cx + y \in \mathrm{null}(A)$, which shows that $\mathrm{null}(A)$ is a vector space. Similarly, let $x, y \in \mathrm{range}(A)$, and $c \in \R$. Then $x = Az_1$ and $y = Az_2$ for some $z_1, z_2 \in \R^n$. Now,
+		\begin{align*}
+			cx + y = cAz_1 + Az_2 = A(cz_1 + z_2)
+		\end{align*}
+		So, $cx + y$ is the image of $cz_1 + z_2$ which shows that it is in the range.
+		
+		\item Let $a_i = Ae_i$ for $i \in \set{1, \ldots, n}$ where $e_i \in \R^n$ is the vector with a 1 in position $i$ and a 0 everywhere else. We notice that for any vector $x = \begin{pmatrix}
+			x_1 \\
+			\vdots \\
+			x_n
+		\end{pmatrix} \in \R^n$, we have that $x = \sum_{i=1}^n x_ie_i$, and since $A$ is linear,
+		\begin{align*}
+			Ax = A\qty(\sum_{i=1}^n x_ie_i) = \sum_{i=1}^n x_i A(e_i) = \sum_{i=1}^n x_i a_i
+		\end{align*}
+		If we let $y = \begin{pmatrix}
+			a_1 \\
+			\vdots \\
+			a_n
+		\end{pmatrix}$, we know that 
+		\begin{align*}
+			x \cdot y = \sum_{i=1}^n x_ia_i
+		\end{align*}
+		which shows that $Ax = x \cdot y$ for every $x$. Note also that $y$ is unique, since $A$ is a function (i.e., $Ae_i$ can only have 1 value). If $\mg{y} = 0$, then $y = 0$ and so $A = 0$ since it maps everything to 0, and then given any vector $x \in \R^n$ with $\mg{x} = 1$, we have that $\mg{Ax} = \mg{0} = 0$, and since $\mg{A} \geq 0$, it follows that $\mg{A} = 0$. Indeed, $\mg{A} = 0 = \mg{y}$. So now suppose that $\mg{y} \neq 0$.
+		
+		 We also notice that (by Cauchy-Schwartz),
+		\begin{align*}
+			\mg{Ax} = \mg{x \cdot y} \leq \mg{x} \cdot \mg{y}
+		\end{align*}
+		Taking the sup over all $x \in \R^n$ with $\mg{x} = 1$ yields $\mg{A} \leq \mg{y}$. We also note that since $\mg{y} \neq 0$, $y/\mg{y}$ is a vector of norm 1, and
+		\begin{align*}
+			\frac{1}{\mg{y}} \mg{Ay} = \mg{A \frac{y}{\mg{y}}} = \frac{y}{\mg{y}} \cdot y = \frac{\mg{y}^2}{\mg{y}} = \mg{y}
+		\end{align*}
+		So $\mg{A} \geq \mg{y}$. Therefore, $\mg{A} = \mg{y}$.
+		
+		\item Suppose that $A \not \equiv 0$. Then there is some $x \in \R^n$ so that $Ax \neq 0$. It is clear that $x \neq 0$. Letting $z = x / \mg{x}$, we see that $\mg{z} = 1$ and that $Az = A x / \mg{x} = 1/\mg{x} Ax \neq 0$, since $\frac{1}{\mg{x}} \neq 0$. Since $\mg{\cdot}$ is a norm, we see that $\mg{Az} > 0$. Since
+		\begin{align*}
+			\mg{Ax - Ay} < C\mg{x-y}^r
+		\end{align*}
+		holds for all $x, y \in \R^n$. We may choose $y = 0$ to see that
+		\begin{align*}
+			\mg{Ax} = \mg{Ax - A0} < C\mg{x-0}^r = C\mg{x}^r
+		\end{align*}
+		holds for all $x \in \R^n$ and $c \in \R$. In particular, for all $\ve > 0$ we have that
+		\begin{align*}
+			\ve \mg{Az} = \mg{A(\ve z)} < C \mg{\ve z}^r = C\ve^r \cdot \mg{z}^r = C\ve^r
+		\end{align*}
+		Which tells us that 
+		\begin{align*}
+			\mg{Az} < C \ve^{r-1}
+		\end{align*}
+		Choosing $\ve < \qty(\frac{\mg{Az}}{C})^{\frac{1}{r-1}}$ yields a contradiction (Notice: since the power $(r-1)^{-1} > 0$, it follows that $\ve^{r-1} < \frac{\mg{Az}}{C}$ since $x^{\frac{1}{r-1}}$ is increasing on $x > 0$). 
+	\end{enumerate}
+\end{document}

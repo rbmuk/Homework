@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item For an $(a, b) \in S$, let $P(a, b) \coloneq 2\log_2(a) \leq 1 + 2\log_2(b)$. We prove $P(a, b)$ for all $(a, b) \in S$ by structural induction.
+		
+		\textbf{Base case: } We notice that $2 \log_2(2) = 2 \cdot 1 = 2 \leq 1 + 2 \cdot 2 = 1 + 2 \log_2(4)$, so $P(2, 4)$ holds.
+		
+		\textbf{Inductive Hypothesis: } Suppose $P(a, b)$ for an arbitrary $(a, b) \in S$.
+		
+		\textbf{Inductive Step: } \boxed{\text{Goal: $P(a, 2b)$, and $P(2a, 3b)$}}
+		
+		We first prove $P(a, 2b)$. By the inductive hypothesis, we see that
+		\begin{align*}
+			2\log_2(a) &\leq 1 + 2\log_2(b) \justif{IH} \\
+			2 + 2\log_2(a) &\leq 1 + 2 \log_2(b) + 2 \cdot 1 \justif{Add 2} \\
+			2 + \log_2(a) &\leq 1 + 2\log_2(b) + 2 \log_2(2) \justif{$\log_2(2) = 1$} \\
+			2 + \log_2(a) &\leq 1 + 2(\log_2(b)+\log_2(2)) \justif{Factoring} \\
+			2 + \log_2(a) &\leq 1 + 2\log_2(2b) \justif{Fact 2}
+		\end{align*}
+		Next, notice that because $0 \leq 2$, we see that $\log_2(a) \leq 2 + \log_2(a)$. Finally, as $\leq$ is transitive, we conclude that $\log_2(a) \leq 1 + 2\log_2(2b)$, which is precisely what $P(a, 2b)$ states.
+		
+		Now we wish to prove $P(2a, 3b)$. We proceed in a similar fashion.
+		\begin{align*}
+			2\log_2(a) &\leq 1 + 2\log_2(b) \justif{IH} \\
+			2\log_2(a) + 2 &\leq 1 + 2\log_2(b) + 2 \justif{Add 2 to both sides, factor} \\
+			2(\log_2(a)+\log_2(2)) &\leq 1 + 2\log_2(b) + 2\log_2(2) \justif{Fact 2, factoring} \\
+			2\log_2(2a) &\leq 1 + 2\log_2(b) + 2\log_2(2) \justif{Fact 2}
+		\end{align*}
+		Next, because $\log_2(2) \leq \log_2(3)$, we see that $2\log_2(2) \leq 2\log_2(3)$, and noting that for any $a, b, c \in \bR$, if $b \leq c$ then $a + b \leq a + c$, we conclude that
+		\begin{align*}
+			1 + 2\log_2(b) + 2\log_2(2) &\leq 1 + 2\log_2(b) + 2\log_2(3) \justif{The second part of the previous sentence}\\
+			&= 1 + 2(\log_2(b)+\log_2(3)) \justif{Factoring} \\
+			&= 1 + 2\log_2(3b) \justif{Fact 2}
+		\end{align*}
+		Finally, as $\leq$ is again transitive, we see that $2\log_2(2a) \leq 1 + 2\log_2(3b)$, so $P(2a, 3b)$ holds. 
+		
+		Therefore, $P(x)$ holds for all $x \in S$ by the principal of induction. 
+		
+		\newpage
+		\item
+		\begin{enumerate}
+			\item For $a \in \bZ$ with $a \geq 1$, let $P(a) \coloneq $ ``If it is not my turn, and the rook is at position $(a, a)$, then I can always win the game." We prove $P(a)$ for all $a \geq 1$ by strong induction.
+		
+			\textbf{Base case: } If the rook is at position $(1, 1)$, and it is not my turn, then my friend can either move the chess piece down one spot, or left one spot. If he moves the rook down one spot, then it would be at position $(1, 0)$, and as it is now my turn, I could move the piece left one spot to $(0, 0)$ and therefore I would win. If he moves it left one spot, then the rook would be at position $(0, 1)$, and it would now be my turn. I could now move it to position $(0, 0)$ by moving the rook down one spot, and therefore I would also win. As these were the only two possible moves he could've done, in any case, I always win, which prove $P(1)$.
+			
+			\textbf{Inductive Hypothesis: } Assume $P(1) \land \cdots \land P(k)$ for an arbitrary $k \geq 1$. 
+			
+			\textbf{Inductive Step: } We notice first that $k + 1 \geq 2$. If the rook starts at position $(k+1, k+1)$, and it is not my turn, then either my friend could move the piece down, or left. If he moves the piece down, he could either move it all the way down, to position $(k+1, 0)$, where now it would be my turn, so I could move it all the way left to $(0, 0)$ and therefore I would win. If he does not move it all the way down, say for example to position $(k+1, b)$, where $1 \leq b \leq k$ (he moved it down at least one square), so I could now move it left to position $(b, b)$. After this move, it would not be my turn, and the rook is in position $(b, b)$ where $1 \leq b \leq k$. We see that the inductive hypothesis applies, so $P(b)$ holds true, and therefore I could always win in this scenario. Similarly, if he moved it left, he could either move it all the way left, to position $(0, k+1)$ or to a place not all the way left, say to $(c, k+1)$ where $1 \leq c \leq k$. If he moved it all the way left, then I could simply move it all the way down to $(0, 0)$ so I would win. In the second case, I could move the rook down to position $(c, c)$, and as it would now not be my turn, we see that $P(c)$ holds, so by the inductive hypothesis I could always win from this position. In any case, we see that $P(k+1)$ holds.
+			
+			\textbf{Conclusion: } By the principal of strong induction, $P(a)$ holds for all $a \geq 1$.
+			
+			\item The winning strategy is now clear, as the proof is nearly constructive. If the rook started on position $(a, a)$, and my friend moved it down to position $(a, b)$, then I would move it left to position $(b, b)$. If he moved it left to position $(b, a)$, I would move it down to position $(b, b)$. As this process repeats, I would eventually win, which is what we proved.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item I spent 6 minutes trying to prove this. I also found a great real-world example of using the method that we are talking about below, from a competition math problem. For anyone interested, it is on page 49-50 of ``The Art and Craft of Problem Solving". 
+			\item We notice that if $a = \frac14$, and $b = \frac12$, then we clearly see that $4a+2 = 1 + 2 = 3$, and that $4b = 2$, and clearly $3 \not < 2$.
+			
+			\item Let $Q(n) \coloneqq g(n) \leq f(n) - 1$. As $-1 < 0$, $f(n) - 1 < f(n)$, so showing that $g(n) \leq f(n) - 1$ would show that $g(n) < f(n)$ by transitivity.
+			
+			\item 
+			\textbf{Base case: } $g(1) = 2 \leq 2 = 3 - 1 = f(1) - 1$, so we see that $Q(1)$ holds.
+			
+			\textbf{Inductive Hypothesis: } Suppose $Q(k)$ for some $k \geq 1$.
+			
+			\textbf{Inductive Step: } We notice that as $k+1 \geq 2 > 1$, we see that $g(k+1) = 4g(k) + 2$ from the definition of $g$. By our inductive hypothesis, we see that 
+			\begin{align*}
+				g(k+1) = 4g(k)+2 &< 4(f(k)-1)+2 \justif{I.H.} \\
+				&= 4f(k)-4+2 \justif{Simplifying} \\
+				&= 4f(k)-2 \justif{Simplifying further}
+			\end{align*}
+			One clearly notes that as $-2 < 1$, $4f(k)-2 < 4f(k)-1$. Finally, the definition of $f$ shows that $f(k+1)=4f(k)$, so we see that 
+			\begin{align*}
+				g(k+1) < 4f(k)-2 < 4f(k)-1 = f(k+1)-1
+			\end{align*}
+			which is precisely what $Q(k+1)$ asserts. By the principal of induction, we may conclude that $Q(n)$ holds for all $n \geq 1$.
+		\end{enumerate}
+	
+		\newpage
+		\item
+		\begin{enumerate}
+			\item Here is a counterexample, using  TikZ:
+			% https://q.uiver.app/?q=WzAsMyxbMSwwLCJcXGJ1bGxldCJdLFswLDEsIlxcYnVsbGV0Il0sWzIsMSwiXFxidWxsZXQiXSxbMCwxXSxbMCwyXV0=
+			% https://q.uiver.app/?q=WzAsNSxbMSwwLCJcXGJ1bGxldCJdLFswLDEsIlxcYnVsbGV0Il0sWzIsMSwiXFxidWxsZXQiXSxbMSwyLCJcXGJ1bGxldCJdLFszLDIsIlxcYnVsbGV0Il0sWzAsMV0sWzAsMl0sWzIsM10sWzIsNF1d
+			\[\begin{tikzcd}
+				& \bullet \\
+				\bullet && \bullet \\
+				& \bullet && \bullet
+				\arrow[from=1-2, to=2-1]
+				\arrow[from=1-2, to=2-3]
+				\arrow[from=2-3, to=3-2]
+				\arrow[from=2-3, to=3-4]
+			\end{tikzcd}\]
+			We notice that $\bullet$ is a tree by our definition. The right half of the tree is therefore $\mathrm{Tree}(\bullet, \bullet, \bullet)$. So the entire tree therefore would be $\mathrm{Tree}(\bullet, \bullet, \mathrm{Tree}(\bullet, \bullet, \bullet))$. As we were able to construct this with just the rules given in the basis/recursive step, this is indeed a tree. We however notice that this tree has height 2, and 3 leaves. But it should've had 4 leaves! So the claim is definitely false.
+			
+			\item When doing a proof by strong induction, in the inductive step, you are meant to start with an arbitrary object of height $k+1$, and then deduce from there how the object could've been built by smaller objects. In this case, the author started with two height $k$ objects, and built a $k+1$ object (steps 4A, 4B). In steps 4C and 4D, the author did these steps in reverse and tries to construct an arbitrary tree of height $k+1$, but actually ends up leaving out a large class of trees, as there exists trees of height $k+1$ that aren't made from two trees of height $k$.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item Note first that the empty string does not start with $0$, so it is not included in our list. My formula for this is going to be: $(00 \cup 01)((0 \cup 1)(0 \cup 1))^*$. The first part of this string is going to make it start with 0--my string has to start with 0, so I can only build it up with blocks that start with 0, it also has to be even length, so those blocks have to be even length. The last part of the expression is to allow for strings of any length, but noting that they must be even length, so each thing you add to the string must be even length--hence why there is a concatenation inside of the *. 
+			
+			\item A string with an odd number of ones is a string with an even number of ones plus a one somewhere in the middle. To force the number of ones to be even, the ones must come in pairs. So there must be a 1, any number of zeros before/after/in between, and another 1. Combining these ideas gives
+			$(0 \cup 10^*1)^*1(0 \cup 10^*1)^*$.
+		\end{enumerate}
+
+		\newpage
+		\setItemnumber{8}
+		\item This assignment took me around 5 hours. I spent the most time on 6 part b). That part was crazy to wrap my head around, but now I feel I have a great understanding of regex. I do not have any other feedback, other than keep making super interesting homework assignments!
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,337 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+\mdfdefinestyle{SolutionFrame}
+{%
+	linecolor=BlueGreen,
+	linewidth=1.4pt,
+	roundcorner=2pt,
+	innertopmargin=0.7\baselineskip,
+	innerbottommargin=0.7\baselineskip,
+	innerrightmargin=7pt,
+	innerleftmargin=7pt
+}
+\newenvironment{solution}{
+	\textbf{Solution:}
+	\begin{mdframed}[style=SolutionFrame]
+	}{\end{mdframed}}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\P}{\mathbb{P}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+\renewcommand{\inf}{\infty}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CS 312 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item Fixing $h \in \set{1, 2, 3}$, we know that $\sum_{b \in \Omega_B} \P(B = b \mid H = h) = 1$. $b$ can only take on the values from $\set{1, \ldots, h}$, so we see that
+			\begin{align*}
+				\sum_{b=1}^h \frac ch = h \cdot \frac ch = c = 1
+			\end{align*}
+			Since probabilities sum to 1. So, $c = 1$.
+			
+			\item We wish to find $\P(B = b, H = h)$. If $h \not \in \set{1, 2, 3}$, then the probability that $H = h$ is just 0, and hence the joint distribution is 0 too. If $h \in \set{1, 2, 3}$, then by the chain rule, this equals $\P(B = B \mid H = h) \cdot \P(H = h)$. $\P(H = h) = \frac13$, since $H$ is equally likely to be 1, 2, or 3. Now, if $b \not \in \set{1,\ldots, h}$, then $\P(B = b \mid H = h) = 0$. If $b \in \set{1, \ldots, h}$, then $\P(B = b \mid H = h) = \frac1h$, as we found above. We conclude that
+			\begin{align*}
+				p_{B,H}(b, h) = \begin{cases}
+					\frac{1}{3h}, \; b, h \in \bN, 1 \leq h \leq 3, 1 \leq b \leq h \\
+					0, \; \text{else}
+				\end{cases}
+			\end{align*}
+			
+			\item First, if $b \not \in \set{1, 2, 3}$, then it cannot be that $1 \leq b \leq h$ for any $h \in \set{1, 2, 3}$, and hence $p_B(b) = 0$ for those $b$'s. For $b \in \set{1, 2, 3}$, we know that (since the support of $h$ is $\set{1, 2, 3}$)
+			\begin{align*}
+				p_B(b) = \sum_{h=1}^3 p_{B,H}(b, h)
+			\end{align*}
+			$p_{B, H}(b, h)$ will be nonzero if and only if $1 \leq b \leq h$, so this sum must start at $b$. We conclude that
+			\begin{align*}
+				p_B(b) = \sum_{h=b}^3 \frac{1}{3h}
+			\end{align*}
+			Plugging in for $b \in \Omega_B=\set{1, 2, 3}$, we use the above formula to get that $p_B(1) = \frac13 + \frac16 + \frac19 = \frac{11}{18}$, $p_B(2) = \frac{5}{18}$, and finally $p_B(3) = \frac19$.
+			
+			\item For $h \in \set{1, 2, 3}$, we know that 
+			\begin{align*}
+				\P(H = h \mid B = 1) = \frac{p_{B, H}(1, h)}{\P(B=1)}
+			\end{align*}
+			Since $h \in \set{1, 2, 3}$, it is always the case that $1 \leq b = 1 \leq h$, and hence we may apply our joint pdf from part (b) to get that this equals
+			\begin{align*}
+				\frac{1}{3h} \cdot \frac{18}{11} = \frac{6}{11h}
+			\end{align*}
+			Quite a nice answer!
+			
+			\item We are looking for $\E[H \mid B = 1 \cup B = 2]$. We know that this equals
+			\begin{align*}
+				\sum_{h=1}^3 h \P(H=h \mid B = 1 \cup B = 2) = \sum_{h=1}^3 h \frac{\P(B = 1 \cup B = 2 \mid H = h) \cdot \P(H = h)}{\P(B = 1 \cup B = 2)}
+			\end{align*}
+			We know that $\P(B = 1 \cup B = 2) = \P(B = 1) + \P(B = 2) - \P(B = 1 \cap B = 2) = \P(B = 1) + \P(B = 2)$ (the number of books she bought cannot be simultaneously 1 and 2), and similarly, $\P(B = 1 \cup B = 2 \mid H = h) = \P(B = 1 \mid H = h) + \P(B = 2 \mid H = h)$. So, the sum above equals
+			\begin{align*}
+				\sum_{h=1}^3 h \frac{\P(B = 1 \cap H = h) + \P(B = 2 \cap H = h)}{\frac{11}{18} + \frac{5}{18}} = \frac98 \sum_{h=1}^3 h (\P(B = 1 \cap H = h) + \P(B = 2 \cap H = h))
+			\end{align*}
+			The first term in this sum is $\P(B = 1 \cap H = 1) + \P(B = 2 \cap H = 1)$. Since $b \leq h$, the second term of what I just wrote is 0. $\P(B = 1 \cap H = 1) = \frac{1}{3 \cdot 1} = \frac13$ from when we derived the joint distribution. The second term in this sum is $2 \cdot (\P(B = 1 \cap H = 1) + \P(B = 2 \cap H = 2)) = 2 \cdot (\frac1{2 \cdot 3} + \frac1{2 \cdot 3}) = \frac{2}{3}$. Similarly, the last term in this sum is $3 \cdot (\P(B = 1 \cap H = 3) + \P(B = 2 \cap H = 3)) = 3 \cdot (\frac1{3 \cdot 3} + \frac1{3 \cdot 3}) = \frac{2}{3}$. We conclude that our expectation is
+			\begin{align*}
+				\frac98 \cdot \qty(\frac13 + \frac23 + \frac23) = \frac{15}{8}
+			\end{align*}
+			Which is a nice answer! Also very intuitive, since if she only buys 1 or 2 books, it is definitely more likely that she spent less time shopping.
+			
+			\item Let $C_i = $ the cost of the $i$th book, and $B_i = \begin{cases}
+				1, \; \text{Alice has an $i$th book} \\
+				0, \text{else}
+			\end{cases}$ (an indicator r.v. for if we bought an $i$th book).
+		
+			First, we notice that $C_i \cdot B_i$ is going to be the money spent on book $i$, where it will be the cost if we buy the book, and 0 if not. We conclude that $X = $ the amount of money spent $= \sum_{i=1}^3 C_iB_i$. We now want 
+			\begin{align*}
+				\E[X] = \E[X \mid B = 1]p_B(1) + \E[X \mid B = 2]p_B(2) + \E[X \mid B = 3]p_B(3)
+			\end{align*}
+			By the law of total expectation. First, $\E[X \mid B = 1] = \E[\sum_{i=1}^3 C_iB_i \mid B = 1] = \sum_{i=1}^3 \E[C_iB_i \mid B = 1] = \sum_{i=1}^3 \E[C_i \mid B = 1] \cdot \E[B_i \mid B = 1] = \sum_{i=1}^3 \E[C_i] \cdot \E[B_i \mid B = 1]$, since the amount of money spent on each book is independent of the number of books she buys. Also, $\E[B_2 \mid B = 1]$ and $\E[B_3 \mid B = 1]$ are both just 0, since she cannot have a 2nd or third book if she only has one book. Finally, $\E[B_1 \mid B = 1] = \P(B_1 \mid B = 1) = 1$, since ``if she has one book then she has one book'' (I put it in quotes because it is correct but sounds very silly). We know that $\E[C_i] = 3$, as stated in the problem. We conclude that
+			\begin{align*}
+				\E[X \mid B = 1] = 3 \cdot \E[B_1 \mid B = 1] = 3
+			\end{align*}
+			Indeed, the exact same logic could be applied to $B = 2$ to see that $\E[B_3 \mid B = 2] = 0$, and $\E[B_1 \mid B = 2] = 1$ and $\E[B_2 \mid B = 2] = 1$. We therefore conclude that $\E[X \mid B = 2] = 3 \qty(1 + 1) = 6$. Finally, doing the same logic again gives us $\E[X \mid B = 3] = 9$. Finally, using the result from part (c), we conclude that
+			\begin{align*}
+				\E[X \mid B = 1]p_B(1) + \E[X \mid B = 2]p_B(2) + \E[X \mid B = 3]p_B(3) = 3 \cdot \frac{11}{18} + 6 \cdot \frac{5}{18} + 9 \cdot \frac{1}{9} = \frac{9}{2}
+			\end{align*}
+			Which is a spectacular answer! This was quite a long problem.
+		\end{enumerate}
+	
+		\newpage
+		\item Let $D_i$ be the event that the miner went in the $i$th door. We are looking for $X = $ the time it takes for the miner to get to safety. By the law of total expectation, we know that this equals
+		\begin{align*}
+			\sum_{i=1}^3 \E[X \mid D_i] \cdot \P(D_i)
+		\end{align*}
+		We consider each case separately. $\E[X \mid D_1]$ is just the expected value of a poisson r.v. with parameter 2, which is just 2 (look up the table). We also know that $\P(D_i) = \frac14$ for all $1 \leq i \leq 4$, since the miner is equally likely to go in any of the doors. $\E[X \mid D_2]$ is the expected value of a geometric r.v. with parameter 1/5, which is just 5. $\E[X \mid D_3]$ is the expected value of a binomial r.v. with parameters $(100, 1/20)$, which has expected value $100 \cdot 1/20 = 5$. Finally, $\E[X \mid D_4] = 2 + \E[X]$, since he has to wait 2 hours and then return where he started, in which case the time he will wait will just be his expected time since he is just at the start. So, we get that
+		\begin{align*}
+			\E[X] = \frac14 \qty(2 + 5 + 5 + 2 + \E[X])
+		\end{align*}
+		Solving this equation gives $\E[X] = \frac{14}{3}$, which makes sense.
+		
+		\newpage
+		\item \begin{enumerate}
+			\item Let $X$ be the total time to knit a blanket, and $X_i$ be the time to knit the $i$th square $1 \leq i \leq 100$. It is clear that $X = \sum_{i=1}^{100} X_i$. The problem tells us the time it takes to knit a square is on average 1 hour. Since the squares are independent, $\E[X_i] = 1$ for all $1 \leq i \leq 100$. By linearity of expectation,
+			\begin{align*}
+				\E[X] = \sum_{i=1}^{100} \E[X_i] = 100 \cdot 1 = 100
+			\end{align*}
+			Quite a long time.
+			
+			\item Similar to last time, $\Var(X_i) = 0.1$ for all $1 \leq i \leq 100$ for the same reasoning. Since knitting the squares are independent, we may pull the sum out of the variance to get
+			\begin{align*}
+				\Var(X) = \sum_{i=1}^{100} \Var(X_i) = 100 \cdot 0.1 = 10
+			\end{align*}
+		
+			\item We are looking for $\P(X < 250)$. By complimentary counting, this equals $1 - \P(X \geq 250)$. By Markovs inequality, $\P(X \geq 250) \leq \E[X] / 250 = 100 / 250$. We conclude that $\P(X < 250) \geq 1 - \frac{100}{250} = \frac{3}{5} = 0.6$.
+			
+			\item We are looking for $\P(85 \leq X \leq 115)$. This equals $\P(|X - 100| \leq 15)$, and by Chebyshev's inequality,
+			\begin{align*}
+				\P(|X - 100| \leq 15) \leq \frac{\Var(X)}{15^2} = \frac{10}{225} = \frac{2}{45} \approx 0.04
+			\end{align*}
+			Quite a small answer!
+		\end{enumerate}
+		
+		\newpage
+		\item \begin{enumerate}
+			\item Let \begin{align*}
+				X_i = \begin{cases}
+				1, \; \text{the $i$th ball went in the lower left urn} \\
+				0, \; \text{else}
+			\end{cases}
+			\end{align*} with $1 \leq i \leq 40,000$. It is clear that the number of balls in the lower left urn is now $X = \sum_{i=1}^{40,000} X_i$. We are looking for $\P(X \leq 3)$. First, we need to calculate the expectation of $X$. Notice that
+			\begin{align*}
+				\E[X_i] = \frac{1}{2500}
+			\end{align*}
+			Since each ball is equally likely to go into any urn. Thus, $\E[X] = \sum_{i=1}^{40,000} \E[X_i] = \frac{40,000}{2500} = 16$. To use Chernoff, we need to find $0 < \delta < 1$ so that $\P(X \leq 3) = \P(x \leq (1-\delta)16)$. This gives $\delta = \frac{13}{16}$. By Chernoff,
+			\begin{align*}
+				\P(X \leq 3) = \P(X \leq \qty(1-\frac{13}{16})16) \leq \exp(\frac12\qty(-\qty(\frac{13}{16})^2 \cdot 16)) = \exp(\frac{-169}{32}) \approx 0.5\%
+			\end{align*}
+			
+			\item These probabilities are \textit{not} independent. If you know that there are less than or equal to 3 balls in the lower left urn, then there is a bigger chance that the top right urn has more balls in it. For example, knowing that there is 0 balls in the bottom left urn would mean that there are more balls to go around in the remaining urns, and in particular in the top right urn.
+			
+			\item Let $B_i = $ the event that the $i$th urn has $\leq 3$ balls. The event we are looking for is $\bigcup_{i=1}^{40,000} B_i$. From our answer to the last question, we are going to have to use the union bound. We see that
+			\begin{align*}
+				\P(\bigcup_{i=1}^{40,000} B_i) \leq \sum_{i=1}^{40,000} \P(B_i)
+			\end{align*}
+			Now, we see from part (a) that our answer did not depend on our choice of picking the lower left urn. We could've chosen any urn, and gotten the same answer with the same logic. Hence, we conclude that $\P(B_i) \leq \exp(\frac{-169}{32})$ for all $1 \leq i \leq 40,000$. We conclude that
+			\begin{align*}
+				\P(\bigcup_{i=1}^{40,000} B_i) \leq 40,000 \cdot \exp(\frac{-169}{32}) \approx 203
+			\end{align*}
+			Indeed, this bound doesn't tell us very much.
+		\end{enumerate}
+	
+		\newpage
+		\item \begin{enumerate}
+			\item To find $\P(X > Y)$, we can just integrate the density function over the region where $x > y$. This region can be completely described by $x \in \Omega_X = [0, 1]$, $y \in [0, x]$, and hence we want:
+			\begin{align*}
+				\P(X > Y) = \int_0^1 \int_0^x \frac32 x^2ydydx &= \frac34 \int_0^1 x^2 \cdot y^2\eval_0^x dx \\ &= \frac34 \int_0^1 x^2 \cdot (x^2-0)dx = \frac34 \cdot \frac15 x^5 \eval_0^1 = \frac3{20} (1 - 0) = \frac3{20}
+			\end{align*}
+			\item We notice that the density function is only nonzero on a portion of the strip $[0, 1] \cross \R$. So, the support of $X$ is $[0, 1]$. For $x \in [0, 1]$, we can find the marginal PDF as follows:
+			\begin{align*}
+				f_X(x) = \int_{-\infty}^\infty f_{X,Y}(x,y)dy = \int_0^2 \frac32 x^2ydy = \frac34 x^2 \cdot y^2\eval_0^2 = \frac34x^2 \cdot 4 = 3x^2
+			\end{align*}
+			and, as discussed above, $f_X(x) = 0$ for $x \not \in [0, 1]$.
+			
+			\item In the same reasoning as last time, the support of $y$ is just $[0, 2]$. So, for $y \in [0, 2]$, 
+			\begin{align*}
+				f_Y(y) = \int_{-\inf}^\inf f_{X,Y}(x,y)dx = \int_0^1 \frac32 x^2ydx = \frac32 y \frac{x^3}{3} \eval_0^1 = \frac32 y \qty(\frac13 - 0) = \frac y2
+			\end{align*}
+			And $f_Y(y) = 0$ for $y \not \in [0, 2]$.
+			
+			\item These two are independent, since for any $x \in \Omega_X = [0, 1]$, and $y \in \Omega_Y = [0, 2]$, we have that
+			\begin{align*}
+				\frac32 x^2y = f_{X,Y}(x, y) = 3x^2 \cdot \frac y2 = f_X(x) \cdot f_Y(y)
+			\end{align*}
+		\end{enumerate}
+	
+		\newpage
+		\item[6.1]
+		\begin{enumerate}
+			\item I have long dreamed of the day where I can write about Minecraft in a undergraduate homework assignment, so I will be writing about the dream article. Long ago (like a couple months), I saw a 40 minute video on the topic, see \href{https://www.youtube.com/watch?v=8Ko3TdPy0TU}{this} video (which you probably already know about). The link is therefore \href{https://mcspeedrun.com/dream.pdf}{this} dream article that you had below.
+			
+			\item The main claim of the article is that dream's run was indeed cheated, and that it would be rejected.
+			
+			\item They assume blaze rod and ender pearl drops are independent, and identically distributed. So, the probability of getting an ender pearl from killing trading with piglin 1 is exactly equal to trading with piglin 2. They also model all these drop probabilities using the binomial distribution.
+		\end{enumerate}
+	
+		\item[6.2]
+		\begin{enumerate}
+			\item It says near the start of the article that they model a lot of things with the binomial distribution, a variable from the zoo. They also acknowledge that they have sample bias, but say that it will not affect the final resolution. They also assume in the fine print that blaze rod drops and piglin bartering is independent, and they claim with 100\% certainty that those events are independent. They also show that the data is not perfectly binomial, since dream is more likely to stop streaming after a good run than a bad one, so his luck \textit{should} be better than expected. But not in the amount that it was. 
+			
+			\item A big weakness that I discovered is that piglins cannot be bartered with again unless they are killed / put something else in their inventory. It follows then that we should be considering our probabilities without replacement, instead of with replacement, so the binomial r.v. is not the right model. So, instead of using the binomial distribution for the enderpearl and blaze rod drops, we should instead be using the hypergeometric r.v.. 
+			
+			\item We shall reasonably assume that there are 100 piglins in the world that drop ender pearls. This will be the $K$ value, so we need to find the $N$ value from here, which can be calculated as $500 / 0.0473 \approx 2114.16$ total piglins. This seems like a reasonable number of piglins to spawn, so we shall take this as the $N$ value. So, letting $X$ be the number of successful enderpearls drawn among a sample of $2114$ piglins 100 of which have ender pearls, we see that $X \sim \mathrm{HyperGemoetric}(2114, 100, 262)$. We are now looking for $\P(X \geq 42)$. This equals $1 -\P(X < 42)$, which can be found from the zoo as 
+			\begin{align*}
+				1 - \sum_{i=0}^{41} \frac{{100 \choose i}{2014 \choose 262-i}}{{2114 \choose 262}} \approx 1.74832 \cross 10^{-14}
+			\end{align*}
+			Which is actually smaller than what the writer got. If we assume that 1000 blazes have blaze rods (this shall be the $K$ value), then there should be 2000 blazes in the world (which is very reasonable), and of course again we are drawing 305 times. So $Y \sim \mathrm{HyperGeometric}(2000, 1000, 305)$ models the piglin drops very well. Calculating in the same fashion as above, we get the probability him getting at least 211 blaze rods is
+			\begin{align*}
+				1 - \sum_{i=0}^{210} \frac{{1000 \choose i}{1000 \choose 305-i}}{{2000 \choose 305}} \approx 1.52828 \cross 10^{-13}
+			\end{align*}
+			Again a smaller number than the paper got.
+			
+			\item The calculation does not change significantly, since we are only moving by a factor of 10. When we are talking about probabilities that are 12 orders of magnitude below 1, $10^{-12}$ and $10^{-13}$ don't make much a difference. However, my logic shows that the chances of him getting the drops is even less than what the paper got! I am certainly convinced the run is cheated!
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

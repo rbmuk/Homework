@@ -1,0 +1,210 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{R:/sty/quiver}
+
+\usepackage{hyperref} % links
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\renewcommand{\mod}{\mathrm{\;mod\;}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 506 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Problem 1.}
+    Let $I$ be the ideal in the problem, and assume that $Z(I) \subset S$ is empty. Recall that $Z(I) = \bigcap_{f \in I} Z(f)$. This says that
+    \begin{align*}
+        \bigcap_{f \in I} Z(f) = \emptyset
+    \end{align*}
+    And so,
+    \begin{align*}
+        \bigcup_{f \in I} Z(f)^c = S
+    \end{align*}
+    Since each of the $Z(f)$ are closed (being the preimage of the closed set $\SET{0}$ under the continuous function $f$), we know that each $Z(f)^c$ is open and hence $\SET{Z(f)}_{f \in I}$ is an open cover of $S$. Since $S$ is compact there is a finite subcover 
+    \begin{align*}
+        S = \bigcup_{i=1}^n Z(f_i)^c
+    \end{align*}
+    Taking complements, we get that
+    \begin{align*}
+        Z(f_1, \ldots, f_n) = \emptyset
+    \end{align*}
+    I claim that this means that $I$ has a unit, and hence is not proper. First, notice that if $f$ is a continous function without any roots, then $1/f$ is also continuous, and hence $f$ is a unit. Thus every $f \in I$ must have at least one root. Under the above hypothesis, we see that $\sum_{i=1}^n f_i^2$ has no roots (the only way this could be 0 is if $f_i(x) = 0$ for all $1 \leq i \leq n$), which contradicts that $I$ is proper, completing the proof. Let $I$ be the ideal of functions that vanish at 0. $I$ is maximal because it is the kernel of the surjective map $f \mapsto f(0) \in \R$ where we note that $\R$ is a field. Since the $I \subset \sqrt{I}$, either $\sqrt{I}$ is all of $R$ or just $I$, and it is clearly the second case. Now define
+    \begin{align*}
+        J = \SET{f(x) \in R \mid \lim_{x \to 0^+} \qty|\frac{f(x)}{x^k}| = 0}
+    \end{align*}
+    We see that $J$ does not contain $x$, since $x/x^2$ does not go to 0 as $x$ goes to 0. Defining
+    \begin{align*}
+        f(x) = \begin{cases}
+            e^{-1/x} &\text{if $0 < x \leq 1$} \\
+            0 &\text{if $x = 0$}
+        \end{cases}
+    \end{align*}
+    One notices that
+    \begin{align*}
+        \lim_{x \to 0^+} \frac{e^{-1/x}}{x^k} = \lim_{u \to \infty} u^k e^{-u} = 0
+    \end{align*}
+    Thus $J$ is nonempty. Finally, if $f^n \in J$, then
+    \begin{align*}
+        \lim_{x \to 0^+} \qty|\frac{f(x)}{x^k}| = \lim_{x \to 0^+} \sqrt[n]{\qty|\frac{f^n(x)}{x^{nk}}|} = \sqrt[n]{\lim_{x \to 0^+}\qty|\frac{f^n(x)}{x^{nk}}|} = 0
+    \end{align*}
+    Since $x \mapsto \sqrt[n]{x}$ is continuous. This shows that $f \in J$ as well so that $J$ is radical, and not equal to the previous $I$. It is indeed clear by the definition of $J$ that $Z(J) \supseteq \SET{0}$. Similarly, the example function provided to show that $J$ is nonempty has no other zeros in $[0,1]$, thus we have that $Z(J) = \SET{0}$. The same function can show that $Z(I) = \SET{0}$, but $I$ and $J$ are distinct radical ideals, completing the proof.
+
+    \subsection*{Problem 2.}
+    Recall that for any ring $R$ and $a, b \in R$, we have that $(a, b) = (a, b+ra)$. Suppose on the contrary that $I = (x^n, x^{n-1}y, \ldots, y^n) = (p_1, \ldots, p_n)$ for some polynomials $p_1, \ldots, p_n \in k[x,y]$. We see first that every $k[x,y]$ linear combination of the terms in $I$ has every monomial term with degree $\geq n$. By this observation we must have that every monomial term in each of the $p_i$ has degree at least $n$. If every $p_i$ had every term at least $n+1$, then the above equality certainly does not hold. We consider equations of the form:
+    \begin{align*}
+        \sum q_i p_i = x^{n-i}y^i
+    \end{align*}
+    for $0 \leq i \leq n$. We match the terms of degree $n$ on each side to see that at least one of the $q_i$ must just be in $k$, where the associated $p_i$ has a term of degree precisely $n$. By looking at all the $p_i$ with $\deg q_i = 0$ with a term of degree precisely $n$, we first match the terms of degree precisely $n$ on both sides, and then see that the rest of terms are just being used to cancel out the higher order terms of the $p_i$. By repeating this for every $i$, we can replace the $p_i$ with only the degree $n$ terms of each $p_i$, dropping the $p_i$ with no terms exactly $n$. Clearly, the $x^{n-i}y^i$ are all the monomial terms of degree precisely $n$. In this way we get the above relation where each of the $p_i$ have only terms of degree precisely $n$. We write
+    \begin{align*}
+        \sum q_i p_i = x^{n-i}y^i
+    \end{align*}
+    Again at least one of the $q_i$ has degree precisely 0, i.e. is a constant. Assuming that none of the $p_i$ are just 0, we would see that if any of the $q_i$ have degree $> 0$, then we would need a $q_j$ of the same degree to cancel out the new terms added by the first $q_i$. Since we can again just throw out polynomial terms that have degree $>n$ because they are going to be 0 anyways, we only keep the $q_i \in k$. We do this for each equation. If we had an equation of the form
+    \begin{align*}
+        \sum a_i x^{n-i}y^i = 0
+    \end{align*}
+    By matching coefficients on both sides we see that each $a_i$ must equal 0. In this way, $\mathrm{span}_k \SET{x^n, x^{n-1}y, \ldots, y^n}$ is an $n+1$-dimensional vector space over $k$. We are now left with $n$ elements $p_i$ that $k$-span the $n+1$-dimensional vector space $\mathrm{span}_k\SET{x^n, x^{n-1}y, \ldots, y^n}$. This is a contradiction, which completes the proof.
+
+    \subsection*{Problem 3.}
+    Suppose that $z \in R$ is a prime element. Then $z \cdot \overline z = N(z)$ where $N(z) \in \bN$. Thus $N(z)$ has a prime factorization $p^{\alpha} q_2^{\alpha_2} \cdots \cdots q_n^{\alpha_n}$ over $\Z$. Since $z$ is prime it follows that $z \mid p$. If $p$ is prime in $R$ then $z$ is an associate of $p$. Otherwise, $p = z w$ where $w$ is not a unit (otherwise $p$ would be prime, being an associate of the prime $z$). Notice that if $N(a) = 1$ then $a \overline a = 1$ so certainly $a$ is a unit in $R$. Thus $N(z), N(w) > 1$. Now, as $p = z w$ we have that $N(z) N(w) = N(p) = p^2$. By the above this means that $N(z) = N(w) = p$. Thus $z$ has prime norm in this case.
+
+    Now let $p \equiv 3 \mod 4$. If $p$ were somehow reducible as $p = zw$, then we would have $N(z) = p$. Writing $z = a + bi$, we have that $a^2 + b^2 = p$. Now, notice that the squares mod $4$ are either $0$ or $1$, because $0^2 = 0$, $1^2 = 1$, $2^2 = 4 = 0$ and $3^2 = 9 = 1$. In any case, $a^2+b^2$ is either 0, 1, or $2 \mod 4$, a contradiction. So $p$ is prime in this case.
+
+    Let $\sigma$ be a generator for the cyclic group $(\Z/p)^\times$ of order $p-1$. Since $4 \mid p-1$, we know that $\sigma^{(p-1)/4}$ has order 4. Thus in particular $\sigma^{(p-1)/2}$ has order 2 and as $\Z/p[x]$ is a field and $x^2-1=0$ has only two solutions $-1$ and $1$, we see that $\sigma^{(p-1)/4}$ squares to -1. Thus there is an $x \in \Z$ with $x^2+1=p \cdot k$ for some $k > 0$. Suppose per the contrary that $p$ is prime. Then we know that $(1+ix)(1-ix) = 1+x^2 = p \cdot k$. Since $p$ is prime, we know that $p \mid 1+i \cdot x$ or $1 - i \cdot x$. This says that $p \mid 1$, a contradiction, so $p$ is not prime and since $R$ is a UFD not irreducible. Thus there is some $z, w$ so that $p = z \cdot w$. We showed above that this must mean that $N(z) = p$, which shows that $p$ is of the form $a^2+b^2$ for some $a,b \in \Z$.
+
+    Last but not least, we notice that $2 = (1+i)(1-i)$. Thus $2$ is not prime in $R$, which classifies all the primes of $R$.
+\end{document}

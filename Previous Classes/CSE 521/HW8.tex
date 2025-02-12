@@ -1,0 +1,232 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{hyperref} 
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  
+\usepackage{tikz-cd} 
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathrm{Pr}\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+
+% Sets
+\usepackage{braket}
+
+% Code
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Python,
+	aboveskip=1mm,
+	belowskip=1mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{adjustbox}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\renewcommand{\ip}[1]{\langle #1 \rangle}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 521 Last Homework}
+\date{\today}
+\author{Rohan Mukherjee, Lukshya Ganjoo}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Recall that $x \geq |y|$ iff $x \geq y$ and $x \geq -y$. This motivates the following: $A \in \R^{5 \times 7}$ shall be the matrix with $|\ve_{ij}|$ in entry $ij$, $a \in \R^5$ shall be the aptitude of the people, and $e \in \R^7$ shall be the easiness of the classes. Next, we shall set the entries of $G$ to be 0 if they are undefined. So, we do not want to include the error in those spots. Therefore, define $F_{ij} = \mbb I_{G_{ij} > 0}$. Notice that $\tr(AF^T) = \sum_{i,j} |\ve_{ij}| \cdot \mbb I_{G_{ij} > 0}$ which is precisely the quantity we want. Finally, our other constraints shall be $G - a\mathbf 1^T - \mathbf 1e^T \leq A$ and $-G + a\mathbf 1^T + \mathbf 1e^T \leq A$, since the $ij$ coordinate the first is just $G_{ij} - a_i - e_j \leq A_{ij}$ and the second is $-(G_{ij} + a_i + e_j) \leq A_{ij}$, which describes exactly what we want. Note also that since the only entries of $A$ that affect the sum are the ones where $G_{ij}$ is defined, the extra constraints on the other coordinates do not matter.
+		
+		So, we have the following linear program:
+		\begin{align*}
+			\text{minimize}& \quad \tr(AF^T) \\
+			\text{s.t. }& \quad  G - a\mathbf 1^T - \mathbf 1e^T \leq A \\
+			&-(G - a\mathbf 1^T - \mathbf 1e^T) \leq A
+		\end{align*}
+	
+		Here is my code:
+		\begin{lstlisting}[language=matlab]
+			G = [0 2.66 3 3.33 3.66 2 0; 2.66 3.66 0 0 4.33 1.66 3
+			2.66 0 3.33 0 3.66 3 3.33; 4.33 0 2.66 4 0 3.66 0;
+			0 2.66 1.33 3.33 0 3 2.33];
+			Filter = transpose(G > 0);
+			cvx_begin
+				variables T(5,7) a(5) e(1,7)
+				minimize trace(T*Filter)
+				subject to
+					G - a*ones(1, 7) - ones(5, 1)*e <= T;
+					-G  + a*ones(1, 7) + ones(5, 1)*e <= T;
+					T >= 0;
+			cvx_end
+		\end{lstlisting}
+	
+		I got the calculated easiness to be:
+		0.960037046829499
+		
+		1.63003704798536
+		
+		1.03457764835811
+		
+		2.30003704582580
+		
+		2.63003704559624
+		
+		1.17342758396096
+		
+		1.30003704812862
+		
+		and the aptitudes of the students to be:
+		1.02996295373911
+		
+		1.69996295314997
+		
+		1.82657241603184
+		
+		2.17422512162083
+		
+		1.02996295245312
+		
+		\item We construct a convex program. let $|E| = m$, and define to edge $k$, where $k$ connects vertex $i$ with vertex $j$,
+		\begin{align*}
+			a^k_l = \begin{cases}
+				1, \; l = i \\
+				-1, \; l = j \\
+				0, \; \text{o.w}
+			\end{cases}
+		\end{align*}
+		Finally define $L(w) = \sum_{k=1}^m w_k a^k (a^k)^T = A\mathrm{diag}(w)A^T$, where $A = [a_1 \ldots a_m]$. We claim the function $f(w) = \lambda_2(L(w)) = \min_{\ip{x, \textbf{1}} = 0} \frac{x^TLx}{x^Tx}$ is concave. Notice that $\mathrm{diag}((w+v)/2) = \frac12 (\mathrm{diag}(w) + \mathrm{diag}(v))$, so,
+		\begin{align*}
+			f\qty(\frac{w+v}{2}) &= \min_{\ip{x, \mathbf 1} = 0} \frac12 \frac{x^T(\mathrm{diag}(w) + \mathrm{diag}(v))x}{x^Tx} \\
+			&= \frac12 \min_{\ip{x, \mathbf 1} = 0} \qty( \frac{x^T\mathrm{diag}(w)x}{x^Tx} + \frac{x^T\mathrm{diag}(v)x}{x^Tx}) \geq \frac12 \qty(\min_{\ip{x, \mathbf 1} = 0}  \frac{x^T\mathrm{diag}(w)x}{x^Tx} + \min_{\ip{x, \mathbf 1} = 0}  \frac{x^T\mathrm{diag}(v)x}{x^Tx}) \\
+			&= \frac12(f(v)+f(w))
+		\end{align*}
+		We can now formulate the following linear program.
+		\begin{align*}
+			\text{maximize} \quad f(w) \\
+			\text{s.t.} \quad \mathrm{diag}(L) = \mathbf 1
+		\end{align*}
+		Since $\mathrm{diag}(L)$ is a linear function in $w$ as we showed above, the constraint is simply a linear system of equalities, where we are trying to maximize a convex function. The above is a convex program, and hence can be solved using the ellipsoid method in polynomial time. We now prove the correctness of this algorithm. We claim that $I - L$ is the adjacency matrix of the weighted graph. Notice first that the diagonal entry is going to be the sum of the weights of the edges connecting to vertex $i$, and by our constraint this diagonal entry is always 1. So, $I-L$ has diagonal entries all 0s. The $ij$ entry of this matrix is 0 if there is no edge connecting $i$ to $j$ by construction, and $(-w_l \cdot a^k(a^k)^T)_{ij}$ if there is an edge connecting $i$ to $j$, and this quantity is just $w_l$ since $a^k$ will be 1 in the $i$th coordinate and $-1$ in the $j$th coordinate. Now, $L$ is symmetric, which proves the previous claim. Finally, the second largest eigenvalue of $I-L$ is the second smallest eigenvalue of $L$, and it will be minimized when the second smallest eigenvalue of $L$ is maximized, which is what the above program does.
+	\end{enumerate}
+\end{document}

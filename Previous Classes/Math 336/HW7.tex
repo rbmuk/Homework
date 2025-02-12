@@ -1,0 +1,263 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\Re}{\mathfrak{R}}
+\renewcommand{\Im}{\mathfrak{I}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 336 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item I believe I have found a solution that doesn't use the hint, but instead \textbf{Theorem 3.4} in the book. I like it, so I will be using it instead. Since $f(z)$ is holomorphic everywhere, by definition $f(1/z)$ is a meromorphic function in the extended complex plane. By \textbf{Theorem 3.4}, $f(1/z)$ is a rational function. Thus, 
+		\begin{align*}
+			F(z) = f(1/z) = \frac{p(z)}{q(z)}
+		\end{align*}
+		Since $F(z)$ is rational, $F(1/z)$ is also a rational function (we could clear denominators). So, outside of 0, 
+		\begin{align*}
+			f(z) = \sum_{i=1}^n \frac{p_i(z)}{(z-\alpha_i)^{m_i}}
+		\end{align*}
+		where the $\alpha_i$'s are distinct (Note: we used implicitly that rational functions may be expanded into partial fractions) and all $p_i$'s are not equivalently zero. I claim that $(z-\alpha_i)^{m_i} \mid p_i(z)$. We shall show that this is true for $i = 1$ and argue that the general case holds immediately. Note that 
+		\begin{align*}
+			f(z) = \sum_{i=1}^n \frac{p_i(z)}{(z-\alpha_i)^{m_i}} = \frac{p_1(z)}{(z-\alpha_1)^{m_1}} + \sum_{i=2}^n \frac{p_i(z)}{(z-\alpha_i)^{m_i}}
+		\end{align*}
+		Since we assumed that the $\alpha_i$'s are distinct, the only place the remaining sum blows up is (potentially) at $\set{\alpha_2, \ldots, \alpha_n}$. Note that since these are all positive distance from $\alpha_1$, we may bound the remaining sum by some constant $C > 0$. Suppose that $(z-\alpha_1)^{m_1} \not \mid p_1(z)$. Then we may cancel all multiples of $(z-\alpha_1)$ from $p_1(z)$, noting that at least one must be remaining to rewrite this as
+		\begin{align*}
+			\frac{p_1(z)}{(z-\alpha_1)^{m_1}} = \frac{q(z)}{(z-\alpha_1)^n}
+		\end{align*}
+		where $(z-\alpha) \not \mid q(z)$ and $1 \leq n \leq m_1$. We now notice that
+		\begin{align*}
+			\qty|\frac{p_1(z)}{(z-\alpha_1)^{m_1}} + \sum_{i=2}^n \frac{p_i(z)}{(z-\alpha_i)^{m_i}}| \geq \qty|\frac{q(z)}{(z-\alpha_1)^n}| - C \to \infty
+		\end{align*}
+		It cannot be that $f$ is holomorphic at $\alpha_1$ since $f$ is unbounded in a neighborhood of $\alpha_1$, a contradiction. We could've done this argument with any of the factors, so it follows that $(z-\alpha_i)^{m_i} \mid p_i(z)$ for all $1 \leq i \leq n$. But then $f(z)$ is just a polynomial. If $\deg(f) \geq 2$, then $f$ cannot be injective since we have two cases, either $f(z) = (z-\alpha)^m$ where $m \geq 2$, or $f$ has at least two distinct roots. In the ladder case $f$ already isn't injective, and in the first case we could consider $f(z) - 1 = 0$ and see that this has $m$ distinct solutions, so $f(z)$ is again not injective. So, $f(z) = az + b$. We already showed that $f$ cannot be constant, so it follows that $a \neq 0$, completing the proof. $\hfill$ \textbf{Q.E.D.}
+		
+		\item Let $u: \Omega \to \R^2$ be the harmonic function in question, and extend $u$ to a holomorphic function $f: \Omega \to \C$ (we talked about this before, it is sufficient for $\Omega$ to be simply connected) so that $f(x+iy) = u(x, y) + iv(x,y)$. Let $z \in \Omega$ be arbitrary. Since $\Omega$ is open, there is some ball of radius $r > 0$ $B_r(z) \subset \Omega$. $f$ is assumed to be nonconstant, so the open mapping theorem applies, and so by the open mapping theorem $f(B_r(z))$ is open. Thus, there is some $\eta > 0$ so that $B_\eta(f(z)) \subset f(B_r(z))$. This inclusion tells us there is some point $z_1 \in \Omega$ so that $f(z_1) = f(z) + \eta/2$ (which is clearly in $B_\eta(f(z))$), which has real part $u(z) + \eta/2 > u(z)$, so $z$ is not a maximum of $u$. Since $z$ was arbitrary, $u$ has no maximum on $\Omega$, which completes the proof.
+		
+		\item We shall write $\gamma(t) = f(re^{it}) = \Re(f(re^{it})) + i \cdot \Im(f(re^{it}))$ for $0 \leq t \leq 2\pi$. We notice that
+		\begin{align*}
+			\Re(f(re^{it})) = \frac12\qty(f(re^{it}) + \overline{f(re^{it})}) =  \frac12 \qty(\frac1r e^{-it} + \sum_{n=0}^\infty a_n r^n e^{int} + \frac1r e^{it} + \sum_{n=0}^\infty \overline{a_n} r^n e^{-int})
+		\end{align*}
+		and similarly,
+		\begin{align*}
+			\Im(f(re^{it})) = \frac1{2i} \qty(\frac1r e^{-it} + \sum_{n=0}^\infty a_n r^n e^{int} - \frac1r e^{it} - \sum_{n=0}^\infty \overline{a_n} r^n e^{-int})
+		\end{align*}
+		(We used multiple times that the complex conjugate is linear). We now wish to evaluate
+		\begin{align*}
+			\int_{\gamma} xdy = \int_0^{2\pi} \Re(f(re^{it})) \cdot \dv{t} \Im(f(re^{it}))dt
+		\end{align*}
+		We see that
+		\begin{align*}
+			\dv{t} \Im(f(re^{it})) &= \frac{1}{2i}\qty(\frac{-i}{r}e^{-it} + i\sum_{n=0}^\infty na_nr^ne^{int} - \frac{i}{r}e^{it} + i\sum_{n=0}^\infty n\overline{a_n}r^n e^{-int}) \\&= \frac12\qty(-\frac{1}{r}e^{-it} + \sum_{n=0}^\infty na_nr^ne^{int} - \frac{1}{r}e^{it} + \sum_{n=0}^\infty n\overline{a_n}r^n e^{-int})
+		\end{align*}
+		Hence,
+		\begin{align*}
+			\int_{\gamma} xdy = \frac14\int_0^{2\pi} \qty(\frac1r e^{-it} + \sum_{n=0}^\infty a_n r^n e^{int} + \frac1r e^{it} + \sum_{n=0}^\infty \overline{a_n} r^n e^{-int}) \cdot \qty(-\frac{1}{r}e^{-it} + \sum_{n=0}^\infty na_nr^ne^{int} - \frac{1}{r}e^{it} + \sum_{n=0}^\infty n\overline{a_n}r^n e^{-int})dt
+		\end{align*}
+		We notice that 
+		\begin{align*}
+			\int_0^{2\pi} e^{int}dt = \begin{cases}
+				0, \; n \neq 0 \\
+				2\pi, \; n = 0
+			\end{cases}
+		\end{align*}
+		When multiplying out all the $e^{\pm it}$ terms with each other, we apply this and see that we are left with $\frac{-4\pi}{r^2}$, which handles the first 4 terms. Next, notice that 
+		\begin{align*}
+			\int_0^{2\pi} e^{\pm it} \sum_{n=0}^{\infty} a_nr^ne^{\pm int}dt = 0
+		\end{align*}
+		Since we could interchange sum and integral and use the identity from above, and noting that the sign of the $\pm$ actually matters. This handles the next 4 terms. 8 to go! Next note that
+		\begin{align*}
+			\int_0^{2\pi} e^{it} \sum_{n=0}^\infty \overline{a_n}r^ne^{-int} dt = \int_0^{2\pi} \overline{a_n}rdt = 2\pi \overline{a_n}r
+		\end{align*}
+		Since all terms cancel unless $n = 1$, and similarly that $\int_0^{2\pi} e^{-it} \sum_{n=0}^\infty a_nr^ne^{int}dt = 2\pi a_nr$. By literally the exact same reasoning, which I don't want to write out again,
+		\begin{align*}
+			\int_0^{2\pi} e^{it} \sum_{n=0}^\infty n\overline{a_n} e^{-int}dt = 1 \cdot 2\pi \overline{a_n} r \\
+			\int_0^{2\pi} e^{-it} \sum_{n=0}^\infty n a_n e^{int}dt = 2 \pi a_n r
+		\end{align*}
+		A careful observations of the signs of the $\pm\frac1r e^{\pm it}$ shows that summing up these 4 terms cancels. We are left with evaluating the 4 terms generated by multiplying out the sums. We see that
+		\begin{align*}
+			\int_0^{2\pi} \sum_{n=0}^\infty a_nr^n e^{int} \cdot \sum_{n=0}^\infty na_nr^n e^{int} = \int_0^{2\pi} \sum_{m,n = 0}^\infty a_nma_m r^{n+m} e^{i(n+m)t} = 0
+		\end{align*}
+		Since this sum always vanishes (from the $e$'s if $n, m \neq 0$, else its from $m = 0$). Similarly,
+		\begin{align*}
+			\int_0^{2\pi} \sum_{n=0}^\infty \overline{a_n}r^n e^{-int} \cdot \sum_{n=0}^\infty n\overline{a_n}r^n e^{-int}dt = 0
+		\end{align*}
+		Finally, we are left to evaluate the two good sums. One notices that the remaining 2 terms are equal, so we shall only evaluate one of them and double the final answer.
+		\begin{align*}
+			\int_0^{2\pi} \sum_{n=0}^\infty a_nr^ne^{int} \cdot \sum_{n=0}^\infty \overline{a_n}r^ne^{-int}dt = \int_0^{2\pi} \sum_{m,n = 0}^\infty m a_n \overline{a_m} r^{n+m}e^{i(n-m)t}dt = \int_0^{2\pi} \sum_{n=0}^\infty nr^{2n}|a_n|^2dt = 2\pi \sum_{n=0}^\infty nr^{2n}|a_n|^2 
+		\end{align*}
+		Since, for the ten thousandths time, the only terms that don't vanish in the double sum is when $n = m$. We conclude that 
+		\begin{align*}
+			\int_{\gamma} xdy = \frac14 \qty(\frac{-4\pi}{r^2} + 2 \cdot 2\pi \sum_{n=0}^\infty nr^{2n}|a_n|^2) = \pi\sum_{n=-1}^\infty nr^{2n}|a_n|^2
+		\end{align*}
+		(Note: $a_{-1} = 1$). Quite a spectacular result if I do say so myself. Since we actually wanted $-\int_\gamma xdy$, we have derived the identity in the problem. Finally, using that areas are nonnegative yields:
+		\begin{align*}
+			0 \leq -\pi\sum_{n=-1}^\infty nr^{2n}|a_n|^2 \iff \sum_{n=-1}^\infty nr^{2n}|a_n|^2 \leq 0
+		\end{align*}
+		This says that
+		\begin{align*}
+			\sum_{n=0}^\infty nr^{2n}|a_n|^2 \leq r^{-2}
+		\end{align*}
+		Finally, since the limit preserves inequalities, we conclude that
+		\begin{align*}
+			&\; \; \lim_{r \to 1^-} \sum_{n=0}^\infty nr^{2n}|a_n|^2 \leq \lim_{r \to 1^-} r^{-2} \\
+			&\implies \sum_{n=0}^\infty\lim_{r \to 1^-}nr^{2n}|a_n|^2 \leq 1 \\
+			&\implies \sum_{n=0}^\infty n|a_n|^2 \leq 1
+		\end{align*}
+				
+		\item On $|z|= 2$, $|z^5 + 8z^3 + 2z + 1| \leq 101 < |z|^9 = 512$, by Rouche's Theorem $z^9 + z^5 + 8z^3 + 2z + 1$ has 9 roots in $|z| \leq 2$. Also, on $|z| = 1$, $|z^9 + z^5 + 2z + 1| \leq 5 < 8 = |8z^3|$, so $z^9 + z^5 + 8z^3 + 2z + 1$ has 3 roots inside $|z| \leq 1$. Therefore, $z^9 + z^5 + 8z^3 + 2z + 1$ has 6 roots in $1 \leq |z| \leq 2$. Given that $m < n$, we notice that on $|z| = 1$,
+		\begin{align*}
+			\qty|\sum_{i=0}^m \frac{z^i}{i!}| = \sum_{i=0}^m \frac{1}{i!} \leq \sum_{i=0}^\infty \frac{1}{i!} = e < 3 = |3z^n|
+		\end{align*}
+		It follows that $\sum_{i=0}^m \frac{z^i}{i!} + 3z^n$ and $3z^n$ have the same number of solutions in $|z| \leq 1$, which is $n$.
+		
+		\item Since
+		\begin{align*}
+			|zf(z)| \leq |z|^{\ve} / c
+		\end{align*}
+		$zf(z)$ is bounded and hence has a removable singularity in 0. We now have two cases: either $f(z)$ has a removable singularity in 0, in which case we are done, or $f(z)$ has a pole of order 1 in 0. In the ladder case, we would have
+		\begin{align*}
+			f(z) = \frac{a_{-1}}{z} + \sum_{k=0}^\infty a_kz^k
+		\end{align*}
+		Where $a_{-1} \neq 0$. $\sum_{k=0}^\infty a_kz^k$ is a holomorphic function, and hence bounded above by some $C > 0$ in a neighborhood of 0. We see then that
+		\begin{align*}
+			\frac{|a_{-1}|}{|z|} - C \leq |f(z)| \leq \frac{c}{|z|^{1-\ve}}
+		\end{align*}
+		We shall now show that there exists a $z \in \C$ sufficiently small so that 
+		\begin{align*}
+			\frac{c}{|z|^{1-\ve}} < \frac{|a_{-1}|}{|z|} - C
+		\end{align*}
+		We may take $|z|$ sufficiently small so that the RHS is positive. This claim is equivalent to showing there is some $z$ so that 
+		\begin{align*}
+			c|z|^\ve < |a_{-1}| - C|z|
+		\end{align*}
+		Which is equivalent to finding a $z$ so that
+		\begin{align*}
+			c|z|^\ve + C|z| < |a_{-1}|
+		\end{align*}
+		Which obviously exists since $a_{-1}$ was assumed to be nonzero and the LHS tends to 0. But that's a contradiction, which completes the proof.
+	\end{enumerate}
+\end{document}

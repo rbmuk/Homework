@@ -1,0 +1,216 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\usepackage{braket}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We factorize $20,000,000 = 2 \cdot 10^7 = 2^8 \cdot 5^7$. A perfect square has all factors to an even power, which leaves the possibilities of 0, 2, 4, 6, and 8 for the power of 2, and 0, 2, 4, and 6 for the power of 5. This yields $5 \cdot 4 = 20$ factors.
+		
+		\item We proceed by assigning each day a nonempty subset of $\Set{\mathrm{Alice}, \mathrm{Bob}, \mathrm{Charlie}}$. There are of course $2^3 - 2^0 = 7$ subsets of this form, and we are assigning each day one of these, yielding $7^3$ ways.
+		
+		\item If rotations and reflections were different there would be $7!$ ways of doing this. However, each bracelet has 7 rotations and 1 reflection, so we are overcounting by a factor of 8. This yields $7!/8$ to be our final answer.
+		
+		\item The idea is that we need two ones surrounding any 0. So we place all the ones and then we place the zeros in between them. This gives 9 spots to place the zeros (the 7 in between and the 2 on the outside), which we need to choose 4 to be the positions of our zeros, yielding our final answer of ${9 \choose 4}$.
+		
+		\item If we pretend the T's and E's are separate, this would give $4$ choices for the first letter (S, T1, T2, L) and then we have to permute the remaining letters, giving us $4 \cdot 6!$. But we are overcounting by a factor of $2! \cdot 2!$, since we have 2 E's and 2 T's, so our final answer is $4 \cdot 6! / (2!)^2$.
+		
+		\item The trick with these kinds of problems where you have a condition like ``at least 1'' ``at most 1'' is just to divide into cases. The chores could be split up as 4, 1, 1; 3, 2, 1; or 2, 2, 2. For the first case there are 3 ways to choose the person who gets 4 chores, and then we just have to choose 4 chores from 6, and 2 from 1, giving $3 \cdot {6 \choose 4} \cdot {2 \choose 1}$ ways, the second case there is $3!$ ways to pick who gets the 3, 2, 1 respectively, then get ${6 \choose 3} \cdot {3 \choose 2}$ ways to give the chores out, and for the last way we just have ${6 \choose 2} \cdot {4 \choose 2}$ ways to give the chores out. This gives us a final answer of
+		\begin{align*}
+			3 \cdot {6 \choose 4, 2, 1} + 3! \cdot {6 \choose 3, 2, 1} + {6 \choose 2, 2, 2}
+		\end{align*}
+	
+		\item We have 16 indistinguishable dollars which we want to give to four indistinguishable cousins, where each cousin gets at least 2 dollars. So give each cousin 2 dollars first, so there are 8 dollars remaining, which we use stars and bars on to get
+		\begin{align*}
+			{8 + 4 - 1 \choose 4 - 1} = {11 \choose 3}
+		\end{align*}
+	
+		\item We just have to divide into cases. We have $a + b + c + d  = 0, \ldots, a + b + c + d = 6$. Now we can just use stars and bars--for the first case, we have 0 indistinguishable balls that we need to put in 4 distinguishable boxes, yielding ${0 + 4 - 1 \choose 4 - 1}$ ways. Similarly, for $a + b + c + d = i$ for $1 \leq i \leq 6$, we get ${i + 4 - 1 \choose 4 - 1}$ ways. This gives us a total answer of
+		\begin{align*}
+			\sum_{i=0}^6 {i + 3 \choose 3}
+		\end{align*}
+	
+		\item Either we have a pomegranate or we don't. In the first case, we need to distribute 4 identical fruits into 4 distinguishable fruit boxes, giving us ${4 + 4 - 1 \choose 3}$ ways. In the second, we need to distribute 5 identical fruits into 4 distinguishable boxes, yielding ${5 + 4 - 1 \choose 3}$ ways. This gives us a total answer of
+		\begin{align*}
+			{7 \choose 3} + {8 \choose 3}
+		\end{align*}
+	
+		\item The coefficient of $xy^2$ in $(3-x+2y)^5$ by the multinomial theorem we just need to pick 1 $x$, $2$ $y$'s, and the remaining 3 3's, which gives us ${6 \choose 1, 2, 3} \cdot 3^3 \cdot (-1)^1 \cdot 2^2$.
+		
+		\item The power series expansion of $\sqrt{1+2x^2}$ is just $\sum_{i=0}^\infty {\frac12 \choose i} 2^i x^{2i}$. So $x^8$ is attained when $i = 4$, giving us a final answer of
+		\begin{align*}
+			{\frac12 \choose 4} \cdot 2^4 = \frac{\frac12 \cdot -\frac12 \cdot -\frac32 \cdot -\frac 52}{4!} \cdot 2^4 = -\frac{15}{4!}
+		\end{align*}
+	
+		\item Notice that this sum equals $\sum_{k=0}^9 {9 \choose k} 9^k 1^{n-k} = (9+1)^9 = 10^9$.
+		
+		\item This is the hardest problem on the list. We want to show that
+		\begin{align*}
+			\sum_{k=1}^{n-1} k(n-k) = {n + 1 \choose 3}
+		\end{align*}
+		The answer is to partition on the middle number in the size 3 subset. For example, if the middle number is 2, 2 - 1 numbers can be below it, and $n+1 - (2)$ numbers can be above it. Similarly if the middle number is $j$ for $2 \leq j \leq n$, $j-1$ numbers can be below it and $n+1-j$ numbers can be above it, giving us the answer of
+		\begin{align*}
+			\sum_{j=2}^{n} (j-1)(n+1-(j)) = \sum_{j=1}^{n-1} j(n-j) = {n+1 \choose 3}
+		\end{align*}
+	
+		\item We recall that $\sum_{k=1}^n {n \choose k} kx^k = xn(1+x)^{n-1}$. Plugging in $x = -1$ yields the required equation.
+		
+		\item We see that, if $a_n = p(n)$,
+		\begin{center}
+			\[\begin{tabular}{ >{$}l<{$} c c c c }
+			 a_n & 2 & 3 & 6 & 12 \\
+			 \Delta a_n & 1 & 3 & 6 \\
+			 \Delta^2 a_n & 2 & 3 \\
+			 \Delta^3 a_n & 1 \\
+			\end{tabular}\]
+		\end{center}
+		This yields that $p(n) = 2 {n \choose 0} + 1 {n \choose 1} + 2 {n \choose 2} + 1 {n \choose 3} = 2 + n + n(n-1) + 1/6 n(n-1)(n-2)$. Plugging in $n = 1/2$ gives $2 + 1/2 + -1/4 + 1/6\cdot3/8 = 2 + 1/4 + 1/16 = 37/16$.
+		
+		\item This one is pretty cool. ${n \choose 2}^2$ is a fourth-degree polynomial, so we need the first 5 terms to do a difference table. $(n(n-1)/2)^2$ gives $0, 0, 1, 9, 36$. So the difference table is
+		\begin{center}
+			\[\begin{tabular}{ >{$}l<{$} c c c c c }
+				a_n & 0 & 0 & 1 & 9 & 36 \\
+				\Delta a_n & 0 & 1 & 8 & 27 \\
+				\Delta^2 a_n & 1 & 7 & 19 \\
+				\Delta^3 a_n & 6 & 12 \\
+				\Delta^4 a_n & 6
+			\end{tabular}\]
+		\end{center}
+		This gives a solution of $a_n = {n \choose 2} + 6 {n \choose 3} + 6{n \choose 4}$.
+		
+		\item Since $n \cdot 2^n$ is a solution, $2$ must be a double root of the characteristic equation, and similarly $3$ must be a root. This gives characteristic equation of $(q-3)(q-2)^2 = (q-3)(q^2-4q+4) = q^3 - 7q^2 + 16q - 12$. This gives us an answer of $a_n = 7a_{n-1} - 16a_{n-2} + 12$.
+		
+		\item Now for the fun ones. If $a_n$ is the number of views, we have that $a_1 = 1$, and $a_n = 3 + 2a_{n-1}$. This is a non-homogeneous linear equation, so a solution to the homogeneous version is just $b_n = A \cdot 2^n$, and we guess a particular solution to the nonhomogeneous version to be $c_n = C$, plugging this in gives $C = 3 + 2C$, i.e. $C = -3$. Adding these up gives us our final answer of $a_n = A \cdot 2^n - 3$. Plugging in our initial value gives us $A = 2$, so $a_n = 2^{n+1} - 3$.
+		
+		\item The final question. We used a very similar trick on the homework. We first pick the color of the furthest left tile, and then we pick if it is $1 \times 1$ or $1 \times 2$. In the first case we need to cover a $1 \times {n-1}$ board with the condition, and in the second we need to cover a $1 \times {n-2}$ Thus,
+		\begin{align*}
+			a_n = 2 \cdot (a_{n-1} + a_{n-2})
+		\end{align*}
+		This has characteristic equation $q^2 - 2q - 2 = 0$, which has roots $1 \pm \sqrt{2}$. So $a_n = C_1(1+\sqrt{2})^n + C_2(1-\sqrt{2})^n$. There is 1 way to tile a $1 \times 0$ rectangle trivially, and 2 ways to tile the $1 \times 1$ rectangle (one $1 \times 1$ tile and it is either red or blue). We get $a_0 = 1$ trivially, and $a_1 = 2$, so $a_2 = 6$, $a_3 = 16$, $a_4 = 44$, $a_5 = 120$, and $a_6 = 328$, and finally $a_7 = 896$.
+	\end{enumerate}
+\end{document}

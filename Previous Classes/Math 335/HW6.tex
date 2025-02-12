@@ -1,0 +1,269 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\usepackage{listings}
+
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+\usepackage{pythonhighlight}
+\newcommand{\Vol}{\mathrm{Vol}}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 HW6}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		\begin{enumerate}
+			\item For the first one, we apply the transformation $u = 1-x^2$. We therefore see that
+			\begin{align*}
+				\int_0^1 \frac{x}{\sqrt{1-x^2}}dx &= \frac12 \lim_{\ve \to 0} \int_\ve^1 \frac1{\sqrt{u}}du \\
+				&= \lim_{\ve \to 0} \sqrt{u}\eval_0^1 = 1
+			\end{align*}
+			So it converges, with value 1.
+			\item For the second one, note that $x^2 + x \geq x$ on $[0, 1]$. Then we may say that
+			\begin{align*}
+				0 \leq \frac1{\sqrt{x}\sqrt[3]{x^2+x}} \leq \frac1{\sqrt{x}\sqrt[3]{x}}=\frac1{x^{5/6}}
+			\end{align*}
+			By taking cuberoot (preserves order), inverting both sides (reserves inequality), and multiplying by a positive number ($1/\sqrt{x}$). So we may say that 
+			\begin{align*}
+				0 \leq \int_0^1 \frac1{\sqrt{x}\sqrt[3]{x^2+x}}dx \leq \int_0^1 \frac1{x^{5/6}}dx &= \lim_{\ve \to 0} 6 x^{1/6} \eval_\ve^1 = 6
+			\end{align*}
+		\item First, we apply the transformation $u = x^{-1}$, and get that
+		\begin{align*}
+			\int_1^\infty \tan(\frac1x)dx = \int_0^1 \frac{\tan(u)}{u^2}du &= \int_0^1 \frac{\sin(u)}{\cos(u)u^2}du
+		\end{align*}
+		We notice that on $[0, 1]$, $\cos(u) \leq 1$, so we can say that this integral is bigger than
+		\begin{align*}
+			\int_0^1 \frac{\sin(u)}{u^2}du
+		\end{align*}
+		So suffices to show that the integrand is larger than $1/2u^{-1}$ around 0. Notice that 
+		\begin{align*}
+			\lim_{u \to 0} \frac{\frac{\sin(u)}{u^2}}{\frac1u} = \lim_{u \to 0} \frac{\sin(u)}{u} = 1
+		\end{align*}
+		So we can certainly find a $\delta > 0$ so that for every $u \in \bR_{>0}$ with $u < \delta$, we have that $|\frac{\frac{\sin(u)}{u^2}}{\frac1u}-1| < 1/2$. Using that $-x \leq |x|$, we get that
+		$1-\frac{\frac{\sin(u)}{u^2}}{\frac1u} < 1/2$, and rearranging this gives us that $1/2 < \frac{\frac{\sin(u)}{u^2}}{\frac1u}$. Multiplying both sides by the positive quantity (we chose $u$ to be positive) $u^{-1}$, we get that $\frac{\sin(u)}{u^2} > 1/2u^{-1}$ for a $\delta$-neighborhood around 0. Now applying \textbf{Corollary 4.60}, we see that $\int_0^1 \frac{\sin(u)}{u^2}$ diverges, and finally, we deduce that our original integral, $\int_1^\infty \tan(x^{-1})$ also diverges (it was bigger than this integral).
+		\end{enumerate}
+		
+		\item We recognize that 
+		\begin{align*}
+			\int_0^\infty x^{-1/5}\sin(\frac 1x)dx = \int_0^\frac 1\pi x^{-1/5}\sin(\frac 1x)dx+\int_\frac 1\pi ^\infty x^{-1/5}\sin(\frac 1x)dx
+		\end{align*}
+		So, it suffices to show that the latter two integrals converge. For the first one note that $|\sin(\frac 1x)| \leq 1$, so we can say that
+		\begin{align*}
+			\qty|\int_0^\frac 1\pi x^{-1/5}\sin(\frac 1x)dx| \leq \int_0^\frac 1\pi x^{-1/5}dx
+		\end{align*}
+		By the triangle inequality and noting that $x^{-1/5}$ is strictly positive on $(0, \frac 1\pi)$. Next note that by comparing areas, we could instead think of this integral as the area under the curve of the inverse function, which is a function of $y$. $x^{-1/5}$ maps $(0, \frac 1\pi)$ bijectively to $(\pi^{1/5}, \infty)$, so we may say that our integral is equal to
+		\begin{align*}
+			\int_{\pi^{1/5}} ^\infty \frac1{y^5}dy
+		\end{align*}
+		Which clearly converges (p = $5 > 1$). For the second integral, we first apply the change of variables $u = x^{-1}$, and get that
+		\begin{align*}
+			\int_\frac 1\pi ^\infty x^{-1/5}\sin(\frac 1x)dx = \int_0^\pi \frac{\sin(u)}{u^{9/5}}du
+		\end{align*}
+		Using the sharp bound that $|\sin(x)| \leq x$ on $[0, \pi]$, we see that
+		\begin{align*}
+			\qty |\int_0^\pi \frac{\sin(u)}{u^{9/5}}du| \leq \int_0^\pi u^{-4/5}du
+		\end{align*}
+		By doing the same idea from before, we can say this integral equals
+		\begin{align*}
+			\int_{\pi^{-4/5}}^\infty \frac{1}{u^{5/4}}du
+		\end{align*}
+		Which clearly converges as again $p = 5/4 > 1$. So the entire integral converges.
+		
+		\item We showed that the arclength of a curve $\gamma: [a,b] \to \R^n$ is $\int_\gamma d\sigma = \int_a^b \mg{\gamma'}dt$.
+		\begin{enumerate}
+			\item $\gamma' = (-a\sin(t), a\cos(t), b)$. So we see that $\mg{\gamma'} = \sqrt{a^2+b^2}$. Our integral is therefore
+			\begin{align*}
+				\int_0^{2\pi} \sqrt{a^2+b^2}dt = 2\pi \sqrt{a^2+b^2}
+			\end{align*}
+			\item For the second one, notice that $\mg{\gamma'(t)} = \sqrt{(t^2-1)^2+4t^2} = \sqrt{t^4-2t^2+1+4t^2}=\sqrt{t^4+2t^2+1}=\sqrt{(t^2+1)^2}=t^2+1$. Our integral therefore becomes
+			\begin{align*}
+				\int_0^2 t^2+1dt = \frac43+2
+			\end{align*}
+			\item 
+			We see that $\gamma'(t) = \sqrt{\frac1{t^2}+4+4t^2}=\sqrt{(2t+t^{-1})^2} = 2t+t^{-1}$ As the inside is positive the whole time. Our integral becomes:
+			\begin{align*}
+				\int_0^{2\pi} 2t+t^{-1} dt
+			\end{align*}
+			Which sadly doesn't converge! I suppose then the arclength would be infinite.
+		\end{enumerate}
+		\item 
+		We parameterize the curve using $\gamma(t) = (t, t^2)$ where $-1 \leq t \leq 1$. We see that $\gamma'(t) = (1, 2t)$, so $\mg{\gamma'(t)} = \sqrt{1+4t^2}$. The $x$-coordinate (times the length of gamma) becomes
+		\begin{align*}
+			\int_{-1}^1 t\sqrt{1+4t^2}dt = 0
+		\end{align*}
+		Where we have noticed that the integrand is odd. So the x-coordinate center of mass of our curve is 0. Next we find the length.
+		\begin{align*}
+			\int_{-1}^1 \sqrt{1+4t^2}dt
+		\end{align*}
+		Applying the change of variables $2t = \tan(\theta)$, and noting that our function is even, we get the integral to be
+		\begin{align*}
+			\int_0^{\arctan(2)} \sec^3(\theta)d\theta
+		\end{align*}
+		Now I prove the reduction formula for $\sec^n(\theta)$. By integration by parts ($u = \sec^{n-2}(\theta), dv=\sec^2(\theta)$, we may say that
+		\begin{align*}
+			\int \sec^n(\theta)d\theta &= \sec^{n-2}(\theta)\tan(\theta) - (n-2)\int \sec^{n-2}(\theta)\tan^2(\theta)d\theta \\
+			&= \sec^{n-2}(\theta)\tan(\theta) - (n-2)\int \sec^{n-2}(\theta)+\sec^n(\theta)d\theta
+		\end{align*}
+		Adding $n-2$ copies of our goal integral to both sides, we get that
+		\begin{align*}
+			(n-1)\int \sec^n(\theta)d\theta = \sec^{n-2}(\theta)\tan(\theta) - (n-2)\int \sec^{n-2}(\theta)d\theta
+		\end{align*}
+		Dividing both sides by $n-1$ yields the familiar result
+		\begin{align*}
+			\int \sec^n(\theta) = \frac{\sec^{n-2}(\theta)\tan(\theta)}{n-1} + \frac{n-2}{n-1}\int \sec^{n-2}(\theta)d\theta
+		\end{align*}
+		So now we can find $\int_0^{\arctan(2)} \sec^3(\theta)d\theta$.
+		We have:
+		\begin{align*}
+			\int_0^{\arctan(2)} \sec^3(\theta)d\theta &= \qty(\frac12 \sec(\theta)\tan(\theta) + \frac12 \ln|\sec(\theta)+\tan(\theta)|)\eval_0^{\arctan(2)}
+		\end{align*}
+		We notice that $\sec(\arctan(2)) = \sqrt{1+\tan^2(\arctan(2))} = \sqrt{5}$, and clearly $\tan(\arctan(2)) = 2$. So our integral is therefore $\frac12 (2\sqrt{5}+\ln(\sqrt{5}+2))$, which was the length of our curve. Finally we must find 
+		\begin{align*}
+			\int_{-1}^1 t^2\sqrt{1+4t^2}dt &= \frac24\int_0^1 4t^2\sqrt{1+4t^2}dt
+		\end{align*}
+		Once again applying the substitution $2t = \tan(\theta)$, we get that our integral is:
+		\begin{align*}
+			\frac14 \int_0^{\arctan(2)} \tan^2(\theta)\sec^3(\theta)d\theta &= \frac14 \int_0^{\arctan(2)} \sec^3(\theta) + \sec^5(\theta)d\theta
+		\end{align*}
+		Now one may see why I did the reduction formula! Forgetting about the $\frac14$, we know that
+		\begin{align*}
+			\int_0^{\arctan(2)} -\sec^3(\theta) + \sec^5(\theta)d\theta &= -\int_0^{\arctan(2)} \sec^3(\theta)d\theta + \frac14 \sec^3(\theta)\tan(\theta)\eval_0^{\arctan(2)} + \frac34 \int_0^{\arctan(2)} \sec^3(\theta)d\theta \\
+			&= -\frac14 \int_0^{\arctan(2)} \sec^3(\theta)d\theta + \frac12 5^{\frac32} \\
+			&= -\frac18 \qty(2\sqrt{5}+\ln(\sqrt{5}+2)) + \frac{5^\frac32}{2}
+		\end{align*}
+		Remembering the $\frac14$, we see that 
+		\begin{align*}
+			\int_{-1}^1 t^2\sqrt{1+4t^2}dt = -\frac1{32} \qty(2\sqrt{5}+\ln(\sqrt{5}+2)) + \frac{5^\frac32}{8}
+		\end{align*}
+		So therefore our final answer, the center of mass of the curve, is
+		\begin{align*}
+			\qty(0, \frac{-2\sqrt{5}-\ln(\sqrt{5}+2)+4 \cdot 5^{3/2}}{32\sqrt{5}+16\ln(\sqrt{5}+2)})
+		\end{align*}
+	
+	\item First, we prove a mean value theorem.
+	
+	\begin{theorem} (I don't end up using this theorem).
+		Suppose that $f:\R^2 \to \R, \gamma(t): [0, 1] \to \R^2$ are differentiable everywhere. Then 
+		\begin{align*}
+			\int_\gamma f(x)d\sigma / \mathrm{Length}(\gamma) = f(\gamma(d))
+		\end{align*}
+		for some $d \in [0, 1]$.
+	\end{theorem}
+
+	\begin{proof}
+		Noting that the line integral preserves inequalities, we may apply the extreme value theorem to $f$ to see that
+		\begin{align*}
+			 \mathrm{Length}(\gamma) \cdot \min f(\gamma(t))&=\int_0^1 \min_{t \in [0, 1]} f(\gamma(t)) \cdot \mg{\gamma'(t)}dt \\ 
+			 &\leq \int_0^1 f(\gamma(t)) \cdot \mg{\gamma'(t)}dt \\
+			 &\leq \int_0^1 \max_{t \in [0, 1]} f(\gamma(t)) \cdot \mg{\gamma'(t)}dt \\
+			 &= \max_{t \in [0, 1]} f(\gamma(t)) \cdot \mathrm{Length}(\gamma(t))
+		\end{align*}
+		So $\int_0^1 f(\gamma(t)) \cdot \mg{\gamma'(t)}dt / \mathrm{Length}(\gamma(t))$ lies between $\min f(\gamma(t))$ and $\max_{t \in [0, 1]} f(\gamma(t))$. By the intermediate value theorem, we may say there exists a $d \in [0, 1]$ so that $f(\gamma(d)) = \int_0^1 f(\gamma(t)) \cdot \mg{\gamma'(t)}dt / \mathrm{Length}(\gamma(t))$.
+	\end{proof}
+	
+	\begin{theorem} (Convex hull!)
+		If $\Omega \subseteq \R^2$ is convex, then given any $n$ points $x_1, \ldots, x_n \in \Omega$, and given any positive numbers $\alpha_1, \ldots, \alpha_n$ so that $\sum_i \alpha_i = 1$, $\alpha_1x_1 + \cdots + \alpha_nx_n \in \Omega$.
+	\end{theorem}
+	\begin{proof}
+		We proceed inductively. Given any two points $x, y \in \Omega$, we see that if we are given positive scalars $\alpha_1, \alpha_2 \in \Omega$, with $\alpha_2 + \alpha_1 = 1$, i.e. $\alpha_2 = 1 - \alpha_1$, we may write $\alpha_1 x + \alpha_2 y = \alpha_1 x + (1-\alpha_1) y$ which is in our set by the definition of convexity. 
+		Now suppose that given any $k$ points $x_1, \ldots, x_k \in \Omega$, and any scalars $\alpha_1, \ldots, \alpha_k \in \R_{\geq 0}$ with $\sum_1^k \alpha_i = 1$, we have that $\sum \alpha_i x_i \in \Omega$. 
+		
+		So now given any $k+1$ points $x_1, \ldots, x_{k+1}$, and arbitrary scalars $\alpha_1, \ldots, \alpha_{k+1}$ that sum to 1, we see that $1 - \alpha_{k+1} = \sum_i^k \alpha_k$ as they sum to 1. Then $\sum_1^{k+1} \alpha_ix_i = \alpha_{k+1}x_{k+1} + (1-\alpha_{k+1}) \sum_1^k \frac{\alpha_i}{1-\alpha_{k+1}}x_i$. We see that $\sum_1^k \frac{\alpha_i}{1-\alpha_{k+1}} = 1$ as the bottom is the constant equal to $\sum_i^k \alpha_k$ (we may pull this number out of the sum), so by the inductive hypothesis $\sum_1^k \frac{\alpha_i}{1-\alpha_{k+1}}x_i$ is also in $\Omega$. Then by the definition of a convex set, we see that $\sum_1^{k+1} \alpha_ix_i \in \Omega$, which finishes the proof.
+	\end{proof}
+
+	\textbf{This is the proof for center of mass of a convex set, not its boundary: (it felt unfitting to remove, although I haven't checked it's correctness)}
+	Now given any $n \in \bN$, there exists a partition $P = \set{X_1, \ldots, X_n}$ so that $\frac{1}{\mathrm{Vol}(\Omega)}\sum_{i=1}^{n} x_i Vol(X_i)$ (where $x_i$ is the bottom left corner of $X_i$, is within $\frac 1n$ of $\frac1{\Vol(\Omega)} \int_\Omega xdx$ (vector-valued integral). We see that $\frac{1}{\mathrm{Vol}(\Omega)}\sum_{i=1}^{n} x_i Vol(X_i)$ is of the form described in the second lemma, as $\sum Vol(X_i)/Vol(\Omega) = 1$, so we see that $\frac{1}{\mathrm{Vol}(\Omega)}\sum_{i=1}^{n} x_i Vol(X_i) \in \Omega$. This generates a sequence $(y_n)$, which converges by our construction, and as each $y$ is in $\Omega$, $\lim_{n \to \infty} y_n \in \bar{\Omega}$ by bolzano-weirstrass. As $\Omega$ contains its boundary, we may conclude that $\lim_{n \to \infty} y_n \in \Omega$ as well, which is by our construction its center-of-mass.
+	
+	\textbf{This is where the real proof starts:}
+	
+	We may say that there exists a partition of $[0, 1]$ so that
+	
+	 $\qty|\frac1{\mathrm{Length}(\gamma)}\sum_{i=1}^{n} \gamma(t_k) \cdot \mg{\gamma(t_{k+1})-\gamma(t_k)} - \frac1{\mathrm{Length}(\gamma)}\int_\gamma xd\sigma| < \frac 1n$ by how we defined the line integral (and simply dividing both sides by a constant, also note that these are vector-valued). Let $\ve_n = \sum_1^n \mg{\gamma(t_{k+1})-\gamma(t_k)} - \mathrm{Length}(\gamma)$. Once should notice that $\ve_n \to 0$ in the limit. We see that the point $\sum_{i=1}^{n} \gamma(t_k) \cdot \frac{\mg{\gamma(t_{k+1})-\gamma(t_k)}}{\mathrm{Length}(\gamma)+\ve_n} \in \Omega$ by Theorem 0.2. Given any sequence $a_n \to a$, and $b_n \to 0$, and any scalar $c \neq 0$, I claim that $a_n/(c+b_n) \to a/c$. It is clear that $a_n/c \to 0$. Given any $\ve > 0$, note that $a_n/c - a_n/(c+b_n) = a_nb_n / (c+b_n)$. For sufficiently large $n$, $|b_n| < \ve$, and $a_n < \ve+|a|$. So, $a_nb_n \leq (|a|+\ve)\ve$. We can also make $N$ sufficiently large so that $|b_n| < \ve$, so $b_n > -\ve$, and therefore $c+b_n > c-\ve$. Finally, we see that for sufficiently large $n$ $a_nb_n/(c+b_n) < (\ve+|a|)\ve/(c+\ve)$, which is arbitrarily small, completing the mini proof. So we can generate a sequence $(x_n) = \frac{\mg{\gamma(t_{k+1})-\gamma(t_k)}}{\mathrm{Length}(\gamma)+\ve_n}$ that also converges to the integral. Note that all $x_n \in \Omega$, and as $\Omega$ is closed, we may conclude that its limit is also in $\Omega$. Finally, as its limit is indeed going to be the center-of-mass, we have shown that the center in mass lies in $\Omega$. 
+	 
+	 Note that the line segment $\set{(t, 0) \given 0 \leq t \leq 1}$ is a convex set, so if $\Omega$ didn't contain its boundary, then it wouldn't contain anything at all, which would be an easy disprove. But obviously this problem wouldn't be that easy (this is my reasoning to conclude $\Omega$ is closed).
+	\end{enumerate}
+\end{document}

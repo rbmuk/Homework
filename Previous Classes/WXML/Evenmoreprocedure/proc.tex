@@ -1,0 +1,302 @@
+\documentclass[12pt]{article}
+\usepackage{algpseudocode}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{R:/sty/quiver}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\usepackage{float}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Procedure}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    
+    We start by defining the following heuristic.
+\begin{algorithmic}
+    \Procedure{FindMatrix}{$m, n$}
+        \State Initialize a $2^{n-1} \times n$ matrix $A$ whose rows are the vectors $\SET{1} \times \SET{\pm 1}^{n-1}$
+        \While{$\text{number of rows in } A > m$}
+            \State $a\gets$ any (there may be many) row of $A$ with the smallest number of zero entries
+            \If {$A$ has a row $b$ differing in only one entry $i$ from $a$ with $b_i = \pm 1$ and $a_i = \mp 1$}
+                \State Replace rows $a,b$ of $A$ with one row equal to $\frac{a+b}2$ (equiv. zero out entry $i$)
+            \Else
+                \State The procedure fails.
+            \EndIf
+        \EndWhile
+        \State \textbf{return} $A$ after normalizing its rows
+    \EndProcedure
+\end{algorithmic}
+
+The else condition is very important: this procedure cannot always be carried out. We illustrate this by giving a $5 \times 4$ matrix that you cannot make into a $4 \times 4$ matrix. 
+
+Consider the following instance of the procedure, where we have highlighted rows of the same color that get combined:
+\begin{align}
+    \begin{bmatrix}
+        1 & 1 & 1 & 1 \\
+        \rowcolor{green!20} 1 & 1 & 1 & -1 \\
+        \rowcolor{blue!20} 1 & 1 & -1 & 1 \\
+        \rowcolor{blue!20}  1 & 1 & -1 & -1 \\
+        \rowcolor{red!20} 1 & -1 & 1 & 1 \\
+        \rowcolor{green!20} 1 & -1 & 1 & -1 \\
+        \rowcolor{red!20}1 & -1 & -1 & 1 \\
+        1 & -1 & -1 & -1
+    \end{bmatrix} \mapsto 
+    \begin{bmatrix}
+        1 & 1 & 1 & 1 \\
+        1 & -1 & -1 & -1 \\
+        \rowcolor{green!20} 1 & 0 & 1 & -1 \\
+        \rowcolor{blue!20} 1 & 1 & -1 & 0 \\
+        \rowcolor{red!20} 1 & -1 & 0 & 1
+    \end{bmatrix}
+\end{align}
+Some of these vectors have 1 zero, and others have no zeros. By the procedure, we would not be allowed to combine vectors with 1 zero until we have combined all vectors that have no zeros. The only rows with no zeros are $(1, 1, 1, 1)$ and $(1, -1, -1, -1)$. So such a $b$ doesn't exist for the vector $(1, 1, 1, 1)$, since the only possible option, $(1, -1, -1, -1)$, differs in 3 entries rather than just 1. 
+
+We can use this procedure to give many different examples. There is a natural rule that comes to mind. Let $\preceq$ be the lexicorigraphical order on $\R^n$. Choose $a$ according to the rule that $a$ is maximal w.r.t. $\preceq$ among $A$'s rows with the fewest number of zero entries. Then always pick $b$ to be the unique vector that differs in only the last nonzero entry of $a$. For a $4 \times 4$ example, one gets:
+\begin{align*}
+    \begin{bmatrix}
+        \rowcolor{red!20} 1 & 1 & 1 & 1 \\
+        \rowcolor{red!20} 1 & 1 & 1 & -1 \\
+         1 & 1 & -1 & 1 \\
+         1 & 1 & -1 & -1 \\
+         1 & -1 & 1 & 1 \\
+         1 & -1 & 1 & -1 \\
+         1 & -1 & -1 & 1 \\
+         1 & -1 & -1 & -1
+    \end{bmatrix} \mapsto 
+    \begin{bmatrix}
+        1 & 1 & 1 & 0 \\
+        \rowcolor{blue!20} 1 & 1 & -1 & 1 \\
+        \rowcolor{blue!20} 1 & 1 & -1 & -1 \\
+        1 & -1 & 1 & 1 \\
+        1 & -1 & 1 & -1 \\
+        1 & -1 & -1 & 1 \\
+        1 & -1 & -1 & -1
+    \end{bmatrix} \mapsto 
+    \begin{bmatrix}
+        1 & 1 & 1 & 0 \\
+        1 & 1 & -1 & 0 \\
+        \rowcolor{green!20} 1 & -1 & 1 & 1 \\
+        \rowcolor{green!20} 1 & -1 & 1 & -1 \\
+        1 & -1 & -1 & 1 \\
+        1 & -1 & -1 & -1
+    \end{bmatrix} &\mapsto
+    \begin{bmatrix}
+        1 & 1 & 1 & 0 \\
+        1 & 1 & -1 & 0 \\
+        1 & -1 & 1 & 0 \\
+        \rowcolor{orange!20} 1 & -1 & -1 & 1 \\
+        \rowcolor{orange!20} 1 & -1 & -1 & -1
+    \end{bmatrix} \\
+    &\mapsto 
+    \begin{bmatrix}
+        1 & 1 & 1 & 0 \\
+        1 & 1 & -1 & 0 \\
+        1 & -1 & 1 & 0 \\
+        1 & -1 & -1 & 0
+    \end{bmatrix}
+\end{align*}
+
+The best part about the procedure is that it works for matrices of any size. Indeed, we could've stopped at any of the above steps to get matrices of size $8 \times 4$, $7 \times 4$, $6 \times 4$, and $5 \times 4$ as well.
+
+If one carries out the procedure using the rules in the first example, one gets the following:
+\newpage
+\begin{theorem}
+    Let $A$ be the $n \times n$ matrix that results from the procedure by always choosing $a$ to be the unique vector that is maximal w.r.t. the lexicographical order $\preceq$ among the rows of $A$ with the fewest number of zeros, there exists a unique $b$ that differs in only the last nonzero entry of $a$. Then,
+    \begin{align*}
+        \beta(A) = 2\sqrt{\floor{\log_2(n)}+1} &- \sqrt{\floor{\log_2(n)}+2}  \\ &+\frac{n}{2^{\floor{\log_2(n)}}}\left(\sqrt{\floor{\log_2(n)}+2} - \sqrt{\floor{\log_2(n)}+1}\right)
+    \end{align*}
+\end{theorem}
+\begin{proof}
+Fix $k = \floor{\log_2(n)}$, and assume that $n$ is not a power of 2, so that $2^k < n < 2^{k+1}$. 
+
+We highlight a brief sketch of the proof here. We first claim that the $n \times n$ matrix this method generates will be the same as a $n \times n$ matrix with a $n \times (k+2)$ block, with the rest of the columkns being padded 0s. Padding columns of zeros then ends up giving the exact same $\beta$ value. 
+
+Then to find the $\beta$ value, we will notice that the initial matrix has rows $\SET{1} \times \SET{\pm 1}^{k+1}$. It will turn out that, after normalizing, having $k+1$ nonzero entries will yield a value of $\sqrt{k+1}$ on an entire group (the $W_i$ as in the structure theorem), by the choice of the groups. 
+
+Finally, we can count the number of rows that were combined and not combined: these turn out to be $2^{k+1} - n$ and $n - (2^{k+1} - n) = 2n - 2^{k+1}$ respectively. The rows that were combined will have only $k+1$ nonzero entries, while the rows that are not combined end up having $k+2$ nonzero entries. This will yield the $\beta$ value from above. 
+
+% First we prove that if we choose $a$ as above, then such a $b$ always exists. We prove this claim by induction on the number of steps the procedure has used. $\ell = 0$ steps is clear, since the matrix we start off with is the $2^{n-1} \times n$ matrix whose rows are $\SET{1} \times \SET{\pm 1}^{n-1}$. The lexicorigraphically greatest vector among these is just $(1, 1, \ldots, 1)$, and the only vector that differs in the last nonzero entry is $(1, 1, \ldots, 1, -1)$, which is of course unique. 
+
+% Now suppose that the claim holds for $\ell$ steps, and let $a$ be the vector that is maximal w.r.t. $\preceq$ among the rows of $A$ with the fewest number of zero entries after $\ell$ steps. By the inductive hypothesis, for all of the previous steps we chose $b$ to be the vector that differs in only the last nonzero entry: thus $a$ is of the form $(a_1, \ldots, a_m, 0, \ldots, 0)$ where none of the $a_i$ are 0 for $1 \leq i \leq m$. Suppose by contradiction that $(a_1, \ldots, -a_m, \ldots, 0)$ were not a row of $A$.
+
+% By construction, every row of $A$ has either $m$ or $m-1$ nonzero entries, since initially we start with no nonzero entries, combine rows with all nonzero entries until all rows have all but 1 nonzero entry, and so on. We also make the observation again that all these zeros have to occur in positions $m+1, \ldots, n$. 
+
+% Consider the vector $(a_1, \ldots, -a_m, 1, \ldots, 1)$. This was eventually combined into a row with either $m$ or $m-1$ nonzero entries, where all the zero entries are on the right side. In the first case, if it was eventually combined into a row with $m$ nonzero entries, then the row $(a_1, \ldots, -a_m, 0, \ldots, 0)$ would exist. So it must've been combined into a row with exactly $m-1$ nonzero entries. But this would mean that $(a_1, \ldots, -a_m, 0, \ldots, 0)$ was combined before $(a_1, \ldots, a_m, 0, \ldots, 0)$, which is a contradiction because the latter was maximal w.r.t. $\preceq$ among the rows with the fewest number of zero entries.
+
+
+Now, let $A \in \R^{m \times n}$ be a matrix with normalized rows. We claim that if $A' = [A \; 0]$ where $0 \in \R^m$ is the all 0s vector, then $\beta(A') = \beta(A)$. Writing $x' = [x, \pm 1]$ for $x \in \SET{\pm 1}^n$, we see that:
+\begin{align*}
+    \beta(A') = \frac{1}{2^{n+1}} \sum_{x' = [x, \pm 1] \in \SET{\pm 1}^{n+1}} \norm{A'x}_\infty = \frac{2}{2^{n+1}} \sum_{x \in \SET{\pm 1}^{n}} \norm{Ax}_\infty = \beta(A)
+\end{align*}
+Since $Ax = A'[x, \pm 1]$. Then it suffices to just ignore columns of padded 0s. 
+
+We let $B$ be the $2^{n-1} \times n$ matrix where the rows are $\SET{1} \times \SET{\pm 1}^{n-1}$ ordered lexicorigraphically. Then in each step of the procedure described in the theorem, we are just combining the topmost row with the fewest amount of zeros with the row directly below it. This is because the row directly below it will only differ in the last nonzero entry having a minus sign instead (by the lexicorigraphical ordering). 
+
+Thus by construction of the procedure, since we combine two rows only if they differ in their last nonzero entry, zeros only show up in the last columns. Repeating this process, instead of starting with the $2^{n-1} \times n$ matrix and averaging all the way down, we can instead start with the $2^{k+1} \times (k+2)$ matrix whose rows are all the vectors in $\SET{1} \times \SET{\pm 1}^{k+1}$ ordered lexicorigraphically and continue averaging rows until we have only $n$ rows (just remove the trailling columns of zeros once the procedure has hit $2^{k+1}$ rows).
+
+We say that a row $a$ is useful to a hypercube vertex $x$ if $a$ maximizes $|a^\top x|$ among all rows of $A$. Then notice that for this very tall matrix, each row has precisely two hypercube vertices that it is useful to: the row itself and it's negative after ignoring the first column. For example in the $2^3 \times 4$ matrix from before the row $[1, 1, 1, 1]$ is useful to only $[1, 1, 1, 1]$ and $[-1, -1, -1, -1]$ (that is to say, for every other hypercube vertex, there is another row of $a$ that makes the dot product larger). This is saying that a vector of the hypercube will be useful to these rows whose last entries are all zeros iff the prefix of the hypercube vertex is the same as the row (up to negating the hypercube vector). As another example, $[1, 1, 0, 0]$ would be useful to $[1, 1, \pm 1, \pm 1]$ and $[-1, -1, \pm 1, \pm 1]$. In the case where we have removed all the columns of zeros, there can only ever be two vertices that are useful to a row, since rows can only have at most 1 zero. 
+
+We ignore the ``up to negating'' factor of two by doing the following. Since $\SET{1} \times \SET{\pm 1}^{n-1} = -\SET{-1} \times \SET{\pm 1}^{n-1}$, for any matrix $A$ we have that:
+\begin{align*}
+    \beta(A)=  \frac{1}{2^{n}} \sum_{x \in \SET{\pm 1}^{n}} \norm{Ax}_\infty = \frac{1}{2^{n-1}} \sum_{x \in \SET{1} \times \SET{\pm 1}^{n-1}} \norm{Ax}_\infty
+\end{align*}
+Now we can simply count the number of rows that we need to combine: we start with $2^{k+1}$ rows and we need to have only $n$ rows. Thus we need to remove $2^{k+1} - n$ rows, and notice that averaging two rows into one removes precisely one row. Thus in the final matrix $2^{k+1} - n$ are rows that are the average of two others rows, and the rest are just hypercube vertices on their own.
+
+Also notice that averaging two rows that differ in only the last coordinate simply makes this last coordinate 0. In this way, the vertices that are useful to this new averaged row is simply the union of the vertices that were useful to each row respectively. For example, when we averaged rows $[1, 1, 1, 1]$ with row $[1, 1, 1, -1]$, we got the row $[1, 1, 1, 0]$ which is useful to precisely the set of vertices who start with $[1, 1, 1, 0]$ of which there are precisely two.
+
+So for rows that were averaged, there are precisely 2 vertices in their group, being each of the rows themselves, and if the row was not averaged, then it's only useful to itself. Now we can count the $\beta$ value on these rows. If $a \in \R^m$ is a row whose first $\ell$ entries are either 1 or $-1$, then for every vertex of the hypercube $x \in \SET{\pm 1}^m$ with the same prefix, i.e. agreeing with $a$ in those first $\ell$ entries, we see that $|a^\top x| = \ell$. After normalizing $a$ since we require normalized rows, we get that $|a^\top x| = \sqrt{\ell}$ for every vertex that agrees with it in all of it's non-zero entries. 
+
+Now we move to the case of combined rows. By the above, in this simplified case where we have artificially removed all the columns of 0s, we only combine two rows if they differ only in the last entry. Since these rows initially have $k+2$ nonzero entries, after averaging they have $k+1$ nonzero entries. By the calculation from before, after normalizing they give a value of $\sqrt{k+1}$ on their entire group, which is of size 2. 
+
+Similarly, if a row was not combined, then it has all $\sqrt{k+2}$ nonzero entries and it's group has size 1. Now we are almost done. We simply have to count then number of combined rows, and we can use these last two facts to find the $\beta$ value. Since we start with $2^{k+1}$ rows and we want $n$ rows, we combine 2 rows $2^{k+1} - n$ times as discussed above. Thus in the final $n \times k+2$ matrix we have $2^{k+1} - n$ combined rows. The remaining $n - (2^{k+1} - n) = 2n - 2^{k+1}$ rows are not combined. Using the above observations, this gives a beta value of:
+\begin{align*}
+    \frac{\sqrt{k+1} \cdot 2 \cdot (2^{k+1} - n) + \sqrt{k+2} \cdot 1 \cdot \qty(2n-2^{k+1})}{2^{k+1}}
+\end{align*}
+After some algebra, we get:
+\begin{align*}
+    2\sqrt{k+1} - \sqrt{k+2} + \frac{n}{2^k}\qty(\sqrt{k+2} - \sqrt{k+1})
+\end{align*}
+The simpler case of when $n = 2^k$ is a power of 2 will yield the matrix:
+\begin{align*}
+    \begin{bmatrix}
+        1 & B_k & 0
+    \end{bmatrix}
+\end{align*}
+Where $B_k$ is the $2^k \times k$ matrix of all $\pm 1$ combinations as in the proof of Theorem 9. From here we see similarly that if we ignore the columns of 0s, we only need to find the $\beta$ value of the below matrix:
+\begin{align*}
+    \begin{bmatrix}
+        1 & B_k
+    \end{bmatrix}
+\end{align*}
+Theorem 9 tells us that the $\beta$ value for this is just $\sqrt{k+1}$. This completes the proof.
+\end{proof}
+\end{document}

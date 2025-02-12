@@ -1,0 +1,299 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+\newcommand{\cph}{\varphi}
+\renewcommand{\th}{\theta}
+\renewcommand{\rm}{\mathrm}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 Homework 9}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We parameterize the sphere with radius $r$ centered at the origin by 
+		\begin{align*}
+			\textbf{G}(\cph, \theta) = (r\sin(\cph)\cos(\theta), r\sin(\cph)\sin(\theta), r\cos(\cph)) \quad 0 \leq \cph \leq \pi, \; 0 \leq \theta \leq 2\pi
+		\end{align*}
+		We notice that 
+		\begin{align*}
+			\pdv{\textbf{G}}{\cph} = (r\cos(\theta)\cos(\cph), r\cos(\cph)\sin(\theta), -r\sin(\cph))
+		\end{align*}
+		and 
+		\begin{align*}
+			\pdv{\textbf{G}}{\theta} = (-r\sin(\cph)\sin(\theta), r\sin(\cph)\cos(\theta), 0)
+		\end{align*}
+		Therefore,
+		\begin{align*}
+			\pdv{\textbf{G}}{\cph} \cross \pdv{\textbf{G}}{\theta} = (r^2\cos(\theta)\sin^2(\cph), r^2\sin(\theta)\sin^2(\cph), r^2\cos(\cph)\sin(\cph))
+		\end{align*} Noting that $x^2+y^2+z^2 = r^2$, 
+		\begin{align*}
+			\textbf{F}(G(\cph, \theta)) = (r^3\sin(\cph)\cos(\th), r^3\sin(\cph)\sin(\th), r^3\cos(\cph))
+		\end{align*}
+		Clearly now 
+		\begin{align*}
+			\textbf{F}(G(\cph, \theta)) \cdot \pdv{\textbf{G}}{\cph} \cross \pdv{\textbf{G}}{\theta} &= r^5\cos^2(\theta)\sin^3(\cph)+r^5\sin^2(\th)\sin^3(\cph)+&r^3\cos(\cph)(r^2\cos^2(\th)\cos(\cph)\sin(\cph)\\&&+r^2\cos(\cph)\sin^2(\theta)\sin(\cph)) \\
+			&= r^5\sin(\cph)
+		\end{align*}
+		So our integral becomes
+		\begin{align*}
+			\int_0^{2\pi}\int_0^\pi r^5\sin(\cph)drd\cph d\th &= 4\pi r^5
+		\end{align*}
+		Which is nice.
+		Note that
+		\begin{align*}
+			\grad \cdot F(x, y, z) &= 3x^2+y^2+z^2+x^2+3y^2+z^2+x^2+y^2+3z^2 \\
+			&= 5(x^2+y^2+z^2)
+		\end{align*}
+		Therefore, by the divergence theorem, and after substitution to spherical, our integral becomes
+		\begin{align*}
+			\int_0^{2\pi} \int_0^\pi \int_0^1 5r^2 \cdot r^2 \sin(\cph) drd\cph d\theta &= 4\pi r^5
+		\end{align*}
+		I admit, the divergence theorem is pretty nice.
+		
+		\item By the divergence theorem,
+		\begin{align*}
+			\iint_{\partial \Omega} \textbf{F} \cdot \textbf{n} dA = \iiint_{\Omega} \grad \cdot \textbf{ F} dV
+		\end{align*}
+		It suffices to find $F$ so that $\grad \cdot F = 1$. A really simple example would be the vector field $F(x, y, z) = (x, 0, 0)$. Reusing the giant calculation above, noting that in our case $r = 1$, we see that 
+		\begin{align*}
+			\textbf{F}(G(\cph, \theta)) \cdot \pdv{\textbf{G}}{\cph} \cross \pdv{\textbf{G}}{\theta} = \cos^2(\theta)\sin^3(\cph)
+		\end{align*}
+		So our integral becomes
+		\begin{align*}
+			\int_0^{2\pi} \int_0^{\pi} \cos^2(\theta)\sin^3(\cph)d\cph d\theta &= \int_0^{2\pi} \cos^2(\theta)d\theta \cdot \int_0^\pi \sin^3(\cph)d\cph
+		\end{align*}
+		The first integral is the average value of the $x$-coordinate squared on the circle, times $2\pi$. Because we could simply rotate our circle by 90 degrees, the average value of the $x$-coordinate squared is of course going to equal the average value of the $y$-coordinate squared. So, 
+		\begin{align*}
+			I = \int_0^{2\pi} \cos^2(\theta)d\theta = \int_0^{2\pi} \sin^2(\theta)d\theta
+		\end{align*}
+		Therefore, $2I = \int_0^{2\pi} \cos^2(\theta)+\sin^2(\theta)d\theta = 2\pi$.
+		The second integral can be evaluated as follows:
+		\begin{align*}
+			\int_0^\pi (1-\cos^2(\cph))\sin(\cph)d\cph &= \int_0^\pi \sin(\cph)d\cph - \int_0^\pi \cos^2(\cph)\sin(\cph)d\cph
+		\end{align*}
+		The first integral is obviously 2. The second integral can be evaluated with a $u$-sub, i.e. $u = \cos(\cph)$,
+		\begin{align*}
+			\int_0^\pi \sin(\cph)d\cph - \int_0^\pi \cos^2(\cph)\sin(\cph)d\cph &= 2 - \int_{-1}^1 u^2du \\
+			&= 2 - \frac23 \\
+			&= \frac43
+		\end{align*}
+		Therefore, our final answer is $\frac{4\pi}3$, which is indeed the volume of the sphere.
+		
+		\item We let 
+		\begin{align*}
+			g(x,y,z)=\frac{1}{\sqrt{x^2+y^2+z^2}}
+		\end{align*}
+		From a simple calculation, we see that
+		\begin{align*}
+			\pdv{g}{x} = -\frac{x}{(x^2+y^2+z^2)^{3/2}} \\
+			\pdv{g}{y} = -\frac{y}{(x^2+y^2+z^2)^{3/2}} \\
+			\pdv{g}{z} = -\frac{z}{(x^2+y^2+z^2)^{3/2}}
+		\end{align*}
+		Differentiating each of these again gives
+		\begin{align*}
+			\pdv[2]{g}{x} = -\frac{3x^2}{(x^2+y^2+z^2)^{5/2}}-\frac1{(x^2+y^2+z^2)^{3/2}} \\
+			\pdv[2]{g}{y} = -\frac{3y^2}{(x^2+y^2+z^2)^{5/2}}-\frac1{(x^2+y^2+z^2)^{3/2}} \\
+			\pdv[2]{g}{z} = -\frac{3z^2}{(x^2+y^2+z^2)^{5/2}}-\frac1{(x^2+y^2+z^2)^{3/2}} \\
+		\end{align*}
+		Which finally tells us that
+		\begin{align*}
+			\laplacian{g}=-\frac{3x^2+3y^2+3z^2}{(x^2+y^2+z^2)^{5/2}}-\frac{3}{(x^2+y^2+z^2)^{3/2}} &= 0
+		\end{align*}
+		Which completes the first part of the problem. For the second part, note that we wish to calculate
+		\begin{align*}
+			\laplacian{\iiint_{B(0, 1)} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}\dd a\dd b\dd c}
+		\end{align*}
+		By \textbf{Theorem 4.47} in the book, we know that we can interchange partial derivatives and integrals. So, for example,
+		\begin{align*}
+			\pdv{x} \iiint_{B(0, 1)} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}&\dd a\dd b\dd c \\&= \iiint_{B(0, 1)} \pdv{x} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}\dd a\dd b\dd c
+		\end{align*}
+		Doing this again gives,
+		\begin{align*}
+			\pdv[2]{x} \iiint_{B(0, 1)} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}&\dd a\dd b\dd c \\&= \iiint_{B(0, 1)} \pdv[2]{x} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}\dd a\dd b\dd c
+		\end{align*}
+		By doing this process 2 more times with the other two variables, we conclude that
+		\begin{align*}
+			\laplacian{\iiint_{B(0, 1)} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}&\dd a\dd b\dd c} \\
+			&= \iiint_{B(0, 1)} \laplacian{\frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}}&\dd a\dd b\dd c
+		\end{align*}
+		So it suffices to show that the laplacian of the integrand is zero. This follows from a very long calculation.
+		\begin{align*}
+			\pdv{x}\frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}} &= -\frac{(x-a)f(a, b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}}
+		\end{align*}
+		and similarly,
+		\begin{align*}
+			\pdv{y}\frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}} &= -\frac{(y-b)f(a, b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}}
+		\end{align*}
+		\begin{align*}
+			\pdv{z}\frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}} &= -\frac{(z-c)f(a, b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}}
+		\end{align*}
+		Taking derivatives again gives,
+		\begin{align*}
+			\pdv[2]{x} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}} =& \frac{3(x-a)^2f(a,b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{5/2}} \\
+			&-\frac{f(a,b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}}
+		\end{align*}
+		and similarly,
+		\begin{align*}
+			\pdv[2]{y} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}} =& \frac{3(y-b)^2f(a,b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{5/2}} \\
+			&-\frac{f(a,b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}}
+		\end{align*}
+		\begin{align*}
+			\pdv[2]{z} \frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}} =& \frac{3(z-c)^2f(a,b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{5/2}} \\
+			&-\frac{f(a,b,c)}{\qty((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}}
+		\end{align*}
+		we conclude that
+		\begin{align*}
+			\laplacian{\frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}} = &\frac{3f(a,b,c)}{((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}} \\- &\frac{3f(a,b,c)}{((x-a)^2+(y-b)^2+(z-c)^2)^{3/2}}\\
+			&= 0
+		\end{align*}
+		Therefore, 
+		\begin{align*}
+			\laplacian{(f * g)(x, y,z)} &= \iiint_{B(0, 1)} \laplacian{\frac{f(a, b, c)}{\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}}} \dd a \dd b \dd c \\
+			&= \iiint_{B(0, 1)} 0 \dd a \dd b \dd c \\
+			&= 0
+		\end{align*}
+		for any $(x, y, z)$ where this integral is defined (the important part here is that the integral is not defined inside the unit ball, because the integral would blow up). In particular, the laplacian is 0 outside the unit ball.
+		
+		\item 
+		We notice that $C$ is the boundary of the plane $y+z=a$ that lies inside the sphere with radius $a$ (this is not the \textit{only} surface, but is definitely the simplest). So we can parameterize the surface with boundary $C$ by $\vec{s}(x, y) = (x, y, a-y)$. We know have to find the bounds on $x, y$. By plugging in $z = a-y$ into the sphere equation, we are effectively projecting this surface onto the $xy$ plane. We conclude that
+		\begin{align*}
+			x^2+y^2+z^2 &= x^2+y^2+(a-y)^2 \\
+			&= x^2+2y^2+2ay+a^2 \\
+			&= x^2+2(y^2+ay)+a^2 \\
+			&= x^2+2(y+a/2)^2+a^2- 2 \cdot a^2/4 \\
+			&= a^2
+		\end{align*}
+		Which tells us that we must take $(x, y)$ from the ellipse in the $xy$ plane with equation $x^2+2(y+a/2)^2=a^2/2$. Rearranging this into a more standard form gives us 
+		\begin{align*}
+			\frac{x^2}{\qty(\frac {a}{2^{1/2}})^2} + \frac{y^2}{\qty(\frac a2)^2} = 1
+		\end{align*}
+				
+		So let $D = \set{(x,y) \in \R^2 \given \frac{x^2}{\qty(\frac {a}{2^{1/2}})^2} + \frac{y^2}{\qty(\frac a2)^2} = 1}$. We finally know that the surface we want to integrate over is going to be $\vec{s}(x, y)$ with $(x, y) \in D$. Noting that
+		\begin{align*}
+			\oint_C \textbf{F} \cdot d\textbf{x} &= \iint_D (\mathrm{curl \;}\textbf{F}) \cdot \textbf{n} dA
+		\end{align*}
+		We finally see that
+		\begin{align*}
+			\pdv{\vec{s}}{x} \cross \pdv{\vec{s}}{y} &= \begin{pmatrix}
+				0 \\ 1 \\ 1
+			\end{pmatrix}
+		\end{align*}. Finally, a short calculation shows that
+		\begin{align*}
+			\mathrm{curl \;}\textbf{F} = \begin{pmatrix}
+				0 \\ -1 \\ -1
+			\end{pmatrix}
+		\end{align*}
+		So we conclude that
+		\begin{align*}
+			\iint_D (\mathrm{curl \;}\textbf{F}) \cdot \textbf{n} dA &= \iint_D -2 dxdy \\
+			&= -2 \cdot \mathrm{Area}(D)
+		\end{align*}
+		Now we use the common area formula for an ellipse, that is that an ellipse with axis $a, b$ has area $\pi a b$. We conclude that the integral right of the $-2$ equals $\pi \cdot \frac{a}{\sqrt{2}} \cdot \frac{a}{2}$. So the entire integral equals $-\pi a^2/\sqrt{2}$.
+		
+		\item 
+		As the unit ball is clearly a closed surface, and $F$ is clearly $C^1$, we see that we may apply \textbf{Corollary 5.56} to conclude that
+		\begin{align*}
+			\iint_S (\mathrm{curl}\; \textbf{F}) \cdot \textbf{n}dA = 0
+		\end{align*}
+	
+		\textbf{Exercise.} Let $f \in C^1(0-\ve, 0+\ve)$ for some small $\ve > 0$. Suppose that $f(x) = 0$ for infinitely many $x$ in $[0, 1]$. Show that there is a point $c \in [0, 1]$ so that $f(c) = 0$ and that $f'(c) = 0$.
+		
+		\begin{proof}
+			Given any $\ve > 0$, we can find $x \neq y$ with $|x-y|<\ve$ so that $f(x)=f(y)=0$, as if we couldn't then either there wouldn't be infinitely many roots, or all roots would be a finite distance from each other, which clearly is impossible. As $f$ is continuous on $[0, 1]$, it is uniformly continuous. Given any $N \in \bN$, we have a $\delta_N > 0$ so that $\forall x, y \in [0, 1]$, $\delta_n$ close, $|f(x)-f(y)| < 1/n$. By our construction above, we may find two points $x_n<y_n$ so that $f(x_n)=f(y_n)=0$, and $|x_n-y_n| < \delta_n$. By Rolle's theorem, there is a point $c_n \in (x_n, y_n)$ so that $f'(c_n) = 0$. We notice that $|f(c_n) - f(x_n)| = |f(c_n)| < 1/n$. This gives a sequence $(c_n)_{n=1}^\infty$. By B-W we can pass to a convergent subsequence, so there exists a $c \in [0, 1]$ so that $c_n \to c$. Finally, notice that $|f(c_n)| < 1/n$, so we may take a limit on both sides to conclude that $|f(c)| \leq 0$, which shows that $f(c) = 0$. Also, we know that $f'(c_n) = 0$ for every $n \in \bN$, by taking another limit, we see that $f'(c) = 0$, and we are done.
+		\end{proof}
+	
+		\begin{definition}
+			The measure of $(a, b) =$ the measure of $[a,b]=b-a$.
+		\end{definition}
+		\begin{theorem}[Riemann-Lebesgue]
+			A function $f: [a, b] \to \R$ is Riemann-integrable if and only if $\set{x \in [a, b] \given f \text{ is discontinuous at x}}$ has measure 0.
+		\end{theorem}
+		So suppose that $f$ was discontinuous on all of $(a, b)$. Then it's set of discontinuities has measure at least $b-a>0$, whcih is a contradiction. So $f$ is continuous at at least one point in $(a, b)$, say $c$. As $c \in (a, b)$, $f(c) > 0$. By continuity, there is a $\delta > 0$ so that for every $c - \delta \leq y \leq c + \delta$, $|f(y)-f(c)| < f(c)/2$, and by the triangle inequality shows that $f(y) > f(c)/2$. So,
+		\begin{align*}
+			\int_0^1 f(x)dx &= \int_0^{c-\delta} f + \int_{c-\delta}^{c+\delta} f + \int_{c+\delta}^1 f \\
+			&\geq 0 + 2 \delta \cdot f(c)/2 + 0 \\
+			&= \delta f(c) \\
+			&> 0 .
+		\end{align*}
+	$\qed$
+	\end{enumerate}
+\end{document}

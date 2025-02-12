@@ -1,0 +1,27 @@
+143:
+   control: recursion
+   data: linked lists, binary trees
+   Java Collections Classes
+   Riel:
+      external: client, WHAT an object does
+      internal: implementation, HOW an object works
+   ArrayList<E>, ArrayIntList
+
+style issues:
+   want all fields to be initialized in a constructor   
+   You must document every pre/post condition.
+   every field should be private.
+   CONSTANTS (i.e. static final) can be public
+   if something is wrong, throw an exception.
+   remember getters/setters
+   this(some parameters) = calling the constructor w/ those parameters
+   boolean zen
+   whenever there is an appropriate interface to use, required to use it
+      use LESS specific interface, instead of the certain type--e.g. List<> instead of ArrayList<>
+      parameters, return values, variables, and fields should all be declared using interface types
+   
+Note: all objects of one class are friendly with each other--can access their own private fields
+
+**If you are iterating over a structure like a set, you cannot call methods that change the structure.**
+This is known as "ConcurrentModificationException"
+do something instead like "itr2.remove()"

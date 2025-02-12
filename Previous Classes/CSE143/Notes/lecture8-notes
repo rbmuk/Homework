@@ -1,0 +1,44 @@
+// "hello" => "h-e-l-l-o"
+// pre: s is not empty
+public static String dashes(String s) {
+	String result = "" + s.charAt(0);
+	for (int i = 1; i < s.length(); ++i) {
+		result += "-" + s.charAt(i);
+	}
+	return result;
+}
+
+see lecture 7 notes for the add() method stuff
+
+public static void showMatches(Map<String, Set<String>> friends, name1, name2) {
+	Set<String> alreadySeen = new TreeSet<>();
+	Set<String> currentGroup = new TreeSet<>();
+	currentGroup.add(name1);
+	int distance = 0;
+	System.out.println("Starting with " + name1 + ":");
+	while (!currentGroup.contains(name2) && distance <= friends.size()) {
+		distance++;
+		alreadySeen.adddAll(currentGroup);
+		Set<String> nextGroup = new TreeSet<>();
+		for (String friend : currentGroup) {
+			nextGroup.addAll(friends.get(friend));
+		}
+		nextGroup.removeAll(alreadySeen);
+		currentGroup = nextGroup;
+		System.out.println("     " + distance + " away " + nextGroup);
+	}
+	if (distance < friends.length()) {
+		System.out.println("Found at a distance of " + distance);
+	} else System.out.println("Never found!");
+}
+
+pattern: - - - -
+guess e
+map: 
+	"- - - -" => [ally, cool, good]
+	"- e - -" => [beta, deal]
+	"e - - e" => [else]
+	"- - e -" => [flew, ibex]
+	"- - - e" => [hope]
+	
+program always picks the set with the maximum number of words.

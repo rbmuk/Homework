@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 441 HW1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item This is false. $X - (A \cup B) = (X - A) \cap (X - B)$, not union. For example, take $X = \set{1, 2}$, $A = \set{1}$, and $B = \set{2}$. One sees that $X - (A \cup B) = \emptyset$, while $(X - A) \cup (X - B) = \set{2} \cup \set{1} = \set{1, 2} \neq \emptyset$.
+			\item This one is also not true. Consider $A = \set{1}$, $B = \set{2}$, and $C = \set{1, 2}$. Clearly $A \cup C = C \subseteq B \cup C = C$, while $A \not \subseteq B$.
+		\end{enumerate}
+	
+		\item Suppose that \begin{align*}
+			x \in X \cap \bigcup_{\alpha \in A} Y_\alpha
+		\end{align*}
+		By definition, $x \in X$ and $x \in \bigcup_{\alpha \in A} Y_\alpha$. The second statement says there exists $\beta \in A$ so that $x \in Y_\beta$. Thus, \begin{align*}
+			x \in X \cap Y_\beta \subseteq \bigcup_{\alpha \in A} (X \cap Y_\alpha)
+		\end{align*}
+		Which establishes the first direction. Next, if 
+		\begin{align*}
+			x \in \bigcup_{\alpha \in A} (X \cap Y_\alpha)
+		\end{align*}
+		then there exists $\beta \in A$ so that $x \in (X \cap Y_\beta)$. Thus $x \in X$, and $x \in Y_\beta \subseteq \bigcup_{\alpha \in A} Y_\alpha$. Hence,
+		\begin{align*}
+			x \in X \cap \bigcup_{\alpha \in A} Y_\alpha
+		\end{align*}
+		which completes the proof.
+		
+		\item Suppose that $B \subseteq A$ is infinite, and $A$ is finite. If $B = A$, we are done, so suppose $B \subsetneq A$. Since $A$ is finite, there is a bijective map $\cph: A \to \set{1, \ldots, n}$. I claim that the restriction of $\cph$ to $B$ is injective. Indeed, if this was not the case, then there would be some $x \neq y$ both in $B$ with $\cph(x) = \cph(y)$. But since $B \subseteq A$, we would also have $x \neq y$ in A, and hence $\cph$ would not be an injection from $A$ to $\set{1, \ldots, n}$, a contradiction. Letting $C = f(B)$, we see by definition that $\cph|_B: B \to f(B)$ is bijective. Since $f(B) \subset \set{1, \ldots, n}$, we can write $f(B) = \set{k_1, \ldots, k_m}$ with $m \leq n$. The map $\psi$ that sends $k_i \to i$ is clearly bijective, and since the composition of bijective maps is bijective, we see that $\psi \circ \cph|_B$ is a bijection from $B$ to $\set{1, \ldots, m}$, a contradiction. 
+		
+		A second solution is as follows: since $B$ is infinite, it is not empty. Since it is not equal to $A$, it is a proper subset of $A$. By theorem 6.2, there is a bijection from $B$ to $\set{1, \ldots, m}$ for some $m < n$, a contradiction.
+		
+		\item \begin{enumerate}
+			\item Clearly $\emptyset$ and $\R$ are in $\mathcal T$. Let $U_1, U_2 \in \mathcal T$. If either are the empty set, their intersection is empty, and thus their intersection is in $\mathcal T$. If (WLOG) $U_1 = \R$, then $U_1 \cap U_2 = U_2 \in \mathcal T$, and we are done. So suppose that $U_1$ and $U_2$ are both not empty or all of $\R$. Then $U_1 = (-\infty, p)$ and $U_2 = (-\infty, q)$. Clearly $U_1 \cap U_2 = (-\infty, \min\set{p, q})$, and since $\min\set{p, q}$ is either $p$ or $q$, this is in $\mathcal T$ by definition. Inductively continuing this process, we see that the intersection of any collection of finite sets from $\mathcal T$ lie in $\mathcal T$. Let $\set{(-\infty, p)}_{p \in I}$ denote any collection of open sets in $\mathcal T$ (WLOG, none of them are the empty set, since they contribute nothing to the union, and if all are the empty set then the empty set is clearly in $\mathcal T$, so you are already done, and if any are $\R$, then the union is all of $\R$, so you are also done). It is immediately clear that $\bigcup_{p \in I} (-\infty, p) \subset (-\infty, \sup_{p \in I} p)$, where the sup can potentially be $+\infty$ (In that case you would get all of $\R$), since if $a \in \bigcup_{p \in I} (-\infty, p)$, then $a < p$ for some $p$, and thus $a < \sup_{p \in I} p$ so $a \in (-\infty, \sup_{p \in I} p)$. Assuming that $p$ is finite, given any $x \in (-\infty, \sup_{p \in I} p)$, $a < \sup_{p \in I} p$ and hence there is some $p \in I$ so that $a < p$ (taking $\ve = (\sup_{p \in I} p - a)/2$). Thus $x \in (-\infty, a)\subseteq\bigcup_{p \in I} (-\infty, p)$, so set equality is attained. Since $\sup_{p \in I} p$ is either in $\R$ or is equal to $+\infty$, the proof is complete.
+			
+			\item Let $a_n$ denote the first $n$ digits of the decimal expansion for $\sqrt{2}$ (e.g., $a_1 = 1.4$, $a_2 = 1.41$, $a_3 = 1.414$, and so on). It is clear that $a_n \to \sqrt{2}$ in the limit, and also that $10^n \cdot a_n$ is an integer, by construction. Thus $a_n$ is always rational as it may be expressed as the ratio of two integers, and hence $(-\infty, a_n) \in \mathcal T$ for every $n \in \bN$. If $\mathcal T$ was a topology, $\bigcup_{n=1}^\infty (-\infty, a_n) = (-\infty, \sqrt{2}) \in \mathcal T$, but this is a contradiction since $\sqrt{2} \not \in \bQ$.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

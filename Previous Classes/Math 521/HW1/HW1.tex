@@ -1,0 +1,241 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{dsfont}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 521 HW1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item If $X_n \to X$ a.s. then $\P(\SET{\omega | X_n(\omega) \to X(\omega)}) = 1$. Now, since $f$ is continuous, we know that if $X_n(\omega) \to X(\omega)$, then we must have $f(X_n(\omega)) \to f(X(\omega))$. This is because if we set $y_n = X_n(\omega)$ and $y = X(\omega)$, then $y_n \to y$, and by the definition of sequential continuity, we must have that $f(y_n) \to f(y)$. Thus, we know that 
+        \begin{align*}
+            \SET{\omega | f(X_n(\omega)) \to f(X(\omega))} \supseteq \SET{\omega | X_n(\omega) \to X(\omega)}
+        \end{align*}
+        Which shows that 
+        \begin{align*}
+            1 \geq \P(\SET{\omega | f(X_n(\omega)) \to f(X(\omega))}) \geq \P(\SET{\omega | X_n(\omega) \to X(\omega)}) = 1
+        \end{align*}
+        So indeed, we have that $f(X_n) \to f(X)$ a.s.
+
+        \item We shall show that if $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$, then $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$ and $0$ otherwise. Let $\omega \in \bigcup_{N=1}^\infty \bigcap_{n \geq N} E_n$. Then there is some $N$ so that $\omega \in \bigcap_{n \geq N} E_n$. This means that $\1_{E_n}(\omega) = 1$ for all $n \geq N$, and hence $\inf_{n \geq m} \1_{E_n}(\omega) = 1$ for any $m \geq N$. This means that $\liminf_{n \to \infty} \1_{E_n}(\omega) = 1$. Conversely, if $\omega \not \in \SET{E_n \text{ ev.}}$, then for every $m \geq 1$ we can find some $n \geq m$ so that $\omega \not \in E_n$. This means that $\1_{E_n}(\omega) = 0$. This also means that $\inf_{n \geq m} \1_{E_n}(\omega) = 0$ for all $m \geq 1$, and hence $\liminf_{n \to \infty} \1_{E_n}(\omega) = 0$. This completes the proof.
+
+        \item Fix $\ve > 0$. For each $\omega$ with $X_n(\omega) \to X(\omega)$, there exists some $\omega_n$ so that if $N \geq \omega_n$ then $|X_N(\omega)-X(\omega)| < \ve$. Let $A_n = \SET{\omega : X_n(\omega) \to X(\omega), \; \omega_n \leq n}$. Immediately we have that $A_n \uparrow \SET{\omega : X_n(\omega) \to X(\omega)}$. Also, if we let $B_n = \SET{\omega : |X_n(\omega) - X(\omega)| < \ve}$, we have that $A_n \subset B_n$. Thus, we have that:
+        \begin{align*}
+            \P(A_n) \leq \P(B_n)
+        \end{align*}
+        And so,
+        \begin{align*}
+            1 = \P(\SET{\omega | X_n(\omega) \to X(\omega)}) = \lim_{n \to \infty} \P(A_n) \leq \lim_{n \to \infty} \P(B_n) \leq 1
+        \end{align*}
+        Thus $X_n \to X$ in probability too.
+
+        \item Suppose per the contrary that $D$ was uncountable. I claim that $D \cap [a, a+1)$ is uncountable for some $a$. This is because if $D \cap [a, a+1)$ were always countable, then $D = \bigcup_{a \in \Z} D \cap [a, a+1)$ would be a countable union of countable sets and therefore itself countable, a contradiction. So assume WLOG that $D \cap [0,1)$ were uncountable. We shall prove that $f(1)$ cannot possibly be finite. Define for each point of discontinuity $a$ the following:
+        \begin{align*}
+            l_a = \inf_{x < a} \qty[f(a) - f(x)] \quad \text{and} \quad r_a = \inf_{x > a} \qty[f(x) - f(a)]
+        \end{align*}
+        Both of these are finite being bounded below by $0$. If $l_a = r_a = 0$, then $f$ is continuous at $a$. Otherwise, we have $l_a > 0$ or $r_a > 0$. Define $j_a = \max(l_a, r_a)$ to be the size of the jump at $a$. 
+
+        We shall show that there is an $\ve > 0$ so that uncountably many of the $j_a$ are greater than $\ve$. Otherwise, define $A_n = \SET{a : j_a \geq \frac 1n}$. Then $D = \bigcup_{n=1}^\infty A_n$ is a countable union of countable sets, and therefore countable, a contradiction. 
+
+        Suppose that $f(1) = M$, and assume WLOG that $f(0)=0$. Choose $N$ so large so that $N \cdot \ve > M$. Choose $N$ elements from $D \cap (0, 1)$ with $j_a > \ve$ and put them in increasing order, $a_1, a_2, \ldots, a_N$. Now writing,
+        \begin{align*}
+            f(1) &= f(1) - f(a_N) + \sum_{i=2}^N \qty[f(a_i) - f\qty(\frac{a_i + a_{i-1}}2) + f\qty(\frac{a_i + a_{i-1}}2) - f(a_{i-1})] + f(a_1) - f(0) \\
+            &\geq r_{a_N} + \sum_{i=2}^N l_{a_i} + r_{a_{i-1}} + l_{a_1} = \sum_{i=1}^N r_{a_i} + l_{a_i} \geq \sum_{i=1}^N j_{a_i} > N \cdot \ve > M
+        \end{align*}
+        A contradiction. Thus $f$ must have only countably many points of discontinuity.
+
+        \item By Holder's inequality, we know that:
+        \begin{align*}
+            \int \qty|X_n \cdot \1_{|X_n| \geq k}|d \mbb P \leq \qty(\int |X|^p d \mbb P)^{1/p} \qty(\int \1_{|X| \geq k}^q d\mbb P)^{1/q}
+        \end{align*}
+        Where $1/p + 1/q = 1$. Notice that:
+        \begin{align*}
+            \int \1_{|X_n| \geq k}^q d\mbb P = \P(|X_n| \geq k)
+        \end{align*}
+        From here, by Markov's inequality,
+        \begin{align*}
+            \P(|X_n| \geq k) = \P(|X_n|^p \geq k^p) \leq \frac{\E[|X_n|^p]}{k^p}
+        \end{align*}
+        Finally, using that $\sup_n \E[|X_n|^p] = C < \infty$, we have that:
+        \begin{align*}
+            \sup_n \E[|X_n \cdot \1_{|X_n| \geq k}|] \leq C^{1/p} \cdot \frac{C^{1/q}}{k^{p/q}} \overset{k \to \infty}{\to} 0
+        \end{align*}
+        which shows that $X_n$ is uniformly integrable.
+
+        \item I claim that if $X: (\Omega_1, \mathscr F) \to (\Omega_2, \mathscr G)$ is measurable, and $\mathscr B \subset \mathscr F$ is any $\sigma$-algebra, then
+        \begin{align*}
+            \SET{B : X^{-1}(B) \in \mathscr B}
+        \end{align*}
+        is too. This is because, given $A \in \SET{B : X^{-1}(B) \in \mathscr B}$, we know that $X^{-1}(A^c) = X^{-1}(A)^c \in \mathscr B$, and if $\SET{A_i}_{i=1}^\infty \subset \SET{B : X^{-1}(B) \in \mathscr B}$, then $X^{-1}\qty(\bigcup_{i=1}^\infty A_i) = \bigcup_{i=1}^\infty X^{-1}(A_i) \in \mathscr B$.
+
+        We now apply this result to $\mathscr B = \sigma(X^{-1}(\mathscr A))$. Clearly,
+        \begin{align*}
+            \mathscr A \subset \SET{B : X^{-1}(B) \in \mathscr \sigma(X^{-1}(\mathscr A))}
+        \end{align*}
+        Thus,
+        \begin{align*}
+            \mathscr G = \sigma(\mathscr A) \subset \SET{B : X^{-1}(B) \in \mathscr \sigma(X^{-1}(\mathscr A))} \subset \mathscr G
+        \end{align*}
+        So for any set $B \in \mathscr G$, we have that $X^{-1}(B) \in \sigma(X^{-1}(\mathscr A))$. This in turn shows that $X^{-1}(\mathscr G) = \sigma(X) \subset \sigma(X^{-1}(\mathscr A))$, which completes the proof.
+
+        \item 
+        \begin{enumerate}[label=\alph*)]
+            \item If $\bigcup_{n=1}^\infty A_n \in \mathscr{A}$ then $\qty(\bigcup_{n=1}^\infty A_n)^c \in A$, so let $A_0 = \qty(\bigcup_{n=1}^\infty A_n)^c$. Then we have that \begin{align*}
+                A_0 \cap A_n \subset A_0 \cap \bigcup_{n=1}^\infty A_n = \emptyset
+            \end{align*} so $A_0$ is disjoint from all the $A_n$ as well. Thus we have found a sequence of disjoint sets $A_0, A_1, \ldots$ whose union is the whole space, $\SET{\pm 1}^\N$. Since each element $A \times \SET{\pm 1}^\N$ for $A \subset \SET{\pm 1}^n$ (for arbitrary $n$) can be writen as a disjoint union via:
+            \begin{align*}
+                \coprod_{a \in A} \SET{a} \times \SET{\pm 1}^\N
+            \end{align*}
+            Thus we may assume by unrolling as above that each of the $A_i$ are of the form $\SET{a_i} \times \SET{\pm 1}^\N$ for some finite string of $\pm 1$s $a_i$. 
+    
+            Recall that $\SET{\pm 1}$ with the discrete topology is compact. Tychnoff's theorem tells us that $\SET{\pm 1}^\N$ is compact as well, endowed with the product topology. For a string $s = (s_1, \ldots, s_n)$, of $\pm 1$s, we know that $\SET{\pm 1}^{i-1} \times \SET{s_i} \times \SET{\pm 1}^\N$ is open by definition of the product topology (being the preimage of $s_i$ under the projection onto the $i$th coordinate). In particular 
+            \begin{align*}
+                \SET{s} \times \SET{\pm 1}^\N = \bigcap_{i=1}^n \SET{\pm 1}^{i-1} \times \SET{s_i} \times \SET{\pm 1}^\N
+            \end{align*}
+            is also open, being a finite intersection of open sets. Thus each of the $A_i$ are open, or more importantly, each of the $A_i^c$ are closed. 
+            
+            Recall a theorem saying that a topological space $X$ is compact iff every family of closed sets having the finite intersection property has nonempty intersection. If we could find a finite subfamily of the $A_i^c$ that have empty intersection, say $A_{n_1}^c, \ldots, A_{n_m}^c$, we already have (after taking complements) $\bigcup_{i=1}^m A_{n_i} = \SET{\pm 1}^\N$, and we cannot add anymore disjoint sets, since every other set in $\mathscr{A}$ has to intersect with one of the $A_{n_i}$s. So for every $i \geq n_m$ we have $A_i = \emptyset$. In the other case, the family $A_i$ has the finite intersection property and must not have empty intersection, a contradiction. This completes the proof.
+
+            \item If $\mathbb P: \mathscr A \to [0,1]$ is a finitely additive probabilty on $\mathscr A$, let $A_1, A_2, \ldots$ be a sequence of disjoint sets in $\mathscr A$. Then by part (a) there is some $m \geq 1$ so that $A_i = \emptyset$ for all $i \geq m$. Thus we have that 
+            \begin{align*}
+                \P(\coprod_{i=1}^\infty A_i) = \P(\coprod_{i=1}^m A_i) = \sum_{i=1}^m \P(A_i) = \sum_{i=1}^\infty \P(A_i)
+            \end{align*} 
+            by finite additivity and because $\P(A_i) = \P(\emptyset) = 0$ for all $i \geq m$. Thus $\mathbb P$ is countably additive.
+        \end{enumerate}
+    \end{enumerate}    
+\end{document}

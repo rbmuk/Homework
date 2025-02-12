@@ -1,0 +1,191 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 HW 2}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item If $f$ is integrable on $[a, b]$, then there is some partition $P$ so that $S_P(f) - s_P(f) < \ve/2$ by \textbf{Lemma 4.5}. Similarly, there is some partition $Q$ so that $S_Q(g) - s_Q(g) < \ve/2$. Then under the common refinement $P \cup Q$, $S_{P \cup Q}(f) - s_{P \cup Q}(f) < \ve/2$ and $S_{P \cup Q}(g) - s_{P \cup Q}(g) < \ve/2$ by \textbf{Lemma 4.3}. Finally, we know that $f+g \leq \sup_P(f) + \sup_P(g)$ for every point $x \in P$, so in particular, $\sup_P(f+g) \leq \sup_P(f) + \sup_P(g)$. Write $P \cup Q = \set{x_0, \ldots, x_J}$. Then $S_{P \cup Q} = \sum_{k=1}^{J} (\sup_{x_{k-1} \leq x \leq x_k}(f+g)(x))(x_k-x_{k-1}) \leq \sum_{k=1}^{J} (\sup_{x_{k-1} \leq x \leq x_k}f(x) + \sup_{x_{k-1} \leq x \leq x_k}g(x))(x_k-x_{k-1}) = S_{P \cup Q}(f) + S_{P \cup Q}(g)$. Similarly, the smallest value $f$ can take on is $\inf f$, and the smallest value $g$ can take on is $\inf g$, so $\inf(f+g) \geq \inf f + \inf g$. Thus $s_{P \cup Q}(f+g) = \sum_{k=1}^{J} (\inf_{x_{k-1} \leq x \leq x_k}(f+g)(x))(x_k-x_{k-1}) \geq \sum_{k=1}^{J} (\inf_{x_{k-1} \leq x \leq x_k}f(x) + \inf_{x_{k-1} \leq x \leq x_k}g(x))(x_k-x_{k-1}) = s_{P \cup Q}(f) + s_{P \cup Q}(g)$. Finally, then, $S_{P \cup Q}(f+g) - s_{P \cup Q}(f+g) \leq S_{P \cup Q}(f) + S_{P \cup Q}(g) - s_{P \cup Q}(f) - s_{P \cup Q}(g) < \ve/2 + \ve/2 = \ve$.
+		
+		\item
+		For any partition $P = \set{0=x_0, \ldots, x_J = 1}$, we know that $S_P(f) = \sum_{i=1}^{J} x_i(x_i-x_{i-1}) \geq \sum_{i=1}^{J} \frac12 (x_i+x_{i-1})(x_i-x_{i-1})$, as 
+		\begin{align*}
+			x_i \geq \frac12 (x_i+x_{i-1}) \iff 2x_i \geq x_i + x_{i-1} \iff x_i \geq x_{i-1}
+		\end{align*} which is clearly true. Then
+		\begin{align*}
+			\sum_{i=1}^{J} \frac12 (x_i+x_{i-1})(x_i-x_{i-1}) &= \frac12 \sum_{i=1}^{J} x_i^2-x_{i-1}^2
+			\\&= \frac12 (\bcancel{x_1^2}-x_0^2+\bcancel{x_2^2}-\bcancel{x_1^2}+\bcancel{\hdots} + x_J^2 - \bcancel{x_{J-1}^2})
+			\\ &= \frac12 (x_J^2 - x_0^2) = \frac12
+		\end{align*}
+		So $\frac12$ is a lower bound for all upper sums. In exactly the same calculation, $s_P(f) \leq \frac12$ (Note: $\sup_{x_{i-1} \leq x \leq x_i} x = x_{i}$, and $\inf_{x_{i-1} \leq x \leq x_i} x = x_{i-1}$). Also, for any $\ve > 0$, we can choose $N > \frac1{2\ve}$ so that $P = \set{0, \frac1n, \frac2n, \hdots, 1}$ where clearly $S_p(f) = \sum_{i=1}^{N} \frac iN \cdot (\frac iN - \frac{i-1}N) = \frac1{N^2} \cdot \frac{N(N+1)}{2} = \frac12 \frac {N+1}{N} < \frac12 + \ve$. So $\frac12 = \inf_P S_P(f)$. Similarly, the same $N$ shows that $s_P(f) > \frac12 - \ve$, so $\sup s_P(f) = \inf_P(f) = \frac12$, and we are done.
+		
+		Let $\ve > 0$. By \textbf{Lemma 4.5}, there is some partition $P$ of $[a, b]$ so that $S_P(f) - s_P(f) < \ve$. Now consider $Q = P \cup \set{c, d}$. It is clear by the refinement lemma that $S_Q(f) - s_Q(f) < \ve$. Note that $Q = \set{a=x_1, \ldots, c=x_l, \ldots, d=x_{J}, \ldots, x_N = b}$. Note that $K = \set{x_l, \ldots, x_J}$ is a partition of $[c, d]$. Then
+		\begin{align*}
+			S_K(f) - s_K(f) &= \sum_{i=l+1}^{J} (\sup f - \inf f)(x_{i}-x_{i-1}) 
+			\\ &\leq \sum_{i=1}^{N} (\sup f - \inf f)(x_{i}-x_{i-1}) < \ve
+		\end{align*}
+		As every term added was nonnegative. Then we have found a partition of $[c, d]$ that makes the upper sum - the lower sum $< \ve$, so we are done by \textbf{Lemma 4.5}.
+		
+		\begin{lemma}
+			If $f(x) \geq d$ for all $x \in [a, b]$, and $f$ is integrable on $[a, b]$, then $\int_a^b f(x) \dd x \geq d(b-a)$.
+		\end{lemma}
+		\begin{proof}
+			Given any partition $P=\set{a=x_1, \ldots, x_J=b}$, 
+			\begin{align*}
+				s_P(f) = \sum_{k=1}^{J} \qty(\inf_{x_{k-1} \leq x \leq x_k} f(x))(x_k-x_{k-1}) &\geq \sum_{k=1}^{J} d(x_k-x_{k-1}) \\
+				&= d \cdot \sum_{k=1}^{J} x_k-x_{k-1} = d(b-a)
+			\end{align*}
+		So, in particular, $\int_a^b f(x) \dd x = \sup_{P} s_P(f) \geq d(b-a)$.
+		\end{proof}
+		Call the value of $f(x_0) = c$. Then there is $\delta > 0$ so that all for all $x \in [x_0-\delta, x_0+\delta] \subset [0, 1]$, $f(x_0) - f(x) \leq |f(x)-f(x_0)| < c/2$, that is $f(x) > c/2 = d > 0$ on all of $[x_0-\delta, x_0+\delta]$.
+		Now, \begin{align}
+			\int_0^1 f(x) \dd x = \int_0^{x_0-\delta} f(x) \dd x + \int_{x_0-\delta}^{x_0+\delta} f(x) \dd x + \int_{x_0+\delta}^{1} f(x) \dd x
+		\end{align}
+		As $f(x)$ is integrable on all 3 sub-intervals, and a repeated use of \textbf{Theorem 4.6}. Using \textbf{Lemma 0.1} 3 times, noting that $f(x) \geq 0$ on all of $[0, x_0-\delta] \cup [x_0+\delta, 1]$, we see that (1) $\geq 0 + 2d\delta + 0$, and as $d, \delta > 0$, this quantity is $> 0$.
+		
+		\item 
+		Let $\ve > 0$. By \textbf{Lemma 4.5}, we can find a partition $P = \set{a=x_0, \ldots, x_J = b}$ so that $S_P(f) - s_P(f) < \ve$. \textbf{Note.} For every $1 \leq i \leq J$, and every $x, y \in [x_{i-1}, x_i]$, $|f(x) - f(y)| = f(x) - f(y)$ (WLOG), and because $f(x) \leq \sup_{x \in [x_{i-1}, x_i]} f(x)$, and $-f(y) \leq -\inf_{x \in [x_{i-1}, x_i]} f(x)$, therefore this quantity is $\leq \sup_{x \in [x_{i-1}, x_i]} f(x) - \inf_{x \in [x_{i-1}, x_i]} f(x)$. So, let $R_i$ be the rectangle anchored at $x_{i-1}$, length $x_i-x_{i-1}$, and height $\sup_{x \in [x_{i-1}, x_i]} f(x) - \inf_{x \in [x_{i-1}, x_i]} f(x)$. By our discussion above, it must be the case that $G \subset \bigcup_{i=1}^{J} R_i$ (as every function value that is contained in the rectangle is at MOST as far away as the height of the rectangle). Finally, the sum of the areas of all the rectangles is $\sum_{i=1}^{J} \mathrm{Area}(R_i) = S_P(f) - s_P(f) < \ve$, so $G$ is of zero content, as $\ve$ was arbitrary.
+		
+		\item
+		\begin{lemma}
+			Given any box $B \subset \R^d$, of nonzero sidelengths, $\dim(B) = d$.
+		\end{lemma}
+		\begin{proof}
+			Let $(x_1, \ldots, x_d)$ be the $d$ sidelengths of the box. Given any $\ve > 0$, where $1/\ve \in \bN$, we know that $N_{\ve}(B) = (x_1 \cdot \hdots \cdot x_d)/\ve^d$, as this would cover the larger box by simply partioning it, and any smaller number of boxes would not cover enough volume. Then 
+			\[ \lim_{\ve \to 0} \frac{N_\ve(B)}{-\ln(\ve)} = \lim_{\ve \to 0} \frac{\ln(x_1\cdot \hdots \cdot x_d) - d\ln(\ve)}{-\ln(\ve)} = d,
+			 \] as the first limit simplifies to the case of finite$/\infty$ (clearly $\ln(x)$ where $x > 0$ is finite).
+		 	\end{proof}
+	 	\begin{lemma}
+	 		If $S \subseteqq B \subseteqq R$, and $\dim(S)=\dim(R)=d$, then $\dim(B) = d$.
+ 			 	\end{lemma}
+		\begin{proof}
+			I claim that for any $\ve > 0$, $N_\ve(S) \leq N_\ve(B) \leq N_\ve(R)$. For if $N_\ve(B)$ were greater than $N_\ve(R)$, the boxes covering $R$, which is less in number than the boxes covering $B$, also cover $B$, so it can't be the case that $N_\ve(B)$ is minimal. If $N_\ve(B) < N_\ve(S)$, then we could cover $S$ with less boxes than $N_\ve(S)$, contradicting the fact that it was minimal. Now that we have proven that, we know that by only considering $\ve < 1$, 
+			\[  \frac{N_\ve(S)}{-\ln(\ve)} \leq  \frac{N_\ve(B)}{-\ln(\ve)} \leq  \frac{N_\ve(R)}{-\ln(\ve)} \]
+			by dividing by the positive number $-\ln(\ve)$. By the squeeze theorem, we can take the limit as $\ve \to 0$ on both sides, which completes the proof.
+		\end{proof}
+		\begin{lemma}
+			If $\dim(R)=\dim(S)=d$, then $\dim(R \cup S)=d$.
+		\end{lemma}
+		\begin{proof}
+			The proof of \textbf{Lemma 0.3} shows that if $S \subseteqq B$, then $\dim(S) \leq \dim(B)$ (only consider the left limit). As $R \subseteqq R \cup S$, $d \leq \dim(R \cup S)$. Now note that $N_\ve(R \cup S) \leq N_\ve(R) + N_\ve(S)$, as the right hand number of boxes would certainly cover the union, but doesn't necessarily have to be the smallest number. Consider $q(\ve) = \max \set{N_\ve(R),N_\ve(S)}$. Note that $N_\ve(R \cup S) \leq 2q$ for any $\ve > 0$. It suffices to consider
+			\[ \lim_{\ve \to 0} \frac{\ln(2q(\ve))}{-\ln(\ve)} = \lim_{\ve \to 0} \frac{\ln(2)}{-\ln(\ve)} +  \lim_{\ve \to 0} \frac{\ln(q(\ve))}{-\ln(\ve)} = \lim_{\ve \to 0} \frac{\ln(q(\ve))}{-\ln(\ve)}\] 
+			Note that for any $\eta > 0$, there is some $\delta_1, \delta_2 > 0$ so that for any $\ve_1 \in (0, \delta_1), \ve_2 \in (0, \delta_2)$, we have that $\qty|\frac{\ln(N_{\ve_1}(R))}{-\ln(\ve_1)} - d| < \eta$, and that $\qty|\frac{\ln(N_{\ve_2}(S))}{-\ln(\ve_2)} - d| < \eta$. Then for any $\ve \in (0, \min \set{\delta_1, \delta_2})$, both inequalities are true. Given any $\ve > 0$, $q = N_\ve(R)$ or $q=N_\ve(S)$, so we have found a $\delta = \min \set{\delta_1, \delta_2} > 0$ so that $\qty|\frac{\ln(q(\ve))}{-\ln(\ve)} - d| < \eta$, that is $\lim_{\ve \to 0} \frac{\ln(q(\ve))}{-\ln(\ve)} = d$, establishing the upper bound, and finishing off the proof.
+		\end{proof}
+		\begin{lemma}
+			For any $r > 0$, and any $x \in \R^d$, $\dim(B(x, r)) = d$.
+		\end{lemma}
+		\begin{proof}
+			Note that $B(x, r) \subseteqq R$, where $R$ is the hypercube with all sidelengths $2r$, centered at $x$. Center a box at $x$, of sidelength $2r/d^{500}$. I claim that this box is entirely contained in $B(x, r)$. Every point in the box is at most as far away as the diagonal, WLOG $x=0$, would have coordinate $(r/d^{500}, \ldots, r/d^{500}) \in \R^d$. This has magnitude \[\qty(\sum_{i=1}^{d} r^2/d^{1000})^{1/2} = r/d^{499.5}\] For any $d \geq 1$, this quantity is $\leq r$, so we are done. By \textbf{Lemma 0.2}, all boxes in $\R^d$ have dimension $d$, and by \textbf{Lemma 0.3}, $B(x, r)$ must also have dimension $d$.
+		\end{proof}
+		Now we prove the main result. Pick any point $x \in S$. There must be some $B(x, r) \subseteqq S$ with $r > 0$. By \textbf{Lemma 0.5}, this ball has dimension $d$. As $S$ is bounded, there is some giant ball containing it. This large ball has dimension $d$, by \textbf{Lemma 0.4}. Once again, by \textbf{Lemma 0.3}, we have found two sets that contain/are contained in $S$ that both have dimension $d$, so $S$ also has dimension $d$, and we are done.
+		
+		\item 
+			\begin{enumerate}
+				\item Note: $(1/4, 3/4) \subseteqq [0, 1] \subseteqq (-2, 2)$, where both outer balls have dimension 1 by \textbf{Lemma 0.5}, so by \textbf{Lemma 0.3} $[0, 1]$ also has dimension 1.
+				\item 
+				\begin{lemma}
+					For any $d \in \bN$ $a > b$, $\dim(S = \set{(x, 0, \ldots, 0) \in \R^d \given a < x < b}) = 1$. 
+				\end{lemma}
+				\begin{proof}
+					Given any $\ve > 0$, I claim that $N_{\ve}(S) = \frac{b-a}{\ve}$. 
+					If you anchor the first box at $(a, 0, \ldots, 0)$, and put all boxes directly next to it, for example the second box anchored at $(a+\ve, 0, \ldots, 0)$, then it is clear that the length of the rectangle generated by these boxes would have longest side $\frac{b-a}{\ve} \ve$, so $S$ would be contained in this set. Any smaller number of boxes would have longest side less than this, and then clearly couldn't cover all of $S$. Now, 
+					\[ \lim_{\ve \to 0} \frac{N_\ve(S)}{-\ln(\ve)} = \lim_{\ve \to 0} \frac{\ln(b-a) - \ln(\ve)}{-\ln(\ve)} = 1 \]
+					which completes the proof.
+				\end{proof}
+				Now, $\set{(x, 0, \ldots, 0) \given 0.5 < x < 0.75} \subseteqq \set{(x, 0, \ldots, 0) \given 0 \leq x \leq 1} \subseteqq \set{(x, 0, \ldots, 0) \given -1 < x < 2}$, and by \textbf{Lemma 0.6} and \textbf{Lemma 0.3} it follows that the unit interval in $\R^d$ has dimension 1.
+				\item 
+				Let $S = \set{1, \frac12, \frac13, \ldots}$. First, I will only consider $\ve = \frac1N$, where $N \in \bN$, as the argument is completely identical in the general case, this just makes it more clear what's going on. So first, I claim that the $N_\frac1N(S) \geq \sqrt{N}/2$ for sufficiently large $N$. Note that the number of integer solutions to $\frac1x - \frac1{x+1} \geq \frac1N$ is a lower bound for $N_\frac1N(S)$, because if they are all more than $\frac1N$ apart, then you need at least this number of boxes to cover them all (you can't cover 2 with one box). The above expression is the number of natural number solutions to $x(x+1) \leq N$. This number is strictly bigger than $\sqrt{N}/2$ for sufficiently large $N$, for $\sqrt{N}/2 (\sqrt{N}/2 + 1) = N/4 + \sqrt{N} \leq N \iff \sqrt{N} \leq \frac{3N}{4}$, which is eventually true. (Note: every number less than $\sqrt{N}/2$ would work). So we have proven that $N_\frac1N(S) \geq \sqrt{N}/2$. Now I claim that it is bounded above by $2\sqrt{N} + 2$. Note that one box anchored at 0 would cover $\frac{1}{N+1}, \frac{1}{N+2}, \ldots$. Also, there are less than $\sqrt{N}$ solutions to $x(x+1) \leq N$, simply by plugging $\sqrt{N}$ in. So it suffices to overapproximate the number of boxes needed to cover $\frac{1}{\sqrt{N}}$ through $\frac{1}{N}$. Note that a box anchored at $\frac1N$ would cover the number of integers between $\frac1N \leq \frac1x \leq \frac2N$, which is equivalent to the number of integers between $N \geq x \geq N/2$, which is at most $N/2$. Then anchoring a box at $N/2$, we see that the number of integers covered would be less than the number of integers that satisfy $N/2 \geq x \geq N/3$, which is of course $N/6$. In general, given $Q$ boxes, we would cover no more than
+					\begin{align*}
+						\sum_{k=2}^{Q+1} \frac{N}{k(k+1)} = \frac N2 - \frac N{Q+2}
+					\end{align*}
+			integers. So we want this number to be greater than $N/2 - \sqrt N$. Then we want $Q+2 \geq \sqrt{N}$, so we need at MOST $\sqrt{N}+\sqrt{N}+2+1$ boxes. So, putting it all together,
+				\begin{align*}
+					\frac12 = \lim_{N \to \infty} \frac{\ln(\sqrt{N}/4)}{\ln(N)} \leq \lim_{N \to \infty} \frac{\ln(N_{1/N}(S))}{\ln(N)} \leq \lim_{N \to \infty} \frac{\ln(2\sqrt{N}+3)}{\ln(N)} = \frac12
+				\end{align*}
+			So again, by the squeeze theorem, $\dim(S) = \frac12$.
+			\end{enumerate}
+		\end{enumerate}
+\end{document}

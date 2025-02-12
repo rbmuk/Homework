@@ -1,0 +1,255 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\Re}{\mathfrak{R}\qty}
+\renewcommand{\Im}{\mathfrak{Im}\qty}
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\H}{\mbb{H}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 336 HW8}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item If $f'(z) \neq 0$, then for $|w|$ sufficiently small,
+		\begin{align*}
+			f(z+w) = f(z) + f'(z)w + o(w)
+		\end{align*}
+		We can find $|w|$ sufficiently small so that $|o(w)| \leq \frac12|f'(z)||w|$ by definition. Then,
+		\begin{align*}
+			|f(z+w) - f(z)| \geq \frac12|f'(z)||w| > 0
+		\end{align*}
+		Hence, we can find a neighborhood of $z$ so that $f$ differs from it outside of $z$, hence $f$ is injective. Now suppose that $f$ is locally bijective in some neighborhood of $z_0$ and that $f'(z_0) = 0$. If $f$ is constant then we are done, since it is obviously not injective. Else, expand $f$ as a power series as:
+		\begin{align*}
+			f(z) = f(z_0) + \sum_{i=2}^\infty a_n(z-z_0)^n
+		\end{align*}
+		Find the least such $m$ so that $a_m \neq 0$ (it exists since $f$ is not constant, and is $\geq 2$ since it isn't 1 by hypothesis). We see then that
+		\begin{align*}
+			f(z) = f(z_0) + a_m(z-z_0)^m + \sum_{i=m+1}^\infty a_n(z-z_0)^n
+		\end{align*}
+		If we look at the set of solutions to $f(z) = f(z_0) + \ve$, we see that this says
+		\begin{align*}
+			a_m(z-z_0)^m = \ve
+		\end{align*}
+		Which has set of solutions $z = z_0 + \ve a_me^{\frac{2\pi i k}m}$ for $k \in \set{0, \ldots, m-1}$. One also notes that we may find a sufficiently small neighborhood of $z$ so that $|\sum_{i=m+1}^\infty a_n(z-z_0)^n| \leq \frac12|a_m(z-z_0)^m|$. Choosing $\ve$ so that $z_0 + \ve a_me^{\frac{2\pi i k}m}$ is in this neighrbood of $z$, it follows then that $a_m(z-z_0)^m = \ve$ and $a_m(z-z_0)^m + \sum_{i=m+1}^\infty a_n(z-z_0)^n = \ve$ have the same number of solutions in this neighborhood of $z$, which is $m \geq 2$. Since this setup works for all $\ve > 0$, $f$ cannot be injective in any neighborhood of $z_0$, a contradiction.
+		
+		\item One notes that 
+		\begin{align*}
+			F(G(z)) = \frac{i-i\frac{1-z}{1+z}}{i+i\frac{1-z}{1+z}} = \frac{i(1+z)-i(1-z)}{i(1+z)+i(1-z)} = \frac{2iz}{2i} = z
+		\end{align*}
+		And similarly,
+		\begin{align*}
+			G(F(z)) = i\frac{1-\frac{i-z}{i+z}}{1+\frac{i-z}{i+z}} = i\frac{(i+z)-(i-z)}{(i+z)+(i-z)} = i\frac{-2iz}{2i} = z
+		\end{align*}
+		Since $F$ has a two sided inverse, it is bijective. $F$ is the quotient of two holomorphic polynomials, who's denominator is never 0 on $\mbb{H}$, so $F$ is holomorphic on all of $\mbb{H}$. $F$ also maps into $\D$ since if we write $z = x + iy$ with $y > 0$, we see that 
+		\begin{align*}
+			|F(z)| = \qty|\frac{i-x-iy}{i+x+iy}| = \frac{x^2+(1-y)^2}{x^2+(1+y)^2}
+		\end{align*}
+		The hypothesis that $x^2 + (1-y)^2 < x^2 + (1+y)^2$ is equivalent to $y > 0$, so our claim holds. Since $|i| = 1$, $G$ also maps into $\D$.
+		
+		We notice that $G(0) = i$, and since $f(i) = 0$, we have that $f(G(0)) = 0$. Now, $f \circ G: \D \to \C$ with $|f(G(z))| \leq 1$ for all $z \in \D$, and hence we may apply Schwartz lemma to get
+		\begin{align*}
+			|f(G(z))| \leq |z|
+		\end{align*}
+		Now given $w \in H$, taking $z = F(w)$ yields
+		\begin{align*}
+			|f(w)| = |f(G(F(w)))| \leq |F(w)| = \qty|\frac{i-w}{i+w}|
+		\end{align*}
+		I shall spare you the details, but the exact same proof as above would show that for any $\beta \in \mbb{H}$, $F_\beta(z) = \frac{\beta-z}{\beta+z}$ and $G_\beta(w) = \beta\frac{1-w}{1+w}$ also have all the same properties as the above $F, G$ (nice domains, holomorphic, bijective). Let $f$ be a bijective holomorphic mapping from $\mbb{H}$ to $\D$. Since $f$ is onto, there is some $\beta \in \mbb{H}$ so that $f(\beta) = 0$. We notice that $G_\beta(0) = \beta$, and hence $f(G_\beta(0)) = 0$. Also, $f(G_\beta(z)): \D \to \D$ with $|f(G_\beta(z))| \leq 1$ (since it maps to the unit disk). Applying the Schwartz lemma gives us
+		\begin{align*}
+			|f(G_\beta(z))| \leq |z| \quad \text{for all } z \in \D
+		\end{align*}
+		and that $|(f \circ G_\beta)'(0)| \leq 1$. Similarly, we may also apply the lemma to $G^{-1} \circ f^{-1}(z)$ to get 
+		\begin{align*}
+			|(G^{-1} \circ f^{-1})'(z)| \leq 1
+		\end{align*}
+		Since $(f \circ G)^{-1'}(0) = \frac{1}{(f \circ G)'(0)}$ (Note: $(f \circ G)^{-1}(0) = 0$), we may conclude that $|(f \circ G_\beta)'(0)| = 1$. Thus by the Schwartz lemma, $(f \circ G)(z) = e^{i\theta}z$ for some $\theta \in \R$. Plugging in $z = F(w)$, we conclude that
+		\begin{align*}
+			f(w) = e^{i\theta}F(w) = e^{i\theta} \frac{\beta-w}{\beta+w}
+		\end{align*}
+		Which completes the proof.
+		
+		\item Define $g(z) = \frac 1M f\qty(Rz)$. It is now clear that $g: \D \to \D$, since $|g| \leq \frac1M|f| \leq 1$. So, we can apply Schwartz-Pick to see that 
+		\begin{align*}
+			M \qty|\frac{f(Rz) - f(0)}{M^2 - \overline{f(Rz)f(0)}}| = \qty|\frac{g(z)-\frac1M f(0)}{1-\frac1M \overline{f(Rz)} \frac 1M f(0)}| \leq \qty|\frac{z-0}{1}| = |z|
+		\end{align*}
+		Letting $u = Rz$, we conclude that 
+		\begin{align*}
+			\qty|\frac{f(u)-f(0)}{M^2-\overline{f(Rz)f(0)}}| \leq \frac{|u|}{RM}
+		\end{align*}
+		Since every $w \in \D_R$ can be described by $R \cdot z$ with $z \in \D$, the inequality in the problem statement holds.
+		
+		\item Fix $z \in \D$. By schwartz-pick, for every $w \in \D \setminus z$, we have that
+		\begin{align*}
+			\qty|\frac{f(z)-f(w)}{1-\overline{f(z)}f(w)}| \leq \qty|\frac{z-w}{1-\overline{z}w}|
+		\end{align*}
+		Since $|z-w| > 0$, we can divide both sides by it to preserve equality and see that
+		\begin{align*}
+			\qty|\frac{\frac{f(z)-f(w)}{z-w}}{1-\overline{f(z)}f(w)}| \leq \qty|\frac{1}{1-\overline{z}w}|
+		\end{align*}
+		Now, since this holds for every $w \neq z$, we can take a limit on both sides to get
+		\begin{align*}
+			\qty|\lim_{w \to z} \frac{\frac{f(z)-f(w)}{z-w}}{1-\overline{f(z)}f(w)}| = \lim_{w \to z}\qty|\frac{\frac{f(z)-f(w)}{z-w}}{1-\overline{f(z)}f(w)}| \leq \lim_{w \to z} \qty|\frac{1}{1-\overline{z}w}| = \qty|\lim_{w \to z} \frac{1}{1-\overline{z}w}|
+		\end{align*}
+		One now notices that 
+		\begin{align*}
+			&\lim_{w \to z} \frac{f(z)-f(w)}{z-w} = f'(z) \\
+			&\lim_{w \to z} f(w) = f(z) \\
+			&\lim_{w \to z} w = z
+		\end{align*}
+		And one recalls that $z \overline{z} = \mg{z}^2$. We conclude that
+		\begin{align*}
+			\qty|\frac{f'(z)}{1-|f(z)|^2}| \leq \qty|\frac{1}{1-|z|^2}|
+		\end{align*}
+		Since $z \in \D$, and since  $f(z) \in \D$, we have that $|z|^2 < 1$, and that $|f(z)|^2 < 1$. So, $|1-|f(z)|^2| = 1-|f(z)|^2$, and also that $|1-|z|^2| = 1-|z|^2$. We conclude that
+		\begin{align*}
+			\frac{|f'(z)|}{1-|f(z)|^2} \leq \frac{1}{1-|z|^2}
+		\end{align*}
+		
+		\item Consider $\theta = -\arg\qty(\frac{1}{2\pi} \int_0^{2\pi} \gamma(e^{it})dt)$ where $\theta \in [0, 2\pi)$. We notice that $\arg(e^{i\theta} \frac{1}{2\pi} \int_0^{2\pi} \gamma(e^{it})dt) = \theta + \arg\qty(\frac{1}{2\pi} \int_0^{2\pi} \gamma(e^{it})dt) = 0$, so $e^{i\theta} \frac{1}{2\pi} \int_0^{2\pi} \gamma(e^{it})dt = 1$ since it also has magnitude 1. Now, we also notice that, since we can match real parts,
+		\begin{align*}
+			1 = \Re(e^{i\theta} \frac{1}{2\pi} \int_0^{2\pi} \gamma(e^{it})dt) = \frac{1}{2\pi} \int_0^{2\pi} \Re(e^{i\theta} \gamma(e^{it}))dt
+		\end{align*}
+		Also, one recalls that $\Re(z) \leq |z|$, so it follows that 
+		\begin{align*}
+			\Re(e^{i\theta} \gamma(e^{it})) \leq |e^{i\theta} \gamma(e^{it})| = 1
+		\end{align*}
+		Simultaneously,
+		\begin{align*}
+			\frac{1}{2\pi} \int_0^{2\pi} |\gamma(e^{it})|dt = 1
+		\end{align*}
+		And hence 
+		\begin{align*}
+			\frac{1}{2\pi} \int_0^{2\pi} \Re(e^{i\theta} \gamma(e^{it})) - 1dt = 0
+		\end{align*}
+		The inside of this integral is nonnegative, and we showed long ago (334?) that if the inside took a negative value somewhere, the entire integral would be negative, which can't be. We conclude that
+		\begin{align*}
+			\Re(e^{i\theta} \gamma(e^{it})) - 1 = 0
+		\end{align*}
+		and hence $\Re(e^{i\theta}\gamma(e^{it})) = 1$. If it were ever the case that $e^{i\theta}\gamma(e^{it})$ had nonzero imaginary part, $|e^{i\theta}\gamma(e^{it})| > 1$, which can't be. So $e^{i\theta}\gamma(e^{it}) = 1$, hence $\gamma(e^{it}) = e^{-i\theta}$, i.e. $\gamma(e^{it})$ is constant.
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,431 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+%\usepackage{R:/sty/quiver}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\theoremstyle{definition}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ext}{\mathrm{Ext}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 506 HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{theorem}
+        Let $0 \to \mathscr{A} \overset{\alpha}{\to} \mathscr{B} \overset{\beta}{\to} \mathscr{C} \to 0$ be a short exact sequence of cochain complexes, where for simplicity the cochain maps for $\mathscr{A}, \mathscr{B}, \mathscr{C}$ are all denoted by the same $d$. 
+        \begin{enumerate}[label=(\alph*)]
+            \item If $c \in C^n$ represents the class $x \in H^n(\mathscr{C})$, show that there is some $b \in B^n$ such that $\beta_n(b) = c$.
+            \item Show that $d_{n+1}(b) \in \ker \beta_{n+1}$ and conclude that there is a unique $a \in A^{n+1}$ such that $\alpha_{n+1}(a) = d_{n+1}(b)$.
+            \item Show that $d_{n+2}(a) = 0$ and conclude that $a$ defines a class $\overline a$ in the quotient group $H^{n+1}(\mathscr A)$.
+            \item Prove that $\overline a$ is independent of the choice of $b$, i.e. if $b'$ is another choice and $a'$ is its unique preimage in $A^{n+1}$, then $\overline a = \overline{a'}$, and that $\overline a$ is also independent of the choice of $c$ representing the class $x$.
+            \item Define $\delta_n(x) = \overline a$ and prove that $\delta_n$ is a group homomorphism from $H^n(\mathscr C)$ to $H^{n+1}(\mathscr A)$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item By definition of an exact sequence of cochain complexes, we know that the row
+        \[\begin{tikzcd}
+            0 & {A^n} & {B^n} & {C^n} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["{\alpha_n}", from=1-2, to=1-3]
+            \arrow["{\beta_n}", from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}\]
+        is exact. Thus $\beta_n$ is onto, so there is some $b \in B^n$ so that $\beta_n(b) = c$.
+        \item The following diagram is commutative:
+        \[\begin{tikzcd}
+            & \vdots & \vdots & \vdots \\
+            0 & {A^n} & {B^n} & {C^n} & 0 \\
+            0 & {A^{n+1}} & {B^{n+1}} & {C^{n+1}} & 0 \\
+            & \vdots & \vdots & \vdots
+            \arrow[from=1-2, to=2-2]
+            \arrow[from=1-3, to=2-3]
+            \arrow[from=1-4, to=2-4]
+            \arrow[from=2-1, to=2-2]
+            \arrow["{\alpha_n}", from=2-2, to=2-3]
+            \arrow["{d_{n+1}}"', from=2-2, to=3-2]
+            \arrow["{\beta_n}", from=2-3, to=2-4]
+            \arrow["{d_{n+1}}"', from=2-3, to=3-3]
+            \arrow[from=2-4, to=2-5]
+            \arrow["{d_{n+1}}"', from=2-4, to=3-4]
+            \arrow[from=3-1, to=3-2]
+            \arrow["{\alpha_{n+1}}", from=3-2, to=3-3]
+            \arrow[from=3-2, to=4-2]
+            \arrow["{\beta_{n+1}}", from=3-3, to=3-4]
+            \arrow[from=3-3, to=4-3]
+            \arrow[from=3-4, to=3-5]
+            \arrow[from=3-4, to=4-4]
+        \end{tikzcd}\]
+        Recall that $H^n(\mathscr C) \coloneqq \frac{\ker d_{n+1}}{\Im d_n}$. In particular, $c \in \ker d_{n+1}$ from the last step. It follows by commutativity after a slight abuse of notation that $d_{n+1}(\beta_n(b)) = d_{n+1}(c) = 0 = \beta_{n+1}(d_{n+1}(b))$, so $d_{n+1}(b) \in \ker \beta_{n+1}$. Since $\Im \alpha_{n+1} = \ker \beta_{n+1}$, there is an $a \in A^{n+1}$ so that $\alpha_{n+1}(a) = d_{n+1}(b)$. Since $\alpha_{n+1}$ is injective this $a$ is unique.
+
+        \item We draw the third diagram:
+        \[\begin{tikzcd}
+            0 & {A^n} & {B^n} & {C^n} & 0 \\
+            0 & {A^{n+1}} & {B^{n+1}} & {C^{n+1}} & 0 \\
+            0 & {A^{n+2}} & {B^{n+2}} & {C^{n+2}} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-2, to=2-2]
+            \arrow[from=1-3, to=1-4]
+            \arrow["{d_{n+1}}"', from=1-3, to=2-3]
+            \arrow[from=1-4, to=1-5]
+            \arrow[from=1-4, to=2-4]
+            \arrow[from=2-1, to=2-2]
+            \arrow["{\alpha_{n+1}}", from=2-2, to=2-3]
+            \arrow["{d_{n+2}}"', from=2-2, to=3-2]
+            \arrow[from=2-3, to=2-4]
+            \arrow["{d_{n+2}}"', from=2-3, to=3-3]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=2-4, to=3-4]
+            \arrow[from=3-1, to=3-2]
+            \arrow["{\alpha_{n+2}}", from=3-2, to=3-3]
+            \arrow[from=3-3, to=3-4]
+            \arrow[from=3-4, to=3-5]
+        \end{tikzcd}\]
+        We know that $\alpha_{n+1}(a) = d_{n+1}(b)$. Thus $\alpha_{n+2}(d_{n+2}(a)) = (d_{n+2} \circ d_{n+1})(b) = 0$ since $\mathscr{B}$ is a chain complex. As $\alpha_{n+2}$ is injective, $d_{n+2}(a) = 0$. Thus $\overline a$ defines a class in $H^{n+1}(\mathscr A) = \frac{\ker d_{n+2}}{\Im d_{n+1}}$, since $a \in \ker d_{n+2}$.
+        \item Let $b' \in B^n$ be another element of $B^n$ with $\beta_n(b') = c$. Then $\beta_n(b - b') = 0$, so $b - b' \in \Im \alpha_n$. So find $a \in A^n$ so that $\alpha_n(a) = b - b'$. Writing $a$ and $a'$ as the preimages of $d_{n+1}(b)$ and $d_{n+1}(b')$ respectively, we can see that $\alpha_{n+1}(a - a') = d_{n+1}(b - b') = d_{n+1}(\alpha_n(a)) = \alpha_{n+1}(d_{n+1}(a))$. Since $\alpha_{n+1}$ is injective, we have that $a - a' = d_{n+1}(a)$, so $\overline{a} = \overline{a'}$.
+        
+        Let $y \in \Im d_n$. Since the following diagram is commutative:
+        \[\begin{tikzcd}
+            0 & {A^{n-1}} & {B^{n-1}} & {C^{n-1}} & 0 \\
+            0 & {A^n} & {B^n} & {C^n} & 0 \\
+            0 & {A^{n+1}} & {B^{n+1}} & {C^{n+1}} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-2, to=2-2]
+            \arrow["{\beta_{n-1}}", from=1-3, to=1-4]
+            \arrow["{d_n}", from=1-3, to=2-3]
+            \arrow[from=1-4, to=1-5]
+            \arrow["{d_n}", from=1-4, to=2-4]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-2, to=3-2]
+            \arrow["{\beta_n}", from=2-3, to=2-4]
+            \arrow["{d_{n+1}}"', from=2-3, to=3-3]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=2-4, to=3-4]
+            \arrow[from=3-1, to=3-2]
+            \arrow["{\alpha_{n+1}}", from=3-2, to=3-3]
+            \arrow[from=3-3, to=3-4]
+            \arrow[from=3-4, to=3-5]
+        \end{tikzcd}\]
+        We know that there is some $b$ so that $\beta_{n-1}(b) = y'$. Then $\beta_n \circ d_n(b) = y$, so we can take $d_n(b)$ as the preimage of $y$ in part (b) since the class doesn't depend on the choice of $b$. Since $d_{n+1} \circ d_n(b) = 0$ and $\alpha_{n+1}$ is injective, part (b) will yield $a = 0$ and hence the class $\overline a$ corresponding to $y$ is just 0. 
+
+        Now, for $c, c' \in C^n$, find $b$ and $b'$ so that $\beta_n(b) = c$ and $\beta_n(b') = c'$. We lift these each to $a, a'$ satisfying $\alpha_{n+1}(a) = d_{n+1}(b)$ and $\alpha_{n+1}(a') = d_{n+1}(b')$. We see then that $\alpha_{n+1}(a+a') = d_{n+1}(b+b')$, and that $\beta_n(b+b') = c+c'$, so $\overline{a + a'}$ is the class corresponding to $c + c'$. In the case where $c' \in \Im d_n$, we showed in the last paragraph that $\overline{a'} = 0$, which shows that $\overline{a}$ is independent of the choice of $c$ representing the class $x$ since every representative of $x$ can be written as the sum of $c$ and something in $\Im d_n$.
+
+        \item We need only show that $\delta_n(x+y) = \delta_n(x) + \delta_n(y)$. Taking representatives $c, c'$ of $x,y$ respectively, if we write the class corresponding to $c, c'$ as $\overline a$ and $\overline{a'}$ resp., the last paragraph shows that the class corresponding to $c+c'$ is precisely $\overline a + \overline{a'}$. Since the $\delta_n(x)$ is independent of the choice of $c$, this shows that $\delta_n(x+y)=\delta_n(x) + \delta_n(y)$.
+    \end{enumerate}
+
+    \newpage
+    \begin{theorem}
+        Let $F_n = \Z G \otimes_{\Z} \cdots \otimes_{\Z} \Z G$ ($n+1$ factors) for $n \geq 0$ with $G$-action defined on simple tensors by $g \cdot (g_0 \otimes \cdots \otimes g_n) = gg_0 \otimes \cdots \otimes g_n$.
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that $F_n$ is a free $\Z G$ module of rank $|G|^n$ with $\Z G$ basis $1 \otimes g_1 \otimes \cdots \otimes g_n$ for $g_i \in G$.
+        \end{enumerate}
+        Denote the basis element $1 \otimes g_1 \otimes \cdots \otimes g_n$ by $(g_1, \ldots, g_n)$ and define the $G$-module homomorphisms $d_n$ for $n \geq 1$ on these basis elements by $d_1(g_1) = g_1-1$ and 
+        \begin{align*}
+            d_n(g_1, \ldots, g_n) = g_1 \cdot (g_2, \ldots, g_n) + \sum_{i=1}^{n-1} (-1)^i (g_1, \ldots, g_ig_{i+1}, \ldots, g_n) + (-1)^n (g_1, \ldots, g_{n-1})
+        \end{align*}
+        for $n \geq 2$. Define the $\Z$-module contracting homomorphisms
+        \[\begin{tikzcd}
+            \Z & {F_0} & {F_1} & {F_2} & \cdots
+            \arrow["{s_{-1}}", from=1-1, to=1-2]
+            \arrow["{s_0}", from=1-2, to=1-3]
+            \arrow["{s_1}", from=1-3, to=1-4]
+            \arrow["{s_2}", from=1-4, to=1-5]
+        \end{tikzcd}\]
+        on a $\Z$ basis by $s_{-1}(1) = 1$ and $s_n(g_0 \otimes \cdots \otimes g_n) = 1 \otimes g_0 \otimes \cdots \otimes g_n$.
+        \begin{enumerate}
+            \item[(b)] Prove that
+            \begin{align*}
+                \ve s_{-1} = 1, \quad d_1s_0 + s_{-1}\ve = 1, \quad d_{n+1}s_n + s_{n-1}d_n = 1 \quad \text{for } n \geq 1
+            \end{align*}
+            \item[(c)] Prove that the maps $s_n$ are a chain homotopy between the identity (chain) map and the zero (chain) map from the chain
+            \[\begin{tikzcd}
+                \cdots & {F_n} & {F_{n-1}} & \cdots & {F_0} & \Z & 0
+                \arrow[from=1-1, to=1-2]
+                \arrow["{d_n}", from=1-2, to=1-3]
+                \arrow["{d_{n-1}}", from=1-3, to=1-4]
+                \arrow["{d_1}", from=1-4, to=1-5]
+                \arrow["\ve", from=1-5, to=1-6]
+                \arrow[from=1-6, to=1-7]
+            \end{tikzcd}\]
+            of $\Z$-modules to itself.
+
+            \item[(d)] Deduce from (c) that all $\Z$-module homology groups of the above chain complex is 0, i.e. that the above is exact. Conclude that the above is a projective $G$-module resolution of $\Z$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $F_n = \Z G \otimes_\Z \otimes \cdots \otimes_\Z \Z G$ ($n+1$ factors). Since $\Z G$ is a free $\Z$-module with rank $|G|$, $F_n$ is a free $\Z$-module with rank $|G|^{n+1}$. We seek to show that the elements
+        \begin{align*}
+            \mathscr S = \SET{1 \otimes g_1 \otimes \cdots \otimes g_n \mid g_i \in G}
+        \end{align*}
+        are linearly independent for $F_n$. Indeed, if
+        \begin{align*}
+            0 = \sum a_ig_i (1 \otimes g_1 \otimes \cdots \otimes g_n) = \sum a_i (g_i \otimes g_1 \otimes \cdots \otimes g_n)
+        \end{align*}
+        Since the $a_i$ are integers and $F_n$ is a free $\Z$-module, we see that all $a_i = 0$ which shows that $\sum a_ig_i = 0$. The elements of $\mathscr S$ obviously span $F_n$, so we are done.
+
+        \item Since $\Z$ is free we only have to determine that $\ve s_{-1}(1) = 1$. This is clear since $\ve s_{-1}(1) = \ve(1) = 1$. Next notice that $d_1s_0(g) = d_1(1 \otimes g) = g - 1$ and that $s_{-1} \ve(g) = s_{-1}(1) = 1$, so $d_1s_0 + s_{-1}\ve = 1$ since it acts by identity on all the basis elements. Next, notice that, after a sum manipulation,
+        \begin{align*}
+            d_{n+1}s_n(g_0 \otimes \cdots \otimes g_n) &= d_{n+1}(1 \otimes g_0 \otimes \cdots \otimes g_n) \\&= g_0 \otimes g_1 \otimes \cdots \otimes g_n + \sum_{i=0}^{n-1} (-1)^{i+1} (1 \otimes g_0 \otimes \cdots \otimes g_ig_{i+1} \otimes \cdots \otimes g_n) \\ &+ (-1)^{n+1} (1 \otimes g_0 \otimes \cdots \otimes g_{n-1})
+        \end{align*}
+        and, since $d_n$ is a $G$-module homomorphism,
+        \begin{align*}
+            s_{n-1}d_n(g_0 \otimes \cdots \otimes g_n) &= s_{n-1}\bigg(g_0g_1 \otimes \cdots \otimes g_n + \sum_{i=1}^{n-1} (-1)^i (g_0 \otimes g_1 \otimes \cdots \otimes g_ig_{i+1} \otimes \cdots \otimes g_n) 
+            \\& + (-1)^n (g_0 \otimes g_1 \otimes \cdots \otimes g_{n-1})\bigg)
+            \\&= 1 \otimes g_0g_1 \otimes \cdots \otimes g_n + \sum_{i=1}^{n-1} (-1)^i (1 \otimes g_0 \otimes \cdots \otimes g_ig_{i+1} \otimes \cdots \otimes g_n) \\
+            &+ (-1)^n (1 \otimes g_0 \otimes \cdots \otimes g_{n-1})
+        \end{align*}
+        Notice that $(-1)^k + (-1)^{k+1} = 0$. We can clearly see that the terms of the sums will cancel with each other, except for the 0th term of the sum in $d_{n+1}s_n$. This cancels with the first term in $s_{n-1}d_n$. Lastly, by the fact mentioned above again the terms with $(-1)^n$ and $(-1)^{n+1}$ cancel with each other, which just leaves $g_0 \otimes g_1 \otimes \cdots \otimes g_n$. So indeed $d_{n+1}s_n + s_{n-1}d_n = 1$.
+
+        \item We wish to show that the two homomorphisms of chain complexes in the below diagram are chain homotopic via the homomorphisms $s_n$:
+        \[\begin{tikzcd}
+            \cdots & {F_n} & {F_{n-1}} & \cdots & {F_0} & \Z & 0 \\
+            \cdots & {F_n} & {F_{n-1}} & \cdots & {F_0} & \Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["{d_n}", from=1-2, to=1-3]
+            \arrow["1"', shift right, from=1-2, to=2-2]
+            \arrow["0", shift left, from=1-2, to=2-2]
+            \arrow["{d_{n-1}}", from=1-3, to=1-4]
+            \arrow["{s_{n-1}}"{description}, from=1-3, to=2-2]
+            \arrow["1"', shift right, from=1-3, to=2-3]
+            \arrow["0", shift left, from=1-3, to=2-3]
+            \arrow["{d_1}", from=1-4, to=1-5]
+            \arrow["{s_{n-2}}"{description}, from=1-4, to=2-3]
+            \arrow["\ve", from=1-5, to=1-6]
+            \arrow["{s_0}"{description}, from=1-5, to=2-4]
+            \arrow["1"', shift right, from=1-5, to=2-5]
+            \arrow["0", shift left, from=1-5, to=2-5]
+            \arrow[from=1-6, to=1-7]
+            \arrow["{s_{-1}}"{description}, from=1-6, to=2-5]
+            \arrow["1"', shift right, from=1-6, to=2-6]
+            \arrow["0", shift left, from=1-6, to=2-6]
+            \arrow["0"{description}, from=1-7, to=2-6]
+            \arrow["0", shift left, from=1-7, to=2-7]
+            \arrow["1"', shift right, from=1-7, to=2-7]
+            \arrow[from=2-1, to=2-2]
+            \arrow["{d_n}", from=2-2, to=2-3]
+            \arrow["{d_{n-1}}", from=2-3, to=2-4]
+            \arrow["{d_1}", from=2-4, to=2-5]
+            \arrow["\ve", from=2-5, to=2-6]
+            \arrow[from=2-6, to=2-7]
+        \end{tikzcd}\]
+        Equivalently that $1 - 0 = 1 = d_{n+1}s_n + s_{n-1}d_n$ for all $n$. This is precisely what we verified in part (c).
+
+        \item We first prove the following lemma:
+        
+        \begin{lemma}
+            Let $\mathscr{A} = \SET{A^n}$ and $\mathscr{B} = \SET{B^n}$ be chain complexes, and let $\alpha, \beta$ be (chain) homomorphisms between them. If $\alpha$ and $\beta$ are chain homotopic via the maps $s_n: A^n \to B^{n+1}$, then they induce the same homomorphisms on homology groups.
+        \end{lemma}
+        \begin{proof}
+            Recall that by definition of chain homotopy, if the maps $A^{n+1} \to A^n$ and $B^{n+1} \to B^n$ are both denoted $d_{n+1}$, then $\alpha - \beta = d_{n+1}s_n + s_{n-1}d_n$. Thus, if $z \in \ker d_n$, then $(\alpha - \beta)(z) = d_{n+1}s_n(z) + s_{n-1}d_n(z) = d_{n+1}(s_n(z))$, so $(\alpha - \beta)(z) \in \Im d_{n+1}$. Recall that the induced map of $\alpha$ on homology groups $H^n(\mathscr{A}) \to H^n(\mathscr{B})$ is defiined as $\alpha_n(\overline z) = \overline{\alpha_n(z)}$. In particular, we see the induced map of $\alpha - \beta$ on homology groups $H^n(\mathscr{A}) \to H^n(\mathscr{B})$ is $\overline{(\alpha_n - \beta_n)(z)} = \overline{\alpha_n}(z) - \overline{\beta_n}(z) = 0$, as verified above, so $\alpha$ and $\beta$ induce the same homomorphisms on homology groups.
+        \end{proof}
+        From the definition we can see clearly that the induced map on homology groups of the identity chain map are just the identity maps, and the induced map on homology groups of the zero map is just the zero map. Since the identity chain map is homotopic to the zero chain map, we have that the identity map on the $n$th homology group of the above chain is precisely equal to the zero map. This is only possible if every homology group is 0, so the chain complex is exact. 
+        
+        Since each term in the chain is a free $G$-module, and in particular projective, and each $d_n$ and $\ve$ are actually $G$-module homomorphisms, we have that the chain complex is a projective $G$-module resolution of $\Z$.
+    \end{enumerate}
+
+    \newpage
+    \begin{theorem}
+        Suppose $G$ is an infinite cyclic group with generator $\sigma$. 
+        \begin{enumerate}[label=(\alph*)]
+            \item Prove that multiplication by $\sigma-1 \in \Z G$ defines a free $G$-module resolution of 
+            \[\begin{tikzcd}
+                {\Z: 0} & {\Z G} & {\Z G} & {\Z } & 0
+                \arrow[from=1-1, to=1-2]
+                \arrow["{\sigma-1}", from=1-2, to=1-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-4, to=1-5]
+            \end{tikzcd}\]
+            \item Show that $H^0(G,A) \cong A^G$, that $H^1(G, A) \cong A/(\sigma-1)A$, and that $H^n(G, A) = 0$ for $n \geq 2$. Deduce that $H^1(G, \Z G) \cong \Z$.
+        \end{enumerate}
+    \end{theorem}
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Since $\Z G$ is a free abelian group, we define a homomorphism $\pi: \Z G \to \Z$ by sending $\sigma \to 1$. We claim this yields the following projective resolution:
+        \[\begin{tikzcd}
+            0 & {\Z G} & {\Z G} & \Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["{\sigma-1}", from=1-2, to=1-3]
+            \arrow["\pi", from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}\]
+        We claim that $p(x) \in \Z[x]$ has a factor of $(x-1)$ iff $p(1) = 0$. The forward direction is clear, and by applying the division algorithm to the Euclidean Domain $\Q[x]$, and using Gauss's lemma, we get a reduction of $p(x) = (x-1)q(x)$ for some $q(x) \in \Z[x]$. Thus, if $\sum_{i=0}^n a_i \sigma^i \mapsto 0$, we know that $\sum a_i = 0$, so thinking about $p(\sigma) = \sum a_i\sigma^i$ as a polynomial we write $p(\sigma) = (\sigma-1)q(\sigma)$ for some $q \in \Z[x]$. Thus $\ker \pi = (\sigma-1)\Z G$. Now, notice that if 
+        \begin{align*}
+            (\sigma-1)\sum_{i=0}^n a_i\sigma^i = (\sigma-1)\sum_{i=0}^m b_i\sigma^i \\
+        \end{align*}
+        This would translate to a linear relation on the linearly independent elements $\sigma^i$, a contradiction (where we crucially use that $|\sigma|$ is infinite). Thus we deduce $n=m$ and $a_i = b_i$ for all $0 \leq i \leq n$. So the sequence is exact, yielding a projection $G$-module resolution of $\Z$.
+
+        \item Recall that $H^n(G, A) = \Ext^n_{\Z G}(\Z, A)$ and that $\Ext^0_{\Z G}(\Z, A) = \Hom_{\Z G}(\Z, A)$. Recall that every abelian group homomorphism $\cph: \Z \to A$ is determined by $\cph(1) = a$. Then $\cph$ is a $G$-module homomorphism iff $a = \cph(1) = \cph(\sigma^i \cdot 1) = \sigma^i \cdot a$ iff $a$ is fixed by every element of $G$. Thus $H^0(G, A) \cong A^G$ via the isomorphism $\cph \mapsto \cph(1)$. We have the following cochain complex:
+        \[\begin{tikzcd}
+            0 & {\Hom_{\Z G}(\Z, A)} & {\Hom_{\Z G}(\Z G, A)} & {\Hom_{\Z G}(\Z G, A)} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}\]
+        We see that $\ve$ is the map sending $\cph \in \Hom_{\Z G}(\Z, A)$ to $\cph \circ \pi: \Z G \to A$, and similarly $d_1$ is the map sending $\psi \in \Hom_{\Z G}(\Z G, A)$ to $\psi \circ (\sigma-1)$, $d_2$ is the map sending $\Hom_{\Z G}(\Z G, A)$ to $0$, and $d_n$ is the identity map $0 \to 0$ for $n \geq 3$.
+
+        We prove the following lemma:
+        \begin{lemma}
+            Let $\cph: A \to B$ be a homomorphism of $R$-modules. Then for any submodule $M \subset A$, there is an induced homomorphism $\overline \cph$ making the following diagram commute:
+            \[\begin{tikzcd}
+                A & B \\
+                {A/M} & {B/\cph(M)}
+                \arrow["\cph", from=1-1, to=1-2]
+                \arrow[from=1-1, to=2-1]
+                \arrow[from=1-2, to=2-2]
+                \arrow["{\widetilde \cph}", from=2-1, to=2-2]
+            \end{tikzcd}\]
+            if $\cph$ is surjective, so is $\widetilde \cph$, and similarly if $\cph$ is injective, so is $\widetilde \cph$.
+        \end{lemma}
+        \begin{proof}
+            We seek to define the map $\widetilde \cph(\overline a) = \overline{\cph(a)}$. This is well-defined since if $\overline a = \overline{a'}$, then $a - a' \in M$, so $\cph(a) - \cph(a') \in \cph(M)$, so $\overline{\cph(a)} = \overline{\cph(a')}$. $\widetilde \cph$ is obviously a homomorphism, so suppose that $\cph$ is surjective. Then for any $\overline b \in B/\cph(M)$, we can find $a \in A$ so that $\cph(a) = b$, then $\widetilde \cph(\overline a) = \overline{\cph(a)} = \overline b$, so $\widetilde \cph$ is surjective. If $\cph$ is injective, if $\widetilde \cph(\overline a) = \widetilde \cph(\overline{a'})$, then $\overline{\cph(a)} = \overline{\cph(a')}$, so $\cph(a) - \cph(a') \in \cph(M)$, so $a - a' \in M$ by injectivity, and $\overline a = \overline{a'}$, so $\widetilde \cph$ is injective.
+        \end{proof}
+        Recall that $\Hom_R(R, A) \cong A$ via the map $\cph \mapsto \cph(1)$ for any $R$-module $A$. Notice that 
+        \begin{align*}
+            d_1(\Hom_{\Z G}(\Z G, A)) &= \SET{\cph((\sigma-1)x) \mid \cph \in \Hom_{\Z G}(\Z G, A)} 
+            \\&= \SET{(\sigma-1)\cph \mid \cph \in \Hom_{\Z G}(\Z G, A)} = (\sigma-1)\Hom_{\Z G}(\Z G, A)
+        \end{align*}
+        The image of the last term on the right under the above map is clearly $(\sigma-1)A$. Thus by the lemma we have that $H^1(G, A) \cong A/(\sigma-1)A$. Since the kernel of $d_n$ is 0 for $n \geq 3$, we see that $H^n(G, A) = 0$ for $n \geq 2$.
+        
+        Finally, we have that $H^1(G, \Z G) \cong \Z G / (\sigma-1) \Z G \cong \Z$ since the sequence in part (a) is exact.
+    \end{enumerate}
+\end{document}

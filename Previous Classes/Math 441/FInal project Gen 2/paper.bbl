@@ -1,0 +1,50 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Jones%
+\ \BBA {} Singerman%
+}{%
+Jones%
+\ \BBA {} Singerman%
+}{%
+{\protect \APACyear {1987}}%
+}]{%
+complex}
+\APACinsertmetastar {%
+complex}%
+\begin{APACrefauthors}%
+Jones, G\BPBI A.%
+\BCBT {}\ \BBA {} Singerman, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1987}.
+\newblock
+\APACrefbtitle {Complex Functions: An Algebraic and Geometric Viewpoint}
+  {Complex functions: An algebraic and geometric viewpoint}.
+\newblock
+\APACaddressPublisher{}{Cambridge University Press}.
+\newblock
+\begin{APACrefDOI} \doi{10.1017/CBO9781139171915} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+\APACcitebtitle {Möbius Transformation is Bijection}}{%
+\APACcitebtitle {Möbius Transformation is Bijection}}{%
+{\protect \APACyear {2019}}%
+}]{%
+bijective}
+\APACinsertmetastar {%
+bijective}%
+\APACrefbtitle {Möbius Transformation is Bijection.} {Möbius transformation
+  is bijection.}
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+\APAChowpublished
+  {\url{https://proofwiki.org/wiki/M%C3%B6bius_Transformation_is_Bijection}}.
+\newblock
+\APACrefnote{Accessed: 2023-8-17}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

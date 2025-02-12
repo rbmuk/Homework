@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 334 HW 4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		\fbox{$\implies$}
+		
+		First note that every ball centered about $x$ is of the form $B(x, \ve)$ where $ \ve > 0$. Suppose that $\seq{x}{n}$ is a sequence in $\R^n$ that converges to $x \in \R^n$.  Then given any $\ve > 0$, there is some $N > 0$ such that for all $n > N$, $\mg{x_n-x}<\ve \iff x_n \in B(x, \ve)$. Clearly there are infinitely many $n > N$, so there are also infinitely many $x_n \in B(x, \ve). \qed$
+		
+		\fbox{$\impliedby$} 
+		
+	Suppose that every ball centered at $x$ contains infinitely many elements of the sequence and that $\seq{x}{n}$ does not converge to $x$. Then there is some $\ve > 0$ such that for all $N>0$ there is some $n>N$ such that $\mg{x_n-x} \geq \ve$.
+	
+	Then given any $\ve > 0$, we have that 
+	
+	\item 
+	Because $\seq{x}{n} \to x$ for some $x\in \bR$, we know that for all $\ve>0$, there is some $N \in \bN$ such that if $n>N$, we have that $|x_n-x|<\ve$. Now let $\ve>0$. Choose $N\in \bN$ so that if $n > N$, $|x_n-x|<\ve/2$. We see that because $m(n)>n>N$, $|x_{m(n)}-x| < \ve/2$, therefore $|x_{m(n)}-x_n| = |x_{m(n)}-x+x-x_n| \leq |x_{m(n)}-x|+|x_n-x| < \ve/2 + \ve/2 = \ve$. This proves that $x_{m(n)}-x_n \to 0. \qed$ 
+		
+	\item
+	Suppose that there was no such $c$. Then $f(x)$ gets arbitrarily small, that is for every $n \in \bN$, there is some $0 \leq x_n \leq 1$ such that $f(x_n) < 1/n$. Then $\seq{x}{n}$ is a bounded sequence, because every point is contained in $[0, 1]$. Then it contains a convergent subsequence, $(x_{n_k}) \to x$, and because $[0, 1]$ is compact, $x \in [0, 1]$. We see that $f(x_{n_k}) \to 0$, because given $\ve > 0$, choose $N > 1/\ve$. Then for all $k > N$, $n_k \geq k > N$, therefore $|x_n-x| < 1/n_k < 1/N < \ve$. But $f(x)$ is continuous, so $f(x_{n_k}) \to f(x)$, so therefore $f(x)=0$, a contradiction. So some $c$ must exist. $\qed$
+			
+	\item 
+	Let $f(x)=4$ for all $x \in \R$, and let $\seq{x}{n}=4$ for all $n \in \bN$. We see that $f(x_n)=4$ for every $x_n$. Then $y_n = \sum_{k=1}^{n} f(x_k) = \sum_{k=1}^{n} 4 = 4n$. Given any $M > 0$, choose $N > M/4$. Then for all $n > N$, $y_n \geq y_N = 4N > M$. So $y_n$ diverges, which means that we have disproven this statement. $\qed$
+	
+	\item 
+	
+	\end{enumerate}
+\end{document}

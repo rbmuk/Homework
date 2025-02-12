@@ -1,0 +1,167 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+\newcommand{\ra}{\rightarrow}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{CSE 311 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item[2.1]
+		\begin{enumerate}
+			\item 
+			The "proof" is incorrect because they started with the conclusion and concluded the hypothesis.
+			\item It is false, take $a = 1, b = 0, c = 2$. Clearly $ab = bc = 0$, while $a \neq c$. The statement would however be true if we restrict our domain to non-zero real numbers.
+		\end{enumerate}
+		\item[2.2]
+		\begin{enumerate}
+			\item The above proof is incorrect as $\sqrt{a^2} = \abs{a}$, which is not necessarily $a$ (it could be $-a$). If we impose the additional restriction that $a, b \geq 0$, then the statement is true, as $\abs{x} = x$ for all $x \geq 0$.
+			\item The above statement is false. Take $a = 1, b = -1$. Clearly $a^2 = b^2 = 1$, while $a \neq b$.
+		\end{enumerate}
+	
+		\newpage
+		\setItemnumber{3}
+		\item 
+		\begin{enumerate}
+			\item $Mysterious(x) = \exists k (x-3 = 4k)$.
+			\item 
+			\begin{alignat*}{2}
+				&\text{let $a$ be arbitrary} \\
+				&\qquad 1.1. \; Mysterious(a) \justif{Assumption} \\
+				&\qquad 1.2. \; \exists k (a-3 = 4k) \justif{Definition of Mysterious(a)} \\
+				&\qquad 1.3. \; a-3 = 4b \justif{Elim $\exists$} \\
+				&\qquad 1.4. \; a = 4b+3 \justif{Add 3 to both sides} \\
+				&\qquad 1.5. \; a = 2(2b+1) + 1 \justif{Factor out a 2}  \\
+				&\qquad 1.6. \; \exists l (a = 2l + 1) \justif{Intro $\exists$} \\
+				&\qquad 1.7. \; Odd(a) \justif{Definition of Odd(a)} \\
+				&2. \; Mysterious(a) \ra Odd(a) \justif{Direct proof rule} \\
+				&3. \; \forall x (Mysterious(x) \ra Odd(x)) \justif{Intro $\forall$}
+			\end{alignat*}
+			\item Let $x \in \bZ$ be arbitrary. If $4 \mid (x-3)$, then $x-3 = 4k$ for some $k \in \bZ$. Rearranging, we get that $x = 4k+3=4k+2+1=2(2k+1)+1$, and clearly $2k+1 \in \bZ$, so $x$ is odd by the definition of an odd number. As $x$ was arbitrary, we have proven our statement. $\qed$
+			\item The first sentence corresponds to the first 3 lines of my proof, that is $a$ being arbitrary and using the definition of Mysterious($x$). The part before the second comma corresponds to the next 3 lines of algebra, and the part after the comma corresponds to translating that to $Odd(a)$. The last sentence corresponds to the last 2 lines of the proof--reintroducing the $\forall$.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		Let $a \in (A \cap B) \cup (A \cap C)$ be arbitrary. By the definition of union, we know that $a \in A \cap B$, or $a \in A \cap C$. In the first case, $a \in A$ and $a \in B$, so $a \in A$, and we are done. In the second case, $ a \in A$, and $a \in C$, so $a \in A$, and we are also done. In any case, $a \in A$, and as $a$ was arbitrary, we have the inclusion $(A \cap B) \cup (A \cap C) \subseteq A$. $\qed$
+		
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item Given any $x \in (B \setminus A) \cap (C \setminus A)$, we see that $x \in B$ and $x \not \in A$, and that $x \in C$ and $x \not \in A$. It is now clear that we have both $x \in B$ and $x \in C$, which shows that $x \in B \cap C$. We also have $x \not \in A$ (twice, in fact), so by the definition of set difference, we have that $x \in (B \cap C) \setminus A$. As $x$ was arbitrary, we have that $(B \setminus A) \cap (C \setminus A) \subseteq (B \cap C)\setminus A$. Given $x \in (B \cap C) \setminus A$, we have that $x \in B \cap C$ and that $x \not \in A$. The first condition is equivalent to $x \in B$ and $x \in C$, so we see see that $x \in B$ and that $x \not \in A$, and at the same time we have that $x \in C$ and $x \not \in A$ (this step is similar to intro $\land$ in a formal proof). This shows that $x \in (B \cap C) \setminus A$, by the definition of $\cap$ and $\setminus$. As $x$ was arbitrary, we have the reverse inclusion $(B \setminus A) \cap (C \setminus A) \supseteq (B \cap C)\setminus A$, which proves that the two sets are indeed equal.
+			
+			 Here is the chain of equivalences:
+			\begin{alignat*}{2}
+				&x \in (B \setminus A) \cap (C \setminus A) \\
+				&\iff x \in B \setminus A \land x \in C \setminus A \justif{Definition of $\cap$}\\
+				&\iff (x \in B \land x \not \in A) \land (x \in C \land x \not \in A) \justif{Definition of $\setminus$}\\
+				&\iff (x \in B \land x \in C) \land (x \not \in A \land x \not \in A) \justif{Commutativty, and associativity twice} \\
+				&\iff (x \in B \land x \in C) \land x \not \in A \justif{$p \land p \equiv p$} \\
+				&\iff x \in (B \cap C) \land x \not \in A \justif{Definition of $\cap$} \\
+				&\iff x \in (B \cap C) \setminus A \justif{Definition of $\setminus$}
+			\end{alignat*}
+			\item Take $\set{1, 2, 3} = A = B = C$. Note that $A \setminus B = B \setminus C = \emptyset$. Therefore, the LHS is $A \setminus \emptyset = A = \set{1, 2, 3}$, while the RHS is $\emptyset \setminus C = \emptyset \neq \set{1, 2, 3}$, so we have found a counterexample. This is not a surprising result, as subtraction of real numbers is also not associative.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item The first problem is that $X \subseteq S \cup T \ra X \subseteq S \lor X \subseteq T$. This is false, take $X = \set{1, 2, 3}$, $S = \set{1, 2}$, and $T = \set{3}$. Clearly the first statement is true while the second is false. The proof strategy error is that all they attempted to do was show that $P(S \cup T) \subseteq P(S) \cup P(T)$, but they also had to show the other direction, which is that $P(S) \cup P(T) \subseteq P(S \cup T)$.
+			\item This statement is also false, take $S = \set{1}, T = \set{2}$. $P(S) = \set{\emptyset, \set{1}}$, $P(T) = \set{\emptyset, \set{2}}$, and as $S \cap T = \emptyset$, $P(S \cap T) = \set{\emptyset}$. The union of all of these powersets is $\set{\emptyset, \set{1}, \set{2}}$, which clearly does not contain $S \cup T = \set{1, 2}$, which is certainly in the LHS. So these aren't equal, and we are done.
+		\end{enumerate}
+	
+		\newpage
+		\item 
+		\begin{enumerate}
+			\item Given two arbitrary positive integers $x, y$, we know that $x \geq 1$, and $y \geq 1$. Then $x + y \geq 2$, so at the very least $x + y \neq 1$, which proves that it is not an arbitrary positive integer (as \textit{arbitrary} would mean that it can take on the value of all positive integers!)
+			\item Let $(x, y) \in (S \cup T) \cross V$ be arbitrary. \\ ... \\ Therefore, $(x, y) \in (S \cross V) \cup (T \cross V)$. As $(x, y)$ was arbitrary, this shows that $(S \cup T) \cross V \subseteq (S \cross V) \cup (T \cross V)$. 
+			
+			Next, let $(x, y) \in (S \cross V) \cup (T \cross V)$ be arbitrary. \\ ... \\ Therefore, $(x, y) \in (S \cup T) \cross V$. As $(x, y)$ was arbitrary, this shows that $(S \cup T) \cross V \supseteq (S \cross V) \cup (T \cross V)$. Because both sets are contained in each other, they are equal. $\qed$
+		\end{enumerate}
+		
+		\newpage
+		\item This assignment was particularly short. I have been really excited to get to English proofs, as it is something that I have practiced a LOT. I love math, and started learning English proofs this summer when I was reading, "Abstract Algebra: An Introduction" by T.W. Hungerford, which is where i was introduced to a lot of the number theory that we are now learning in class. I hope to take graduate algebra next year, so although I know a lot of proofs already, I find it helpful that I finally understand the underlying logic behind what I was doing (or at least, I have a better understanding of the sort). This problem set took me $\approx$ 3 hours (I take a while to review stuff). I spent the most time on problem 3, as I had to write an inference proof, which takes long to type up (it was also fairly confusing).
+	\end{enumerate}
+\end{document}

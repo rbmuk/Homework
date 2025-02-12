@@ -1,0 +1,180 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 Pset 1}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item By the theorem due to Hadamond, the radius of convergence of $e^z$ is just 
+		\begin{align*}
+			\frac1{\limsup_{n \to \infty} \sqrt[n]{\frac{1}{n!}}} &= \frac1{\lim_{N \to \infty} \sup_{k \geq N} \sqrt[k]{\frac{1}{k!}}}
+		\end{align*}
+		$\limsup_{n \to \infty} a_n = \liminf_{n\to \infty} a_n = \lim_{n \to \infty} a_n$ iff the limit exists. So it suffices to show that $\lim_{k \to \infty} 1/(k!)^{1/k}$ exists. This exists and equals 0 if $\lim_{k \to \infty} (k!)^{1/k}$ equals infinity, which is what I shall show. Since $\sqrt{2\pi k}(k/e)^k/k! \to 1$ (Stirling's approximation), for $k$ sufficiently large $k! \leq 2\sqrt{2\pi k}(k/e)^k$. Taking $k$-th roots on both sides, noting that $c^{1/k}$ is a decreasing function, we get that $k!^{1/k} \geq (2\sqrt{2\pi})^{1/k}k^{1/2k}(k/e)$. Finally, $\lim_{k \to \infty} (2\sqrt{2\pi})^{1/k} = (2\sqrt{2\pi})^{\lim_{k \to \infty} 1/k} = (2\sqrt{2\pi})^0 = 1$. Note: $\lim_{k \to \infty} (k^{1/k})^{1/2} = (\lim_{k \to \infty} k^{1/k})^{1/2} = (e^{\lim_{k \to \infty} \log(k)/k})^{1/2} = (e^0)^{1/2} = 1$. We have used the well-known fact that $\log(k)/k \to 0$. Clearly $k/e \to \infty$ as $k \to \infty$. Since $k!^{1/k}$ was larger than this, $k!^{1/k}$ also tends to infinity, as claimed. So the radius of convergence is $\infty$, and this series converges on the entire complex plane.
+		
+		Similarly, the radius of convergence of the series defining $\sin(z)$ will be
+		\begin{align*}
+			\frac1{\lim_{N\to \infty} \sup_{k \geq N} \frac{1}{(2k+1)!}}
+		\end{align*}
+		and by the exact same reasoning as last time ($\lim_{N \to \infty} 1/(2N+1)! = 0$), we see this tends to $\infty$. So indeed $\sin(z)$ also converges on the entire complex plane.
+		
+		One notes that, by the taylor expansion,
+		\begin{align*}
+			\frac{e^{iz}-e^{-iz}}{2i} &= \frac1{2i} \qty(\sum_{k=0}^\infty \frac{(iz)^k}{k!} - \frac{(-1)^k (iz)^k}{k!}) \\
+			&= \frac 12 \qty(\sum_{k=0}^\infty \frac{i^{k-1}z^k}{k!} - \frac{(-1)^k i^{k-1}z^k}{k!})
+		\end{align*}
+		If $k \equiv 2 (\mod 4)$, $i^{k-1} = i^{2+4k-1} = i$, and clearly $(-1)^k = 1$. We see that in this case the terms cancel exactly, so the series vanishes when $k \equiv 2 (\mod 4)$. Similarly, if $k \equiv 0 (\mod 4)$, $i^{k-1} = i^{-1} = -i$, and also $(-1)^k = 1$. Th terms cancel again. We are left with just odd terms in our series, so our series becomes:
+		\begin{align*}
+			\frac 12 \qty(\sum_{k=0}^\infty \frac{i^{2k+1-1}z^{2k+1}}{(2k+1)!} - \frac{(-1)^{2k+1} i^{2k+1-1}z^{2k+1}}{(2k+1)!}) &= \frac 12 \qty(\sum_{k=0}^\infty \frac{i^{2k}z^{2k+1}}{(2k+1)!} - \frac{(-1)^{2k+1} i^{2k}z^{2k+1}}{(2k+1)!})
+		\end{align*}
+		If $k$ is even, $i^{2k} = 1$, and if $k$ is odd, $i^{2k} = -1$. So $i^{2k} = (-1)^k$. Also, $(-1)^{2k+1} = (-1)^{2k} \cdot -1 = -1$. We see that:
+		\begin{align*}
+			\frac 12 \qty(\sum_{k=0}^\infty \frac{i^{2k}z^{2k+1}}{(2k+1)!} - \frac{(-1)^{2k+1} i^{2k}z^{2k+1}}{(2k+1)!}) &= \frac 12 \qty(\sum_{k=0}^\infty \frac{(-1)^k z^{2k+1}}{(2k+1)!} - \frac{-1 \cdot (-1)^k z^{2k+1}}{(2k+1)!}) \\
+			&= \frac 12 \qty(\sum_{k=0}^\infty \frac{2(-1)^k z^{2k+1}}{(2k+1)!}) \\
+			&= \sin(z)
+		\end{align*}
+		As claimed. For the final part, note that
+		\begin{align*}
+			|\sin(iR)| = \qty|\frac1{2i}| \cdot |e^{i \cdot iR} - e^{-i \cdot iR}| = \frac12 \cdot |e^{-R} - e^R| \geq \frac12 (e^R - e^{-R})
+		\end{align*}
+		As $R \geq 1$, $e^{-R} \leq 1$, so $-e^{-R} \geq -1$, and we see that
+		\begin{align*}
+			\frac12 (e^R - e^{-R}) \geq \frac 12 (e^R - 1)
+		\end{align*}
+		Finally, I claim that $\frac12 (e^R - 1) \geq \frac1{1000} e^{R/1000}$. For clearly, plugging in $R = 1$ to the LHS gives us $\frac{12}(e - 1) \geq \frac12 \geq e^{1/1000}/1000$. The LHS is clearly growing faster than the RHS, so we have proven this mini claim. Finally, $\max_{|z| \leq R} |\sin(z)| \geq |\sin(iR)|$, so we have proven the entire claim. It is very weird that $\sin(z)$ is growing faster than exponentially (in some sense).
+	
+		\item A nice one is $f(z) = 1$. A function $f(z)$ is diff'able at $z$ if $\lim_{w \to 0} \frac{f(z+w)-f(z)}{w}$ exists, in our case, 
+		\begin{align*}
+			\lim_{w \to 0} \frac{f(z+w)-f(z)}{w} = \lim_{w \to 0} \frac{1 - 1}{w} = \lim_{w \to 0} 0 = 0
+		\end{align*}
+		As claimed. Also, clearly $|1| = 1$.
+		
+		\item Interpreting $f: \R^2 \to \R^2$, as $f(x, y) = (u(x, y), v(x, y))$ we see that for any pair of curves $r_1(t), r_2(t)$, satisfying $\ip{r_1'(t)}{r_2'(t)} = 0$, for every $t \in \R$, we have that $\ip{f'(r_1(t))}{f'(r_2(t))} = 0$. This is just putting the wording in the problem into something I can use. By the chain rule, $f'(r(t)) = Df \cdot r'(t)$, where the $\cdot$ is a matrix product. For convention we write $Df = \begin{pmatrix}
+			u_x & u_y \\
+			v_x & v_y
+		\end{pmatrix}$. The first pair of curves I shall use is $r_1(t) = (t, 0)$ and $r_2(t) = (0, t)$. It is obvious these curves are orthogonal, and note that $r_1'(t) = (1, 0)$, $r_2'(t) = (0, 1)$. Our inner product becomes 
+		\begin{align*}
+			\ip{\begin{pmatrix} u_x(t,0) & u_y(t, 0) \\ v_x(t, 0) & v_y(t, 0) \end{pmatrix} \cdot (1, 0)}{\begin{pmatrix} u_x(0,t) & u_y(0, t) \\ v_x(0, t) & v_y(0, t) \end{pmatrix} \cdot (0, 1)} = 0 \\
+			\ip{(u_x(t, 0), v_x(t, 0))}{(u_y(0, t), v_y(0, t))} = 0 \\
+			u_x(t, 0)u_y(0, t) + v_x(t, 0)v_y(0, t) = 0 \\
+			u_x(0, 0)u_y(0, 0) + v_x(0, 0)v_y(0, 0) = 0
+		\end{align*}
+		The last line comes from seeing that this is indeed true for all nonzero $t$, then taking a limit as $t \to 0$ noting that $u, v \in C^\infty$. The next two curves we use are $r_1(t) = (t, t)$, and $r_2(t) = (t, -t)$. I won't write this one out, as you go through a very similar calculation, but in the end you get that $u_x^2 - u_y^2 + v_x^2 - v_y^2 = 0$. Note also that $2iu_x(0, 0)u_y(0, 0)  = -2iv_x(0, 0)v_y(0, 0)$ (just multiply by $2i$ and rearrange). Note: from here forward all partials are evaluated at $(0, 0)$. The first equation tells us that $u_x^2 + i^2u_y^2 = v_y^2 + i^2v_x^2$, and adding the new second equation gives us that $(u_x+iu_y)^2 = (v_y-iv_x)^2$. In the complex plane, $\sqrt{z^2} = z$ or $-z$. This gives us two cases (the other two cases collapse into these two):
+		$u_x+iu_y = v_y - iv_x$, or $u_x+iu_y = -v_y + iv_x$. In the first case, $u_x = v_y$ and $u_y = -v_x$, so $f$ satisfies the Cauchy-Riemann equations. In the second case, $\overline{f}$ satisfies the Cauchy-Riemann equations. For any $z_0 \in \C$, apply this exact same argument to $f(z+z_0)$, to get that at $z_0$ either $f$ or $\overline{f}$ satisfy the Cauchy-Riemann equations. Suppose there were points $z_0, w_0$ so that at $z_0$ $f$ satisfies the Cauchy-Riemann equations, and at $w_0$ $\overline{f}$ satisfies the Cauchy-Riemann equations. By our argument above, on the line connecting $z_0$ with $w_0$ either $f$ or $\overline{f}$ satisfy the Cauchy-Riemann equations--in particular, we can walk on this line starting at $z_0$ until $\overline{f}$ satisfies the Cauchy-Riemann equations. Call this first point $x_0$ (Note: such a point exists, as $w_0$ at least satisfies this, but it could occur closer to $z_0$. Also, if it turns out that you can always find a point $\ve$ away with this property for every $\ve$, you can just take a limit now like I have done below and see that the argument still works out--this could be done at every point). By construction, any point closer to $z_0$ than $x_0$ on this line is so that $f$ satisfies Cauchy-Riemann. Because $v_x, u_y$ are continuous, for $|w|$ sufficiently small, $|v_x(x_0+w)-v_x(x_0)| < |v_x(x_0)|/10000$ and $|u_y(x_0+w)-u_y(x_0)| < |v_x(x_0)|/1000$ (Note: $|v_x(x_0)| = |u_y(x_0)|$). Then for all $w$ a sufficiently small (in magnitude) multiple of $z_0-x_0$, we see that $f(x_0+w)$ satisfies the Cauchy-Riemann equations. By our construction, $\overline{f(x_0)}$ satisfies the Cauchy-Riemann equations too. So $v_x(x_0+w) = -u_y(x_0 + w)$, while $-v_x(x_0)=u_y(x_0)$. Letting $w \to 0$ shows us that $v_x(x_0) = -v_x(x_0)$, or that $v_x(x_0)$, so in this case $f$ is Cauchy-Riemann at $x_0$ too. Continuing this argument until we have covered the entire line (Note: $u_y$ and $v_x$ are \textit{uniformly} continuous on our line, so this approach works), we see that in our original construction, $f(w_0)$ was also Cauchy-Riemann. Therefore, in this construction, one of $f$ or $\overline{f}$ satisfy the Cauchy-Riemann equations, depending on who satisfies it at the origin. $\hfill$ \textbf{Q.E.F.D.}
+		
+		\item First, algebra shows that $g(z) = (dz-b)/(a-cz)$ is a two sided inverse for the abitrary mobius transform $f(z) = (az+b)/(cz+d)$, and as for sets two sided inverse iff bijective, we see that all mobius transforms are bijective (and, that the inverse function is also a mobius transform--similar to a homeomorphism). Given any two mobius transforms, $f(z) = (az+b)/(cz+d)$, and $g(z) = (tz+u)/(sz+r)$, simple algebra shows that $f \circ g(z) = \frac{z(at+bs)+au+br}{z(ct+ds)+cu+dr}$, so the composition of two mobius transforms is again another mobius transform. We wish to show that these operations preserve the circle / straight line structure (which is actually stronger than what the question asks). Every straight line is of the form $\set{z \in \C \given z = w + tz_0}$ for fixed $w, z_0$ (Note: in this entire problem, $t \in \R$). In the case of dilations, if we take an arbitrary circle $C = \set{z \in \C \given |z - z_0| = r}$ and apply this transformation (assuming $\lambda \neq 0$), we get $\set{z \in \C \given |\lambda z - z_0| = r} = \set{z \in \C \given |z-z_0/\lambda| = r/\lambda}$. Doing this transformation to the straight line would give us $\set{z \in \C \given \lambda z = w + tz_0} = \set{z \in \C \given z = w/\lambda + tz_0/\lambda}$. Clearly $w/\lambda, z_0/\lambda$ are just other fixed complex numbers, so this indeed preserves straight lines. Doing $z \mapsto z + a$ for a regular circle gives us $\set{z \in \C \given |(z+a) - z_0| = r} = \set{z \in \C \given |z-(z_0-a)| = r}$, which is clearly another circle. For straight lines, doing $z \to z + a$ gives us $\set{z \in \C \given z + a = w + tz_0} = \set{z \in \C \given z = (w-a) + tz_0}$, and as $w-a$ is just another complex number, this is indeed still a line. Finally, the inversion $z \mapsto z^{-1}$ is really just $z \to \overline{z}/|z|^2$, which we derived from the identity that $z \overline{z} = |z|^2$. For circles, this becomes $\set{z \in \C \given |\overline{z}/|z|^2 - z_0| = r} = \set{z \in \C \given 1/|z|^2 |\overline{z} - z_0| = r} = \set{z \in \C \given |\overline{z-\overline{z_0}}| = |z|^2r} = \set{z \in \C \given |z-\overline{z_0}| = |z|^2r}$, where we used that $|z| = |\overline{z}|$. Clearly this is now in the form of a circle, as claimed. For the line, write $w = w_0 + iw_1$, and $z_0 = z_1 + i z_2$. Our original line becomes $\set{z \in \C \given z = w_0 + iw_1 + t(z_1 + iz_2)} = \set{a + bi \given a + bi = w_0 + tz_1 + i(w_1 + tz_2)}$, where we have used that every complex number is of the form $a+bi$ many times. In any case, doing $z \mapsto \overline{z}/|z|^2$ would give us $\set{a+bi \given (a-bi)/\sqrt{a^2+b^2} = w_0 + tz_1 + i(w_1+tz_2)}$. Matching real and imaginary parts tells us that $a=\sqrt{a^2+b^2}(w_0+tz_1)$, and that $-b = \sqrt{a^2+b^2}(w_1+tz_2)$. So $b = -\sqrt{a^2+b^2}(w+tz_2)$, which tells us that $a+bi = \sqrt{a^2+b^2}(w_0+tz_1) + i(-\sqrt{a^2+b^2}(w+tz_2))$. Rearranging this gives us $a+bi = \sqrt{a^2+b^2}(w_0-iw_1) + t\sqrt{a^2+b^2}(z_1 - iz_2) = \sqrt{a^2+b^2}\overline{w} + t\sqrt{a^2+b^2}\overline{z}$. Clearly this is in the form of the line definition that I gave above, so thusly inversion preserves the line structure. As a Mobius transformation is simply a finite composition that preserve the circle/line structure, a Mobius transformation also preserves the circle/line structure. \textbf{Q.E.D.}
+		
+		\item We see
+		\begin{align*}
+			\limsup_{n \to \infty} \sqrt[n]{na_n} = \limsup_{n \to \infty} \sqrt[n]{n} \cdot \limsup_{n \to \infty} \sqrt[n]{a_n}
+		\end{align*}
+		This is true because both limsup's exist (I shall show this).
+		\begin{align*}
+			\limsup_{n \to \infty} \sqrt[n]{n} = \lim_{n \to \infty} n^{1/n} = \lim_{n \to \infty} e^{1/n\log(n)} = e^0 = 1
+		\end{align*}
+		So indeed, $\limsup_{n \to \infty} \sqrt[n]{na_n} = 1 \cdot \limsup_{n\to\infty} \sqrt[n]{a_n} = 1/R$. Therefore,
+		\begin{align*}
+			\frac1{\limsup_{n \to \infty} \sqrt[n]{na_n}} = R
+		\end{align*}
+		So the series does indeed have the same radius of convergence. Given $|z| < R$, we want to show that 
+		\begin{align*}
+			\lim_{w \to 0} \frac1w \qty(\sum_{n=0}^\infty a_n(z+w)^n - \sum_{n=0}^\infty a_nz^n)
+		\end{align*}
+		exists and equals $g(z)$. For $w$ sufficiently small, $|z+w| < R$, so we can take the sum outside to get
+		\begin{align*}
+			\lim_{w \to 0} \frac1w \qty(\sum_{n=0}^\infty a_n(z+w)^n - a_nz^n)
+		\end{align*}
+		An infinite sum is really just a limit of partial sums, so this equals
+		\begin{align*}
+			\lim_{w \to 0} \frac1w \qty(\lim_{k \to \infty} \sum_{n=0}^k a_n((z+w)^n - z^n))
+		\end{align*}
+		Depending on $n$, we may find a radius $R_n$ sufficiently small so that if $|w| < R_n$, $(z+w)^n-z^n = nz^{n-1}w + E(w)$ where $|E(w)| \leq \ve|w|/(2^n|a_n|)$ (Note: $|z|^n$ is fixed). Taking $R = \min \set{R_i} \cup \set{1}$ to make sure all these inequalities are true at the same time, we find that
+		\begin{align*}
+			\lim_{w \to 0} \frac1w \qty(\lim_{k \to \infty} \sum_{n=0}^k a_n((z+w)^n - z^n)) &= \lim_{w \to 0} \frac1w \qty(\lim_{k \to \infty} \sum_{n=0}^k a_n(nz^{n-1} + E(w))) \\
+			&= \lim_{w \to 0} \frac1w \qty(\lim_{k \to \infty} \sum_{n=0}^k a_nnz^{n-1} w + \sum_{n=0}^k a_nE(w))
+		\end{align*}
+		Notice that
+		\begin{align*}
+		 \qty|\sum_{n=0}^k a_nE(w)| \leq \sum_{n = 0}^k |a_n||E(w)| \leq \sum_{n = 0}^k |w| \ve / 2^n \leq \ve|w|
+		\end{align*}
+		In particular, $|\qty|\sum_{n=0}^k a_nE(w)|/|w| \leq \ve$ for every positive $\ve$, so as $k \to \infty$, it's limit is indeed 0. Finally, $\lim_{w \to 0} 1/w \lim_{k \to \infty} \sum_{n=0}^k a_nnz^{n-1} w = \lim_{w \to 0} \lim_{k \to \infty} \sum_{n=0}^k a_nnz^{n-1} = \lim_{k \to \infty} \sum_{n=0}^k a_nnz^{n-1}$, which exists by our claim above. This completes the proof that both $f$ is differentiable, and where it is differentiable it's derivative equals $g$.
+	\end{enumerate}
+\end{document}

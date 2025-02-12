@@ -1,0 +1,254 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newmdtheoremenv[
+backgroundcolor=BurntOrange!30,
+linewidth=2pt,
+linecolor=BurntOrange,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mycorollary}{Corollary}
+
+\newenvironment{corollary}{\begin{mycorollary}}{\end{mycorollary}}
+
+
+\newmdtheoremenv[
+backgroundcolor=OrangeRed!30,
+linewidth=2pt,
+linecolor=OrangeRed,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mylemma}{Lemma}
+
+\newenvironment{lemma}{\begin{mylemma}}{\end{mylemma}}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 425 HW8}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Suppose that $f$ has a local maximum at $\textbf{x} \in E$ and that $f'(\textbf{x}) \neq 0$. Then, $\qty|f'(\textbf{x})| > 0$. Now let $\ve > 0$. We expand $f$ as:
+		\begin{align*}
+			f(\textbf{x}+\textbf{h}) = f(\textbf{x}) + \grad{f}(\mathbf{x}) \cdot \textbf{h} + E(h)
+		\end{align*}
+		So that $\qty|{E(\textbf{h})/\textbf{h}}| \to 0$. Now let $\ve > 0$. We shall consider $\textbf{h} = \ve f'(\mathbf{x}) \neq 0$ since $f'(\mathbf{x}) \neq 0$. Indeed, we see that 
+		\begin{align*}
+			f(x+\ve f'(\mathbf{x})) = f(\textbf{x}) + f'(\mathbf{x}) \cdot f'(\mathbf{x}) \ve + E(f'(\mathbf{x}) \cdot \ve) = f(x) + \ve\qty|f(x)|^2 + E(f'(\mathbf{x}) \cdot \ve)
+		\end{align*}
+		Also, since $\qty|E(\textbf{h})/\textbf{h}| \to 0$, we can find a $\delta > 0$ so that $\qty|E(\textbf{h})/\textbf{h}| < \qty|f'(\textbf{x})|/2$. It follows that $\qty|E(\textbf{h})| < \frac12\qty|f'(\textbf{x}) \textbf{h}|$ for all $\qty|\textbf{h}| < \delta$. Now, for all $\ve < \delta / \qty|\grad{f}(\textbf{x})|$, we have that $\qty|E(\ve f'(\textbf{x}))| < \frac{\ve}{2} \qty|f(\textbf{x})|^2$, and in particular, $E(\ve \grad{f}(\textbf{x})) > -\ve/2 |f(\textbf{x})|^2$. It follows then that
+		\begin{align*}
+			f(x+\ve f'(\textbf{x})) > f(\textbf{x}) + \frac{\ve}2 |f(\textbf{x})|^2
+		\end{align*}
+		So it cannot be the case that $\textbf{x}$ was a local minimum of $f$, a contradiction. Thus, $f'(\textbf{x}) = 0$.
+		
+		\item Fix $x \in E$, and let $A = f^{-1}(\set{f(x)})$, and $B = A^c$, i.e. $B = \set{b \in E \given f(b) \neq f(x)}$. Suppose that $f$ is non-constant, i.e. that $B$ is nonempty. We shall show that $A$ is a clopen subset of $E$, which will immediately show that $E$ cannot be connected. First, $A$ is obviously closed since it is the preimage of a closed set (singletons are closed sets). $B$ is therefore open. Suppose that $B$ were not closed. Then there would be some sequence $y_n \to y$ so that $y_n \in B$ and $y \not \in B$, i.e. $y \in A$. Now find $N$ sufficiently large so that $|y_n - y| < 1$ for all $n \geq N$. Now we shall consider $N_1(y)$. First, we prove the following lemma:
+		\begin{lemma}
+			Let $r > 0$ and $x \in \R^n$. Then $N_r(x)$ is convex.
+		\end{lemma}
+		\begin{proof}
+			Letting $x, y \in N_r(x)$, we see for any $0 \leq t \leq 1$,
+			\begin{align*}
+				\mg{tx+(1-t)y} \leq t\mg{x} + (1-t)\mg{y} \leq tr + (1-t)r = r
+			\end{align*}
+		Which completes the proof.
+		\end{proof}
+		So now let $z \in N_1(y)$. Since $N_1(y)$ is convex, we may apply the mean value theorem to see that, for all $i \in \set{1, \ldots, n}$,
+		\begin{align*}
+			e_i \cdot (f(z) - f(y)) = e_i \cdot \qty[f'(\xi)(b-a)]
+		\end{align*}
+		for some $\xi \in \R^n$. Now, 
+		\begin{align*}
+			 \mg{e_i \cdot \qty[f'(\xi)(b-a)]} \leq 1 \cdot \mg{f'(\xi)(b-a)} \leq \mg{f'(\xi)} \cdot \mg{b-a} = 0
+		\end{align*}
+		This shows that the $i$th coordinate of $f(z) - f(y)$ is 0. Since this holds for all $i \in \set{1, \ldots, n}$, $f(z) = f(y)$. But now, since $|y_N - y| < 1$, we have that $f(y_N) = f(y) = f(x)$, a contradiction, since $y_N \not \in A$. So, looking back at what we were contradicting, we see that $f$ is constant.
+		
+		
+		\item Let $f, g: \R^n \to \R$. We notice, by the regular product rule, that
+		\begin{align*}
+			\pdv{x_i} fg = g\pdv{x_i} f + f \pdv{x_i}g
+		\end{align*}
+		We therefore see that
+		\begin{align*}
+			\grad(fg) = \begin{pmatrix}
+				\pdv{x_1} fg \\
+				\ldots \\
+				\pdv{x_n} fg
+			\end{pmatrix} = \begin{pmatrix}
+				g\pdv{x_1} f + f \pdv{x_1}g \\
+				\ldots \\
+				g \pdv{x_n}f + f \pdv{x_n} g
+			\end{pmatrix} = g\begin{pmatrix}
+				\pdv{x_1} f \\
+				\ldots \\
+				\pdv{x_n} f
+			\end{pmatrix} + f \begin{pmatrix}
+				\pdv{x_1} g \\
+				\ldots \\
+				\pdv{x_n} g
+			\end{pmatrix}
+			= g \grad f + f \grad g
+		\end{align*}
+		Similarly, if $f \neq 0$, $\dv{x_i} \frac1f = \frac{-1}{f^2} \cdot \pdv{f}{x_i}$ by the regular quotient rule. It follows then that
+		\begin{align*}
+			\grad(1/f) = \begin{pmatrix}
+				\frac{-1}{f^2} \pdv{f}{x_1} \\
+				\ldots \\
+				\frac{-1}{f^2} \pdv{f}{x_n}
+			\end{pmatrix}
+			= \frac{-1}{f^2} \grad f
+		\end{align*}
+	
+		\item 
+		\begin{align*}
+			f'(0) = \lim_{h \to 0} \frac{h + 2h^2\sin(\frac1h) - 0}{h} = 1 + \lim_{h \to 0} 2h\sin(\frac1h)
+		\end{align*}
+		Now,
+		\begin{align*}
+			\qty|2h\sin(\frac1h)| \leq 2h
+		\end{align*}
+		And so $\qty|2h\sin(\frac1h)| \to 0$, which shows that $f'(0) = 1$. For $t \neq 0$, we can calculate $f'$ using regular derivative rules as
+		\begin{align*}
+			f'(t) = 1 - 2\cdot \cos(\frac1t) + 4t \sin(\frac1t) 
+		\end{align*}
+		By the triangle inequality, this is bounded above by $1 + 2 + 4 = 7$ on $(-1, 1) \setminus 0$, and we already showed it equals 1 at 0. First we notice that $f'\qty(\frac{1}{2\pi n}) = -1$ for all $n \in \bN$. Fix a neighborhood of 0, say $(-t, t)$. First find $n > 0$ so that $\frac{1}{2\pi n} < t$. We also notice that $\color{red}{f\qty(\frac{1}{2\pi n}) = \frac{1}{2\pi n}}$ at all $n \in \bN$. We know that $f$ is continuously differentiable outside of 0, in particular at $x = \frac{1}{2\pi (n+1)} < \frac{1}{2\pi n}$. So find a $\delta > 0$ so that $y \in (x-\delta, x)$ means $f'(y) - f'(x) < 1/2$ and $f(y) - f(x) < f\qty(\frac{1}{2\pi n}) - f(x)$ (which is \textcolor{red}{obviously} positive), in particular, $f(y) < f(\frac{1}{2\pi n})$, and also $f'(y) < -1/2$. Now choosing $z = x - \delta/2$, since $f'(y) < -1/2$ on all of $(x-\delta, x)$, it follows by the mean value theorem that $f(x) - f(z) = f'(\xi)(z-x)$ for some $\xi \in (x-\delta, x)$, and this tells us that $f(x) - f(z) \leq -\frac12(z-x) < 0$, so in particular $f(z) > f(x)$. One also notes that $f(z) < f(\frac{1}{2\pi n})$ by how we defined $\delta$. Then $f(z) \in (f(x), f(\frac{1}{2\pi n}))$, and by the intermediate value theorem there is some $\eta \in (x, \frac{1}{2\pi n})$ so that $f(z) = f(x)$. This tells us that $f$ is not injective, which completes the proof.
+	\end{enumerate}
+\end{document}

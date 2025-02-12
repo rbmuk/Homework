@@ -1,0 +1,210 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Dummit%
+\ \BBA {} Foote%
+}{%
+Dummit%
+\ \BBA {} Foote%
+}{%
+{\protect \APACyear {2003}}%
+}]{%
+dummit}
+\APACinsertmetastar {%
+dummit}%
+\begin{APACrefauthors}%
+Dummit, D.%
+\BCBT {}\ \BBA {} Foote, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2003}.
+\newblock
+\APACrefbtitle {Abstract Algebra} {Abstract algebra}.
+\newblock
+\APACaddressPublisher{}{Wiley}.
+\newblock
+\begin{APACrefURL} \url{https://books.google.com/books?id=KJDBQgAACAAJ}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hungerford%
+}{%
+Hungerford%
+}{%
+{\protect \APACyear {2012}}%
+}]{%
+hungerford2012abstract}
+\APACinsertmetastar {%
+hungerford2012abstract}%
+\begin{APACrefauthors}%
+Hungerford, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2012}.
+\newblock
+\APACrefbtitle {Abstract Algebra: An Introduction} {Abstract algebra: An
+  introduction}.
+\newblock
+\APACaddressPublisher{}{Cengage Learning}.
+\newblock
+\begin{APACrefURL} \url{https://books.google.com/books?id=zRkLAAAAQBAJ}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lang%
+}{%
+Lang%
+}{%
+{\protect \APACyear {2005}}%
+}]{%
+lang2005algebra}
+\APACinsertmetastar {%
+lang2005algebra}%
+\begin{APACrefauthors}%
+Lang, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2005}.
+\newblock
+\APACrefbtitle {Algebra} {Algebra}.
+\newblock
+\APACaddressPublisher{}{Springer New York}.
+\newblock
+\begin{APACrefURL} \url{https://books.google.com/books?id=Fge-BwqhqIYC}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+STOTHERS%
+}{%
+STOTHERS%
+}{%
+{\protect \APACyear {1981}}%
+}]{%
+10.1093/qmath/32.3.349}
+\APACinsertmetastar {%
+10.1093/qmath/32.3.349}%
+\begin{APACrefauthors}%
+STOTHERS, W\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1981}{09}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{POLYNOMIAL IDENTITIES AND HAUPTMODULN}} {{POLYNOMIAL
+  IDENTITIES AND HAUPTMODULN}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Quarterly Journal of Mathematics}{32}{3}{349-370}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1093/qmath/32.3.349}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1093/qmath/32.3.349} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Synder%
+}{%
+Synder%
+}{%
+{\protect \APACyear {2000}}%
+}]{%
+snyder}
+\APACinsertmetastar {%
+snyder}%
+\begin{APACrefauthors}%
+Synder, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {An alternate proof of Mason's theorem} {An alternate
+  proof of mason's theorem}.{\BBCQ}
+\newblock
+\begin{APACrefURL} \url{https://ems.press/journals/em/articles/609}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Waldschmidt%
+}{%
+Waldschmidt%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+Waldschmidt2015LectureOT}
+\APACinsertmetastar {%
+Waldschmidt2015LectureOT}%
+\begin{APACrefauthors}%
+Waldschmidt, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Lecture on the abc Conjecture and Some of Its
+  Consequences} {Lecture on the abc conjecture and some of its
+  consequences}.{\BBCQ}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Wikipedia contributors}%
+}{%
+{Wikipedia contributors}%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+enwiki:1147605007}
+\APACinsertmetastar {%
+enwiki:1147605007}%
+\begin{APACrefauthors}%
+{Wikipedia contributors}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+\APACrefbtitle {Liouville's theorem (differential algebra) --- {Wikipedia}{,}
+  The Free Encyclopedia.} {Liouville's theorem (differential algebra) ---
+  {Wikipedia}{,} the free encyclopedia.}
+\newblock
+\begin{APACrefURL}
+  \url{https://en.wikipedia.org/w/index.php?title=Liouville%27s_theorem_(differential_algebra)&oldid=1147605007}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{[Online; accessed 1-May-2023]}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wiles%
+}{%
+Wiles%
+}{%
+{\protect \APACyear {1995}}%
+}]{%
+FLT}
+\APACinsertmetastar {%
+FLT}%
+\begin{APACrefauthors}%
+Wiles, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1995}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Modular Elliptic Curves and Fermat's Last Theorem}
+  {Modular elliptic curves and fermat's last theorem}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Annals of Mathematics}{141}{3}{443--551}.
+\newblock
+\begin{APACrefURL} [{2023-04-30}]\url{http://www.jstor.org/stable/2118559}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

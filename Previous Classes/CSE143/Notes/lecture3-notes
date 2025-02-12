@@ -1,0 +1,12 @@
+You can cycle through a queue.
+
+e.g.
+for (int i = 0; i < q.size(); ++i) {
+	int n = q.remove();
+	// something else
+	q.add(n);
+}
+
+this will cycle through the queue, as 
+you will remove things in the same order that you put them in.
+

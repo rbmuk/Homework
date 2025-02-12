@@ -1,0 +1,214 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{tikz-cd}
+\usetikzlibrary{calc}
+% `pathmorphing` is necessary to draw squiggly arrows.
+\usetikzlibrary{decorations.pathmorphing}
+
+% A TikZ style for curved arrows of a fixed height, due to AndréC.
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+			.. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+			and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+			.. (\tikztotarget)\tikztonodes}},
+	settings/.code={\tikzset{quiver/.cd,#1}
+		\def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+	quiver/.cd,pos/.initial=0.35,height/.initial=0}
+
+% TikZ arrowhead/tail styles.
+\tikzset{tail reversed/.code={\pgfsetarrowsstart{tikzcd to}}}
+\tikzset{2tail/.code={\pgfsetarrowsstart{Implies[reversed]}}}
+\tikzset{2tail reversed/.code={\pgfsetarrowsstart{Implies}}}
+% TikZ arrow styles.
+\tikzset{no body/.style={/tikz/dash pattern=on 0 off 1mm}}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 504 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Let $G$ be a group of order 8. If $G$ is abelian, then $G \cong \Z/8$, or $\Z/4 \times \Z/2$, or $(\Z/2)^3$ by the fundamental theorem of finite abelian groups. Else, $G$ has an element of order 4, and none of order 8. This is because a group where each element has order dividing 2 is abelian. Indeed, for any $x,y$ $[x,y] = x^{-1}y^{-1}xy = xyxy = (xy)^2 = e$ since every element has order dividing 2. So take $x$ to be an element of order 4. If $G \setminus \gen{x}$ has an element of order 2, say $y$, then $\gen{x} < \gen{x, y} \leq G$, so $\gen{x, y} = G$ by order considerations. This tells us (also by order considerations), that $\gen{y} \cap \gen{x} = 1$, so $G \cong \gen{x} \rtimes \gen{y}$ since $\gen{x}$ is normal in $G$ since it has index 2. This yields $\Z/4 \times \Z/2$ and $D_4$. Otherwise, we can find an element $y \in G \setminus \gen{x}$ of order 4, and every element of order 2 is in $\gen{x}$. Thus, $y^2 \in \gen{x}$, and hence $y^2=x^2$ since the only element of order 2 in $\gen{x}$ is $x^2$. Notice now that, since $\gen{y} \nsg G$ and since $G/\gen{y} \cong \Z/2$, in particular it is abelian, so $xyx\gen{y} = x^2y\gen{y} = y^2\gen{y} = \gen{y}$, so $xyx \in \gen{y}$. It also has order 4: notice that $(xyx)^2 = xyy^2yx = xy^4x = x^2$, which has order 2. Thus $xyx = y$ or $xyx = y^3$. In the second case, $xyx = x^2y$ meaning $yx = xy$. Then since $G = \gen{x, y}$ we have that $G$ is abelian whose case we must've already covered above. Thus $xyx = y$, and $G \cong \gen{x, y \mid x^4 = e, x^2 = y^2, xyx = y} \cong Q_8$.
+		
+		\item Let $G$ be nilpotent and $\cph: G \to H$ be a surjective homomorphism. We see that $\cph(Z_0(G)) = 1 \leq Z_0(H)$, so suppose $\cph(Z_i(G)) \leq Z_i(H)$ for some $i > 0$. Define $\psi: G/Z_i(G) \to H/Z_i(H)$ by $\psi(xZ_i(G)) = \cph(x)Z_i(H)$. This map is well-defined since if $xZ_i(G) = yZ_i(G)$, then $xy^{-1} \in Z_i(G)$, so $\cph(xy^{-1}) = \cph(x)\cph(y)^{-1} \in Z_i(H)$. We have the following commutative diagram:
+		\[\begin{tikzcd}
+		G && H \\
+		\\
+		{G/Z_i(G)} && {H/Z_i(H)}
+		\arrow["\varphi", two heads, from=1-1, to=1-3]
+		\arrow["{\pi_1}"', curve={height=6pt}, two heads, from=1-1, to=3-1]
+		\arrow["{\pi_2}"', curve={height=6pt}, two heads, from=1-3, to=3-3]
+		\arrow["\psi"', dashed, two heads, from=3-1, to=3-3]
+		\arrow["{\pi_2^{-1}}"', curve={height=6pt}, from=3-3, to=1-3]
+		\arrow["{\pi_1^{-1}}"{description}, curve={height=6pt}, from=3-1, to=1-1]
+		\end{tikzcd}\]
+		Where $\pi: H \to H/Z_i(H)$ is the natural projection. \begin{lemma}
+			If $\cph: G \to H$ is a surjective homomorphism then $\cph(Z(G)) \leq Z(H)$.
+		\end{lemma}
+		\begin{proof}
+			Let $g \in Z(G)$ and $h \in H$. Since $\cph$ is surjective, find $x \in G$ so that $\cph(x) = h$. Now, $\cph(g)h = \cph(gx) = \cph(xg) = h\cph(g)$, so $\cph(g) \in Z(H)$, which completes the proof.
+		\end{proof}
+		Using this lemma with the above commutative diagram shows that $\psi(Z(G/Z_i(G))) \leq Z(H/Z_i(H))$. Thus,
+		\begin{align*}
+			\pi_2^{-1} \circ \pi_2 \circ \cph \circ \pi_1^{-1}(Z(G/Z_i(G)) &= \pi_2^{-1} \circ \psi(Z(G/Z_i(G))) \leq \pi_2^{-1}(Z(H/Z_i(H))) = Z_{i+1}(H) \\
+			\implies \cph(Z_{i+1}(G)) &\leq Z_{i+1}(H)
+		\end{align*}
+		In particular, if $Z_n(G) = G$, we have that $Z_n(H) \geq \cph(Z_n(G)) = H$, which completes the proof. In particular, if $G$ is nilpotent then $G/Z(G)$ is.
+		
+		Now we shall show that if $G/Z(G)$ is nilpotent then $G$ is. Notice that the ascending central series for $G/Z(G)$ starts $1, Z(G/Z(G)) = Z_2(G)/Z(G)$. By the third isomorphism theorem, we have the following commutative diagram:
+		\[\begin{tikzcd}
+			G && {G/Z_2(G)} \\
+			\\
+			{G/Z(G)} && {\frac{G/Z(G)}{Z_2(G)/Z(G)}}
+			\arrow["{\pi_2}", two heads, from=1-1, to=1-3]
+			\arrow["\varphi"', curve={height=6pt}, hook, two heads, from=1-3, to=3-3]
+			\arrow["{\pi_1}"', two heads, from=1-1, to=3-1]
+			\arrow["\rho"', two heads, from=3-1, to=3-3]
+			\arrow["{\varphi^{-1}}"', curve={height=6pt}, hook, two heads, from=3-3, to=1-3]
+		\end{tikzcd}\]
+		Recall that isomorphic groups have isomorphic centers. Thus the center of $\frac{G/Z(G)}{Z_2(G)/Z(G)}$ is just $\cph(Z(G/Z_2(G))) = \cph(Z_3(G)/Z_2(G))$. By commutativity of the diagram, 
+		\begin{align*}
+			\cph(Z_3(G)/Z_2(G)) = \rho \circ \pi_1 \circ \pi_2^{-1}(Z_3(G)/Z_2(G)) = \rho \circ \pi_1(Z_3(G)) = \rho(Z_3(G)/Z(G))
+		\end{align*}
+		Simple induction on $i$ will show that $Z_i(G/Z(G)) = Z_{i+1}(G)/Z(G)$. So, if there is an $n \geq 0$ so that $Z_n(G/Z(G)) = G/Z(G)$, then we'd have $Z_{n+1}(G)/Z(G) = G/Z(G)$, so $Z_{n+1}(G) = G$ which completes the proof.
+		
+		\item Let $\alpha$ have minimum polynomial of odd degree. Write
+		\begin{align*}
+			\sum_{i=0}^n c_i\alpha^i = 0
+		\end{align*}
+		Rearrange this sum as,
+		\begin{align*}
+			a_0 + a_1\alpha + \cdots + a_{n-1}\alpha^{n-1} = \alpha(a_1 + \cdots + a_n\alpha^{n-1})
+		\end{align*}
+		If $a_1 + \cdots + a_n\alpha^{n-1} = 0$, then since $a_n \neq 0$, there would be a relation on $1, \alpha, \cdots, \alpha^{n-1}$, a contradiction, since $n$ is minimal. Thus $\alpha = (a_0+\cdots + a_{n-1}\alpha^{n-1})(a_1 + \cdots + a_n\alpha^{n-1})^{-1}$, and we are done.
+	\end{enumerate}
+\end{document}

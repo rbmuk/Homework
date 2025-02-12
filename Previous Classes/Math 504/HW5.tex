@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 504 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item Let $\cph: \Z/2 \to \Aut(\Z/m)$ by $\cph(0)(x) = x$ and $\cph(1)(x) = -x$. Then $\cph$ is a homomorphism and $\Z/m \rtimes \Z/2 = \gen{(1, 0), (0, 1)}$, since this group contains $\gen{(1, 0)} = \Z/m$ and $\gen{(0, 1)} = \Z/2$, so it contains their product. Now, notice that $(0,1)(1,0)(0,1) = (-1, 1)(0, 1) = (-1, 0) = -(1, 0)$. Similarly, $2 \cdot (0, 1) = (0, 0)$, and lastly, $m(1, 0) = (m, 0) = (0, 0)$. So, $\gen{(1, 0), (0, 1) \mid m(1, 0) = 2(0, 1) = (0, 0), (0, 1)(1, 0)(0, 1) = -(1, 0)} = D_m$.
+			
+			\item We see that $D_m$ acts faithfully on the set of vertices of a regular $m$-gon by definition, since $D_m$ is the group of symmetrices of the $m$-gon. If two elements of $D_m$ induced the same permutation of the vertices, then they would be the same symmetry. So, letting $\pi_{D_m}$ be the permutation representation of $D_m$ on the vertices of the $m$-gon, $\pi_{D_m}$ is an injective homomorphism from $D_m$ to $S_m$, so $D_m$ is isomorphic to a subgroup of $S_m$.
+			
+			\item We recall from the above that $D_m = \gen{r, s \mid r^m = s^2 = e, srs = r^{-1}}$. We claim that $D_m$ is an isomorphic copy of $\gen{\begin{pmatrix}
+					\cos(\frac{2\pi}{m}) & -\sin(\frac{2\pi}m) \\
+					\sin(\frac{2\pi}{m}) & \cos(\frac{2\pi}m)
+					\end{pmatrix}, \begin{pmatrix}
+					1 & 0 \\
+					0 & -1
+					\end{pmatrix}}$. We need only verify the relations. Clearly $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}^2 = I$. Geometrically, since $\begin{pmatrix} \cos(\frac{2\pi}{m}) & -\sin(\frac{2\pi}m) \\ \sin(\frac{2\pi}{m}) & \cos(\frac{2\pi}m) \end{pmatrix}$ is a rotation matrix, and rotates by $\frac{2\pi}m$ radians, its order is just $m$. Finally, an explicit calculations shows that
+					\begin{align*}
+						\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} & \begin{pmatrix} \cos(\frac{2\pi}{m}) & -\sin(\frac{2\pi}m) \\ \sin(\frac{2\pi}{m}) & \cos(\frac{2\pi}m) \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} \cos(\frac{2\pi}{m}) & -\sin(\frac{2\pi}m) \\ -\sin(\frac{2\pi}{m}) & -\cos(\frac{2\pi}m) \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \\ 
+						&= \begin{pmatrix} \cos(\frac{2\pi}{m}) & \sin(\frac{2\pi}m) \\ -\sin(\frac{2\pi}{m}) & \cos(\frac{2\pi}m) \end{pmatrix} = \begin{pmatrix} \cos(-\frac{2\pi}{m}) & -\sin(-\frac{2\pi}m) \\ \sin(-\frac{2\pi}{m}) & \cos(-\frac{2\pi}m) \end{pmatrix}
+					\end{align*}
+					Which is indeed the inverse of $r$ (just rotating clockwise $2\pi/m$ radians).
+		\end{enumerate}
+	
+		\item
+		\begin{enumerate}
+			\item Since $S_2 \cong \Z/2$, which is abelian, we have the chain $1 \nsg S_2$. Since $\gen{(123)}$ is a subgroup of index 2 in $S_3$, we have the chain $1 \nsg \gen{(123)} \nsg S_3$. Lastly, conjugating each generator of $\gen{(12)(34), (13)(24)} \leq A_4$ shows they are still in the group, so this subgroup is normal, and of order 4. Lastly, we claim that $\Set{e, (12)(34), (13)(24), (14)(23)} = \gen{(12)(34), (13)(24)} \leq A_4$ is normal. By Theorem 2.8 on the last homework, conjugating any element with 2 transpositions will also have 2 transpositions. The above group is precisely the group where each element has exactly 2 transpositions, so this subgroup is normal. We get the chain $1 \nsg V_4 \cong \gen{(12)(34), (13)(24)} \nsg A_4 \nsg S_4$, since $\gen{(12)(34), (13)(24)}$ is a group of order 4 isomorphic to the Klein 4-group $V_4$ (it has no element of order 4).
+		\end{enumerate}
+	
+		\item 
+		\begin{enumerate}
+			\item $[(ijk),(ijl)] = (kji)(lji)(ijk)(ijl) = (kji)(lik) = (kj)(il)$. 
+			\item Next, $[(ik), (ij)] = (ik)(ij)(ik)(ij) = (ik)(jk) = (ijk)$. 
+			\item Finally, $[(ikl), (ijm)] = (lki)(mji)(ikl)(ijm) = (lki)(mkl) = (l)(kim) = (kim)$.
+		\end{enumerate}
+	
+		\item 
+		\begin{enumerate}[label=(\arabic*)]
+			\item Recall that $\mathrm{Sgn}(\sigma): S_n \to \Z/2$ is a homomorphism. Now, $\mathrm{Sgn}(\sigma^{-1}\tau^{-1}\sigma \tau) = \mathrm{Sgn}(\sigma^{-1})\mathrm{Sgn}(\tau^{-1})\mathrm{Sgn}(\sigma)\mathrm{Sgn}(\tau) = \mathrm{Sgn}(\sigma)^2 \mathrm{Sgn}(\tau)^2$, since $\Z/2$ is commutative, and $(-1)^{-1} = -1$, and $1^{-1} = 1$. Since $(-1)^2 = 1$ and $1^2 = 1$, the above is simply equal to 1, so the commutator is even, and in $A_n$. First, $[S_2,S_2]$ contains the identity, and is contained in $\gen{1}$, so it just equals 1 ($A_2 = \gen{1}$). For $n \geq 3$, we have at least 3 distinct elements, so by problem 3, we can get any 3-cycle $(ijk)$ by $[(ik), (ij)]$ which generates $A_n$. 
+			\item The above proof showed that $[S_n, S_n] \leq A_n$, and by part (c) of question 3, given any 3-cycle $(kim)$ in $A_n$, we can find two numbers $l, j$ that are none of $k,i,m$ (since $n \geq 5$), to see that $[(ikl), (ijm)] = (kim)$. Since $A_n$ is generated by 3-cycles, we have all of $A_n$, and we are done.
+		\end{enumerate}
+	
+		\item
+		\begin{enumerate}[label=(\arabic*)]
+			\item Clearly, each automorphism of $\Z/q$ is uniquely determined by where $1$ is sent. That is, given $f \in \Aut(\Z/q)$, $f(x) = xf(1)$. Thus every automorphism is of the form $f(x) = rx$ for some $r \in \Z/q$. Clearly $f(x) = 0x$ is not an automorphism. We shall now show that $f_r(x) = rx$ is an automorphism for each $r \neq 0$. $r$ admits a multiplicative inverse mod $q$, since by Bezout's lemma we can find $x, y \in \Z$ such that $xr + yq = 1$, i..e $xr \equiv 1 \mod q$. Now, $f_r(x)$ has inverse $f_{r^{-1}}(x)$, since $(f_r \circ f_{r^{-1}})(x) = r^{-1}r x = x$, with the left inverse holding similarly. Also, $f_r(x+y) = r(x+y) = rx + ry = f_r(x) + f_r(y)$, so each $f_r$ is indeed an automorphism. Finally, let $\cph: \Aut(\Z/q) \to \Z/(q-1)$ be defined by $f_r(x) \mapsto r$. $\cph$ is well-defined since if $f_r(x) = f_t(x)$, then $r \cdot 1 = t \cdot 1$. $\cph$ is clearly bijective, so all we have left to check is that it is a homomorphism. We see that $(f_r \circ f_t)(x) = rtx$, so $f_r \circ f_t \mapsto rt = \cph(f_r) \cdot \cph(f_t)$. Thus, we have shown that $\Aut(\Z/q) \cong \Z/(q-1)$.
+			
+			\item let $G$ be a group of order $p^2$ (assume $p = q$). We know by the class equation that $Z(G) \neq \gen{1}$, so $|Z(G)| = p$ or $p^2$. In the second case $G$ is abelian, and in the first $G/Z(G)$ has prime order, hence is cyclic, hence $G$ is abelian. Now, if $G$ has an element of order $p^2$, then $G$ is cyclic and isomorphic to $\Z/p^2$. Otherwise, every element has order dividing $p$ by Langrange. Let $x$ be an element of order $p$, and take $y \in G \setminus \gen{x}$. Now, $\gen{x} \nsg G$, so $\gen{x} \gen{y}$ is a subgroup of $G$, and we have the following tower:
+			\begin{align*}
+				\gen{x} &< \gen{x}\gen{y} \leq G
+				\\ \implies p &< |\gen{x}\gen{y}| \leq p^2
+			\end{align*}
+			Which shows that $\gen{x}\gen{y} = G$. Finally, $p^2 = |\gen{x}\gen{y}| = |\gen{x}||\gen{y}| / |\gen{x} \cap \gen{y}| = p^2 / |\gen{x} \cap \gen{y}|$, so $\gen{x} \cap \gen{y} = \gen{1}$, and we have concluded that $G = \gen{x}\gen{y} \cong \gen{x} \times \gen{y} = \Z/p \times \Z/p$.
+			
+			Suppose instead that $p < q$. Then take $P \in \mathrm{Syl}_p(G)$ and $Q \in \mathrm{Syl}_q(G)$. Since $Q$ has index the smallest prime dividing $|G|$, we have that $Q \nsg G$. Next, $|P \cap Q| \mid |Q| = q$ and $|p \cap Q| \mid |P| = p$, so $|p \cap Q| = 1$, since $p,q$ are prime. Thus, $PQ$ is a subgroup of order $pq$, so $PQ = G$, and we have concluded that $G \cong Q \rtimes P$ for some automorphism $\psi: P \to \Aut(Q) \cong \Z/(q-1)$. Letting $P = \gen{x}$, if $p \nmid q-1$, then $|\psi(x)| \mid p$ and $|\psi(x)| \mid q-1$, so $|\psi(x)| = 1$ and we only get the trivial automorphism, which yields the direct product $\Z/p \times \Z/q = \Z/pq$. Else, $\Aut(Q)$ has precisely one group subgroup of order $p$, $\gen{\cph(x)}$. Since the image of $\Z/p$ is a subgroup of order dividing $p$, it either equals $1$ or $p$, and in the second case the image is just $\gen{\cph(x)}$. In particular, we can specify each homomorphism $\psi: P \to \Aut(Q)$ by specifying where 1 maps to in $\gen{\cph(x)}$. Thus define $\psi_i: P \to \Aut(Q)$ by $1 \mapsto \cph^i(x)$. Notice that this yields $p$ different automorphisms. We now claim that $Q \rtimes_{\psi_i} P \cong Q \rtimes_{\psi_1} P$ for all $i \neq 0$. Notice that since $\gen{\psi_1} = \Aut(Q)$, we can find an integer $k$ such that $\psi_1 = \psi_i^k$, since $\psi_i \neq \mathrm{id}_Q$. Define the following map from $Q \rtimes_{\psi_1} P$ to $Q \rtimes_{\psi_i} P$:
+			\begin{align*}
+				\cph: (a, x) \mapsto (a, x^k)
+			\end{align*}
+			We see that $(a,x)(b,x) = (a\psi_1(b), x^2)$, and that $(a, x^k)(b, x^k) = (a \psi_{x^k}(b), x^{2k}) = (a \psi_{x}^k(b), x^{2k}) = (a \psi_i^k(b), x^{2k}) = (a\psi_1(b), x^{2k})$, so we can indeed extend the above map to a homomorphism. Finally, the above map is surjective since $x \mapsto x^k$ is an isomorphism since $p \nmid k$. Thus there is only one nonabelian group of order $pq$, $\Z/q \rtimes \Z/p$.
+			
+		\end{enumerate}
+		\item We claim that there exists a non-trivial semi-direct product $\Z/m \rtimes \Z/n$ iff $\gcd(\phi(m), n) \neq 1$, where $\phi(m)$ is the Euler totient function. This question is fully equivalent to asking when there is a non-trivial homomorphism $\psi: \Z/n \to \Aut(\Z/m)$. We recall from the book that $\Aut(\Z/m) \cong \Z/\cph(m)$. We need only specify where the generator 1 of $\Z/n$ goes to determine a unique homomorphism. Suppose that $1 \mapsto f(x)$. Then $|\gen{f(x)}| | |\Z/n| = n$ and $|\gen{f(x)}| \mid |\Z/\cph(m)| = \cph(m)$. Thus, $|\gen{f(x)}| \mid \gcd(\cph(m), n)$. If the right hand side equals 1 then 1 can only map to the identity element or it would break this condition. Suppose instead that it is $d$. Find a prime $p$ dividing $d$, and find an element $g(x) \in \Aut(\Z/m)$ so that $|g(x)| = p$. Now the map $\psi: \Z/n \to \Aut(\Z/m)$ sending $1 \mapsto g(x)$ is a non-identity homomorphism, and hence induces a non-trivial semi-direct product, completing the proof.
+	\end{enumerate}
+\end{document}

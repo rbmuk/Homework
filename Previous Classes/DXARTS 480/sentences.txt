@@ -1,0 +1,1238 @@
+i ve just presented enflo s theorem on the existence of a banach space without an approximation property in my functional analysis class
+the argument is not trivial by itself but in order to emphasize the really interesting steps i d like to dismiss all the obvious lemmata in the most efficient way
+i have cleaned up the end quite a bit if somebody is interested the right choice of and is and which ensures that all interesting ratios are integers so we can do a perfect fit without any dirty tail bounds and the corresponding estimates also it is easier to use just random horizontal partitions instead of smart number theoretic definitions
+however some unpleasant pieces remain
+the one that irritates me most is the following consider all element subsets of and
+let and be the numbers of s having odd and even number of elements in respectively
+then with some depending on only so it should serve all simultaneously such that
+the sharp bound is of course and enflo gets it considering separately and using a trigonometric integral representation and holder inequality for other on which i wasted about 35 minutes of the class time but this should be just one liner ok perhaps three presentable in under 10 minutes preferably in under 5
+note that i don t care about sharp as long as the series above converges and will gladly trade its size for any simplification in the proof
+so can we make this obvious fact formally obvious
+i m asking here rather than on mo because it is an education question rather than a research one
+my book introduction to ring theory paul cohn states this as a theorem and gives a proof
+the book usually skips over trivial easy proofs so i don t really understand why this is in here
+isn t the statement absolutely obvious for sets with
+you just need to draw a diagram and it becomes immediately obvious
+is there a reason why it would not be obvious in modules
+let be a small category and let be the category of simplicial presheaves on i e
+
+let us denote by the model category obtained by endowing with the projective model structure so that weak equivalences or fibrations in are the natural transformations of simplicial presheaves which are sectionwise weak equivalences or fibrations for the kan quillen model structure on
+question 1 can we provide an example of a small category for which has the following property there is a fibration and a trivial cofibration in such that the pulled back map is not a projective cofibration
+question 2 are there interesting sufficient conditions on which automatically ensure that has the property of question 1
+in general these questions seem a bit tricky to approach since we do not have a very good descriptions of trivial cofibrations for the projective model structure but maybe there are some easy obvious trivial cases i am missing
+any comment idea would be very much appreciated
+thanks in advance
+i realize the title is perhaps not the most helpful
+i am aware of several uses of the word trivial and i m hoping that perhaps someone can provide some further insight
+1 trivial sub objects i e
+if is a group then are trivial subgroups of
+2 trivial solutions to a problem i e
+has a trivial solutions as a differential equation
+3 trivial factors of a number or polynomial i e
+what these two meanings have in common is that they are defined in this way
+trivial subgroups or solutions are well defined ideas
+but it seems to me that many times the word is also used in association with proofs when referring to arguments that are simple or otherwise straight forward
+it seems obvious that we would say that a proof of a simple theorem like even s squared are even or some such would be trivial but a quick look at the top unanswered questions right now reveals many problems that are not trivial at all
+why is this so
+is triviality just defined by common consensus that a problem is hard
+if the issue is really so subjective is the claim all mathematics is trivial just as valid as any other claim about it even if this seems a bit ridiculous
+i feel inclined to point out that i don t believe that mathematics is a trivial subject i m just trying to understand what this common expression really means
+it seems sometimes it is quite easy for the reader and sometimes quite difficult
+i have a tricky comprehensive exam problem that i ve been wrestling with it is exactly the problem in the title reproduced here show that exists
+if we plot the function then it s obvious by inspection that the given limit exists the periods for cosine are decreasing to zero
+even so i don t really see an obvious candidate for what the limit might be i believe it is positive
+my first step was to write down just exactly what it means that the limit exists
+the limit exists if there exists some number with the following property for any there exists some such that this is fine and good but i immediately run in to the issue of not having a limit candidate
+there s a problem in baby rudin ch 6 exc 13 which looks quite similar in fact it was also given as a past comprehensive exam question which is in effect show that exists
+i ll note that rudin walks through the solution to the above in 4 or 5 steps no one of which is obvious or trivial at least not to me
+thus my question is there some easy read easy enough that it would be reasonable to expect the problem to be solved in a comprehensive exam setting way to solve one or both of these problems
+i ve had a problem for several years i can t get to solve it seems similar to travelling salesman person i guess except i need to visit a specific number of times the distance criterion is obviously a little different or there s a trivial solution where you visit consecutively n times the same city
+actually cities have a weight that may be positive or negative and the cumulative sum shall remain as neutral as possible near zro i calculate this distance with weigth i 1 2 weigth i 2 proposition i don t particularly need to come back to starting point but i think it could let s say i need to visit 5 a 20 4 b 25 the trivial solution is ababababa like city weight cumulative distance a 20 20 100 0 20 2 b 25 5 56 25 20 5 2 a 20 15 25 b 25 10 6 25 a 20 10 0 b 25 15 6 25 a 20 5 25 b 25 20 56 25 a 20 20 100 total gt value to minimize 375 but that is a trivial configuration where the occurrences of 0 and lt 0 weights are easy to sequence
+now i try to find a nice sequence with let s say 6 a 26331 6 b 38848 3 c 50976 12 d 10825 and 2 e 43298 that s a little less obvious
+i had the idea to use genetic algorithm but i don t handle the theory very well and i only found examples with each city visited once
+please if you have an idea i m listening
+and if my question isn t clear enough just tell me i ll try to improve
+cheers
+i would like to show directly that is trivial where
+write
+it is pretty easy to see that
+then and the minkowski bound is so we need only check primes lying over
+over since has norm it is prime since this is the only prime lying over so is trivial in
+over since remains irreducible mod it follows that is prime and is the only prime lying over it too is trivial in
+over so that where and
+this is where i m not clear on how to proceed
+it doesn t seem obvious that each of these is principal
+am i going about this in a reasonable way
+what other tools are available to compute such groups from first principles
+for background i ve noticed that its easy to show that an equation of form in an abelian torsion free group always has either an unique solution for or none
+so i decided to try seeing what happens for non abelian torsion free groups
+the most obvious and simple example to try would be the quotient where is the free group on two generators is the normal subgroup generated by the relation
+it is simple to show that in therefore it remains to show whether is torsion free
+it is easy to show that there is no such that in the free group because would have to have reduced form and therefore any non trivial power would have in its reduced form
+of course this is not enough as has elements other than
+i m not sure what else to do
+i could try to find an invariant that classifies whenever an element is in and then try showing that if is in then is in but that doesn t seem easy
+is there an easier way
+what are some more systematic techniques to solve this kind of problems
+question is it true and easy to show that
+implicitly i am making the claim
+computationally it has been verified up to the prime exponent 41
+i do not have a computing platform to handle additional exponents
+note it is not an alternating sequence of
+but rather the parity in the prime exponents reads starting at the exponent
+i have no reason to believe it is true on the other hand i do not believe it coincidence
+background and motivation i was looking for easy possibly trivial expression in order to rewrite the for example it is apparently easy to show that so i began playing with other expression in wolfram alpha and came up with this question
+in order to convince yourself just consider typing into the google search bar
+i was worried this was obvious but i cannot seem to figure it out
+i don t think it is computational junk from wolfram or google
+in a nagy s special classes of semirings the first theorem is theorem 1 1 a finitely generated semigroup is finite iff it is periodic and has the permutation property
+the definitions are as follows
+let be a semigroup
+call is periodic iff is finite really this should be called eventually periodic
+oh well
+furthermore say that is periodic iff every is periodic
+has the permutation property iff there exists a natural number such that for every sequence of elements of there is a non trivial way to permute that sequence such that the product of the original sequence equals the product of the new sequence
+now the forward direction finite implies periodic and permutation property is pretty easy
+however the converse has me stumped
+so i ve been toying with a simpler version namely proposition
+let denote a periodic semigroup with the permutation property which is generated by then is finite
+any ideas how to solve it
+mainly the problem is that the permutation property just seems trivially weak
+for example suppose that is the number of elements a sequence must have before we may conclude that a non trivial permutation leaves the product invariant
+so we might have a sequence like we may deduce that a non trivial permutation leaves this product invariant
+so
+this is obvious just swap any two s
+presumably then the proposition can be proven using just the periodicity of ideas anyone
+one can view typical matrix factorizations like the qr decomposition as a change of variables
+we consider each factor as living in the appropriate submanifold of for some in the obvious way
+the chart is trivial
+is in the set of upper triangular matrices in in the obvious way we ve assumed
+the chart here is also trivial
+lies in the stiefel manifold orthogonal lie group which is a dimensional submanifold of
+the chart is not obvious
+then we consider given by
+this is a map of same dimensional manifolds and the jacobian for the change of variables is the absolute determinant of the derivative
+now in sources by edelman like on page 31 or page 9 or page 5 the jacobian is given as what i don t understand is how to derive this formula or interpret his stuff
+when doing similar problems is easy to compute in coordinates here we don t know coordinates relating to
+and the only way i know how to interpret jacobians would be as in the context of where is some measurable function
+the inner integral makes sense to me and the outer integral only makes sense to me where is the haar measure on
+but the notation seems an odd choice if is what he means so i suspect i m missing something
+can someone elaborate on what s going on here
+suppose is an inclusion of topological groups and is closed in
+then we have an exact sequence where is just a pointed topological space
+it is easy to prove that is a principal bundle but not a locally trivial bundle
+denote this bundle by
+let be a topological space and define as a pointed set of principal bundles over
+is my proof of the following theorem correct
+theorem one has an exact sequence where and is a pointed set of continuous functions
+proof we will just prove the exactness at anything else seems obvious
+let and we consider
+pullback of along is trivial so is trivial
+suppose and is a trivial bundle
+then we have a section and we can define as
+by the definition of the pullback
+qed the reason i ask this is that i saw many variations of this theorem mostly in terms of cech cohomology and they always require a lot of assumptions like is normal and lie or they consider only smooth functions
+so maybe i lose some crucial points here
+i am a little puzzled by a past exam question
+part a is very easy and part b is easy too
+however according to the question and the mark scheme i should be able to deduce the answer to part b from my answer to part a without any further calculation
+i am able to find the answer to part b but i have to draw some graphs and it is far from straight forward
+part a 6 marks find the set of values of for which as i said this is easy
+multiply both sides by take everything over to one side and then factorise
+this gives and so or
+part b 1 mark this is where it gets a little odd
+the question says deduce the values of for which according to the solutions part b should be blindingly obvious
+the answer is
+however i don t see how one can deduce this trivially
+i drew the graph and got the right answer but a 1 mark question means it is obvious and there is no need for calculation
+adding a modulus usually makes a problem more difficult and adds solutions e g
+while
+here is my attempt to show that every group embeds into a group with a trivial center which is given as an exercise here
+i tried doing the simplest thing that could possibly work and picked an opaque propertyless element and tried to staple it onto
+in order to make the argument easier to state i looked at formal products that alternate between elements of and powers of and end in although it may not be necessary to interleave terms taken from and like this
+first the definition of an embedding
+is an embedding if and only if is injective
+is equal to
+if and only if for all relation symbols
+the theory of groups doesn t have any relation symbols therefore we re just after an injective homomorphism
+we need to preserve the identity which is a constant symbol the group operation and inverses
+suppose we have a group with center
+thanks markvs for pointing out that the trivial group when applied to the original construction produces a new group with a nontrivial center
+if has a trivial center then embeds into itself
+we now consider the remaining cases where has a nontrivial center
+i am now going to attempt to construct something i m calling it might have a real name which has a nontrivial center by construction
+let be a propertyless group element in
+we now consider finite formal products of the form
+let s express these formal products as with the understanding that is constrained to be 0 in somewhat artifically so our formal product ends in which is equal to the identity element
+i multiply these formal products by concatenating them
+i take inverses by swapping elements and inverting them except for the final artificial
+something is an identity element if and only if it is empty a nonempty finite formal product of identity elements or normalizes to an identity element in finitely many steps
+normalization occurs in the obvious way by removing interior identity elements and combining elements of with each other according to the group operation or combining pairs of elements of the form into
+and are equivalent if and only if is an identity element
+modding the formal products out by this equivalence relation gives us back a group i think
+has a trivial embedding into
+the intuition here is that does not satisfy any rules that it does not have to therefore it will expel everything from the center of except for
+powers of don t work either as prospective elements of the center because they don t commute with non identity elements of
+let be a field and consider a polynomial ring with ideal
+now i claim that to me it seems obvious
+take the composition the first being the obvious inclusion the second the quotient map
+then we have a well defined map by
+by the iterative nature of the generators of it is clear that it is surjective since by iteration every has a representative in only the variables
+in fact you can show where is the th fibonacci number
+to show injectivity however we need to argue that every class has only one representative in only the variables and this is where i m having difficulties
+i imagine there is an easy proof so i won t discuss my many half baked ideas
+can anyone see how to do it
+edit since interest in this question hasn t been high let me present some of those half baked ideas
+george has a good treatment of the problem reducing it to proving that every polynomial has a factor in which some for occurs
+this claim seems obvious but arguing it formally is causing difficulties for me
+this is equivalent to showing that there is no non trivial linear combination where has no pure part
+another method could be by induction over since for the case is trivial
+for the step you could think of as a polynomial in over and use the induction hypothesis on each quot coefficient quot so you have unique representations in the variables
+i haven t been able to use this effectively though
+finally although the nave degree function is not well defined i thought you could be able to refine the notion as the degree of being the degree of the a representative in only the variables
+you could do the degree in the degree in and the multivariable degree and then showing these notions are well defined should probably give us uniqueness of the representative
+let be a simple connected graph
+define the potential of a graph as where and is if and otherwise
+for example for the following graph with we have since there are two paths between members in of length which add each and one path of length which adds
+for a given define the set question for a given graph with a trivial automorphism group more on this later will there always be some such that has a unique minimum
+for the example graph above even though it does have a non trivial automorphism the set gives a unique minimum potential over all sets of cardinality
+observations for a given we can calculate in time by employing dijkstra s algorithm which goes as over all pairs of vertices which also goes as
+this implies that if or then we can determine if has a unique minimum in time
+of course this doesn t mean much as for a given it is fairly easy to construct a graph such that does not have a unique minimum for and
+simply chain a bunch of star graphs with a high number of points together and it is not to hard to prove
+as to why we discard graphs with non trivial automorphisms it is obvious that the complete graph would be a counterexample to this conjecture
+however apart from as well as some other graphs with very high degrees of symmetry like it would seem that most graphs with non trivial automorphisms still admit some such that has a unique minimum
+random tests testing this conjecture on random graphs both with and without trivial automorphisms has always led to unique minimums
+in fact it would seem that most graphs have several such that has a unique minimum
+it is only for highly symmetric graphs like missing an edge that you only get a single that works in this case
+but again these graphs have non trivial automorphisms and so do not have to be considered for the conjecture
+i m searching for an example of a simple asymmetric encryption algorithm which could be used to present someone who is not fluid in maths how asymmetric encryption works
+an obvious example of asymmetric encryption algorithm is rsa but this algorithm requires far more knowledge than an average person might have
+a trivial example might be f x pub x pub c and g c priv c priv x under assumption that priv 1 pub
+however this example is trivial because pub and priv are directly related to one another and having public key you can easily derive private one
+and frankly this is actually symmetric algorithm stretched to look like asymmetric rather than truly asymmetric
+so i m searching for a demo asymmetric encryption algorithm which requires minimum mathematical knowledge to understand fully in contrast to rsa where you have to understand chinese rest theorem small fermat s theorem modulo calculus etc
+is nontrivial eg
+having public key and cipher you cannot easily find the private key or plaintext and by easily i mean eg
+a simple formula does not have to be secure eg
+bruteforce attacks may be easy to perform is there an algorithm which matches these requirements
+i ve been trying to invent such algorithm by myself and my thinking is as following we need to find a function f c pub which causes some information to be lost in the process which is not recoverable easily
+the same information is in the priv key which allows to restore the original information
+an example of a function which causes information loss is obviously modulo because it doesn t have a direct reverse function
+i mean direct because knowing the integral part of division you may reverse the modulo
+i however cannot think of an algorithm which could take advantage of this property
+or else other function which has this property of being quot reversible under specific conditions quot
+i ve been working on this algorithm for awhile and have made some progress but have hit a stumbling block
+for the cases i m working on square roots are guaranteed to exist atleast trivial ones so that s not an issue
+no assumptions are made about prime composite modulus
+since roots come in even and odd pairs i try to find both
+if the number is an actual square that can be returned immediately at any point of the algorithm though i m debating finding the non trivial square roots in those cases as well it just hasn t been necessary yet
+for the even side of the algorithm even numbers have the form so i calculate and multiply then try to find the even and odd roots of that number returning both multiplied by no issues there
+on the odd side it s a bit more complicated
+odd square numbers have the form where
+by subtracting and multiplying by we isolate
+for some numbers it suffices to just calculate non modular and take the floor but this only works if the value of is less than
+if is greater you can add multiples of and take the non modular square root of that number and keep testing if you found the correct but this takes the algorithm to a much higher complexity than i want to allow
+i m trying a find a way to transform into a problem i can solve for efficiently i just haven t had much luck
+an algorithm to determine the multiple of that s needed to find the proper value of would also work if it s fast logarithmic but i haven t had luck with that either
+is there some obvious steps i could try that i m missing here
+an example number where this is actually important is trying to find which has trivial roots of and but also has at least one non trivial roots and
+to solve it i have to find the odd square root of but with actual value of and square root therefore
+i m not very worried about finding all of the roots so much as finding at least one non trivial root if it exists
+the specific numbers i m finding non trivial roots of are for odd numbers all odd numbers have trivial roots only composite odd numbers with multiple prime factors have non trivial roots since this can be used to find values for which which gives us values for extended euclidean algorithm to find factors of
+edit so to follow up on this i ve solved the problems with the original algorithm
+essentially what we re looking at are the different partitions of residues mod n if we can find one non trivial square root of any residue in the partition we can find all of the rest using 2 t root mod n where t is the distance between the residues in the chain
+the length of these chains is always a factor of totient n which can sometimes be much smaller than totient n not allowing enough numbers to check to find an easy non trivial root
+also we can t usually just stop when finding a perfect square because it may still yield a trivial root after 2 t multiplication
+the next step if there simply isn t an easy non trivial root is to go to the next odd square 1 being the 1st and finding a non trivial square of one of the numbers in that chain so that you have the root of 4 times an odd square and multiply by the inverse of the odd square
+this obviously means the inverse must exist but if you can t find an inverse you already know that it shares a factor with n and can reduce n to get a number which works
+the first 4 numbers for which a non trivial root cannot be found in the first chain are 205 217 511 and 513
+because the lengths of the chains are factors of totient n actually carmichael function of n prime numbers will have a very long running time to actually prove them prime essentially n 2 since that s how many quadratic residues there are mod n but in practice for composite numbers you don t actually need to go through every quadratic residue since there are atleast sqrt n numbers which will yield a non trivial root
+and there may be a cutoff point where a number can be said to be deterministically prime prime power or atleast with a high degree of confidence without having to perform every single iteration of modular multiplication
+i m trying to find hard numbers for the probability that a given chain contains or does not contain a non trivial root since the complexity rises to sqrt n log n c in the worst case prime prime power but the average case is usually log n c actually substantially less than this
+there are folks who claim they proved fermat s last theorem riemman hypothesis offering no more than a half a dozen pages sometimes one or two pages of proof very few if any citations of previous works where are the giants whose shoulders they stepped in
+among other suspicious characteristics
+i am not suggesting the one can measure the quality of a work by their number of pages alone but for problems like those i mentioned common sense suggest that their proofs must be really very complex and probably very long because if they were so simple as to be solved in a few pages then someone would have discovered how to solve them much before the genius of wiles or perelman
+i also have seen various things like functions theorems etc which carries the name of its discoverer and that are considered by some to be trivial or and of dubious importance for math
+it is easy for a professional mathematician to the faults in those works and sometimes it is not too difficult for someone like me that have little knowledge of math to see some faults for they are common outside math like lack of references
+what worries me is that if some particular work deals with advanced math it is not obvious for almost everyone if the work has or has not value more or less like the bogdanov affair
+the bogdanovs write about something that has a jargon and concepts so complex advanced that seemed esoteric or post modern to almost anyone so in the absence of another easily identifiable clues one cannot see the work s real value unless that one is very well versed in whatever the work deals with and those are unfortunately few
+this being so i can elaborate the question has someone designed a baloney detection kit specific optimized for math that can help in identifying if not all most of the math works that have no value even if they seemed at first sight elaborate serious and erudite
+i can risk some opinions lack of formalism non trivial notions that are not properly explained defined incomplete reasoning which omits intermediate calculations deductions that are also non trivial
+but that is not specific to math but for other sciences too
+i find milnor s invariants a bit confusing
+my understanding of their calculation is as follows draw the link diagram label the arcs write down wirtinger presentation of the link group obtain the presentation for the quotient of with the th member of its lower central series
+calculate the magnus expansion of the to get power series
+call and calculate the greatest common divisor of the where goes through all the proper subsequences of
+now we get the isotopy invariants
+things i don t understand how do we turn the wirtinger presentiation into the presentation of
+is there an obvious systematic way or is this in general hard to do
+are these unique
+probably not but they still lead to the same invariants
+since is a power series we could in general have infinitely many
+for a specific only terms of degree are actually invariants but can be chosen arbitrarily large
+which am i interested in
+if i want to show that two arbitrary links are distinct is it decidable whether all of their invariants are equal
+i have seen people not ignore the but surely this is really needed to make it an invariant
+the definition of these invariants feels very arbitrary and i don t really see why they work
+i am interested in brunnian links
+there is an easy way to quot write down the link diagram quot for a simple brunnian link as a word in the free group
+i would like to use invariants to show that these links are actually brunnian i e
+non trivial with trivial sublinks
+i have seen that milnor calculated invariants for some brunnnian links to show that they are non trivial but i could not find a source where invariants were calculated for a more general class of brunnian links i e
+simple ones
+i am studying these notes and i am trying to generalize a bit the setting of the section 3 because there doesnt seem to be a fundamental reason to only study adic fields
+so all the fields considered in this question are complete non archimedean valued fields with a non trivial discrete valuation
+for most of the notes the only change is to add some separability hypotheses for the extensions and their residue fields
+and then i hit a roadblock at the unproven because trivial in the authors setting corollary 3 21
+the reason is the following original form of the question let be a finite separable field extension with separable residue field extension
+is there a galois extension containing such that the residue field extension is still separable
+the only candidate to check would be the galois closure of
+after all it is generated by the conjugates of all of which have separable residue fields extensions
+but it isnt obvious that the residue field of the composition of two separable field extensions is generated by the residue fields of the extensions
+more formally first reformulation sufficient to answer yes to the original question let be subextensions of a finite separable extension such that the residue fields of and are separable over that of and
+is the residue field of separable over that of
+this reformulation begs the natural stronger following questions with the same hypotheses are or even surjective where is the residue field
+the proof scheme for this statement seemed classical enough consider the isomorphism of to a product of field extensions of corresponding to the factors in of the minimal polynomial of a primitive element of and identify as the subalgebra of such that is bounded
+there is an obvious inclusion but the reverse one is significantly less obvious nothing i tried mostly tracking dimensions and factors of the minimal polynomial to prove inequalities as in several similar looking proofs seemed to work basically and unsurprisingly we lack control of the residue field of and i now doubt its true
+the best i was able to find out is that if and then must be in the ideal of generated by the maximal ideals of the valuation rings
+less ambitiously in the same setting we can consider the maximal unramified subextension of and define
+then are unramified so have separable residue field extensions and thus the residue fields of are separable over that of and contain the residue field of so that have the same residue fields equal to the separable closure of the residue field of in the residue field of
+so the first reformulation is implied by the following statement second reformulation let be a separable extension such that the extension of residue fields is purely inseparable
+let be subextensions of with trivial residue field extension and assume
+then is the residue field extension of trivial
+in this case are generated over by uniformizers whose minimal polynomial is eisenstein so it should be easier to do but i cant find either an argument or a counter example
+one reason for this is that unlike in the unramified case eisenstein polynomials quickly arent eisenstein any more when changing fields
+so im quite stuck and i would appreciate some other ideas
+thank you for your help
+i have a locally compact abelian group with the following properties it is connected therefore divisible and non compact it admits a vector space structure and for any the group is dense in all its non trivial closed subgroups are of the form for any and for any such x the quotient is isomorphic to the unit circle it admits a natural order by fixing some and saying that if and only if
+this can be extended through density of by saying that the limit of a cauchy net is positive iff only a finite number of its terms are non negative the rays of the form are open it s easy to see that their complements have to be closed by the definition of the order admits fractional parts in the sense that if there exists unique and such that any continuous non trivial homomorphism is necessarily a bijection and any continuous non trivial homomorphism is injective and has dense image
+note that the first and third properties imply the second one which in turn implies all the other properties besides the last one that one can be assumed regardless though
+i m naturally quite convinced that a group with all these properties will have to be isomorphic to since they share way too many things in common and property 3 itself is probably restrictive enough anyway but i m struggling really hard to deal with topological issues
+in particular the topology on g clearly contains the order topology induced by the rays but it doesn t seem at all obvious that they would have to be equal
+i thought of trying to turn into a vector space over the real numbers through density of the rationals but the problem is that if a sequence of rational numbers converges to a real number the sequence doesn t seem to have any reason to converge in atleast in general
+i d appreciate any help on handling this
+in a rather easy online lecture on group theory which included many obvious statements such as the only divisors of a prime number are and the professor began a proof by assuming that where and are elements of some group having prime orders and respectively and from this he immediately asserted without proof i e
+as if it were obvious this blew me away
+the assertion does not look obvious to me at all
+is it
+it s easier to see that the assertion above must be true if one has already established the more general implication valid for any two elements and in any multiplicative group but he had not established this and it is not something that jumps out at me as obvious either even though i can prove it1
+am i somehow missing some immedate proof of either of the two assertions
+1 my proof is by induction
+assuming that holds for all then where the second and fourth equalities follow from the induction hypothesis for and respectively
+edit i thought of a slight improvement on my original proof implies that for any positive integer
+it also holds for any negative integer because by taking inverses of both sides of the preceding equality finally the equality also holds trivially if
+the assertion says that conjugation by of any element of the cyclic group is the same as raising the element to the th power
+hence successive conjugations by or equivalently conjugation by is the same as raising the conjugated element to the th power
+granted this revised proof is significantly longer than my original one but i like it better because it clarifies for me the scope of validity namely all of of identifying the operation with the operation
+the assertion i proved originally then follows trivially each side of that equality represents successive applications one of these two equivalent operations
+suppose is not divisible by 3
+is there a prime such that the sum of its decimal digits is equal to
+more generally given a base and coprime to is there a prime such that the sum of its base digits is equal to
+at first glance this seems like an obviously true but hopeless to prove statements
+but work in the last decade by such authors as drmota martin mauduit rivat and srkzy makes it seem plausible that the result is known
+trivial results works choosing 2 in any base
+works choosing 3 in bases above 3 and 7 otherwise
+the smallest nonobvious case is which i have checked in even bases up to larger numbers should only get easier in terms of degrees of freedom
+perhaps the problem is more obvious than it seems any ideas
+note there s always a risk of leaving someone off a list of authors
+to guard against possible offense i deleted one or two authors at random from my original list
+now as long as i haven t missed three prominent names i should be ok
+for positive real numbers and real define the hlder mean whereas is the limit of when i e the geometric mean
+furthermore when are two real numbers define as the obvious fixed point satisfying the equation meaning that is defined as the common limit of the sequences and such that and
+showing convergence is easy and evidently
+thus is the famous arithmetic geometric mean
+among other things all these functions satisfy as well as and so we could just define them from which is continuous and monotonically increasing with value at
+it is well known that whenever and so of course under those circumstances
+surprisingly i can find no reference to the in the literature except for mentioned above and which this page points out is just
+more generally we have and both are easy and is trivial
+i couldn t find anything intelligent to say about the arithmetic quadratic mean however let alone the other
+experimentally it satisfies something which is probably easy to prove and not interesting enough to try so that s not my question
+instead my question will be can or more generally with be expressed in closed form using elementary functions and the arithmetic geometric mean
+or at least using standard special functions e g
+elliptic integrals
+i realize that the answer no might be exceedingly difficult to prove so i ll be liberal in what i accept as an answer perhaps the question should really be please say something interesting about or in general
+this is a potentially soft question that i feel like encompasses some pedagogical elements but possibly also advanced foundations so i hope this is the proper forum to ask
+i ll give some background explanation to motivate where my question is coming from so it might be easier to understand what i m asking in case it is not clear
+otherwise skip to the bottom for the question itself
+analytic geometry is a study technique to turn algebraic problems into geometry problems or vice versa because problems in one space could be far easier than in the other
+here are some examples and how i interpret these examples geometry is simpler a linear system of two independent equations must have exactly one solution
+this is annoying to prove algebraically but is completely trivial if you translate it into a geometry problem by graphing the equations two lines pointing in different directions can only intersect at exactly one point
+algebra is simpler draw an arbitrary triangle then draw the three medians
+these three medians must intersect at a single point known as the centroid
+proving that the medians intersect in other words that the centroid exists is a pretty difficult problem using only methods in geometry
+even if there exists a proof that is simple discovering the proof by oneself seems really hard
+on the other hand although the algebra is tedious converting this problem to an algebraic one is not only simple but makes the problem trivially easy to solve
+all one has to do is write out the linear equations of the medians and show that they have a common solution
+complex numbers complex numbers can be represented in two ways rectangular form and polar form
+in rectangular form addition is trivial multiplication is a bit more tedious
+in polar form multiplication is trivial addition is so difficult that i basically think about it geometrically
+to me the classic pedagogy of complex numbers where you first learn about them in rectangular form motivates many of the algebraic manipulations and techniques
+then once i learned about polar form i mostly viewed the complex numbers graphically while working with them
+the trigonometric angle sum formulas can be derived trivially by understanding how polar form multiplication works geometric interpretation and then writing out the equation in rectangular form to express it algebraic interpretation
+neglecting either interpretation makes understanding the angle sum formula difficult
+in one sense this seems to highlight the point that these are very different disciplines that simply converge on the same ideas using different toolsets
+however since i presume they fall under the same abstract foundations for instance maybe zf axioms they really should be one and the same
+for instance the parallel postulate in geometry quot in a plane given a line and a point not on it at most one line parallel to the given line can be drawn through the point quot seems to be logically equivalent to the following statement in algebra quot for any not satisfying there exists a such that quot it is not immediately intuitively clear whether this axiom in geometry can be proved by the others but the algebraic interpretation seems to be obvious to me in how it can be broken down by other algebraic axioms
+of course being an amateur mathematician i m aware that everything i ve typed thus far is sort of an abstract feeling i ve developed from my experiences so it s difficult to even tell how valid my question is
+perhaps the difference isn t in the math itself but simply the way we present them that allows our brain to organize the ideas better and make intuitive assumptions that are otherwise insanely difficult to justify rigorously such as the definition of a real number or visualizing function behavior by simply graphing it
+to what extent is it just historical convention rather than objectively what s happening in the math
+if i had more time i would trace each algebra geometry axiom down to their zf or whatever other system axioms and compare them myself but i feel like i currently lack the time to learn the nuances of these systems compile the differences then analyze how they are applied at a higher level
+i m hoping someone who has more expertise can help
+and so my question in what way do the axioms of algebra and the axioms of geometry differ such that they give us completely different intuitions and toolsets to solving problems so much so that one interpretation can be impossibly hard while the other is trivially easy
+what s going on under the hood at the foundations level that causes such a difference
+or is it just human intuition and not the math itself that is different
+massive edit to simplify the question
+some comments below might be made obsolete specifically the comment that this follows directly from dirichlet
+that was true for the original wording
+i m looking for a short proof directly from bzout s identity of the following theorem theorem 1 if then there exists an integer solution to
+the case turns out to be equivalent to the theorem theorem 2 the natural map is onto
+that s because onto means if then for some meaning that and thus has a solution
+the converse is equally obvious
+the general case in the first theorem follows if we know the case when since for general we have so from the special case we get which implies since we can find so that we then get so is a solution for our original equation
+thanks patrick da silva for that reduction
+i can easily prove theorem 2 using the structure of in terms of prime factorizations
+indeed theorem 2 was the motivation for this question initially at first i thought it was obvious but the immediately realized it wasn t absolutely trivial
+it s certainly possible to translate the abstract proof of theorem 2 into a direct proof of the special case of theorem 1 using prime factorizations and chinese remainder theorem
+but something about this theorem rang a bell for me
+it looks like the sort of theorem that would have a short bezout s identity proof
+both unique factorization and chinese remainder theorem are actually direct results of bzout and often theorems that we intuitively understand in terms of unique factorization and or chinese remainder theorem have a short sharp proof using bzout that eschews both the words prime and remainder
+my instinct is that there ought to be a quick proof of the above with bzout without calling out to primes or remainders but i haven t found it
+it s trivial if since lets us use to get a solution to
+it s a little harder to see if but still not hard since if then giving a solution
+that asymmetry it s easy to solve if and harder to solve if suggests i might be wrong about there being such a proof since bzout is such a symmetric statement
+if there was a proof it seems like you ought to start with as an example of a theorem that is obvious with unique factorization but has a simple proof with bzout s identity consider that has a unique factorization proof but it follows directly from bzout by multiplying so again the goal is to have nothing about primes or chinese remainder theorem in the proof and to have it be remarkably brief as much as possible it shouldn t be hiding proofs of crt or unique factorization
+i don t know that such a proof exists but some instinct told me it did
+let be a ring and a module such that is generated by some system of elements but contains some other system of linearly independent elements
+i want to show that must contain an infinite system of linearly independent elements
+in fact i ve been able to prove it under the additional assumption that there is no zero divisor of
+indeed it is easy then to prove by induction that there are two ideals in a and both nonzeros and such that their intersection is trivial and then we can construct the infinite system by another induction
+but without this assumption i m stuck
+could you help
+edit
+i put the edited part in slanted font here s my proof in case there is no zero divisor
+first contains two nonzero ideals and such that
+indeed we shall argue by contradiction let be minimal such that contains some independent family of elements it is easy to lift the hypothesis to
+if then the claim is obvious just pick and where are independent
+otherwise let be some independent family of
+let us project onto
+it gives us a family
+since is minimal we know is not independent
+so we can find some nontrivial such that where but
+we can assume for example that
+then by the same token there is some nontrivial sequence and some such that we assumed that any two nonzeros ideals of intersect nontrivially
+consequently there must exist such that
+then we can prove that is not independent a contradiction
+so let be nonzero ideals of such that
+we can build the infinite independent family by induction
+we just put and and
+then the family is independent if the family is independent because can happen only if
+now asked at mo
+let be the set of ordered noncollinear triples of points in the plane
+say that a pseudovertex is a function such that is a dense open subset of
+is order invariant and is continuous with respect to the usual topologies on domain and codomain
+respects quot distortion free quot maps if is a composition of translations rotations reflections and scalings for nonzero then in the strong sense if either side is defined they re both defined and equal
+if are non collinear and then as well and so given we cannot tell which three points were the original vertices
+it is as far as i can tell not immediately obvious that pseudovertices exist at all
+however there is at least one very natural example the orthocenter modulo appropriate domain tweaking e g
+we need to throw out all right triangles
+this is in fact the only example i know but i strongly suspect i m missing an easy proof that there are infinitely many are there infinitely many pseudovertices
+i am prepared to be highly embarrassed
+i am more ambivalent however about the prospects for additional natural pseudovertices are there any pseudovertices besides the map corresponding to the orthocenter which are quot natural quot e g
+have been given a name in the existing literature
+incidentally unless i m missing something neither of the quot shermanesque quot fourth vertex candidates suggested at mo are pseudovertices due to the third requirement
+that said see blue s comment below
+edit user runway44 observed below that i m essentially asking about continuous functions satisfying the following properties commutes with conjugation and with the map
+
+i m including this observation here since i think it s worth keeping around and comments are temporary
+second edit i should have also required that be connected if we allow disconnected the symmetry requirement becomes vacuous since the set of scalene triangles is dense open
+the iterability requirement then needs to be weakened to only hold on a dense open subset of otherwise the orthocenter doesn t count
+that said i may be having a silly moment but it s not entirely obvious to me that the question is trivial without these modifications even if omitting them was obviously a mistake
+for now i prefer answers addressing the modified case but i m also interested in the looser question
+i m completely aware of the triviality of this question but for some reason i can t visualize the argument
+in hatcher s 3 manifold notes the form of alexander s theorem stating that every embedded 2 sphere in bounds an embedded 3 ball is given
+later he uses this fact to conclude that is prime recall that a 3 manifold is prime if whenever either or where here denotes the connected sum of and stating merely that every 2 sphere in s 3 bounds a 3 ball
+i was hoping to visualize why this is true and so far i m not having any luck i m hoping someone can help
+things i ve read from hatcher s notes it s mentioned that the trivial decomposition is obtained by choosing the sphere in the connected sum decomposition process which bounds a ball in
+i realize that knowing this implies my result immediately but it doesn t help me see the result
+elsewhere hatcher states that the result follows from the fact that every 2 sphere in bounds a ball on each side
+i ve seen this justification elsewhere as well but i can t visualize this one any easier
+i guess what i m looking for is a direct proof of some kind
+i tried to construct one as follows but i m stuck almost immediately after doing all the obvious things
+note that for a sphere in is hatcher s notation for the manifold obtained by splitting along i e
+by removing an open tubular neighborhood of from
+suppose that
+by definition of connected sum there exists a sphere in such that has two components and where respectively is obtained from respectively by filling in the boundary sphere corresponding to with a ball
+by alexander s theorem bounds a 3 ball in so and that s it
+i really have no idea how to proceed and despite this being truly one of the most trivial things imaginable i m at a loss
+knowing why this is true for would be great but knowing why the fact about general being trivially decomposed when bounds a ball would probably be much more helpful from a big picture perspective
+seth warner in his quot modern algebra quot 1965 sets the following question as exercise in the chapter introducing groups quot let be a composition on a set and an element of such that for all the equalities to hold
+as follows let be the composition on defined as prove that is a group quot a previous part of this exercise has derived the above criteria by defining the operation as on a general group
+this was easy to do
+hence it is of course clear that warner is establishing that having posited a quot divides quot operation which fulfil the above criteria one can then recover the original group operation
+closedness is trivial
+proving the identity is easy no bother to reproduce it here
+proving the inverse of is is straightforwardly done by evaluating and and showing you get both times but directly solving the equation and thence demonstrating that is not so obvious
+the challenging task which i have not achieved is demonstrating associativity of
+warner gives the following suggestion show successively that implies that implies that edit all of which have now been demonstrated thanks to a comment from podiki which gave me the hint i needed
+having done all that apparently you go from there to demonstrate that is associative
+and again that is something i have not been able to achieve
+i have tried a number of approaches by manipulating the above expressions according to the rules given but everything i do leads ever more complicated expressions which cannot be obviously simplified
+the non associative nature of of course prevents the usual semigroup results from being used
+i did try directly evaluating and to see what would happen and indeed the expressions are not obviously simplifiable
+i m revising a few past papers on ramsey theory and i ve come across a question which feels like it should be easy if it weren t so confusingly set up i was hoping someone here could help me make some sense of it perhaps not with a full answer necessarily but with an explanation of what to actually try and do since this question is for revision purposes
+the question is as follows let be a colouring of using possibly infinitely many colours and let
+given let denote the equivalence relation on given by and define a finite colouring of by setting
+by applying gallais theorem deduce that there is an arithmetic progression of length m on which c is either constant or injective
+firstly for anyone who isn t aware gallai s theorem states that whenever is finitely coloured any then for any finite there exists a monochromatic homothetic copy of meaning a monochromatic for some
+so the question seems to want me to pick some in for which a homothetic copy will correspond to a monochromatic arithmetic progression
+normally you would use van der waerden s theorem for monochromatic arithmetic progressions which you can clearly prove by applying gallai s theorem to a series of consecutive points but here you have infinitely many colours so that won t work
+i should add that for finitely many colours vdw is a trivial corollary of gallai
+i guess what i m having trouble with is the peculiar equivalence relation
+we use it to induce a quot colouring quot on where each quot colour quot is actually one of the possible equivalence relations so each point in corresponds to an arithmetic progression of length
+considering the definition of the equivalence relation it becomes clear that the result we want corresponds precisely to the case when this is one of the 2 trivial equivalence relations everything is related constant on the ap or nothing is related injective on the ap
+so i think proving this would require only that we show some point in has the quot colour quot of one of the 2 trivial equivalence relations
+presumably this is what we somehow need to do via gallai
+however i can t figure out how you re meant to actually apply the theorem
+i tried applying it to the obvious sets of points in which i could think of a vertical horizontal diagonal line segment or a filled square but having a homothetic copy of one of these in which all the equivalence relations are the same didn t get me to the solution
+the result of this seems to be that you get many many quot equivalence relation equivalences quot if you ll forgive the phrase such as iff iff and lots more similar equivalences
+i thought maybe you could use these to show that there is some point in for which the equivalence relation satisfies iff iff if we could quot loop back around quot to the start of the equivalence relation again then we could get something like the above but that precisely says the relation is one of the two trivial relations depending on whether or not
+i haven t been able to do something like this though i m afraid i m unable to control the fact that the common difference you get from the point may be totally difference to any sort of quot induced common difference quot you get from the fact points in the homothetic copy will be spaced apart
+am i anywhere close to doing the right thing
+or is there some clever trick i m missing
+this problem is meant to be doable in half an hour at most and much of that time might be earmarked for figuring out what on earth the question is asking
+thanks all for your help
+in the interests of understanding cellular homology better i decided to try to verify for myself the identity using cellular homology
+to do that i must first cellulate the torus
+note the only thing i know about cellular homology is its raw definition in terms of computing degrees of maps related to the cw complex i do not yet know and am not currently interested in more efficient abstract methods of deriving this identity
+i asked around and i was told that one can cellulate the torus by first cellulating the cube which is easy and using the quotient which glues opposite faces to see what happens to the cw complex for the cube and obtain a cw complex for the torus
+more formally we could take the map however cellulating the torus has not proven easy for little old me probably because i haven t yet committed to a full study of algebraic topology
+i ve just been browsing the surface as my recent question history attests to
+there are trivial cellulations e g
+use and the standard cellulation of that uses one cell one cell and one cell
+that is not useful for my purposes since there are insufficiently many distinct cells to track what happens to the cube when gluing opposite faces since one cell represents all faces simultaneously
+no i expect i need to cellulate the cube on every edge every face every cubical face every hypercubical face
+i am reasonably confident that there are cells of an cube when one uses one cell per face where a face is some subspace obtained by taking products of with products with elements of
+e g
+a face of a cube could be
+however i need to systematically describe the attaching maps in such a way that i can be absolutely sure i get the cube as a result
+for example even if we know the cube has eight cells twelve cells we can t just link the eight vertices willy nilly
+i will draw a correct diagram of the skeleton on the left and an incorrect one on the right the purpose of these diagrams is to show that without prior visual knowledge it s quite easy to write down an incorrect cellulation
+i could easily write down similar diagrams for purported skeleta of a cube but i d have no way of knowing if they were right
+i could probably compute the homology or something similar to show incorrect diagrams are incorrect but this is circular w r t my purposes and also doesn t tell me how to do it correctly by no way i mean that i personally do not know a way
+there must be some way and this is the essence of my question
+to impose some sanity i ve ensured every vertex has three edges coming out of it since i quot know quot this should be a rule
+how can i possibly know this for sure
+it is obvious that the cube cellulated in this way must have cells attached to every cell but i wouldn t know how to prove that
+moreover i need more than this i need systematic rules for how many cells should be associated to every cell i need rules for attaching cells such that attaching the correct cells is even possible and i need rules telling me that this cellulation will in the th stage produce a homeomorph of the cube
+i haven t tried to visualise my quot incorrect quot diagram but i m almost certain it is not identifiable with the skeleton of the cube
+at least i m certain i could attach cells to it in a random way so as to make something that is not equal to the cube
+here s the rub i can visualise and cubes very easily so identifying which attaching maps are correct is trivial
+however i can t and i expect very few can visualise a cube in a coherent enough way to tell at a glance whether or not a given or skeleton is the skeleton of a cube
+i defy anyone to do this for say a cube on a purely visual basis
+but
+i know this should be somehow easy i was told it was
+my question is how can we specify what the correct attaching maps should be when it is impossible to visualise the space the arbitrary cube we desire
+how can we guarantee the end result is indeed an cube
+i d like to recall that this was all with the purpose of having a concrete cellulation that distinguishes every face so that i could diagrammatically take quotients to find a cellulation of the torus
+i would be very interested to hear about any techniques whatsoever that help us find high resolution cellulations of a given space but that s probably very hard in general just understanding how to do this for a cube a torus or any similarly fundamental shape would be nice
+i ve tagged the question with combinatorics because i suspect there might be combinatorical ways to systematically see how the cells should fit to the cells how to systematically index everything so that it is admissible in a formal proof
+i am looking for a function over the real line with or a proof that such a function doesn t exist on some space like or
+this relation can t hold in a non trivial way over any finite space by that i mean that if is a probability density function then implies by integration that so would have to have variance
+furthermore this relation can t hold on the positive real line since is a probability distribution with which would again mean that has variance forcing it to be zero
+alternatively one could hope for a power series for and use the fact that has over the positive real line to derive that the power series of would have to be zero
+none of the tricks in this paragraph seem to work over the entire real line however
+instead fourier transforming reveals the same equation in fourier space
+if we assume and have finite moments this lets us relate them by differentiating repeatedly to reveal the binomial type formula where means
+this is quite the strange condition to me but it doesn t seem to lead to any obvious contradictions
+it says that the cumulants of are twice that of
+if we expand in terms of hermite gauss functions and use the convolution theorem the fact that and orthonormality of the we can derive the fact that the 4 mod 4 families of modes in result from the products over modes in whose index sums to for any
+this is opposed to the usual situation where modes are also included in the sum
+this says that the index of s modes don t mix mod 4 after squaring
+this condition is difficult to work with because there is not a nice way of dealing with
+if there was an extra inside that inner product it would let us use the tripple product formula for which has a nice form where only finitely many terms pop out unlike the seemingly all to all coupling of the product
+a solution of would lead to solutions of for any by using
+furthermore using would give us a solution to for any
+substituting gives us solutions to translated equations
+unfortunately none of these transformations have made the solution to the problem obvious
+the problem becomes trivial if we are allowed to rescale like as its just a gaussian
+herein lies the reason why i suspect that there is no solution to
+the left hand side tightens whereas the right hand side spreads out
+interestingly enough there are solutions to sinc as well as again gaussian but the homogeneous version of the problem seems more elusive
+i have read some papers about solving convolutional equations but they as far as i have seen have either been over a finite space or have not had the non linearity present here
+i have also tried taking a fractional fourier transform with angle to convert into which leads to another two dimensional integral which is easy to write down but not solve
+i thought of doing a fractional fourier transform about a very small angle in order to make the convolution less delocalized as well as the product smoother
+this didn t really lead to anything helpful
+i tried thinking up of a scheme to find better and better approximations for as i would be happy even with an implicit answer or a numerical method to plot
+the obvious candidate has the problem of there being cycles gaussians as well as convolutions being difficult to compute over the whole real line
+if one thinks of as a lagrangian and tries to do a path integral of over configurations of with some given then i think this corresponds to a badly non local field theory
+yikes
+as a final note the problem can be restated as finding a function where the act of squaring commutes with taking a fourier transform
+this would be solved sufficient but not necessary by a function who is its own fourier transform and whose square is its own fourier transform
+but again we run into the problem where there is no good basis in which to to do both the product and the fourier transform
+polynomials multiply well but fourier transform convolve poorly vice versa for hermite gaussians etc etc with seemingly every choice of basis
+any help approaching this problem would be greatly appreciated as i am seriously losing my mind over it
+edit there is also a simple asymptotic argument which shows that if g is upper and lower bounded by at infinity for some n then it can t solve
+the reason is that the limit of is but the limit of would be so this would have to be zero forcing the integral of to be zero as well
+however such an argument fails if decays faster than any polynomial or if it repeatedly crosses as goes off to infinity
+another edit i believe that the answer is yes and unique but trivial for g taken to be a discrete vector with elements over
+this is because fourier transforming the problem moves back to a compact space where the variance argument shows that the only solution is constant meaning that the only solution for such a is
+as i get further into an area of math i start getting familiar with tricks or results which are repeatedly used but whose citation or verification gets annoying to write out every single time
+i have this tendency to write out every single detail usually taking advantage of parenthetical remarks which seriously destroy the flow of the argument and cause it to take up way more room than it needs to
+i think this comes from a passionate hatred for moments where i m reading a proof and some step is skipped and i cannot see why it s true
+i m fine doing this for hard proofs i think the details should be made as clear as possible because there are difficult probably unfamiliar steps
+for example i wrote an arrow theoretic proof of the snake lemma and it is over 5 ungodly pages long
+but part of me is okay with this because it is filled with many diagrams and explanations for everything i put a new diagram the instant i construct a new morphism or object and sometimes consecutive diagrams will differ only by the existence of a single morphism
+and i didn t even get around to proving naturality of the kernel cokernel sequence
+so i have sacrificed brevity for clarity because as anyone familiar with arrow theoretic proofs not even using maclane s elements of the snake lemma knows it s quite a nontrivial proof
+i am focusing more on proofs of claims which can be described easily but take a while to work through rigorously
+anyone familiar with category theory will know what i m talking about proofs which require one to check functorality or naturality of some construction or that the induced map between isomorphic objects is actually an isomorphism etc
+for instance i wrote up a proof of the five lemma using the two four lemmas using the snake lemma and it is over a page long
+i don t think it should be this long and the reason is i can describe the overall process very quickly
+indeed suppose we have this diagram
+decompose and through their images giving diagram 1 and diagram 2
+then apply the snake lemma to diagram 1 to conclude is mono
+then apply the snake lemma to diagram 2 to conclude is mono
+by duality we get the other four lemma and now the five lemma is immediate
+but doing the above proof takes way more time than it quot should quot
+you have to show the diagrams exist
+unless you re willing to do things like write quot quot everywhere you will probably have to give names to all your morphisms i actually felt the need to construct a naming scheme for things in homological algebra precisely because of this
+you have to show commutativity
+you have to show the rows are exact
+these routine verifications are obvious to me but not things i would totally shrug off in practice because sometimes the diagram you create is not commutative or the isomorphism not natural
+so i will verify them on my scratch work but do they really deserve a full write up
+i know what is obvious to one not obvious to another that s why i write with painstaking detail
+but i think both the beginner and expert lose out when reading a highly detailed proof because they can lose sight of the forest for the trees
+the overall strategy is how you actually remember a proof the details being necessary but eventually hopefully second nature
+also if i refer to my notes later when the proof is less fresh in my head i don t want to get stuck on my own proof
+even my snake lemma proof leaves much to be desired
+its extreme length makes it very hard for me to see the overall strategy to decompose it into well motivated and easy pieces
+so i don t really feel like i learned anything from the proof
+then again i suppose it is a theorem whose result tends to be more useful than the proof
+it s like a proof is a binary tree the top vertex being the result the first layer consisting of subproblems it is broken into hopefully these are already obvious then each of those broken further and further
+i feel like i m traversing this tree in some linear manner which is making the structure of the tree totally nonobvious
+ideally my proof would just consist of the layer 1 or perhaps layer 1 and layer 2 nodes i can cite some results and the path is clear
+so my question to finish off this overly long post how ironic is this what are techniques for helping to convey the overall message of a proof
+when should i exclude details routine verifications or how can i better include them to keep the overall flow of the proof as uninterrupted as possible
+for example in the proof of the four lemma used above i want to convey the idea that we are splitting up the eight term diagram into two natural to consider 6 term diagrams with a bit of fudging here and there to ensure we get 0s where we want so we can actually use the snake lemma
+there s actually a very natural symmetry which arises if you draw everything out in a big diagram which also makes it clear how to prove the other four lemma immediately without appealing to duality
+these are the intuitions and tricks which guide the path to a solution which i want to include in my proofs because that is or should be the point of a proof
+some ideas using footnotes to justify claims which i think are a bit on the easier side but maybe not worth leaving out use lemmas as much as possible though i am kind of asking about situations where there isn t really a lemma to cite or where citing one over and over again would only hamper readability describing the game plan at the beginning of a proof e g
+my quot quick description quot of the above proof of the five lemma similar to the previous point use the whole quot assuming x the theorem follows because now we must prove x quot which seems to help readability judiciously decide which details are too trivial to include but how
+quot know when to fold them quot sometimes a proof is just painful to work through and has many quot hard quot details
+the question is basically all in the subject so i ll just copy and paste and move on to what i ve tried
+formal proof of has a critical point iff is a critical point of f and is a critical point of g extra and the same for g firstly it s obviously true this took me by surprise because i d have taken this without proof i may have even used it before and considered it too trivial to question f s change is independent of g s because one is in x and the other y
+there should be a name for how useful of a property this is
+i m not even sure how to word it you can think of the partials a the derivative of f along the x axis and derivative of g along the y axis if one is turning i sometimes call critical points turning points it s how i was taught is this wrong
+and the other isn t it s obviously not a critical point of the surface
+it s difficult to explain i just hope it s not so obscure someone suspects i m bluffing or that this is a part of that bluff and so forth i hope no body things i have an odd numbered bluff
+i m a little thrown off by the if and only if part
+i could use the second derivative test and use the fact that and are both zero but this is actually part 2 of the question and if that were 0 requires further investigation involving the third derivatives if that s 0 the fourth i ve proved this by induction before but only for single variables the question is only worth 4 marks 8 minutes at most
+so yes how would i prove this
+additionally this probably should have gone first it does say critical and the definition of that is first derivatives being zero i can show if this is true then it s a turning point
+then assume both derivatives are zero and well not sure i thought integrate but i m not entirely sure what i d be integrating over it s very hard to go back i could say then the tangent plane is flat but then i d have to prove if the tangent plane is flat that it s a critical point i m not certain of this i know critical point tangent plane is flat and i can t think of a counter example going the other way in fact the tangent plane is defined by the first derivatives so perhaps this is the proof
+it s fairly easy to show addendum no wonder i m so muddled no one looks at as the sum of two functions it s like the obvious limit only i could prove that is it not true because of the definition we use
+and again what are the both ways the if then and only then parts
+recently i ve been thinking about a common theme that i ve seen all over mathematics
+one often finds that when the number of dimensions degrees of freedom in a given scenario problem changes from to that some fundamental shifts in the solution or resulting behavior occur
+i ll list five examples of what i m talking about three of which have to do with differential equations
+what can i say
+read my bio
+before i do so my questions are what are some other examples of this theme
+is there a universal reason why this happens
+does it have to do with being the first odd prime
+or perhaps something else
+1 poincar bendixson theorem for those that don t know the poincare bendixson theorem is a deep result in odes dynamical systems
+consider the autonomous ode where and
+when the behavior of the solution is typically very easily to analyze heuristically and in particular it is rather obvious that only monotonic solutions exist
+when things obviously get a lot more complicated but there is in fact the powerful p b theorem let be closed and bounded
+if is in contains no fixed points and such that the solution of the ivp is entirely contained in then there is at least one closed orbit in
+quite a remarkable theorem if you ask me
+the consequence of this theorem is that there is no chaotic behavior in two dimensions
+in the plane any solution of is either unbounded bounded and approaching a periodic limit cycle periodic so solutions that are bounded but do not approach a stable limit cycle i e strange attractors are impossible in the plane
+however when we jump from dimension two to dimension three and any subsequent dimension no similar result exists
+solutions of autonomous odes in dimensions can be as quot strange quot as you like
+2 fermat s last theorem consider the simple equation where and
+the question is given how many solutions exist to
+when it is obvious that there are infinitely many solutions the sum of any two integers is an integer
+when proving that infinitely many solutions exist is still rather easy and known thousands of years ago to the greeks
+we can simply let with and observe that since there are infinitely many pairs of positive integers with there are infinitely many solutions
+however as i am sure you are all aware the general answer was not known until 1995 when andrew wiles published his complete and peer reviewed proof of the problem
+years after the problem s conception by fermat
+his result was that for no solutions to exist
+3 the three body problem take a system of particles in with positions and masses and consider the the coupled vector ivp where
+when we just have a single stationary body
+when things get a lot more interesting but still the equations are easy to analyze and their behavior is easy to predict with numerical simulation it is why we are able to predict solar ecplipses years in advance
+in fact taking the limiting case some very precise equations for the motion of the bodies have been known for hundreds of years namely kepler s laws
+however when the system becomes chaotic with the particles exhibiting no obvious or predictable behavior
+is this because unlike two points one cannot in general find a line that goes through three arbitrary points
+this reminds me a lot of example 1
+4 commutative division algebras over frobenius s theorem my shortest entry on this list due to my extreme lack of knowledge about abstract algebra
+there is trivially a one dimensional commutative division algrebra over namely itself
+there a two dimensional commutative division algebra over namely the complex numbers
+but there is in fact no commutative division algebra over when
+once again we see that changing the dimension from to completely changes the behavior
+5 the fundamental solution of laplace s equation we seek to solve the equation here and is dirac s delta distribution
+it can be shown that letting be the volume where by volume i really mean the dimensional measure of the unit ball the solution is this is actually more interesting going from we start with a power law in then a logarithm and then again a power law
+however once again we see a stark change in behavior when goes from
+if you made it this far thanks for reading
+consider leaving an answer giving other examples or perhaps a hand wavy explanation
+this question is a little fuzzy so might be closed but i ll give it a shot
+i m sorry this question has quite a long introduction i don t see how to formulate it more concisely
+in modern algebraic geometry for example many objects are defined by universal properties of commutative diagrams etc
+now sometimes we want to prove statements about them see below for a specific example
+if we were working in say sets then there are often proofs that one might call element wise
+that is to say we prove say that two objects are isomorphic by writing down a morphism explicitely
+a claimed inverse and check on all points that the compositions indeed are the identity
+this does not work in for example the category of schemes where a morphism is more than what it does to points and where moreover we may not have very explicit descriptions of various objects e g
+fibred products
+i thus find myself resorting to work with commutative diagrams and universal properties
+this works in the following sense for any particular statement i could convince a friend of it s correctness
+this would go by drawing some diagram saying a few words extending the diagram and so on this is the step where i get my morphisms say
+finally i retrace various various of the maps i started with to show certain properties about composites and can then conclude that the morphism i have produced are actually inverses
+there typically are three things to be observed about this 1 everything i did was obvious in the sense that by writing down what i want to prove i am immediately guided towards what i have to show in succession to make sense of it and then verifying every step is usually trivial
+2 even though i can with some thought talk through a proof i do not feel like i actually understand it very well
+3 i have no idea how i would possibly write down such a proof
+short of spending pages on trivialities most of which consists of very similar looking diagrams
+my question is then how to improve my situation
+note that if 2 were to improve then i would feel less of a need of being able to do 3 although it would of course be nice
+a specific example show that relative frobenius commutes with base change
+recall that for the morphism induces a morphism known as absolute frobenius
+if we now fix we can define for where is the scheme with structure morphism
+it is then easy to see that and canonically induce a morphism known as relative frobenius
+now given a base change we have to show that is canonically isomorphic to and that the composite first morphism being is just as i said above i know some way to show this it involves a mess of commutative diagrams and writing this out would take a remarkable amount of space for a sequence of trivialities
+let be a fixed matrix over a field
+we can look at the subspace of the matrices which fulfill both and
+looking a these equations we get that all columns of have to fulfill the equation
+let us say we re working with column vectors
+similarly we get for the rows
+this tells us that if we are looking at the possible choices for columns rows of the matrix they have to be in a subspace of dimension in the right left null space of
+at least in some cases it is almost immediately possible to find or at least
+obviously if is invertible then and
+another trivial case is when which gives us and
+slightly less trivial but still simple case is when
+in this case the condition on rows columns give us one dimensional spaces so there are non zero vectors such that each row has to be multiple of and each column has to be a multiple of
+up to a scalar multiple there is only one way how to get such a matrix and we get that is generated by the matrix and
+the general case seems to be a bit more complicated
+if we denote we can use the same argument to see that there are linearly independent vectors such that the columns have to be linear combinations of these vectors
+similarly row can be chosen only from the span of the linearly independent vectors
+this is again just a direct consequence of and
+using these vectors we can get matrices for
+unless i missed something it seems that showing that these matrices are linearly independent is not too difficult
+so we should get that it is not obvious to me whether these vectors actually generate
+and perhaps something can be said about the dimension of without exhibiting a basis
+you may notice that in the three trivial examples above with we got the equality
+another possible way to look at this problem could be to use the linear function then we have so we are basically asking for the dimension of the kernel of this map
+so to find it would be sufficient to find
+however this does not seem to be easier than the original formulation of the problem
+it is also possible to see this as a system of linear equations with unknowns
+if we try to use this line of thinking the difficult part seems to be determining how many of those equations are linearly dependent
+question what can be said about the dimension of the subspace
+is it equal to
+is it determined just by the rank of
+if not what are best possible bounds we can get if we know only the rank of and have no further information about
+motivation for this question was working on an exercise which asked for calculating dimensions of spaces and where the spaces and were determined by the conditions and respectively
+since the matrix was given in this exercise it was possible to find a basis of explicitly
+and the exercise was probably intended just to make the students accustomed to some basic computations such as finding basis using grassmann s formula etc
+still i was wondering how much we can say just from knowing the rank of without going through all the computations
+one of my children received this homework and we are a bit disoriented by the way the questions are asked more than the calculation actually
+this is exactly the wording and layout of the homework consider an aluminum can for example a coke can
+do such cans have the right dimensions
+what does right mean
+why do other products come packed in containers of other shapes
+question an ordinary can has a volume of 355 cm3
+what shape will hold this volume of liquid using the least amount of aluminum minimising surface area
+demonstrate your conclusion by comparing 2 different shapes in addition to a cylinder
+consider defining suitable variables and stating any and all assumptions you make
+use differentiation to find the value of your variable that minimizes the volume of metal used to make the container
+is there another method you can use to justify your model
+are real containers this shape
+why or why not
+discuss which model best fits the actual container giving reasons for any differences if they exist
+you are then informed that the circular top and bottom of your drink can has thichtess 0 2mm but that the curved surface has thiclvtess 0 imm
+nist inc would like to launch a new sized can that has a capacity of 200 ml
+using your model find the dimensions of the can that would minimize the volume of metal used to make the can
+do you think that nist inc would use these dimensions
+why or why not
+first keep in mind that they have only seen derivatives so far no integrals yet
+second please understand that we are not native english speakers so decoding the sentences is part of the problem
+finding the optimal height and radius of the cylinder is quite trivial find the constraint equation volume in terms of height find the optimizing equation surface area
+plug the height of the volume equation into the optimizing equation derive that equation and make it equal to zero solve it for the radius and plug the radius found in the height equation
+the answer will provide you the ideal height and radius to optimize the surface area of the cylinder
+so far so good it seems that the actual cans are more or less optimal if simplified as pure cylinders but the homework seems to consider there is another model that could be used
+i went and check on the internet with no success
+this model seems the obvious one
+now does it have the right dimensions
+what does right mean
+and why do other products come packed in containers of other shapes
+it seems to be anything but pure math questions and it seems to be dependent on how you see things storage drinking convenience
+as i m sure i m wrong i can t possibly understand what answers are expected here
+maybe i m missing the point to make it all clear at once
+the right dimensions
+for a soda can it s pretty close to the ideal measures yes but is it the expected answer
+no clue
+what does right mean
+well
+i don t know what this question is really asking
+in terms of maths
+in terms of storage issues
+in terms of practicality
+in terms of costs
+why do other products come packed in containers of other shapes same here
+cubes are easier to store i guess
+flat tops and bottoms allow a more convenient way to stack things
+but i m pretty sure i just don t get it
+moreover this is an intro text and a series of questions are coming just after
+i just don t know if these questions in the intro text are rhetorical or if they are already meant to be answered
+which would be strange as there is no constraining data yet
+now come the actual questions what shape will hold this volume of liquid using the least amount of aluminum minimising surface area
+that would be a sphere with no doubt
+but how to prove it in a trivial and absolute way
+it s seems intense
+demonstrate your conclusion by comparing 2 different shapes in addition to a cylinder
+how a non comprehensive comparison would demonstrate anything
+here too i don t get it
+i could make the calculation for a cube and then a cylinder and then a sphere to show that it would decrease the surface area for a given volume but that wouldn t be a proof of anything would it
+all i would be able to say is that it seems that the more we go towards a shape with an infinite amount of sides perfect curvature the more we will optimize the surface area
+but that doesn t demonstrate anything especially if we just take 2 other shapes to get to that conclusion
+is there another method you can use to justify your model
+besides using the derivative to find the optimal height and radius
+i can t seem to find another
+are we talking about the sphere model or the cylinder model now
+are real containers this shape
+why or why not
+sphere or cylinder
+what shape are we talking about now
+discuss which model best fits the actual container giving reasons for any differences if they exist
+which model is there that is obvious besides the derivative
+it feels like the questions are not specific enough
+do you think that nist inc would use these dimensions
+why or why not
+here too i m lost
+i can calculate the dimensions just fine but it seems that i have to go through the same reasoning than all the questions above which are already confusing
+my question is somewhere between a math question and an understanding question
+but if i go and ask on another forum dedicated to english they might be unhelpful because of the math aspect of that homework
+so all in all it seems to be the best place to ask the question
+i m sure i just miss the point of that homework which makes all the questions quite obscure to me
+maybe some hint will help deblocking the situation at once
+i feel like i m missing something obvious
+that s what i m asking for
+i m probably sure this post will make some people laugh and make a clown out of me but be assured that the language barrier doesn t help
+thanks in advance
+i m trying to construct the trigonometric functions in a analytic geometrically way and prove all the properties about angles
+i don t want to use concepts of integral or derivatives as i would like to explain it in a formal way for a student who sees calculus for the first time using just supremum limits and continuity
+i started defining the arclength measure of the function such that
+then i prove the function is well defined the set is upper bounded for all and increasing on
+i defined where like this after that i prove that this function is continuous and by the intermediate values theorem we have
+therefore it makes sense to consider such that
+we can expand the definition of cosine to the interval like this where it s very easy to prove using the theorem of existence and uniqueness of the integer part of number that for any there exists and such that
+this last result allows us to extend the definition of the cosine function to all the real numbers where is the unique integer such that
+the definition of the sine function goes like this where using the monotony of the arccosine function is very easy to calculate the monotony of the cosine and sine function
+by definition it s trivial to deduce that these functions are even and odd respectively and periodic with period
+these are the basis i m using in order to prove the trigonometric functions properties
+once i prove that the rest is very easy
+the proof i like the most and doesn t depend almost at all of the drawing is the one i m presenting here i ll bold the part which it s not proved with the tools i showed before first we prove that if and only if there exists which it ll be unique if we force to be such that and
+this part is easy and i ll skip it
+let be
+then we claim that
+making the two quantities equal we get the desired result
+i know that looking on a graph is quot obvious quot that those distances are equal as the points shared the same arclength on the unit circunference but i need to prove it without that and using the definitions i provided it before
+how could you do it
+thank all of you in advance
+suggestion let be with
+we define the measure of the angle formed by and like this we know that for any with there re unique such that and
+we can prove first that finally we should demonstrate that if are such that then
+working over a base field there is a typical homomorphism theorem for affine algebraic groups ensuring that any two homomporphisms with the same kernel in have isomorphic images
+proving this makes heavily use of the nontrivial fact that injective homomorphisms between hopf algebras over fields are faithfully flat
+working over general base rings which are not fields it is easy to find non faithfully flat injective hopf algebra homomorphisms for example over the base ring of integers sending to for any is not faithfully flat
+it corresponds to the multiplication by homomorphism
+i suspect the above statement fails in this general setting but i cound not find any counterexample so far
+question 1 are there homomorphisms of affine algebraic groups with the same kernel such that is not isomorphic to
+more specifically question 2 is there an injective homomorphism of affine algebraic groups such that is not isomorphic to
+edit 1 here is an attempt to find a counterexample to question 2
+my idea is to adapt known homomorphisms of algebraic groups which can be defined over general base rings but show different behavior after base extensions to fields of different characteristics
+for any base ring there is the circle group defined for any algebra by the identity element is and the group operations are given by if has an element with there is a homomorphism this morphism is quite exiting if is invertible in then is already an isomorphism
+if not not invertible however then is not injective and we can extend to a field of characteristics 2 where is neither injective nor surjective it maps onto then
+this example can be found in waterhouse introduction to affine group schemes chapter 1 exercise 11
+since has nontrivial kernel it cannot be a counterexample to 2
+so let s add an additional equation let be the subgroup of the circle group given by now the restriction of to has trivial kernel but it is not surjective anymore we have to add at least one additional equation to
+that is induces a homomorphism of algebraic subgroups i think this might be a counterexample to 2 since it becomes an isomorphism after extending the base ring to any field but i cannot see how it should be an isomorphism over say the gaussian integers
+however i also cannot see at the moment why it should be scheme theoretically surjective
+to restate the question in terms of hopf algebras there is a homomorphism is this morphism injective but not surjective
+of course 2 asks for a little bit more is the left hand side not ismomorphic to the right hand side
+edit 2 unfortunately this specific morphism is already an isomorphism which can be easily seen by condiering the localizations of at all primes
+for all primes with it is quite obvious that the morphism is basically the same as the identity map since is invertible in
+on the other hand if then is invertible in
+in this case is an isomorphism and it can be easily checked that its inverse maps to
+in order to get a counterexample in the way sketched above we have to choose some other equation instead of which nontrivially affects the groups over the base ring for
+in his notes on group theory 2019 edition http pdvpmtasgaon edu in uploads dptmaths anotesofgrouptheorybymarkreeder pdf p 83 and ff
+mark reeder gives a proof of the non existence of simple groups of order 720
+p 83 before the proof he says quot in the former case where the normalizer of a sylow3 subgroup p acts by an involution on p with trivial fixed points and normalizes every subgroup of p quot a little lower in the proof of lemma 10 26 he says quot if then contains an element inverting hence normalizing quot if i understand it correctly the reasoning is as follows if is a simple group of order 720 if the number of sylow 3 subgroups of is 40 then the normalizer of a sylow 3 subgroup of has order 18 and is not abelian
+so far so good the normalizer is nonabelian in view of burnside s normal complement theorem
+m reeder seems to find it obvious that this implies that is isomorphic either to the dihedral group of order 18 or to the generalized dihedral group constructed on a noncyclic group of order 9
+but a nonabelian group of order 18 can also be isomorphic to the direct product of a group of order 3 with and in this case it is not true that every element of order 2 of normalizes every subgroup of order 3 of
+thus for me the remark of mark reeder is not evident
+mark reeder gives the following link to a proof by derek holt http sci tech archive net archive sci math 2006 12 msg07456 html but this link no longer works
+i can prove that has exactly 10 sylow 3 subgroups and deduce from this that these sylow 3 subgroups have trivial pairwise intersections but my proof is quite long so reading m reeder i m afraid that something is escaping me
+thus my question is can you explain the two sentences of m reeder that i quoted above
+thanks in advance
+by the way i think that the non existence of simple groups of order 720 can be proved in the following way
+let us define a colian group as a finite froup g with the following properties 1 g is simple 2 the order of g is divisible by 9 and not by 27 3 the sylow 3 subgroups of g are in number 10 4 the sylow 3 subgroups of g are noncyclic 5 the sylow 3 subgroups of g interset pairwise trivially
+the proof given by cole of the isomorphy of all simple groups of order 360 or in any case the variant of this proof given here https fr wikiversity org wiki th c3 a9orie des groupes chapter 35 can easily be extended to the following statements 1 every simple group of order 360 is colian 2 every colian group is isomorphic to 3 and thus every simple group of order 360 is isomorphic to
+then we prove that a simple group of order 720 should be colian and thus should be isomorphic to which is absurd since has order 360
+edit 1 september 18 2020
+there is no problem with this part of mark reeder s proof
+he proves lemma 10 16 that if is an abelian sylow subgroup of a nonabelian finite simple group then no non identity element of is centralized by
+thus if cannot be the direct product of a group of order with a group isomorphic to
+edit 2 september 22 2020
+i think that the end of the proof of lemma 10 26 in m reeder s exposition p 83 84 can be simplified
+the author assumes that is a simple group of order 720 and that is a subgroup of order 3 of contained in several sylow 3 subgroups of and he needs to draw a contradiction from it
+he proves that has order 72 so has exactly 10 conjugates in
+let denote the set of the conjugates of in
+thus has cardinality 10 and as noted by the author acts faithfully on by conjugation
+the author proves that the orbits in have sizes 1 3 3 3
+thus if is an element of 1 the permutation of has only one fixed point
+the author also notes that by the theorem has order 36 or 72
+from here i would say what follows
+just remember that has even order
+that implies that is the square of an element of order 6
+choose of order 2 in then is the square of and has order 6
+thus with of order 6
+in view of simplicity of acts on by conjugation as an even permutation of order 6 and thus acts on by conjugation as the square of an even permutation of order 6
+but an even permutation of order 6 of a set with cardinality 10 has cyclic structure 6 2 1 1 3 3 2 2 or 3 2 2 1 1 1 thus the square of such a permutation has at least 4 fixed points which contradicts the result 1 of the author if i m wrong please say it me
+edit 3
+october 26 2020 there is another problem perhaps more serious with m reeder s proof
+see no simple group of order 720 again
+edit 4
+march 26 2023 derek holt
+introducing your proof you said quot let me know if it would helpful to include any further details anywhere or if you can shorten any parts of the proof quot i think your proof is correct but i can perhaps make some remarks
+here is my first remark
+i will continue if it seems to interest you
+1 i think that in the proof of jordan s proposition it is not necessary to distinguish between the cases and the other case
+here is a proof without this distinction
+it is long but the reason is perhaps that i try to be exhaustive
+for a finite set and a subset of i will note the subgroup of formed by the even permutations of that fix all elements of
+is canonically isomorphic to
+you note it
+if is a finite set and a subgroup of i will say that a subset of is richly permutated by if is contained in
+the two following lemmas are easy to prove
+lemma 1
+let be a finite set a subset of and an element of
+then
+lemma 2
+let be a finite set a subgroup of a subset of richly permutated by
+for every element of is also a subset of richly permutated by
+theorem jordan
+let be a finite set and a primitive subgroup of
+if contains a cycle then contains and is thus equal to or to
+proof
+by hypothesis contains a cycle
+then the subset of is richly permutated by so there is at least a subset of that is richly permutated by and that has cardinality at least for example is such a subset
+so among the subsets of that are richly permutated by and that have cardinality at least we can choose one say that is maximal for inclusion
+we will prove that is the whole
+assume by contradiction that hyp
+1 is not the whole
+then since is not a trivial block for
+thus since is primitive by hypothesis is not a block for
+so there is an element of such that we can choose and
+for every distinct in and are three distinct elements of thus since is richly permutated by 2
+on the other hand and are two distinct elements of
+since which implies we can choose an element of that is distinct from and
+since lemma 2 is a subset of richly permutated by we have 3
+from 2 and 3 results i e
+i compose permutations from right to left 4 for every distinct and in
+we proved this for every distinct and in
+let us prove that is true for every distinct and in
+we have to prove that 4 is still true if or is equal to
+in other words we have to prove the two following theses thesis 5 for every distinct from in thesis 6 for every distinct from in
+let be an element distinct from in
+since we can choose an element distinct from in
+then by 2 7
+on the other hand we have by 4
+with 7 this implies i e
+8 which proves our thesis 5
+let now be an element distinct from in
+since we can choose an element distinct from in
+then by 2 et 4 i e
+9
+which proves our thesis 6
+from 4 8 and 9 it results that for every distinct and in is n
+since is richly permutated by it proves that every cycle in is in more rigorously the canonical image of every such cycle in is in
+since every alternating group is generated by its cycles is thus richly permutated by which contradicts the maximality of
+this contradiction shows that our hypothesis 1 is false so is the whole thus is richly permutated by which means that contains which proves jordan s proposition
+by the way a primitive group is by definition a transitive group with no non trivial block
+if i m not wrong the proof of jordan s proposition doesn t depend on transitivity only on the non existence of non trivial blocks
+so jordan s proposition can be stated quot let be a finite set and a subgroup of with no non trivial block
+if contains a cycle then contains and is thus equal to or to quot it is not really a strengthening of jordan s proposition in the sense that there is no case where the weak hypotheses are satisfied and the strong hypotheses are not since the quot strengthening quot of jordan s proposition shows that transitivity results from the weak hypotheses since is transitive when has at least elements
+recall the hopf fibration which is the generator of
+also recall the freudenthal suspension theorem
+if then the suspension homomorphism is an isomorphism if then it is surjective
+the suspension homomorphism is therefore a surjection
+one can compute by a standard spectral sequence argument that where the non trivial element is therefore given by
+since is in the stable range it follows that generates for all and we could call the corresponding element in the stable stem also
+now consider the composition which we could write quot quot
+it s easy to see this is not null homotopic consider
+and by more spectral sequence calculations we know so is the generator
+even more spectral sequences show that
+comparing these degrees to the suspension theorem we see 1 is in the stable range so happens to have the stable value 2 the suspension morphism is a surjection onto the stable value which is therefore an isomorphism because they are both and 3 we get no information about so it s not immediately obvious from the suspension theorem alone whether or not should survive to the stable stem
+it is indeed true that does survive and therefore the suspension map is an isomorphism in this degree but i have only found arguments which use relatively sophisticated tools see below
+question is there a simple quot low tech quot proof that survives to the stable range
+i have to try to be specific
+here by quot low tech quot i essentially mean anything in spanier or hatcher plus a little bit more
+for example the suspension theorem and the serre spectral sequence are obviously fair use since they have been used above to show itself survives to the stable stem
+i m asking for a simple proof because there is typically a trade off between sophistication of tools and sophistication of details so i m wondering if there is a clever elementary argument or if this result just has a significant lower bound in terms of complexity
+here are examples of what would be considered quot high tech quot from this point of view use the local ehp sequence of i m
+james to study
+the values of the relevant groups have been given above other than and are derivable by serre spectral sequence in a standard postnikov tower argument
+you find that the suspension map in question is an isomorphism and therefore survives in the stable stem
+i consider this to be quot high tech quot for these purposes because the ehp sequence is an amalgamation of relatively sophisticated concepts including whitehead products the hopf construction and localization
+if an argument only used whitehead products for example that would be considered lower tech than the full ehp since there is at least an exercise set on whitehead products in spanier
+compute the page of the mod adams spectral sequence for example using the may spectral sequence in degrees
+you find an element whose square is non zero and they re both permanent cycles
+this spectral sequence converges like so we know has to represent and that by multiplicativity has to represent the square of therefore in
+this argument is obviously much more sophisticated than ehp but with the same amount of work you can also see
+there is also a way of using secondary cohomology operations which is referenced in this stackexchange question apparently contained in harper s book
+i haven t looked at this argument yet but i will draw a line and say primary operations are ok secondary operations are over the line
+that being said my understanding is that cannot be detected by primary operations
+i hope my question is not still too vague
+i think there are many interesting avenues for establishing this result so if you know a good argument that might not be low tech enough i would still like to see it
+i may find that the true answer to my question will be something like quot the ehp sequence is not actually that high tech quot and that asking for a proof using spanier alone might not be reasonable
+i ve been studying differential geometry for a while now and it seems like the whole quot manifold quot idea can really be generalised and as such defined for objects of say arbitrary pairs of categories with quot being contained quot in such that quot is stable by intersections quot which i will formalize below instead of having to deal with the first category of the pair being the category of open subsets of for equipped with differentiable functions as morphisms not necessarily diffeomorphisms to be clear and the second being the category of second countable hausdorff topological spaces equipped with continuous functions w r t
+their induced topologies may vary according to the definitions of a differential manifold
+i have tried to formalize what i call a quot categorical manifold quot below note for more mathematical consistency the following sets of objects or morphisms of categories discussed here will actually be sets w r t
+to a grothendieck universe so we don t run into set theoretical paradoxes but that can reasonably be swept under the rug in the scope of this question in my opinion
+for two categories and is said to be a subcategory of if all objects and morphisms of are also of
+for a concrete category over set such that the forgetful functor of from to set preserves pullbacks let the relationship an inclusion enriched by if you will be such that for two objects of if and only if there exists a monomorphism of from to
+for a concrete category over set such that preserves pullbacks is said to be stable by intersection if for objects of such that and then there exists an object of noted that verifies and and that is a pullback of the monomorphisms due to and w r t
+the monomorphisms due to and
+note that is unique up to isomorphism since it is a pullback
+for a concrete category over set such that preserves pullbacks and pushouts and is stable by intersection for objects of let denote a pushout unique up to isomorphism w r t
+to the monomorphisms due to and
+in the case of pushouts we don t necessarily want to always have them for every pair of objects of so they do not necessarily exist
+let a geometric pair of categories denote a pair of concrete categories over set such that is a subcategory of resp
+preserves pullbacks and pushouts of resp
+is stable by intersection and the restriction of to the objects of is identical to
+to be clear resp
+are the forgetful functors of from to set resp
+from to set for a geometric pair of categories and an object of let be a categorical parameterization of if is an object of such that and there exists an object of such that is an isomorphism from to in
+let be a countable and indexed by some set categorical atlas of if the following conditions are met is a countable set of categorical parameterizations of is a pushout of all for w r t
+to and is defined inductively which works up to isomorphism due to the associativity of the pullbacks and the pushouts this part is non trivial i admit but from the literature i ve come across it can be reasonably assumed or in the worst case added in the definition of a geometric pair of categories such that for and for a finite subset of and for two categorical parameterizations of in if the pullback is not an initial object of then there exists and objects of such that and and is an isomorphism from to in and is an isomorphism from to in with resp
+from the definitions of resp
+and we have that is an isomorphism from to in and is an isomorphism from to in finally for a geometric pair of categories let be a categorical manifold if is an object of is a categorical atlas of and maximality of as an atlas of for a categorical parameterization of if for all categorical parameterizations of such that if the pullback is not an initial object of then there exists and objects of such that and with resp
+from the definitions of resp
+and is an isomorphism from to in and is an isomorphism from to in and is an isomorphism from to in and is an isomorphism from to in then also another definition of interest for all the interest such a theory is worth anyway might be the following for a geometric pair of categories is said to be geometrically trivial if the following conditions are met absorption of by for an object of and an object of if they are isomorphic in i e
+there exists an isomorphism from to in then is an object of stability by countable union for an object of if is a pushout of all defined inductively the same way as in the section of the definition of the atlas of a countable collection of objects of and such that for all then is an object of it is easy to see that every categorical manifold w r t
+a trivial geometric pair of categories is an object of thus quot trivialising quot the manifolds hence the name
+so that brings my question has this been significantly researched yet
+i tried for instance to get a feel of field ring categorical manifolds are like and it turns out that field ring is a geometrically trivial pair of categories as defined above and actually the same seems to apply for every geometrical pair with and being subcategories of magma and defined using quot well behaved quot first order properties maybe some sort of generalized markov property for magmas instead of finitely generated groups i suppose but i haven t investigated that thoroughly yet
+maybe it s too quot infertile quot to be studied as is if we don t add stronger hypotheses to such manifolds and the categories and i mean that could partly explain why schemes in algebraic geometry have been so fruitful for example
+maybe that whole thing is ill defined to begin with and no significant attempts have been made to make it well defined mainly due to a lack of motivation
+nonetheless i feel like such a theory could have great applications to other fields if developed properly that probably sounds pretty obvious to most people reading this since the theory is very general to begin with but i say it anyway to make an emphasis on it
+thanks in advance edit i have reworked the whole post massively so as to make this theory workable since the previous version was ill defined in many ways the definition for the atlas for instance had its formalism mixed up between charts and parameterizations which may have made it very confusing at best i admit
+to be honest i made the edit more for closure than anything and also to share that with other people who might come up with interesting developments regarding such quot categorical manifolds quot
+for the sake of simplicity i ve been only looking in base numbers though i ve wondered how this might work in other bases easier to stick with the familiar though since this is purely recreational
+analogous formulations hold in other bases and are easily constructed at least for bases which are integers greater than or equal to
+insofar as context is concerned there isn t much other than this was something i was thinking over last night and i couldn t find any discussions about this online
+formulation of the question for argument s sake let us consider our number to be which can be represented by the following forms where each with its leading and trailing zeroes ignored
+for example is just treated as and is just treated as
+the former consequence means that the first nonzero digit is some number we label with index
+so equivalently the above forms are given by where each and
+let us now define a product of digits or digital product function by then the question is as follows is there any nontrivial number at least in base whose digital product is the number itself i e
+any natural such that i say trivial because for single digit numbers it is clear that
+i m more interested in nontrivial results provided they exist
+some thoughts and investigations ideally it would be possible to prove for all of concern or at least prove there exists some such number s that equal their digital product but i don t think that would be at the very minimum an easy task
+so i ve instead bounced around other ideas and such in my head there s the one outlined at the end of the previous section which somewhat motivates me asking this question
+that being that for any single digit number in any base
+obviously too any number containing any s satisfies
+any number between and for a given natural number will not satisfy since the maximum digital product for digits would be
+any permutation of the digits of doesn t change the digital product
+any number with s in it can also have them safely added or removed without changing the digital product
+that is for example and any permutations of their digits all have the same digital product
+must be a whole number
+nuances regarding negatives are not something i want to deal with so for simplicity this problem is essentially reduced to contending with
+this is because the nonnegative integers are closed under multiplication and thus for all real
+well maybe some irrational numbers would have
+that s a question all on its own honestly but since being irrational would mean having a fractional part and the fractional part of all digital products is zero it would still mean
+it seems obvious that if has less digits than or more but more on that later then obviously
+but this begs a certain question what would be the minimum value for which and would if not be equal at least have the same amount of digits
+this question would be motivated by computer searches and could be useful in cutting down computational time further alongside previous observations
+of course this question could also be framed in another way though my mathematical background is less certain where this comes from
+namely consider repeated application of the digital product function i e
+
+the alternative framing of this question in that light would be that is there any number with two or more digits such that under iteration the function eventually cycles getting stuck in a loop without reaching single digit numbers
+on research into a related topic sum product numbers it was discussed on mse that
+our investigation is concerned with where they re equal
+so in that sense on repeat iteration the digital product is decreases monotonically albeit not strictly monotonically
+that is a crude brute force search i have made a relatively crude matlab script that as posted checks numbers from to for
+crude in that it doesn t really incorporate any of the observations above just checks all of them
+i m really really terrible with programming
+currently it s checked all those up to and none that have more than one digit have met that condition
+this suggests that if such an does exist it will be relatively large though given how slowly obviously grows over time it probably doesn t exist though proving that eludes me this is a bit above my head
+i doubt i can check many more numbers however
+i m running this script on my laptop which is quite out of date and is just a really poor machine overall
+the script itself could probably be refined as well
+so my questions to you either by brute force or some other means can you find a nontrivial number such that
+i m currently at the point of conjecturing no such exists but i have no clue how one might prove that
+like legitimately no clue
+i have no idea where to begin for something like this
+i noticed that the number of sum product numbers is finite
+based on their definition perhaps it might suggest likewise that the number of numbers such that is also finite
+perhaps just any noteworthy thoughts findings on the matter or research into this that i overlooked
+tl dr im struggling to show that the skeleton is a kan extension from the basic limit formula this should be possible as it was left to the reader in my book
+im also struggling to even understand what the skeletons definition is initially i thought degenerate meant empty or singleton but ive done some more googling since i wrote this post and that doesnt seem to be the case
+unfortunately i cant anywhere find an explicit definition of degenerate simplex or of skeleton
+to find the left and right kan extensions of a functor we can use the co limit formulae given functors and suppose that for every the following colimit exists where is the slice category then exists and is up to isomorphism the functor defined by the above colimit viewing it as a functor
+if for every the following limit exists then exists and is up to isomorphism the functor defined by the above limit viewed as a functor
+fixing a if the kan extensions exist for every then there are adjunctions where is the functor of precomposition
+now quot we quot know that with the simplicial category including zero the full subcategory of on the objects and any complete and cocomplete category the inclusion functor then the left right kan extensions correspond to the adjunction given by these abbreviations refer to the skeleton truncation and coskeleton
+i would like to verify this in detail using the co limit formulae
+it s worth noting that i know essentially nothing about simplices i have no experience working with them or with doing any homotopy homology theory with them yet i very much intend to at some point but i would like to understand this as a primer
+in fact my motivation for my recent interest in more advanced category theory comes from wanting to do algebraic topology
+so i ve never come across the co skeleton functors before
+according to nlab the skeleton of a truncated simplicial object in shall be the simplicial object defined on to be and on to be quot a degenerate simplex quot
+i can only assume this means is the singleton set or more generally the terminal object for
+i want to verify this by inspection of the following diagram please excuse the paint i don t know how to do fancier diagrams in latex where is arbitrary stands for and
+the refer to arrows in i e
+nondecreasing functions but note that acts contravariantly
+the top and bottom portions of the diagram are to be interpreted with all varying to uniquely induce the source target arrows
+this if i m not mistaken is the correct construction from the colimit formula
+refer to inclusions and
+is the coequaliser arrow
+we want to show that when and the terminal object when
+subquestion is that obvious from the above diagram definition
+riehl took care of a similar example simply stating the value of quot by inspection quot
+i had to verify this object was indeed a coequaliser and what the appropriate coequalising arrow should be and it wasn t at all obvious to me
+i must be missing some intuition
+moving on i ll now try to verify this is a suitable coequaliser object
+i imagine it s easiest to begin with the case
+as is allegedly is just the unique arrow and the claim is that every arrow with factors uniquely through
+here abbreviate the source target arrows as depicted
+plugging in inclusions to the right of for arbitrary shows if it were the case that for some then that d imply by uniqueness which is an entirely trivial condition
+could indeed be any arrow picking out any point so i suppose it must be shown that is somehow quot just a constant map quot
+i really don t know if this can be more categorically abstracted so i ll just worry about now
+i want to show that implies necessarily that is the constant map to some element
+we know from how coequalisers are built in that this is equivalent to the smallest equivalence relation on the set containing whenever and and is the equivalence relation for all
+more nicely we want to show whenever for some implies all elements are equivalent
+lemma under the smallest equivalence relation containing the above condition every element of is equivalent to some element of for any
+proof take and
+we want to find a nondecreasing function such that because then every element of shall be identified with its image in
+we can define on the image as
+so far this partial function is nondecreasing because iff
+iff
+
+there are potentially many choices of to complete it to a nondecreasing function but perhaps the simplest is
+then has the desired properties
+ok
+so in the disjoint union we can always identify elements of one component with elements of another
+it suffices to show the hopefully easier result that for any nondecreasing and any two there is a nondecreasing with and
+this is not perhaps strictly necessary to show as it may be that through a longer chain of equivalences but i can t think of any further simplification to make
+i know that for any choice of that is surjective will also be surjective because will have some inverse arrow and functors preserve left right inverses
+so i know that for some
+what s bugging me is that i don t think there s any way to guarantee for some fixed distinguished
+now can obviously be chosen as the identity function but if is a proper subset of then that isn t necessary
+the very arbitrary nature of makes me feel like i have nothing left to go on
+i really can t see how to demonstrate
+in particular this won t be true if
+however the problem as i ve stated it now doesn t seem to depend on the fact in any obvious way
+i d appreciate any hints on this it seems quite mysterious
+i have a question about my understanding of an article of b d
+mccullough 2008 about excel s implementation of the wichmann hill random number generator 1982
+first a bit of context the wichmann hill algorithm is given in as 183 here
+as one can see in the program s comments it s merely three linear congruential generators lcg combined to make a single rng with then the three integer values are combined to yield a pseudo random real number in with the actual program is a bit more complicated because it s designed to run on machines that can t represent for example 16 bit machines which where not rare back then but it s equivalent to the formulas above
+in a subsequent article 1986 h zeisel remarked that the three lcg can be reduced into a single one thanks to chinese remainder theorem with and and is found by solving the following it s where chinese remainder theorem is used notice that and are all primes
+the claim now the claim in mccullough s article is that microsoft didn t implement the wichmann hill correctly and to prove this one has to show the successive values computed by excel don t agree with the values computed by a reference implementation of the wh rng
+since excel does not give access to the seed the seed is computed by multiplying a random number returned by excel by to get the seed see section 3 of the article
+i don t understand this
+if i understand correctly if one assumes the wh rng has been implemented according to the original algorithm as 183 one can t recover the seed by just multiplying by
+for example imagine the seed is in zeisel s formulation
+then trivially the seed is in as 183 s formulation
+but the random number must then be notice the modulo 1 has no effect in this case
+and by multiplying by one finds so we actually didn t recover the seed
+the reason it s not the same is that while one can switch back and forth from as 183 to zeisel seeds by chinese remainder thorem the combination in the last step divide each of by the corresponding moduli and take the sum modulo is not equivalent to dividing the zeisel seed by the combined module
+one would have to recover first by taking respectively and only then to finish with as 183 combination
+but this is not easy to revert as is necessary for the purpose of checking conformity of excel s rng
+my actual question first i would like to know if my reasoning is correct which would mean there is a flaw in the article
+i would like to know if there is some simple way to find the seed given one or several successive random values from the correct wichmann hill
+it does not look obvious as mccullough himself remarked in the same section 3 of his article
+that would allow me to assess the correctness of excel s rng i am not sure excel still uses the wichmann hill anyway
+notice that wichmann and hill have published a revised generator 2005 available for free on npl s website
+according to the link to microsoft s site above excel implemented the older one in excel 2003
+afterthought the problem is even more difficult than expected
+the article states in section 2 that excel produces random real numbers in single precision thus there is a loss of precision
+however it s well known that a good rng satisfies an important property two almost equal seeds give random numbers that may be far apart
+hence knowing only a unique approximate random number from the generator may not be enough to recover the seed so we can expect we will need several in a row
+edit as it happens ronald a thisted of the university of chicago has worked on a second volume of his elements of statistical computing
+the draft notes dated january 2005 can be found here
+the wichmann hill generator is evoked on page 9 which ends with however the uniform random number returned by the wichmann hill algorithm is not simply the ratio of the single generators output to its modulus
+while the properties of the latter would be easily studied there have been no analytic studies of the actual wichmann hill generator
+nonetheless it appears to perform well in practice
+that s a definitive answer to my first question but i was already rather confident about this
+however i am still lost on the second question about actually reversing the generator
+edit 2016 10 15 since i asked the question i have been able to implement the wh rng in python along with a program to find the exact seed from the floating point random values either produced in double or single precision
+it s enough to have two or three consecutive random values two should be enough but because of precision loss one has to check with another one
+this involves checking possible possible seeds in a relativeley narrow range and it makes use of the solution of the modular equation given in the answer of this question
+it s easy afterwards to check that the seed is correct by comparing to several consecutive values returned by the rng
+in the meantime i have also been able to get random values from excel 2003 and 2007 which are claimed by microsoft to implement the wh rng
+i have not been able to confirm this the program does not find a seed that allows one to reproduce the sequence
+this may mean that the wh rng is badly implemented or implemented in some nonstandard way
+i have tried another approach look for the numbers 30269 30307 30323 in the binary content of files in the office distribution
+it s relatively easy to look for a file containing precisely these numbers stored as 2 bytes each
+sadly it didn t work either
+this is not a proof either the numbers could be hidden in compressed or encrypted data or stored in some other way
+i have tried on the entire hard disk and i actually found these numbers only in a dll from the sas statistical software i later disassembled part of it and it indeed implemented the wh rng it seems to be used in computations of generalized linear models probably to initialize an optimization algorithm
+thus so far i have not been able to prove the implementation of the wh rng in excel is good
+i don t consider this to be a proof of the contrary any operation done on the sequence could complicate seed finding program for instance if two random numbers are used to produce one floating point output my program is bound to fail
+unless i am able to disassemble the code that does actually compute random numbers there is some doubt
+now does it really matter
+i would be happy to find the definitive answer to this question of course but there have been three versions of excel since 2010 2013 2016 none of which is supposed to use the whichmann hill random generator
+my employer has even switched to libreoffice in the meantime
+and there is still much to do to assess the quality of spreadsheets and more generally of numerical and statistical software
+background vector valued cross products let be an field of characteristic
+a ary cross product in the vector space equipped with an inner product is a linear map which outputs a vector with the following two properties it is orthogonal to all inputs
+its norm is the volume of the dimensional paralellotope formed by these inputs that is where the right hand side is a gram determinant
+these two conditions turn out to imply that composition with the inner product quot lowering an index quot defines a totally antisymmetric linear map i e
+an alternating form
+equivalently given a form satisfying the appropriate volume condition one can define a cross product by quot raising an index quot
+in the following we restrict to with the standard inner product
+the dimensions where a cross product exists have been completely classified see for example here there is a trivial ary cross product for any which is identically zero
+a nullary cross product equivalently a unit vector exists for any
+a unary cross product corresponding to a symplectic form exists in any even dimension
+a ary cross product corresponding to a volume form exists in any dimension
+for example the ordinary cross product in 3d is of this kind
+there are only two exceptional cross products not covered by the above cases binary in dimension corresponding to an associative form and ternary in dimension corresponding to a cayley form
+they can both be expressed in terms of the octonions see for example this question for details
+so we have the following table note that if there is a ary product in dimension there is automatically a ary product in dimension obtained by contracting with an unit vector
+this explains the diagonal patterns
+bivector valued cross products similarly we can define a ary bivector valued cross product bv cross product or bvcp for short which is a linear map outputting a bivector with the following two properties it is orthogonal to all inputs i e
+the left contraction vanishes for all
+its norm is the volume of the paralellotope formed by these inputs
+as before given any bv cross product we may define a corresponding form and viceversa by lowering or raising two indices
+note that the wedge outer product of two vectors is not a bv cross product since it doesn t satisfy the first condition in fact it does the complete opposite since the plane spanned by contains and
+so far i haven t been able to find a classification of bv cross products anywhere this might be because i ve been searching for the wrong terms
+however we can give a partial classification by trying to find bivector valued analogues of each class of vector valued cross product there are trivial ary bv cross products for any
+a nullary bv cross product or equivalently a bivector of norm exists for any
+a unary bv cross product exists in any dimension since then we can decompose into the direct sum of vector spaces of the form and and take a corresponding form which restricts to a suitable multiple of the volume form in each and a multiple of the associative form in each
+on the other hand no unary product exists for for dimensional reasons
+since every number greater than can be expressed as for some this leaves in doubt only the cases and
+the cases are now ruled out and are confirmed see the updates
+a ary cross product corresponding to a properly normalized volume form exists in any dimension
+the hodge dual of the associative form properly normalized induces a binary bv cross product in dimension and similarly the cayley form itself induces another in dimension
+i m sure there is a better way to prove it but i just used the well known correspondence between bivectors and skew symmetric matrices and used a cas to check symbolically that the relations and hold where is the frobenius norm
+here is a tentative table summarizing the above question my question is is the list above correct
+are there any other possible bv cross products e g
+binary in dimension
+update we can generalize the hodge dual argument we used to get the dimensional binary bvcp to rule out the existence of bvcps for some and
+first note that if we know a cross product doesn t exist for some and automatically we know that none exists for and with any since otherwise we could contract the latter with unit vectors and obtain a contradiction
+a vector valued cross product is the obvious generalization of vector valued and bivector valued cross products to multivectors of arbitrary degree
+with some effort i have proven that a cross product induces a cross product by lowering indices taking the hodge dual raising indices again and renormalizing
+conversely if there are no cross products we can deduce the nonexistence of cross products
+note that for scalar valued cross products the orthogonality condition is trivially satisfied
+their classification is easy to state they exist only for or for arbitrary
+using the classifications of scalar and vector valued products and applying hodge duality to and we prove the nonexistence of bvcps at and and of any others as we move diagonally in the bottom right direction
+i marked some cells in the table with dark red dots where we know bvcps don t exist
+note that the diagonal below any dot is also ruled out by the discussion above
+in light of this new information the question can now be divided in two main subquestions are there unary bvcps in dimensions and
+update 2 i have found an dimensional unary bvcp satisfying the conditions whose corresponding form is given by a rescaling of the structure constants of the lie algebra
+it follows that an unary product exists in dimensions and in particular also for
+i updated the table with these two new cases
+are there binary bvcps in dimension greater than

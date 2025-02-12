@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+\usepackage{braket}
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 461 HW8}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item To split $n$ into $n-2$ boxes, we can either have 3 in one box and 1s in all the other boxes, or 2 boxes with 2 elements and 1 in every other box. We cannot have a box with more than 3 elements or more than 2 boxes with 2 elements, an we also cant have a box with under 2 boxes with 2 elements if each box has at most 2 elements. So, the case 3 1, ... 1, corresponds to adding ${n\choose 3}$ elements to one box, and the other corresponds to first ordering the 2 boxes with 2s, choosing ${n \choose 2}$ to go in the first, ${n-2 \choose 2}$ to go in the second, and dividing by 2. Our final answer is just ${n \choose 3} + \frac12 {n \choose 2} \cdot {n-2 \choose 2}$.
+			
+			\item Similar to the last problem, if we have $n-2$ cycles, we either have a 3-cycle and $n-3$ fixed points, or 2 2-cycles and $n-4$ fixed points. In the first case, we have to choose ${n \choose 3}$ numbers to be in the cycle, and then pick an ordering of the cycle in $(3-1)! = 2$ ways. In the second case, we can assume that we have an ordering on the transpositions, so in the first transposition we have to pick ${n \choose 2}$ numbers, then for the second one we need ${n-2 \choose 2}$ numbers. Now, we have overcounted by a factor of 2 because there is no first vs second transposition. Our final answer is just,
+			\begin{align*}
+				2{n \choose 3} + \frac12 {n \choose 2} \cdot {n-2 \choose 2}
+			\end{align*}
+		\end{enumerate}
+	
+		\item Recall that $S(n, k)$ is defined to be the number of ways to partition $[n]$ into $k$ nonempty subsets, and that $c(n, k)$ is defined to be the number of permutations of $[n]$ with exactly $k$ cycles. Now we shall show that each partition of $[n]$ into $k$ nonempty subsets admits at least 1 permutation with $k$ cycles. Let $S_1, \ldots, S_k$ be the partition of $[n]$ into $k$ nonempty subsets. A permutation of $[n]$ is just putting parenthesis around each $S_i$, where $S_i$ is arranged in increasing order. Finally notice that this map will send each partition of $[n]$ into $k$ parts to distinct permutations, because distinct partitions either have distinct sizes (different cycle sizes) or the same size with distinct elements (cycles have different elements), so $c(n,k) \geq S(n,k)$. The above shows that we have equality iff each partition of $[n]$ into $k$ parts admits exactly 1 permutation of $[n]$. This will only happen with $k = n$ and $k = n-1$, because if $k < n-1$ then a partition could be $3, 1, \ldots, 1$, and this would admit 2 permutations. Equality holds for $k=n$ and $k=n-1$ because in the first case they are both 1, and in the second they are both ${n \choose 2}$.
+		
+		\item \begin{enumerate}
+			\item If we only have cycles of even length, we can have cycle type $(6)$, $(4, 2)$, or $(2, 2, 2)$. Using the formula from class will give us the final answer of,
+			\begin{align*}
+				\frac{6!}{6} + \frac{6!}{4 \cdot 2} + \frac{6!}{2^3 3!} = 225
+			\end{align*}
+			
+			\item In this case, we can have cycle type $(5, 1)$, $(3, 3)$, $(3, 1, 1, 1)$, or $(1, 1, 1, 1, 1, 1)$. Using the formula for each case, we get,
+			\begin{align*}
+				\frac{6!}{5} + \frac{6!}{3^2 2!} + \frac{6!}{3 \cdot 3!} + 1 = 225
+			\end{align*}
+			Interesting...
+		\end{enumerate}
+		\item Recall that the generating function for $c(n,k)$ is $C(x)=\prod_{i=0}^{n-1} (x+i)$. Recall also that the generating function for the even elements of this sequence is just $\frac12(C(x) + C(-x))$. Also, the number of permutations of $[n]$ with an even number of cycles is just $$\sum_{\substack{k=0 \\ k\text{ even}}} c(n, k)$$
+		Which is just the generating function for the even elements of the sequence $\Set{c(n,k)}_{k \geq 0}$ evaluated at 0. Similarly, the number of permutations of $[n]$ with an odd number of cycles is just $\frac12(C(1)-C(-1))$. Thus, we need only show that $C(-1) = 0$. This follows immediately: since $n \geq 2$, $n-1 \geq 1$, and $C(-1)$ has a factor of $(i-1)$ for each $0 \leq i \leq n-1$, so in particular it has a factor of $(1-1) = 0$, completing the proof.
+		
+		\item Recall the recursion formula for the Stirling numbers:
+		\begin{align*}
+			S(n, n-k) &= S(n-1, n-k-1) + (n-k) \cdot S(n-1, n-k) 
+			\\&= S(n-1, (n-1)-k) + (n-k)S(n-1, (n-1)-(k-1))
+		\end{align*} 
+		We will prove that the answer to our problem satisfies the same recurrence and base case, so we would be done. Let the answer to our question be $A(n, k)$. We have two cases: either there is a rook in the top row, or not. If there is not, then we have to put $k$ rooks onto an $n-1$ staircase (removing the top row would just leave an $n-1$ staircase), and the number of ways to do that is just $A(n-1, k)$. If there is a rook in the top row, removing him would induce a way to place $k-1$ rooks on the $n-1$ staircase. There are just $A(n-1, k-1)$ ways to do this. Now, we must add the rook back--which can be done in $(n-1)-(k-1) = n-k$ ways, since we have $n-1$ squares in the top row, and the new rook cannot be in $k-1$ of them. Thus, $A(n, k) = A(n-1, k) + (n-k)A(n-1,k-1)$. This is precisely the same recurrence as above. Now define $B(n,k) = A(n, n-k)$. Notice that $B(n,k)$ satisfies the exact same recurrence as $S(n,k)$ for $1 \leq k \leq n$. We shall now show that $B(n, 1) = 1$ for all $n \geq 1$, and $B(n, n) = 1$ for all $n \geq 1$. Notice that $B(n, 1)$ is going to be the number of ways to place $n-1$ rooks on the $n-1$ staircase, and my claim is this can only be done in 1 way. That is,
+		
+		\newpage
+		\begin{theorem}
+			$A(n, n-1) = 1$.
+		\end{theorem}
+		Indeed, suppose that there was a rook that was not on the main diagonal. If this rook was in the last column, it would have to be above the bottom right corner, but then we couldn't place a rook in the bottom right corner, a contradiction since we don't have enough rows. Similarly, if the rook not on the main diagonal is not on the far right side, once we go all the way down the column, we cannot have a rook there so we need a rook somewhere to the right of it. Thus, we also have a rook that is not on the main diagonal in the next column. Repeating this will result in the first case and we have proved our subclaim.
+		
+		
+		
+		
+		 Similarly, $B(n, n)$ corresponds to putting 0 rooks on the $n-1$ staircase, which can be done in 1 way. These values uniquely determine $B(n,k)$ for $1 \leq k \leq n$, and these equal $S(n,k)$ because $S(n, 1) = 1$ and $S(n, n) = n$ for every $n \geq 1$ as well. Since $B(n,k) = S(n,k)$, $A(n,k) = S(n,n-k)$, and we are done.
+	\end{enumerate}
+\end{document}

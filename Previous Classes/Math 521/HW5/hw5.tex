@@ -1,0 +1,319 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\usepackage{dsfont}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+\newcommand{\argmax}{\mathrm{argmax}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item By the $X_i$ being independent from the $N(t)$ for all $t$, we get that:
+        \begin{align*}
+            \P(\sum_{N(s)+1}^{N(t)} X_i \leq a, \sum_{1}^{N(s)} X_i \leq b) &= \sum_{m,n} \P(\sum_{N(s)+1}^{N(t)} X_i \leq a, \sum_{1}^{N(s)} X_i \leq b \mid N(s) = m, N(t) - N(s) = n) \cdot \\ 
+            &\P(N(s) = m, N(t) - N(s) = n) \\
+            &= \sum_{m,n} \P(\sum_{m+1}^{m+n} X_i \leq a, \sum_{1}^{m} X_i \leq b) \P(N(s) = m, N(t) - N(s) = n) \\
+        \end{align*}
+        By the independence of the $X_i$, we have that:
+        \begin{align*}
+            \P(\sum_{m+1}^{m+n} X_i \leq a, \sum_{1}^{m} X_i \leq b) &= \P(\sum_{m+1}^{m+n} X_i \leq a) \P(\sum_{1}^{m} X_i \leq b)
+        \end{align*}
+        By independence and the $X_i$ being identically distributed, we have that:
+        \begin{align*}
+            \P(\sum_{m+1}^{m+n} X_i \leq a) = \P(\sum_{1}^{n} X_i \leq a \mid N(t) - N(s) = n)
+        \end{align*} and 
+        \begin{align*}
+            \P(\sum_{1}^{m} X_i \leq b) = \P(\sum_{1}^{m} X_i \leq b \mid N(s) = m)
+        \end{align*} 
+        Putting these together and using that $N$, a poisson process, has independent increments, we get that:
+        \begin{align*}
+            \sum_{m,n} &\P(\sum_1^n X_i \leq a, N(t)-N(s) = n) \P(\sum_1^m X_i \leq b, N(s) = m) \\
+            &= \sum_n \P(\sum_1^{N(t)-N(s)} X_i \leq a, N(t)-N(s) = n) \sum_m \P(\sum_1^m X_i \leq b, N(s) = m) \\
+            &= \P(\sum_1^{N(t)-N(s)} X_i \leq a) \P(\sum_1^{N(s)} X_i \leq b)
+        \end{align*}
+        Finally, as $N(s)$ is independent of $N(t)-N(s)$, and all the $X_i$, we have that:
+        \begin{align*}
+            \P(\sum_1^{N(t)-N(s)} X_i \leq a) = \sum_{m,n} \P(\sum_1^{N(t)-N(s)} X_i \leq a \mid N(s) = n, N(t) - N(s) = m) \P(N(t) - N(s) = m, N(s) = n)
+        \end{align*}
+        The middle probability is just (by independence and i.i.d. again, since these sums have the same number of terms and the $m,n$ are fixed):
+        \begin{align*}
+            \P(\sum_1^m X_i \leq a) &= \P(\sum_{n+1}^{m+n} X_i) = \P(\sum_{n+1}^{m+n} \mid N(t) - N(s) = m, N(s) = n) \\
+            &= \P(\sum_{N(s)+1}^{N(t)} X_i \mid N(t)-N(s) = m, N(s)=n)
+        \end{align*}
+        Plugging this back in to the first sum, we get that it equals:
+        \begin{align*}
+            \sum_{m,n} \P(\sum_{N(s)+1}^{N(t)} X_i \leq a, N(t)-N(s) = m, N(s) = n) = \P(\sum_{N(s)+1}^{N(t)} X_i \leq a)
+        \end{align*}
+        This completes the proof. 
+
+        \item If $A \in \mathscr F_L$ then $A \cap \SET{L \leq n} \in \mathscr F_n$ for all $n$. We take a look at the set $\SET{N \leq n}$. This is $(\SET{N \leq n} \cap A^c) \cup (\SET{N \leq n} \cap A)$. Using the definition of $N$, this equals $(\SET{M \leq n} \cap A^c) \cup (\SET{L \leq n} \cap A)$. The second set is in $\mathscr F_n$ by the assumption on $A$. For the first set,
+        \begin{align*}
+            \SET{M \leq n} \setminus A = \SET{M \leq n} \setminus (A \cap \SET{M \leq n}) = \SET{M \leq n} \setminus (A \cap \SET{L \leq n})
+        \end{align*}
+        The above equality holds beacuse $L \leq M$, so if $M \leq n$ then $L \leq n$ and so $\SET{M \leq n} \subset \SET{L \leq n}$. So by changing $A \cap \SET{M \leq n}$ to $A \cap \SET{L \leq n}$, we are making the set bigger, but still we can't remove things outside of $\SET{M \leq n}$, so the difference will be the same. Then finally, $\SET{M \leq n} \in \mathscr F_n$, and $A \cap \SET{L \leq n} \in \mathscr F_n$ by the hypothesis on $A$. So both of these two parts are in $\mathscr F_n$, so there union is too, which completes the proof.
+
+        \item I give three proofs for this first assertion. The first is by induction. The base case, that $\P(S_1 = X_1 \leq x) = x$ for $0 \leq x \leq 1$ is true by definition. Then suppose that for $0 \leq x \leq 1$, $\P(S_n \leq x) = \frac{x^n}{n!}$. Then for $0 \leq x \leq 1$, we have that:
+        \begin{align*}
+            \P(S_{n+1} \leq x) &= \int_0^x \int_{-\infty}^\infty p_{X_{n+1}}(x-y) p_{S_n}(y) \dd y \dd x \\
+            &= \int_0^x \int_0^x \frac{s^{n-1}}{(n-1)!} \dd x \dd y \\
+            &= \int_0^x \frac{s^n}{n!} \dd x \\
+            &= \frac{x^{n+1}}{(n+1)!}
+        \end{align*}
+        In the middle we used that $p_{S_n}(x) = \dv{x} \P(S_n \leq x) = \frac{x^{n-1}}{(n-1)!}$. This completes the induction. 
+
+        Plugging in, we get $\P(S_n \leq n) = \frac{1}{n!}$. 
+
+        The second proof is by taking cross-sections. First, we know that the area of an isocoles right triangle with side lengths $x$ has area $\frac{x^2}{2}$. The horizontal cross sections of the tetrahedron defined by $x+y+z \leq 1$ are isocoles right triangles. By summing all of these, we get that the area of this tetrahedron is:
+        \begin{align*}
+            \int_0^1 \int_0^{1-x} \int_0^{1-x-y} \dd z \dd y \dd x &= \int_0^1 \int_0^{1-x} (1-x-y) \dd y \dd x \\
+            &= \int_0^1 \frac{(1-x)^2}{2} \dd x \\
+            &= \frac{1}{6}
+        \end{align*}
+        Let the volume of the $n$-simplex be $V_n$. Taking a cross-section of the $n+1$-simplex defined by $x_1 + \cdots + x_{n+1} \leq 1$ will yield an $n$-simplex. If one of the side lengths of this $n$-simplex is $x$, then by similarity with the bottom $n$-simplex who has side lengths of 1, the area of this $n$-simplex is $x^nV_n$. By summing all these up, we get that the volume of the $n+1$-simplex is:
+        \begin{align*}
+            \int_0^1 x^n V_n \dd x = \frac{V_n}{n+1}
+        \end{align*}
+        Induction yields that $V_n = \frac{1}{n!}$.
+
+        The third proof is a little bit of linear algebra, and my favorite one. Consider $S = \SET{0 \leq x_1 \leq x_2 \leq \cdots \leq x_n \leq 1}$. Then for any permutation $\pi \in S_n$, the set $\pi(S) = \SET{0 \leq x_{\pi(1)} \leq x_{\pi(2)} \leq \cdots \leq x_{\pi(n)} \leq 1}$ has the same volume as $S$. Since the disjoint union of these sets is $[0,1]^n$, we get that the volume of $S$ is just $\frac{1}{n!}$. 
+
+        This relates to the original simplex in the following way. Let $A$ be the linear map defined by $A(x_1, \ldots, x_n) = (x_1, x_2 - x_1, \ldots, x_n - x_{n-1})$. A simple exercise shows that $A(S) = \SET{x_1 + \cdots + x_n \leq 1}$. Then by high-dimensional geometry, the volume of $A(S)$ is $\det(A) \cdot S$. The matrix of $A$ is of the following form:
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 0 & 0 & \cdots & 0 \\
+                -1 & 1 & 0 & \cdots & 0 \\
+                0 & -1 & 1 & \cdots & 0 \\
+                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                0 & 0 & 0 & \cdots & 1
+            \end{pmatrix}
+        \end{align*}
+        This matrix is lower-triangular so has determinant 1. Thus the volume of $\SET{x_1 + \cdots + x_n \leq 1}$ is $\frac{1}{n!}$.
+
+        Now knowing that $\P(T \geq n) = \frac{1}{n!}$, we can compute the expected value of $T$ as:
+        \begin{align*}
+            \E[T] = \sum_{n=1}^\infty \P(T \geq n) = \sum_{n=1}^\infty \frac{1}{n!} = e
+        \end{align*}
+
+        Notice that $S_T = \sum_{n=1}^T X_n = \sum_{n=1}^\infty X_n \1_{T \geq n}$. Then as $S_T \geq 0$ and Fubini-Tonelli theorem, we can switch the order of summation and integration to get:
+        \begin{align*}
+            \E[\sum_{n=1}^\infty X_n \1_{T \geq n}] = \sum_{n=1}^\infty \E[X_n] \P(T \geq n) \\
+            &= \sum_{n=1}^\infty \frac 12 \frac{1}{n!} = \frac{e}{2}
+        \end{align*}
+
+        \item Let $S$ be the stopping time that is constantly equal to 1. Let $X_1 = 0$ equivalently, and $X_2, \ldots,$ be a sequence Radamacher random variables independent from $X_1$. Define $S_n = \inf \SET{n \geq 1 : S_n \geq 1}$. Then clearly $S \geq 2$, so $T \leq S$. However, $\SET{S - T = 1} = \SET{S = 2} = \SET{X_1+X_2 = 1} = \SET{X_2 = 1}$ which is certainly not in $\mathscr{F}_1$ (it is neither the empty set or the whole space). This is a counterexample. 
+
+        \item \begin{enumerate}[label=(\alph*)]
+            \item By Strong law of large numbers, we know that 
+            \begin{align*}
+                \frac{S_n}{n} \to \E[X_1] = p - (1-p) = 2p-1 > 0 \quad \text{a.s.}
+            \end{align*}
+            Then for $\omega$ with probability 1, there exists $n$ so that $S_n > 0$. Then for all those $\omega$, $\inf \SET{m : S_m > 0}$ is finite, which shows that $\P(\alpha < \infty) = 1$.
+            \item First, notice that $\P(\inf S_n < -1) = \P(\beta < \infty)$, because these events are the same, because the infimum is $< 0$ if and only if there is an element that is $< 0$. 
+
+            Define $\beta_k = \SET{\inf S_n \leq -k}$. Then $\beta = \beta_1$, and $\beta_k$ is a stopping time for every $k$. Suppose inductively that $\P(\beta_k < \infty) = \P(\beta < \infty)^k$. Then,
+            \begin{align*}
+                \P(\inf S_n \leq -(k+1)) = \sum_{l=1}^\infty \P(\inf S_n \leq -(k+1) \mid \beta_k = l) \P(\beta_k = l)
+            \end{align*}
+            Conditioned on $S_l = -k$, we see that $\inf S_n \leq -(k+1)$ is equivalent to $\inf_{n \geq l} S_n - S_l \leq -1$ (we just need to go down 1 more step sometime afterwards). We make one more observation: $S_n - S_l = \sum_{l+1}^n X_i$, and $\SET{\beta_k = l}$ is $\mathscr{F}_l$-measurable. Thus $S_n - S_l$, $\SET{\beta_k = l}$ are independent. We conclude:
+            \begin{align*}
+                \P(\inf S_n \leq -(k+1)) &= \sum_{l=1}^\infty \P(\inf_{n \geq l} S_n - S_l \leq -1) \P(\beta_k = l) \\
+                &= \P(\beta < \infty)^k \cdot \P(\inf S_n \leq -1) \\
+                &= \P(\beta < \infty)^{k+1}
+            \end{align*}
+            The second equality coming from the inductive hypothesis and the assumption that the $X_i$ are i.i.d. 
+
+            Now, suppose that $\P(\beta < \infty) = 1$. Then $\P(\inf S_n \leq -k) = 1$ for every $k \geq 1$. Notice that:
+            \begin{align*}
+                \SET{\inf S_n \leq k} \searrow \SET{\inf S_n = -\infty}
+            \end{align*}
+            And so, $\P(\inf S_n = -\infty) = 1$. Yet, recall that
+            \begin{align*}
+                \P(\liminf S_n \geq 0) \geq \P(\liminf S_n/n = 2p-1) = 1.
+            \end{align*} Then for $\omega$ almost surely, $S_n \geq 0$ eventually, and so the infimum is finite. Then $\P(\inf S_n = -\infty) = 0$, a contradiction.
+
+            \item We know that:
+        \begin{align*}
+            \P(\beta < \infty) &= \P(X_1 = -1) + \P(X_1 = 1, \inf_{n \geq 2} S_n \leq -1) \\
+            &= (1-p) + \P(\inf_{n \geq 2} S_n - X_1 \leq -2 \mid X_1 = 1) \P(X_1 = 1) \\
+            &= (1-p) + \P(\inf_{n \geq 1} S_n \leq -2) p
+        \end{align*}
+        The third equality follows since $S_n - X_1$ is independent of $X_1$ and since the $X_i$ are identically distributed. 
+
+        Therefore, letting $x = \P(\beta < \infty)$ and using the last part, we know that $x = (1-p) + xp^2$. Solving, we get $x = 1$ or $x = \frac{1-p}{p}$. Since $x < 1$, we have that $x = \frac{1-p}{p}$. 
+
+            \item Notice that:
+            \begin{align*}
+                \E[S_{\alpha \land n}] &= \E[S_{\alpha \land n} ; \alpha \leq n] + \E[S_\alpha ; \alpha > n, \inf S_m \leq -k] + \E[S_n ; \alpha > n, \inf S_m > -k] \\
+                &\geq \E[S_{\alpha \land n} ; \alpha \leq n] -k\P(\alpha > n) + \E[S_n ; \alpha > n, \inf S_m \leq -k]
+            \end{align*}
+            The idea is that we want the third term to be bounded as $n \to \infty$. Since $\P(\inf S_n \leq -k) = x^k$, where $x = \P(\beta < \infty)$, we know that $\P(\inf S_n = -k) = x^k - x^{k+1}$. If $\alpha > n$, and $\inf S_m = -\ell$, then $|S_1|, \ldots, |S_{\alpha \land n}| \in [0, \ell]$. By Fubini-Tonelli, we get that:
+            \begin{align*}
+                \E[|S_{\alpha \land n}| ; \alpha > n, \inf S_m \leq -k] = &\sum_{\ell=k}^\infty \E[|S_{\alpha \land n}| ; \alpha > n, \inf S_m = -\ell] 
+                \\ &\leq \sum_{\ell=k}^\infty \ell\P(\inf S_m = -\ell) 
+                \\& = \sum_{\ell=k}^\infty \ell(x^\ell - x^{\ell+1}) = (1-x)\sum_{\ell=k}^\infty \ell x^\ell
+            \end{align*}
+            \end{enumerate}
+            By noticing that $\E[S_{\alpha \land n} ; \alpha \leq n] = \E[1 ; \alpha \leq n] = \P(\alpha \leq n) \to 1$, and since $k\P(\alpha > n) \to 0$ as $n \to \infty$ as $\alpha$ is finite almost surely, sending $n \to \infty$ shows that:
+            \begin{align*}
+                \liminf_{n \to \infty} \E[S_{\alpha \land n}] &\geq 1 - (1-x)\sum_{\ell=k}^\infty \ell x^\ell
+            \end{align*}
+            Sending $k \to \infty$ and using that $\sum_{\ell=k}^\infty \ell x^\ell$ is the tail of a convergent power series shows that $\liminf_{n \to \infty} \E[S_{\alpha \land n}] \geq 1$.
+
+            The upper bound is much easier. By definition of $\alpha$, $S_1, \ldots, S_{\alpha \land n -1} \leq 0$. Thus $S_{\alpha \land n} \leq 1$ since $X_i \leq 1$. Thus, $\limsup_{n \to \infty} \E[S_{\alpha \land n}] \leq 1$. Finally, by Monotone convergence theorem, we know that $\alpha \land n \nearrow \alpha$ as $n \to \infty$ and hence $\E[\alpha \land n] \to \E[\alpha]$. Hence we conclude that $\E[S_\alpha] = 1$. By Wald's equation, $\E[X_1] \E[\alpha] = \E[S_\alpha]$. Thus $\E[\alpha] = \frac{1}{2p-1}$.
+    \end{enumerate}
+
+    The question is as follows: Let $X_1, \ldots, X_n$ be i.i.d. with $\E[X_i] = \mu$ and $\Var(X_i) = \sigma^2$. Let $\Theta = \frac 1n \sum_{i=1}^n X_i$. Then $\E[\frac 1n \sum_{i=1}^n (X_i - \Theta)^2] = \qty(1-\frac 1n)\sigma^2$. 
+
+    \newpage Assume WLOG that $X_i$ have mean 0 (notice that subtracting $\mu$ from each of the random variables does not change our desired expectation). Then:
+    \begin{align*}
+        \E[\frac 1n \sum_i (X_i - \Theta)^2] &= \frac 1n \sum_i \E[(X_i-\Theta)^2] \\
+        &= \frac 1n \sum_i \qty(\E[X_i^2] - 2\E[X_i \Theta] + \E[\Theta^2]) \\
+        &= \E[X_1]^2 - 2\E[X_1 \Theta] + \E[\Theta^2]
+    \end{align*}
+    Now, by identically distributed,
+    \begin{align*}
+        \E[\Theta^2] = \E[\frac 1n \sum_i X_i \Theta] = \frac 1n \sum_i \E[X_i\Theta] = \E[X_1 \Theta]
+    \end{align*}
+    Lastly, by mean 0,
+    \begin{align*}
+        \E[X_1 \Theta] = \frac 1n \sum_j \E[X_1 X_j] = \frac 1n \sigma^2
+    \end{align*}
+    And so our answer is $\qty(1-\frac 1n)\sigma^2$. 
+    
+\end{document}

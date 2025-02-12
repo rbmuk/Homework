@@ -1,0 +1,183 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+\renewcommand{\S}{\mbb{S}}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 441 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We recall that $\S^1 = I / \sim$ where $0 \sim 1$. Let $f: I \times I \to \S^1 \times \S^1$ defined by $f(x,y) = (\pi(x), \pi(y))$, where $\pi$ is the natural projection. Let $U \times V \subset \S^1 \times \S^1$ be open. By the definition of the quotient topology, $\pi^{-1}(U)$ and $\pi^{-1}(V)$ are open. Now notice that $f^{-1}(U \times V) = \pi^{-1}(U) \times \pi^{-1}(V)$, which is of course open in the product topology. Now suppose that $f^{-1}(U \times V)$ is open. Since $f$ is clearly onto, being the composition of onto maps, $f(f^{-1}(U \times V)) = U \times V$, which is open. Thus $f$ is quotient. Now consider the following commutative diagram:
+		\[\begin{tikzcd}
+			{I \times I} \\
+			\\
+			{\S^1 \times \S^1} && {I^2/\sim}
+			\arrow["f", from=1-1, to=3-1]
+			\arrow["g", from=3-1, to=3-3]
+			\arrow["q"', from=1-1, to=3-3]
+		\end{tikzcd}\]
+		As $q$ is a quotient map by definition of the quotient topology, we see the map $g$ is a surjective quotient map. $g$ is of course defined by $g(\pi(x), \pi(y)) = (q(x), q(y))$, and by the universal property this is independent of representation. I claim that $g^{-1}(q(x), q(y)) = (\pi(x), \pi(y))$ is independent of representation. Indeed, if $(q(x), q(y)) = (q(z), q(w))$, then $x-z = 0$ or $1$, and $y-z = 0$ or $1$. By definition of $\pi$, we see that $(\pi(x), \pi(y)) = (\pi(z), \pi(w))$, as claimed. Thus $g$ is bijective. Thus, $g$ is a homeomorphism, and we are done.
+		
+		OR:
+		
+		Let $f: I \times I \to \S^1 \times \S^1$ defined by $f(x,y) = (\pi(x), \pi(y))$, where $\pi$ is the natural projection. As the product of open maps $f$ is open, thus quotient. Now, we get the following diagram:
+		% https://q.uiver.app/#q=WzAsMyxbMiwyLCJJXjIvXFxzaW0iXSxbMCwyLCJcXFNeMSBcXHRpbWVzIFxcU14xIl0sWzEsMCwiSV4yIl0sWzEsMCwiZyIsMCx7Im9mZnNldCI6LTEsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDEsImgiLDAseyJvZmZzZXQiOi0xLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwwLCJmIl0sWzIsMSwiXFxwaSIsMl1d
+		\[\begin{tikzcd}
+			& {I^2} \\
+			\\
+			{\S^1 \times \S^1} && {I^2/\sim}
+			\arrow["g", shift left=1, dashed, from=3-1, to=3-3]
+			\arrow["h", shift left=1, dashed, from=3-3, to=3-1]
+			\arrow["f", from=1-2, to=3-3]
+			\arrow["\pi"', from=1-2, to=3-1]
+		\end{tikzcd}\]
+		Since both $h$, $g$ are unique, $h \circ g$ is the unique quotient map from $\S^1 \times \S^1$ to itself. Conveniently, the identity also serves this role, thus $h \circ g = \mathrm{id}$. Similarly, $g \circ h = \mathrm{id}$. Thus $g$ is a bijective quotient map, and hence a homeomorphism.
+		
+		\item Suppose that $X$ is Hausdorff, and let $\set{x}$ be the singleton of $x \in X$. Given any point $y \in X \setminus {x}$, by the Hausdorff condition we may find two disjoint neighborhoods $U_1$ and $U_2$ such that $x \in U_1$ and $y \in U_2$. We see that $U_2 \subset X \setminus \set{x}$ by the disjoint condition. By the union lemma $X \setminus \set{x}$ is open, thus $\set{x}$ is closed. The converse is not true. Consider $\R$ equipped with the Zariski topology. Notice that $\set{a} = V(x-a)$, thus all singletons are closed. I showed in the last homework that $V(f)$ if not all of $\R$ is necessarily finite. Suppose that $0$ and $1$ had disjoint neighborhoods, say $U$, $V$. $U^c, V^c$ are finite, from the remarks from last homework (Clearly either cannot be all of $\R$, as the empty set is a neighborhood of no point). Since $U^c \cup V^c$ is again finite, we can find a point $c \in \R \setminus (U^c \cup V^c)$. This is conveniently $(U^c \cup V^c)^c = U \cap V$, a contradiction.
+		
+		\item I claim that $\pi_1: X \times Y \to X$ is an open map. The definition of the product topology makes this continuous, so we only need to show that the image of an open set is open. Given any $U \subset X \times Y$, write this as $\bigcup_{\alpha \in \Delta} G_\alpha \times V_\alpha$ with $G_\alpha$, $V_\alpha$ open for all $\alpha$ in $X, Y$ resp. From elementary set theory we know that 
+		\begin{align*}
+			\pi_1\qty(\bigcup_{\alpha \in \Delta} G_\alpha \times V_\alpha) = \bigcup_{\alpha \in \Delta} \pi_1(G_\alpha \times V_\alpha) = \bigcup_{\alpha \in \Delta} G_\alpha
+		\end{align*}
+		which is the union of open sets and hence open. The exact same proof works for $\pi_2: X \times Y \to Y$, so $\pi_2$ is also open. Now suppose that $X \times Y$ were disconnected, with $(U, V)$ a separation of it. Notice that either $\pi_1(U) \cap \pi_1(V) = \emptyset$, or $\pi_2(U) \cap \pi_2(V) = \emptyset$, for if both intersections were nonempty, then taking $x \in \pi_1(U) \cap \pi_1(V)$ and $y \in \pi_2(U) \cap \pi_2(V)$ will have $(x, y) \in U \cup V$, a contradiction. WLOG it is the first case, and since $X = \pi_1(X \times Y) = \pi_1(U \cup V) = \pi_1(U) \cup \pi_1(V)$, $\pi_1(U)$, $\pi_1(V)$ form a separation of $X$, a contradiction. Thus $X \times Y$ is connected.
+		
+		\item I worked out the details on paper, but if you write out what the line would be through the point $(\cos(\theta), \sin(\theta)) \in \S^1 \setminus \set{(0,1)}$, the bijection one gets is $(\cos(\theta), \sin(\theta)) \mapsto \frac{\cos(\theta)}{1-\sin(\theta)}$. This is surjective since if the image of $\theta = 3\pi/2$ is 0, and if $x \neq 0$ then,
+		\begin{align*}
+			\frac{\cos(\theta)}{1-\sin(\theta)} &= x \\
+			x\sin(\theta)+\cos(\theta)&=x \\
+			\sqrt{x^2+1}\sin(\theta+\cph) &= x \\
+			\sin(\theta+\cph) &= \frac{x}{\sqrt{x^2+1}} < 1
+		\end{align*}
+		for some $\cph$, which has a solution for $\theta \in [0, 2\pi) \setminus \set{\pi/2}$ as $\sin(\theta)$ takes on all values between $(0,1)$ in that interval (Notice: we may exclude $\pi/2$ since we already covered that case above). Injectivity comes from 
+		\begin{align*}
+			\dv{x} \frac{\cos(x)}{1-\sin(x)} = \frac{1-\sin(x)}{(1-\sin(x))^2} > 0
+		\end{align*}
+		thus this projection is strictly increasing on each of the connected intervals $(0, \pi/2)$ and $(\pi/2, 2\pi)$. It could be that they attained the same value somewhere in the middle. However, this doesn't happen, as the smallest value of the left component would be what our bijection is evaluated at 0, which is 1, and the largest the right side would be is it's value at $2\pi$ (continuously extend our function), which is also 1, but recall that we excluded $2\pi$, so it will always be strictly less than that by the mean value theorem.
+		
+		\item From the pictoral construction of the Klein bottle, we would get that the top and bottom edge are glued together and the right and left are going in different directions. By gluing together two mobius strips, this is exactly what we would get.
+	\end{enumerate}
+\end{document}

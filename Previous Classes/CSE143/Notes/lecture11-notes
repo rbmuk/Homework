@@ -1,0 +1,16 @@
+// pre: columns less than col have queens placed safely
+// post: explores all possible placements of queens starting in column col
+public static void explore(Board b, int col) {
+	if (col > b.size()) {
+		b.print();
+	} else {
+		for (int row = 1; row <= b.size(); ++row) {
+			if (b.safe(row, col)) {
+				// backtracking pattern: choose, explore, unchoose
+				b.place(row, col);
+				explore(b, col+1);
+				b.remove(row, col);
+			}
+		}
+	}
+}

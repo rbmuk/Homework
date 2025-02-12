@@ -1,0 +1,180 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 461 HW7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We construct a bijection between the partitions of $n$ where the largest part occurs at least twice and partitions of $n-2$ with smallest part at least 2. The bijection is to take the transpose then remove the last 
+			
+			\item We use the same trick as before. We shall construct a bijection between partitions of $n$ where the largest part appears exactly 2 times and partitions of $n-2$ where the smallest part is at least 2. The bijection this time is to take a transpose then remove the bottom row, and the inverse being add 2 blocks in a new row on the bottom and take a transpose. The condition of having the smallest part at least 2 this operation indeed yields a young diagram. In any case, the generating function for the number of partitions of $n$ with smallest part at least 2 is just
+			\begin{align*}
+				\prod_{k=2}^\infty (1+x^k+x^{2k}+\cdots) = P(x) / (1+x+x^2+\cdots) = (1-x)P(x) = p(0) + \sum_{n=1}^\infty (p(n)-p(n-1))x^n
+			\end{align*}
+			So the number of partitions of $n$ in which the smallest part is at least 2 is just $p(n)-p(n-1)$ for $n \geq 1$ and $p(0)=1$ for $n = 0$. So the number of partitions of $n$ where the largest part appears exactly 2 times is just $p(n-2) - p(n-3)$ for $n \geq 3$. We conclude that the number of ways to have the largest part occur at least 3 times is just the number of ways to have it occur at least 2 times minus the number of ways to have it occur exactly 2 times, which is just 
+			$p(n)-p(n-1) - (p(n-2) - p(n-3)) = p(n) - p(n-1) - p(n-2) + p(n-3)$. 
+		\end{enumerate}
+	
+		\item Let $A$ be the ways Alice is sitting next to Bob, $C$ Charlie next to Danielle, and $E$ ed next to Francine. We use complimentary counting to find $|A|$, so put Alice and Bob in a block, pick an ordering of the block Alice and Bob and everyone else, then choose if Alice is to the left or right of Bob. This can be done in $5! \cdot 2$ ways, and the same logic applies to $C$ and $E$ to get they also equal $5! \cdot 2$. If we want Alice next to Bob and Charlie next to Danielle, i.e. $|A \cap C|$, we would now have 2 blocks of people (Alice and Bob and Charlie and Danielle), with 2 remaining people, which using the same logic as above gives a total of $4! \cdot 2^2$, since we need to choose if Alice is left/right of Bob and if Charlie is left/right of Danielle. Finally, using the same logic we would have $|A \cap C \cap E| = 3! \cdot 2^3$. Ignoring the ordering, the total number of seatings is just $6!$, so using complimentary counting and inclusion/exclusion gives us:
+		$|(A^c \cap C^c \cap D^c)^c| = 6! - |A \cup C \cup D| = 6! - (|A| + |C| + |E| - |A \cap C| - |A \cap E| - |E \cap C| + |A \cap C \cap |E|) = 6! - (3 \cdot 5! \cdot 2 - 3 \cdot 4! \cdot 2^2 + 3! \cdot 2^3) = 240$.
+		
+		\item This is just a question of derangements. First, with no conditions, there are $7!$ ways to return their hats back to them. Now we need to find the number of ways less than 2 of them get their own hats back. This is just the number of ways that precisely 1 gets his hat back or precisely 0 gets his hat back. This is just ${7 \choose 0}D_7 + {7 \choose 1}D_6$. From the notes we have $D_5 = 44$, so $D_6 = 6 \cdot 44 + (-1)^6 = 265$, and $D_7 = 7 \cdot 265 + (-1)^7 = 1854$. So our final answer is just
+		\begin{align*}
+			7! - (1 \cdot 1854 + 7 \cdot 265) = 1131
+		\end{align*}
+		Which is around $1/7$th of the possibilities. This sort of says most ($6/7$) of the possibilities return either 1 or no hats. Also, in expectation you would expect 1 hat back, so this makes sense, but is tighter than I would've expected.
+		
+		\item This is just exclusion exclusion. Let $A$ denote the ways the first shelf gets exactly 6 books, $B$, the number of ways the second gets exactly books, $C$ the third, and $D$ the fourth. We want to find $|(A^c \cap B^c \cap C^c \cap D^c)|$, and this is of course just an inclusion-exclusion problem. To find $|A|$, put 6 books in the first shelf, then stars and bars the remaining books into the other shelves, which can be done in ${18 + 3 - 1 \choose 3 - 1} = {20 \choose 2}$ ways. The same logic can be applied to the other shelves, so $|A| = |B| = |C| = |D| = {20 \choose 2} = 190$. To find $|A \cap B|$, we put 6 books in $A$, 6 in $B$, then we stars and bars the remaining 12 books among the last 2 shelves to get ${12 + 2 -1 \choose 2 - 1} = {13 \choose 1} = 13$ ways. So all ${4 \choose 2}$ ways of picking 2 bookshelves with exactly 6 books in both will yield $13$ ways. We see that if we have exactly 6 books in the first 3 shelves, then we also have exactly 6 books in the last one, which would yield 1 way. This the ${4 \choose 3} = 4$ ways of picking $3$ shelves to have exactly 6 books all give one way. Finally, there is 1 way to have exactly 6 books in all the shelves. This gives us an answer of
+		\begin{align*}
+			4 \cdot {20 \choose 2} - {4 \choose 2} \cdot 13 + {4 \choose 3} \cdot 1 - 1 = 685
+		\end{align*}
+		
+		\item Let $m = p_1^{\alpha_1} \cdots p_n^{\alpha_n}$, and $A_i = \Set{ \ell | 1 \leq i \leq m, p_i \mid \ell}$. Notice that for any integer $1 \leq x \leq m$, $\gcd(x, m) \neq 1$ iff $p_i \mid x$ for some $p_i$ (Both directions are clear). We see that $|A_i| = \frac{m}{p_i}$, that $|A_i \cap A_j| = \frac{m}{p_ip_j}$, and in general, $|A_{i_1} \cap \cdots \cap A_{i_\ell}| = \frac{m}{p_{i_1}  \cdots  \; p_{i_\ell}}$. By inclusion-exclusion, we have that
+		\begin{align*}
+			\qty|A_1 \cup \cdots \cup A_k| = \sum_{i} |A_i| - \sum_{i < j} |A_i \cap A_j| + \sum_{i < j < k} |A_i \cap A_j \cap A_k| + \cdots + (-1)^{n+1} \qty|A_1 \cap \cdots \cap A_k|
+		\end{align*}
+		We now claim that
+		\begin{align*}
+			-\prod_{i=1}^n (1-x_i) = -1+\sum_i x_i - \sum_{i < j} x_ix_j + \sum_{i < j < k} x_ix_jx_k + \cdots + (-1)^{n+1} x_1 \cdots x_n
+		\end{align*}
+		First because there is only one way to pick all 1s, and the coefficient is 1 but we flip it. Then notice that to get $x_i$, we need to pick $-x_i$ from the $i$th factor and 1 from all the other ones, and finally we flip the sign to get a coefficient of 1. To get $x_ix_j$, we need to choose $-x_i$ from the $i$th factor and $-x_j$ from the $j$th factor and 1 from all the other ones, and finally flip the sign, for a coefficient of $-1$. In general to get $x_{i_1} \cdots \; x_{i_k}$ we need to pick $-x_{i_1}$ from the $i_1$th factor and so on and 1s for every other factor, finally flipping the sign, for a coefficient of $(-1)^{k+1}$, which proves the above claim. We may now conclude that,
+		\begin{align*}
+			|A_1 \cup \cdots \cup A_k| = n\qty(\sum_i \frac{1}{p_i} - \sum_{i < j} \frac{1}{p_ip_j} + \cdots + (-1)^{n+1} \frac{1}{p_1 \cdots \; p_n}) = -n \qty(\prod_{i=1}^n \qty(1-\frac{1}{p_i})+1)
+		\end{align*}
+		But we wanted to find the number which have gcd 1 with $n$. This is just the complement of the above set, who's cardinality is
+		\begin{align*}
+			n - \qty(n\prod_{i=1}^n \qty(1-\frac{1}{p_i})+n) = n\prod_{i=1}^n \qty(1-\frac{1}{p_i})
+		\end{align*}
+		Which completes the proof.
+		
+		
+	\end{enumerate}
+\end{document}

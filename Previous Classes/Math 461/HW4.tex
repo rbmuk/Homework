@@ -1,0 +1,148 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 461 HW4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Let $a_n = \sum_{i=0}^n i^4$. We see that $\Delta a_n = (n+1)^4 + \sum_{i=0}^n i^4 - \sum_{i=0}^n i^4 = (n+1)^4$. This tells us that $a_n$ is a 5th degree polynomial, which will be classified by the first 6 values of $a_n$. Those values are $a_n = 0, 1, 17, 98, 354, 979, \ldots$. Thus $\Delta a_n = 1, 16, 81, 256, 625$ (as we found above). So $\Delta^2 a_n = 15, 65, 175, 369$, $\Delta^3 a_n = 50, 110, 194$, $\Delta^4 a_n = 60, 84$, and $\Delta^5 a_n = 24$ (Checking the next term of $6^6$ in $\Delta a_n$ also gives 24). This gives that the first diagonal of the difference table of $a_n$ is $(0, 1, 15, 50, 60, 24)$, and hence 
+		\begin{align*}
+			a_n = {n \choose 1} + 15{n \choose 2} + 50{n \choose 3} + 60{n \choose 4} + 24{n \choose 5}
+		\end{align*}
+	
+		\item Letting $a_i = p(i)$, we see that $\Delta a_i = 4^{i+1}-4^{i} = 3 \cdot 4^i$ for $i = 0, \ldots, n-1$. We next see that $\Delta^2 a_i = 3 \cdot 4^{i+1} - 3\cdot 4^i = 3^2 \cdot 4^i$ for $i = 0, \ldots, n-2$, and continuing this on we eventually get $\Delta^n a_i = 3^n 4^i$ for just $i = 0$. Since we know $p$ is a polynomial of degree $n$ we will have that $\Delta^{n+1} a_i \equiv 0$, and hence we can find our first diagonal from just these values. In particular, $\Delta^j a_i = 3^j \cdot 4^0 = 3^j$. We have concluded that
+		\begin{align*}
+			a_i = \sum_{j=0}^n 3^j {n \choose j}
+		\end{align*}
+		Which is perhaps what you might expect.
+		
+		\item Define $a_n$ to be the solution of the problem and define $b_n$ to be the number of ways to tile a $1 \times n$ tile where green tiles cannot be adjacent to green tiles, red tiles cannot be adjacent to red tiles, and the leftmost tile is either green or blue. First I claim the obvious fact that this equals the same condition but the leftmost tile being red or blue. This is true since the mapping that sends each tiling to itself but swapping the position of all green and red tiles is a bijection. Now, notice that if the leftmost tile is blue, then we are just tiling a $1 \times n-1$ tile in $a_{n-1}$ ways, and if the leftmost tile is green, we need the next tile to be either red or blue, which can be done in $b_{n-1}$ ways. Thus $b_n = a_{n-1} + b_{n-1}$. To find a recurrence for $a_n$, if the leftmost tile is blue, we are again just tiling a $1 \times n-1$ grid, which can be done in $a_{n-1}$ ways, and if it is green, we have $b_{n-1}$ ways since the next tile needs to be red or blue, and similarly if it is red we have $b_{n-1}$ ways. Thus $a_n = a_{n-1} + 2b_{n-1}$. Notice now that
+		\begin{align*}
+			a_n = a_{n-1} + 2a_{n-2}+2b_{n-2} = a_{n-1} + 2a_{n-2} + 2a_{n-3} + 2b_{n-3} = a_{n-1} + 2\sum_{i=1}^{n-2} a_i + 2b_1
+		\end{align*}
+		Notice that if the leftmost tile of 1 $1 \times n$ grid is either blue or green, then there are only 2 ways to do this. So, 
+		\begin{align*}
+			a_n = a_{n-1} + 2\sum_{i=1}^{n-2} a_i + 4
+		\end{align*}
+		We now see that
+		\begin{align*}
+			a_{n} - a_{n-1} = a_{n-1} + 2\sum_{i=1}^{n-2}a_i + 4 - a_{n-2} - 2\sum_{i=1}^{n-3} a_i - 4 = a_{n-1} + a_{n-2}
+		\end{align*}
+		We have concluded that $a_{n} - 2a_{n-1} - a_{n-2} = 0$. The ``characteristic polynomial'' of this linear recurrence is $x^2 - 2x - 1 = 0$ which has solutions $1 \pm \sqrt{2}$. We have concluded that $a_n = c_1(1+\sqrt{2})^n + c_2(1-\sqrt{2})^n$, per the theorem in class. Since $a_0 = 1$ and $a_1 = 3$, we get the equations $1 = c_1 + c_2$ and $3 = c_1(1+\sqrt{2})+c_2(1-\sqrt{2})$, which has solutions $c_1 = \frac12 + \frac1{\sqrt{2}}$ and $c_2 = \frac12 - \frac{1}{\sqrt{2}}$. At last, $a_n = \qty(\frac12 + \frac1{\sqrt{2}})\qty(1+\sqrt{2})^n + \qty(\frac12 - \frac{1}{\sqrt{2}})\qty(1-\sqrt{2})^n$. $\hfill \blacksquare$
+		
+		\item First, we guess a particular solution $b_n$ to the non homogeneous version is $pn+q$. Plugging this into the recurrence and simplifying gives us $pn+q = 6(p(n-1)+q)-9(p(n-2)+q)+2n = 12p-3q + n(2-3p)$, which has a solution if $p = \frac12$ and $q = \frac32$, so $b_n = \frac12 n + \frac32$. If we define $c_n = h_n - b_n$, when we use the recurrence for $h_n$ and $b_n$ we get that $c_n = 6h_{n-1}-9h_{n-2}+2n-6b_{n-1}+9b_{n-2}-2n = 6(h_{n-1}-b_{n-1})-9(h_{n-2}-b_{n-2}) = 6c_{n-1} - 9c_{n-2}$. We have simplified the problem to a homogeneous linear equation with these coefficients, with characteristic equation $x^2-6x+9=0$ which factors as $(x-3)^2=0$. This is a repeated root so $C_2n3^n$ is also a solution. Thus $c_n = C_13^n + nC_23^n$ for some constants $C_1,\;C_2$. Thus $h_n = C_13^n + nC_23^n + \frac12(n+3)$. Plugging in $h_0 = 1$ and $h_1 = 0$ gives the two equations
+		\begin{align*}
+			1 = C_1 + \frac32 \\
+			0 = 3C_1 + 3C_2 + 2
+		\end{align*}
+		Which has solutions $C_1 = -\frac12$ and $C_2 = -\frac16$. So our final answer is
+		\begin{align*}
+			h_n = -\frac12 3^n - \frac16 n3^n + \frac12(n+3)
+		\end{align*}
+	
+		\item We start by noticing that 
+		\begin{align*}
+			g_n = F_n^2 = (F_{n-1}+F_{n-2})^2 = F_{n-1}^2 + F_{n-2}^2 + 2F_{n-1}F_{n-2} = g_{n-1} + g_{n-2} + 2F_{n-1}F_{n-2}
+		\end{align*}
+		Next notice that 
+		\begin{align*}
+			F_{n-1}F_{n-2} = (F_{n-2}+F_{n-3})F_{n-2} &= F_{n-2}^2 + F_{n-2}F_{n-3} = g_{n-2} + F_{n-2}F_{n-3} \\
+			&= g_{n-2} + g_{n-3} + F_{n-3}F_{n-4} = g_{n-2} + g_{n-3} + \cdots + g_1 + F_1F_0 \\
+			&= \sum_{i=1}^{n-2} g_i
+		\end{align*}
+		Thus, 
+		\begin{align*}
+			g_n = g_{n-1} + g_{n-2} + 2\sum_{i=1}^{n-2}g_i = g_{n-1} + 3g_{n-2} + 2\sum_{i=1}^{n-3} g_i
+		\end{align*}
+		From here,
+		\begin{align*}
+			g_n - g_{n-1} &= g_{n-1} + 3g_{n-2} + 2\sum_{i=1}^{n-3} g_i - \qty(g_{n-2} + 3g_{n-3} + 2\sum_{i=1}^{n-4} g_i) \\
+			&= g_{n-1} + 2g_{n-2} - g_{n-3}
+		\end{align*}
+		In conclusion,
+		\begin{align*}
+			g_n = 2g_{n-1} + 2g_{n-2} - g_{n-3}
+		\end{align*}
+	\end{enumerate}
+\end{document}

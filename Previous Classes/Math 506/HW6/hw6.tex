@@ -1,0 +1,258 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\onehalfspacing{}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{R:/sty/quiver}
+
+
+\usepackage{hyperref} % links
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Cor}{\mathrm{Cor}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 506 HW6}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item \begin{enumerate}
+            \item We claim that $F(A \cup B) = F(A) \oplus F(B)$ where $F(S)$ is the free abelian group on $S$. First, we certainly have $F(A) + F(B) = F(A \cup B)$, since every element of $F(A \cup B)$ is just a formal linear combination of the elements of $A \cup B$, which can be broken up into formal linear combinations of the elements of $A$ plus a formal linear combination of the elements of $B$. We seek to verify that $F(A) \cap F(B) = \emptyset$. Indeed, if
+            \begin{align*}
+                \sum_{i=1}^m c_i a_i = \sum_{j=1}^n d_jb_j \\
+                \sum_{i=1}^m c_ia_i + \sum_{j=1}^n (-d_j)b_j = 0
+            \end{align*}
+            Since the elements of $A \cup B$ form a free basis for $F(A \cup B)$, the above equation implies that $c_i = 0$ and $d_j = 0$ for all $i,j$. Applying this inductively shows that $F(G) = \bigoplus_{i=1}^m F(x_iH)$. Since $F(x_iH) = x_i\Z H$ and $F(G) = \Z G$, we get that 
+            \begin{align*}
+                \Z G = \bigoplus_{i=1}^m x_i\Z H
+            \end{align*}
+            
+            Let $y \in Hx_i^{-1} \cap Hx_j^{-1}$. Then $hx_i^{-1} = h_2x_j^{-1}$ for some $h, h_2$. Taking inverses shows that $x_i, x_j$ lie in the same coset. But this is only possible if $x_i = x_j$, so the $Hx_i^{-1}$ are disjoint. Since there are precisely $m$ of them, we have a list of all of them, showing that $G = Hx_1^{-1} \cup \cdots \cup Hx_m^{-1}$. By the lemma we proved above we also get $\Z G = \bigoplus_{i=1}^m \Z Hx_i^{-1}$. Last but certainly not least, by these two facts, and recalling that $\qty(\oplus_\alpha M_\alpha) \otimes N = \oplus_\alpha (M_\alpha \otimes N)$, we get
+            \begin{align*}
+                \Z G \otimes_{\Z H} A = \qty(\bigoplus_{i=1}^m x_i\Z H) \otimes_{\Z H} A = \bigoplus_{i=1}^m (x_i\Z H \otimes_{\Z H} A) = \bigoplus_{i=1}^m x_i \otimes_{\Z H} A.
+            \end{align*}
+            Where we see that for any ring $R$ and any $R$-module $A$, and $r \in R$, every element of $rR \otimes_R M$ takes the form $(rr_1) \otimes m = r(r_1 \otimes m)$, which shows that $rR \otimes M = r \otimes M$. This completes the proof.
+    
+            \item If $x \not \in Hx_i^{-1}$, then $x \in Hx_j^{-1}$ for some $j \neq i$. Then certainly $h'x \in Hx_j^{-1}$ as well, and since $Hx_j^{-1} \cap Hx_i^{-1} = \emptyset$, we must have $h'x \not \in Hx_i^{-1}$ as well. Thus in this case $f_{i,a}(h'x) = f_{i,a}(x) = 0$. Otherwise, $x = hx_i^{-1}$ for some $h$. Then $h'x = h'hx_i^{-1}$, so $f_{i,a}(h'x) = h'ha = h'f_{i,a}(x)$ as desired.
+            
+            \item For a fixed $g \in G$, write $x_i^{-1}g = h_ix_{i'}^{-1}$ for each $i$. Notice that the $x_{i'}$ are distinct, as $h_jx_{j'}^{-1} = h_ix_{i'}^{-1}$ iff $x_{j'}^{-1}x_{i'}^{-1} \in H$, which is only possible if $j = i$. Observe by the hint that $x_i \otimes (x_i^{-1}g) = x_i \otimes f(h_ix_{i'}^{-1}) = x_i \otimes h_if(x_{i'}^{-1}) = x_ih_i \otimes f(x_{i'}^{-1}) = gx_{i'} \otimes f(x_{i'}^{-1})$, by rearranging the above equation to solve for  $gx_{i'}$. By the above the $i'$ are distinct so they run through all the distinct representatives of the $m$ cosets of $H$ in $G$, which shows that $\cph$ is a $G$-module homomorphism.
+            
+            \item We first show that $R \otimes_R M \cong M$ via $r \otimes m \mapsto rm$. This is clearly $R$-linear, and by taking $r = 1$ we see that it is surjective. For injectivity, we shall see that the map $m \mapsto 1 \otimes m$ is a left inverse. Indeed, as $r \otimes m \mapsto rm \mapsto 1 \otimes rm = r \otimes m$ by the definition of the tensor product. Now, if we have
+            \begin{align*}
+                \sum_{i=1}^m x_i \otimes f(x_i^{-1}) = 0
+            \end{align*}
+            Then certainly this identity holds as abelian groups. Since we have realized $\Z G \otimes_{\Z H} A$ as a direct sum, this means that $x_i \otimes f(x_i^{-1}) = 0$ for every $x_i$. Lifting this back to the structure of $G$-modules, we multiply by $x_i^{-1}$ on the left to see that $1 \otimes f(x_i^{-1}) = 0$. By the above isomorphism, this means that $f(x_i^{-1}) = 0$ for every $x_i$.
+
+            Now, given $g \in G$ we can write $g = hx_i^{-1}$. Then $f(g) = f(hx_i^{-1}) = hf(x_i^{-1}) = 0$, so $f = 0$. This verifies injectivity. For surjectivity, notice that
+            \begin{align*}
+                \cph(f_{i,a}) = \sum_{j=1}^m x_i \otimes f(x_j^{-1})
+            \end{align*}
+            Notice that precisely one of the $j$'s, namely $i$, will yield a nonzero value, since we know that the $x_j$ are representatives of distinct right left cosets of $H$. Indeed, if $x_j^{-1} \in Hx_i^{-1}$, then certainly $x_j^{-1} x_i \in H$, which shows that $x_j, x_i$ are in the same coset, which is only true if $j=i$. Thus 
+            \begin{align*}
+                \cph(f_{i,a}) = x_i \otimes f(x_i^{-1}) = x_i \otimes a
+            \end{align*}
+            Since $x_i \otimes A$ is precisely the set of elements of the form $x_i \otimes a$, and $\Z G \otimes_{\Z H} A = \bigoplus_{i=1}^m (x_i \otimes A)$, $\cph$ is surjective, which completes the proof.
+        \end{enumerate}
+
+        \item By Shapiro's lemma, we know that $H^n(G, M_1^G(\Z)) = H^n(1, \Z)$. By definition $H^n(1, \Z) = \mathrm{Ext}_{\Z}^1(\Z, \Z)$. If we take the following free resolution of $\Z$:
+        \[\begin{tikzcd}
+            0 & \Z & \Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["id", from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+        \end{tikzcd}\]
+        We apply the functor $\Hom_{\Z}(-, \Z)$ to get the following chain complex:
+        \[\begin{tikzcd}
+            0 & \Hom_{\Z}(\Z, \Z) & \Hom_{\Z}(\Z, \Z) & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["id", from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+        \end{tikzcd}\]
+        I claim this is short exact. We need only check right exactness. This follows since $\psi \in \Hom_\Z(\Z, \Z) \mapsto \psi \circ id = \psi$. Thus we have verified that $H^1(1, \Z) = 0$. However, by problem 9 on the last homework, we know that $H^1(G, \Z G) \cong \Z$. Thus we cannot possibly have an isomorphism $M_1^G(\Z) \cong \Z G \otimes_{\Z} \Z = \Z G$, as the isomorphism between them would yield isomorphic cohomology groups. This is verified by the following:
+        
+        Let 
+        \[\begin{tikzcd}
+            \cdots & {F_n} & {F_{n-1}} & \cdots & {F_0} & \Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["{d_n}", from=1-2, to=1-3]
+            \arrow["{d_{n-1}}", from=1-3, to=1-4]
+            \arrow["{d_1}", from=1-4, to=1-5]
+            \arrow["\ve", from=1-5, to=1-6]
+            \arrow[from=1-6, to=1-7]
+        \end{tikzcd}\]
+        Be the bar resolution of $\Z$. We claim given an isomorphism $\psi: A \to B$ of $G$-modules, there is an isomorphism $\Hom_{\Z G}(C, A) \cong \Hom_{\Z G}(C, B)$ for every $G$-module $C$ by $f \mapsto \psi \circ f$. Since this map clearly has inverse $f \mapsto \psi^{-1} f$, this is a bijection, and it is $\Z G$ linear since $f, \psi$ are. We then claim that the following diagram is commutative:
+        \[\begin{tikzcd}
+            0 & {\Hom(\Z, A)} & {\Hom(F_0,A)} & \cdots \\
+            0 & {\Hom(\Z,B)} & {\Hom(F_0, B)} & \cdots
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow["{f \mapsto \psi \circ f}"', from=1-2, to=2-2]
+            \arrow[from=1-3, to=1-4]
+            \arrow["{f \mapsto \psi \circ f}", from=1-3, to=2-3]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+        \end{tikzcd}\]
+        This follows since $f \in \Hom(F_{n-1}, A) \mapsto  f \circ d_n \mapsto \psi \circ d_n \circ f$, while $f \mapsto \psi \circ f \mapsto \psi \circ f \circ d_n$. Since this is an isomorphism of cochain complexes it follows that the induced maps on homology groups are isomorphisms as well.
+
+        \item Write $|H^1(G,A)| = p^n \cdot m$ for some $n,m$ with $(m, p) = 1$. Then $|H^1(G,A) : P| = m$. In particular, $m$ is a unit in $\Z/p^n$, so it has order dividing $p$ in $\Z/p^n$. Then there exists a positive integer $k = |m|$ so that $m^k = 1 + \ell p$ for some $\ell$. Recall that $\Cor \circ \Res = m$. Then we know that $\Cor^{|m|} \circ \Res = 1$, because:
+        \begin{align*}
+            \Cor^{k} \circ \Res(c) = m^{k} c = (1 + \ell p^n)c = c
+        \end{align*}
+        Since $p^n \cdot c = 0$ since the size of the $p$-primary component is just $p^n$. Thus $\Res$ has a left inverse and hence is injective. We notice that the above argument did not depend on the fact we worked with the first cohomology group, as the same logic would work with any cohomology group. Recall that the $n$th cohomology group of $G$ with coefficients in $A$ is just the $n$ homology group of the following chain complex:
+        \[\begin{tikzcd}
+            0 & {\Hom_{\Z G}(\Z, A)} & {\Hom_{\Z G}(F_0, A)} & \cdots
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+        \end{tikzcd}\]
+        We need only show that each term in the above complex has size a power of $p$, for then the coboundaries and cocycles will have size a power of $p$, thus they will equal their $p$-primary component and we can use the last part to complete the proof. We know that every map $f \in \Hom_\Z(\Z, A)$ is uniquely specified once we see where the generator 1 is sent to. There are precisely $p^a$ choices for this, so $|\Hom_{\Z}(\Z, A)| = p^a$. Since $\Hom_{\Z G}(\Z, A) \leq \Hom_{\Z}(\Z, A)$ as abelian groups, we see that $\Hom_{\Z G}(\Z, A)$ has size a power of $p$ as well. Similarly, for each of the $F_n$ in the bar resolution for $n \geq 0$, we know that $F_n$ is a free $\Z$-module with rank $G^{n+1}$. Thus we have $G^{n+1}$ basis elements all of which can be sent to one of $p^a$ elements of $A$, so $|\Hom_{\Z}(\Z, A)| = p^{a(G^{n+1})}$. Once again as $\Hom_{\Z G}(\Z, A) \leq \Hom_{\Z}(\Z, A)$ as abelian groups, each term in the above cgaub complex has size a power of $p$, which completes the proof by our previous observations.
+
+        \item We calculate the following big product:
+        \begin{align*}
+            (a_0 + a_1x + a_2y)(b_0 + b_1x + b_2y) &= a_0b_0 + x(a_1b_0+a_0b_1) + y(a_2b_0+a_0b_2) \\&+ xy(a_1b_2-a_2b_1) + x^2a_1b_2 + y^2a_2b_1 \\
+            &= a_0b_0 - 3a_1b_2 - 7a_2b_1 + x(a_1b_0+a_0b_1) + y(a_2b_0+a_0b_2) \\&+ xy(a_1b_2-a_2b_1)
+        \end{align*}
+        Taking $b_0 = a_0, b_1=-a_1, b_2 = -a_2$, we get that the above product equals
+        \begin{align*}
+            a_0^2 + 3a_1^2 + 7a_2^2.
+        \end{align*}
+        Since the above expression is positive if any of the $a_i$ are nonzero, we see that $a_0+a_1x+a_2y$ always has an inverse if it is nonzero, namely
+        \begin{align*}
+            \frac{1}{a_0+3a_1^2+7a_2^2} (a_0-a_1x-a_2y)
+        \end{align*}
+        It follows that the above is also a left-symmetry by the symmetry of the negative signs and the commutativity of $\Q$. Thus this $\Q$-algebra is a division ring.
+    \end{enumerate}
+\end{document}

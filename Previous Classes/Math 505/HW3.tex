@@ -1,0 +1,247 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 505 HW2}
+\date{\today}
+\author{Anonymous}
+
+\begin{document}
+	\maketitle
+	
+	\begin{definition}[Lang IV.6]
+		Define the weight of a monomial $X_1^{v_1} \cdots X_n^{v_n}$ to be $v_1 + 2v_2 + \cdots + nv_n$, and the weight of a polynomial $g(X_1, \cdots, X_n)$ to be the max of the weights of each of it's monomials.
+	\end{definition}
+
+
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 	
+		\begin{enumerate}
+			\item Clearly the theorem is true for $n=1$, since in that case we only have one symmetric polynomial being $x_1$, and every symmetric polynomial is of course of the form $f(x_1)$ (since every polynomial is of that form). Suppose the claim is true for $n-1$, with the added condition that if $f$ is symmetric of degree $d$, then we can find a weight $\leq d$ polynomial $g \in R[y_1, \cdots, y_n]$ such that $f = g(e_1, \cdots, e_n)$. Now, for the symmetric polynomials on $n$ variables, suppose that the theorem is true for all polynomials of degree $\leq d$ for some $d \geq 1$ (the case $d = 0$ is clear, because given a constant polynomial $f(x_1, \ldots, x_n) = c$, we can just take $F(y_1, \ldots, y_n) = c$--this is induction on $d$). 
+			
+			If we write,
+			\begin{align*}
+				P(t, x_1, \ldots, x_n) = (t-x_1) \cdots (t-x_n)
+			\end{align*}
+			We can see that, 
+			\begin{align*}
+				P(t, x_1, \ldots, x_{n-1}, 0) &= (t-x_1) \cdots (t-x_{n-1})t 
+				\\&= t^n - e_1(x_n=0)t^{n-1} + e_2(x_n=0)t^{n-2} + \cdots + (-1)^ne_n(x_n=0)t
+			\end{align*}
+			Where $f(x_n=0) \coloneqq f(x_1, \ldots, x_{n-1}, 0)$. Dividing out by $t$ shows that the $e_k(x_n=0)$ for $1 \leq k \leq n-1$ are the elementary symmetric polynomials on $n-1$ variables. 
+			
+			Now, let $f(x) \in R[x_1, \ldots, x_n]$ be a degree $d$ symmetric polynomial, and let $g(x_1, \ldots, x_{n-1}) \coloneqq f(x_n = 0)$. Notice first that $g$ is symmetric on $x_1, \ldots, x_{n-1}$, and has degree $\leq d$, so by induction on $n$ we can find a polynomial $F \in R[y_1, \ldots, y_{n-1}]$ with weight $\leq d$ such that $g(x_1, \ldots, x_{n-1}) = F(e_1(x_n=0), \ldots, e_{n-1}(x_n=0))$. We consider the ``lift'' of this polynomial $h(x_1, \ldots, x_n) = F(e_1, \ldots, e_{n-1})$ (we are taking away the evaluation at 0). 
+			
+			Notice that if $e_1^{\alpha_1} \cdots e_n^{\alpha_n}$ is a monomial of $F$, it's degree is $\alpha_1 + 2\alpha_2 + \cdots + n\alpha_n$ since $\deg e_i = i$ (explicit calculation). The max of all these is just the weight, which is $\leq d$ by hypothesis, so $\deg h \leq d$.
+			
+			Now, the idea is that we have $f$ ``up to'' addition by a power of $e_n$. Thus, we consider $l(x_1, \ldots,x_n) \coloneqq f(x_1, \ldots, x_n) - h(x_1, \ldots, x_n)$, and notice that $l(x_n=0) = f(x_n=0)-g(x_1,\ldots,x_n) = f(x_n=0)-f(x_n=0) = 0$, and, since $\deg h \leq d$, $\deg l \leq d$ (This is where the weight portion of the claim comes in). Since $l$ is symmetric, $l(x_n=0) = l(x_k=0) = 0$ for every other $k$, so by the factor theorem $x_k \mid l$ for each $1 \leq k \leq n$, which shows that $(x_1\cdots x_n) \mid l$. Notice then that $l/(x_1 \cdots x_n)$ has degree $\leq d - n < d$, so we may apply the inductive hypothesis (on $d$) to find a polynomial $T \in R[y_1, \ldots, y_n]$ of weight $\leq d-n$ such that $l/(x_1 \ldots x_n) = T(e_1, \ldots, e_n)$. Taking 
+			\begin{align*}
+				T' = y_nT(y_1, \ldots, y_n) + F(y_1, \ldots y_{n-1}, y_n)
+			\end{align*} 
+		will yield $f = T'(e_1, \ldots, e_n)$ (Notice that the last $y_n$ of $F$ is technically unnecessary). The $y_nT(y_1, \cdots, y_n)$ term has weight $n + \mathrm{weight}(T(y_1, \cdots, y_n)) \leq n + d - n = d$, and the latter term has weight $\leq d$, so the sum has weight $\leq d$, completing the proof.
+		
+		\item Again we prove the claim by induction on $n$. $e_1$ is clearly algebraically independent, so suppose the claim is true for some $n \geq 1$. Suppose instead that there was a polynomial $F \in R[y_1, \cdots, y_{n+1}]$ so that $F(e_1, \ldots, e_{n+1}) = 0$. If $y_{n+1} \mid F$, we can see that $F'(y_1, \cdots, y_{n+1}) = \frac{1}{y_{n+1}} F(y_1, \cdots, y_{n+1})$ will also have $F'(e_1, \cdots, e_{n+1}) = 0$ everywhere, since otherwise $F$ would be a product of two non-zero polynomials and hence itself nonzero. Letting $\alpha$ be the highest power of $y_{n+1}$ appear in every monomial of $F$ and replacing $F$ with $F/y_{n+1}^\alpha$ will yield a (non-zero) polynomial relation on $e_1, \cdots, e_{n+1}$ where at least one monomial of $F$ is not divisible by $y_{n+1}$.
+		
+		 Now, $F(e_1, \ldots, e_{n+1})$ is a function of $X_1, \ldots, X_{n+1}$ which is equal to 0 everywhere, so in particular we can plug in $X_{n+1} = 0$ and the new $F$ will still be 0 everywhere. In symbols, $F(e_1(x_{n+1}=0), \ldots, e_{n+1}(x_{n+1}=0)) = 0$. Since $e_{n+1}(x_{n+1}=0) = 0$ (since $e_{n+1} = x_1 \cdots x_{n+1}$), $F(e_1(x_{n+1}=0), \ldots, e_{n+1}(x_{n+1}=0)) = F(e_1(x_{n+1}=0), \ldots, e_n(x_{n+1}=0), 0)$, so $T(y_1, \cdots, y_n) = F(x_1, \cdots, x_n, 0)$ is so that $T(e_1, \cdots, e_n) = 0$. If $T$ were equivalently 0, then every monomial of $F$ would be divisible by $y_{n+1}$, which we constructed above to not happen. Thus $T$ is a relation on the elementary symmetric polynomials on $n-1$ variables, a contradiction.
+		\end{enumerate}
+	
+		\item 
+		\begin{enumerate}
+			\item This theorem follows from these two simple claims:
+			
+			\begin{claim}
+				$S_n = \gen{(\alpha_1 \; \alpha_2), (\alpha_1 \; \alpha_2 \; \cdots \; \alpha_n)}$. 
+			\end{claim}
+			\begin{proof}
+				Let $\sigma$ be the permutation sending $\alpha_i$ to $i$, and let $\cph(\tau) = \sigma^{-1} \tau \sigma$. Then $\cph(\gen{(\alpha_1 \; \alpha_2), (\alpha_1 \; \alpha_2 \; \cdots \; \alpha_n)}) = \gen{(1 \; 2), (1 \; 2 \; \cdots \; n)} = S_n$, so by order considerations and since $\cph$ is an automorphism $\gen{(\alpha_1 \; \alpha_2), (\alpha_1 \; \alpha_2 \; \cdots \; \alpha_n)} = S_n$.
+			\end{proof}
+		
+			\begin{claim}
+				If $\tau = (\alpha_1 \; \alpha_2)$ is any transposition and $\sigma$ is any $p$-cycle, then some power of $\sigma$, which is another $p$-cycle, sends $\alpha_1$ to $\alpha_2$.
+			\end{claim}
+			\begin{proof}
+				Since $p$ is prime, $\sigma^n$ has order $p$. It can be factored into the product of disjoint cycles, each of which has order dividing $p$. Thus precisely one has order $p$ and the rest have order 1, which shows that $\sigma^n$ is just a $p$-cycle. Let $\mathscr{F} = \Set{\sigma(\alpha_1), \cdots, \sigma^{-(p-1)}(\alpha_1)}$, and $1 \leq m < n \leq p-1$. If somehow $\sigma^{m}(\alpha_1) = \sigma^{n}(\alpha_1)$, then $\sigma^{n-m}(\alpha_1) = \alpha_1$, a contradiction since $\sigma^{n-m}$ is a $p$-cycle. Thus $|\mathscr{F}| = p-1$, not containing $\alpha_1$, so $\mathscr{F} = \Set{\alpha_2, \ldots, \alpha_n}$. In particular, there is an $n$ so that $\sigma^{n}(\alpha_1) = \alpha_2$.
+			\end{proof}
+			Minimality is obvious as removing either generator would reduce the group to size $p$ or $2$ respectively, which is (strictly) less than $p!$ for odd $p$.
+			
+			\item Notice that $(13)(1234)(13) = (4321)$, so if we let $x = (13)$ and $a = (1234)$, we have the following properties:
+			\begin{align*}
+				a^4 = x^2 = e, \; xax^{-1} = a
+			\end{align*}
+			We also recall that $D_8 = \gen{r, s \mid r^4 = s^2 = e, xax^{-1} = a}$. Thus we have a surjective homomorphism
+			\begin{align*}
+				\cph: \gen{(13), (1234)} &\to D_8 \\
+				(13) &\mapsto s \\
+				(1234) &\mapsto r
+			\end{align*}
+			Since every element of $D_8$ is of the form $s^ar^b$, we only have to check injectivity on those elements. Indeed, if $\cph(x^ca^b) = \cph(x^da^w)$, then $s^{d-c} = \cph(x^{d-c}) = \cph(a^{b-w}) = r^{b-w}$. Since $\gen{s} \cap \gen{r} = \gen{1}$, we must have $\cph(x^{d-c}) = \cph(a^{b-w}) = e$. The only power of $a$ mapping to $e$ is $e$, and similarly the only power of $x$ mapping to $e$ is $e$, which shows injectivity. Thus $\gen{(13), (1234)} \cong D_8$, and in particular $8 = |\gen{(13), (1234)}| < |S_4| = 4! = 24$. For the curious reader, the second claim from part (a) fails since $(1234)^2 = (13)(24)$, so no power of $(1234)$ is a $4$-cycle sending 1 to 3.
+			
+			\item This proof has multiple parts. First,
+			\begin{claim}
+				$S_n = \gen{(12), (23), (34), \ldots, (n-1 \; n)}$.
+			\end{claim}
+			\begin{proof}
+				Clearly $(12) = (12)$. Assume that $(12) (34) \cdots (n-1 \; n) = (1234 \cdots n)$ (where multiplication is taken from right to left) for some $n \geq 2$. Then $(12) (34) \cdots (n-1 \; n)(n \; n+1) = (1234 \cdots n)(n \; n+1) = (n \; n+1 \; 123 \cdots)$, which completes this subclaim. Since $S_n = \gen{(12), (123\cdots n)}$, this completes the proof of the claim.
+			\end{proof}
+			\begin{claim}
+				$\Set{(12), (34), \cdots, (n-1 \; n)}$ is a minimal system of generators. 
+			\end{claim}
+			\begin{proof}
+				We need only show it is minimal. If you throw away $(12)$ or $(n-1 \; n)$, the remaining elements cannot generate the whole group since they either fix 1 or $n$ respectively (since 1 and $n$ don't show up in any transposition). The more important and more general case follows now. Suppose we drop $(l \; l+1)$ for some $2 \leq l < n-1$. Clearly this transposition is not a product of the transpositions
+				\begin{align*}
+					\Set{(l+1 \; l+2), \cdots, (n-1 \; n)}
+				\end{align*}
+				Since each of those fix $l$ (so any product fixes $l$). Similarly $(l \; l+1)$ is not a product of the transpositions
+				\begin{align*}
+					\Set{(12), \cdots, (l-1 \; l)}
+				\end{align*}
+				Notice at last that if $(l \; l+1)$ were a product of transpositions of the above form, we could group transpositions with values $\leq l$ on the left and values $\geq l+1$ on the right since disjoint cycles commute. To be a transposition, precisely one of these groups would have to be a transposition, otherwise you would get a product of two disjoint cycles. We have shown above that these products cannot be $(l \; l+1)$, which completes the proof.
+			\end{proof}
+			The above two claims shows that $S_n$ has a minimal system of generators for the extreme cases of $k=2, n-1$. 
+			
+			The idea behind getting the remaining $k$ is the following: If a transposition and an $n$-cycle is minimal, and only transpositions is minimal, maybe some transpositions and a $k$-cycle is minimal.
+			
+			Indeed, we have our final claim.
+			\begin{claim}
+				$\Set{(12 \cdots k), (k \; k+1), \cdots, (n-1 \; n)}$ is a minimal system of generators for $S_n$.
+			\end{claim}
+			\begin{proof}
+				First, notice that it is in fact a system of generators--$(12 \cdots k)(k \; k+1) \cdots (n-1 \; n) = (123 \cdots n)$, so we can use the first claim of part (a). The proof of minimality is almost the same as last time. Indeed, if we drop the $k$-cycle or the last transposition, the rest of the generators fix $1$ or $n$ respectively, hence cannot generate the whole group. If we instead dropped $(l \; l+1)$ for some $k \leq l < n-1$, we again have 3 cases. The above transposition is not a product of $(123 \cdots k), (k \; k+1), \ldots, (l-1 \; l)$, since each of those fix $l+1$ so any product does. Similarly, $(l \; l+1)$ is not a product of $(l+1 \; l+2), \cdots, (n-1 \; n)$ since each of those fix $l$. For a general product, commute the disjoint transpositions on the left/right resp. depending on if they have values $\leq l$ or $\geq l+1$ only. For powers of the $k$-cycle, similarly commute it to the left. Once again since we have a product of disjoint cycles, to get a transposition we would need precisely one of the groups to be a transposition (and the other to be the identity). The above cases show this is not possible, which completes the proof.
+			\end{proof}
+			Finally notice that this system of generators has $n-1 - k + 1 = n-k$ elements for each $2 \leq k \leq n-1$.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

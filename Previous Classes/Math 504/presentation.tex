@@ -1,0 +1,87 @@
+\documentclass{beamer}
+\usetheme{default}
+
+
+
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\ip}[1]{\langle #1 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Groups of order $n \leq 10$}
+\author{Rohan Mukherjee}
+\begin{document}
+\begin{frame}[plain]
+    \maketitle
+\end{frame}
+
+\begin{frame}{Groups of order 1}
+	This is just the trivial group $\gen{1}$.
+\end{frame}
+\begin{frame}{Groups of order 2, 3, 5, 7}
+	For prime $p$ there is only one group up to isomorphism, namely $\Z/p$. So for $n = 2, 3, 5, 7$ we get $\Z/2,\; \Z/3,\; \Z/5$ and $\Z/7$ respectively.
+\end{frame}
+\begin{frame}{Groups of order 4, 9}
+	Every group of order $p^2$ is abelian. From homework 7, we showed that if $H \nsg G$, and $|G| = p^n$, then $G \cap Z(G) \neq \gen{1}$. Taking $H = G$ shows that $G \cap Z(G) = Z(G) \neq \gen{1}$, so $Z(G) = p$ or $p^2$. In the second case we are done, in the first $G/Z(G) \cong \Z/p$ which is cyclic so $G$ is abelian.
+	
+	By fundamental theorem, $G \cong \Z/p^2$ or $\Z/p \times \Z/p$. So for $n=4$ we have $\Z/4$, $\Z/2 \times \Z/2$, and for $n = 9$ we get $\Z/9$ and $\Z/3 \times \Z/3$.
+\end{frame}
+\begin{frame}{Groups of order 6, 10}
+	Homework 5 presentation problem P.2 shows that for a group of order $pq$ with $p < q$ and $p \mid q-1$, the only two groups of order $pq$ up to isomorphism are $\Z/pq$ and $\Z/q \rtimes \Z/p$ where the automorphism is nontrivial. So $n=6$ gives us $\Z/6$ and $\Z/3 \rtimes \Z/2 \cong D_3 \cong S_3$ and $n=10$ gives us $\Z/10$ and $\Z/5 \rtimes \Z/2 \cong D_5$.
+\end{frame}
+
+\begin{frame}{Groups of order 8}
+	First, the abelian ones: $\Z/8$, $\Z/4 \times \Z/2$, and $(\Z/2)^3$. Let $G$ be a nonabelian group of order 8. Then $G$ has an element of order 4: otherwise all elements have order dividing 2, so $[x,y] = xyx^{-1}y^{-1} = xyxy = (xy)^2 = e$. Let $x$ be an element of order 4, and notice that $\gen{x} \nsg G$ since it has index 2. If $G \setminus \gen{x}$ has an element of order 2, say $y$, then,
+	\begin{align*}
+		\gen{x} < \gen{x} \gen{y} \leq G
+	\end{align*}
+	So $|\gen{x}\gen{y}| \mid 8$ and $|\gen{x}\gen{y}| > 4$, which shows that $\gen{x}\gen{y} = G$. This shows that $\gen{x} \cap \gen{y} = \gen{1}$, so $G \cong \gen{x} \rtimes \gen{y} \cong \Z/4 \rtimes \Z/2$. Since $G$ is nonabelian we have $G \cong D_4$.
+\end{frame}
+\begin{frame}{Groups of order 8 contd.}
+	Otherwise, every element in $G \setminus \gen{x}$ has order 4. Let $y$ be such an element. Again $\gen{x}\gen{y} = G$. Now, $y^2$ has order 2 and is not in $G \setminus \gen{x}$, so is in $\gen{x}$. The only element of order 2 in $\gen{x}$ is $x^2$, so $y^2=x^2$. Also, since $G/\gen{y}$ is abelian, notice that $xyx\gen{y} = x^2y\gen{y} = y^3\gen{y} = \gen{y}$, so $xyx \in \gen{y}$. Next, $(xyx)^2 = xyx^2yx = xy^4x = x^2 = y^2$, so $xyx = y$ or $y^3$. In the second case, $xyx = y^3 = x^2y$, so $yx = xy$, which shows that $G$ is abelian, a contradiction. So $xyx = y$, and $G = \gen{x, y \mid x^4 = e, x^2=y^2, xyx = y} \cong Q_8$.
+\end{frame}
+\end{document}

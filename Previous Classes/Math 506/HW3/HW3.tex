@@ -1,0 +1,258 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{R:/sty/quiver}
+
+%\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=cyan,
+pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle #1 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\GL}{\mathrm{GL}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 506 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item We recall the irreducible degree 2 representation of $D_4$ over $\C$. This would say that $8 = 2^2 + 1^2 + 1^2 + 1^2 + 1^2$, and this is the only way to represent 8 as a sum of squares, where $2^2$ (the 2 dimensional irreducible representation) and $1^2$ (the trivial representation) show up. Thus, we have 1 degree 2 representation and 3 degree 1 representations. Notice that if $\pi: G \to \GL_1(\C) \cong \C^\times$ is a degree 1 representation, by the universal property of the commutator subgroup, this factors through a homomorphism
+        \[\begin{tikzcd}
+            G & {\GL_1(\C) \cong \C} \\
+            {G/[G,G]}
+            \arrow[from=1-1, to=2-1]
+            \arrow["{\exists! \tilde \pi}"', dashed, from=2-1, to=1-2]
+            \arrow["\pi"', from=1-1, to=1-2]
+        \end{tikzcd}\]
+        A simple computation shows that $[D_4, D_4] = \gen{r^2}$, so 
+        \begin{align*}
+            D_4/[D_4, D_4] = \gen{r, s \mid r^4 = s^2 = 1, rs = sr^{-1}, r^2=1} = \gen{\overline r, \overline s \mid \overline r^2 = \overline s^2 = 1, \overline{rs}= \overline{sr}} = \Z_2 \times \Z_2
+        \end{align*}
+        Since the character of a 1 dimensional representation of just the representation itself, we see that $\overline{r}, \overline s$ must be sent to elements of degree dividing 2 in $\C$. The only options are thus $\pm 1$, so we have four representations: $\overline r \mapsto 1$, $\overline s \mapsto 1$, $\overline r \mapsto -1$, $\overline s \mapsto -1$, $\overline r \mapsto 1$, $\overline s \mapsto -1$, $\overline r \mapsto -1$, $\overline s \mapsto 1$. The five conjugacy classes of $D_4$ are respresented by 1, $r^2$, $s$, $r$, $rs$. For the degree 1 representations, we can just take products of their images in the quotient group to get the character table. We get:
+        \begin{center}
+            \begin{tabular}{c|ccccc}
+                & 1 & $r^2$ & $s$ & $r$ & $rs$ \\
+                \hline
+                $\chi_1$ & 1 & 1 & 1 & 1 & 1 \\
+                $\chi_2$ & 1 & 1 & -1 & -1 & 1 \\
+                $\chi_3$ & 1 & -1 & 1 & -1 & 1 \\
+                $\chi_4$ & 1 & -1 & -1 & 1 & 1
+            \end{tabular}
+        \end{center}
+        For the last row, we can use Schur orthogonality to find that $\chi_5(1) = 2$ (the degree of the representation), and if $g$ is an element in a conjugacy class of order 2, $|\chi_5(g)|^2 + 4 \cdot 1^2 = 8/2 = 4$ (by noticing that $(\pm 1)^2 = 1$), so $\chi_5(g) = 0$ in those cases. We only have to check $\chi_5(r^2)$. $r^2$ corresponds to rotation by $\pi$, whose matrix would just be $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$, so $\chi_5(r^2) = -2$. Thus, we have the character table:
+            \begin{center}
+                \begin{tabular}{c|ccccc}
+                    & 1 & $r^2$ & $s$ & $r$ & $rs$ \\
+                    \hline
+                    $\chi_1$ & 1 & 1 & 1 & 1 & 1 \\
+                    $\chi_2$ & 1 & 1 & -1 & -1 & 1 \\
+                    $\chi_3$ & 1 & -1 & 1 & -1 & 1 \\
+                    $\chi_4$ & 1 & -1 & -1 & 1 & 1 \\
+                    $\chi_5$ & 2 & -2 & 0 & 0 & 0
+                \end{tabular}
+            \end{center}
+        Similarly, we first find the commutator subgroup of $Q_8$ to be $\gen{-1}$, so $Q_8/\gen{-1} = \gen{i,j,k \mid i^2=j^2=k^2=ijk=e}$. We see then that $k = k^{-1} = ij$, so the last relation tells us that $ijk = ijij = e$, so $ij = ji$. Our group thus becomes $Q_8/\gen{-1} = \gen{i,j \mid i^2=j^2=e, ij=ji} \cong \Z/2 \times \Z/2$. We can then find the degree 1 representations of the quotient group and by our logic before that will lift to the same row in the original group. We see that the only options for the images of $i$ and $j$ are $\pm 1$, so we have four representations: $i \mapsto 1$, $j \mapsto 1$, $i \mapsto -1$, $j \mapsto -1$, $i \mapsto 1$, $j \mapsto -1$, $i \mapsto -1$, $j \mapsto 1$. The conjugacy classes of $Q_8$ are $\SET{1}, \SET{-1}, \SET{\pm i}, \SET{\pm j}, \SET{\pm k}$. We can then (after some small calculations involving $\overline k = \overline i \cdot \overline j$), find the character table:
+        \begin{center}
+            \begin{tabular}{c|ccccc}
+                & 1 & -1 & $i$ & $j$ & $k$ \\
+                \hline
+                $\chi_1$ & 1 & 1 & 1 & 1 & 1 \\
+                $\chi_2$ & 1 & 1 & -1 & -1 & 1 \\
+                $\chi_3$ & 1 & -1 & 1 & -1 & -1 \\
+                $\chi_4$ & 1 & -1 & -1 & 1 & -1
+            \end{tabular}
+        \end{center}
+        By the same logic from last time, if $\chi_5$ is the remaining 2 dimensional ($Q_8$ acting on the 4 dimensional real algebra $\mbb{H}$, which I will not prove because I don't need to) representation, we have $\chi_5(1) = 2$, $\chi_5(i) = \chi_5(j) = \chi_5(k) = 0$. Now by the first orthogonality relation, we have that
+        $0 = \ip{\chi_5}{\chi_1} = 1 \cdot \chi_1(1) \cdot \chi_5(1) + 1 \cdot \chi_1(-1) \cdot \chi_5(-1) + 0$. Plugging in our calculated values for $\chi_1$, we get that $\chi_5(-1) = -2$. Thus we have found the entire character table:
+        \begin{center}
+            \begin{tabular}{c|ccccc}
+                & 1 & -1 & $i$ & $j$ & $k$ \\
+                \hline
+                $\chi_1$ & 1 & 1 & 1 & 1 & 1 \\
+                $\chi_2$ & 1 & 1 & -1 & -1 & 1 \\
+                $\chi_3$ & 1 & -1 & 1 & -1 & -1 \\
+                $\chi_4$ & 1 & -1 & -1 & 1 & -1 \\
+                $\chi_5$ & 2 & -2 & 0 & 0 & 0
+            \end{tabular}
+        \end{center}
+        Notably, the groups $D_4$ and $Q_8$ are far from isomorphic yet they have the same character table.
+
+        \item \begin{enumerate}
+            \item We first prove the result for cycles of length $k \leq m$. We need only show that if $g$ is a $k$-cycle, then $g^a$ is another $k$-cycle for $(k,a) = 1$. First, by bezout we obviously see that $g^a$ has order $k$ since $\gen{g^a} = \gen{g}$. Suppose WLOG that $g = (1 2 \cdots k)$ (we may do this since conjugation preserves the cycle type). If instead $g^a$ was not another $k$-cycle, then it would be the product of disjoint cycles $\tau_1 \cdots \tau_d$ with a factor $\tau_1 = (1 \alpha_1 \cdots \alpha_l)$ with length $\geq 2$ and $< k$. By disjointness, notice that $g^a(1)= \tau_1 \cdots \tau_d(1) = \tau(1)$, since each of the other $\tau_i$ fix $1$. This tells us that powers of $g^a$ act as powers of $\tau_1$ on the elements of $\tau_1$, so in particular 1 can only get sent to the other elements in $\tau_1$. Choosing $\beta$ not equal to any elemnent in this cycle, we see that $g^{\beta-1}$ sends 1 to $\beta$, a contradiction, since 1 can only get sent to one of the $\alpha_i$ under powers of $g$. Thus, $g^a$ is a $k$-cycle, and hence is conjugate to $g$.
+            
+            \item We recall that the Galois group of the splitting field of the polynomial $x^m-1$ is just, if we set $\zeta$ to be a primitive $m$th root of unity, $\Gal(\Q(\zeta)) \cong (\Z/m)^\times$, containing the elements $\cph_a: \zeta \to \zeta^a$ for $(a, m) = 1$. We need only show that $\chi(g)$ is fixed by every element of the Galois group. If $\pi$ is the associated representation of degree $k$, we can diagonalize (recall the minimal polynomial of $\pi(g)$ divides $x^m-1$ so the eigenvalues are $m$th roots of unity) to get
+            \begin{align*}
+                \pi(g) = P \begin{pmatrix} \zeta^{n_1} & & \\ & \ddots & \\ & & \zeta^{n_k} \end{pmatrix} P^{-1}
+            \end{align*}
+            Since the trace is invariant under conjugation, we can assume WLOG that 
+            \begin{align*}
+                \pi(g) = \begin{pmatrix} \zeta^{n_1} & & \\ & \ddots & \\ & & \zeta^{n_k} \end{pmatrix}
+            \end{align*}
+            We then see that $\chi(g) = \zeta^{n_1} + \cdots + \zeta^{n_k}$. If $\cph_a$ is an element of the Galois group, then $\cph_a(\chi(g)) = \zeta^{an_1} + \cdots + \zeta^{an_k} = \chi(g^a)$ by explicit computation using diagonal matrices, and by the previous part, we know that $\chi(g^a) = \chi(g)$. Thus, $\chi(g)$ is fixed by every element of the Galois group, so $\chi(g) \in \Q$.
+
+            \item We proved in class that character values are algebraic integers, and that the only rational algebraic integers are the integers themselves. Thus we conclude that $\chi(g) \in \Z$.
+        \end{enumerate}
+
+        \item Let $\SET{v_1, \ldots, v_n}$ and $\SET{w_1, \ldots, w_m}$ be eigenbases for the action $g$ on $V$, and $W$ respectively, with eigenvalues $\SET{\lambda_1, \ldots, \lambda_n}$ and $\SET{\mu_1, \ldots, \mu_m}$. We recall that $v_i \otimes w_j$ forms a basis for $V \otimes W$. We see then that:
+        \begin{align*}
+            g \cdot (v_i \otimes w_j) = (g \cdot v_i) \otimes (g \cdot w_j) = \lambda_i v_i \otimes \mu_j w_j = \lambda_i \mu_j (v_i \otimes w_j)
+        \end{align*}
+        Thus the eigenvalues of the action of $g$ on $V \otimes W$ are precisely the $\lambda_i \mu_j$ for $1 \leq i \leq n$, $1 \leq j \leq m$. Thus the character of the representation is $\chi_U(g) = \sum_{i=1}^n \sum_{j=1}^m \lambda_i \mu_j = \sum_{i=1}^n \lambda_i \sum_{j=1}^m \mu_j = \chi_V(g) \chi_W(g)$, as desired.
+
+        \item Recall that a character $\chi$ is irreducible iff $\mg{\chi}^2 = 1$ where $\ip{\chi, \psi} = \frac{1}{|G|} \sum_{g \in G} \chi(g) \overline{\psi(g)}$. Copying nearly the same proof as before, if $\SET{v_1, \ldots, v_n}$ and $\SET{w_1, \ldots, w_m}$ are the eigenbases for the action of $g$ on $V$, and $h$ on $W$ respectively, with eigenvalues $\SET{\lambda_1, \ldots, \lambda_n}$ and $\SET{\mu_1, \ldots, \mu_m}$, we again have that
+        \begin{align*}
+            (g,h)(v_i \otimes w_j) = (g \cdot v_i) \otimes (h \cdot w_j) = \lambda_i \mu_j (v_i \otimes w_j)
+        \end{align*}
+        Once again the $\lambda_i\mu_j$ are the eigenvalues of $(g,h)$ and hence,
+        \begin{align*}
+            \chi_{V \otimes W}(g,h) = \sum_{i=1}^n \sum_{j=1}^m \lambda_i \mu_j = \sum_{i=1}^n \lambda_i \sum_{j=1}^m \mu_j = \chi_V(g) \chi_W(h)
+        \end{align*}
+        Since $\chi_V$, $\chi_W$ are irreducible representations of $G,H$ respectively, we calculate:
+        \begin{align*}
+            \mg{\chi_{V \otimes W}}^2 &= \frac{1}{|G| |H|} \sum_{g \in G} \sum_{h \in H} \chi_V(g) \chi_W(h) \overline{\chi_V(g) \chi_W(h)} = \frac{1}{|G| |H|} \sum_{g \in G} \sum_{h \in H} \chi_V(g) \overline{\chi_V(g)} \chi_W(h) \overline{\chi_W(h)} \\
+            &= \frac{1}{|G|}\sum_{g \in G} \chi_V(g) \overline{\chi_V(g)} \cdot \frac{1}{|H|} \sum_{h \in H} \chi_W(h) \overline{\chi_W(h)} = 1 \cdot 1 = 1
+        \end{align*}
+
+        \item We proceed with a simple calculation. Recall that $D_{2n} = \gen{r, s \mid r^{2n} = s^2 = e, sr=r^{-1}s}$. We see then that $sr^j = r^{-j}s$. We then see that:
+        \begin{align*}
+            (sr^j)r^k(sr^j)^{-1} = sr^jr^kr^{-j}s = r^{-k}
+        \end{align*}
+        Thus the conjugacy class involving $r^k$ is precisely $\SET{r^k, r^{-k}}$ when $k \neq 0$. Lining up the elements, $r^0, r^1, \ldots, r^{2n-1}$, $r^0$ and $r^{n}$ are in their own conjugacy class, and then $r^k, r^{-k}$ are distinct and in the same conjugacy class. Removing $r^0$ and $r^{n}$ results in $2n-2$ elements, and since the remaining elements are all put into pairs, we have $n-1$ conjugacy classes of size 2. When $k = 0$, we have the conjugacy class $\SET{e}$. 
+        
+        Then, we see that
+        $(sr^j)sr^kr^{-j}s = r^{k-2j}s = r^{2j-k}$. Similarly, $r^jsr^kr^{-j} = r^{k-2j}$. Thus we have two more conjugacy classes, each of size $n$, being $\SET{sr^j \mid j \text{ even}}$ and $\SET{sr^j \mid j \text{ odd}}$. 
+
+        The above give a total of $n-1+1+1+2 = n+3$ conjugacy classes. We counted above the 4 degree 1 irreducible representations, so we have that $4n = 4 \cdot 1^2 + \sum_{i=1}^{n-1} n_i^2$. Plugging in $n_i = 2$ will show that $4n = 4 + 4(n-1) = 4n$. Since each of the $n_i$ are at least 2, by a packing argument this shows they must all be equal to 2 (if one were higher another would need to be lower, a contradiction). Thus there are precisely $n-1$ degree 2 irreducible representations of $D_{2n}$.
+    \end{enumerate}
+\end{document}

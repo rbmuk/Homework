@@ -1,0 +1,283 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{dsfont}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra,amsfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 521 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item We prove that if for every subsequence of $x_{n_k}$ of $x_n$, if $\liminf_{k \to \infty} x_{n_k} \geq x$ then also $\liminf_{n \to \infty} x_n \geq x$. Otherwise, $\inf_{k \geq m} x_m < x$ infinitely often. Taking an increasing sequence of $m$ making this happen, we get a subsequence with $\liminf_{k \to \infty} x_{n_k} < x$, and clearly no subsequence of this can have a limit inferior $\geq x$. 
+
+        Now, because $X_n$ converges in probability, for every subsequence $n_k$, there is a further subsequence $n_{k_j}$ so that $X_{n_{k_j}}$ converges almost surely. In this case, by Fatou's lemma,
+        \begin{align*}
+            \E[X] \leq \liminf_{j \to \infty} \E[X_{n_{k_j}}]
+        \end{align*}
+
+        Since this holds for every subsequence of the numbers $x_n = \E[X_n]$, it must hold for the whole sequence by the lemma we proved above. This shows that $\liminf_{n \to \infty} \E[X_n] \geq \E[X]$. 
+
+        Similarly, find a subsequence $n_{k_j}$ so that $X_{n_{k_j}} \to X$ almost surely. Then by the dominated convergence theorem,
+        \begin{align*}
+            \E[X_{n_{k_j}}] \to \E[X]
+        \end{align*}
+        Since for every subsequence of the numbers $x_n = \E[X_n]$, there is a further subsequence converging to $\E[X]$, this shows that $\E[X_n] \to \E[X]$ as well.
+        \newpage
+        \item Divide $[0,1]$ into $m = \ve^{-1}$ parts: $[0, \ve]$, $[\ve, 2\ve]$, $\ldots$, $[1-\ve, 1]$. Since $F$ is continuous, and the imagee of a connected set is connected, there are $-\infty = x_0 < x_1 < x_2 < \cdots < x_{m-1} < x_m = \infty$ so that $F(x_i) = i\ve^{-1}$. Choose a global $n$ so that $|F_n(x_i) - F(x_i)| < \ve$ for each $i$ (we may do this because there are only finitely many $i$s). Then for each $x$, there is an $i$ so that $x \in [x_i, x_{i+1})$. Then,
+        \begin{align*}
+            |F_n(x) - F(x)| &\leq |F_n(x) - F_n(x_{i+1})| + |F_n(x_{i+1}) - F(x_{i+1})| + |F(x_{i+1}) - F(x)|
+        \end{align*}
+        First, $|F_n(x_{i+1}) - F_n(x)| = F_n(x_{i+1}) - F_n(x)$. By our choice of $n$, $F_n(x_{i+1}) \leq F(x_{i+1}) + \ve$, and $F_n(x) \geq F_n(x_i) \geq F(x_i) - \ve$. Thus, $|F_n(x_{i+1}) - F_n(x)| \leq 2\ve$. Similarly, $|F(x_{i+1}) - F(x)| \leq \ve$, and the middle term is precisely equal to $\ve$. Thus,
+        \begin{align*}
+            |F_n(x) - F(x)| &\leq 4\ve
+        \end{align*}
+        Which completes the proof.
+
+        \item Let $C > 0$ be arbitrary. Then,
+        \begin{align*}
+            \sum_{n=2}^\infty \P(X_n \geq C n\log n) \geq \int_{3}^\infty \frac{1}{C x \log x}dx = \int_{\log 3}^\infty \frac{1}{C x}dx = \infty
+        \end{align*}
+        Thus $\P(X_n \geq C n \log n \text{ i.o.}) = 1$. Suppose that 
+        \begin{align*}
+            \P(\limsup_{n \to \infty} \frac{X_n}{n \log n} < \infty) > 0.
+        \end{align*}
+        Then since,
+        \begin{align*}
+            \SET{\limsup_{n \to \infty} \frac{X_n}{n \log n} < k} \uparrow \SET{\limsup_{n \to \infty} \frac{X_n}{n \log n} < \infty}
+        \end{align*} we have that 
+        \begin{align*}
+            \P(\limsup_{n \to \infty} \frac{X_n}{n \log n} < k) > 0 \text{ for some $k$.}
+        \end{align*} 
+        But this is a contradiction: since $\P(X_n \geq k n\log n \text{ i.o.}) = 1$, $\P(\limsup_{n \to \infty} \frac{X_n}{n \log n} \geq k) = 1$. Thus $\P(\limsup_{n \to \infty} \frac{X_n}{n \log n} < \infty) = 0$. In particular, since $X_n \geq 1$ a.s., we have that $\limsup_{n \to \infty} \frac{X_n}{n \log n} \leq \limsup_{n \to \infty} \frac{S_n}{n \log n}$ a.s. and hence the latter limit is $\infty$ a.s. as well.
+
+        \item \begin{enumerate}
+            \item Let $F(x) = 1-x^{-\alpha}$. Then,
+            \begin{align*}
+                \P(M_n/n^{1/\alpha} \leq y) = \P(M_n \leq n^{1/\alpha}y) = F^n(n^{1/\alpha}y) = \qty(1 - \frac{y^{-\alpha}}n)^n \quad \text{for $n^{1/\alpha} y \geq 1$}
+            \end{align*}
+            Using the fact that for any $a, b \in \R$, $\lim_{n \to \infty} \qty(1+\frac an)^{bn} = e^{ab}$, and that for large enough $n$, $n^{1/\alpha}y \geq 1$ since $y > 0$, we see that this tends to $e^{-y^{-\alpha}}$.
+
+            \item This one follow similarly:
+            \begin{align*}
+                \P(M_n \leq yn^{-1/\beta}) = \qty(1-|yn^{-1/\beta}|^\beta)^n = \qty(1-\frac{|y|^{\beta}} n)^n \to e^{-|y|^\beta}
+            \end{align*}
+
+            \item Again,
+            \begin{align*}
+                \P(M_n \leq y + \log n) = \qty(1-e^{-y - \log n})^n = \qty(1-\frac{1}{n}e^{-y})^n \to e^{-e^{-y}}
+            \end{align*}
+        \end{enumerate}
+
+        \item Let $g \geq 0$ be continous and $X_n \implies X$. Let $F_n$ be the distribution function of $F_n$ and $F$ be the distribution function of $F$. Then we can find a probability space $(\Omega, \mathscr F, \P)$ and random variables $Y_n, Y$ so that $Y_n$ has distribution function $F_n$, $Y$ has distribution function $Y$, and $Y_n \to Y$ almost surely. Then since $g$ is continuous $g(Y_n) \to g(Y)$ almost surely. Since $g \geq 0$ we have that $g(Y_n) \geq 0$ and hence Fatou's lemma applies. This gives us:
+        \begin{align*}
+            \liminf_{n \to \infty} \E[g(Y_n)] \geq \E[g(Y)]
+        \end{align*}
+        Notice that:
+        \begin{align*}
+            \E[g(Y_n)] = \int_{\R} g(x) \mu_{Y_n}(dx) = \E[g(X_n)]
+        \end{align*}
+        and,
+        \begin{align*}
+            \E[g(Y)] = \int_{\R} g(x) \mu_Y(dx) = \E[g(X)]
+        \end{align*}
+        This shows that $\liminf_{n \to \infty} \E[g(X_n)] \geq \E[g(X)]$ as desired. 
+
+        Let $g(x) = x$, $X_n = n\1_{(0, 1/n)}$, and $X = 0$. Then clearly $X_n \to X$ almost surely, and hence in distribution. But,
+        \begin{align*}
+            \E[X_n] = 1 \quad \forall n
+        \end{align*}
+        And hence $\liminf_{n \to \infty} \E[X_n] = 1 \geq \E[X] = 0$. 
+
+        \item Let $\sigma^2 = \E[X_i^2]$. If $S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^n X_i$ were to converge in probability, to say $Y$, then we know that $Y$ is $N(0,\sigma^2)$ distributed. Consider $\sqrt{2}S_{2n} - S_n = \frac{1}{\sqrt n}\sum_{i=n+1}^{2n} X_i$. This is a sum of $n$ i.i.d. random variables divided by $\sqrt{n}$ with mean $0$p, so again by the central limit theorem it converges in distribution to $N(0, \sigma^2)$. But also, it converges in probability to $(\sqrt{2} - 1)Y$. This then means that $\Var(\sqrt{2}Y - Y) = (\sqrt2 - 1)^2 \sigma^2 = \sigma^2$, so $\sigma^2 = 0$ a contradiction. 
+
+        \item 
+        First we prove the "coming together theorem". Let $X_n \to X$ in distribution. Then if $Y_n \to c$ in probability where $c$ is a constant, then $X_n + Y_n \to X + c$ in distribution. 
+
+        Notice first that:
+        \begin{align*}
+            \P(X_n+Y_n \leq x) = \P(X_n + Y_n \leq x, |Y_n-c| \leq \delta) + \P(X_n+Y_n \leq x, |Y_n-c|>\delta)
+        \end{align*}
+        The second term goes to 0 as $\delta \to 0$, so we don't have to worry about it. We need only show that the first term goes to $\P(X+c \leq x)$. Notice that if $c - \delta \leq Y_n \leq c + \delta$ and $X_n + Y_n \leq x$, then $X_n + c - \delta \leq X_n + Y_n \leq x$, so $\P(X_n + Y_n \leq x, |Y_n-c| \leq \delta) \leq \P(X_n+c-\delta \leq x)$. Thus, 
+        \begin{align*}
+            \P(X_n+Y_n \leq x) \leq \P(X_n+c-\delta \leq x) + \P(|Y_n-c| \geq \delta)
+        \end{align*}
+        if $x-c+\delta$ is a continuity point of $F$, then:
+        \begin{align*}
+            \limsup_{n \to \infty} \P(X_n+Y_n \leq x) \leq \P(X+c-\delta \leq x)
+        \end{align*}
+        
+        On the other hand, if $X_n+c+\delta \leq x$ and $c - \delta \leq Y_n \leq c + \delta$, then $X_n+Y_n \leq x$, so $\P(X_n+c+\delta \leq x, |Y_n-c| \leq \delta) \leq \P(X_n+Y_n \leq x, |Y_n-c| \leq \delta)$. This implies that:
+        \begin{align*}
+            \P(X_n+c-\delta \leq x) \leq \P(X_n+Y_n \leq x) + \P(|Y_n-c| \geq \delta)
+        \end{align*}
+        This shows that, if $x-c-\delta$ is a continuous point of $F$:
+        \begin{align*}
+            \liminf_{n \to \infty} \P(X_n+Y_n \leq x) \geq \P(X+c-\delta \leq x)
+        \end{align*}
+        If $x-c$ is a continous point of $F$, then we can find a sequence of decreasing $\delta \to 0$ so that $x-c-\delta \to x-c$, where $x+c-\delta$ and $x+c+\delta$ are continuous points of $F$ (since $F$ has only countably many discontinuities). This then shows that $\P(X_n+Y_n \leq x) \to \P(X+c \leq x)$ as desired.
+
+        Next we prove that if $X_n \to X$ in distribution and $Y_n \to c \in \R$ in probability, then $X_nY_n \to Xc$ in distribution.
+
+        Notice that, since $c-\delta \leq Y_n \leq c+\delta$ iff $\frac{1}{c+\delta} \leq \frac{1}{Y_n} \leq \frac{1}{c-\delta}$, we have that:
+        \begin{align*}
+            \P(X_nY_n \leq x) &\leq \P(X_n \leq \frac{x}{Y_n}, |Y_n-c| \leq \delta) + \P(|Y_n - c| \geq \delta) \\
+            &\leq \P(X_n \leq \frac{x}{c-\delta}) + \P(|Y_n-c| \geq \delta)
+        \end{align*}
+        Similarly,
+        \begin{align*}
+            \P(X_n \leq \frac{x}{c+\delta}) \leq \P(X_nY_n \leq x) + \P(|Y_n-c| \geq \delta)
+        \end{align*}
+        Now, 
+        Thus,
+        \begin{align*}
+            \limsup_{n \to \infty} \P(X_nY_n \leq x) \leq \limsup_{n \to \infty} \P(X_n \leq \frac{x}{c-\delta})
+        \end{align*}
+        If $x/(c-\delta)$ is a continuous point of $F$, then the right side equals $\P(X \leq \frac{x}{c-\delta})$, and similarly,
+        \begin{align*}
+            \liminf_{n \to \infty} \P(X_n \leq \frac{x}{c+\delta}) \leq \liminf_{n \to \infty} \P(X_nY_n \leq \frac{x}{c+\delta})
+        \end{align*}
+        And if $x/(c+\delta)$ is a continuous point of $F$ then the left side equals $\P(X \leq \frac{x}{c+\delta})$. If $c$ is a continous point of $F$, then once again since there are only countably many discontinuities of $F$, we can find a sequence of $\delta$ decreasing to $0$ so that $x/(c+\delta)$, $x/(c-\delta)$ are always continuous points of $F$. Sending $\delta \to 0$ shows that $\P(X_nY_n \leq x) \to \P(Xc \leq x)$ as desired. 
+
+        Now we are ready to defeat the beast. Let $\E[X_1^2] = \sigma^2$. Then by the weak law of large numbers, noticing that the $X_i^2$ are i.i.d., $\frac 1{\sigma^2n} \sum_{i=1}^n X_i^2 \to 1$ in probability. Since $f(x)=\frac{1}{\sqrt{x}}$ is continous at $1$, we must have that $\frac{\sigma \sqrt{n}}{\qty(\sum_{i=1}^n X_i^2)^{1/2}} \to 1$ in probability. By the central limit theorem, $\frac{1}{\sigma \sqrt{n}} \sum_{i=1}^n X_i \to N(0,1)$ in distribution. Thus by the theorem we just proved we must have:
+        \begin{align*}
+            \frac{\sum_{i=1}^n X_i}{\qty(\sum_{i=1}^n X_i^2)^{1/2}} = \frac{\frac{\sum_{i=1}^n X_i}{\sigma \sqrt{n}}}{\frac{(\sum_{i=1}^n X_i^2)^{1/2}}{\sigma \sqrt{n}}} \to N(0,1)
+        \end{align*}
+        in distribution, which completes the proof.
+    \end{enumerate}
+\end{document}

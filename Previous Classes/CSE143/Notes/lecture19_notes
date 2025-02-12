@@ -1,0 +1,21 @@
+if you are writing comparable with double, you should use an if/else if/else, like so:
+if (difference > 0) return 1;
+else if (difference == 0) return 0;
+else return -1;
+this would work just fine, and is relatively simple.
+
+// concerete class-----------------interfaces
+// all filled in                   all abstract
+//                      ??
+//                 some of each
+
+public abstract class Shape implements Comparable<Shape> {
+	// needs to have an are() method
+	public abstract double area();
+	
+	public int compareTo(Shape other) {
+		double difference = area() - other.area();
+		if (difference < 0) return -1;
+		else if (difference == 0) return 0;
+		else return 1;
+	}

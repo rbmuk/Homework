@@ -1,0 +1,37 @@
+explore "George Bush"
+	bee
+		choose "bee"
+		explore "Gorg ush"
+			bee--dead end
+			go
+				choose go
+				explore "rg ush"
+					bee
+					go
+					gush
+						choose "gush"
+						explore "r"
+							bee
+							go
+							gush
+							shrug
+						unchoose
+					shrug
+						choose "shrug"
+						explore ""
+							print--yay!!
+						unchoose
+					unchoose
+			gush
+			shrug
+	go
+	gush
+	shrug
+	
+LetterInventory i1 = new LetterInventory("George Bush");
+LetterInventory i2 = new LetterInventory("bee");
+LetterInventory i3 = i1.subtract();
+i3.subtract(i2) -> null, so it's a dead end.
+LetterInventory i4 = new LetterInventory("go");
+LetterInventory i5 = i3.subtract(i4);
+you are DONE when i5.isEmpty() is true!

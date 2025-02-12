@@ -1,0 +1,275 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 505 HW7}
+\date{\today}
+\author{Anonymous}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}
+		\item Recall that an (eventually the) identity morphism is defined as the following: $\mathrm{id}_A \in \mathrm{Mor}(A, A)$ satisfies $\mathrm{id}_A \circ f = f$ and $g \circ \mathrm{id}_A = g$ for all $f \in \mathrm{Mor}(B,A)$ and $g \in \mathrm{Mor}(A, B)$ for every object $B$. Let $i$ be another identity element. Then $i \circ \mathrm{id}_A = i = \mathrm{id}_A$, where in the first equality we used the right identity property for $\mathrm{id}_A$ and in the second we used the left identity property for $i$.
+		
+		\item \begin{enumerate}
+			\item We claim that $\cph: M_2 \to M_1 \oplus M_3$ defined by $\cph(m_2) = (\pi(m_2), g(m_2))$ is the desired isomorphism. By a similar argument from part (b) this is an $R$-module homomorphism, so we just need to show that $\cph$ is bijective. Assuming that $\pi(m_2) = 0$ and $g(m_2) = 0$, we would have $m_2 \in \Im f$, so write $m_2 = f(m_1)$. Then $m_1 = \pi(f(m_1)) = \pi(0) = 0$, so $m_1 = 0$ and thus $m_2 = f(m_1) = 0$ as well, which shows injectivity. Let $(m_1, m_3) \in M_1 \oplus M_3$. Since $g$ is surjective, find $m_2$ so that $g(m_2) = m_3$. Restricting the codomain of $f$ to $\Im f$ and the domain of $\pi$ to $\Im f$ will still have the property that $\pi \circ f = \id_{M_1}$, so $\pi: \Im f \to M_1$ is still surjective. This means we can find $m_2' \in \Im f$ so that $\pi(m_2') = m_1 - \pi(m_2)$. Letting $m = m_2 + m_2'$, we see that $\pi(m) = \pi(m_2) + \pi(m_2') = m_1$, and, since $m_2' \in \Im f = \ker g$, we have $g(m) = g(m_2) + g(m_2') = m_3$, which shows that $\cph$ is surjective. The $\cph$ from this part is precisely the $\psi^{-1}$ from part (b), so the exact same reasoning shows that the diagram commutes.
+			
+			\item Suppose there exists an $R$-module homomorphism $\iota: M_3 \to M_2$ such that $g \circ \iota = \id_{M_3}$. We claim that 
+			\begin{align*}
+				\psi&: M_1 \oplus M_3 \to M_2 \\
+				&\psi(m_1, m_3) = f(m_1) + \iota(m_3)
+			\end{align*}
+			Is the desired $R$-module isomorphism. First,
+			\begin{align*}
+				\psi((m_1, m_3) + (m_1',m_3')) &= f(m_1) + \iota(m_3) + f(m_1') + \iota(m_3') = f(m_1+m_1') + \iota(m_3 + m_3') 
+				\\&= \psi(m_1 + m_1', m_3+m_3') \\
+				r\psi(m_1, m_3) &= rf(m_1) + r\iota(m_3) + f(rm_1) + \iota(rm_3) = \psi(rm_1, rm_3) = \psi(r(m_1, m_3))
+			\end{align*}
+			So $\psi$ is indeed an $R$-module homomorphism. If $\psi(m_1, m_3) = 0$, then $f(m_1) = -\iota(m_3)$. Applying $g$ to both sides shows that $g(f(m_1)) = -m_3$. Since $\Im f = \ker g$, $g(f(m_1)) = 0$ and $m_3 = 0$. Thus $f(m_1) = -\iota(m_3) = -\iota(0) = 0$. Since $f$ is injective, $m_1 = 0$, which shows that $\psi$ is injective. 
+			
+			Now let $m_2 \in M_2$ and consider $k = m_2 - \iota(g(m_2))$. By applying $g$, we see that $g(k) = g(m_2) - (g \circ \iota)(g(m_2)) = g(m_2) - g(m_2) = 0$, since $g \circ \iota = \id_{M_3}$. Since $\ker g = \Im f$, $k \in \Im f$, so find $m_1$ so that $k = f(m_1)$. Then $m_2 = f(m_1) + \iota(g(m_2))$, so $m_2$ is the image of $(m_1, \iota(g(m_2)))$ which shows surjectivity. Now we claim the following diagram commutes:
+			\[\begin{tikzcd}
+				0 & {M_1} & {M_2} & {M_3} & 0 \\
+				0 & {M_1} & {M_1 \oplus M_3} & {M_3} & 0
+				\arrow[from=1-4, to=1-5]
+				\arrow["g", from=1-3, to=1-4]
+				\arrow["f", from=1-2, to=1-3]
+				\arrow[from=1-1, to=1-2]
+				\arrow[from=2-1, to=2-2]
+				\arrow[from=2-2, to=2-3]
+				\arrow[from=2-3, to=2-4]
+				\arrow[from=2-4, to=2-5]
+				\arrow["{\mathrm{id}_{M_3}}", from=1-4, to=2-4]
+				\arrow["{\mathrm{id}_{M_1}}", from=1-2, to=2-2]
+				\arrow["{\psi^{-1}}", from=1-3, to=2-3]
+			\end{tikzcd}\]
+			We see that $\psi^{-1}(f(m_1)) = \psi^{-1}(f(m_1) + \iota(0)) = (m_1, 0)$ as desired. Similarly, writing $m_2 = f(m_1) + \iota(m_3)$ uniquely as above, and letting $\pi: M_1 \oplus M_3 \to M_3$ be the canonical projection, we see that $\pi \circ \psi^{-1}(m_2) = \pi((m_1, m_3)) = m_3 = g(m_2)$, as desired.
+			
+			\item We show that this part implies the last two parts, which will complete the equivalence. Let $\psi: M_2 \to M_1 \oplus M_3$ be the isomorphism, let $\pi: M_1 \oplus M_3 \to M_3$ be the natural projection, and consider the map $\iota: M_3 \to M_2$ by $\iota(m_3) = \psi^{-1}(0, m_3)$. It is clear that $\psi$ is a $R$-module homomorphism, so we need only verify that $g \circ \iota(m_3) = m_3$. We know that $g(m_2) = \pi(\psi(m_2))$ holds for every $m_2$, so $g(\iota(m_3)) = \pi(\psi(\psi^{-1}(0, m_3))) = \pi(0, m_3) = m_3$, as desired.
+			
+			Similarly, let $\iota: M_1 \to M_1 \oplus M_3$ be the canonical embedding, $\eta: M_1 \oplus M_3 \to M_1$ the canonical projection, and define $\pi(m_2) = \eta(\psi(m_2))$. Most importantly notice that $(\eta \circ \iota)(m_1) = m_1$. Then $\pi \circ f(m_1) = \eta(\psi(f(m_1))) = \eta(\iota(m_1)) = m_1$, as desired.
+		\end{enumerate}
+	
+		\item \begin{enumerate}
+
+			\item We shall show that projective $\implies$ (1) $\implies$ (2) $\implies$ projective. Suppose that $P$ is projective, and let 
+			\[\begin{tikzcd}
+				0 & N & M & P & 0
+				\arrow[from=1-4, to=1-5]
+				\arrow["f", from=1-3, to=1-4]
+				\arrow["g", from=1-2, to=1-3]
+				\arrow[from=1-1, to=1-2]
+			\end{tikzcd}\]
+			be an exact sequence. Then,
+			\[\begin{tikzcd}
+				&&& P \\
+				0 & N & M & P & 0
+				\arrow[from=2-4, to=2-5]
+				\arrow["f", from=2-3, to=2-4]
+				\arrow["g", from=2-2, to=2-3]
+				\arrow[from=2-1, to=2-2]
+				\arrow["{\mathrm{id}_P}", from=1-4, to=2-4]
+				\arrow["{\exists \iota}"', dashed, from=1-4, to=2-3]
+			\end{tikzcd}\]
+			By the projective property. This precisely says that $f \circ \iota = \id_P$, so the exact sequence splits by question 2.
+			
+			Now suppose that any exact sequence \[\begin{tikzcd}
+				0 & N & M & P & 0
+				\arrow[from=1-4, to=1-5]
+				\arrow["f", from=1-3, to=1-4]
+				\arrow["g", from=1-2, to=1-3]
+				\arrow[from=1-1, to=1-2]
+			\end{tikzcd}\]
+			splits. Let $F = \bigoplus_{p \in P} R$ be the free module indexed by $P$, and let $\Set{x_p}_{p \in P}$ be a basis. Let $\psi$ be the unique $R$-module homomorphism sending $x_p$ to $p$, as per the universal property. $\psi$ is clearly surjective, so the following sequence is exact:
+			\[\begin{tikzcd}
+				0 & {\ker \psi} & F & P & 0
+				\arrow[from=1-1, to=1-2]
+				\arrow[from=1-2, to=1-3]
+				\arrow["\psi", from=1-3, to=1-4]
+				\arrow[from=1-4, to=1-5]
+			\end{tikzcd}\]
+			By hypothesis this sequence is split, so $P \oplus \ker \psi \cong F$, as desired.
+			
+			Suppose we are given maps $\cph: P \to N$ and $f: M \twoheadrightarrow N$. Let $Q$ be so that $P \oplus Q$ is free, let $\Set{x_i}_{i \in I}$ be a basis, and define $\psi(p,q) = (\cph \circ \pi)(p, q) = \cph(p)$. Then the following diagram commutes:
+			\[\begin{tikzcd}
+				& P & {P \oplus Q} \\
+				M & N
+				\arrow["\cph"', from=1-2, to=2-2]
+				\arrow["\psi", from=1-3, to=2-2]
+				\arrow[hook, from=1-2, to=1-3]
+				\arrow["f", two heads, from=2-1, to=2-2]
+			\end{tikzcd}\]
+			Since $f$ is surjective, for each $x_i$ let $m_i$ be any element of $M$ satisfying $f(m_i) = \psi(x_i)$. In particular, $m_i$ need not be unique. Extend the map sending each $x_i$ to $m_i$ to an $R$-module homomorphism $\overline{\psi}: P \oplus Q \to M$, as per the universal property of free modules. We now have the following commutative diagram:
+			\[\begin{tikzcd}
+				&& {P \oplus Q} \\
+				M & P \\
+				& N
+				\arrow["\psi", curve={height=-12pt}, from=1-3, to=3-2]
+				\arrow[hook, from=2-2, to=1-3]
+				\arrow["{\overline \psi}"', curve={height=12pt}, from=1-3, to=2-1]
+				\arrow["f"', from=2-1, to=3-2]
+				\arrow["\cph", from=2-2, to=3-2]
+			\end{tikzcd}\]
+			This diagram commutes precisely because if $m = \sum_{i \in I} r_ix_i$, with only finitely many $r_i \neq 0$, then
+			\begin{align*}
+				f(\overline \psi (m)) = f\qty(\overline \psi\qty(\sum_{i \in I} r_ix_i)) = \sum_{i \in I} r_i f(\overline \psi(x_i)) = \sum_{i \in I} r_if(m_i) = \sum_{i \in I} r_i\psi(x_i) = \psi(m)
+			\end{align*}
+			By construction, and if we let $\iota: P \to P \oplus Q$ be the canonical inclusion, $f \circ \overline \psi \circ \iota(p) = f \circ \overline \psi(p, 0) = \psi(p, 0) = \cph(p)$ as desired, which completes the proof.
+			
+			\item Added this part before the deadline but forgot to submit... Oops.
+			
+			Let $R$ be a ring and $I \subset R$ an ideal. We claim there is a natural bijection
+			\begin{align*}
+				\Set{R/I\text{-modules}} \leftrightarrow \Set{\text{$R$-modules $M$ annihilated by $I$}}
+			\end{align*}
+			Let $M$ be an $R$-module annihilated by $I$, i.e. $i \cdot m = 0$ for every $m \in M$ and $i \in I$. We seek to define $\overline r \cdot m = r \cdot m$. We need to show that this is well-defined: suppose that $\overline r_1 = \overline r_2$. Then $r_2 = r_1 + i$ for some $i \in I$, and we see that $r_2 \cdot m = (r_1+i) \cdot m = r_1 \cdot m + 0$. Thus $M$ can be made into an $R/I$-module. Similarly, if $M$ is an $R/I$-module, simply define $r \cdot m \coloneqq \overline r \cdot m$. Since $M$ is an $R/I$ module this shows that this action makes $M$ into an $R$-module. Lastly notice that under this definition, $I$ annihilates $M$, so we have verified the above correspondence.
+			
+			This in particular shows that the $\Z$-module $\Z/2$ can be made into a $\Z/6$ module since $(6)$ annihilates $\Z/2$. Similarly $\Z/3$ is a $\Z/6$ module. The inclusion map $\iota: \Z/3 \to \Z/6$ by $\iota(1) = 2$ and extending linearly, and the map $f: \Z/6 \to \Z/2$ by $1 \mapsto 3$ form the following exact sequence:
+			\[\begin{tikzcd}
+				0 & {\Z/3} & {\Z/6} & {\Z/2} & 0
+				\arrow["\iota", from=1-2, to=1-3]
+				\arrow["f", from=1-3, to=1-4]
+				\arrow[from=1-4, to=1-5]
+				\arrow[from=1-1, to=1-2]
+			\end{tikzcd}\]
+			The ring isomorphism $\Z/2 \oplus \Z/3 \cong \Z/6$ forgets to a module isomorphism, so $\Z/2$ is projective by the previous part. However, $\Z/2$ cannot be free since if it was, since it is obviously finitely generated it would be of the form $(\Z/6)^{\oplus n}$, but the latter has order $6^n \neq 2$ for any $n$.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

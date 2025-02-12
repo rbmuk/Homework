@@ -1,0 +1,206 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 504 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We claim that the natural projection $\pi: G \to G/H$ yields the one-to-one correspondence. First, notice that for any $H \leq K \leq G$, we have that $\pi(K) = \Set{kH | k \in K}$. Since $H \nsg G$, $H \nsg K$ (since $K \subset G$), so $\pi(K) = K / H$. Now we claim that if $S \leq G/H$, then $H \nsg \pi^{-1}(S) \leq G$, and also that $\pi^{-1}(S) / H = S$. Note that since $\pi$ is onto it has a right inverse $\pi^{-1}$, so $\pi^{-1}(S)$ is actually defined. Now, given $a, b \in \pi^{-1}(S)$,
+			\begin{align*}
+				(ab^{-1})H = a(b^{-1}H) = aH \cdot b^{-1}H = aH \cdot (bH)^{-1} \in S
+			\end{align*}
+			Since $\pi$ is surjective, we have $\pi(\pi^{-1}(S)) = S$, which proves the one-to-one correspondence.
+			
+			\item Suppose that $K \nsg G$. We want $(gH) K/H (g^{-1}H) = K/H$ for every $gH \in G/H$, so let $kH \in K/H$ be arbitrary. Notice that $(gH) kH (g^{-1}H) = gkg^{-1}H = k_2H \in K/H$ (Note: $gkg^{-1} = k_2$ for some $k_2 \in K$ by normality). Now suppose that $K/H \nsg G/H$, fix $k \in K$, and let $g \in G$ be arbitrary. One sees that, since $K/H$ is normal in $G/H$,
+			\begin{align*}
+				k_2H = (gH) \cdot (kH) \cdot (gH)^{-1} = (gkg^{-1})H
+			\end{align*}
+			So we have $gkg^{-1}k_2^{-1} \in H \leq K$, so $gkg^{-1}k_2^{-1} = k_3$, i.e. $gkg^{-1} = k_3k_2 \in K$, proving the claim.
+			
+			\item I claim we have the following commutative diagram:
+			\[\begin{tikzcd}
+				{G/H} \\
+				\\
+				{\frac{G/H}{K/H}} && {G/K}
+				\arrow["{gH \mapsto gK}", from=1-1, to=3-3]
+				\arrow[from=1-1, to=3-1]
+				\arrow[dashed, from=3-1, to=3-3]
+			\end{tikzcd}\]
+			First, define $f: G/H \to G/K$ by $f(gH) = gK$. We must check that $f$ is well-defined. If $g_1H = g_2H$, then $g_1g_2^{-1} \in H \leq K$, so $g_1K = g_2K$. To verify it is a homomorphism, we see that $f(g_1Hg_2H) = f((g_1g_2)H) = (g_1g_2)K = g_1K g_2K = f(g_1H)f(g_2H)$. Finally, if $f(gH) = K$, then $gK = K$, which says $g \in K$, i.e. that $gH \in K/H$, which completes the proof.
+		\end{enumerate}
+		
+		\item Let $G$ be a group of order $p^2$. By the class equation, 
+		\begin{align*}
+			p^2 = |Z(G)| + \sum_{i=1}^r |G : C_G(g_i)|
+		\end{align*}
+		Since each $g_i$ is not in $Z(G)$, by definition we can't have $C_G(g_i) = G$. So each $|G : C_G(g_i)|$ is divisible by $p$ (Since $C_g(g_i)$ can't be $p^2$). This tells us that, for some constant $d = \frac1p \sum_{i=1}^r |G : C_G(g_i)| \in \Z$,
+		\begin{align*}
+			p^2 - p d = |Z(G)|
+		\end{align*}
+		In particular, $|Z(G)|$ is divisible by $p$. If $|Z(G)| = p^2$ we are done, so suppose it equals $p$ instead. Then $G/Z(G)$ is a group of order $p$ and hence isomorphic to $\Z / p$, which is cyclic. Now we claim that if $G/Z(G)$ is cyclic then $G$ is abelian. Indeed, write $G/Z(G) = \gen{xZ(G)}$, and let $a, b \in G$ be arbitrary. Then $a = x^nz_1$ for some $n \in \Z^+, z_1 \in Z(G)$, and $b = x^mz_2$ for some $n \in \Z^+, z_2 \in Z(G)$. Now,
+		\begin{align*}
+			ab = x^nz_1 x^m z_2 = x^n x^mz_1z_2 = x^m x^n z_2 z_1 = x^mz_2 x^nz_1 = ba
+		\end{align*}
+		This covers the other case.
+		
+		\item \begin{enumerate}
+			\item Notice first that vectors $\Set{x_1, \ldots, x_n} \subset \F_p^n$ are linearly independent iff every subset of $\Set{x_1, \ldots, x_n}$ are linearly independent. Since an invertible matrix is just an array of $n$ vectors who are linearly independent, we can instead count this quantity. The first vector can be anything except 0, of which there are $p^n - 1$ possibilities. The second vector needs to be linearly independent from the first--so, it can't be any of the $p$ multiples of the first, which gives $p^n - p$ possibilities. The third can't be a linear combination of the first or second--of which, we have $p$ coefficients for the first vector, and $p$ for the second vector, so we have $p^n-p^2$ remaining possibilities. Continuing this process, the last vector can't be any of the $p^{n-1}$ linear combinations of the first $n-1$ vectors. This yields our final answer of:
+			\begin{align*}
+				(p^n-1)(p^n-p)(p^n-p^2) \cdots (p^n-p^{n-1})
+			\end{align*}
+			
+			\item Note first that $U_n(\F_p)$ is a subgroup of $\mathrm{GL}_n(\F_p)$ because the determinant of a matrix in $U_n(\F_p)$ is just the product of the diagonals which is 1. We have ${n \choose 2}$ degrees of freedom, so there are $p^{{n\choose 2}}$ possibilities. Notice that the order of $\mathrm{GL}_n(\F_p)$ is equivalently,
+			\begin{align*}
+				(p^n-1) p (p^{n-1}-1) p^2(p^{n-2}-1) \cdots p^{n-1}(p-1) = p^{\sum_{i=1}^{n-1} i} \cdot \prod_{i=1}^n (p^i-1)
+			\end{align*}
+			We see that $\sum_{i=1}^{n-1} i = {n \choose 2}$, and also that $p^i - 1 \equiv -1 \mod p$ for every $1 \leq i \leq n$, and in particular, is not divisible by $p$. So the largest power of $p$ appearing in this factorization is just ${n \choose 2}$, so the order of the largest $p$-group is at most ${n \choose 2}$, which shows that $U_n(\F_p)$ is maximal. This subgroup is not unique: the set of all ``strictly lower triangular'' matrices is also of order $p^{{n \choose 2}}$. Notice that this is a subgroup because of the following: let $A, B$ be strictly lower triangular matrices. Then,
+			\begin{align*}
+				A \cdot B = (B^TA^T)^T
+			\end{align*}
+			And since $B^T$, $A^T$ are strictly upper triangular matrices, so is their product, and the transpose of a strictly upper triangular matrix is a strictly lower diagonal one. Similarly, since $(A^{-1})^T = (A^T)^{-1}$, this also shows that strictly lower diagonal matrices are closed under inverses.
+			
+			\item We claim that $\gen{A, AB}$ is a $p$-group. Notice that $[A, AB] = A^{-1}B^{-1}A^{-1}BAA = A^{-1}[B, A]A = A^{-1}A = 1$, since $[B, A] = [A, B]^{-1} = 1$. So, every element of $\gen{A, AB}$ can be written in the form $A^\alpha (AB)^{\beta}$ for some $\alpha$, $\beta$. Next, notice that $(A^{\alpha} (AB)^{\beta})^p = A^{\alpha p} (AB)^{\beta p}$. Since both $A,B$ have order $p$, and since $AB = BA$, $AB$ has order dividing $\mathrm{lcm}(p, p) = p$ so $A^{\alpha p} (AB)^{\beta p} = 1$. If $|\gen{A, AB}|$ were not a power of $p$, by Cauchy's theorem it would have an element of order $q$ for some prime $q \neq p$. But this is a contradiction--for $q \not \mid p$, since the only divisors of $p$ are 1 and $p$ neither which are $q$. By Sylow's theorem, $\gen{A, AB} \leq SU_nS^{-1}$ for some $S \in \mathrm{GL}_n(\F_p)$. Thus,
+			\begin{align*}
+				S^{-1}AS = U \in U_n \\
+				S^{-1}ABS = V \in U_n
+			\end{align*}
+			At last, we see,
+			\begin{align*}
+				S^{-1}ASS^{-1}BS = US^{-1}BS = V
+			\end{align*}
+			That is, $S^{-1}BS = U^{-1}V \in U_n$, which completes the proof.
+			
+			\item The claim is not true if $A,B$ do not commute. Consider $G = \mathrm{GL}_2(\F_2)$, $A = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$ and $B = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$. Notice that both $A,B$ have order 2. Also notice that $U_2(\F_2)$ is the set of all upper triangular matrices, since by necessity we need 1s along the main diagonals because entries are drawn from $\F_2$. So, if there was a matrix $S \in G$ such that $SAS^{-1}, SBS^{-1} \in U_2(\F_2)$, then $A, B \in S^{-1}U_2(\F_2)S$, and since all Sylow $p$-groups are conjugate, this would mean that $A,B$ are in the same Sylow subgroup of $G$. We showed above that the set of strictly lower triangular matrices was also a Sylow 2-subgroup of $G$, and since $A$ is in that Sylow $2$-subgroup and $B$ is in $U_2(\F_2)$, they are not in the same Sylow 2-subgroup, which means that such a matrix $S$ cannot exist.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

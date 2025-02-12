@@ -1,0 +1,244 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+%\usepackage{eulervm}
+%\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand{\vp}{\varphi}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 335 HW8}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item We first note that 
+		\begin{align*}
+			\int_{\partial S} -ydx = \int_{\partial S} \begin{pmatrix}
+				-y \\ 0
+			\end{pmatrix} \cdot d\textbf{x}
+		\end{align*}
+		We can parameterize the boundary by 4 curves, but one must note that this parameterization traces clockwise. So we must multiply by a $-1$ in the integral, which actually ends up making things nicer.
+		\begin{align*}
+			&\gamma_1(t) = (a, t) &\quad 0 \leq t \leq f(a) \\
+			&\gamma_2(t) = (t, f(t)) &\quad  a \leq t \leq b \\
+			&\gamma_3(t) = (b, f(b)-t) &\quad  0 \leq t \leq f(b) \\
+			&\gamma_4(t) = (b-t, 0) &\quad  0 \leq t \leq b-a
+		\end{align*}
+		We wish then to evalute the integral
+		\begin{align*}
+			\int_{- \partial S} \begin{pmatrix}
+				y \\ 0
+			\end{pmatrix} \cdot d\textbf{x}
+		\end{align*}
+		where I put a $-$ in front of $\partial S$ to signify that we are going clockwise (this is like swapping the bounds of the integral). By our parameterization above, we get that this integral equals
+		\begin{align*}
+			\int_0^{f(a)} 
+			\begin{pmatrix}
+				t \\ 0
+			\end{pmatrix} \cdot \begin{pmatrix}
+			0 \\ 1
+			\end{pmatrix}dt + 
+			\int_a^b \begin{pmatrix}
+			f(t)\\ 0
+			\end{pmatrix} \cdot \begin{pmatrix}
+			1 \\ f'(t)
+			\end{pmatrix}dt +
+			\int_0^{f(b)} 
+			\begin{pmatrix}
+				f(b)-t \\ 0
+			\end{pmatrix} \cdot 
+			\begin{pmatrix}
+				0 \\ -1
+			\end{pmatrix}dt \\
+			+ \int_0^{b-a} \begin{pmatrix}
+				0 \\ 0
+			\end{pmatrix} \cdot 
+			\begin{pmatrix}
+			-1 \\ 0
+			\end{pmatrix}dt
+		\end{align*}
+		A keen eye notices that the first, third, and fourth integral equal 0 (the dot product ends up being 0 in all of those cases). The resultant integral is precisely 
+		\begin{align*}
+			\int_a^b f(t)dt
+		\end{align*}
+		which is exactly what we wanted to show.
+		
+		\item By noting that $\pdv{g}{n} = \grad g \cdot n$, where $n$ is the outward normal vector to the surface, we see that 
+		\begin{align*}
+			\int_{\partial S} f \pdv{g}{n}ds &= \int_{\partial S} f \cdot \grad g \cdot n ds \\
+			&= \int_{\partial S} 
+			\begin{pmatrix}
+				f \cdot \pdv{g}{x} \\
+				f \cdot \pdv{g}{y}
+			\end{pmatrix} \cdot n ds
+		\end{align*}
+		By Corollary 5.17 in the book, we see that this integral equals
+		\begin{align*}
+			\int_{S} \pdv{x} f \cdot \pdv{g}{x} + \pdv{y} f \cdot \pdv{g}{y} dA \\ &= \int_S \pdv{f}{x} \pdv{g}{x} + \pdv[2]{g}{x} f + \pdv{f}{y}\pdv{g}{y} + \pdv[2]{g}{y} fdA
+			\\ &= \int_S f\qty(\pdv[2]{g}{x} + \pdv[2]{g}{y}) + \begin{pmatrix}
+				\pdv{f}{x} \\
+				\pdv{f}{y}
+			\end{pmatrix} \cdot \begin{pmatrix}
+			\pdv{g}{x} \\
+			\pdv{g}{y}
+		\end{pmatrix}dA \\
+	&= \int_S f\qty(\pdv[2]{g}{x}+\pdv[2]{g}{y}) + \grad{f} \cdot \grad{g}dA
+		\end{align*}	
+		which completes the proof.
+		
+		
+		\item We parameterize the ellipsoid by 
+		\begin{align*}
+			G(\theta, \vp) = (a\sin(\phi)\cos(\theta), a\sin(\phi)\sin(\theta), b\cos(\phi))
+		\end{align*}
+		This is just spherical coordinates but scaled up a little in two directions. Plugging this into the equation $x^2/a^2+y^2/a^2+z^2/b^2=1$ verifies that it works (it is also spherical coordinates). We then see clearly that $\theta \in [0, 2\pi]$, and that $\phi \in [0, \pi]$, by simply comparing this to spherical--we want to be integrating over the entire shape, but this time it is an ellipsoid. This does not change the angles. A very long calculation, which I have done but will not type up, shows that
+		\begin{align*}
+			\| \pdv{G}{\theta}  \cross \pdv{G}{\vp} \| = a\sin(\vp)\sqrt{a^2\cos^2(\phi)+b^2\sin^2(\phi)}
+		\end{align*}
+		Our surface area is therefore
+		\begin{align*}
+			\int_0^{2\pi} \int_0^{\pi} a\sin(\vp)\sqrt{a^2\cos^2(\phi)+b^2\sin^2(\phi)}d\phi &= 2\pi a \int_0^{\pi} \sin(\vp)\sqrt{a^2\cos^2(\phi)+b^2\sin^2(\phi)}d\phi 
+		\end{align*}
+		Letting $u = \cos(\vp)$, and noting that this transformation is bijective on $\vp \in [0, \pi]$, seeing that $\sin^2(\phi) = 1 - u^2$, and finally that $du = -\sin(\vp)d\vp$, we may conclude that
+		\begin{align*}
+			2\pi a \int_0^{\pi} \sin(\vp)\sqrt{a^2\cos^2(\phi)+b^2\sin^2(\phi)}d\vp  &= 2\pi \int_{-1}^1 \sqrt{b^2 + (a^2-b^2)u^2}du \\
+			&= 2\pi ab \int_{-1}^1 \sqrt{1+\frac{a^2-b^2}{b^2}u^2}du
+		\end{align*}
+		Finally, noting  that (The proof of this theorem is left as a trivial exercise to the reader)
+		\begin{align*}
+			\int_{-1}^{1} \sqrt{1+cu^2}du = \sqrt{c+1}+\frac{\mathrm{sinh}^{-1}(\sqrt{c})}{\sqrt{c}}
+		\end{align*}
+		We conclude that this integral equals
+		\begin{align*}
+			2\pi ab \cdot \qty(\frac ab + \frac{b\cdot \mathrm{sinh}^{-1}(\sqrt{(a^2-b^2)/b^2})}{\sqrt{a^2-b^2}})
+			&= 2\pi a^2 + \frac{2\pi a b^2}{\sqrt{a^2-b^2}} \mathrm{sinh}^{-1}\qty(\frac{\sqrt{a^2-b^2}}{b})
+		\end{align*}
+		
+		
+		\item Because the upper half of the unit sphere has radial symmetry, it must necessarily have a center of mass on the $z$-axis (If it was elsewhere, this would mean its heavier i.e. more volume around a point that's not the z-axis, which doesn't make any sense). So what's left is to calculate the center of mass z-coordinate. We do this by parameterizing the unit sphere by 
+		\begin{align*}
+			G(s, t) = (s, t, \sqrt{1-s^2-t^2})
+		\end{align*}
+		The projection of the upper half of the unit sphere is going to be $B(0, 1) \subset \R^2$, which is exactly what values $(s, t)$ can take on, as the point $(s, t)$ is the upper half of the unit sphere projected down. So $(s, t) \in B(0, 1)$.
+		It is now clear that 
+		\begin{align*}
+			\pdv{G}{s} = \qty(1, 0, \frac{-s}{\sqrt{1-s^2-t^2}}) \\
+			\pdv{G}{t} = \qty(0, 1, \frac{-t}{\sqrt{1-s^2-t^2}})
+		\end{align*}
+		Taking the cross product of these two gives us 
+		\begin{align*}
+			\pdv{G}{s} \cross \pdv{G}{t} = \begin{pmatrix}
+				\frac{s}{\sqrt{1-s^2-t^2}} \\
+				\frac{t}{\sqrt{1-s^2-t^2}} \\
+				1
+			\end{pmatrix}
+		\end{align*}
+		Who's magnitude is now
+		\begin{align*}
+			\sqrt{\frac{s^2+t^2+1-s^2-t^2}{1-s^2-t^2}} &= \frac{1}{\sqrt{1-s^2-t^2}}
+		\end{align*}
+		Where we did $1^2 = 1 = \frac{1-s^2-t^2}{1-s^2-t^2}$ and simplified.
+		Our integral is now
+		\begin{align*}
+			\qty(\int_{\partial S} zdS) / \int_{\partial S} 1dS &= \int_{B(0, 1)} \frac{\sqrt{1-s^2-t^2}}{\sqrt{1-s^2-t^2}}dA / \int_{\partial S} 1dS \\
+			&= \int_{B(0, 1)} 1dA / \int_{\partial S} 1dS \\
+			&= \pi / \int_{\partial S} 1dS \\
+			&= \pi / 2\pi \\
+			&= \frac12
+		\end{align*}
+		Where I converted to polar (the bounds are obvious are we are integrating over the unit ball in $\R^2$). Note that we also showed in class that the surface area of the upper hemisphere of the unit sphere is $2\pi$. So the center of mass is going to be $(0, 0, 1/2)$, which is really nice, and even makes a lot of intuitive sense.
+		
+		\item Writing $f = f(x, y, z)$, and $g = g(x, y, z)$, we see that $\grad f \cross \grad g = \begin{pmatrix}
+			\pdv{f}{y}\pdv{g}{z} - \pdv{g}{y}\pdv{f}{z} \\
+			\pdv{g}{x}\pdv{f}{z} - \pdv{f}{x}\pdv{g}{z} \\
+			\pdv{f}{x}\pdv{g}{y} - \pdv{g}{x}\pdv{f}{y}
+		\end{pmatrix}$ just from the definition of the cross product. For a function $h(x, y, z)$, $\mathrm{div}(h) = \pdv{h}{x} + \pdv{h}{y} + \pdv{h}{z}$. We see that the derivative of the first coordinate of $\grad f \cross \grad g$ w.r.t. $x$ would give us (by the product rule)
+		\begin{align*}
+			\pdv{f}{xy}\pdv{g}{z} + \pdv{g}{xz}\pdv{f}{y} - \pdv{g}{yx}\pdv{f}{z} - \pdv{f}{zx}\pdv{g}{y}
+		\end{align*}
+		Differentiating the second coordinate w.r.t. $y$, also through the product rule, gives us
+		\begin{align*}
+			\pdv{g}{xy}\pdv{f}{z}+\pdv{f}{zy}\pdv{g}{x}-\pdv{f}{xy}\pdv{g}{z}-\pdv{g}{zy}\pdv{f}{x}
+		\end{align*}
+		Differentiating the third coordinate w.r.t. $z$ gives us
+		\begin{align*}
+			\pdv{f}{xz}\pdv{g}{y}+\pdv{g}{yz}\pdv{f}{x}-\pdv{g}{xz}\pdv{f}{y}-\pdv{f}{yz}\pdv{g}{x}
+		\end{align*}
+		Noting that the order of differentiation doesn't matter, if you look carefully, all terms cancel (after adding them) (for example, the 4th term in row 1 cancels with the 1st term in row 3), so $\mathrm{div}(\grad f \cross \grad g) = 0$.
+		\end{enumerate}
+\end{document}

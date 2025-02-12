@@ -1,0 +1,429 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\func}[3]{#1\colon#2\to#3}
+\newcommand{\vfunc}[5]{\func{#1}{#2}{#3},\quad#4\longmapsto#5}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usetikzlibrary{decorations.markings}
+\newcommand{\indef}{\int_{0}^{\infty}}
+\newcommand{\ve}{\varepsilon}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Elegant Integrals}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+
+    \section{Gamma and Zeta Functions}
+    We begin with a discussion of some important special functions, and prove some facts about them.
+    \begin{definition}[Gamma Function]\label{Gamma}
+        The \textit{Gamma Function} is defined as follows:
+        \begin{align*}
+            \Gamma(x+1) = \indef t^xe^{-t}dt
+        \end{align*}    
+    \end{definition}
+
+    \begin{theorem}[Gamma-Factorial Identity]
+        For all natural numbers n, denoted $n \in \bN$, $\Gamma(n) = (n-1)!$
+    \end{theorem}
+
+    \begin{proof}
+        First I show that $\Gamma(n+1)=n\Gamma(n)$. 
+        Note that this is the same thing as saying $n! = n(n-1)!$
+        Suppose that $n \in \bN$, and that $n \geq 2$. 
+        Let $u = t^n$ and $dv = e^{-t}dt$. Then $du = nt^{n-1}$ and $v = -e^{-t}$. So 
+        \begin{align*}
+            \Gamma(n+1) = \indef t^xe^{-t}dt &= -t^ne^{-t}\eval_{0}^{\infty} + n\indef t^{n-1}e^{-t}dt \\ 
+            &= \lim_{t \to \infty} -\frac{t^n}{e^{t}} + 0 + n\indef t^{n-1}e^{-t}dt \\ 
+            &= n\indef t^{n-1}e^{-t}dt \\ 
+            &= n\Gamma(n)
+        \end{align*}
+        Now I will show that $\Gamma(1) = (1-1)! = 1$. Observe that
+        \begin{align*}
+           \Gamma(1) = \indef t^{0}e^{-t}dt &= \indef e^{-t}dt \\ 
+           &= -e^{-t} \eval_{0}^{\infty} \\ 
+           &= -\lim_{t \to \infty} e^{-t} + 1 \\ 
+           &= 1
+        \end{align*}
+    \end{proof}
+
+    The next tool I will be introducing is the \textit{Riemann Zeta Function}, denoted $\zeta(s)$. 
+    For our purposes, the only definition we will have to know is the next one.
+
+    \begin{definition}[Riemann Zeta Function]\label{Zeta}
+        The \textit{Riemann Zeta Function}, denoted $\zeta(s)$, is defined as follows:
+        \begin{align*}
+           \zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s}
+        \end{align*}
+        Put simply, it is the value of the p-series with $p = s$.
+    \end{definition}
+
+    There are some important implications of this function in the field of complex analysis, where you can make sense of things like
+    \begin{align*}
+        \zeta(-1) = \sum_{n=1}^{\infty} \frac{1}{n^{-1}} = 1 + 2 + 3 + \cdots = -\frac{1}{12}
+    \end{align*}
+    But that is beyond the scope of this article.
+
+    The most famous result--one that shows up all the time, is that
+    \begin{align*}
+        \zeta(2) = \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+    \end{align*}
+
+    Sadly showing that this is true is really complicated, so I will ask you to take it as a fact.
+    If you want, you can look up ``3blue1brown basel problem'' to see a really elegant solution.
+    The wikipedia article also does a good job showing it, but uses some theorems that are a lot less intuitive.
+
+    So now we will move onto our first integral.
+
+    \section{Problems Part 1}
+    This first one is a fairly modified version of one from the MIT 2020 integration bee qualifying exam.
+    This was the last (and hardest) problem on the exam.
+    \begin{align*}
+        \indef \frac{x}{e^x-1}dx
+    \end{align*}
+
+    You are probably wondering where in the world the Gamma function or the Zeta function that I mentioned above are in this.
+    The solution, as the title of this article states, is very elegant, and those functions show up in amazing places.
+
+    We begin by multiplying the top and bottom by $e^{-x}$, 
+    \begin{align*}
+        \indef \frac{x}{e^x-1}\cdot \frac{e^{-x}}{e^{-x}}dx &= \indef x\frac{e^{-x}}{1-e^{-x}}dx
+    \end{align*}
+
+    At this point thinking of this would be ludicrous.
+    A (very) keen eye will notice that $\frac{e^{-x}}{1-e^{-x}}$ looks suspiciously like a geometric series.
+    Unsurprisingly, that is exactly what I will be doing here. So,
+    \begin{align*}
+        \indef x\frac{e^{-x}}{1-e^{-x}} &= \indef x\sum_{n=1}^{\infty} e^{-nx}dx \\ 
+        &= \indef \sum_{n=1}^{\infty} xe^{-nx}dx
+    \end{align*}
+    Now with no justification I will be interchanging the sum and the integral. 
+    If you are interested in finding out why this is justified, I recommend you look up ``Monotone Convergence Theorem'' or ``Dominated Convergence Theorem''.
+    I have not learned those yet so I will not be showing them here.
+    
+    \begin{align*}
+        \indef \sum_{n=1}^{\infty} xe^{-nx}dx = \sum_{n=1}^{\infty} \indef xe^{-nx}dx
+    \end{align*}
+    Now I will make the substitution $u = nx$ which means that $du = ndx$ and $x = u/n$. 
+    Note that when $x = 0$, $u = 0$, and as $x \to \infty$, $u \to \infty$. So 
+    \begin{align*}
+        \sum_{n=1}^{\infty} \indef xe^{-nx}dx &= \sum_{n=1}^{\infty} \frac{u}{n}e^{-u}\frac{du}{n} \\ 
+        &= \sum_{n=1}^{\infty} \frac{1}{n^2} \indef ue^{-u}du
+    \end{align*}
+    At this point I would recommend you go look back at Definition~\ref{Gamma}, because without doing anything weelse we already now the value of this integral.
+    After doing that, I hope you can see why I included this integral in this article.
+    \begin{align*}
+        \sum_{n=1}^{\infty} \indef ue^{-u}du &= \sum_{n=1}^{\infty} \frac{1}{n^2} \Gamma(2) \\ 
+        &= \sum_{n=1}^{\infty} \frac{1}{n^2} \\ 
+        &= \zeta(2) \text{ (See Definition~\ref{Zeta})} \\ 
+        &= \frac{\pi^2}{6}
+    \end{align*}
+    This is an amazing answer. I also amazed that MIT put a similar question on a qualifying exam--I don't believe anyone could think of a solution like this wihtout having seen it before.
+
+    \section{Symmetries}
+    A lot of hard integrals can be solved using simple symmetries. 
+    First I will talk about a \textbf{very} important identity.
+
+    \begin{theorem}[King's Property]
+        \begin{align*}
+            \int_{a}^{b} f(x)dx = \int_{a}^{b} f(a+b-x)dx
+        \end{align*}
+    \end{theorem}
+
+    \begin{proof}
+        The proof of this theorem is very simple.
+        Let $u = a + b - x$. Then $du = -dx$.
+        When $x = a, u = a + b - a = b$.
+        When $x = b, u = a + b - b = a$. So,
+        \begin{align*}
+            \int_{a}^{b} f(x)dx = \int_{a}^{b} f(a+b-u)(-du)
+        \end{align*}
+        Recall that 
+        \begin{align*}
+        -\int_{b}^{a} f(x)dx = \int_{a}^{b} f(x)dx     
+        \end{align*}
+        Also note that u here is a dummy variable, so we can replace it with $x$.
+        So,
+        \begin{align*}
+            \int_{b}^{a}f(a+b-u)(-du) = \int_{a}^{b} f(a+b-x)dx
+        \end{align*}
+    \end{proof}
+    So with this under our belt, we can easy handle some very scary looking integrals.
+
+    \section{Problems Part 2}
+    The first problem we will be tackling is 
+    \begin{align*}
+        \int_{0}^{\pi/2} \sin^2(\sin(x)) + \cos^2(\cos(x))dx
+    \end{align*}
+    Utilizing Kings Property, we get that 
+    \begin{align*}
+        I = \int_{0}^{\pi/2} \sin^2(\sin(x))+\cos^2(\cos(x))dx &= \int_{0}^{\pi/2} \sin^2(\sin(\pi/2 - x)) + \cos^2(\cos(\pi/2 - x))dx \\ 
+        &= \int_{0}^{\pi/2} \sin^2(\cos(x)) + \cos^2(\sin(x))dx
+    \end{align*}
+    This next step demonstrates precisely why this technique is so powerful.
+    By adding $I$ to both sides, we get 
+    \begin{align*}
+        2I &= \int_{0}^{\pi/2} \sin^2(\sin(x)) + \cos^2(\cos(x)) + \int_{0}^{\pi/2} \sin^2(\cos(x)) + \cos^2(\sin(x))dx \\ 
+        &= \int_{0}^{\pi/2} \sin^2(\sin(x)) + \cos^2(\sin(x)) + \sin^2(\cos(x)) + \cos^2(\cos(x))dx \\ 
+        &= \int_{0}^{\pi/2} 1 + 1dx \\ 
+        &= \pi
+    \end{align*}
+    Therefore, through an extremely elegant solution, we get that $I = \pi/2$.
+
+    The next problem is similar, but equally (if not more) scary looking.
+    \begin{align*}
+        \int_{0}^{\pi/2} \frac{\sin^n(x)}{\sin^n(x) + \cos^n(x)}dx \text{, for any integer n}
+    \end{align*}
+    We begin by using King's Property once again:
+    \begin{align*}
+        I = \int_{0}^{\pi/2} \frac{\sin^n(x)}{\sin^n(x) + \cos^n(x)}dx &= \int_{0}^{\pi/2} \frac{\sin^n(\pi/2 - x)}{\sin^n(\pi/2 - x) + \cos^n(\pi/2 - x)}dx \\ 
+        &= \int_{0}^{\pi/2} \frac{\cos^n(x)}{\cos^n(x) + \sin^n(x)}dx
+    \end{align*}
+    Adding $I$ to both sides, we get:
+    \begin{align*}
+        2I &= \int_{0}^{\pi/2} \frac{\sin^n(x)}{\sin^n(x) + \cos^n(x)} + \frac{\cos^n(x)}{\cos^n(x) + \sin^n(x)}dx \\ 
+        &= \int_{0}^{\pi/2} \frac{\sin^n(x) + \cos^n(x)}{\sin^n(x) + \cos^n(x)}dx \\ 
+        &= \int_{0}^{\pi/2} 1dx \\ 
+        &= \frac{\pi}{2}
+    \end{align*}
+    So $I$ = $\pi/4$.
+    
+    Once again, this is an amazing result that is actually quite short because of how powerful this integration techinque is.
+
+    The next problem we will be examining is this
+    \begin{align*}
+        \int_{0}^{1} \frac{\ln(x+1)}{x^2+1}dx
+    \end{align*}
+    \section{Important Trig Identity}
+    Now we will be looking at a very important trig identity.
+    \begin{theorem}[Sum of Trigonometric Functions]\label{sum of trig functions}
+        \begin{align*}
+            a\sin(x)+b\cos(x) = \sqrt{a^2+b^2}\sin(x+\varphi) \text{, where } \tan(\varphi) = \frac{b}{a}
+        \end{align*}
+    \end{theorem}
+    This might look pretty complicated, but if you examine some base cases, it ends up being pretty nice. For example,
+    \begin{align*}
+        \sin(x)+\cos(x) = \sqrt{2}\sin(x+\pi/4)
+    \end{align*}
+    \begin{proof}
+        The first thing we will do to prove this theorem is assume that
+        \begin{align*}
+            a\sin(x)+b\cos(x) = c\sin(x+\varphi)
+        \end{align*}
+        Now all we have to do is show that $c = \sqrt{a^2+b^2}$ and that $\tan(\varphi) = b/a$.
+        If we expand the right side, we get 
+        \begin{align*}
+            a\sin(x)+b\cos(x) &= c(\sin(x)\cos(\varphi) + \sin(\varphi)\cos(x)) \\ 
+            &= c\sin(x)\cos(\varphi) + c\sin(\varphi)\cos(x) \\ 
+            &= c\cos(\varphi)\sin(x) + c\sin(\varphi)\cos(x)
+        \end{align*}
+        Now all we have to do is match the coefficients.
+        So,
+        \begin{align}
+            a = c\cos(\varphi) \\ 
+            b = c\sin(\varphi)
+        \end{align}
+        The next thing I will do is square both equations and add them to each other. We get: 
+        \begin{align*}
+            a^2 + b^2 &= c^2\cos^2(\varphi) + c^2\sin^2(\varphi) \\ 
+            &= c^2
+        \end{align*}
+        So we have concluded that $c = \sqrt{a^2+b^2}$. 
+        By backsubstituting $c$, and dividing equation (2) by (1), we get:
+        \begin{align*}
+            \frac{b}{a} &= \frac{\sqrt{a^2+b^2}\sin(\varphi)}{\sqrt{a^2+b^2}\cos(\varphi)} \\ 
+            &= \tan(\varphi)
+        \end{align*}
+
+        Which completes the proof.
+    \end{proof}
+
+    This next integral is quite advanced, but can be ripped apart by the trig identity I just talked about.
+    You might immediately try to use King's Property, but in this integral patience is key.
+    To start, I will let $x = \tan(\theta)$.
+    Then $dx = \sec^2(\theta)d\theta$.
+    When $x = 0$, $\theta = 0$.
+    When $x = 1$, $\theta = \pi/4$.
+    \begin{align*}
+        \int_{0}^{1} \frac{\ln(x+1)}{x^2+1}dx &= \int_{0}^{\pi/4} \frac{\ln(\tan(\theta)+1)}{\sec^2(\theta)}\cdot \sec^2(\theta)d\theta \\ 
+        &= \int_{0}^{\pi/4} \ln(\frac{\sin(\theta)+\cos(\theta)}{\cos(\theta)})d\theta \\ 
+        &= \int_{0}^{\pi/4} \ln(\sin(\theta)+\cos(\theta)) - \ln(\cos(\theta))d\theta
+    \end{align*}
+    Now we will use the identity that I just talked about.
+    By Theorem~\ref{sum of trig functions}, $\sin(x) + \cos(x) = \sqrt{1^2+1^2}\sin(x + \tan^{-1}(1/1)) = \sqrt{2}\sin(x+\pi/4)$.
+    Plugging this in, we get 
+    \begin{align*}
+        \int_{0}^{\pi/4} \ln(\sin(\theta)+\cos(\theta)) - \ln(\cos(\theta)) &= \int_{0}^{\pi/4} \ln(\sqrt{2}\sin(\theta+\pi/4)) - \ln(\cos(\theta))d\theta \\ 
+        &= \int_{0}^{\pi/4} \ln(\sqrt{2}) + \ln(\sin(\theta + \pi/4)) - \ln(\cos(\theta))d\theta \\ 
+        &= \frac{\pi \ln(\sqrt{2})}{4} + \underbrace{\int_{0}^{\pi/4} \ln(\sin(\theta+\pi/4)) - \ln(\cos(\theta))d\theta}_{I} \\
+        &= \frac{\pi \ln(2)}{8} + I
+    \end{align*}
+    
+    Now we can use King's Property.
+    \begin{align*}
+        I &= \int_{0}^{\pi/4} \ln(\sin(\theta+\pi/4)) - \ln(\cos(\theta))d\theta \\ 
+        &= \int_{0}^{\pi/4} \ln(\sin(\pi/4 - \theta + \pi/4)) - \ln(\cos(\pi/4 - \theta))d\theta \\ 
+        &= \int_{0}^{\pi/4} \ln(\cos(\theta)) - \ln(\cos(\pi/2 - (\pi/4 + \theta)))d\theta \\ 
+        &= \int_{0}^{\pi/4} \ln(\cos(\theta)) - \ln(\sin(\theta + \pi/4))d\theta
+    \end{align*}
+    Finally, adding $I$ to both sides, we get 
+    \begin{align*}
+        2I &= \int_{0}^{\pi/4} \ln(\sin(\theta + \pi/4)) - \ln(\cos(\theta)) + \ln(\cos(\theta)) - \ln(\sin(\theta+\pi/4))d\theta \\ 
+        &= \int_{0}^{\pi/4} 0d\theta \\ 
+        &= 0
+    \end{align*}
+    Which means that $I = 0$. 
+    Therefore, our original integral 
+    \begin{align*}
+        \int_{0}^{1} \frac{\ln(x+1)}{x^2+1}dx = \frac{\pi \ln(2)}{8}
+    \end{align*}
+    This is another elegant result.
+    This was on the Putnam Exam, an international math exam for undergraduate students in college.
+    That's all for now, I hope you enjoyed reading this magazine!
+%    \section{Contour Integration}
+%    The first thing we need to know in this section is Cauchy's Residue Theorem.
+%    \begin{theorem}[Cauchy's Residue Theorem]
+%        If $C$ is a simple closed, positively oriented contour in the complex plane, and $f$ is analytic except for some points $z_1, z_2, \dots, z_n$ inside the contour $C$, then 
+%        \begin{align*}
+%            \oint_C f(z)dz = 2\pi i\sum_{k=1}^{n} \mathrm{Res}_f(z_k)
+%        \end{align*}
+%    \end{theorem}
+%    The proof of this theorem is very complicated, so I will not be proving it here (that is, I don't know how). 
+%    Another thing that we have to know is what $\mathrm{Res}_f(z_k)$ means.
+%    \begin{theorem}[Calculation of Residue]
+%        Suppose that $z_0$ is a singularity of $f(z)$ of multiplicity 1. Then 
+%        \begin{align*}
+%            \mathrm{Res}_f(z_0) = \lim_{z \to z_0} (z-z_0)f(z)
+%        \end{align*}
+%    \end{theorem}
+%    You might be wondering what some of the words mean in Theorem 6.1. 
+%    Simple closed means that there are no gaps in the curve, and that it does not cross over itself.
+%    Positively oriented means the curve travels counterclockwise.
+%    If the curve is negatively oriented, we can just multiply the integral by -1. 
+%    And finally, you can interpret contour as just a simple loop. 
+%    Analytic pretty much means differentiable as a complex function, but that ends up being really complicated so I won't be talking about that.
+%    A singularity pretty much means that you are dividing by zero.  
+%    Finally, the circle in the integral symbol means that you are integrating over a closed curve. 
+%    You technically do need the tools of vector calculus to understand this, but even without it it's not super confusing.
+%
+%    So with these tools, the next integral that we will be exploring is 
+%    \begin{align*}
+%        \int_{0}^{\infty} \frac{\cos(x)}{1+x^2}dx = \frac{\pi}{e}
+%    \end{align*}
+%    This is immediately a beautiful result. A $\pi$? A $e$?
+%    We begin by changing this to a contour integral. 
+%    Note that 
+%    \begin{align*}
+%        \int_{0}^{\infty} \frac{\cos(x)}{1+x^2}dx= \Re\qty(\indef \frac{\cos(x)}{x^2+1}dx + i\indef \frac{\sin(x)}{x^2+1}dx) = \Re\qty(\indef \frac{e^{ix}}{x^2+1}dx) 
+%    \end{align*}
+%    This is where I will bring in the contour integration. 
+%    This is the contour that we will be integrating over:
+%
+%    \begin{tikzpicture}[decoration={markings,
+%		mark=at position 1cm with {\arrow[line width=1pt]{>}},
+%		mark=at position 3cm with {\arrow[line width=1pt]{>}},
+%		mark=at position 6.3cm with {\arrow[line width=1pt]{>}},
+%		mark=at position 9cm with {\arrow[line width=1pt]{>}}
+%		}
+%		]
+%		% The axes
+%		\draw[help lines,->] (-3,0) -- (3,0) coordinate (xaxis);
+%		\draw[help lines,->] (0,-1) -- (0,3) coordinate (yaxis);
+%		
+%		% The path
+%		\path[draw,line width=0.8pt,postaction=decorate] (-2, 0) -- (2, 0) arc (0:180:2);
+%		
+%		% The labels
+%		\node[below] at (xaxis) {$x$};
+%		\node[left] at (yaxis) {$y$};
+%		\node[below left] {$O$};
+%		\node at (0.3, 2.3) {$\Gamma_R$};
+%        \node at (0.3, -0.5) {$\gamma_R$};
+%        \node at (2.1, -0.2) {$R$};
+%        \node at (-2.1, -0.2) {$-R$};
+%	\end{tikzpicture}
+%
+%    Using this picture, note that 
+%    \begin{align*}
+%        \lim_{R \to \infty} \int_{\gamma_{R}} \frac{e^{iz}}{z^2+1}dz = \indef \frac{e^{ix}}{x^2+1}dx
+%    \end{align*}
+
+	Suppose that $(n_k)$ is a sequence of increasing positive integers satisfying $\lim_{k \to \infty} \frac{n_k}{n_{k-1}} = 1$, $(a_n)$ is a bounded sequence, and 
+	\begin{align*}
+		\lim_{k \to \infty} \frac{1}{n_k}\sum_{i=1}^{n_k} a_i = a
+	\end{align*}
+	then 
+	\begin{align*}
+		\lim_{n\to \infty} \frac 1n \sum_{i=1}^n a_i = a
+	\end{align*}
+	
+	\begin{proof}
+		Fix $\varepsilon > 0$ and find $K > 0$ so that $(1-\ve)n_{k} < n_{k-1} < (1+\ve)n_{k}$ holds for all $k > K$. Then if $D$ is a global constant bounding $a_n-a$, fixing $n > n_K$ and finding $k$ so that $n_{k-1} \leq n \leq n_k$, we have that $(1-\ve)n_{k} \leq n$, so 
+		\begin{align*}
+			\frac 1n \qty|\sum_{i=1}^n (a_i-a)| &\leq \frac 1n \qty(\qty|\sum_{i=1}^{n_k} (a_i-a)| + \qty|\sum_{i=n}^{n_k} (a_i-a)|) \\
+			&\leq \frac{1}{(1-\ve)n_k} \qty|\sum_{i=1}^{n_k} (a_i-a)| + \frac{(n_k-n)}{n} D \\
+			&\leq \frac{\ve}{(1-\ve)} + D\ve\frac{n_k}{n_{k-1}} \frac{n_{k-1}}{n} \leq C_1\ve + D\ve (1+\ve) \leq C_2\ve
+		\end{align*}
+		for some constant $C_2$. This completes the proof.
+	\end{proof}
+
+\end{document}

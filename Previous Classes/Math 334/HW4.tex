@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 334 HW 4}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Let $\ve > 0$, and let $a \in \R^m$. We know that $B(f(a), \ve)$ is certainly open, so therefore $f^{-1}(B(f(a), \ve))$ is open. Clearly $a$ is in this preimage, and because every point of this set is an interior point, there is some $\delta$ so that $B(a, \delta) \subset f^{-1}(B(f(a), \ve))$. Because of this, we know that everything in the ball also maps to something in $B(f(a), \ve)$, and so $f$ is continuous. $\qed$
+		
+		\item
+		Let $\ve > 0$. Because $\seq{a}{n} \to a$, it is bounded, so choose $R > 0$ so that $|a_n-a| < R$ for all $n \geq 1$. Now choose $N_1$ so that for all $n > N_1$, we have that $\qty|a_n - a| < \ve/2$. Finally, if $R > \ve/2$, choose $N_2$ so that $N_1(R-\ve/2) < N_2 \cdot \ve/2$, else choose $N_2 = 0$. Now choose $N = \max\{N_1, N_2\}$. Then for all $n > N$, we have that $\qty|b_n - a| = \qty|\frac 1n \sum_{k=1}^{n} \qty(a_k - a)| \leq \frac 1n \sum_{k=1}^{n} |a_k-a| = \frac 1n \qty(\sum_{k=1}^{N_1} |a_k-a| + \sum_{k=N_1+1}^{n}|a_k-a|) < \frac 1n \qty(\sum_{k=1}^{N_1} R + \sum_{k=N_1+1}^{n} \ve/2) = \frac{N_1 \cdot R}{n} + \ve/2 \frac{n - N_1}{n} = \frac{N_1(R-\ve/2)}{n} + \ve/2$. Now note if $R \leq \ve/2$, this quantity is $\leq \frac{N_1(\ve/2 - \ve/2)}{n}+\ve/2$, which is clearly $< \ve$. If this is not the case, by our choice of $N_2$ we see that $\frac{N_1(R-\ve/2)}{n} + \ve/2 < \frac{N_2\cdot \ve/2}{n} + \ve/2$, and because $N_2 < n$, this quantity is $< \ve/2 + \ve/2 = \ve$.  $\hfill \qed$
+		
+		\item 
+		
+		\textbf{Part 2:} Suppose that $\seq{x}{n} \to x$ is a sequence of reals that converges to $x$. Then there is some $N > 0$ such that $\forall n > N$, $|x_n-x| < 1$. Clearly there are only finitely many elements in $\set{x_n \given 1 \leq n \leq N}$. But every finite set is bounded, therefore there is some $R > 0$ such that $\set{x_n \given 1 \leq n \leq N} \subset B(x, R)$. But clearly $\set{x_n \given n > N} \subset B(x, 1)$, and so if we pick $R^* = \max\{1, R\}$, we have that $\seq{x}{n} \subset B(x, R^*)$, i.e. that $\seq{x}{n}$ is bounded. $\qed$
+		
+		\textbf{Part 3:} Let $\qty(x_{n_k})_{k=1}^{\infty}$ be a subsequence of $\seq{x}{n} \to x$, and let $\ve > 0$. Then, because $\seq{x}{n}$ is convergent, we know that there is some $N > 0$ such that $|x_n-x| < \ve$ for all $n > N$. Suppose that $n_k < k$. It is clear that $n_1 \geq 1$, by the definition of a subsequence. Then we have that $1 \leq n_k < k$. If we choose $k=1$, we see that $1 \leq n_k < 1$, which is impossible. So $n_k \geq k$. Then for all $k > N$, we see that $n_k \geq n$ so $|x_{n_k} - x| < \ve$, and so $\qty(x_{n_k})_{k=1}^{\infty} \to x$. $\qed$
+		
+		\textbf{Part 1:}  We shall construct a subsequence of $\qty(x_{2n})_{n=1}^{\infty}$, that is, $\qty(x_{6n})_{n=1}^{\infty}$. Because this sequence is a subsequence of $\qty(x_{2n})_{n=1}^{\infty}$, its limit must also go to $\alpha_1$. But we notice that each $6n$ is divisible by 3, and so we see that $\qty(x_{6n})_{n=1}^{\infty}$ is also a subsequence of $\qty(x_{3n})_{n=1}^{\infty}$. As all subsequences must go to the same limit as the main sequence by part 2 (if the main sequence converges), we see that $\qty(x_{6n})_{n=1}^{\infty} \to \alpha_2$. Because the limit is unique, we see that $\alpha_1 = \alpha_2$. Similarly, we define $\qty(x_{3^n})_{n=1}^{\infty}$. Clearly this is a subsequence of $\qty(x_{3n})_{n=1}^{\infty}$, as each index is certainly divisible by 3, and it is also a subsequence of $\qty(x_{2n+1})_{n=1}^{\infty}$ because each $3^n$ is odd. By the same reasoning, we see that $\alpha_2 = \alpha_3$, so we conclude that $\alpha_1=\alpha_2=\alpha_3$. $\qed$
+					
+		\item 
+		The base case is clear: $\sqrt{2} < 2$. (I.H.) Suppose that $x_n < 2$ for some $n \geq 1$. Then $x_{n+1} = \sqrt{2+x_n} < \sqrt{2+2} = 2. \qed$
+		
+		So we know that $x_n < 2$ for all $n \geq 1$. 
+		For the other case (base), we know that $x_2 = \sqrt{2+\sqrt{2}} > \sqrt{2}=x_1$. (I.H.) Suppose that $x_n < x_{n+1}$ for some $n > 1$. Then $x_{n+2} = \sqrt{2+x_{n+1}} > \sqrt{2+x_{n}}=x_{n+1}. \qed$
+		
+		Now we take the original equation, apply the limit to both sides, and see that both $x_n$ and $x_{n+1} \to x$ for some limiting value $x$ (all subsequences go to the same value as the original sequence). We also know that, because $f(x) = \sqrt{2+x}$ is continuous, if $x_n \to x$, then $\sqrt{2+x_n} \to \sqrt{2+x}$. Thus $x = \sqrt{2+x}$, and we see that $(x-2)(x+1)=0$. Clearly $x \neq -1$, because $x_1 = \sqrt{2} > 0$, and our sequence is strictly increasing. So $\lim_{n \to \infty} x_n = 2. \qed$
+		\end{enumerate}
+\end{document}

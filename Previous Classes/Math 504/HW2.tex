@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{$\hfill\square$}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 504 HW2}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item First we prove that $(a, b) = (a, b+ax)$ for all $x \in \Z$. Let $d_1 = (a, b)$. Then as $d_1 \mid a$ and $d_1 \mid b$, we have that $d_1 \mid b+ax$, so $d_1 \mid (a, b+ax)$. Now letting $d_2 = (a, b+ax)$, we also have $d_2 \mid b + ax - ax = b$, so $d_2 \mid (a, b) = d_1$, which shows that $d_2 = d_1$. Now we see that,
+		\begin{align*}
+			{p^\alpha m \choose p^\alpha} = \frac{p^\alpha m(p^\alpha m - 1) \cdots (p^\alpha (m-1) + 1)}{p^\alpha \cdot (p^\alpha - 1) \cdots 1}
+		\end{align*}
+		From the previous part, we have that, for any $k$, $(p^\alpha m - k, p^\alpha) = (k, p^\alpha)$ (We also used that $-k$ has the same divisors as $k$). Now, since $(m, p) = 1$, $(m, p^\alpha) = 1$, so $(p^\alpha m - k, p^\alpha)$ is the highest power of $p$ dividing $p^\alpha m - k$ (most importantly, it can not be any higher than $p^\alpha$). Since the highest power of $p$ dividing $p^\alpha - k$ is exactly the same as the one dividing $p^\alpha m - k$, we cancel all the powers of $p$ on the top and bottom, and are left with none. Thus, $p$ does not divide ${p^\alpha m \choose p^\alpha}$.
+		
+		\item Let $\gen{p_1/q_1, \ldots, p_n/q_n} \subset \mbb Q$ be a nontrivial subgroup of $\mbb Q$. By making a common denominator of $\prod q_i$, we get (we haven't done anything yet)
+		\begin{align*}
+			\gen{\frac{p_1}{q_1}, \ldots, \frac{p_n}{q_n}} = \gen{\frac{\prod_{i \neq 1} q_ip_1}{\prod q_i}, \ldots, \frac{\prod_{i \neq n}q_i p_n}{\prod q_i}}
+		\end{align*}
+		We have reduced our problem to the following: Show that $\gen{p_1/q, \ldots, p_n/q} = \gen{(p_1, \ldots, p_n)/q}$. First notice that $p_i/q = (p_i/(p_1, \ldots, p_n) \cdot (p_1, \ldots, p_n)) / q$, so we have $\gen{p_1/q, \ldots, p_n/q} \leq \gen{(p_1, \ldots, p_n)/q}$. I claim that we can find $x_1, \ldots, x_n$ so that $(p_1, \ldots, p_n) = \sum_i p_ix_i$. This follows by induction: the base case is the definition of the gcd, so suppose its true for some $k \geq 3$. Now we prove the lemma that $(p_1, \ldots, p_{k+1}) = ((p_1, \ldots, p_k), p_{k+1})$. This follows since $(p_1, \ldots, p_{k+1}) \mid (p_1, \ldots, p_k)$ (since it is a common divisor of $p_1, \ldots, p_k$) so $(p_1, \ldots, p_{k+1}) \mid ((p_1, \ldots, p_k), p_{k+1})$. Similarly, $((p_1, \ldots, p_k), p_{k+1})$ divides all of $p_1, \ldots, p_{k+1}$, so it divides $(p_1, \ldots, p_{k+1})$. Now we can inductively find $x_1, \ldots, x_k$ so that $(p_1, \ldots, p_k) = \sum_{i=1}^k x_ip_i$. Now finding $y$ and $z$ so that $((p_1, \ldots, p_k), p_{k+1}) = y(p_1, \ldots, p_k) + zp_{k+1} = \sum_{i=1}^k yx_ip_i + zp_{k+1}$, completing the proof.
+		
+		Then,
+		\begin{align*}
+			\frac{(p_1, \ldots, p_n)}{q} = \sum_i \frac{p_ix_i}{q}
+		\end{align*}
+		And thus $\gen{(p_1, \ldots, p_n)/q} \subset \gen{p_1/q, \ldots, p_n/q}$. Next notice that every nonzero element of $\mbb Q$ has infinite order: for if $p, q \neq 0$, we would need an $n > 0$ so that $np/q = 0$, which is true iff $np = 0$ which can't happen. So, $\gen{(p_1, \ldots, p_n)/q}$ is a cyclic group of infinite order and hence isomorphic to $\Z$, which completes the proof.
+		
+		\item We first prove that $H$ is in fact normal in $N_G(H)$--letting $n \in N_G(H)$, by definition we have that $nHn^{-1} = H$. Next, suppose that $H \nsg K \leq G$. By definition we have $kHk^{-1} = H$ for every $k \in K$. But this just says $K \leq N_G(H)$, so we are done.
+		
+		\item We notice that the proof of Langrange's theorem works exactly the same if ``left'' was replaced with ``right'', and in particular the number of left cosets equals the number of right cosets, and in our case, both equal 2. Write $\Set{H, gH}$ to be the set of left cosets and $\Set{H, Hg}$ to be the set of right ($g$ is necessarily not in $H$). We claim that $gH \cap H = \emptyset$. If not, $gh = h_2$ for some $h_2$, so $g = h_2h^{-1}\in H$ a contradiction. Since cosets partition the entire group and are all disjoint, we must have $Hg = G \setminus H = gH$, which completes the proof.
+		
+		\item We show that if $\cph: G \to H$ is a homomorphism, then $|\cph(G)| \mid |G|$ and $|\cph(G)| \mid |H|$. The latter is clear since $\cph(G) \leq H$. The former is not as obvious. By the first isomorphism theorem, we have that $\cph(G) \cong G/\ker(\cph)$. In particular, they have the same order, so $|\cph(G)| = |G|/|\ker(\cph)|$. This is clearly a divisor of $|G|$ (it has a subset of $|G|$'s factors, not exceeding their power in $|G|$), so we have proven the second claim. Third, we claim that if $\cph: G \to H$ and $N \leq G$, then we can restrict this to a homomorphism $\cph_N: N \to H$. We can restrict these as \textit{functions}, so now we just have to show that this preserves the homomorphism structure. Letting $n_1, n_2 \in N \leq G$, we have that $\cph(n_1 n_2) = \cph(n_1) \cph(n_2)$, which completes the third subclaim. Now, we have the natural projection $\pi: G \to G/N$. Restricting this to a homomorphism $\pi_H: H \to G/N$, we now have that $\pi_H(H) \mid |G/N|$ and $\pi_H(H) \mid |H|$. Since $(|G/N|, |H|) = 1$, we have that $|\pi_H(H)| = 1$, i.e. that $\pi_H(H) = gN$ for some $g \in G$. Since $e \in H$, $g = e$ ($N$ is the only coset with $e$), so we have proven that $\pi_H(H) = N$. In particular, this tells us that $hN = N$ for every $h \in H$, and that tells us that $H \subseteq N$. Our last claim is that if $H, N \leq G$ and $H \subset G$, then $H \leq N$. This follows immediately by the subgroup criterion, so we are done. \qed
+		
+		\item[P1.]
+		\begin{enumerate}
+			\item We claim that the orbits are just $\Set{0}$, and $\R^n \setminus 0$. First notice that the orbit of $0 \in \R^n$ is just $0$ (since $A \cdot 0 = 0$ for any matrix). In particular we shall show the orbit of $e_1$ is $\R^n \setminus 0$. Geometrically, for any $x \neq 0$ in $\R^n$, we can find a rotation matrix $R$ rotating $e_1$ to $x/\mg{x}$. Then, we can use the diagonal matrix $\mg{x} I_n$ to see that $\mg{x} I_n (x/\mg{x}) = x$, so our matrix sending $e_1$ to $x$ is just $(\mg{x}I_nR)$. Since the orbits form a partition and are disjoint, we have classified all of them. The isotropy groups are just the stabilizers--i.e., $G_x = \Set{A \in \mathrm{GL}_n(\R) | Ax = x}$. One can see by definition this is just the set of invertible matrices with $x$ as an eigenvector with eigenvalue 1. 
+			
+			\item Two matrices are in the same orbit if they have the same eigenvalues. Notice that, for a matrix $A \in \mathrm{Mat}_n(\C)$, an $B \in \mathrm{GL}_n(\C)$,
+			\begin{align*}
+				\det(BAB^{-1} - \lambda I) &= \det(BAB^{-1} -  B\lambda B^{-1}) 
+				\\&= \det(B(AB^{-1} - \lambda B^{-1})) = \det(B(A-\lambda I)B^{-1}) 
+				\\&= \det(A-\lambda I)\det(B)\det(B^{-1}) = \det(A-\lambda I)
+			\end{align*}
+			So every conjugate of $A$ has precisely the same eigenvalues as $A$. Similarly, let $\Set{v_1, \ldots, v_n}$ be the collection of eigenvectors of $A$, with corresponding eigenvectors $\Set{\lambda_1, \ldots, \lambda_n}$. We have that,
+			\begin{align*}
+				BAB^{-1} Bv_i = BAv_i = \lambda_i Bv_i
+			\end{align*}
+			Now we claim the reverse is true. If $C$ is a matrix with the same eigenvalues as $A$, and if there is an invertible matrix $B$ such that 
+			\begin{align*}
+				\Set{\begin{array}{l}\text{eigenvectors $B^{-1}u_1, \ldots, B^{-1}u_n$} \\ \text{of $C$}\end{array}} \leftrightarrow \Set{\begin{array}{l}
+						\text{eigenvalues $v_1, \ldots, v_n$} \\
+						\text{of $A$}
+				\end{array}}
+			\end{align*}
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

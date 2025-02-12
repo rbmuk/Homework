@@ -1,0 +1,213 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 461 HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item I give two proofs for fun. First, let $g(x) = \sum_{n=0}^\infty \qty(\sum_{i=0}^n a_i) x^n$. We see that $xg(x) = \sum_{n=0}^\infty \qty(\sum_{i=0}^n a_i) x^{n+1} = \sum_{n=1}^\infty \qty(\sum_{i=0}^{n-1} a_i) x^n$. Thus $g(x) - xg(x) = \sum_{n=0}^\infty a_nx^n = f(x)$, hence $g(x) = \frac{f(x)}{1-x}$ is the generating function for $f(x)$. Similarly,
+			\begin{align*}
+				(a_0+a_1 x + a_2 x^2 + \ldots)(1 + x + x^2 + \ldots) = a_0 + x(a_0+a_1) + x^2(a_0+a_1+a_2) + \ldots
+			\end{align*}
+			So $f(x)(1+x + x^2 + \ldots) = f(x)/(1-x)$ is the generating function for $(\sum_{i=0}^{n} a_i)_n$.
+			
+			\item I claim that $a_0 + a_2x^2 + a_4x^4 + \ldots = \frac12(f(x)+f(-x))$. This is clear because
+			\begin{align*}
+				f(x) + f(-x) = \sum_{n=0}^\infty a_nx^n + (-1)^n a_n x^n = \sum_{n=0}^\infty (a_n+(-1)^na_n)x^n = \sum_{\substack{n = 0 \\ n\text{ even}}}^\infty 2a_nx^n
+			\end{align*}
+			Since if $n$ is odd, then $(-1)^n = -1$, hence $a_n + (-1)^na_n = a_n - a_n = 0$, and for $n$ even, $a_n + (-1)^na_n = a_n + a_n = 2a_n$. We also notice that $a_1 + a_3x^3 + \ldots$ = $\frac12 (f(x)-f(-x))$, but we do not prove this.
+			
+			\item First, I claim that the generating function for $(na_n)_n$ is $xf'(x)$. Notice that
+			\begin{align*}
+				f'(x) = \dv{x} \sum_{n=0}^\infty a_nx^n = \sum_{n=1}^\infty \dv{x} a_nx^n = \sum_{n=1}^\infty na_nx^{n-1} = \sum_{n=0}^\infty na_nx^{n-1}
+			\end{align*}
+			Thus $xf'(x) = \sum_{n=0}^\infty na_nx^n$. Finally, notice that
+			\begin{align*}
+				xf'(x) + f(x) = \sum_{n=0}^\infty (na_n + a_n)x^n = \sum_{n=0}^\infty (n+1)a_nx^n
+			\end{align*}
+		\end{enumerate}
+	
+		\item The generating function for $a_n$, the answer to the question, is just
+		\begin{align*}
+			(1+x)(1+x+x^2)(1+x^2+x^4+\ldots)(1+x^3+x^6+\ldots)
+		\end{align*}
+		The first factor corresponding to picking 0 or 1 pears, the second 0 or 1 or 2 oranges, the third an even number of apples, and the fourth a multiple of 3 bananas. More formally, to get the coefficient of $x^n$, we would have to pick an $x^a$ where $a = 0, 1$ from the first factor, an $x^b$ from the second factor where $b = 0, 1, 2$, an $x^c$ from the third factor where $c$ is even, and an $x^d$ from the fourth factor where $d$ is a multiple of 3 such that $x^a \cdot x^b \cdot x^c \cdot x^d = x^{a+b+c+d}$. If we let $a$ be the number of pears, $b$ the number of oranges, $c$ the number of apples, and $d$ the number of bananas, we see that this is exactly the quantity we are looking for. We conclude that
+		\begin{align*}
+			(1+x)(1+x+x^2)(1+x^2+x^4+\ldots)(1+x^3+x^6+\ldots) &= \frac{1+x}{(1+x)(1-x)} \cdot \frac{1+x+x^2}{(1-x)(1+x+x^2)} \\
+			&= \frac{1}{(1-x)^2} = \sum_{n=0}^\infty (n+1)x^n
+		\end{align*}
+		Thus $a_n = n+1$.
+		
+	
+		\item We notice that
+		\begin{align*}
+			\sum_{n=1}^\infty h_nx^n = \sum_{n=1}^\infty 3h_{n-1}x^n -4 \sum_{n=1}^\infty nx^n = \sum_{n=0}^\infty 3h_{n}x^{n+1} -4 \sum_{n=0}^\infty nx^n = 3x\sum_{n=0}^\infty h_{n}x^{n} - 4\frac{x}{(1-x)^2}
+		\end{align*}
+		Since $\sum_{n=0}^\infty nx^n$ is just $x \dv{x} \frac{1}{1-x} = \frac{x}{(1-x)^2}$. Thus,
+		\begin{align*}
+			f(x) - 2 = \sum_{n=0}^\infty h_nx^n - h_0 = 3xf(x) - 4\frac{x}{(1-x)^2}
+		\end{align*}
+		We see that
+		\begin{align*}
+			f(x)(1-3x) = 2 - \frac{4x}{(1-x)^2}
+		\end{align*}
+		So,
+		\begin{align*}
+			f(x) = \frac{2}{1-3x} - \frac{4x}{(1-x)^2(1-3x)}
+		\end{align*}
+		We write
+		\begin{align*}
+			\frac{4x}{(1-x)^2(1-3x)} = \frac{A}{1-x} + \frac{B}{(1-x)^2} + \frac{C}{1-3x}
+		\end{align*}
+		Plugging in $x = 1/3$ and covering up that factor yields $C = 4/3 / (2/3)^2 = 3$. Plugging in $x = 0$ and $x = -1$ and solving gives $A = -1$ and $B = -2$. Thus,
+		\begin{align*}
+			f(x) = \sum_{n=0}^\infty (2 \cdot 3^n - (-1 - 2(n+1) + 3 \cdot 3^n))x^n = \sum_{n=0}^\infty (-3^n + 2n + 3)x^n
+		\end{align*}
+		Thus $h_n = 3^n + 2n - 1$.
+		
+	
+		\item We claim that the generating function for $a_n$ is $(1+x+x^2+\ldots)(1+x^2+x^4+\ldots)(1+x^3+x^6+\ldots)$. This is true because the coefficient of $x^n$ is precisely the number of ways to choose an $x^a$ from the first factor, a $x^{2b}$ from the second factor, and a $x^{3c}$ from the third factor such that $x^n = x^a \cdot x^{2b} \cdot x^{3c} + x^{a + 2b + 3c}$, so this is equivalent to just finding a solution $(a, b, c)$ to $a + 2b + 3c = n$. If we let the generating function of $a_n$ be $f(x)$, we have
+		\begin{align*}
+			f(x) = \frac{1}{1-x} \cdot \frac{1}{1-x^2} \cdot \frac{1}{1-x^3}
+		\end{align*}
+		So $f(x)$ is a rational polynomial with denominator $(1-x)(1-x^2)(1-x^3) = 1-x-x^2+x^4+x^5-x^6$. Thus $a_n$ must satisfy the the recurrence
+		\begin{align*}
+			a_n - a_{n-1} - a_{n-2} + a_{n-4} + a_{n-5} - a_{n-6} = 0
+		\end{align*}
+	
+		\item  Notice that, by HW3 \#5, 
+		\begin{align*}
+			\qty(\frac{1}{\sqrt{1-4x}})^2 = \sum_{k=0}^\infty {2k \choose k} x^k \sum_{j=0}^\infty {2j \choose j} x^k = \sum_{n=0}^\infty \qty(\sum_{k=0}^n {2k \choose k} \cdot {2(n-k) \choose n-k}) x^k
+		\end{align*}
+		Thus it suffices to find the coefficient of $x^n$ in $1/(1-4x)$. But this is just (obviously) $4^n$. Thus,
+		\begin{align*}
+			\sum_{k=0}^n {2k \choose k} \cdot {2(n-k) \choose n-k} = 4^n
+		\end{align*}
+	\end{enumerate}
+\end{document}

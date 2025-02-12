@@ -1,0 +1,72 @@
+import networkx as nx
+import scipy as sp
+import tensorflow as tf
+import matplotlib.pyplot as plt
+import numpy as np
+
+from celluloid import Camera
+
+from tqdm import tqdm as tqdm
+
+
+def minimize_energy(G: nx.graph, lr=5e-3, max_iterations=100, tolerance=1e-12):
+    """
+    Finds a low energy configuration on the unit circle of vertices.
+    :param G: graph
+    :param lr: learning rate
+    :param max_iterations: max iterations of gradient descent
+    :param tolerance: for early abort
+    :return: a set of n vectors on the unit circle, each corresponding to a vertex
+    """
+    A = nx.adjacency_matrix(G).toarray()
+    n = len(G.nodes)
+
+    theta = np.random.uniform(0, 2*np.pi, n)
+    v_init = np.column_stack((np.cos(theta), np.sin(theta)))
+    v_var = tf.Variable(v_init, dtype=tf.float64)
+    A_const = tf.constant(A, dtype=tf.float64)
+    optimizer = tf.keras.optimizers.Adam(learning_rate=lr)
+
+    camera = Camera(plt.figure())
+
+    for _ in tqdm(range(max_iterations)):
+        with tf.GradientTape() as tape:
+            loss = tf.reduce_sum(tf.matmul(A_const, v_var) * v_var)
+        grad = tape.gradient(loss, v_var)
+        optimizer.apply_gradients([(grad, v_var)])
+        v_var.assign_sub(lr * grad)
+        v_var.assign(v_var / tf.norm(v_var, axis=1, keepdims=True))
+        if tf.reduce_all(tf.abs(grad) < tolerance):
+            break
+
+        # animation
+        v_val = v_var.numpy()
+        # plt.scatter(v_val[:, 0], v_val[:, 1], c='#1f77b4', s=1)
+        circle_t = np.linspace(0, 2 * np.pi, 100)
+        plt.plot(np.cos(circle_t), np.sin(circle_t), 'b')
+        for e in G.edges:
+            s = v_val[e[0], :]
+            t = v_val[e[1], :]
+            plt.plot([s[0], t[0]], [s[1], t[1]], '-ok', mfc='C1', mec='C1')
+        camera.snap()
+    v_val = v_var.numpy()
+    anim = camera.animate(blit=True)
+    plt.show()
+
+
+def generate_graph(n=10, m=5):
+    # G = nx.gnm_random_graph(n, m)
+    G = nx.bipartite.from_biadjacency_matrix(sp.sparse.csr_matrix(np.ones((n, n))))
+    pos = nx.spring_layout(G)  # Seed for reproducible layout
+    nx.draw(G, pos=pos)
+    plt.show()
+    return G
+
+
+def main():
+    G = generate_graph()
+    minimize_energy(G)
+
+
+if __name__ == '__main__':
+    main()

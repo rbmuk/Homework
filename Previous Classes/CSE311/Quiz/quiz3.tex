@@ -1,0 +1,162 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% GROUPOIDS FONT!
+\usepackage{eulervm}
+\usepackage{charter}
+
+% Standard mathematical typesetting packages
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Insert Title}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		\begin{enumerate}
+			\item $\exists x \big((Prime(x) \land Even(x)) \land \forall y ((Prime(y) \land Even(y)) \ra Equals(y, x)\big)$
+			\item $\exists x (\exists y (Prime(x) \land Prime(y) \land \lnot Equal(x, y) \land Even(x+y)))$
+			\item $\forall x \forall y ((Prime(x) \land Prime(y)) \ra \lnot Prime(x \cdot y))$
+			\item $\forall x ((Integer(x) \land Positive(x)) \ra (\exists y(Integer(y) \land Positive(y) \land Greater(y, x))))$.
+		\end{enumerate}
+		\item \begin{enumerate}
+			\item Every student that is in CSE 143 knows java.
+			\item There exists a student in CSE 143 that is a bio major.
+			\item Every CSE 311 student that did homework 1 knows DeMogran.
+		\end{enumerate}
+		\item 
+		2.1: Assumption x. 2.2: Elim $\exists$, 2.3: given from 1), 2.4: Modus Ponens, 2.5: Intro $\exists$, 2: Direct proof
+		
+		\item 
+		\begin{enumerate}
+			\item They are equivalent--$P(x, y)$ is just always true (because any input you put in it is true), so both statements are true for any domain of discourse, and therefore logically equivalent.
+			\item These are also equivalent. If the first one is true, we could just use the same values and get the second one. The same goes for vice versa, so they are equivalent (we proved the "iff").
+			\item These are not equivalent. Consider $P(x, y) = y = 2$, and let our set be the integers. Given any x we can just take $y = 2$ to get $P(x, y)$ to be true. However, given any $y \neq 2$, the second statement is false, and because they don't hold the same truth values can't be equivalent.
+			\item Let $P(x, y) = y > x$, and domain of discourse be real numbers. The first statement is true by taking $y = x+1$, while the second statement is not true as $\bR$ is unbounded.
+			\item These are also not equivalent--consider the continuity definition. Given any $\ve$ we can find a $\delta$, but certainly not the other way around (simply shrink $\ve$ until our function changes more than $\delta$ in the $\ve$-ball around it--don't take a constant function).
+		\end{enumerate}
+		
+		\item $t \lor q \equiv \lnot t \ra q$, by LOI. Assume $\lnot t$. Then we have $q$ by modus ponens, and because $q \ra r$, we have $r$ also by modus ponens. Then as we have $r \ra s$, we have $s$ by modus ponens again. So we have proven $\lnot t \ra s$ by the direct proof rule.
+		\item
+			\begin{enumerate}
+				\item The problem is with $\lnot b$ (assumption). We are not allowed to assume that, as that would show that given $(a \land \lnot b) \ra (b \lor c)$ then we have $a \ra c$, which is true. But this proof is wrong because we aren't showing that.
+				\item The intro problem is with the associativity. It should be $(p \ra q) \lor r$, which is different. A real proof would be like this: Given $r$, $p \ra (q \lor r) \equiv p \ra T \equiv T$, as $p \ra T$ is a tautology. We used domination in the second step, and we also didn't even need that $p \ra q$.
+				\item You can't use Eliminate $\lor (2, 3)$, because we were given $\lnot p \lor q$ and $q$, NOT $\lnot p \lor q$ and $\lnot q$. We needed the second one to actually eliminate it, because with $q$, $p \ra q$ is always true, which is \textit{invariant} about the choice of $p$.
+			\end{enumerate}
+		\item 
+			\begin{enumerate}
+				\item
+				We would get $\forall x \forall y (\lnot (Domain1(x) \land Domain2(y)) \lor \lnot (P(x, y) \land Q(x, y)))$ after demorgans. Using the law of implication, we get $\forall x,y ((Domain1(x) \land Domain2(y)) \ra \lnot P(x, y) \lor \lnot Q(x, y))$ after using demorgans once again.
+				\item 
+				$\exists x,y ([Domain1(x) \land Domain2(y)] \land  \lnot[P(x, y) \land Q(x, y)]) \equiv \exists x,y ([Domain1(x) \land Domain2(y)] \land [\lnot P(x, y)\lor \lnot Q(x, y)])$
+			\end{enumerate}
+				\begin{enumerate}
+					\item $\exists x \exists y (pred(x, y))$.
+					\item $\forall x \exists y (pred(x, y))$
+				\end{enumerate}
+		\item 
+			\begin{alignat*}{2}
+				\lnot (\lnot r \lor t) \justif{Given} \\
+				r \land \lnot t \justif{Negation, Demorgans} \\
+				r \justif{Elim $\land$} \\
+				(p \ra q) \land (r \ra s) \justif{LOI} \\
+				r \ra s \justif{Elim $\land$} \\
+				s \justif{Modus Ponens} \\
+				\lnot p \lor q \justif{Elim $\land$, LOI} \\
+				\lnot q \lor \lnot s \justif{Given} \\
+				\lnot q \justif{Elim $\lor$} \\
+				\lnot p \justif{Elim $\lor$}
+			\end{alignat*}
+		\item 
+		We can find an $x$ so that $P(x) \lor Q(x)$ by elim $\exists$. Now we know that $\lnot Q(x) \lor R(x)$ is also true, because it is true for everything we plug in. Now note either $Q(x)$ or $\lnot Q(x)$ is false. In any case, we have that either $P(x)$ or $R(x)$ is true, by elim $\lor$. So now it is clear that $P(x) \lor R(x)$ is true, as at least one of them is true. So we have found an $x$ that makes this statement true, and we are done.
+		
+		\newpage
+		\begin{alignat*}{2}
+			(s \ra q) \land (\lnot s \ra q) \justif{Given} \\
+			(\lnot s \lor q) \land (\lnot \lnot s \lor q) \justif{LOI, twice} \\
+			(\lnot s \lor q) \land (s \lor q) \justif{Double negative} \\
+			([\lnot s \lor q] \land s) \land ([\lnot s \lor q] \land q) \justif{Distributivity} \\
+			((s \land \lnot s) \lor (s \land q)) \land ([\lnot s \lor q] \land q) \justif{Distributivity} \\
+			(s \land q) \land ([\lnot s \lor q] \land q) \justif{Absorbtion, Commutativity} \\
+			(q \land q) \land (s \land [\lnot s \lor q]) \justif{Commutativity} \\
+			q \land ((s \land \lnot s) \lor (s \land q)) \justif{Absorption, Distributivity} \\
+			q \land (s \land q) \justif{Absorption, Negation}
+		\end{alignat*}
+		\end{enumerate}
+\end{document}

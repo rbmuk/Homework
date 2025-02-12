@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\renewcommand{\Re}{\mathfrak{R}\qty}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item \begin{enumerate}
+			\item We recognize that the only places where $\cos(z) = 0$ in $|z| \leq 2$ is $z = \pm \pi/2$ (This would mean that $e^{iz} + e^{-iz} = 0$, i.e. that $e^{2iz} = e^{i\pi}$, i.e. that $z = \pi/2$ or $-\pi/2$). We know that 
+			\begin{align*}
+				\int_{|z| = 2} \frac{z}{\cos(z)}dz = 2\pi i \qty(\mathrm{Res}\qty(\frac{z}{\cos(z)}, \pi/2) + \Res(\frac{z}{\cos(z)}, -\pi/2))
+			\end{align*}
+			We see that 
+			\begin{align*}
+				\lim_{z \to \pi/2} (z-\pi/2) \frac{z}{\cos(z)} = \pi/2 \lim_{z \to \pi/2} \frac{z-\pi/2}{\cos(z)} = \pi/2 \lim_{z \to \pi/2} \frac1{-\sin(z)} = -\pi/2
+			\end{align*}
+			And also that $\Res(z/\cos(z), -\pi/2) = -\pi/2$ as well (through a similar calculation). We conclude that $\int_{|z| = 2} z/\cos(z)dz = 2\pi i \cdot - \pi = -2\pi^2 i$.
+			
+			\item We note that
+			\begin{align*}
+				\int_{|z-1/2| = 3/2} \frac{\tan(z)}{z}dz = \int_{|z-1/2| = 3/2} \frac{\sin(z)}{\cos(z)z}dz
+			\end{align*}
+			In $|z-1/2| = 3/2$, the denominator is zero at $\pi/2$, and 0, with both poles being order 0. We notice that 0 is a removable singularity, since the function does not blow up there, so the residue at 0 is just 0. Now,
+			\begin{align*}
+				\lim_{z \to \pi/2} (z-\pi/2) \frac{\sin(z)}{z\cos(z)} = 2/\pi \cdot \lim_{z \to \pi/2} \frac{z-\pi/2}{\cos(z)} \overset{L'H}{=} -2/\pi
+			\end{align*}
+			We conclude by the residue theorem that the integral is just $2\pi i \cdot -2/\pi = -4i$.
+			
+			\item We look to evaluate
+			\begin{align*}
+				\int_{\Gamma} \frac{1}{z^4+1}dz
+			\end{align*}
+			Where $\Gamma$ is the semicircle of radius $R$ in the upper half plane. 
+			
+			\begin{tikzpicture}
+				\def\R{2} % set the radius R
+				\draw[->] (-4,0) -- (4,0) node[right] {$\mathrm{Re}(z)$}; % x-axis
+				\draw[->] (0,-1) -- (0,3) node[above] {$\mathrm{Im}(z)$}; % y-axis
+				\draw[thick,blue] (\R,0) arc (0:180:\R); % semicircle
+				\draw[->,thick] (0,0) -- ({\R*cos(45)},{\R*sin(45)}) node[midway,above left] {$R$}; % line labeled R
+				\draw[thick,blue] (-\R,0) -- (\R,0); % blue line on the real axis
+				\node[blue] at ({\R*cos(135)},{\R*sin(135)+0.3}) {$\Gamma$}; % label for the whole contour
+			\end{tikzpicture}
+		
+			Yes, I had ChatGPT draw this picture. AI is nuts! Anyways, we can parameterize the circle part of it by $\gamma(t) = Re^{it}$ where $0 \leq t \leq \pi$ (as usual). We see that
+			\begin{align*}
+				\int_\gamma \frac{1}{z^4+1}dz = \int_0^\pi \frac{iRe^{it}}{R^4e^{i4t}+1}dt
+			\end{align*}
+			Followed by the usual computation: $\qty|\int_0^\pi \frac{iRe^{it}}{R^4e^{i4t}+1}dt| \leq \int_0^\pi \qty|\frac{iRe^{it}}{R^4e^{i4t}+1}|dt \leq \int_0^\pi \frac{R}{R^4-1}dt \overset{R \to \infty}{\to} 0$.
+			
+			The only poles of $1/(z^4+1)$ in this contour are at $e^{i\pi/4}$ and $e^{3i\pi/4}$. We see that the residues are therefore equal to
+			$\Res(f, e^{i\pi/4}) = \lim_{z \to e^{i\pi/4}} \frac{z-e^{i\pi/4}}{z^4+1} \overset{L'H}{=} \lim_{z \to e^{i\pi/4}} \frac{1}{4z^3} = \frac14 e^{-3i\pi/4}$. Similarly, $\Res(f, e^{3i\pi/4}) = \frac14 e^{-\pi i/4}$. By the residue theorem we see that \begin{align*}
+				\int_\R \frac{1}{x^4+1}dx = \int_{\Gamma} \frac{1}{z^4+1}dz = \frac{\pi i}{2} \qty(e^{-\pi i/4} + e^{-3\pi i/4}) = \frac{\pi}{\sqrt{2}}
+			\end{align*}
+			Very nice!
+			\item I will take less care with the calculations this time since they are almost the same as last time. Using the same contour, and the same $\gamma$ we get
+			\begin{align*}
+				\int_\gamma \frac{z^2}{z^4+1}dz = \int_0^\pi \frac{R^2e^{2it}}{R^4e^{4it}+1} iRe^{it}dt \approx \int_0^\pi \frac1Rdt \to 0
+			\end{align*}
+			One could do the reverse triangle inequality trick again to make this rigorous, but I don't want to. Now we are left to calculate the residues, which again are the same as last time. We see that
+			\begin{align*}
+				\Res(\frac{z^2}{z^4+1}, e^{i\pi/4}) = \lim_{z \to e^{i\pi/4}} (z-e^{i\pi/4}) \frac{z^2}{z^4+1} = e^{i\pi/2} \cdot \frac14 e^{-3i\pi/4} = \frac i4 e^{-3i\pi/4}
+			\end{align*}
+			Similarly, $\Res(\frac{z^2}{z^4+1}, e^{3i\pi/4}) = \frac{-i}4 e^{-i\pi/4}$. We conclude that
+			\begin{align*}
+				\int_{\R} \frac{x^2}{x^4+1}dx = 2\pi i \qty(\frac i4 e^{-3i\pi/4} - \frac i4 e^{-i\pi/4}) = -\frac{\pi i}{2} \frac{i}{2\sqrt{2}} = \frac{\pi}{4\sqrt{2}}
+			\end{align*}
+		\end{enumerate}
+		\item First, we see that
+		\begin{align*}
+			\int_\R \frac{\cos(x)}{(1+x^2)^2}dx = \Re(\int_{\R} \frac{e^{ix}}{(1+x^2)^2}dx)
+		\end{align*}
+		Factor $(1+x^2)^2 = (x+i)^2(x-i)^2$. We shall use the same contour as I used in the last two parts of the last problem. First,
+		\begin{align*}
+			\int_\gamma \frac{e^{iz}}{(1+z^2)^2}dz = \int_0^\pi \frac{e^{Ri\cos(t)} \cdot e^{-R\sin(t)}}{(1+R^2e^{2it})^2} \cdot iRe^{it}dt
+		\end{align*}
+		Like usual, $|1+R^2e^{2it}| \geq R^2 - 1$, and choosing $R$ large enough so that the RHS is positive gives $|1+R^2e^{2it}|^2 \geq (R^2-1)^2$. Also, on $[0, \pi]$, $\sin(t) \geq 0$, so $|e^{-R\sin(t)}| \leq 1$. We conclude that
+		\begin{align*}
+			\qty|\int_0^\pi \frac{e^{Ri\cos(t)} \cdot e^{-R\sin(t)}}{(1+R^2e^{2it})^2} \cdot iRe^{it}dt| \leq \int_0^\pi \frac{R}{(R^2-1)^2}dt \overset{R \to \infty}{\to} 0
+		\end{align*}
+		We are left to calculate $\Res(f, i)$. This time the pole is of order 2, so we must use the derivative. We see that
+		\begin{align*}
+			\Res(f, i) &= \lim_{z \to i} \frac{1}{1!} \dv{z} (z-i)^2 e^{iz}{(1+z^2)^2} = \lim_{z \to i} \dv{z} e^{iz}{(z+i)^2} \\
+			&= \lim_{z \to i} \frac{ie^{iz}(z+3i)}{(z+i)^3} = \frac{ie^{-1} \cdot 4i}{8i^{-1}} = \frac{1}{2ie}
+		\end{align*}
+		Therefore, by the residue theorem
+		\begin{align*}
+			\int_{\R} \frac{\cos(x)}{(x^2+1)^2}dx = \Re(\int_\R \frac{e^{ix}}{(x^2+1)^2}dx) = \Re(2\pi i \frac{1}{2ie}) = \frac{\pi}{e}
+		\end{align*}
+		A magical formula!
+		
+		\item Since $\cos(x) = \cos(-x)$, we can take WLOG $a > 0$ (i.e. we can integrate $\cos(|a|x)$ instead). We see that 
+		\begin{align*}
+			\int_\R \frac{\cos(ax)}{x^2+b^2}dx = \Re(\int_\R \frac{e^{iax}}{x^2+b^2}dx)
+		\end{align*}
+		And once again we will reuse the contour in the last 3 problems. Using $\gamma(t) = Re^{it}$, we see that 
+		\begin{align*}
+			\int_\gamma f(z)dz = \int_0^\pi \frac{e^{iaRe^{it}}}{R^2e^{2it} + b^2} iRe^{it}dt
+		\end{align*}
+		Once again, $e^{iaRe^{it}} = e^{iaR\cos(t)} e^{-aR\sin(t)}$. Since $aR\sin(t)$ is positive on $[0, \pi]$ (remember, we took $a$ to be positive!), $|e^{iaRe^{it}}| \leq 1$. Also, $|R^2e^{2it} + b^2| \geq R^2 - b^2$, so we see that
+		\begin{align*}
+			\qty|\int_0^\pi \frac{e^{iaRe^{it}}}{R^2e^{2it} + b^2} iRe^{it}dt| \leq \int_0^\pi \frac{R}{R^2-b^2}dt \overset{R \to \infty}{\to} 0
+		\end{align*}
+		Like usual. Next, we see that $\frac{e^{aiz}}{z^2+b^2}$ has one pole at $z = ib$ with order 1 inside our contour. We are left with calculating the residue of our function there, which can be done as follows:
+		\begin{align*}
+			\Res(\frac{e^{aiz}}{z^2+b^2}, ib) = \lim_{z \to ib} (z-ib)\frac{e^{aiz}}{(z+ib)(z-ib)} = e^{-ab} \lim_{z \to ib} \frac{1}{z+ib} = \frac{e^{-ab}}{2ib}
+		\end{align*}
+		By the residue theorem, $\int_\R \frac{\cos(ax)}{x^2+b^2}dx = \Re(\int_\R \frac{e^{iax}}{x^2+b^2}dx)  = \Re(2\pi i \cdot \frac {e^{-ab}}{2ib}) = \frac{\pi e^{-ab}}{b}$, as claimed. Remember, we could've just put $|a|$ everywhere if $a$ was negative, so the identity in the question holds.
+		
+		\item The idea for this one is to revert the transformation we did to get it into the complex plane. First, since $\sin(x-\pi) = -\sin(x)$, we see that $\sin(x-\pi) = \sin^2(x)$, and so 
+		\begin{align*}
+			\int_{-\pi}^{\pi} \frac{1}{1+\sin^2(\theta)}d\theta = \int_0^{2\pi} \frac{1}{1+\sin^2(\theta)}d\theta
+		\end{align*}
+		Now note that $\sin^2(\theta) = \frac12 (1 - \cos(2\theta)) = \frac12 - \frac14 \qty(e^{2i\theta}+e^{-2i\theta})$. Plugging this in gives us
+		\begin{align*}
+			\int_0^{2\pi} \frac{1}{1+\sin^2(\theta)}d\theta &= \int_0^{2\pi} \frac{4}{6-e^{2i\theta}-e^{-2i\theta}}d\theta
+		\end{align*}
+		Now let $z = e^{2i\theta}$. Note that $dz = 2ie^{2i\theta}d\theta$, i.e. that $\frac{-idz}{2z} = d\theta$. Our contour will be the unit circle traced counterclockwise, twice. So if we let $\gamma$ = the unit circle, we get that this integral equals (the two integrals and the divide by two cancels)
+		\begin{align*}
+			\oint_\gamma \frac{-4i}{6z-z^2-1}dz = \oint_\gamma \frac{4i}{z^2-6z+1}dz
+		\end{align*}
+		The only root of $z^2-6z+1$ inside the unit circle is $-2\sqrt{2}+3$. So, we wish to calculate the residue of our function there. We see that
+		\begin{align*}
+			\Res(\frac{4i}{z^2-6z+1}, -2\sqrt{2}+3) = 4i \lim_{z \to -2\sqrt{2}+3} \frac{1}{z-2\sqrt{2}-3} = \frac{-i}{\sqrt{2}}
+		\end{align*}
+		Now, by the residue theorem,
+		\begin{align*}
+			\int_0^{2\pi} \frac1{1+\sin^2(\theta)}d\theta = \oint_\gamma \frac{4i}{z^2-6z+1}dz = 2\pi i \cdot \frac{-i}{\sqrt{2}} = \pi\sqrt{2}
+		\end{align*}
+		Which is very nice. CA is powerful!!
+		
+		\item We are going to do the same first step as last time. Since $\cos(\theta-\pi) = -\cos(\theta)$, we see that
+		\begin{align*}
+			\int_{-\pi}^\pi \frac{1-r^2}{1-2r\cos(\theta)+r^2}d\theta = (1-r^2)\int_0^{2\pi} \frac{1}{1+2r\cos(\theta)+r^2}d\theta \\
+			= (1-r^2)\int_0^{2\pi} \frac{1}{1+re^{i\theta}+re^{-i\theta}+r^2}d\theta
+		\end{align*}
+		Now let $z = e^{i\theta}$ (We may assume that $r \neq 0$, if $r = 0$, the integral is obviously $2\pi$ as the integrand is just  $1$). Once again $\gamma$ is the standard parametrization of the unit circle. Clearly $dz = ie^{i\theta}d\theta$, so $\frac{-idz}{z} = d\theta$. Forgetting about the $(1-r^2)$, our integral becomes 
+		\begin{align*}
+			\oint_\gamma \frac{-i}{z+rz^2+r+r^2z}dz = \oint_\gamma \frac{-i}{(z+r)(rz+1)}dz 
+		\end{align*}
+		Since $0 < |r| < 1$, $\qty|\frac1r| > 1$, so the only pole inside our unit circle is $z = -r$. We then wish to calculate
+		\begin{align*}
+			\Res(\frac{-i}{(z+r)(rz+1)}, -r) = -i \lim_{z \to -r} \frac{1}{rz+1} = \frac{-i}{1-r^2}
+		\end{align*}
+		By the residue theorem,
+		\begin{align*}
+			\oint_\gamma \frac{-i}{(z+r)(rz+1)}dz = 2\pi i \cdot \frac{-i}{1-r^2} = \frac{2\pi}{1-r^2}
+		\end{align*}
+		So, our original integral equals $2\pi$. This is very nice!!! I believe you could also do all these integrals without complex analysis by the Weirstrass substitution, but it would be a LOT more work. This stuff is magical in comparison!
+	\end{enumerate}
+\end{document}

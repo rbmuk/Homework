@@ -1,0 +1,30 @@
+digraph FullyConnected {
+    rankdir=BT; // Bottom-to-top layout
+    node [shape=rect, style=filled, fillcolor=lightblue, fontsize=12];
+
+    // Input layer
+    input [label="Input", shape=rect, width=2];
+
+    // Fully connected + ReLU layers
+    subgraph cluster_fc {
+        labelloc = "b"; // Align label to the right
+        style = "dashed";
+
+        fc1 [label="FC Layer"];
+        relu1 [label="ReLU"];
+        dots [label="..."];
+    }
+
+    // Final fully connected layer
+    final_fc [label="Final FC Layer"];
+
+    // Output layer
+    output [label="Output"];
+
+    invisible_box [label="repeats d times", shape=plaintext, fillcolor=transparent];
+
+    // Connections
+    input -> fc1;
+    fc1 -> relu1 -> dots -> final_fc -> output;
+     relu1 -> invisible_box [style=invis];
+}

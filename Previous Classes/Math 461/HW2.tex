@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+\usepackage{hyperref} % links
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdfpagemode=FullScreen
+}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+\usepackage{braket}
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip
+]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\S}{\mbb S}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Call our students Alison, Bob, Casey, and Diana $A, B, C, D$. We can partition our distributions based on who gets the lemon drink and who gets the lime drink. We could distribute the lime/lemon to people in ${4 \choose 2} \cdot 2$ different ways (pick the 2 people and then pick the ordering of lime/lemon vs lemon/lime). From here we can give the remaining two people each an orange drink to guarantee each person gets a drink, which tells us we now need to distribute the remaining 8 (indistinguishable) orange drinks into 4 distinguishable students. This is just simple stars and bars which can be done in ${8 + 4- 1 \choose 8} = {11 \choose 8}$. We conclude the total number of ways to distribute those drinks is 
+		\begin{align*}
+			\boxed{2 \cdot {4 \choose 2} \cdot {11 \choose 8}}
+		\end{align*}
+	
+		\newpage
+		\item The way I did this problem is by making 9 bins, the first bin representing the number of days before her first workout, the second bin representing the number of days between her first and second workout, and so on, and the last bin representing the number of days left in the month after her last workout. This has now been reduced to a simple stars and bars problem--she works out for 8 days, so we $31-8$ days left to play with, and we need to put at least 2 days between each workout, so the middle 7 boxes have 2 days already in them, giving us $31-8-14 = $ days to play with. So we are putting 9 indistinguishable days into 9 distinguishable boxes, which can be done in 
+		\begin{align*}
+			\boxed{{9+9-1 \choose 9} = {17 \choose 9}}
+		\end{align*}
+		different ways.
+		
+		\newpage
+		\item \begin{enumerate}
+			\item The left hand side counts the number of ways I could choose 2 people from a group of $a+b$. There are 3 ways to do this: pick 2 people from the first a, 2 people from the remaining b, or pick 1 person from the first a, and 1 person from the remaining b. Thus there are ${a \choose 2} + {b \choose 2} + ab$ ways to do this, establishing that equality.
+			
+			\item We use a similar idea from before. You could either pick 2 from the first a, 2 from the middle b, or 2 from the remaining c, one from the first a and one from the middle b, one from the first a and one from the last c, or finally one from the middle b and one from the last c. This gives ${a \choose 2} + {b \choose 2} + {c \choose 2} + ab + ac + bc$ ways, so we've concluded that
+			\begin{align*}
+				\boxed{{a + b + c \choose 2} = {a \choose 2} + {b \choose 2} + {c \choose 2} + ab + ac + bc}
+			\end{align*}
+		\end{enumerate}
+	
+		\newpage
+		\item We recall from the previous homework that if you have a vertical tile placed, you need one directly adjacent to it. We can now partition the number of $2 \times n$ tilings by the number of vertical blocks we have. We could have no vertical blocks, up to $\floor{\frac n2}$ vertical blocks. Note that we cannot have more than $\floor{\frac n2}$ vertical blocks, or we would have too many domino tiles and not enough space to use them. Given $i \in \Set{0, \ldots, \floor{\frac n2}}$ vertical blocks, we would need $n - 2i$ horizontal blocks to complete our tiling. So, we have $n-2i + i = n-i$ blocks to work with. Now we just need to arrange these blocks. Of course, this question is equivalent to asking how many length $n-i$ strings are there where we have $i$ 1's and $n-2i$ 0's. The answer to this question is $\frac{(n-i)!}{i! (n-2i)!} = {n-i \choose i}$. We conclude that the number of ways to tile a $2 \times n$ rectangle is 
+		\begin{align*}
+			\sum_{i=0}^{\floor{ \frac n2}} {n-i \choose i}
+		\end{align*}
+		
+		Now that we have established the aforementioned claim, we can see that for any tiling of the $2 \times n$ rectangle, the top either has 1 horizontal domino, or a vertical block. In the first case we have to cover the remaining $2 \times (n-1)$ rectangle, which there are $a_{n-1}$ ways to do that. In the second case we have to cover the remaining $2 \times (n-2)$ rectangle, which there are $a_{n-2}$ ways to do that. We conclude that $a_n = a_{n-1} + a_{n-2}$. $\hfill \textbf{Q.E.D.}$
+	
+		\newpage
+		\item Associate with each person a number from $1$ to $n$, depending on their height. For example, the shortest person is 1, and the tallest is $n$. We have reduced our problem to finding the number of strings on $[n]$ so that if $x_{i-1} > x_i$, then $x_i > x_{i+1}$ for $i = 1, \ldots, n-1$. I claim that the $1$ can only be at the start or the end. Suppose otherwise, and it were somewhere in the middle. To the left and right of the 1 must be something greater than 1, a contradiction. Letting $a_n$ be the number of arrangements described in the problem on $n$ people, I now claim that $a_n = 2 a_{n-1}$. Either the 1 is at the start or at the end. In the first case, we now need to cover the remaining $n-1$ spots with $n-1$ people of different heights. The only issue is that the 1 being at the start could potentially break things. It could be the case that the second number in the string is less than the third and first. But this cannot happen since $1$ is less than every other number. The same logic holds for when the 1 is at the end, establishing our claim. Now, we see that $a_2 = 2$ (both permutations work). Using our claim this yields 
+		\begin{align*}
+			\boxed{a_n = 2^{n-1}}
+		\end{align*}
+	\end{enumerate}
+\end{document}

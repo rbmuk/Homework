@@ -1,0 +1,329 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+%\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,dsfont,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def \C{\mbb{C}}
+\def \R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def \cph{\varphi}
+\renewcommand{\th}{\theta}
+\def \ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+
+% Sets
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+\def \D{\mbb{D}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\justif}[1]{&\quad &\text{(#1)}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 336 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item Write $f(x+iy) = u(x, y) + iv(x,y)$, and write $\gamma(t) = x(t)+iy(t)$. Then, by definition of the complex line integral, we get that
+		\begin{align*}
+			\int_\gamma f(z)dz &= \int_0^1 (u(x(t), y(t)) + iv(x(t), y(t))(x'(t)+iy'(t))dt \\
+			&= \int_0^1 \qty[u(x(t), y(t))x'(t)-v(x(t),y(t))y'(t)]dt+i\int_0^1 \qty[v(x(t),y(t))x'(t)+u(x(t),y(t))y'(t)]dt \\
+			&= \int_\gamma udx - vdy + i\int_\gamma vdx + udy
+		\end{align*}
+		In our case, since $\gamma = \partial \D$, we may apply Green's theorem to see that
+		\begin{align*}
+			\int_\gamma udx - vdy &= \int_\D -\pdv{v}{x}-\pdv{u}{y} dA \\
+			&= \int_\D 0 dA \\
+			&= 0
+		\end{align*}
+		Where we used the Cauchy-Riemann equations in the second equality. Also,
+		\begin{align*}
+			i\int_\gamma vdx + udy &= i\int_\D \pdv{u}{y} - \pdv{v}{x} dA \\
+			&= i \int_\D 0 dA \\
+			&= 0
+		\end{align*}
+		where once again we used the Cauchy-Riemann equations. A sum of zeros is another zero, so indeed the integral over the boundary of the unit disk of any holomorphic function is 0 (Also, this argument clearly generalizes, since all we used was that $\gamma$ is closed).
+		
+		\item Notice that, for any polynomial $p(x)$, 
+		\begin{align*}
+			\dv{x} e^{-x^2} p(x) = -e^{-x^2}(p'(x) - 2xp(x))
+		\end{align*}
+		We know that $\dv[0] e^{-x^2} = e^{-x^2}$. Suppose that $\dv[n]{x} e^{-x^2} = e^{-x^2}p(x)$ for some polynomial $p(x)$ of degree $n$ with leading coefficient $(-1)^n 2^n$. By what we did above, we see that $\dv[n+1] e^{-x^2} = \dv{x} \dv[n]{x} e^{-x^2} = \dv{x}(e^{-x^2}p(x)) =  -e^{-x^2}(p'(x) - 2xp(x))$. $p'(x)$ has degree $n-1$, while $2xp(x)$ has degree $n+1$, so this new polynomial has degree $n+1$, and picked up a leading coefficient of $-2$, so the new polynomial has leading coefficient $-2 \cdot (-1)^n \cdot 2^n = (-1)^{n+1} 2^{n+1}$, as claimed. We can paramameterize the rectangle described by $\gamma_1(x) = x$, $-R \leq x \leq R$, $\gamma_2(x) = R + ix$, $0 \leq x \leq t$, $\gamma_3(x) = x + it$, $R \leq x \leq -R$ (again, makes sense in the integral), and finally $\gamma_4(x) = -R + ix$, $t \leq x \leq 0$ (makes sense in the integral!). Since the rectangle is a closed loop,
+		\begin{align*}
+			\int_{\gamma_1+\gamma_2+\gamma_3+\gamma_4} f(z)dz = 0
+		\end{align*}
+		I claim that the integral over $\gamma_2$ and $\gamma_4$ equal 0. In fact, one will imply the other. We start with $\gamma_2$:
+		\begin{align*}
+			\int_{\gamma_2} f(z)dz = \int_0^t e^{(R+i(x-t))^2/2}e^{-(R+ix)^2}p(R+ix) \cdot idx
+		\end{align*}
+		Since $\dv[n]{x} e^{-x^2} = (-1)^n e^{-x^2} H_n(x)$ where $H_n(x)$ is a polynomial of degree $n$ with leading coefficient $2^n$, so here we are just calling $(-1)^nH_n(x) = p(x)$. This is smaller in magnitude than (by the triangle inequality)
+		\begin{align*}
+			\int_0^t |e^{R^2/2}| \cdot |e^{-Ri(x-t)}| \cdot |e^{-(x-t)^2/2}| \cdot |e^{-R^2}| \cdot |e^{-2iRx}| \cdot |e^{x^2}| \cdot |p(R+ix)|dx \\
+			\leq \int_0^t e^{-R^2/2} \cdot 1 \cdot 1 \cdot 1 \cdot e^{x^2} \cdot |p(R+ix)|dx
+		\end{align*}
+		Less than or equal to since $-(x-t)^2/2 \leq 0$. Next, since $p$ is a polynomial of degree $n$ with leading coefficient $2^n$, $|p(z)/2^n z^n| \to 1$, so we have the bound $|p(z)| \leq 2^{n+1}z^n = Cz^n$ for some $C$. So,
+		\begin{align*}
+			\int_0^t e^{-R^2/2} e^{x^2} \cdot |p(R+ix)|dx &\leq Ce^{-R^2/2} \int_0^t e^{x^2} |(R+ix)^n|dx \\
+			&\leq Ce^{-R^2/2} \int_0^t e^{x^2} \sum_{k=0}^n {n \choose k} R^{n-k} |ix|^{k}dx \\
+			&= C\sum_{k=0}^n {n \choose k} e^{-R^2/2}R^{n-k} \int_0^t e^{x^2} x^{k}dx
+		\end{align*}
+		As $t$ is fixed, for any $k$, $\int_0^t e^{x^2}x^kdx$ is finite, and bounded in absolute value by some constant $D_k$. Letting $D = \max_{k} D_k$, we see that 
+		\begin{align*}
+			C\sum_{k=0}^n {n \choose k} e^{-R^2/2}R^{n-k} \int_0^t e^{x^2} x^{k}dx \leq C\sum_{k=0}^n {n \choose k} e^{-R^2/2}R^{n-k} D
+		\end{align*}
+		As $R \to \infty$, $e^{-R^2/2} \cdot R^{n-k} \to 0$ for any $n-k \geq 0$. A sum of zeros is another 0, so we see our integral tends towards 0, as claimed. If we recall back to the first step I did, either $R$ was squared, or it was in the power of $e^{i \cdot \text{real}}$, so replacing $R \to -R$ doesn't change anything, as the sign of $R$ never mattered. The only change is that the bounds of integration are backwards, which would change the sign of the integral, but as $-0 = 0$, we see the integral over $\gamma_4$ is also zero. We are left to evaluate the integral over $\gamma_3$. Note that 
+		\begin{align*}
+			\dv[n]{z} e^{-z^2}\eval_{z=x+it}=(-1)^ne^{z^2}H_n(z)\eval_{x+it} = (-1)^ne^{-(x+it)^2}H_n(x+it)
+		\end{align*}
+		We prove that this equals $\dv[n]{x} e^{(x+it)^2}$ by induction. The base case is clear:
+		\begin{align*}
+			\dv[0]{x} e^{-(x+it)^2} = e^{-(x+it)^2} = \dv[0]{z} e^{-z^2}\eval_{z=x+it}
+		\end{align*}
+		Since $H_0(x+it) \equiv 1$.
+		Suppose it is true for some $n \geq 1$. We see that
+		\begin{align*}
+			\dv[n+1]{x} e^{-(x+it)^2} = \dv{x} \dv[n]{x} e^{-(x+it)^2} &= \dv{x} (-1)^ne^{-(x+it)^2}H_n(x+it) \\
+			&= (-1)^n e^{-(x+it)^2} \qty[-2(x+it)H_n(x+it)+H_n'(x+it)] \\
+			&= (-1)^n e^{-(x+it)^2} \cdot (-1) \cdot H_{n+1}(x+it) \justif{See question 3} \\
+			&= (-1)^{n+1} e^{-(x+it)^2} H_{n+1}(x+it)
+		\end{align*}
+		As claimed. Finally, notice that
+		\begin{align*}
+			-\int_{-R}^R e^{x^2/2} \cdot \dv[n]{z} e^{-z^2} \eval_{z=x+it} dx &= -\int_{-R}^R e^{x^2/2} \cdot \dv[n]{x} e^{-(x+it)^2}dx \\
+			&= -\int_{-R}^R e^{x^2/2} \cdot \dv[n]{t} (-i)^n e^{-(x+it)^2}dx \\
+			&= -(-i)^n \int_{-R}^R e^{x^2/2} \dv[n]{t} e^{-(x+it)^2}dx \\
+			&= -(-i)^n \dv[n]{t} \int_{-R}^R e^{x^2/2} \cdot e^{-x^2-2itx+t^2}dx \\
+			&= -(-i)^n \dv[n]{t} e^{t^2} \int_{-R}^R e^{-x^2/2}e^{2itx}dx
+		\end{align*}
+		Since $i^{2n} = (-1)^n$, we used the fact in the problem, and we simplified the denominator. We recall that the Gaussian is it's own Fourier transform:
+		\begin{align*}
+			\int_{-\infty}^\infty e^{-\pi x^2} \cdot e^{2\pi i x \xi} dx = e^{-\pi \xi^2}
+		\end{align*}
+		Finally, by applying the substitution $x = \sqrt{2\pi}u$, with $\sqrt{2\pi} \dd u = \dd x$, we get that
+		\begin{align*}
+			\int_{-R}^R e^{-x^2/2}e^{2itx}dx &\overset{R \to \infty}{=} \sqrt{2\pi} \int_{-\infty}^{\infty} e^{-\pi u^2} \cdot e^{2\pi i u (\sqrt{2/\pi} t)} \dd u \\
+			&= \sqrt{2\pi} e^{-\pi 2/ \pi \cdot t^2} = \sqrt{2\pi} e^{-2t^2}
+		\end{align*}
+		Therefore,
+		\begin{align*}
+			-(-i)^n \dv[n]{t} e^{t^2} \int_{-R}^R e^{-x^2/2}e^{2itx}dx &\to -(-i)^n \dv[n]{t} e^{t^2} \sqrt{2\pi} e^{-2t^2} \\
+			&= -(-i)^n \sqrt{2\pi} \dv[n]{t} e^{-t^2} \\
+			&= -(-i)^n \sqrt{2\pi} (-1)^n e^{-t^2} H_n(t)
+		\end{align*}
+		Which is nice. Since $\int_{\gamma_2} f(z)dz = \int_{\gamma_4} f(z)dz = 0$, we have that $\int_{\gamma_1} f(z)dz + \int_{\gamma_3} f(z)dz = 0$, which tells us that $\int_{\gamma_1} f(z)dz = -\int_{\gamma_3} f(z)dz$. Plugging the parameterization in, this tells us that
+		\begin{align*}
+			\int_{-\infty}^\infty e^{(x-it)^2/2} \dv[n]{x} e^{-x^2}dx = (-i)^n \sqrt{2\pi} (-1)^n e^{-t^2} H_n(t)
+		\end{align*}
+		Finally, note that $e^{(x+it)^2/2} = e^{x^2/2} \cdot e^{itx} \cdot e^{-t^2/2}$, so the LHS equals
+		\begin{align*}
+			e^{-t^2/2} \int_{-\infty}^{\infty} e^{x^2/2} e^{itx} \dv[n]{x} e^{-x^2}dx
+		\end{align*}
+		Once again, $\dv[n]{x} e^{-x^2} = (-1)^n e^{-x^2}H_n(x)$, so this equals
+		\begin{align*}
+			e^{-t^2/2} (-1)^n \int_{-\infty}^{\infty} e^{x^2/2} e^{itx}  e^{-x^2}H_n(x)dx &= e^{-t^2/2} (-1)^n \int_{-\infty}^{\infty}  e^{itx} e^{-x^2/2} H_n(x)dx \\
+			&= e^{-t^2/2} (-1)^n \int_{-\infty}^{\infty} \phi_n(x) e^{itx}dx
+		\end{align*}
+		We conclude that
+		\begin{align*}
+			e^{-t^2/2} (-1)^n \int_{-\infty}^{\infty} \phi_n(x) e^{itx}dx &= (-i)^n \sqrt{2\pi} (-1)^n e^{-t^2} H_n(t) \\
+			\implies \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \phi_n(x) e^{itx}dx &= (-i)^n e^{-t^2/2} H_n(t) = (-i)^n \phi_n(t)
+		\end{align*}
+		And we are done. $\hfill$ Q.E.MF'n.D.
+		
+		\item By definition, $(-1)^n H_n(x)e^{-x^2} = \dv[n]{x} e^{-x^2}$ (note: $n \equiv -n$ mod 2). We see that
+		\begin{align*}
+			H_{n+1}(x) &= - (-1)^n e^{x^2} \dv{x} \dv[n]{x} e^{-x^2} \\
+			&= - (-1)^n e^{x^2} \dv{x}(-1)^n H_n(x)e^{-x^2} \\
+			&= -e^{x^2} \dv{x}H_n(x)e^{-x^2} \\
+			&= -e^{x^2} e^{-x^2} (H_n'(x) - 2xH_n(x)) \\
+			&= -H_n'(x) + 2xH_n(x)
+		\end{align*}
+		Also, by the generalized Liebnitz rule, we see that
+		\begin{align*}
+			\dv[n+1]{x} e^{-x^2} = \dv[n]{x} -2xe^{-x^2} &= -2 \sum_{k=0}^n {n \choose k} \dv[n-k]{x} e^{-x^2} \dv[k]{x} x \\
+			&= -2x\dv[n]{x} e^{-x^2} -2n\dv[n-1]{x} e^{-x^2}
+		\end{align*}
+		Which, through a similar calculation as above, shows that
+		\begin{align*}
+			H_{n+1}(x) = 2xH_n(x) - 2nH_{n-1}(x)
+		\end{align*}
+		These together show that $H_n'(x) = 2nH_{n-1}(x)$. We also recall that the definition of $\phi_n(x) = e^{-x^2/2}H_n(x)$. Algebra shows that
+		\begin{align*}
+			 \phi_n''(x) &= e^{-x^2/2}((-1+x^2)H_n(x) - 2xH_n'(x) + H_n''(x)) \\
+			 &= e^{-x^2/2}((-1+x^2)H_n(x) + (-2xH_n(x) + H_n'(x))' + 2H_n(x)) \\
+			 &= e^{-x^2/2}((1+x^2)H_n(x) - H_{n+1}'(x)) \\
+			 &= (1+x^2)\phi_n(x) - e^{-x^2/2}H_{n+1}'(x) \\
+			 &= (1+x^2)\phi_n(x) - 2(n+1)e^{-x^2/2} H_{n}(x) \\
+			 &= (1+x^2)\phi_n(x) - 2(n+1)\phi_{n}(x) \\
+			 &= x^2\phi_n(x) - (2n+1)\phi_n(x)
+		\end{align*}
+		So indeed, $\phi_n(x)$ satisfies $y''-x^2y + (2n+1)y = 0$ for every $n \geq 0$. Also, note that $\phi_n(x) \to 0$ as $|x| \to \infty$, since $e^{-x^2}$ shrinks faster than any polynomial, and of course $H_n(x)$ is a polynomial of degree $n$. Similarly, $\phi_n'(x) = e^{-x^2}(H_n'(x) - 2xH_n(x))$, and as $H_n'(x) - 2xH_n(x)$ is just another polynomial, as $|x| \to \infty$, $\phi_n'(x) \to 0$ for any $n$. We see that
+		\begin{align*}
+			\int_\R \phi_n''(x) \phi_m(x)dx &= \phi_m(x) \phi_n(x) \eval_{-\infty}^\infty - \phi_m'(x) \phi_n(x) \eval_{-\infty}^\infty + \int_\R \phi_m''(x)\phi_n(x)dx \\
+			&= \int_\R \phi_m''(x)\phi_n(x)dx
+		\end{align*}
+		Since we showed that $\phi_m'(x) \to 0$ and $\phi_n(x) \to 0$, so their product also tends towards 0, and the argument is similar for the other term going to 0. By the DE that $\phi$ satisfies, we see that
+		\begin{align*}
+			\int_\R \phi_n''(x) \phi_m(x)dx &= \int_\R (x^2\phi_n(x) - (2n+1)\phi_n(x))\phi_m(x)dx \\
+			&= -(2n+1)\int_\R \phi_n(x)\phi_m(x)dx + \int_\R x^2\phi_n(x)\phi_m(x)dx
+		\end{align*}
+		And similarly,
+		\begin{align*}
+			\int_\R \phi_m''(x)\phi_n(x)dx &= -(2m+1)\int_\R \phi_n(x)\phi_m(x)dx + \int_\R x^2\phi_n(x)\phi_m(x)dx
+		\end{align*}
+		Since these are equal, we can subtract the integral with $x^2$ to see that
+		\begin{align*}
+			(2n-2m)\int_\R \phi_n(x)\phi_m(x)dx = 0
+		\end{align*}
+		Since $n \neq m$, dividing by $(2n-2m)$ on both sides gives us our desired result.
+		
+		\item Let $\Gamma$ be the semicircle oriented counter-clockwise around the origin of radius $1$. Then $\int_\Gamma f(z)dz = 0$, since $\Gamma$ is a closed loop. We decompose $\Gamma$ into two parts, $\gamma_1(t) = t$, $-1 \leq t \leq 1$, and $\gamma_2(t) = e^{it}$, $0 \leq t \leq \pi$, and by our formula above we get that 
+		\begin{align*}
+			0 = \int_\Gamma f^2(z)dz = \int_{-1}^1 f^2(x)dx + \int_0^{\pi} f^2(e^{it}) \cdot ie^{it}dt
+		\end{align*}
+		Similarly, let $\Xi$ be the contour that starts at $1$, moves to $-1$ in a straight line, and then moves counter-clockwise in a circular form to close the loop. $\Xi$ can be decomposed into $\xi_1(t) = t$, $1 \leq t \leq -1$ (as formal symbols, think of this as $\xi_1$ being oriented backwards, in the integral it makes sense), and similarly $\xi_2(t) = e^{it},$ $\pi \leq t \leq 2\pi$. We get that
+		\begin{align*}
+			0 = \int_\Xi f^2(z)dz = \int_1^{-1} f^2(x)dx + \int_\pi^{2\pi} f^2(e^{it})ie^{it}dt
+		\end{align*}
+		These together tell us that 
+		\begin{align*}
+			2\int_{-1}^1 f^2(x)dx = 2\qty|\int_{-1}^1 f^2(x)dx| &= \qty|\int_0^\pi f^2(e^{it})ie^{it}dt| + \qty|\int_\pi^{2\pi} f^2(e^{it})ie^{it}dt| \\
+			&\leq \int_0^\pi |f^2(e^{it})| \cdot 1dt + \int_\pi^{2\pi} |f^2(e^{it})| \cdot 1dt = \int_0^{2\pi} |f(e^{it})|^2dt
+		\end{align*}
+		Next, 
+		\begin{align*}
+			|f(e^{it})|^2 = f(e^{it}) \cdot \overline{f(e^{it})} = \sum_{k=0}^{n} a_ke^{ikt} \cdot \overline{\sum_{l = 0}^n a_le^{ilt}} &= \sum_{k=0}^{n} a_ke^{ikt} \cdot \sum_{l = 0}^n \overline{a_le^{ilt}} \\
+			&= \sum_{k=0}^{n} a_ke^{ikt} \cdot \sum_{l = 0}^n a_le^{-ilt} \\
+			&= \sum_{l, k = 0}^n a_ka_le^{it(k-l)} \\
+			&= \sum_{l \neq k}^n a_ka_le^{it(k-l)} + \sum_{k=0}^n a_k^2 \cdot e^0
+		\end{align*}
+		Next, note that, for $k \neq l$,
+		\begin{align*}
+			\int_0^{2\pi} a_ka_le^{it(k-l)} &= a_ka_l\int_0^{2\pi} \cos((k-l)t) + i\sin((k-l)t)dt \\
+			&=\frac{a_ka_l}{k-l} \big[\sin((k-l)t) - i\cos((k-l)t)\big]_0^{2\pi} \\
+			&= 0
+		\end{align*}
+		We see that
+		\begin{align*}
+			\int_0^{2\pi} |f(e^{it})|^2dt &= \int_0^{2\pi} \qty[\sum_{l \neq k}^n a_ka_le^{it(k-l)} + \sum_{k=0}^n a_k^2]dt \\
+			&= 2\pi \sum_{k=0}^n a_k^2 + \sum_{l \neq k}^n \int_0^{2\pi} a_ka_le^{it(k-l)}dt \\
+			&= 2\pi \sum_{k=0}^n a_k^2
+		\end{align*}
+		Looking at where we started, we see that we in fact have derived that
+		\begin{align*}
+			\int_{-1}^1 f^2(x)dx \leq \pi \sum_{k=0}^n a_k^2
+		\end{align*}
+		for any polynomial $f$. That is quite nice!
+		
+		\item Let $\Gamma$ be the curve described in the question. We can decompose $\Gamma$ into three parts: $\gamma_1(t) = Rt$, $0 \leq t \leq 1$, $\gamma_2(t) = Re^{it}, 0 \leq t \leq \pi/4$, and finally $\gamma_3(t) = Rt + Rit$, $0 \leq t \leq \sqrt{2}/2$, where $\gamma_3(t)$ is oriented backwards (we will correct this by adding a minus sign). We see that
+		\begin{align*}
+			\int_\Gamma e^{iz^2}dz &= \int_{\gamma_1} e^{iz^2}dz + \int_{\gamma_2} e^{iz^2}dz - \int_{\gamma_3} e^{iz^2}dz = 0
+		\end{align*}
+		since $\Gamma$ is a closed loop in the complex plane. We want to find $\lim_{R\to \infty} \int_{\gamma_1} e^{iz^2}dz$, so it suffices to find $\lim_{R\to \infty}\int_{\gamma_3} e^{iz^2}dz - \int_{\gamma_2} e^{iz^2}dz$ (since these quantities are equal). Notice that
+		\begin{align*}
+			\int_{\gamma_2} e^{iz^2} &= \int_0^{\pi/4} e^{iR^2e^{i2t}} \cdot ie^{it}dt \\
+			&= \int_0^{\pi/4} \qty[e^{iR^2\cos(2t)-R^2\sin(2t)}] \cdot ie^{it}dt \\
+			&= \int_0^{\pi/4} \qty[e^{iR^2\cos(t)dt} \cdot e^{-R^2\sin(t)}]ie^{it}dt \\
+		\end{align*}
+		Also note that
+		\begin{align*}
+			\qty|\int_0^{\pi/4} \qty[e^{iR^2\cos(2t)dt} \cdot e^{-R^2\sin(2t)}]ie^{it}dt| &\leq \int_0^{\pi/4} \qty|e^{iR^2\cos(2t)dt} \cdot e^{-R^2\sin(2t)}|dt \\
+			&= \int_0^{\pi/4} e^{-R^2\sin(2t)}dt \\
+			&= \frac12 \int_0^{\pi/2} e^{-R^2\sin(t)}dt
+		\end{align*}
+		Given any $d > 0$,  
+		\begin{align*}
+			\lim_{R \to \infty} \frac{R^2}{e^{R^2d}} &= \lim_{R \to \infty} \frac{2R}{e^{R^2d} \cdot 2Rd} = \lim_{R\to \infty} \frac1{e^{R^2d}d} = 0
+		\end{align*}
+		Let $\ve > 0$. On $\ve \leq t \leq \pi/2$, $\sin(t) \geq \xi > 0$ for some $\xi > 0$. By our limit calculation above, we can find $R$ sufficiently large so that 
+		\begin{align*}
+			R^2/e^{R^2 \xi} = \qty|R^2/e^{R^2 \xi}| < \ve \text{ and } 1/R^2 < \ve/(\pi/2 - \ve)
+		\end{align*}
+		i.e. that $R^2 < \ve \cdot e^{R^2 \xi}$. Hence, $e^{-R^2 \xi} < \ve / R^2$. Therefore,
+		\begin{align*}
+			\int_0^{\pi/2} e^{-R^2\sin(t)} dt = \int_0^\ve e^{-R^2\sin(t)}dt + \int_\ve^{\pi/2} e^{-R^2\sin(t)}dt &\leq \int_0^\ve 1dt + \int_\ve^{\pi/2} e^{-R^2\xi}dt \\
+			&\leq \ve + \int_\ve^{\pi/2} 1/R^2 dt \\
+			&\leq \ve + (\pi/2 - \ve)/R^2 \\
+			&< 2\ve
+		\end{align*}
+		So indeed, our original integral tends towards zero in the limit. Next, notice that
+		\begin{align*}
+			\int_{\gamma_3} e^{iz^2}dz &= \int_0^{\sqrt{2}/2} e^{i(Rt+Rit)^2} \cdot (R+Ri)dt \\
+			&= \int_0^{\sqrt{2}/2 \cdot R} e^{-2u^2}(1+i)dt \\
+			&= \int_0^{\sqrt{2}/2 \cdot R} e^{-2u^2}dt + i\int_0^{\sqrt{2}/2 \cdot R} e^{-2u^2}dt \\
+			&\overset{R \to \infty}{=} \int_0^\infty e^{-2u^2}du + i \int_0^{\infty} e^{-2u^2}du
+		\end{align*}
+		Finally, $\int_0^{\infty} e^{-2u^2}du = \frac1{\sqrt{2}} \int_0^\infty e^{-w^2}dw = \sqrt{2}/2 \cdot \sqrt{\pi}/2 = \sqrt{2\pi}/4$. We get that
+		\begin{align*}
+			\int_0^\infty e^{it^2}dt = \int_0^\infty \cos(t^2)dt + i\int_0^\infty \sin(t^2)dt = \frac{\sqrt{2\pi}}4 + i\frac{\sqrt{2\pi}}4
+		\end{align*}
+		Finally, matching real and imaginary parts shows that 
+		\begin{align*}
+			\int_0^\infty \cos(t^2)dt = \int_0^\infty \sin(t^2)dt = \frac{\sqrt{2\pi}}{4}.
+		\end{align*}
+	\end{enumerate}
+\end{document}

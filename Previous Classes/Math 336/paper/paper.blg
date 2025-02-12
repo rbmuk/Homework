@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+Reallocating 'name_of_file' (item size: 1) to 8 items.
+The style file: apacite.bst
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: citation.bib
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in snyder
+ptr=1, stack=
+
+---the literal stack isn't empty for entry snyder
+while executing---line 5079 of file apacite.bst
+You've used 8 entries,
+            6951 wiz_defined-function locations,
+            1322 strings with 11814 characters,
+and the built_in function-call counts, 11821 in all, are:
+= -- 1500
+> -- 84
+< -- 452
++ -- 417
+- -- 18
+* -- 675
+:= -- 2018
+add.period$ -- 32
+call.type$ -- 8
+change.case$ -- 138
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 270
+empty$ -- 575
+format.name$ -- 122
+if$ -- 2404
+int.to.chr$ -- 0
+int.to.str$ -- 24
+missing$ -- 0
+newline$ -- 194
+num.names$ -- 64
+pop$ -- 319
+preamble$ -- 1
+purify$ -- 34
+quote$ -- 0
+skip$ -- 851
+stack$ -- 0
+substring$ -- 460
+swap$ -- 162
+text.length$ -- 19
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 704
+warning$ -- 1
+while$ -- 44
+width$ -- 0
+write$ -- 213
+(There was 1 error message)

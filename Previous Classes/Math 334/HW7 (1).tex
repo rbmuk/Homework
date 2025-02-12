@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Always typeset math in display style
+\everymath{\displaystyle}
+
+% Standard mathematical typesetting packages
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{mathtools}  % Extension to amsmath
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{color}  % Add some color to life
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+% Sometimes helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+% Some standard theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\mg}[1]{\| #1 \|}
+\newcommand{\linf}[1]{\max_{1\leq i \leq #1}}
+\newcommand{\ve}{\varepsilon}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+%\renewcommand{\geq}{\geqslant}
+%\renewcommand{\leq}{\leqslant}
+
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math 334 HW 7}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+	\maketitle
+	\begin{enumerate}[leftmargin=\labelsep]
+		\item 
+		On $I = \R - 0$, $f(x)$ is equal to $x^2\sin(1/x)$. $x^2$ is continuous on $I$, $sin(x)$ is continuous on $I$, and $1/x$ is continuous on $I$, so therefore the product/composition of these functions is continuous on $I$. Now we examine $0$. Our function $f$ is differentiable if the difference quotient $\lim_{x \to 0} \frac{f(x)-f(0)}{x-0}$ exists; I claim that it equals 0. Given any $\ve > 0$, choose $\delta = \ve$. Then for all $0<|x|<\delta$,
+		\begin{align*}
+			\qty|\frac{f(x)-f(0)}{x}| &= |(x^2\sin(1/x)-0)/x| = |x\sin(1/x)| \leq |x| < \delta = \ve.
+		\end{align*}
+		Therefore, $f(x)$ is differentiable everywhere.
+		
+		\item
+		Let $a \in \R$, and $\ve > 0$. Because $f(x)$ is differentiable, there is some $\delta'$ such that if $|h| < \delta'$, $f(y+h)=f(y)+f'(y)h+E(h)$, where $\lim_{h\to 0} E(h)/h = 0$. Then there is also some $\delta''$ so that $|E(h)/h - 0| < 1$. Now choose $\delta = \min\{\delta', \delta'', \ve \cdot (|f'(a)|+1)\}$. Clearly if $|x-a| < \delta$, then $a-\delta < x < a+\delta$, so $x = a+h$ for some $|h| < \delta$. Now we see that $|f(x)-f(a)| = |f(a+h)-f(a)| = |f(a)+f'(a)h+E(h)-f(a)|$ because $\delta \leq \delta'$. By the triangle inequality, this is $\leq |f'(a)||h|+|h||E(h)/h|$. Again because $\delta \leq \delta''$, $|E(h)/h| < 1$, and so this is $\leq |h|(|f'(a)|+1) < \delta/(|f'(a)|+1) < \ve$, because $\delta \leq \ve \cdot (|f'(a)|+1). \qed$
+				
+				Let $\ve > 0$. If $C = 0$, then there is some $c \in \R$ such that $|f(x)-f(y)|=|x-y||f'(c)|=0$ for every $x, y$, so any $\delta$ works and therefore $f(x)$ is uniformly continuous. Else, choose $\delta = \ve/2C$. Then for all $x, y > 0$, $|f(x)-f(y)| = |x-y|f'(c)$ for some $c \in \R$. Now, because the derivative is bounded, we know that $|x-y|f'(c) \leq C|x-y| \leq \ve/2 \leq \ve. \qed$
+		
+		\item 
+		Let $x \in \R$. Because the first derivative is differentiable, there is some $c \in \R$ so that $f'(x)-f'(0)=(x-0)f''(c) = 0$ because $f''(x)=0$ for every $x$. So we see that $f'(x)$ is constant. Then $f'(x)=d$ for some $d$, and every $x$. Again, $f(x)-f(0)=(x-0)f'(C)$ for some $C$, and we see that $f(x)-f(0) = xd$. By rearranging, $f(x)=xd+f(0)$, so $f(x)$ is constant.
+		
+		\item 
+		Note that 
+		\begin{align*}
+			\lim_{\ve \to 0} \frac{f(\ve a, \ve b) - f(0, 0)}{\ve} &= \lim_{\ve \to 0} \frac{\ve^2 a^2 \ve b}{\ve^2(a^2+b^2)}
+			\\= \lim_{\ve \to 0} \ve \frac{a^2b}{a^2+b^2} &= \lim_{\ve \to 0} \ve \cdot a^2b = 0
+		\end{align*}
+		So all directional derivatives exist and are equal to $0$. In particular, $\pdv{f}{x}=0=\pdv{f}{y}$, so if $f$ was differentiable at $(0, 0)$, $\grad{f} = (0, 0)$. Then for all $h$ sufficiently small, $f(0+h)-f(0)=\ip{\grad{f}} {h}+E(h)$, with $|E(h)|/\mg{h} \to 0$. Then we see that $f(h) = E(h)$, so therefore $|f(h)|/\mg{h} \to 0$. But if we take $h = (x, x)$, we see that $\lim_{x \to 0} |f(x, x)|/(\sqrt{x^2+x^2})=x^3/(\sqrt{2}x \cdot 2x^2)=1/\sqrt{8}$ which certainly does not tend to 0. So $f(x)$ is not differentiable at $(0, 0). \qed$
+		
+		\item 
+		We proceed by induction. If $n=1$, we showed above that $f$ must be uniformly continuous, and therefore continuous.
+		Now suppose that there is some $n$ so that for every $1 \leq k \leq n$ with every open set $S \subset \R^n$ and every function $f:S\to \R$ with all its partial derivatives bounded implies $f$ is continuous (Strong inductive step).
+		
+		Now let $S \subset \R^{n+1}$, $f:S \to \R$, and let all of $f$'s partial derivatives be bounded. Let $\ve > 0$. We define two new functions: let $g(x)= f(x, x_2+h_2, \ldots, x_n+h_n)$, and let $m(y_1, \ldots, y_n)=f(x_1, y_1, \ldots, y_n)$. Now let $x = (x_1, \ldots, x_{n+1})$. We see that both $g$ and $m$ satisfy the induction hypothesis and therefore are continuous, so there is some $\delta_1$ such that for every $y \in \R$ with $|x-y| < \delta_1$, we have that $|g(y)-g(x)| < \ve/2$, as well as there being some $\delta_2$ so that for every $y \in \R^n$ with $\sup{|y_i-x_i|} < \delta_2$, $|m(y)-m(x)| < \ve/2$. Finally, choose $\delta = \min\{\delta_1\ ,\delta_2\}$. Then for every $z \in \R^{n+1}$ with $\sup{|z_i-x_i|} < \delta$, we have that $|f(z)-f(x)| \leq |f(z_1, z_2, \ldots, z_{n+1})-f(x_1, z_2, \ldots, z_{n+1})|+|f(x_1, z_2, \ldots, z_{n+1})-f(x_1, \ldots, x_n)| = |g(z_1)-g(x_1)| + |m(z_2, \ldots, z_{n+1}) - m(x_2, z_3, \ldots, z_{n+1})| < \ve/2 + \ve/2 = \ve. \qed$
+		\end{enumerate}
+\end{document}
