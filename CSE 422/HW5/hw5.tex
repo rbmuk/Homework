@@ -144,7 +144,9 @@ skipbelow=\baselineskip,
     \begin{enumerate}[leftmargin=\labelsep]
         \item \textbf{Image Compression}
         \begin{enumerate}[label=\textbf{(\alph*)}]
-            \item Here is the picture of the rank-k approximation of the image for different $k$s:
+            \item Some matrices can't immediately be interpreted as images since they might have values outside of $[0,255]$. My solution was to just clamp the resulting matrix values into this range.
+            
+            Here is the picture of the rank-k approximation of the image for different $k$s:
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=\textwidth]{rank_k_approx.png}
@@ -161,9 +163,9 @@ skipbelow=\baselineskip,
             \end{figure}
             As you can see, these are almost the same thing. The first left/right singular vectors very closely approximate the column/row average of the image. This is of course what I would've expected since it would make sense that the best rank-1 approximation should be some sort of average.
     
-            \item Recall that an SVD of $M \in \R^{m \times n}$ is $M = U \Sigma V^T$, where $U$ is $m \times m$, $\Sigma$ is $m \times n$ and $V$ is $n \times n$. So if we had a rank-k approximation, we would need to store the $k$ singular values, the $m \times k$ matrix $U$ and the $k \times n$ matrix $V$. This takes a total of $m \times k + k + k \times n = mk + kn + k$ bytes, which is $O(k(m+n))$. In the above image, at least for me, the $k=50$ approximation looks almost indistinguishable from the real image. A $k=50$ approximation thus takes approximately $50 \times (563 + 1000) = 50 \times 1563 = 78150$ bytes, which is a 7x savings from $563 \times 1000 = 563000$ bytes needed to store the original image.
+            \item Recall that an SVD of $M \in \R^{m \times n}$ is $M = U \Sigma V^T$, where $U$ is $m \times m$, $\Sigma$ is $m \times n$ and $V$ is $n \times n$. So if we had a rank-k approximation, we would need to store the $k$ singular values, the $m \times k$ matrix $U$ and the $k \times n$ matrix $V$. This takes a total of $m \times k + k + k \times n = mk + kn + k$ bytes, which is $O(k(m+n))$. In the above image, at least for me, the $k=50$ approximation looks almost indistinguishable from the real image. A $k=50$ approximation thus takes approximately $50 \times (563 + 1000) = 50 \times 1563 = 78150$ bytes, which is a 7x savings from $563 \times 1000 = 563000$ bytes needed to store the original image. The $k=100$ approximation is thus around a 3.5x savings.
     
-            \item For very small values of $k$, we can see a lot of blurring. In computer vision, I learned that the blurring filter is really just a moving average. From what we discussed above, the first singular vectors are column and row averages. So we will see a lot of blurring since that's just what averages look like. The next few singular vectors are probably some kind of averages too, but when you put a lot of them together it looks great.
+            \item For very small values of $k$, we can see a lot of blurring. In computer vision, I learned that the blurring filter is really just a moving average. From what we discussed above, the first singular vectors are column and row averages. So we will see a lot of blurring since that's just what averages look like. Also, there seems to be some blockiness and color banding, comparing 50 vs 100 from close up. The colors on her left (our right) shoulder are much more well defined and separable in the 100 case vs the 50 case. Her hair, which is notoriously difficult for computer applications to render, also looks blurry. The next few singular vectors are probably some kind of averages too, but when you put a lot of them together it looks great. This process basically turns our image into low resolution, which is why we see some of this blockiness/color banding. 
         \end{enumerate}
         \item \textbf{Word Embeddings}
         \begin{enumerate}[label=\textbf{(\alph*)}]
@@ -173,7 +175,7 @@ skipbelow=\baselineskip,
                 \includegraphics[width=0.8\textwidth]{eigvals_dec_order.png}
                 \caption{Eigenvalues of $\hat M$ in decreasing order}
             \end{figure}
-            Except for the extremely large outlier of 14000 at the top, the eigenvalues exhibit gradual decay, so I would say that $\hat M$ is not close to being low rank.
+            As we can see, we have a dropoff from the first eigenvalue being 14,000 to the second being 2,000, the another large dropoff from 2682 to 1745. Clearly, this graph shows the image is very well approximated by the first few eigenvectors. So I would say its low rank.
 
             \item Here are 6 interesting singular vectors and their corresponding strongest words:
             \begin{lstlisting}
@@ -254,7 +256,7 @@ skipbelow=\baselineskip,
 ['boston', 'chicago', 'york', 'houston', 'philadelphia', 'baltimore', 'kansas', 'texas', 'florida', 'michigan']
                  \end{lstlisting}
 
-                 The accuracy of the dataset analogy\_tasks.txt I got was 0.549 (I told the analogy finder that it couldn't output a1, a2 or b1 when we are asking for a1:a2::b1:b2, so it might be a little higher). This is extremely impressive, since it has like 10,000 words to choose from and gets the right word, which would randomly happen with probability $10^{-4}$, 1/2 of the time. It is more than 3 orderes of magnitude better than random.
+                 The accuracy of the dataset analogy\_tasks.txt I got was 0.549 (I told the analogy finder that it couldn't output a1, a2 or b1 when we are asking for a1:a2::b1:b2, as I saw that happening a lot but it isn't realistic). This is extremely impressive, since it has like 10,000 words to choose from and gets the right word, which would randomly happen with probability $10^{-4}$, 1/2 of the time. It is more than 3 orderes of magnitude better than random.
 
                  This approach has a few challenges. For starters, something like this:
                  \begin{lstlisting}
