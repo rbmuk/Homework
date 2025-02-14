@@ -47,7 +47,21 @@ def kmeans(features, k, num_iters=100):
         ### YOUR CODE HERE
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        dists = np.zeros((N,k))
+        for i in range(N):
+            for j in range(k):
+                dists[i,j] = np.linalg.norm(features[i] - centers[j])
+
+        for i in range(N):
+            assignments[i] = np.argmin(dists[i])
+
+        centers = np.zeros((k,D))
+        for i in range(N):
+            centers[assignments[i]] += features[i]
+
+        for i in range(k):
+            if np.sum(assignments == i) != 0:
+                centers[i] /= np.sum(assignments == i)
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ### END YOUR CODE
@@ -87,7 +101,12 @@ def kmeans_fast(features, k, num_iters=100):
         ### YOUR CODE HERE
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        dists = cdist(features, centers)
+        assignments = np.argmin(dists, axis=1)
+        for i in range(k):
+            if np.sum(assignments == i) != 0:
+                centers[i] = np.mean(features[assignments == i], axis=0)
+
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ### END YOUR CODE
@@ -142,12 +161,38 @@ def hierarchical_clustering(features, k):
     centers = np.copy(features)
     n_clusters = N
 
+    cluster_dists = squareform(pdist(features))
+    cluster_dists[np.diag_indices_from(cluster_dists)] = np.inf
+
+    active_clusters = np.ones(N, dtype=bool)
 
     while n_clusters > k:
         ### YOUR CODE HERE
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        idx = np.argmin(cluster_dists)
+        i,j = divmod(idx, n_clusters)
+
+        assert np.any(assignments == i) and np.any(assignments == j), 'no points in cluster i or j!'
+        assert i != j, f"i should not be j, {cluster_dists[i,j]}"
+        if i > j:
+            i,j = j,i # I want i < j
+
+        centers[i] = np.mean(np.vstack((features[assignments == i], features[assignments == j])), axis=0)
+        # d(ci', ck) = min(d(ci, ck), d(cj, ck))
+        cluster_dists[i,] = cdist(centers[i].reshape(1, -1), centers)
+        cluster_dists[:,i] = cluster_dists[i,]
+        cluster_dists[i,i] = np.inf
+
+        cluster_dists = np.delete(cluster_dists, j, axis=0)
+        cluster_dists = np.delete(cluster_dists, j, axis=1)
+        centers = np.delete(centers, j, axis=0)
+
+        assert np.any(assignments == j), "no points in cluster j!"
+        assignments[assignments == j] = i
+        assignments[assignments > j] -= 1 # have to move them all down 1
+        n_clusters -= 1
+
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ### END YOUR CODE
@@ -172,7 +217,7 @@ def color_features(img):
     ### YOUR CODE HERE
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    features = np.reshape(img, (H*W, C))
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ### END YOUR CODE
@@ -205,7 +250,11 @@ def color_position_features(img):
     ### YOUR CODE HERE
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    Y,X = np.mgrid[:H, :W]
+    meshgrid = np.dstack((color, X, Y))
+    features = np.reshape(meshgrid, (H*W, C+2))
+    features -= np.mean(features, axis=0)
+    features /= np.std(features, axis=0)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ### END YOUR CODE
@@ -249,7 +298,7 @@ def compute_accuracy(mask_gt, mask):
     ### YOUR CODE HERE
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    accuracy = np.sum(mask_gt == mask) / mask_gt.size
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ### END YOUR CODE
