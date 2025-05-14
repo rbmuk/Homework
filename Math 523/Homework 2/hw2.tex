@@ -1,0 +1,339 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+\newcommand{\argmax}{\mathrm{argmax}}
+\newcommand{\qv}[1]{\langle #1 \rangle}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Exercise 11.2}
+    Let $0<a<b$ and let $f$ be the function such that $f(0) = 0$, $f'(0) = 0$, and
+    \begin{align*}
+        f'(x) = \int_0^x 1_{[a,b]}(x) \, dx
+    \end{align*}
+    Show that Ito's formula holds for $f$. 
+    
+    Change this function slightly by keeping all the same conditions except we require the second derivative to also have the lines connecting $(a-1/n, 0)$ with $(a,1)$ and $(b,1)$ with $(b+1/n, 0)$. Call those line segments $a_n''$ and $b_n''$. This function is now $C^2$ so Ito's formula holds. We first seek to show that:
+    \begin{align*}
+        \int_0^t a_n''(B_s) \, ds \to 0
+    \end{align*}
+    This will follow by:
+    \begin{align*}
+        \E [\int_0^t a_n''(B_s) \, ds] &= \int_0^t \E[a_n''(B_s)] \, ds \leq \int_0^t \E[1_{[a-1/n, a]}(B_s)] \, ds
+    \end{align*}
+    This last is simply bound by
+    \begin{align*}
+        \frac{1}{\sqrt{2 \pi (a - 1/n)}} \cdot \frac 1n \to 0
+    \end{align*}
+    Similarly,
+    \begin{align*}
+        \int_0^t b_n''(B_s) \, ds \to 0.
+    \end{align*}
+    Now, notice that $a_n' \leq \frac 12 \cdot \frac 1n$ (the width of the triangle is $1/n$ and its height is $1$). So, we have, using Ito's isometry:
+    \begin{align*}
+        \E(\int_0^t a_n'(B_s) \, dB_s)^2 &= \E (\int_0^t a_n'(B_s)^2 \, ds) \leq \E (\frac{1}{4n^2}) \to 0
+    \end{align*}
+    The exact same argument holds for $b_n'$. Now, $g_n = f + a_n + b_n$ converges to $f''$ as $n \to \infty$ to $f$. Putting it all together,
+    \begin{align*}
+        g_n(B_t) &= \int_0^t f'(B_s) + a_n'(B_s) + b_n'(B_s) \, dB_s + \int_0^t f''(B_s) + a_n''(B_s) + b_n''(B_s) \, ds
+    \end{align*}
+    Using everything we just proved and linearity of all the integrals above, the Ito's formula holds for $f$ as well.
+
+    \subsection*{Exercise 11.6}
+    Suppose $M$ is a bounded continuous martingale, $A$ is a continuous process whose paths have total variation bounded by $N > 0$ a.s., and $X_t = M_t + A_t$.
+    \begin{enumerate}
+        \item Prove that for each $t$,
+        \begin{align*}
+            \sum_{i=1}^{2^n t} (X_{(i+1)/2^n} - X_{i/2^n})^2 \to \qv{X}_t
+        \end{align*}
+        \item Prove that if $f$ is a $C^2$ function whose second derivative is bounded, then
+        \begin{align*}
+            \sum_{i=1}^{2^n t} f''(X_{i/2^n}) (X_{(i+1)/2^n} - X_{i/2^n})^2 \to \int_0^t f''(X_s) \, d\qv{X}_s.
+        \end{align*}
+    \end{enumerate}
+
+    Write $\Delta X_i = X_{(i+1)/2^n} - X_{i/2^n}$ and $\Delta M_i = M_{(i+1)/2^n} - M_{i/2^n}$, and $\Delta \qv{X}_i = \qv{X}_{(i+1)/2^n} - \qv{X}_{i/2^n}$. First,
+    \begin{align*}
+        \sum_i (\Delta X_i)^2 &= \sum_i (\Delta M_i)^2 + 2 \Delta M_i \Delta A_i + (\Delta A_i)^2
+    \end{align*}
+    With $\eta_n = \sup_i |\Delta A_i|$, for each fixed $\omega$, on the compact interval $[0,t]$ $A_t(\omega)$ is uniformly continuous, so $\eta_n \to 0$ a.s. Also, $\eta_n \leq \mg{A}_\infty$, recalling that $A$ is bounded on a compact interval. By hypothesis,
+    \begin{align*}
+        \E[\sum_i \Delta A_i^2] &\leq \E[\sum_i \eta_n (\Delta A_i)^2] \leq N \E[\eta_n] \to 0
+    \end{align*}
+    by the DCT. 
+
+    Similarly, with $\xi_n = \sup_i |\Delta M_i|$, we have
+    \begin{align*}
+        \E[\sum_i \Delta M_i \Delta A_i] &\leq \E[\xi_n \sum_i |\Delta A_i|] \leq N \E[\xi_n] \to 0
+    \end{align*}
+    By the same argument as above. 
+
+    Recalling that $\qv{X}_t = \qv{M}_t$, we need only show that:
+    \begin{align*}
+        \sum_i (\Delta M_i)^2 - \Delta \qv{M}_i \to 0 \text{ in probability.}
+    \end{align*}
+    We will show that it converges in $L^2$. Observe:
+    \begin{align}
+        \E[\qty(\sum_i (\Delta M_i)^2 - \Delta \qv{M}_i)^2] &= \sum_i \E [(\Delta M_i)^2 - \Delta \qv{M}_i]^2 \\
+        &\qquad + \sum_{i < j} \E[((\Delta M_i)^2 - \Delta \qv{M}_i)((\Delta M_j)^2 - \Delta \qv{M}_j)]
+    \end{align}
+    Now notice that:
+    \begin{align*}
+        \E[((\Delta M_i)^2 - \Delta \qv{M}_i)((\Delta M_j^2) - \Delta \qv{M}_j)] &= \E[((\Delta M_i)^2 - \Delta \qv{M}_i) \E[((\Delta M_j)^2 - \Delta \qv{M}_j) \mid \mathcal F_{j/2^n}]]
+    \end{align*}
+    Since $M$ is a martingale,
+    \begin{align*}
+        \E[(M_{(j+1)/2^n} - M_{j/2^n})^2 \mid \mathcal F_{j/2^n}] &= \E[M_{(j+1)/2^n}^2 - M_{j/2^n}^2 \mid \mathcal F_{j/2^n}]
+    \end{align*}
+    Meaning the diagonal terms, (2), all vanish. 
+    
+    To deal with the first term,
+    \begin{align*}
+        \sum_i \E [(\Delta M_i)^2 - \Delta \qv{M}_i]^2 = \sum_i \E[(\Delta M_i)^4 - 2 (\Delta M_i)^2 \Delta \qv{M}_i + \Delta \qv{M}_i^2]
+    \end{align*}
+    We go term by term. First,
+    \begin{align*}
+         \E[\sum_i (\Delta M_i)^4] &\leq  \E[\sum_i \xi_n^2 (\Delta M_i)^2] \leq \E[\xi_n^4]^{1/2} \E[\qty(\sum_i (\Delta M_i)^2)^2]^{1/2}
+    \end{align*}
+    Define 
+    \begin{align*}
+        V_n = \sum_i \Delta M_i^2
+    \end{align*}
+    We will prove that $\E[V_n^2] \leq 4\mg{M}_\infty^2 \E[V_n]$. We will then prove that $\E[V_n]$ is bounded, hence the term will go to 0. By our calculation above:
+    \begin{align*}
+        \E[V_n^2] = \sum_i \E[(\Delta M_i)^4] + \sum_{i<j} \E[(\Delta M_i)^2 (\Delta M_j)^2]
+    \end{align*}
+    Clearly,
+    \begin{align*}
+        \sum_{i < j} \E[(\Delta M_i)^2 (\Delta M_j)^2] &= \sum_{i < j} \E[(\Delta M_i)^2 \Delta M_j^2] = \sum_i \E[(\Delta M_i)^2 (M_t^2 - M_{(i+1)/2^n}^2)] \leq 2\mg{M}_\infty^2 \E[V_n]
+    \end{align*}
+    The easier part is this one:
+    \begin{align*}
+        \E[\sum_i (\Delta M_i)^4] &\leq \sum_i 4\mg{M}_\infty^2 \E[V_n]
+    \end{align*}
+    By the same conditioning trick,
+    \begin{align*}
+        \E[V_n] = \E[M_t^2 - M_0^2] < \infty
+    \end{align*}
+    DCT applied to the bounded random variable $\xi_n^4$ shows that this term goes to 0. The other are much easier. With $\chi_n = \sup_i |\Delta \qv{M}_i|$, once again using it is bounded, and goes to 0:
+
+    \begin{align*}
+        \sum_i \E[(\Delta \qv{M}_i)^2] &\leq \E[\chi_n \sum_i \Delta \qv{M}_i] = \E[\chi_n \qv{M}_t] \leq \mg{\qv{M}}_\infty \E[\chi_n] \to 0
+    \end{align*}
+    by DCT again.
+
+    Lastly,
+    \begin{align*}
+        \sum_i \E[(\Delta M_i)^2 \Delta \qv{M}_i] &\leq \E[\xi_n V_n] \leq \E[\chi_n^2]^{1/2} \E[V_n^2]^{1/2} \to 0
+    \end{align*}
+    This completes the proof. 
+
+    For the second part, if $f$ is $C^2$ with bounded second derivative, 
+    \begin{align*}
+        \qty|\sum_i f''(X_{i/2^n})[(\Delta X_i)^2 - \Delta \qv{X}_i]| \leq \sum_i \mg{f''}_\infty \qty|\sum_i (\Delta X_i)^2 - \Delta \qv{X}_i| \to 0 \text{ in probability}
+    \end{align*}
+    by what we just proved. This completes the problem.
+    
+    \subsection*{Problem 24.10}
+    Let $W$ be a one-dimensional Brownian motion and let $X_t^x$ be the solution to
+    \begin{align*}
+        dX_t = \sigma(X_t) \, dW_t + b(X_t) \, dt, X_0 = x
+    \end{align*}
+    suppose $\sigma$ and $b$ are $C^\infty$ functions and all their derivatives are bounded. Show that for each $t$ the map $x \to X_t^x$ is continuous in $x$ a.s. and further thnat it is differentiable. 
+
+    Using that $(x+y+z)^6 \leq D(x^6+y^6+z^6)$, Doob's $L^p$ inequality, and the Lipschitz continuity of differentiable functions, we have that:
+    \begin{align*}
+        \E[\sup_{r \leq t} |X_r^x - X_r^y|^6] &\leq D|x-y|^6 + 2D\E[\sup_{r \leq t} \qty(\int_0^r (\sigma(X_s^x) - \sigma(X_s^y)) \, dW_t)^6] 
+        \\ &+ 2D\E[\sup_{r \leq t} \qty(\int_0^r (b(X_s^x) - b(X_s^y)) \, ds)^6] 
+    \end{align*}
+    The first term is more more complicated, first we use inequality due to Burkholder-Davis-Gundy and Cauchy-Schwarz:
+    \begin{align*}
+        \E[\sup_{r \leq t} \qty(\int_0^r (\sigma(X_s^x) - \sigma(X_s^y)) \, dW_t)^6] &\leq C\E[\qty(\int_0^t (\sigma(X_s^x) - \sigma(X_s^y))^2 \, ds)^3] 
+        \\& \leq Ct^q \E[\int_0^t (\sigma(X_s)^x - \sigma(X_s^y))^6 \, ds]
+    \end{align*}
+    The other one is easier:
+    \begin{align*}
+        \E[\sup_{r \leq t} \qty(\int_0^r (b(X_s^x) - b(X_s^y)) \, ds)^6] &\leq t^6\E[\int_0^t (b(X_s)^x - b(X_s^y))^6 \, ds]
+    \end{align*}
+    Putting it all together and using that $\sigma, b$ are Lipschitz continuous, we get:
+    \begin{align*}
+        \E[\sup_{r \leq t} |X_r^x - X_r^y|^6] &\leq 27|x-y|^6 + C \int_0^t \E[\sup_{r \leq s} |X_r^x - X_r^y|^6] \, ds
+    \end{align*}
+    Letting $g(t) = \E[\sup_{r \leq t} |X_r^x - X_r^y|^6]$, we have:
+    \begin{align*}
+        g(t) &\leq D|x-y|^6 + C\int_0^t g(s) \, ds
+    \end{align*}
+    Using Gronwall's lemma, we get $g(t) \leq D|x-y|^6 e^{Ct}$. In particular,
+    \begin{align*}
+        \E[|X_t^x - X_t^y|^6] &\leq C(t) |x-y|^6
+    \end{align*}
+    Since $t$ is fixed this is okay. Applying Kolmogorov's continuity theorem, $X_t$ has a continuous verison for $\alpha = 6$ and $\beta = 5$. Thus it is Holder continuous with order $<\beta/\alpha = 5/6$.
+    
+    Now we prove the existence of the derivative. Consider the sequence of stochastic processes defined by $Y_0^x(t) = 1$, and:
+    \begin{align*}
+        Y_{i+1}^x(t) = \int_0^t \sigma'(X_s^x) Y_i^x(s) \, dW_s + \int_0^t b'(X_s^x) Y_i^x(s) \, ds
+    \end{align*}
+    Notice that:
+    \begin{align*}
+        \E[\sup_{r \leq t} |Y_{i+1}^x(r) - Y_i^x(r)|^2] &\leq 8\E[\int_0^t (\sigma'(X_s^x)(Y_i^x(s) - Y_{i-1}^x(s)))^2 \, ds] + 8\E[\int_0^t (b'(X_s^x)(Y_i^x(s) - Y_{i-1}^x(s)))^2 \, ds] \\
+    \end{align*}
+    Using that the derivatives are bounded, and defining $f(t) = \E[\sup_{r \leq t} |Y_{i+1}^x(r) - Y_i^x(r)|^2]$ yields:
+    \begin{align*}
+        f(t) &\leq A \int_0^t f(s) \, ds
+    \end{align*}
+    As in the book this gives $f(t) \leq A^i t^{i-1} / (i-1)!$. Then 
+    \begin{align*}
+        \E[\sup_{r \leq t} |Y_m^x(r) - Y_n^x(r)|^2]^{1/2} \leq \sum_{i=m}^n \E[\sup_{r \leq t} |Y_{i+1}^x(r) - Y_i^x(r)|^2]^{1/2} \leq \sum_{m}^n \sqrt{\frac{A^i t^{i-1}}{(i-1)!}}
+    \end{align*}
+    This norm is complete (as in the book) so converges to a limit $Y^x$. Taking a limit in the integral equations above yields that $Y^x$ is a solution to the SDE $dY^x_t = \sigma'(X_t^x) Y^x_t\, dW_t + b'(X_t^x) Y^x_t \, dt$. 
+
+    Now, using that $\sigma(X_t^{x+h}) - \sigma(X_t^x) = \sigma'(X_t^x)(X_t^{x+h} - X_t^x) + O(1) (X_t^{x+h}-X_t^x)^2$, we have:
+    \begin{align*}
+        \E[\sup_{r \leq t} \qty|\frac{X^{x+h}_r - X^x_r}{h} - Y^x_r|^2] &\leq 8\E[\int_0^t \qty(\sigma'(X_s^x) \qty[\frac{X_s^{x+h}-X_s^x}{h} - Y_s^x] + O(1)(X_t^{x+h}-X_t^x)^2)^2ds] \\
+        &\leq A\int_0^t \E[\sup_{r \leq s} \qty|\frac{X^{x+h}_r - X^x_r}{h} - Y^x_r|^2] \, ds + \frac{A}{h^2} \int_0^t \E[\sup_{r \leq s} |X^{x+h}_r - X^x_r|^4] \, ds
+    \end{align*}
+    Recall after a LOT of work $X_r^{x}$ is Holder continuous (in $x$) with some order $1/2 + \alpha$ for $\alpha > 1/4$ (take any $1/4 < \alpha < 5/6 - 1/2$). So we get:
+    \begin{align*}
+        \E[\sup_{r \leq t} \qty|\frac{X_r^{x+h} - X_r^x}{h} - Y^x_r|^2] &\leq A\int_0^t \E[\sup_{r \leq s} \qty|\frac{X^{x+h}_r - X^x_r}{h} - Y^x_r|^2] \, ds + C h^{4\alpha}
+    \end{align*}
+    Again, all our constants can depend on $C$. Letting $z(t) = \E[\sup_{r \leq t} \qty|\frac{X_r^{x+h} - X_r^x}{h} - Y^x_r|^2]$, we solve $z(t) \leq Ch^{4\alpha}e^{At}$. 
+
+    Since $4\alpha > 1$, Kolmogorov's continuity theorem can be utilized once again to find a continuous version of the processes $X_t^x$ such that it is uniformly continuous. Then taking the limit as $h \to 0$ will yield that $X_t^{x}$ converges to $Y_t^x$ almost surely. 
+\end{document}

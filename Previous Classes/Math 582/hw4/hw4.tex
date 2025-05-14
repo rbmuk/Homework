@@ -1,0 +1,220 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra, pxfonts}
+\usepackage{mathtools,mathrsfs,xparse}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+\newcommand{\argmax}{\mathrm{argmax}}
+\usepackage{float}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item Writing 
+        \begin{align*}
+            A = \begin{pmatrix}
+                a_1^T \\
+                \vdots \\
+                a_n^T
+            \end{pmatrix}
+        \end{align*}
+        we can see that,
+        \begin{align*}
+            \left\|A\frac{a_i}{|a_i|}\right\| = \frac{1}{\mg{a_i}}\sum_{j=1}^n (a_j^Ta_i)^2 \geq |a_i|
+        \end{align*}
+        Since this holds for every row, $\mg{A}_{op} \geq \sup_{1 \leq i \leq m} \qty(\sum_{j=1}^n |A_{ij}|^2)$.
+
+        For $\mg{x} = 1$,
+        \begin{align*}
+            \mg{ABx} = \mg{Bx} \cdot \mg{A(Bx/\mg{Bx})} \leq \mg{Bx} \cdot \mg{A}_{op} \leq \mg{A}_{op}\mg{B}_{op}
+        \end{align*}
+
+        Notice from that last part,
+        \begin{align*}
+            \mg{ABx} \leq \mg{Bx} \cdot \mg{A}_{op}
+        \end{align*}
+        Now, $\sup_{\mg{x} = 1} \mg{Bx}^2 = \sup_{\mg{x} = 1} x^T B^T B x$ is the largest eigenvalue of $B^TB$, say $\lambda$. Recall that $\mg{B}_F^2$ can be written as $\Tr(B^TB)$. By properties of trace, $\Tr(B^TB) = \sum_i \lambda_i$ where $\lambda_i$ is the $i$th largest eigenvalue of $B^TB$ (breaking ties arbitrarily). Then clearly, since $B^TB$ is PSD, $\lambda_1 \leq \sum \lambda_i$. This shows that $\mg{B}_{op} \leq \mg{B}_F$. Using that above completes the proof.
+
+        \item Consider any centrally symmetric convex set $\Omega$, which is compact, and let $B$ be the largest ellipse contained in $\Omega$. Via an affine transformation, we can ensure that $B$ is the unit ball. Let $C = \inf \SET{t > 0 \mid \Omega \subset tB}$. Assume by contradiction that $C$ were large. Then there is some point of $\Omega$ of magnitude at least bigger than $C$. By connecting this point to the origin, we can find a point in $\Omega$ with norm precisely equal to $C$. By symmetry, the opposite of this point is also in $\Omega$, and after a rotation, we may assume that these two points are $(\pm C, 0)$. By connecting the top and bottom of the unit circle with these points, we get the following shape fully contained in $\Omega$:
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                % Axes
+                \draw[->] (-9,0) -- (9,0) node[right] {$x$};
+                \draw[->] (0,-2) -- (0,2) node[above] {$y$};
+                
+                % Parallelogram
+                \draw[thick] (0,1) -- (7,0) -- (0,-1) -- (-7,0) -- cycle;
+                
+                % Dots at vertices
+                \filldraw[red] (0,1) circle (2pt) node[above] {$(0,1)$};
+                \filldraw[red] (7,0) circle (2pt) node[above right] {$(C,0)$};
+                \filldraw[red] (0,-1) circle (2pt) node[below] {$(0,-1)$};
+                \filldraw[red] (-7,0) circle (2pt) node[above left] {$(-C,0)$};
+            \end{tikzpicture}
+        \end{figure}
+
+        Now the idea is simply to show that there is a ellipse other than the unit ball that has larger volume contained in this smaller shape. Consider the ellipse:
+        \begin{align*}
+            \frac{x^2}{C^2} + y^2 = \frac{1}{2}
+        \end{align*}
+        It just might be that these coefficients were specifically chosen to make this algebra work better. To show that this ellipse is fully contained in our shape, we need only consider $0 \leq x \leq C$, and then show that all the points the boundary of that ellipse are below the line $y = -1/C x + 1$ in the first quadrant. Plugging in, we need to show that, if $(x,y)$ is a point on the ellipse, then:
+        \begin{align*}
+            y \leq (-1/C)x + 1
+        \end{align*}
+        This is equivalent to (since all the values are positive):
+        \begin{align*}
+            y^2 \leq \frac{x^2}{C^2} - \frac{2}{C}x + 1
+        \end{align*}
+        plugging in the value for $y$, 
+        \begin{align*}
+            \frac 12 - \frac{x^2}{C^2} &\leq \frac{x^2}{C^2} - \frac{2}{C}x + 1 \\
+             \iff 0 &\leq \frac{2x^2}{C^2} - \frac{2}{C}x + \frac 12 = \frac{(C-2x)^2}{2C^2}
+        \end{align*}
+        This shows that the ellipse is fully contained in the set. Rewriting the ellipse in a familiar form:
+        \begin{align*}
+            \frac{x^2}{(C/\sqrt{2})^2} + \frac{y^2}{(1/\sqrt{2})^2} = 1
+        \end{align*}
+        The area of this ellipse becomes $\pi C/2$. So we have a larger ellipse contained in $\Omega$ whenever $C > 2$, a contradiction. Thus $C = 2$ suffices.
+        
+
+        \item Consider $g(x) = \frac 12 x^T Ax + b^Tx$. By compactness $g$ has a maxmium on the sphere $S^{n-1}$, say $y$. The only way that $g(y)$ could be maximal is if the gradient of $g$ were perpendicular to the sphere, because otherwise we could walk in a projected direction and increase our value. The perpendicular to the sphere is precisely $y$, so we need $\nabla g(y) = \lambda y$ for some $y$. Notice that $\nabla g(x) = \frac 12 (A+A^T)x + b$, and since $A$ is symmetric, we get $\nabla g(x) = Ax + b$. Thus we have found a vector $y$ with $Ay + b = \lambda y$ as desired.
+        
+        \item We prove by Rolle's theorem. Since $p(x)$ is $d$ dimensional and $d$ distinct roots, we know that $p'(x)$ has $\leq d-1$ distinct roots, since it has dimension $d-1$. Labeling the roots of $p(x)$ as $x_1, \ldots, x_d$, we know by Rolle's theorem that since $p(x_i) = p(x_{i+1})$, there is some $y_i$ so that $p'(y_i) = 0$. Then $x_1 < y_1 < \cdots < y_{d-1} < x_d$. This gives $d-1$ distinct roots for $p'(x)$, so these must be all the roots, and we are done.
+    \end{enumerate}
+\end{document}

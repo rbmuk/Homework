@@ -1,0 +1,218 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse,newtxtext,newtxmath}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+\newcommand{\argmax}{\mathrm{argmax}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item Consider $b_n = \frac{a_n}{n} - a_1$. Now,
+        \begin{align*}
+            b_{n+1} \leq \frac{a_n + a_1 - (n+1)a_1}{n+1} = \frac{a_n - na_1}{n+1} \leq b_n
+        \end{align*} 
+        Also, since $a_n$ was assumed to be non-negative, $b_n \geq -a_1$, so it is bounded below. Now the monotone convergence theorem implies that $b_n$ converges so $a_n$ does too.
+
+        Further, if $a_n$ is not bounded below, we know that it converges to $-\infty$ by the previous argument. 
+
+        Now, if $\mg{\cdot}$ is a matrix norm, then by submultiplicativity $\mg{AB} \leq \mg{A} \mg{B}$. Thus,
+        \begin{align*}
+            \mg{A^{m+n}} \leq \mg{A^m} \mg{A^n} 
+        \end{align*}
+        So by the previous theorem applied to $a_n = \log(\mg{A^n})$, we know that $a_n/n$ converges to some $a$ (possibly $-\infty$ as it is monotonically decreasing), and hence $e^a = \lim_{n \to \infty} \mg{A^n}^{1/n}$ exists as well.
+
+        \item For convienience I will work with $Ax > 0$ instead (consider $x' = -x)$. First, if there is some $x \in \R^n$ with $Ax > 0$ and also some $y \geq 0$ with $y \neq 0$ with $A^Ty = 0$, then $x^TA^Ty = (Ax)^Ty = 0$, however this must be strictly positive. Now, by considering $\eta = \min (Ax)_i$, $Ax > 0$ is equivalent to there being some $\eta$ with $Ax - \eta 1 \geq 0$. Writing $x' = (x, \eta)$, this is the same as $[Ax \; -1]x' \geq 0$ with $\ip{-e_{n+1}, x'} < 0$ (the last coordiante must be positive). 
+
+        By Farkas lemma, if this doesn't happen, then there is some $y \geq 0$ so that $\begin{pmatrix}
+            A^T \\
+            -1^T
+        \end{pmatrix}y = -e_{n+1}$. This implies that $A^Ty = 0$ with $\sum y_i = 1$, in particular it is not 0, completing the proof.
+        
+        \item Consider the probability simplex $\Delta = \SET{(x_1, x_2, x_3) \in \R^3_{\geq 0} : x_1+x_2+x_3 = 1}$. Give it the natural triangulation, and consider a function $f: \Delta \to \Delta$ that is continuous. Since $\Delta$ is compact, $f$ is uniformly continuous. Now suppose that $f$ does not have a fixed point--by compactness, there is some $c > 0$ so that $|f(x)-x| \geq c$ for all $x \in \Delta$. Now, by uniform continuity, there is some $\delta > 0$ so that $|f(x)-f(y)| < c/100$ whenever $|x-y| < \delta$. Now label each vertex of the triangulation via $c(v) = \inf \SET{i : (f(v)-v)_i < 0}$. This always exists, as $f(x)$ goes to $\Delta$, we know that its entries sum to 1, and so does $x \in \Delta$, so $f(x) - x$ has entries summing to 0, and by hypothesis this is not the zero vector.
+
+        By Sperner's triangle theorem, there is a 1-2-3 triangle. We assume the grid has been chosen so small so that the diameter of this triangle is $<\delta$. Call the vertices of this triangle $x_1, x_2, x_3$ with corresponding $v_i = f(x_i)$. After possibly permuting the $v_i$, we know these are of the form:
+        \begin{align*}
+            v_1 = \begin{pmatrix}
+                - \\ \\ \\
+            \end{pmatrix}, \;
+            v_2 = \begin{pmatrix}
+                + \\ - \\ \\
+            \end{pmatrix}. \;
+            v_3 = \begin{pmatrix}
+                + \\ + \\ -
+            \end{pmatrix}
+        \end{align*}
+        We shall now argue that since these are all within $c/100$ of each other, they cannot possibly exhibit this behavior, given that $|v_i| \geq c$. Since $|v_i| \geq c$, there must be a coordinate $i$ so that $|v_i| \geq c/3$ (otherwise the norm is $< c/3 < c)$. We now do a grand case distinction. I will say a coordinate is big if it is $>c/3$ in absolute value. If $v_{11}$ is big, since $v_{21}$ has opposite sign, $|v_1 - v_2| > c/3$, a contradiction as it should be $<c/100$. Similar logic shows that if $v_{22}$ is big, then $|v_2 - v_3| > c/3$. The same logic works if any of the plusses are big ($v_{21} \to v_{21}$, $v_{31} \to v_{11}$, and $v_{32} \to v_{22}$). Now I will show that $v_2$ cannot have both top coordinates small. If $v_{21}, v_{22}$ are both smaller than $c/3$ in absolute value, we know that $v_{23}$ is bigger than $c/3$ in absolute value. But, $|v_{23} + v_{22} + v_{21}| \geq |v_{23}| - |v_{22} + v_{21}| > 0$, since $v_{22} - v_{21}$ is smaller than $c/3$ in absolute value since they point in different directions, and $v_{23}$ is bigger than $c/3$. So one of the previous cases applies, and we are done. 
+
+        \item Let $z_1, \ldots, z_n$ be arbitrary points on the the circle. Consider the vandermonde matrix:
+        \[
+            V^T = \begin{pmatrix}
+            1 & z_1 & z_1^2 & \cdots & z_1^{n-1} \\
+            1 & z_2 & z_2^2 & \cdots & z_2^{n-1} \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            1 & z_n & z_n^2 & \cdots & z_n^{n-1}
+            \end{pmatrix}
+        \]
+        We discussed at great length that $\det(V) = \prod_{i < j} (z_j-z_i)$. By Hadamard's determinant inequality, as this matrix is $n \times n$ with all entries bounded by 1 in norm,
+        \[
+            |\det(V)| = \prod_{i < j} |z_j-z_i| \leq n^{n/2}
+        \]
+        Now,
+        \begin{align*}
+            \lim_{n \to \infty} n^{n/2 \cdot \frac{1}{{n \choose 2}}} = \lim_{n \to \infty} n^{1/(n-1)} = 1
+        \end{align*}
+        This shows that it goes to 1. 
+
+        I present a second proof that gets $\leq \sqrt{3}$. Recall the circumradius formula for triangles, once again, that $4RA = abc$. In our case, since all the points are on a circle, $R = 1$, so $4A = abc$. Now, by doing the same angle trick, and using Jensens inequality we get that $A \leq \frac{3\sqrt{3}}{4}$ (equilateral is the maximizer). So $abc \leq 3^{3/2}$. 
+
+        We now instead consider the product
+        \begin{align*}
+            \prod_{i < j < k} |z_i-z_j| \cdot |z_i - z_k| \cdot |z_j - z_k| \leq 3^{\frac 32 \cdot {n \choose 3}}
+        \end{align*}
+        By what we just proved, since $z_i,z_j,z_k$ make a triangle. Now we wonder how many times each term $|z_i - z_j|$ appears in this product. Once we have fixed vertices $i,j$, we just have to pick the last vertex $k$, which can be done in $n-2$ ways, so we have the equality:
+        \begin{align*}
+            \prod_{i < j < k} |z_i-z_j| \cdot |z_i - z_k| \cdot |z_j - z_k| = \prod_{i < j} |z_i - z_j|^{n-2}
+        \end{align*}
+        Taking the $n-2$th root on both sides, we get:
+        \begin{align*}
+            \prod_{i < j} |z_i - z_j| \leq \sqrt{3}^{{n \choose 2}}
+        \end{align*}
+        However it alludes me on how to get $\sqrt{2}$, this approach fails immediately when you try a square since there are non-cyclic quadrilaterals on 4 vertices. The vandermonde determinant approach is honestly shocking in that regard.
+    \end{enumerate}
+\end{document}

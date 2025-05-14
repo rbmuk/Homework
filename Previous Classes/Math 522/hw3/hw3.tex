@@ -1,0 +1,211 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse,newtxtext,newtxmath}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    frame=single,
+    language=Python
+}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\Z{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+\title{Math 522 HW3}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Exercise 5.4.4.}
+    Suppose $h$ is harmonic on $\R^d$, i.e.,
+    \begin{align*}
+        h(x) = \frac{1}{|B(x,r)|} \int_{B(x,r)} h(y) dy
+    \end{align*}
+    Let $\xi_1, \xi_2, \ldots$ be i.i.d. uniform on $B(0,1)$, and define $S_n = \xi_1 + \cdots + \xi_n$. Show that $X_n = f(x+S_n)$ is a martingale. (ii) Use this to conclude that in any dimension, bounded harmonic functions must be constant.
+
+    \textbf{Answer.}
+    By the conditional probability and independence,
+    \begin{align*}
+        E(h(x+S_n + \xi_{n+1}) \mid \mathcal F_n) = \frac{1}{|B(x+S_n,1)|}\int_{B(x+S_n,1)} h(y)dy = h(x+S_n)
+    \end{align*}
+    So $h(x+S_n)$ is a martingale. Since $h$ is bounded, the martingale convergence theorem implies that $h(x+S_n)$ converges a.s. The event $\lim_{n \to \infty} h(x+S_n) = \lambda$ is permutable, so by the hewitt-savage 0-1 law, $\lim_{n \to \infty} h(x+S_n) = \lambda$ a.s. Let $\eta$ be independent of $\xi$. Clearly, $h(x+\eta+S_n)$ has the same distribution as $h(x+S_{n+1})$. By the independence of $\eta$, and the martingale property,
+    \begin{align*}
+        E(h(x+\eta+S_n) \mid \eta) = E(h(x+y+S_n)) \eval_{y = \eta} = h(x+\eta)
+    \end{align*}
+    By the dominated convergence theorem, using that $h$ is bounded,
+    \begin{align*}
+        h(x+\eta) = \lim_{n \to \infty} E(h(x+\eta+S_n) \mid \eta) = E(\lim_{n \to \infty} h(x+\eta+S_n) \mid \eta) = \lambda \text{ for a.s. } \eta
+    \end{align*}
+    By the continuity of harmonic functions, we have that $h$ is constant in the ball $B(x,1)$. By repeating the same argument for arbitrary $r$ and sending $r \to \infty$, we have that $h$ is constant everywhere.
+
+    \subsection*{5.6.5. Strong law for additive functionals.} Suppose $p$ is irreducible and has stationary distribution $\pi$. Let $f$ be a function with $\sum_y |f(y)|\pi(y) < \infty$. Let $T^k_x$ be the time of the $k$th return to $x$. (i) Show that
+    \begin{align*}
+        V_k^f = f(X(T^k_x)) + \cdots + f(X(T^{k+1}_x - 1)), \quad k \geq 1 \text{ are i.i.d.}
+    \end{align*} 
+    with $E|V_k^f| < \infty$. (ii) Let $K_n = \inf \SET{k : T^k_x \geq n}$ and show that 
+    \begin{align*}
+        \frac 1n \sum_{m=1}^{K_n} V_m^f \to \frac{EV_1^f}{E_x T_x} = \sum f(y) \pi(y) \quad P_\mu \text{ a.s.}
+    \end{align*}
+
+    (iii) Show that $\max_{m \leq n} V^{|f|}_m/n \to 0$ and conclude
+    \begin{align*}
+        \frac 1n \sum_{m=1}^n f(X_m) \to \sum f(y) \pi(y) \quad P_\mu \text{ a.s.}
+    \end{align*}
+    for any initial distribution $\mu$.
+    
+    \textbf{Answer.}
+    We can write $V_k^f = V_1^f \circ \theta(T^{k}_x)$. In this setting, the first return to $x$ will just be 0, since we start at $T^k_x$, so the formula for $V_k^f$ above works out. We use a really nice trick to compute $E(V_k^f)$. Notice that $X(T^k_x), \ldots, X(T^{k+1}_x - 1)$ is a walk that starts from $x$ and ends just before $x$. Then by i.i.d. we can write by the strong markov property, since we start at $T_x$ so the initial distribution is just $x$:
+    \begin{align*}
+        E(V_k^f) = \sum_y f(y) E_x \qty(\sum_{m=0}^{T_x - 1} 1_{X_m = y})
+    \end{align*}
+    since we just sum over the values we see, weighted by how many times we see them. Recall, $\mu(y) = E_x(\sum_{m=0}^{T_x - 1} 1_{X_m = y})$ defines a stationary measure as long as $x$ is recurrent, which follows since the markov chain is irreducible. Since a stationary distribution exists, as stated in the problem, we know that $\pi(y) = E_x(\sum_{m=0}^{T_x - 1} 1_{X_m = y}) / \pi(S)$. It is clear that $\pi(S) = E_x(\sum_{m=0}^{T_x - 1} 1) = E_x(T_x)$. So we can conclude that:
+    \begin{align*}
+        E(V_k^f) = \sum_y f(y) \pi(y) E_x(T_x).
+    \end{align*}
+    Applying this to $|f|$, we know that $E(|V_k^f|) \leq E(V_k^{|f|}) < \infty$. So $V_k^f$ is integrable.
+    Then by the strong law of large numbers, we know that:
+    \begin{align*}
+        \frac 1n \sum_{m=1}^n V_m^f \to E(V_1^f) = \sum f(y) \pi(y) E_x(T_x) \quad P_\mu \text{ a.s.}
+    \end{align*}
+    Now, we can describe $K_n$ as the smallest number of visits that takes at least $n$ time. By Theorem 5.6.1, we know that since $p$ is irreducible, $N_n(x)/n \to 1/E_x(T_x)$ $P_\mu$ a.s. $N_n(x)$ is the number of visits by time $n$. Now, by our descriptions, $N_n(x) \leq K_n \leq N_n(x) + 1$. So $K_n/n \to 1/E_x(T_x)$ a.s. Since $K_n$ increases to $\infty$, 
+    \begin{align*}
+        \frac{1}{K_n} \sum_{m=1}^{K_n} V_m^f \to E(V_1^f)
+    \end{align*}
+    So we have concluded that:
+    \begin{align*}
+        \frac{K_n}{n} \frac{1}{K_n} \sum_{m=1}^{K_n} V_m^f \to \frac{E(V_1^f)}{E_x(T_x)} = \sum f(y) \pi(y) \quad P_\mu \text{ a.s.}
+    \end{align*}
+
+    For the last part, we use a really nice trick. With $S_n = V_1^{|f|} + \cdots + V_n^{|f|}$, we can write:
+    \begin{align*}
+        \frac{V_n^{|f|}}{n} = \frac{S_n}{n} - \frac{n-1}{n} \frac{S_{n-1}}{n-1}
+    \end{align*}
+    sending $n \to \infty$ shows that $V_n^{|f|}/n \to 0$ a.s. Now, let $a_n$ be a sequence of positive real numbers with $a_n/n \to 0$. For any $\ve > 0$, there is $n_0$ so that if $n \geq n_0$, $|a_n/n| < \ve$. Choosing $n_0 > 1/\ve \max_{m \leq n_0} a_m$, we have that $|\max_{m \leq n} a_m/n| < \ve$ for all $n \geq n_0$. So as long as $a_n/n \to 0$, $\max_{m \leq n} a_m/n \to 0$. Applying this to $V_n^{|f|}$ shows that $\max_{m \leq n} V_m^{|f|}/n \to 0$ a.s.
+
+    Now,
+    \begin{align*}
+        \frac{1}{n} \sum_{m=1}^{K_n} V_m^f = \frac{1}{n} \sum_{m=1}^{n} f(X_m) + \frac{1}{n} \qty(f(X_{n+1}) + \cdots + f(X(T^{K_n+1}_x - 1)))
+    \end{align*}
+    Since $T_x^{K_n-1} < n$ by definition, that last quantity can only contain terms from $V_{K_n-1}^f$ and $V_{K_n}^f$. By triangle inequality it is bounded by $2\max_{m \leq n} V_m^{|f|}$. By what we just proved, this shows the error term goes to 0 as $n \to \infty$, and we are done.
+
+    \subsection*{5.6.6. Central limit theorem for additive functionals.} Suppose in addition to the conditions in the Exercise  5.6.5 that $\sum f(y)\pi(y) = 0$, and $E_x(V_k^{|f|})^2 < \infty$. (i) Use the random index central limit theorem to conclude that for any initial distribution $\mu$
+    \begin{align*}
+        \frac{1}{\sqrt{n}} \sum_{m=1}^{K_n} V_m^f \to c \chi \text{ under $P_\mu$}
+    \end{align*}
+    (ii) Show that $\max_{m \leq n} V_m^{|f|}/\sqrt{n} \to 0$ in probability and conclude 
+    \begin{align*}
+        \frac{1}{\sqrt{n}} \sum_{m=1}^n f(X_m) \to c \chi \text{ under $P_\mu$}
+    \end{align*}
+
+    \textbf{Answer.}
+    First we prove the random index central limit theorem. Let $X_1, \ldots$ be i.i.d. with $EX_i = 0$ and $EX_i^2 = \sigma^2 \in (0,\infty)$, and let $S_n = X_1 + \cdots + X_n$. Let $N_n$ be a sequence of nonnegative integer-valued random variables and $a_n$ a sequence of integers with $a_n \to \infty$ and $N_n/a_n \to 1$ in probability. We shall show that $Y_n = S_{N_n}/\sigma \sqrt{a_n} \to \chi$. By the central limit theorem, $Z_n = S_{a_n}/\sigma \sqrt{a_n} \Rightarrow \chi$. For fixed $\ve > 0$, define the event $A_n = \SET{(1-\ve)a_n \leq N_n \leq (1+\ve)a_n}$. For $N_n$ in this range, notice that:
+    \begin{align*}
+        |S_{N_n} - S_{a_n}| \leq |S_{N_n} - S_{(1-\ve)a_n}| + |S_{(1-\ve)a_n} - S_{a_n}|
+    \end{align*}
+    Now, for $N_n \in [(1-\ve)a_n, (1+\ve)a_n]$, 
+    \begin{align*}
+        |S_{N_n} - S_{(1-\ve)a_n}| \leq \max_{1 \leq k \leq 2\ve a_n} |S_{(1-\ve)a_n + k} - S_{(1-\ve)a_n}| \coloneqq M_n
+    \end{align*}
+    So, $|S_{N_n} - S_{a_n}| \leq 2M_n$. Kolmogorov's maximal inequality implies that:
+    \begin{align*}
+        P(\max_{1 \leq k \leq 2\ve a_n} |S_{(1-\ve)a_n + k} - S_{(1-\ve)a_n}| \geq x \sigma \sqrt{a_n}) \leq \frac{\Var(S_{(1+\ve)a_n} - S_{(1-\ve)a_n})}{x^2 \sigma^2 a_n}
+    \end{align*}
+    Now, $\Var(S_{(1+\ve)a_n} - S_{(1-\ve)a_n}) = 2 \ve a_n \sigma^2$. So,
+    \begin{align*}
+        P(M_n \geq x \sigma \sqrt{a_n}) \leq 2 x^{-2} \ve 
+    \end{align*}
+    Thus, 
+    \begin{align*}
+        P(|S_{N_n} - S_{a_n}| \geq x \sigma \sqrt{a_n}) \leq P(A_n^c) + P(2M_n \geq x \sigma \sqrt{a_n}) \leq P(A_n^c) + 8x^{-2} \ve
+    \end{align*}
+    So,
+    \begin{align*}
+        \limsup_{n \to \infty} P(|S_{N_n} - S_{a_n}| \geq x \sigma \sqrt{a_n}) \leq 8x^{-2} \ve
+    \end{align*}
+    As this holds for every $\ve > 0$, we can conclude  that $(S_{N_n} - S_{a_n})/\sigma \sqrt{a_n} \to 0$ in probability. By the coming together lemma, we conclude that $S_{N_n}/\sigma \sqrt{a_n} \Rightarrow \chi$.
+    
+    Using this lemma with $N_n = K_n$ and $a_n = n/E_x(T_x)$, we conclude that, for some constant $c$,
+    \begin{align*}
+        \frac{1}{\sqrt{n}} \sum_{m=1}^{K_n} V_m^f \Rightarrow c\chi
+    \end{align*}
+    I claim that $nP(V_n^{|f|} \geq \ve \sqrt{n}) \to 0$. This is because:
+    \begin{align*}
+        nP(V_n^{|f|} \geq \ve \sqrt{n}) = \frac{1}{\ve^2} E\qty(\ve^2n 1_{(V_n^{|f|})^2 \geq \ve^2 n})
+    \end{align*}
+    This last quantity converges pointwise to $0$ and is dominated by $(V_n^{|f|})^2$. So by the dominated convergence theorem it converges to 0. Now,
+    \begin{align*}
+        P(\max_{m \leq n} V_m^{|f|}/\sqrt{n} \geq \ve) \leq nP(V_n^{|f|} \geq \ve \sqrt{n}) \to 0
+    \end{align*}
+    So $\max_{m \leq n} V_m^{|f|}/\sqrt{n}$ converges to 0 in probability. By the same argument as before, and the coming together lemma again, we conclude that:
+    \begin{align*}
+        \frac{1}{\sqrt{n}} \sum_{m=1}^n f(X_m) \Rightarrow c\chi.
+    \end{align*}
+
+\end{document}

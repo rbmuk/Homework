@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse,newtxtext,newtxmath}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    frame=single,
+    language=Python
+}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\Z{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Problem 1.}
+    Let $e = \SET{v_1, \ldots, v_r}$ be any hyperedge and color the vertices of the graph one of the 4 colors uniformly and independently. Then we shall look at $\P(\leq\text{ 3 colors in } e)$. $P(\text{exactly 1 color}) = 4/4^r$. $P(\text{exactly 2 colors}) = {4 \choose 2} \cdot (2^r - 2)/4^r$. This is because we need to pick a subset who is non-empty and whose complement is non-empty to get this splitting. Finally, $P(\text{exactly 3 colors}) = {4 \choose 3} \cdot (3^r - 3 - {3 \choose 2}(2^r-2))/4^r$. This is because we first need to pick the 3 colors. Label them A,B,C in some order. Then the way to just put the $r$ colors in those 3 boxes is $3^r$. We then need to subtract the number of colors using exactly 2 of the 3 and using exactly 1 of the 3. This is ${3 \choose 2} (2^r-2) + 3$ cases. So we get:
+    \begin{align*}
+        P(\leq 3 \text{ colors in $e$}) &= P(\text{exactly 1 color}) + P(\text{exactly 2 colors}) + P(\text{exactly 3 colors}) \\
+        &= \frac{4}{4^r} + {4 \choose 2} \cdot \frac{(2^r - 2)}{4^r} + {4 \choose 3} \cdot \frac{(3^r - 3 - {3 \choose 2}(2^r-2))}{4^r} \\
+        &= \frac{1}{4^r} \left(4 - 6 \cdot 2^r + 4 \cdot 3^r \right)
+    \end{align*}
+    Since there are $4^{r-1}/3^r$ edges, a union bound tells us that:
+    \begin{align*}
+        \P(\exists e \text{ with $\leq 3$ colors} ) &\leq \frac{4^{r-1}}{3^r} \cdot \P(\leq 3 \text{ colors in $e$}) = 1 - \frac{2^{r-1}}{3^{r-1}} + \frac{1}{3^r} \\
+    \end{align*}
+    It is then easy to see that this quantity is $< 1$ for $r \geq 1$, so in particular, $P(\text{every edge has all 4 colors}) > 0$. So there exists a coloring where every edge has all 4 colors represented.
+
+    \subsection*{Problem 2.}
+    Let $C = \bigcup_i S(v)$ be the set of all the colors. Since $G$ is bipartite, we can write $G = (V_1, V_2, E)$ where $V_1$ and $V_2$ are the two parts of the bipartite graph. For each color $c \in C$, assign it to a side $1$ or $2$ uniformly and independently. Let $C_1$ be the colors with label 1 and $C_2$ similarly defined. Fixing $v \in V_i$, we show that:
+    \begin{align*}
+        \P(S(v) \cap C_i = \emptyset) = 2^{-\log_2(n+1)} = \frac{1}{n+1}
+    \end{align*}
+    Since there are $n$ vertices,
+    \begin{align*}
+        \P(\text{some vertex $v$ has no colors available}) &\leq \frac{n}{n+1} = 1- \frac{1}{n+1}
+    \end{align*}
+    So $\P(\text{all vertices $v$ have colors available}) \geq \frac{1}{n+1}$. If we run $k = (n+1) \log n$ independent trials of this coloring process, the probability that all of them fail is:
+    \begin{align*}
+        \P(\text{all trials fail}) &\leq \qty(1 - \frac{1}{n+1})^{(n+1) \log n} \leq \exp(-(n+1) \log n / (n+1)) = \frac{1}{n}
+    \end{align*}
+    Since given a color assignment, we can check if the algorithm succeeds in $O(n)$ time, by running $O(n \log n)$ independent trials we have a polynomial time algorithm to list color $G$. This completes the algorithm.
+\end{document}

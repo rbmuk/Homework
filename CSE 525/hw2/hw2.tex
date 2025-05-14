@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse,newtxtext,newtxmath}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    frame=single,
+    language=Python
+}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\Z{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+\title{CSE 525 UW}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Problem 1.}
+    Fix $p > 0$. Let $S$ be our independent set. First, for each vertex $v$, indepentently add it to $S$ with probability $p$. Then for each edge appearing in the subgraph with vertices in $S$, remove one of the vertices uniformly at random. This clearly gives an independent set as we have made all edges disappear. Now, $E[\text{\# added}] = np$, and $E[\text{\# edges}] = p^3 m$. As we remove at most one vertex for each edge in the subgraph with vertices in $S$, $E[|S|] = E[\text{\# added} - \text{\# removed}] \geq E[\text{\# added} - \text{\# edges}] = np - mp^3$. Setting $p = \sqrt{\frac{n}{3m}}$ yields an independent set of size
+    \begin{align*}
+        E[|S|] \geq \frac{n^{3/2}}{\sqrt{3m}} - \frac{mn^{3/2}}{3^{3/2} m^{3/2}} = O\qty(\frac{n^{3/2}}{\sqrt{m}})
+    \end{align*}
+
+    \subsection*{Problem 2.}
+    Let $E$ be the event that $G$ has an isolated vertex. Enumerate the vertices of $G$ as $V = \SET{v_1, \ldots, v_n}$. Then let $X_i= 1[v_i \text{ is isolated}]$. Since each edge appears with probability $p$, $E[X_i] = (1-p)^{n-1}$. Now, $E(X) = n(1-p)^{n-1}$. Then, $\Cov(X_i,X_j) = E(X_iX_j) - E(X_i)^2$. The first is $P(\text{$i,j$ isolated}) = (1-p)^{2(n-2)+1}$. On the other hand, by our previous calculation $E(X_i)^2 = (1-p)^{2(n-1)} = (1-p)^{2(n-2)+2}$. Then $\Cov(X_i,X_j) = (1-p)^{2(n-2)}((1-p) - (1-p)^2) \leq p(1-p)^{2(n-2)}$. This shows that for $X = \sum_i X_i$, we have that:
+    \begin{align*}
+        \Var(X) \leq n(1-p)^{n-1} + n^2p(1-p)^{2(n-2)}.
+    \end{align*}
+    Since $E(X)^2 = n^2(1-p)^{2(n-1)}$, we have that,
+    \begin{align*}
+        P(X = 0) &\leq \frac{\Var(X)}{E(X)^2} \leq \frac{n(1-p)^n + n^2p(1-p)^{2n}}{n^2(1-p)^{2n}}
+    \end{align*}
+    Using that for small $p$, $1-x \approx e^{-x}$, and letting $p = \frac{\log n}{2n}$, we have that:
+    \begin{align*}
+        P(X = 0) &\leq \frac{n(1-p)^n + n^2p(1-p)^{2n}}{n^2(1-p)^{2n}} \\
+        &= \frac{n e^{-n \log n/ 2n} + n^2 \frac{\log n}{2n} e^{-2n \log n/2n}}{n^2 e^{-2n \log n/2n}} = \frac{\sqrt{n} + 1/2 \log n}{n} = O \qty(\frac{1}{\sqrt{n}}).
+    \end{align*}
+    Thus $P(\text{$G$ disconnected}) \geq P(X \geq 1) = 1 - O \qty(\frac{1}{\sqrt n})$.
+
+    For the second part of the problem, recall that a graph is connected iff every cut has an edge. Let $(S, S^c)$ be an arbitrary cut with $|S| = k$. The number of possible edges between $S$ and $S^c$ is $k(n-k)$. Thus $P(E(S) = \emptyset) = (1-p)^{k(n-k)}$. Now,
+    \begin{align*}
+        P(G \text{ disconnected}) = P(\exists S \text{ s.t. } E(S) = \emptyset) \leq \sum_{k=1}^{n/2} {n \choose k} (1-p)^{k(n-k)} \leq \sum_k \qty(\frac{ne}{k})^k e^{-pk(n-k)}
+    \end{align*}
+    Now let $p = \frac{3 \log n}{n}$. We get:
+    \begin{align*}
+        \sum_k \qty(\frac{ne}{k})^k e^{-pk(n-k)} &= \sum_k \qty(\frac{ne}{k})^k n^{-3 k(1 - \frac kn)} = \sum_k \qty(\frac{e}{k})^k n^{-2k + \frac{3k^2}{n}}
+    \end{align*}
+    Now, $n^x$ is maximized when $x$ is maximized. As $-2k + 3k^2/n$ is a convex quadratic, it is maximized at the bounadry, so either $k =1$ or $n/2$. A simple check shows that eventually $k=1$ yields the bigger value of $-2 + 3/n$. Thus,
+    \begin{align*}
+        P(G \text{ disconnected}) &\leq \sum_k \qty(\frac{e}{k})^k \cdot n^{3/n} \cdot n^{-2} 
+    \end{align*}
+    Now, $n^{3/n} \to 1$ so it is bounded and $\sum_{k=1}^{n/2} \qty(\frac{e}{k})^k \leq \sum_{k=1}^{\infty} \qty(\frac{e}{k})^k < \infty$. Thus, we have that $P(G \text{ disconnected}) = O(n^{-2})$. So $G$ is connected with probability, $1 - O(n^{-2})$.
+\end{document}

@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Start of preamble
+%==========================================================================================%
+
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse,newtxtext,newtxmath}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}
+\usepackage{tikz-cd}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    frame=single,
+    language=Python
+}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\Z{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\P}{\mathbb P\qty}
+\newcommand{\E}{\mathbb{E}\qty}
+\newcommand{\Cov}{\mathrm{Cov}\qty}
+\newcommand{\Var}{\mathrm{Var}\qty}
+
+% Sets
+\usepackage{braket}
+
+\graphicspath{{/}}
+\usepackage{float}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+\title{CSE Template}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \subsection*{Problem 1.}
+    Let $G = (A,B,E)$ be a bipartite graph with parts $A$ and $B$. Since $G$ is $d$-regular, $|A| \cdot d = |B| \cdot d$, both sides count the total number of edges leaving $A$ and $B$. Thus $|A| = |B|$. For a subset $S$ of $A$, we consider the quantity
+    \begin{align*}
+        d |S| = \sum_{a \in S} \deg a
+    \end{align*}
+    Since $G$ is d-regular, the degree of each vertex in $B$ is $d$. Thus, in this sum, we count each neighbor of $S$ at the very most $d$ times. So, $d|S| \leq d|N(S)|$ meaning that $|S| \leq |N(S)|$ for each subset $S$ of $A$. Hall's marriage theorem states that a perfect matching exists. Call this $E_1$, and remove all those edges. Repeat by induction to get $d$ edge-disjoint subsets of $E$: $E_1, \ldots, E_d$ (which we color $d$ different colors). Now suppose that every cycle in $G$ has length at least $L$, to be chosen later. Independently choose a random edge $X_i$ of each cycle $C_i$ to be ``corrupted'' to the $(d+1)$st color. Then define $A_{C_i \to e, C_j \to e'} = \SET{X_i = e, X_j = e'}$ only for when $d(e,e') = 1$ and $e \in C_i, e' \in C_j$. Clearly, by our definition of the $X_i$,
+    \begin{align*}
+        P(A_{C_i \to e, C_j \to e'}) = P(X_i = e) P(X_j = e') = \frac{1}{|C_i||C_j|}
+    \end{align*}
+    We must now look deeply into dependencies. This random event is fully measurable with respect to $X_i$ and $X_j$. So it is not independent only on events that contain one of those variables.
+    
+    We prove the following lemma: in a 2-regular graph, $e$ is in $\leq 1$ cycle. This is because a 2-regular graph is a union of disjoint cycles. Thus there are at most ${d \choose 2}$ 2-colored cycles containing $e$, each cycle is found in a union of two of the $E_i$, which is a 2-regular graph. So, if a different event contains $C_i$, then we have $|C_i|$ choices for $e$, then at most $2d$ choices for $e'$, and from our lemma above, there are at most ${d \choose 2} \leq d^2$ 2-colored cycles containing $e'$, yielding a total number of $2|C_i| d^3$. The same is true for $|C_j|$. We now apply (Asymmetric) LLL. Take $x_{C_i \to e, C_j \to e'} = 2/|C_i||C_j|$. Then fixing $A$, we know that:
+    \begin{align*}
+        \sum_{A' \sim A} x_j &= \sum_{A_{C_i \to f, C_k \to f'}} \frac{1}{|C_i||C_k|} + \sum_{A_{C_k \to f, C_j \to f'}} \frac{1}{|C_k||C_j|} 
+    \end{align*}
+    We have:
+    \begin{align*}
+        \sum_{A_{C_i \to f, C_k \to f'}} \frac{1}{|C_i||C_k|} &\leq \sum_{A_{C_i \to f, C_k \to f'}}  \frac{1}{|C_i| L} \leq \frac{2d^3}{L}
+    \end{align*}
+    This is because there are around $|C_i|$ choices for $f$, and then $2d$ choices for $f'$, with ${d \choose 2} \leq d^2$ cycles containing $f'$. The same is true for $|C_j|$, so we get:
+    \begin{align*}
+        \sum_{A' \sim A} x_j &\leq \frac{4d^3}{L}
+    \end{align*}
+    To satisfy the conditions of LLL, we need:
+    \begin{align*}
+        \frac{2}{|C_i||C_j|} \prod_{A' \sim A} (1-x_j) &\geq \frac{1}{|C_i||C_j|}
+    \end{align*}
+    Using $1-x \approx e^{-x}$, we have:
+    \begin{align*}
+        \prod_{A' \sim A} (1-x_j) &= \exp(-\sum_{A' \sim A} x_j) \geq \exp(-\frac{4d^3}{L})
+    \end{align*}
+    It is this sufficient to take $\exp(-\frac{4d^3}{L}) \geq \frac{1}{2}$, or $L = O(d^3)$. 
+\end{document}

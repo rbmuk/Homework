@@ -1,0 +1,239 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing{}
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % colors
+
+% Start of preamble
+%==========================================================================================%
+% Required to support mathematical unicode
+\usepackage[warnunknown, fasterrors, mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+
+% Standard mathematical typesetting packages
+\usepackage{amsmath,amssymb,amscd,amsthm,amsxtra}
+\usepackage{mathtools,mathrsfs,xparse,newtxtext,newtxmath}
+
+% Symbol and utility packages
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{apacite}
+
+% Extras
+\usepackage{physics}  % Lots of useful shortcuts and macros
+\usepackage{tikz-cd}  % For drawing commutative diagrams easily
+\usepackage{microtype}  % Minature font tweaks
+%\usepackage{pgfplots} % plots
+
+\usepackage{enumitem}
+\usepackage{titling}
+
+\usepackage{graphicx}
+
+%\usepackage{quiver}
+
+% Fancy theorems due to @intuitively on discord
+\usepackage{mdframed}
+\newmdtheoremenv[
+backgroundcolor=NavyBlue!30,
+linewidth=2pt,
+linecolor=NavyBlue,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip]{mytheorem}{Theorem}
+
+\newenvironment{theorem}{\begin{mytheorem}}{\end{mytheorem}}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newtheoremstyle{definitionstyle}
+{\topsep}%
+{\topsep}%
+{}%
+{}%
+{\bfseries}%
+{.}%
+{.5em}%
+{}%
+\theoremstyle{definitionstyle}
+\newmdtheoremenv[
+backgroundcolor=Violet!30,
+linewidth=2pt,
+linecolor=Violet,
+topline=false,
+bottomline=false,
+rightline=false,
+innertopmargin=10pt,
+innerbottommargin=10pt,
+innerrightmargin=10pt,
+innerleftmargin=10pt,
+skipabove=\baselineskip,
+skipbelow=\baselineskip,
+]{mydef}{Definition}
+\newenvironment{definition}{\begin{mydef}}{\end{mydef}}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem*{example}{Example}
+\newtheorem*{claim}{Claim}
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+
+\def\bN{\mbb{N}}
+\def\C{\mbb{C}}
+\def\R{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+\def\cph{\varphi}
+\renewcommand{\th}{\theta}
+\def\ve{\varepsilon}
+\newcommand{\mg}[1]{\| #1 \|}
+
+% Often helpful macros
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\qed}{\hfill\qedsymbol}
+\renewcommand{\ip}[1]{\langle#1\rangle}
+\newcommand{\seq}[2]{\qty(#1_#2)_{#2=1}^{\infty}}
+
+\newcommand{\SET}[1]{\Set{\mskip-\medmuskip #1 \mskip-\medmuskip}}
+
+% End of preamble
+%==========================================================================================%
+
+% Start of commands specific to this file
+%==========================================================================================%
+
+\usepackage{braket}
+\newcommand{\Z}{\mbb Z}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\nsg}{\trianglelefteq}
+\newcommand{\F}{\mbb F}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\sepdeg}[1]{[#1]_{\mathrm{sep}}}
+\newcommand{\Q}{\mbb Q}
+\newcommand{\Gal}{\mathrm{Gal}\qty}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}_R}
+\newcommand{\1}{\mathds 1}
+\newcommand{\N}{\mathbb N}
+\renewcommand{\P}{\mathbb P \qty}
+\newcommand{\E}{\mathbb E \qty}
+\newcommand{\Var}{\mathrm{Var}}
+\everymath{\displaystyle}
+\newcommand{\argmax}{\mathrm{argmax}}
+
+%==========================================================================================%
+% End of commands specific to this file
+
+\title{Math HW5}
+\date{\today}
+\author{Rohan Mukherjee}
+
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item We need to show that:
+        \begin{align*}
+            \max_{\pi \in S_n} \sum_{i=1}^n \lambda_{\pi(i)}^2 + A_{ii}^2 - 2\lambda_{\pi(i)}A_{ii} \geq \frac{1}{n-1}\sum_{i=1}^n R_i^2
+        \end{align*}
+        Then notice that
+        \begin{align*}
+            \frac{1}{n-1} \sum_{i=1}^n R_i^2 = \frac{1}{n-1} \sum_{i=1}^n \qty(\sum_{j \neq i} |A_{ij}|)^2 \leq \sum_{i=1}^n \sum_{j \neq i} |A_{ij}|^2 = \mg{A}_F^2 - \sum_{i=1}^n A_{ii}^2 = \sum_{i=1}^n \lambda_i^2 - \sum_{i=1}^n A_{ii}^2
+        \end{align*}
+        So a strictly stronger inequality is to show that:
+        \begin{align*}
+            \sum_{i=1}^n \lambda_i^2 - \sum_{i=1}^n A_{ii}^2 \leq \max_{\pi \in S_n} \sum_{i=1}^n \lambda_{\pi(i)}^2 + A_{ii}^2 - 2\lambda_{\pi(i)}A_{ii}
+        \end{align*}
+        Or equivalently,
+        \begin{align*}
+            0 \leq \max_{\pi \in S_n} \sum_{i=1}^n 2A_{ii}^2 - 2 \lambda_{\pi(i)}A_{ii}
+        \end{align*}
+        Put uniform measure on $S_n$. Then,
+        \begin{align*}
+            E_{\pi}\qty(\sum_{i=1}^n \lambda_{\pi(i)}A_{ii}) = \sum_{i=1}^n A_{ii} E_{\pi}(\lambda_{\pi(i)})
+        \end{align*}
+        For a fixed $i$, $\pi(i)$ is uniformly distributed in $[n]$. Thus this equals:
+        \begin{align*}
+            \sum_{i=1}^n A_{ii} \frac{1}{n} \qty(\sum_{j=1}^n \lambda_j) = \frac{1}{n} \Tr(A)^2 = \frac{1}{n} \qty(\sum_{i=1}^n A_{ii})^2 \leq \sum_{i=1}^n A_{ii}^2
+        \end{align*}
+        Since it happens on average, there exists permutation $\pi \in S_n$ that makes it happen. This completes the proof.
+
+        \item This is false. For any starting matrix $A$, consider $B = -A$. Then $1/2A + 1/2B = 0$, whose largest eigenvalue 0 is not simple as long as $n \geq 2$.
+
+        \item Since $\lambda_{n-1}$ is closer to $\lambda_n$ than $\lambda_i$ for $i \leq n-1$, we have that:
+        \begin{align*}
+            \lambda_n' \leq \frac{n-1}{\lambda_n - \lambda_{n-1}}
+        \end{align*}
+        By dropping all the positive terms, we also have that:
+        \begin{align*}
+            \lambda_{n-1}' \geq \frac{1}{\lambda_{n-1} - \lambda_n}
+        \end{align*}
+        Thus,
+        \begin{align*}
+            \lambda_n' - \lambda_{n-1}' \leq \frac{n}{\lambda_n - \lambda_{n-1}}
+        \end{align*}
+        Let $v = \lambda_n - \lambda_{n-1}$. The problem tells us that $v > 0$ always. So,
+        \begin{align*}
+            vv' \leq n
+        \end{align*}
+        Integrating both sides,
+        \begin{align*}
+            v^2(t)/2 - v^2(0)/2 = \int_{0}^t vv' dx \leq \int_0^t n dx = nt
+        \end{align*}
+        For $t \geq T$ for some $T$ depending only on $v(0)$, we have $\lambda_n - \lambda_{n-1} = v(t) \leq 2\sqrt{nt}$ (More specifically, for $t \geq v^2(0)/2n = T$, $v^2(0)/2 \leq nt$). We seek to repeat this process for all the other gaps. By dropping the negative term, and using that $\lambda_{n-2}$ is closer to $\lambda_{n-1}$ than $\lambda_i$ for $i \leq n-2$, we have that:
+        \begin{align*}
+            \lambda_{n-1}' \leq \frac{n-2}{\lambda_{n-1} - \lambda_{n-2}}
+        \end{align*}
+        By a similar logic, we have that (recall that by making the denominator smaller, we are pushing the fraction far in the negative direction, giving a better lower bound):
+        \begin{align*}
+            \lambda_{n-2}' \geq \frac{2}{\lambda_{n-2}-\lambda_{n-1}}
+        \end{align*}
+        As before this means that $\lambda_{n-1} - \lambda_{n-2} \leq 2\sqrt{nt}$ for $T$ sufficiently large depending only on the initial conditions.
+
+        Then, (up to some constant depending only on $\lambda_i(0)$ for each $i$):
+        \begin{align*}
+            \lambda_n - \lambda_1 = \sum_{i=1}^{n} \lambda_i - \lambda_{i-1} \leq 2n^{3/2} \sqrt{t}
+        \end{align*}
+        Now, 
+        \begin{align*}
+            \lambda_n' \geq \frac{1}{\lambda_n - \lambda_1} \geq \frac{1}{2n^{3/2} \sqrt{t}}
+        \end{align*}
+        Simutlaenously,
+        \begin{align*}
+            \lambda_1' \leq \frac{1}{\lambda_1 - \lambda_n} \leq \frac{-1}{2n^{3/2} \sqrt{t}}
+        \end{align*}
+        Integrating these inequalities shows that (up to another constant depending on $\lambda_i(0)$ and $\lambda_n(0)$):
+        \begin{align*}
+            \lambda_1 \leq \frac{-C}{n^{3/2}} \sqrt{t} \leq \frac{C}{n^{3/2}} \sqrt{t} \leq \lambda_n \quad \text{for $t \geq T$}
+        \end{align*} where $T$ depends only on the $\lambda_i(0)$. Indeed, in particular, the solutions are unbounded (also this is better than $\log t$).
+
+        \item There are two answers here, one that is more fun than the other. The first is to just consider $X = 0$. Since $A$ has an eigenvalue 1 with multiplicity 2 it must not be 0. Then $A+\ve X = A$ also has eigenvalue 1 with multiplicity 2 always. The other answer is to consider the Jordan normal form of the matrix $A$:
+        \begin{align*}
+            A = P\begin{pmatrix}
+                1 & 1 & \mathbf{0} \\
+                0 & 1 & \mathbf{0} \\
+                \mathbf{0} & \mathbf{0} & B
+            \end{pmatrix}P^{-1}
+        \end{align*}
+        From here, taking
+        \begin{align*}
+            X = P\begin{pmatrix}
+                0 & 1 & \mathbf{0} \\
+                0 & 0 & \mathbf{0} \\
+                \mathbf{0} & \mathbf{0} & B
+            \end{pmatrix}P^{-1}
+        \end{align*}
+        Works for all $\ve > 0$. You can just read the eigenvalues off the main diagonal for the $2 \times 2$ upper triangular block in the top left.
+    \end{enumerate}
+\end{document}
