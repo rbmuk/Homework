@@ -278,37 +278,37 @@ skipbelow=\baselineskip,
     \end{align*}
     suppose $\sigma$ and $b$ are $C^\infty$ functions and all their derivatives are bounded. Show that for each $t$ the map $x \to X_t^x$ is continuous in $x$ a.s. and further thnat it is differentiable. 
 
-    Using that $(x+y+z)^6 \leq D(x^6+y^6+z^6)$, Doob's $L^p$ inequality, and the Lipschitz continuity of differentiable functions, we have that:
+    Using that $(x+y+z)^4 \leq 27(x^4+y^4+z^4)$, Doob's $L^p$ inequality, and the Lipschitz continuity of differentiable functions, we have that:
     \begin{align*}
-        \E[\sup_{r \leq t} |X_r^x - X_r^y|^6] &\leq D|x-y|^6 + 2D\E[\sup_{r \leq t} \qty(\int_0^r (\sigma(X_s^x) - \sigma(X_s^y)) \, dW_t)^6] 
-        \\ &+ 2D\E[\sup_{r \leq t} \qty(\int_0^r (b(X_s^x) - b(X_s^y)) \, ds)^6] 
+        \E[\sup_{r \leq t} |X_r^x - X_r^y|^4] &\leq 27|x-y|^4 + 27\E[\sup_{r \leq t} \qty(\int_0^r (\sigma(X_s^x) - \sigma(X_s^y)) \, dW_t)^4] 
+        \\ &+ 27\E[\sup_{r \leq t} \qty(\int_0^r (b(X_s^x) - b(X_s^y)) \, ds)^4]
     \end{align*}
     The first term is more more complicated, first we use inequality due to Burkholder-Davis-Gundy and Cauchy-Schwarz:
     \begin{align*}
-        \E[\sup_{r \leq t} \qty(\int_0^r (\sigma(X_s^x) - \sigma(X_s^y)) \, dW_t)^6] &\leq C\E[\qty(\int_0^t (\sigma(X_s^x) - \sigma(X_s^y))^2 \, ds)^3] 
-        \\& \leq Ct^q \E[\int_0^t (\sigma(X_s)^x - \sigma(X_s^y))^6 \, ds]
+        \E[\sup_{r \leq t} \qty(\int_0^r (\sigma(X_s^x) - \sigma(X_s^y)) \, dW_t)^4] &\leq C\E[\qty(\int_0^t (\sigma(X_s^x) - \sigma(X_s^y))^2 \, ds)^2] 
+        \\& \leq t^2 C \E[\int_0^t (\sigma(X_s)^x - \sigma(X_s^y))^4 \, ds]
     \end{align*}
     The other one is easier:
     \begin{align*}
-        \E[\sup_{r \leq t} \qty(\int_0^r (b(X_s^x) - b(X_s^y)) \, ds)^6] &\leq t^6\E[\int_0^t (b(X_s)^x - b(X_s^y))^6 \, ds]
+        \E[\sup_{r \leq t} \qty(\int_0^r (b(X_s^x) - b(X_s^y)) \, ds)^4] &\leq t^4\E[\int_0^t (b(X_s)^x - b(X_s^y))^4 \, ds]
     \end{align*}
-    Putting it all together and using that $\sigma, b$ are Lipschitz continuous, we get:
+    Putting it all together and using that $\sigma, b$ are Lipschitz continuous, we get (for a constant independent of $x,y,\omega$):
     \begin{align*}
-        \E[\sup_{r \leq t} |X_r^x - X_r^y|^6] &\leq 27|x-y|^6 + C \int_0^t \E[\sup_{r \leq s} |X_r^x - X_r^y|^6] \, ds
+        \E[\sup_{r \leq t} |X_r^x - X_r^y|^4] &\leq 27|x-y|^4 + C \int_0^t \E[\sup_{r \leq s} |X_r^x - X_r^y|^4] \, ds
     \end{align*}
-    Letting $g(t) = \E[\sup_{r \leq t} |X_r^x - X_r^y|^6]$, we have:
+    Letting $g(t) = \E[\sup_{r \leq t} |X_r^x - X_r^y|^4]$, we have:
     \begin{align*}
-        g(t) &\leq D|x-y|^6 + C\int_0^t g(s) \, ds
+        g(t) &\leq 27|x-y|^4 + C\int_0^t g(s) \, ds
     \end{align*}
-    Using Gronwall's lemma, we get $g(t) \leq D|x-y|^6 e^{Ct}$. In particular,
+    Using Gronwall's lemma, we get $g(t) \leq 27|x-y|^4 e^{Ct}$. In particular, as $t$ is fixed,
     \begin{align*}
-        \E[|X_t^x - X_t^y|^6] &\leq C(t) |x-y|^6
+        \E[|X_t^x - X_t^y|^4] &\leq D |x-y|^4
     \end{align*}
-    Since $t$ is fixed this is okay. Applying Kolmogorov's continuity theorem, $X_t$ has a continuous verison for $\alpha = 6$ and $\beta = 5$. Thus it is Holder continuous with order $<\beta/\alpha = 5/6$.
+    Applying Kolmogorov's continuity theorem, $X_t$ has a continuous verison.
     
     Now we prove the existence of the derivative. Consider the sequence of stochastic processes defined by $Y_0^x(t) = 1$, and:
     \begin{align*}
-        Y_{i+1}^x(t) = \int_0^t \sigma'(X_s^x) Y_i^x(s) \, dW_s + \int_0^t b'(X_s^x) Y_i^x(s) \, ds
+        Y_{i+1}^x(t) = 1 + \int_0^t \sigma'(X_s^x) Y_i^x(s) \, dW_s + \int_0^t b'(X_s^x) Y_i^x(s) \, ds
     \end{align*}
     Notice that:
     \begin{align*}
@@ -324,16 +324,52 @@ skipbelow=\baselineskip,
     \end{align*}
     This norm is complete (as in the book) so converges to a limit $Y^x$. Taking a limit in the integral equations above yields that $Y^x$ is a solution to the SDE $dY^x_t = \sigma'(X_t^x) Y^x_t\, dW_t + b'(X_t^x) Y^x_t \, dt$. 
 
-    Now, using that $\sigma(X_t^{x+h}) - \sigma(X_t^x) = \sigma'(X_t^x)(X_t^{x+h} - X_t^x) + O(1) (X_t^{x+h}-X_t^x)^2$, we have:
+    Now,
     \begin{align*}
-        \E[\sup_{r \leq t} \qty|\frac{X^{x+h}_r - X^x_r}{h} - Y^x_r|^2] &\leq 8\E[\int_0^t \qty(\sigma'(X_s^x) \qty[\frac{X_s^{x+h}-X_s^x}{h} - Y_s^x] + O(1)(X_t^{x+h}-X_t^x)^2)^2ds] \\
-        &\leq A\int_0^t \E[\sup_{r \leq s} \qty|\frac{X^{x+h}_r - X^x_r}{h} - Y^x_r|^2] \, ds + \frac{A}{h^2} \int_0^t \E[\sup_{r \leq s} |X^{x+h}_r - X^x_r|^4] \, ds
+        \E[\sup_{h \leq 2^{-n}} \qty|\frac{X_t^{x+h}-X_t^x}{h} - Y_t^x|^2] &\leq 2\E[\int_0^t \sup_{h \leq 2^{-n}} \qty|\frac{\sigma(X_s^{x+h}) - \sigma(X_s^x)}{h} - \sigma(X_s^x)Y_s^x|^2 \, ds] 
+        \\ &+ 2\E[\sup_{h \leq 2^{-n}} \qty(\int_0^t \qty|\frac{b'(X_s^{x+h}) - b(X_s^x)}{h} - b(X_s^x)Y_s^x| \, ds)^2]
     \end{align*}
-    Recall after a LOT of work $X_r^{x}$ is Holder continuous (in $x$) with some order $1/2 + \alpha$ for $\alpha > 1/4$ (take any $1/4 < \alpha < 5/6 - 1/2$). So we get:
+    With $\sigma(X_s^{x+h}) - \sigma(X_s^x) = \sigma'(C_s^h)(X_s^{x+h} - X_s^x)$ for some $C_s^h$ between $X_s^x$ and $X_s^{x+h}$, we have:
     \begin{align*}
-        \E[\sup_{r \leq t} \qty|\frac{X_r^{x+h} - X_r^x}{h} - Y^x_r|^2] &\leq A\int_0^t \E[\sup_{r \leq s} \qty|\frac{X^{x+h}_r - X^x_r}{h} - Y^x_r|^2] \, ds + C h^{4\alpha}
+        \E[\int_0^t \sup_{h \leq 2^{-n}} \qty|\frac{\sigma(X_s^{x+h}) - \sigma(X_s^x)}{h} - \sigma(X_s^x)Y_s^x|^2 \, ds] &\leq L\E[\int_0^t \sup_{h \leq 2^{-n}} \qty|\frac{X_s^{x+h} - X_s^x}{h} - Y_s^x|^2 \, ds] \\
+        &+ \E[\int_0^t \sup_{h \leq 2^{-n}} \qty|\sigma'(C_s^h) - \sigma'(X_s^x)|^2 \qty|Y_s^x|^2 \, ds]
     \end{align*}
-    Again, all our constants can depend on $C$. Letting $z(t) = \E[\sup_{r \leq t} \qty|\frac{X_r^{x+h} - X_r^x}{h} - Y^x_r|^2]$, we solve $z(t) \leq Ch^{4\alpha}e^{At}$. 
-
-    Since $4\alpha > 1$, Kolmogorov's continuity theorem can be utilized once again to find a continuous version of the processes $X_t^x$ such that it is uniformly continuous. Then taking the limit as $h \to 0$ will yield that $X_t^{x}$ converges to $Y_t^x$ almost surely. 
+    This second term, by Cauchy-Schwarz and using that $\sigma'$ is lipschitz,
+    \begin{align*}
+        \E[\int_0^t \sup_{h \leq 2^{-n}} \qty|\sigma'(C_s^h) - \sigma'(X_s^x)|^2 \qty|Y_s^x|^2 \, ds] &\leq \int_0^t L\E[\sup_{h \leq 2^{-n}}|C_s^h - X_s^x|^4]^{1/2} \E[|Y_s^x|^4]^{1/2} \, ds
+    \end{align*}
+    We deal with the second expectation first:
+    \begin{align*}
+        \E[|Y_t^x|^4] &\leq 27 + 27t^2\E[\int_0^t |Y_s^x|^4 \, ds] + 27t^4 \E[\int_0^t |Y_s^x|^4 \, ds]
+    \end{align*}
+    This tells us that, for some $A$ independent of $x,y,\omega$:
+    \begin{align*}
+        \E[|Y_t^x|^4] &\leq 27e^{At}
+    \end{align*}
+    Therefore, it is bounded. The last term:
+    \begin{align*}
+        \E[\sup_{h \leq 2^{-n}} |X_t^{x+h} - X_t^x|^4] &\leq 27 \cdot 2^{-4n} + 27t^2 \E[\int_0^t \sup_{h \leq 2^{-n}}|X_s^{x+h} - X_s^x|^4 \, ds] + 27t^4 \E[\int_0^t \sup_{h \leq 2^{-n}}|X_s^{x+h} - X_s^x|^4 \, ds]
+    \end{align*}
+    This tells us that, for a different constant $B$ independent of $x,y,\omega$:
+    \begin{align*}
+        \E[\sup_{h \leq 2^{-n}} |X_t^{x+h} - X_t^x|^4] &\leq 27 e^{Bt} \cdot 2^{-4n} 
+    \end{align*}
+    Encompass $27e^{Bt} = E^2$, then we have:
+    \begin{align*}
+        \E[\sup_{h \leq 2^{-n}} \qty|\frac{X_t^{x+h} - X_t^x}{h} - Y_t^x|^2] &\leq L\int_0^t \E[\sup_{h \leq 2^{-n}} \qty|\frac{X_s^{x+h} - X_s^x}{h} - Y_s^x|^2] \, ds + E\cdot 2^{-2n}
+    \end{align*}
+    Meaning that:
+    \begin{align*}
+        \E[\sup_{h \leq 2^{-n}} \qty|\frac{X_t^{x+h} - X_t^x}{h} - Y_t^x|^2] &\leq E \cdot 2^{-2n} e^{Lt}
+    \end{align*}
+    Then for any $0 < \alpha < 1$, by Borel Cantelli lemma,
+    \begin{align*}
+        \P(\sup_{h \leq 2^{-n}} \qty|\frac{X_t^{x+h} - X_t^x}{h} - Y_t^x|^2 \geq 2^{-2n\alpha} \text{ i.o.}) = 0
+    \end{align*}
+    This shows that 
+    \begin{align*}
+        \frac{X_t^{x+h} - X_t^x}{h} \to Y_t^x
+    \end{align*}
+    completing the proof.
+    
 \end{document}
